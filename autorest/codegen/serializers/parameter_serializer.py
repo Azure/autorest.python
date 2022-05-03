@@ -3,17 +3,22 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Union
+from typing import List, Sequence, Union
 from enum import Enum, auto
+
 
 from ..models import (
     CodeModel,
     Parameter,
     ParameterLocation,
-    BodyParameter,
     ListType,
     ParameterDelimeter,
+    RequestBuilderParameter,
+    ClientParameter,
+    ConfigParameter,
+    ParameterType,
 )
+from ..models.parameter import _ParameterBase
 
 
 class PopKwargType(Enum):
@@ -26,7 +31,9 @@ class ParameterSerializer:
     def __init__(self, code_model: CodeModel):
         self.code_model = code_model
 
-    def serialize_parameter(self, parameter: Parameter, serializer_name: str) -> str:
+    def serialize_parameter(
+        self, parameter: ParameterType, serializer_name: str
+    ) -> str:
         optional_parameters = []
 
         if parameter.skip_url_encoding:
@@ -80,7 +87,14 @@ class ParameterSerializer:
         return serialize_line
 
     def serialize_path(
-        self, parameters: List[Parameter], serializer_name: str
+        self,
+        parameters: Union[
+            List[Parameter],
+            List[RequestBuilderParameter],
+            List[ClientParameter],
+            List[ConfigParameter],
+        ],
+        serializer_name: str,
     ) -> List[str]:
         retval = ["path_format_arguments = {"]
         retval.extend(
@@ -97,7 +111,7 @@ class ParameterSerializer:
 
     def pop_kwargs_from_signature(
         self,
-        parameters: List[Union[Parameter, BodyParameter]],
+        parameters: Sequence[_ParameterBase],
         check_kwarg_dict: bool,
         pop_headers_kwarg: PopKwargType,
         pop_params_kwarg: PopKwargType,

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Union
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .model_type import ModelType
@@ -39,6 +39,8 @@ from .parameter import (
     BodyParameter,
     ParameterDelimeter,
     MultipartBodyParameter,
+    ClientParameter,
+    ConfigParameter,
 )
 from .operation import Operation, OverloadedOperation, OperationBase
 from .property import Property
@@ -66,6 +68,7 @@ from .credential_types import (
     ARMChallengeAuthenticationPolicyType,
     BearerTokenCredentialPolicyType,
     AzureKeyCredentialPolicyType,
+    CredentialType,
 )
 
 __all__ = [
@@ -109,6 +112,9 @@ __all__ = [
     "RequestBuilderBodyParameter",
     "ParameterDelimeter",
     "MultipartBodyParameter",
+    "CredentialType",
+    "ClientParameter",
+    "ConfigParameter",
 ]
 
 TYPE_TO_OBJECT = {
@@ -151,6 +157,12 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
     else:
-        response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(yaml_data, code_model)
+        response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(yaml_data, code_model)  # type: ignore
     code_model.types_map[yaml_id] = response
     return response
+
+
+RequestBuilderType = Union[RequestBuilder, OverloadedRequestBuilder]
+ParameterType = Union[
+    Parameter, RequestBuilderParameter, ClientParameter, ConfigParameter
+]

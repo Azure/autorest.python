@@ -179,7 +179,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             while i < len(operation_group.operations):
                 operation = operation_group.operations[i]
                 if operation.operation_type in ("lro", "lropaging"):
-                    operation_group.operations.insert(i, operation.initial_operation)
+                    operation_group.operations.insert(i, operation.initial_operation)  # type: ignore
                     i += 1
                 i += 1
 

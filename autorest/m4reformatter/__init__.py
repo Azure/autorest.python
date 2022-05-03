@@ -21,7 +21,7 @@ KEY_TYPE = "Key"
 _LOGGER = logging.getLogger(__name__)
 
 # used if we want to get a string / binary type etc
-KNOWN_TYPES = {
+KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
     "string": {"type": "string"},
     "binary": {"type": "binary"},
     "anydict": {"type": "dict", "elementType": {"type": "any"}},
@@ -356,13 +356,14 @@ def update_response_header(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def update_response(
-    operation_group_yaml_data: Dict[str, Any],
     yaml_data: Dict[str, Any],
 ) -> Dict[str, Any]:
     if yaml_data.get("binary"):
         type = KNOWN_TYPES["binary"]
+    elif yaml_data.get("schema"):
+        type = update_type(yaml_data["schema"])
     else:
-        type = update_type(yaml_data["schema"]) if yaml_data.get("schema") else None
+        type = None
     return {
         "headers": [
             update_response_header(h)
@@ -473,11 +474,9 @@ class M4Reformatter(YamlUpdatePlugin):
                 in_overriden=in_overriden,
             ),
             "bodyParameter": body_parameter,
-            "responses": [
-                update_response(yaml_data, r) for r in yaml_data.get("responses", [])
-            ],
+            "responses": [update_response(r) for r in yaml_data.get("responses", [])],
             "exceptions": [
-                update_response(yaml_data, e)
+                update_response(e)
                 for e in yaml_data.get("exceptions", [])
                 if not (
                     e.get("schema")
@@ -726,6 +725,10 @@ class M4Reformatter(YamlUpdatePlugin):
         for request in sub_requests:
             for param in request.get("parameters", []):
                 if has_flattened_body and param.get("targetProperty"):
+                    if not body_parameter:
+                        raise ValueError(
+                            "Has to have a body parameter if it's flattened"
+                        )
                     # this means i'm a property that is part of a flattened model
                     target_property_name = param["targetProperty"]["language"][
                         "default"
@@ -751,6 +754,10 @@ class M4Reformatter(YamlUpdatePlugin):
                             param["language"]["default"]["serializedName"]
                             == "Content-Type"
                         ):
+                            if not body_parameter:
+                                raise ValueError(
+                                    "Has to be a body parameter for content type"
+                                )
                             # override content type type to string
                             param = copy.deepcopy(param)
                             param["schema"] = KNOWN_TYPES[
@@ -944,12 +951,12 @@ class M4Reformatter(YamlUpdatePlugin):
         self, yaml_data: Dict[str, Any], parameters: List[Dict[str, Any]]
     ) -> None:
         # then override with credential flags
-        credential = (
+        credential_flag = (
             self._autorestapi.get_boolean_value("add-credentials", False)
             or self._autorestapi.get_boolean_value("add-credential", False)
             or self.azure_arm
         )
-        if credential:
+        if credential_flag:
             credential_type = self.update_credential_from_flags()
         else:
             credential_type = self.update_credential_from_security(yaml_data)

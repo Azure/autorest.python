@@ -7,15 +7,17 @@ import logging
 from abc import abstractmethod
 from itertools import chain
 from typing import (
+    Callable,
     Dict,
     List,
     Any,
     Optional,
-    Type,
     Union,
     TYPE_CHECKING,
     TypeVar,
 )
+
+from autorest.codegen.models.request_builder_parameter import RequestBuilderParameter
 
 from .utils import OrderedSet
 
@@ -23,6 +25,7 @@ from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import Response
 from .parameter import (
+    BodyParameter,
     MultipartBodyParameter,
     Parameter,
     ParameterLocation,
@@ -40,7 +43,10 @@ ParameterListType = TypeVar(
     "ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList]
 )
 
-class OperationBase(BaseBuilder[ParameterListType]):  # pylint: disable=too-many-public-methods
+
+class OperationBase(
+    BaseBuilder[ParameterListType]
+):  # pylint: disable=too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -65,7 +71,7 @@ class OperationBase(BaseBuilder[ParameterListType]):  # pylint: disable=too-many
             abstract=abstract,
             want_tracing=want_tracing,
         )
-        self.overloads = overloads
+        self.overloads: List["Operation"] = overloads or []
         self.responses = responses
         self.public = public
         self.request_builder = request_builder
@@ -208,7 +214,15 @@ class OperationBase(BaseBuilder[ParameterListType]):  # pylint: disable=too-many
 
     @staticmethod
     def has_kwargs_to_pop_with_default(
-        kwargs_to_pop: List[Parameter], location: ParameterLocation
+        kwargs_to_pop: List[
+            Union[
+                Parameter,
+                RequestBuilderParameter,
+                BodyParameter,
+                MultipartBodyParameter,
+            ]
+        ],
+        location: ParameterLocation,
     ) -> bool:
         return any(
             (kwarg.client_default_value or kwarg.optional)
@@ -380,12 +394,19 @@ class OperationBase(BaseBuilder[ParameterListType]):  # pylint: disable=too-many
 
     @staticmethod
     @abstractmethod
-    def parameter_list_type() -> Type[ParameterListType]:
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], ParameterListType
+    ]:
         ...
 
     @staticmethod
-    def overload_operation_class() -> Type["OperationBase"]:
-        raise ValueError("Should not be called by me")
+    def overload_operation_class() -> Callable[
+        [Dict[str, Any], "CodeModel"], "Operation"
+    ]:
+        # Not raising notimplementederror or making this abstract
+        # because want to make sure all overloaded operation types
+        # have this property, but base class is shared with regular operations
+        raise ValueError("Don't call me")
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
@@ -395,9 +416,9 @@ class OperationBase(BaseBuilder[ParameterListType]):  # pylint: disable=too-many
         exceptions = [
             Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
         ]
-        parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
+        parameter_list = cls.parameter_list_type()(yaml_data, code_model)
         overloads = [
-            cls.overload_operation_class().from_yaml(overload, code_model)
+            cls.overload_operation_class()(overload, code_model)
             for overload in yaml_data.get("overloads", [])
         ]
         abstract = False
@@ -431,8 +452,8 @@ class OperationBase(BaseBuilder[ParameterListType]):  # pylint: disable=too-many
 
 class Operation(OperationBase[ParameterList]):
     @staticmethod
-    def parameter_list_type() -> Type[ParameterList]:
-        return ParameterList
+    def parameter_list_type() -> Callable[[Dict[str, Any], "CodeModel"], ParameterList]:
+        return ParameterList.from_yaml
 
 
 class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
@@ -442,12 +463,16 @@ class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
         return file_import
 
     @staticmethod
-    def overload_operation_class() -> Type[Operation]:
-        return Operation
+    def overload_operation_class() -> Callable[
+        [Dict[str, Any], "CodeModel"], "Operation"
+    ]:
+        return Operation.from_yaml
 
     @staticmethod
-    def parameter_list_type() -> Type[OverloadedOperationParameterList]:
-        return OverloadedOperationParameterList
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], OverloadedOperationParameterList
+    ]:
+        return OverloadedOperationParameterList.from_yaml
 
 
 def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
@@ -466,14 +491,14 @@ def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Operati
         from .lro_operation import LROOperation, OverloadedLROOperation
 
         operation_cls = (
-            OverloadedLROOperation if yaml_data.get("overloads") else LROOperation
+            OverloadedLROOperation if yaml_data.get("overloads") else LROOperation  # type: ignore
         )
     elif yaml_data["discriminator"] == "paging":
         from .paging_operation import PagingOperation, OverloadedPagingOperation
 
         operation_cls = (
-            OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation
+            OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation  # type: ignore
         )
     else:
-        operation_cls = OverloadedOperation if yaml_data.get("overloads") else Operation
+        operation_cls = OverloadedOperation if yaml_data.get("overloads") else Operation  # type: ignore
     return operation_cls.from_yaml(yaml_data, code_model)

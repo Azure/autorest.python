@@ -61,7 +61,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
 
     @property
     def is_xml(self) -> bool:
-        return self.yaml_data.get("isXml")
+        return self.yaml_data.get("isXml", False)
 
     @property
     def serialization_type(self) -> str:
@@ -187,7 +187,9 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return "isinstance({}, msrest.Model)"
         return "isinstance({}, MutableMapping)"
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         if self.code_model.options["models_mode"]:
             return file_import

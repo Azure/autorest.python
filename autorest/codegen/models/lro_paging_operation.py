@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Type
+from typing import Any, Callable, Dict, TYPE_CHECKING
 from .imports import FileImport
 from .lro_operation import LROOperation, _LROOperationBase, OverloadedLROOperation
 from .paging_operation import (
@@ -11,10 +11,15 @@ from .paging_operation import (
     PagingOperation,
     _PagingOperationBase,
 )
-from .operation import Operation, OperationBase
+from .operation import OperationBase, Operation
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
-class _LROPagingOperationBase(_LROOperationBase, _PagingOperationBase):  # pylint: disable=abstract-method
+class _LROPagingOperationBase(
+    _LROOperationBase, _PagingOperationBase
+):  # pylint: disable=abstract-method
     @property
     def success_status_codes(self):
         """The list of all successfull status code."""
@@ -24,19 +29,19 @@ class _LROPagingOperationBase(_LROOperationBase, _PagingOperationBase):  # pylin
     def operation_type(self) -> str:
         return "lropaging"
 
-    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:
+    def response_type_annotation(self, **kwargs) -> str:
         paging_type_annotation = _PagingOperationBase.response_type_annotation(
-            self, async_mode=async_mode
+            self, **kwargs
         )
-        return f"{self.get_poller(async_mode)}[{paging_type_annotation}]"
+        return f"{self.get_poller(kwargs.pop('async_mode'))}[{paging_type_annotation}]"
 
-    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:
+    def response_docstring_type(self, **kwargs) -> str:
         paging_docstring_type = _PagingOperationBase.response_docstring_type(
-            self, async_mode=async_mode
+            self, **kwargs
         )
-        return f"~{self.get_poller_path(async_mode)}[{paging_docstring_type}]"
+        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{paging_docstring_type}]"
 
-    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=unused-argument
+    def response_docstring_text(self, **kwargs) -> str:
         base_description = (
             "An instance of LROPoller that returns an iterator like instance of "
         )
@@ -72,5 +77,7 @@ class OverloadedLROPagingOperation(
         return file_import
 
     @staticmethod
-    def overload_operation_class() -> Type[Operation]:
-        return LROPagingOperation
+    def overload_operation_class() -> Callable[
+        [Dict[str, Any], "CodeModel"], Operation
+    ]:
+        return LROPagingOperation.from_yaml

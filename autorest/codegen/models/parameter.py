@@ -50,7 +50,9 @@ class ParameterDelimeter(str, Enum):
     COMMA = "comma"
 
 
-class _ParameterBase(BaseModel, abc.ABC):  # pylint: disable=too-many-instance-attributes
+class _ParameterBase(
+    BaseModel, abc.ABC
+):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -261,6 +263,7 @@ class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
             ],
         )
 
+
 class Parameter(_ParameterBase):
     def __init__(
         self,
@@ -303,8 +306,14 @@ class Parameter(_ParameterBase):
             if self.in_overload:
                 return ParameterMethodLocation.KEYWORD_ONLY
             return ParameterMethodLocation.KWARG
-        query_or_header = self.location in (ParameterLocation.HEADER, ParameterLocation.QUERY)
-        if self.code_model.options["only_path_and_body_params_positional"] and query_or_header:
+        query_or_header = self.location in (
+            ParameterLocation.HEADER,
+            ParameterLocation.QUERY,
+        )
+        if (
+            self.code_model.options["only_path_and_body_params_positional"]
+            and query_or_header
+        ):
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 

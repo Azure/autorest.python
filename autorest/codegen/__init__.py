@@ -154,7 +154,7 @@ class CodeGenerator(Plugin):
                         operation_yaml, code_model=code_model
                     )
                     if request_builder.overloads:
-                        code_model.request_builders.extend(request_builder.overloads)
+                        code_model.request_builders.extend(request_builder.overloads)  # type: ignore
                     code_model.request_builders.append(request_builder)
                     if operation_yaml.get("nextOperation"):
                         # i am a paging operation and i have a next operation. Make sure to include my next operation

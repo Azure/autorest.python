@@ -6,9 +6,9 @@
 from typing import List
 from jinja2 import Environment
 
-from ..models import RequestBuilder, FileImport
+from ..models import FileImport
 from .import_serializer import FileImportSerializer
-from ..models import CodeModel
+from ..models import CodeModel, RequestBuilderType
 from .builder_serializer import RequestBuilderSerializer
 
 
@@ -17,7 +17,7 @@ class RequestBuildersSerializer:
         self,
         code_model: CodeModel,
         env: Environment,
-        request_builders: List[RequestBuilder],
+        request_builders: List[RequestBuilderType],
         is_python3_file: bool,
     ) -> None:
         self.code_model = code_model

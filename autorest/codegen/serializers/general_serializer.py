@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Optional
+from typing import Optional, cast
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import (
@@ -12,6 +12,7 @@ from ..models import (
     CodeModel,
     Parameter,
     TokenCredentialType,
+    CredentialType,
 )
 from .client_serializer import ClientSerializer, ConfigSerializer
 
@@ -38,7 +39,7 @@ class GeneralSerializer:
                 credential.type.yaml_data,
                 credential.type.code_model,
                 async_mode=self.async_mode,
-                policy=credential.type.policy,
+                policy=cast(CredentialType, credential.type).policy,
             )
 
     def serialize_service_client_file(self) -> str:

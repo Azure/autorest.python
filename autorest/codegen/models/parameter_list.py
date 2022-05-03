@@ -4,7 +4,18 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union, Generic, TypeVar
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    TYPE_CHECKING,
+    Union,
+    Generic,
+    TypeVar,
+    cast,
+)
 from abc import abstractmethod
 from collections.abc import MutableSequence
 from enum import Enum
@@ -198,7 +209,7 @@ class _ParameterListBase(
                 # i am a multipart body parameter
                 # Only legacy generates operations with me, so I will follow the legacy rules
                 # I will splat out my entries as individual entries
-                method_params.extend(self._body_parameter.entries)
+                method_params.extend(self._body_parameter.entries)  # type: ignore
             except AttributeError:
                 pass
         return method_params
@@ -342,7 +353,10 @@ class _RequestBuilderParameterList(
         retval = [
             p
             for p in super().unsorted_method_params
-            if not (p.location == ParameterLocation.BODY and p.is_partial_body)
+            if not (
+                p.location == ParameterLocation.BODY
+                and cast(RequestBuilderBodyParameterType, p).is_partial_body
+            )
         ]
         retval.extend(
             [

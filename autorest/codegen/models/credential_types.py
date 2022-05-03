@@ -13,6 +13,7 @@ from typing import (
     Generic,
     TypeVar,
     Union,
+    cast,
 )
 
 from .imports import FileImport, ImportType, TypingSection
@@ -49,7 +50,7 @@ class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "BaseType":
+    ) -> "BearerTokenCredentialPolicyType":
         return cls(yaml_data, code_model, yaml_data["credentialScopes"])
 
 
@@ -72,7 +73,7 @@ class AzureKeyCredentialPolicyType(_CredentialPolicyBaseType):
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "BaseType":
+    ) -> "AzureKeyCredentialPolicyType":
         return cls(yaml_data, code_model, yaml_data["key"])
 
 
@@ -86,7 +87,9 @@ CredentialPolicyType = TypeVar(
 )
 
 
-class CredentialType(BaseType, Generic[CredentialPolicyType]):  # pylint:disable=abstract-method
+class CredentialType(
+    BaseType, Generic[CredentialPolicyType]
+):  # pylint:disable=abstract-method
     """Store info about credential."""
 
     def __init__(
@@ -98,7 +101,9 @@ class CredentialType(BaseType, Generic[CredentialPolicyType]):  # pylint:disable
         super().__init__(yaml_data, code_model)
         self.policy = policy
 
-    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
+    def description(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> str:
         return ""
 
     def get_json_template_representation(
@@ -127,7 +132,11 @@ class CredentialType(BaseType, Generic[CredentialPolicyType]):  # pylint:disable
         from . import build_type
 
         return cls(
-            yaml_data, code_model, policy=build_type(yaml_data["policy"], code_model)
+            yaml_data,
+            code_model,
+            policy=cast(
+                CredentialPolicyType, build_type(yaml_data["policy"], code_model)
+            ),
         )
 
 
@@ -150,7 +159,9 @@ class TokenCredentialType(
         self._async_type = "~azure.core.credentials_async.AsyncTokenCredential"
         self._sync_type = "~azure.core.credentials.TokenCredential"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
         if self.async_mode:
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
@@ -161,7 +172,9 @@ class TokenCredentialType(
             return self._async_type
         return self._sync_type
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         if self.async_mode:
             file_import.add_submodule_import(
@@ -189,14 +202,18 @@ class AzureKeyCredentialType(CredentialType[AzureKeyCredentialPolicyType]):
     def docstring_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=no-self-use,unused-argument
+    def type_annotation(  # pylint: disable=no-self-use
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
         return "AzureKeyCredential"
 
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, AzureKeyCredential)"
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=no-self-use,unused-argument
+    def imports(  # pylint: disable=no-self-use
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "azure.core.credentials",

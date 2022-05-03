@@ -3,10 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
+from autorest.codegen.models.request_builder import OverloadedRequestBuilder
 
 from ...jsonrpc import AutorestAPI
 from ..models import CodeModel, OperationGroup, RequestBuilder
@@ -269,7 +270,10 @@ class JinjaSerializer:
             )
 
     def _serialize_and_write_single_rest_layer(
-        self, env: Environment, rest_path: Path, request_builders: List[RequestBuilder]
+        self,
+        env: Environment,
+        rest_path: Path,
+        request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]],
     ) -> None:
         group_name = request_builders[0].group_name
         output_path = rest_path / Path(group_name) if group_name else rest_path

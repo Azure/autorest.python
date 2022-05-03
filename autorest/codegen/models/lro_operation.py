@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import abstractmethod
-from typing import Any, Dict, Optional, Type, List, TYPE_CHECKING, Union
+from typing import Any, Callable, Dict, Optional, Type, List, TYPE_CHECKING, Union
 from .imports import FileImport
 from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
@@ -61,7 +61,9 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         if not self.responses:
             return None
         responses_with_bodies = [r for r in self.responses if r.type]
-        num_response_schemas = {id(r.type.yaml_data) for r in responses_with_bodies}
+        num_response_schemas = {
+            id(r.type.yaml_data) for r in responses_with_bodies if r.type
+        }
         response = None
         if len(num_response_schemas) > 1:
             # choose the response that has a status code of 200
@@ -122,18 +124,20 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         )
         return file_import
 
-    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
-        return f"{self.get_poller(async_mode)}[{super().response_type_annotation(async_mode=async_mode)}]"
+    def response_type_annotation(self, **kwargs) -> str:
+        return f"{self.get_poller(kwargs.pop('async_mode'))}[{super().response_type_annotation(**kwargs)}]"
 
-    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
-        return f"~{self.get_poller_path(async_mode)}[{super().response_docstring_type(async_mode=async_mode)}]"
+    def response_docstring_type(self, **kwargs) -> str:
+        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{super().response_docstring_type(**kwargs)}]"
 
-    def cls_type_annotation(self, *, async_mode: bool) -> str:  # pylint: disable=arguments-differ
+    def cls_type_annotation(self, *, async_mode: bool) -> str:
         return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
 
-    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
-        super_text = super().response_docstring_text(async_mode=async_mode)
-        base_description = f"An instance of {self.get_poller(async_mode)} that returns "
+    def response_docstring_text(self, **kwargs) -> str:
+        super_text = super().response_docstring_text(**kwargs)
+        base_description = (
+            f"An instance of {self.get_poller(kwargs.pop('async_mode'))} that returns "
+        )
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + super_text
@@ -212,7 +216,6 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
 
 
 class LROOperation(Operation, _LROOperationBase):
-
     @staticmethod
     def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
         return Operation
@@ -220,8 +223,10 @@ class LROOperation(Operation, _LROOperationBase):
 
 class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
     @staticmethod
-    def overload_operation_class() -> Type[Operation]:
-        return LROOperation
+    def overload_operation_class() -> Callable[
+        [Dict[str, Any], "CodeModel"], "Operation"
+    ]:
+        return LROOperation.from_yaml
 
     @staticmethod
     def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:

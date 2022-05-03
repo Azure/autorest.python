@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, Type, cast
+from typing import Callable, Dict, List, Any, Optional, Union, TYPE_CHECKING, cast
 
 from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
@@ -128,15 +128,17 @@ class _PagingOperationBase(OperationBase):  # pylint: disable=abstract-method
     def has_optional_return_type(self) -> bool:
         return False
 
-    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
+    def response_type_annotation(self, **kwargs) -> str:
+        async_mode = kwargs.pop("async_mode")
         iterable = "AsyncIterable" if async_mode else "Iterable"
         return f"{iterable}[{super().response_type_annotation(async_mode=async_mode)}]"
 
-    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
+    def response_docstring_type(self, **kwargs) -> str:
+        async_mode = kwargs.pop("async_mode")
         return f"~{self.get_pager_path(async_mode)}[{super().response_docstring_type(async_mode=async_mode)}]"
 
-    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
-        super_text = super().response_docstring_text(async_mode=async_mode)
+    def response_docstring_text(self, **kwargs) -> str:
+        super_text = super().response_docstring_text(**kwargs)
         base_description = "An iterator like instance of "
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
@@ -192,5 +194,7 @@ class PagingOperation(Operation, _PagingOperationBase):
 
 class OverloadedPagingOperation(OverloadedOperation, _PagingOperationBase):
     @staticmethod
-    def overload_operation_class() -> Type[Operation]:
-        return PagingOperation
+    def overload_operation_class() -> Callable[
+        [Dict[str, Any], "CodeModel"], "Operation"
+    ]:
+        return PagingOperation.from_yaml

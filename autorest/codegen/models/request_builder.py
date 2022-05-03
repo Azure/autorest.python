@@ -4,7 +4,16 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, Union, Optional, Type
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    TypeVar,
+    TYPE_CHECKING,
+    Union,
+    Optional,
+)
 from abc import abstractmethod
 
 from .base_builder import BaseBuilder
@@ -45,6 +54,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             abstract=abstract,
             want_tracing=False,
         )
+        self.overloads: List["RequestBuilder"] = overloads or []
         self.url: str = yaml_data["url"]
         self.method: str = yaml_data["method"]
 
@@ -100,7 +110,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     @staticmethod
     @abstractmethod
-    def parameter_list_type() -> Type[ParameterListType]:
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], ParameterListType
+    ]:
         ...
 
     @classmethod
@@ -125,7 +137,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             for rb_yaml_data in yaml_data.get("overloads", [])
         ]
         abstract = False
-        parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
+        parameter_list = cls.parameter_list_type()(yaml_data, code_model)
         if (
             code_model.options["version_tolerant"]
             and parameter_list.has_body
@@ -154,16 +166,20 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
 class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
     @staticmethod
-    def parameter_list_type() -> Type[RequestBuilderParameterList]:
-        return RequestBuilderParameterList
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], RequestBuilderParameterList
+    ]:
+        return RequestBuilderParameterList.from_yaml
 
 
 class OverloadedRequestBuilder(
     RequestBuilderBase[OverloadedRequestBuilderParameterList]
 ):
     @staticmethod
-    def parameter_list_type() -> Type[OverloadedRequestBuilderParameterList]:
-        return OverloadedRequestBuilderParameterList
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], OverloadedRequestBuilderParameterList
+    ]:
+        return OverloadedRequestBuilderParameterList.from_yaml
 
 
 def get_request_builder(

@@ -40,7 +40,7 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
         name: str,
         parameters: ParameterListType,
         *,
-        overloads: Optional[Union[List["Operation"], List["RequestBuilder"]]] = None,
+        overloads=None,
         abstract: bool = False,
         want_tracing: bool = True,
     ) -> None:
@@ -48,7 +48,9 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
         self.name = name
         self._description: str = yaml_data.get("description", "")
         self.parameters = parameters
-        self.overloads = overloads or []
+        self.overloads: Union[List["Operation"], List["RequestBuilder"]] = (
+            overloads or []
+        )
         self._summary: str = yaml_data.get("summary", "")
         # for operations where we don't know what to do, we mark them as abstract so users implement
         # in patch.py
