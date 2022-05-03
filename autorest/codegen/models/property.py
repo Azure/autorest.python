@@ -82,7 +82,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def get_json_template_representation(
         self,
         *,
-        optional: bool = True,
+        optional: bool = True,  # pylint: disable=unused-argument
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
     ) -> Any:

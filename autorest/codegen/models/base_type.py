@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .imports import FileImport
@@ -30,9 +30,9 @@ class BaseType(BaseModel, ABC):
     ) -> "BaseType":
         return cls(yaml_data=yaml_data, code_model=code_model)
 
-    def imports(
-        self, *, is_operation_file: bool
-    ) -> FileImport:  # pylint: disable=no-self-use
+    def imports(  # pylint: disable=no-self-use
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         return FileImport()
 
     @property

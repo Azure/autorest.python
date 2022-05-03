@@ -4,13 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Any, TypeVar, Dict, TYPE_CHECKING, List, Set
-import logging
-
-from .imports import FileImport, ImportModel, ImportType, TypingSection
-
-
-_LOGGER = logging.getLogger(__name__)
+from typing import TypeVar, Dict
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 

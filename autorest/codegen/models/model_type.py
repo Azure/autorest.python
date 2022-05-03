@@ -187,7 +187,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return "isinstance({}, msrest.Model)"
         return "isinstance({}, MutableMapping)"
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         if self.code_model.options["models_mode"]:
             return file_import

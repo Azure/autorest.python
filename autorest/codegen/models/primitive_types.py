@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
@@ -15,10 +14,6 @@ from .utils import add_to_description
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-
-_LOGGER = logging.getLogger(__name__)
-
-
 class RawString(object):
     def __init__(self, string: str) -> None:
         self.string = string
@@ -27,8 +22,8 @@ class RawString(object):
         return "r'{}'".format(self.string.replace("'", "\\'"))
 
 
-class PrimitiveType(BaseType):
-    def description(self, *, is_operation_file: bool) -> str:
+class PrimitiveType(BaseType):  # pylint: disable=abstract-method
+    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
         return ""
 
     def type_annotation(
@@ -114,7 +109,7 @@ class BinaryType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(b"bytes")
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
         return file_import
@@ -142,7 +137,7 @@ class AnyType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration({})
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -178,14 +173,14 @@ class AnyObjectType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, MutableMapping)"
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.define_mutable_mapping_type()
         file_import.add_import("sys", ImportType.STDLIB)
         return file_import
 
 
-class NumberType(PrimitiveType):
+class NumberType(PrimitiveType):  # pylint: disable=abstract-method
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.precision: Optional[int] = yaml_data.get("precision")
@@ -367,7 +362,7 @@ class DatetimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -405,7 +400,7 @@ class TimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -443,7 +438,7 @@ class UnixTimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -481,7 +476,7 @@ class DateType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -519,7 +514,7 @@ class DurationType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import

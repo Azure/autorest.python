@@ -1,10 +1,10 @@
+# pylint: disable=too-many-lines
 # -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
 import json
-from itertools import groupby
 from abc import abstractmethod, ABC
 from collections import defaultdict
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
@@ -115,6 +115,29 @@ def _serialize_multipart_body(builder: BuilderType) -> List[str]:
     retval.append("}")
     return retval
 
+def _get_json_response_template_to_status_codes(
+    builder: Operation
+) -> Dict[str, List[str]]:
+    # successful status codes of responses that have bodies
+    responses = [
+        response
+        for response in builder.responses
+        if any(
+            code in builder.success_status_codes for code in response.status_codes
+        )
+        and isinstance(
+            response.type,
+            (DictionaryType, ListType, ModelType),
+        )
+    ]
+    retval = defaultdict(list)
+    for response in responses:
+        status_codes = [str(status_code) for status_code in response.status_codes]
+        response_json = _json_dumps_template(
+            cast(BaseType, response.type).get_json_template_representation()
+        )
+        retval[response_json].extend(status_codes)
+    return retval
 
 class _BuilderSerializerProtocol(ABC):
     @property
@@ -235,7 +258,8 @@ class _BuilderBaseSerializer(
             template += self._json_input_example_template(builder)
         return template
 
-    def param_description(self, builder: BuilderType) -> List[str]:
+    @staticmethod
+    def param_description(builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
             if not param.in_docstring:
@@ -369,9 +393,6 @@ class RequestBuilderSerializer(
     def _need_self_param(self) -> bool:
         return False
 
-    def _response_type_annotation(self, builder: RequestBuilderType) -> str:
-        return builder.response_type_annotation()
-
     def response_docstring(self, builder: BuilderType) -> List[str]:
         response_str = (
             f":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
@@ -412,7 +433,8 @@ class RequestBuilderSerializer(
             ):
                 # we only need to pass it through if it's not a kwarg or it's a popped kwarg
                 retval.append(
-                    f"    {builder.parameters.body_parameter.client_name}={builder.parameters.body_parameter.client_name},"
+                    f"    {builder.parameters.body_parameter.client_name}="
+                    f"{builder.parameters.body_parameter.client_name},"
                 )
         retval.append("    **kwargs")
         retval.append(")")
@@ -468,12 +490,12 @@ class OperationSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-m
         retval = super().example_template(builder)
         if self.code_model.options["models_mode"]:
             return retval
-        if self._get_json_response_template_to_status_codes(builder):
+        if _get_json_response_template_to_status_codes(builder):
             retval.append("")
             for (
                 response_body,
                 status_codes,
-            ) in self._get_json_response_template_to_status_codes(builder).items():
+            ) in _get_json_response_template_to_status_codes(builder).items():
                 retval.append(
                     "# response body for status code(s): {}".format(
                         ", ".join(status_codes)
@@ -498,30 +520,6 @@ class OperationSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-m
     @property
     def _need_self_param(self) -> bool:
         return True
-
-    def _get_json_response_template_to_status_codes(
-        self, builder: Operation
-    ) -> Dict[str, List[str]]:
-        # successful status codes of responses that have bodies
-        responses = [
-            response
-            for response in builder.responses
-            if any(
-                code in builder.success_status_codes for code in response.status_codes
-            )
-            and isinstance(
-                response.type,
-                (DictionaryType, ListType, ModelType),
-            )
-        ]
-        retval = defaultdict(list)
-        for response in responses:
-            status_codes = [str(status_code) for status_code in response.status_codes]
-            response_json = _json_dumps_template(
-                cast(BaseType, response.type).get_json_template_representation()
-            )
-            retval[response_json].extend(status_codes)
-        return retval
 
     @property
     def serializer_name(self) -> str:
@@ -584,7 +582,10 @@ class OperationSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-m
         ]
 
     def _serialize_body_parameter(self, builder: Operation) -> List[str]:
-        """We need to serialize params if they're not meant to be streamed in. This function serializes the body params that need to be serialized."""
+        """We need to serialize params if they're not meant to be streamed in.
+
+        This function serializes the body params that need to be serialized.
+        """
         retval: List[str] = []
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
@@ -672,7 +673,8 @@ class OperationSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-m
             )
             if other_overload.parameters.body_parameter.default_content_type:
                 retval.append(
-                    f'    content_type = content_type or "{other_overload.parameters.body_parameter.default_content_type}"'
+                    '    content_type = content_type or '
+                    f'"{other_overload.parameters.body_parameter.default_content_type}"'
                 )
         except StopIteration:
             for idx, overload in enumerate(builder.overloads):
@@ -809,8 +811,8 @@ class OperationSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-m
     ) -> List[str]:
         retval: List[str] = [
             (
-                f"response_headers['{response_header.rest_api_name}']=self._deserialize('{response_header.serialization_type}', "
-                f"response.headers.get('{response_header.rest_api_name}'))"
+                f"response_headers['{response_header.rest_api_name}']=self._deserialize("
+                f"'{response_header.serialization_type}', response.headers.get('{response_header.rest_api_name}'))"
             )
             for response_header in response.headers
         ]
@@ -854,7 +856,8 @@ class OperationSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-m
             and self.code_model.options["models_mode"]
         ):
             retval.append(
-                f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, pipeline_response)"
+                f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
+                "pipeline_response)"
             )
             error_model = ", model=error"
         retval.append(
@@ -1114,7 +1117,8 @@ class LROOperationSerializer(OperationSerializer):
 
     def initial_call(self, builder: LROOperation) -> List[str]:
         retval = [
-            f"polling = kwargs.pop('polling', True)  # type: Union[bool, {builder.get_base_polling_method(self.async_mode)}]"
+            "polling = kwargs.pop('polling', True)  # type: Union[bool, "
+            f"{builder.get_base_polling_method(self.async_mode)}]"
         ]
         retval.append("lro_delay = kwargs.pop(")
         retval.append("    'polling_interval',")
@@ -1158,7 +1162,8 @@ class LROOperationSerializer(OperationSerializer):
         retval.extend(
             [
                 "if polling is True:",
-                f"    polling_method = cast({builder.get_base_polling_method(self.async_mode)}, {builder.get_polling_method(self.async_mode)}(",
+                f"    polling_method = cast({builder.get_base_polling_method(self.async_mode)}, "
+                "{builder.get_polling_method(self.async_mode)}(",
                 "        lro_delay,",
                 f"        {lro_options_str}",
                 f"        {path_format_arguments_str}",

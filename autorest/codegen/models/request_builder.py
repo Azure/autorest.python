@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast, Union, Optional, Type
+from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, Union, Optional, Type
 from abc import abstractmethod
 
 from .base_builder import BaseBuilder

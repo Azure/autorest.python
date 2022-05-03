@@ -104,7 +104,7 @@ class ConstantType(BaseType):
         self,
         *,
         optional: bool = True,
-        client_default_value_declaration: Optional[str] = None,
+        client_default_value_declaration: Optional[str] = None,  # pylint: disable=unused-argument
         description: Optional[str] = None,
     ) -> Any:
         return self.value_type.get_json_template_representation(

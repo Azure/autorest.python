@@ -3,14 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict
+import logging
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union, Generic, TypeVar
 from abc import abstractmethod
 from collections.abc import MutableSequence
 from enum import Enum
-import logging
-from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar, Type
-from .combined_type import CombinedType
-from .imports import FileImport, ImportType
+
 from .request_builder_parameter import (
     RequestBuilderBodyParameter,
     RequestBuilderMultipartBodyParameter,

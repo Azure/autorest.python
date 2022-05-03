@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Set, TYPE_CHECKING
+from typing import Dict, List, Any, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .operation import OperationBase, get_operation
@@ -77,10 +77,6 @@ class OperationGroup(BaseModel):
             "ClsType", type_value.format(""), type_value.format("Async")
         )
         return file_import
-
-    @property
-    def has_abstract_operations(self) -> bool:
-        return any(o for o in self.operations if o.abstract)
 
     @property
     def filename(self) -> str:

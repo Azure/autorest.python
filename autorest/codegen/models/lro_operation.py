@@ -3,24 +3,20 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
-from typing import Any, Dict, Optional, Type, List, TYPE_CHECKING
+from abc import abstractmethod
+from typing import Any, Dict, Optional, Type, List, TYPE_CHECKING, Union
 from .imports import FileImport
 from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
 from .imports import ImportType, TypingSection
-from .base_type import BaseType
 from .request_builder import RequestBuilder
-from .response import Response
 from .parameter_list import ParameterList
-
-_LOGGER = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class _LROOperationBase(OperationBase):
+class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -103,13 +99,15 @@ class _LROOperationBase(OperationBase):
     def get_polling_method(self, async_mode: bool) -> str:
         return self.get_polling_method_path(async_mode).split(".")[-1]
 
-    def get_no_polling_method_path(self, async_mode: bool) -> str:
+    @staticmethod
+    def get_no_polling_method_path(async_mode: bool) -> str:
         return f"azure.core.polling.{'Async' if async_mode else ''}NoPolling"
 
     def get_no_polling_method(self, async_mode: bool) -> str:
         return self.get_no_polling_method_path(async_mode).split(".")[-1]
 
-    def get_base_polling_method_path(self, async_mode: bool) -> str:
+    @staticmethod
+    def get_base_polling_method_path(async_mode: bool) -> str:
         return f"azure.core.polling.{'Async' if async_mode else ''}PollingMethod"
 
     def get_base_polling_method(self, async_mode: bool) -> str:
@@ -124,21 +122,41 @@ class _LROOperationBase(OperationBase):
         )
         return file_import
 
-    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:
+    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
         return f"{self.get_poller(async_mode)}[{super().response_type_annotation(async_mode=async_mode)}]"
 
-    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:
+    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
         return f"~{self.get_poller_path(async_mode)}[{super().response_docstring_type(async_mode=async_mode)}]"
 
-    def cls_type_annotation(self, *, async_mode: bool) -> str:
+    def cls_type_annotation(self, *, async_mode: bool) -> str:  # pylint: disable=arguments-differ
         return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
 
-    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:
+    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
         super_text = super().response_docstring_text(async_mode=async_mode)
         base_description = f"An instance of {self.get_poller(async_mode)} that returns "
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + super_text
+
+    @property
+    def initial_operation(self) -> Union[Operation, OverloadedOperation]:
+        return self.initial_operation_type()(
+            yaml_data=self.yaml_data,
+            code_model=self.code_model,
+            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
+            name=self.name[5:] + "_initial",
+            overloads=self.overloads,
+            parameters=self.parameters,
+            responses=self.responses,
+            exceptions=self.exceptions,
+            public=False,
+            want_tracing=False,
+        )
+
+    @staticmethod
+    @abstractmethod
+    def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
+        ...
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_base(async_mode, is_python3_file)
@@ -194,20 +212,10 @@ class _LROOperationBase(OperationBase):
 
 
 class LROOperation(Operation, _LROOperationBase):
-    @property
-    def initial_operation(self) -> Operation:
-        return Operation(
-            yaml_data=self.yaml_data,
-            code_model=self.code_model,
-            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
-            name=self.name[5:] + "_initial",
-            overloads=self.overloads,
-            parameters=self.parameters,
-            responses=self.responses,
-            exceptions=self.exceptions,
-            public=False,
-            want_tracing=False,
-        )
+
+    @staticmethod
+    def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
+        return Operation
 
 
 class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
@@ -215,17 +223,6 @@ class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
     def overload_operation_class() -> Type[Operation]:
         return LROOperation
 
-    @property
-    def initial_operation(self) -> OverloadedOperation:
-        return OverloadedOperation(
-            yaml_data=self.yaml_data,
-            code_model=self.code_model,
-            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
-            name=self.name[5:] + "_initial",
-            overloads=self.overloads,
-            parameters=self.parameters,
-            responses=self.responses,
-            exceptions=self.exceptions,
-            public=False,
-            want_tracing=False,
-        )
+    @staticmethod
+    def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
+        return OverloadedOperation

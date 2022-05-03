@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class _PagingOperationBase(OperationBase):
+class _PagingOperationBase(OperationBase):  # pylint: disable=abstract-method
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -128,14 +128,14 @@ class _PagingOperationBase(OperationBase):
     def has_optional_return_type(self) -> bool:
         return False
 
-    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:
+    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
         iterable = "AsyncIterable" if async_mode else "Iterable"
         return f"{iterable}[{super().response_type_annotation(async_mode=async_mode)}]"
 
-    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:
+    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
         return f"~{self.get_pager_path(async_mode)}[{super().response_docstring_type(async_mode=async_mode)}]"
 
-    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:
+    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=arguments-differ
         super_text = super().response_docstring_text(async_mode=async_mode)
         base_description = "An iterator like instance of "
         if not self.code_model.options["version_tolerant"]:

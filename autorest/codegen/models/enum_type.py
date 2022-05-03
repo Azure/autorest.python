@@ -81,7 +81,7 @@ class EnumType(BaseType):
         """
         return self.value_type.serialization_type
 
-    def description(self, *, is_operation_file: bool) -> str:
+    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
         possible_values = [self.get_declaration(v.value) for v in self.values]
         if not possible_values:
             return ""
@@ -105,7 +105,10 @@ class EnumType(BaseType):
         :rtype: str
         """
         if self.code_model.options["models_mode"]:
-            return f'Union[{self.value_type.type_annotation(is_operation_file=is_operation_file)}, "_models.{self.name}"]'
+            return (
+                f'Union[{self.value_type.type_annotation(is_operation_file=is_operation_file)},'
+                f' "_models.{self.name}"]'
+            )
         return self.value_type.type_annotation(is_operation_file=is_operation_file)
 
     def get_declaration(self, value: Any) -> str:

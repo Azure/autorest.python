@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, List, Union, Type, cast
+from typing import Dict, Any, Union, cast
 from pathlib import Path
 import yaml
 

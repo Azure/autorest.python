@@ -107,6 +107,8 @@ __all__ = [
     "RequestBuilderBase",
     "BodyParameter",
     "RequestBuilderBodyParameter",
+    "ParameterDelimeter",
+    "MultipartBodyParameter",
 ]
 
 TYPE_TO_OBJECT = {
@@ -133,7 +135,6 @@ TYPE_TO_OBJECT = {
     "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
-    "time": TimeType,
 }
 
 

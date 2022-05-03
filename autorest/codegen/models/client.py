@@ -3,13 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, TypeVar, Generic, Union
+from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union
 
 from .base_model import BaseModel
-from .parameter import ClientParameter, ConfigParameter
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
-from .lro_operation import LROOperation
 
 ParameterListType = TypeVar(
     "ParameterListType",

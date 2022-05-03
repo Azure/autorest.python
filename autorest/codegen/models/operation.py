@@ -14,9 +14,7 @@ from typing import (
     Type,
     Union,
     TYPE_CHECKING,
-    cast,
     TypeVar,
-    Generic,
 )
 
 from .utils import OrderedSet
@@ -26,9 +24,7 @@ from .imports import FileImport, ImportType, TypingSection
 from .response import Response
 from .parameter import (
     MultipartBodyParameter,
-    BodyParameter,
     Parameter,
-    UrlEncodedBodyParameter,
     ParameterLocation,
 )
 from .parameter_list import ParameterList, OverloadedOperationParameterList
@@ -44,8 +40,7 @@ ParameterListType = TypeVar(
     "ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList]
 )
 
-
-class OperationBase(BaseBuilder[ParameterListType]):
+class OperationBase(BaseBuilder[ParameterListType]):  # pylint: disable=too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],

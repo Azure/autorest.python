@@ -39,7 +39,7 @@ class CombinedType(BaseType):
     def client_default_value(self) -> Any:
         return self.yaml_data.get("clientDefaultValue")
 
-    def description(self, *, is_operation_file: bool) -> str:
+    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
         if len(self.types) == 2:
             return (
                 f"Is either a {self.types[0].type} type or a {self.types[1].type} type."
@@ -56,7 +56,7 @@ class CombinedType(BaseType):
     def docstring_type(self) -> str:
         return " or ".join(t.docstring_type for t in self.types)
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]

@@ -11,10 +11,10 @@ from .paging_operation import (
     PagingOperation,
     _PagingOperationBase,
 )
-from .operation import Operation, OverloadedOperation, OperationBase
+from .operation import Operation, OperationBase
 
 
-class _LROPagingOperationBase(_LROOperationBase, _PagingOperationBase):
+class _LROPagingOperationBase(_LROOperationBase, _PagingOperationBase):  # pylint: disable=abstract-method
     @property
     def success_status_codes(self):
         """The list of all successfull status code."""
@@ -36,7 +36,7 @@ class _LROPagingOperationBase(_LROOperationBase, _PagingOperationBase):
         )
         return f"~{self.get_poller_path(async_mode)}[{paging_docstring_type}]"
 
-    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:
+    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:  # pylint: disable=unused-argument
         base_description = (
             "An instance of LROPoller that returns an iterator like instance of "
         )

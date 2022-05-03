@@ -11,8 +11,6 @@ from ..models import (
     CodeModel,
     OperationGroup,
     FileImport,
-    LROOperation,
-    PagingOperation,
 )
 from .import_serializer import FileImportSerializer
 from .builder_serializer import get_operation_serializer, RequestBuilderSerializer

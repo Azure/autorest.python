@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 import abc
 from enum import Enum, auto
 
@@ -13,13 +12,12 @@ from typing import (
     TYPE_CHECKING,
     List,
     Optional,
-    Set,
     TypeVar,
     Union,
     Generic,
 )
 
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 from .base_model import BaseModel
 from .base_type import BaseType
 from .constant_type import ConstantType
@@ -52,7 +50,7 @@ class ParameterDelimeter(str, Enum):
     COMMA = "comma"
 
 
-class _ParameterBase(BaseModel, abc.ABC):
+class _ParameterBase(BaseModel, abc.ABC):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -263,11 +261,6 @@ class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
             ],
         )
 
-
-class UrlEncodedBodyParameter(_ParameterBase):
-    ...
-
-
 class Parameter(_ParameterBase):
     def __init__(
         self,
@@ -283,14 +276,6 @@ class Parameter(_ParameterBase):
         self.in_overload: bool = self.yaml_data["inOverload"]
         self.in_overriden: bool = self.yaml_data.get("inOverriden", False)
         self.delimiter: Optional[ParameterDelimeter] = self.yaml_data.get("delimiter")
-
-    @property
-    def constraints(self):
-        raise NotImplementedError("Haven't done constraints yet")
-
-    @property
-    def target_property_name(self):
-        raise NotImplementedError("Haven't done parameter grouping yet")
 
     @property
     def in_method_signature(self) -> bool:
@@ -314,18 +299,12 @@ class Parameter(_ParameterBase):
             return ParameterMethodLocation.POSITIONAL
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if self.location == ParameterLocation.QUERY:
-            if self.code_model.options["only_path_and_body_params_positional"]:
-                return ParameterMethodLocation.KEYWORD_ONLY
-            return ParameterMethodLocation.POSITIONAL
-        if self.location in (ParameterLocation.PATH, ParameterLocation.ENDPOINT_PATH):
-            return ParameterMethodLocation.POSITIONAL
-        # i'm a header
         if self.rest_api_name == "Content-Type":
             if self.in_overload:
                 return ParameterMethodLocation.KEYWORD_ONLY
             return ParameterMethodLocation.KWARG
-        if self.code_model.options["only_path_and_body_params_positional"]:
+        query_or_header = self.location in (ParameterLocation.HEADER, ParameterLocation.QUERY)
+        if self.code_model.options["only_path_and_body_params_positional"] and query_or_header:
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
