@@ -608,13 +608,14 @@ class M4Reformatter(YamlUpdatePlugin):
                         param = self.update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
                         retval.append(param)
                         seen_rest_api_names.add(param["restApiName"])
+        all_params = (retval + [body_parameter]) if body_parameter else retval
         for grouper_name, grouper in groupers.items():
             grouper["propertyToParameterName"] = {
                 next(
                     prop for prop in grouper["type"]["properties"]
                     if p["clientName"] in prop["groupedParameterNames"]
                 )["clientName"]: p["clientName"]
-                for p in retval
+                for p in all_params
                 if p.get("groupedBy") == grouper_name
             }
         return retval
@@ -714,7 +715,7 @@ class M4Reformatter(YamlUpdatePlugin):
                 )
             return self.get_token_credential(credential_scopes)
         # Otherwise you have AzureKeyCredentialPolicy
-        if credential_scopes:
+        if self._autorestapi.get_value("credential-scopes"):
             raise ValueError(
                 "You have passed in credential scopes with default credential policy type "
                 "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "

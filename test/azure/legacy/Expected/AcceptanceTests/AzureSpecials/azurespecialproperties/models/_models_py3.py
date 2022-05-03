@@ -8,7 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -21,7 +20,7 @@ class Error(msrest.serialization.Model):
 
     :ivar status:
     :vartype status: int
-    :ivar constant_id:  Has constant value: 1.
+    :ivar constant_id: Required. Default value is 1.
     :vartype constant_id: int
     :ivar message:
     :vartype message: str
@@ -46,7 +45,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -56,7 +55,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar foo_client_request_id: Required. The fooRequestId.
+    :ivar foo_client_request_id: The fooRequestId. Required.
     :vartype foo_client_request_id: str
     """
 
@@ -70,10 +69,10 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     def __init__(self, *, foo_client_request_id: str, **kwargs):
         """
-        :keyword foo_client_request_id: Required. The fooRequestId.
+        :keyword foo_client_request_id: The fooRequestId. Required.
         :paramtype foo_client_request_id: str
         """
-        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.foo_client_request_id = foo_client_request_id
 
 
@@ -98,6 +97,6 @@ class OdataFilter(msrest.serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(OdataFilter, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name

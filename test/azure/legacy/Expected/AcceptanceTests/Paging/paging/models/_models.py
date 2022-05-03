@@ -6,13 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
-
 import msrest.serialization
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    import __init__ as _models
 
 
 class CustomParameterGroup(msrest.serialization.Model):
@@ -224,7 +218,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :ivar properties: ProductProperties.
+    :ivar properties:
     :vartype properties: ~paging.models.ProductProperties
     """
 
@@ -234,7 +228,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword properties: ProductProperties.
+        :keyword properties:
         :paramtype properties: ~paging.models.ProductProperties
         """
         super(Product, self).__init__(**kwargs)

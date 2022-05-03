@@ -21,7 +21,7 @@ class OperationResult(msrest.serialization.Model):
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype status: str or ~lro.models.OperationResultStatus
-    :ivar error: OperationResultError.
+    :ivar error:
     :vartype error: ~lro.models.OperationResultError
     """
 
@@ -42,7 +42,7 @@ class OperationResult(msrest.serialization.Model):
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
          and "OK".
         :paramtype status: str or ~lro.models.OperationResultStatus
-        :keyword error: OperationResultError.
+        :keyword error:
         :paramtype error: ~lro.models.OperationResultError
         """
         super().__init__(**kwargs)

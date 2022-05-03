@@ -44,7 +44,7 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :ivar properties: ProductProperties.
+    :ivar properties:
     :vartype properties: ~custombaseurlpaging.models.ProductProperties
     """
 
@@ -54,7 +54,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
         """
-        :keyword properties: ProductProperties.
+        :keyword properties:
         :paramtype properties: ~custombaseurlpaging.models.ProductProperties
         """
         super().__init__(**kwargs)

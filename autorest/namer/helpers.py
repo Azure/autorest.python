@@ -36,6 +36,12 @@ def to_snake_case(name: str) -> str:
 
 
 def pad_reserved_words(name: str, pad_type: PadType):
+    # we want to pad hidden variables as well
+    if not name:
+        # we'll pass in empty operation groups sometime etc.
+        return name
+    name_prefix = "_" if name[0] == "_" else ""
+    name = name[1:] if name[0] == "_" else name
     if name.lower() in RESERVED_WORDS[pad_type]:
-        return name + pad_type
-    return name
+        return name_prefix + name + pad_type
+    return name_prefix + name

@@ -114,7 +114,7 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -142,7 +142,7 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -179,7 +179,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -210,7 +210,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -226,7 +226,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :ivar properties: ProductProperties.
+    :ivar properties:
     :vartype properties: ~paging.models.ProductProperties
     """
 
@@ -236,7 +236,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
         """
-        :keyword properties: ProductProperties.
+        :keyword properties:
         :paramtype properties: ~paging.models.ProductProperties
         """
         super().__init__(**kwargs)

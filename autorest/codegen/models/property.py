@@ -30,6 +30,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.readonly: bool = self.yaml_data.get("readonly", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
         self.client_default_value = yaml_data.get("clientDefaultValue", None)
+        if self.client_default_value is None:
+            self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
 
     def description(self, *, is_operation_file: bool) -> str:

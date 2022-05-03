@@ -110,7 +110,7 @@ class UsageOperations(object):
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.UsageListResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_list_request(
             subscription_id=self._config.subscription_id,

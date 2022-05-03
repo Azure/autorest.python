@@ -52,12 +52,12 @@ basic_latin_chars = {
 
 
 class PadType(str, Enum):
-    Model = "Model"
-    Method = "_method"
-    Parameter = "_parameter"
-    Enum = "Enum"
-    Property = "_property"
-    OperationGroup = "Operations"
+    MODEL = "Model"
+    METHOD = "_method"
+    PARAMETER = "_parameter"
+    ENUM = "Enum"
+    PROPERTY = "_property"
+    OPERATION_GROUP = "Operations"
 
 
 _always_reserved = [
@@ -96,8 +96,8 @@ _always_reserved = [
 ]
 
 RESERVED_WORDS = {
-    PadType.Method: [*_always_reserved],
-    PadType.Parameter: [
+    PadType.METHOD: [*_always_reserved],
+    PadType.PARAMETER: [
         "self",
         # these are kwargs we've reserved for our autorest generated operations
         "content_type",
@@ -162,8 +162,8 @@ RESERVED_WORDS = {
         "retry_on_status_codes",
         *_always_reserved,
     ],
-    PadType.Model: [*_always_reserved],
-    PadType.Property: ["self", *_always_reserved],
-    PadType.Enum: ["mro", *_always_reserved],
-    PadType.OperationGroup: [*_always_reserved],
+    PadType.MODEL: [*_always_reserved],
+    PadType.PROPERTY: ["self", *_always_reserved],
+    PadType.ENUM: ["mro", *_always_reserved],
+    PadType.OPERATION_GROUP: [*_always_reserved],
 }
