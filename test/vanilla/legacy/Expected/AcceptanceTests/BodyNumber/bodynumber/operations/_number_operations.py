@@ -225,8 +225,8 @@ def build_put_big_double_positive_decimal_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop('json', 99999999.99)  # type: float
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', 99999999.99)  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -274,8 +274,8 @@ def build_put_big_double_negative_decimal_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop('json', -99999999.99)  # type: float
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', -99999999.99)  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -370,8 +370,8 @@ def build_put_big_decimal_positive_decimal_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop('json', 99999999.99)  # type: float
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', 99999999.99)  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -419,8 +419,8 @@ def build_put_big_decimal_negative_decimal_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop('json', -99999999.99)  # type: float
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', -99999999.99)  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

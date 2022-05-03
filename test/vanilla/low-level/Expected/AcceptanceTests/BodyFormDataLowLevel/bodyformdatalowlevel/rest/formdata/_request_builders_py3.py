@@ -56,7 +56,6 @@ def build_upload_file_request(
         method="POST",
         url=_url,
         headers=_headers,
-        files=files,
         **kwargs
     )
 
@@ -140,6 +139,5 @@ def build_upload_files_request(
         method="POST",
         url=_url,
         headers=_headers,
-        files=files,
         **kwargs
     )

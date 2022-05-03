@@ -138,7 +138,6 @@ def build_operation_with_data_param_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        data=data,
         **kwargs
     )
 
@@ -182,7 +181,6 @@ def build_operation_with_files_param_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        files=files,
         **kwargs
     )
 

@@ -114,7 +114,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             for prop in [
                 p
                 for p in self.properties
-                if not (p.is_discriminator or p.rest_api_name == "additionalProperties")
+                if not (p.is_discriminator or p.client_name == "additional_properties")
             ]
         }
         try:

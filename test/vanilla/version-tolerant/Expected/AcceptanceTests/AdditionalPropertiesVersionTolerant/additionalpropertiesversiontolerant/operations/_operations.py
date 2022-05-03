@@ -830,6 +830,9 @@ class PetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
                     "@odata.location": "str",  # Required.
+                    "additionalProperties": {
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                    },
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -838,6 +841,9 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "@odata.location": "str",  # Required.
+                    "additionalProperties": {
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                    },
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -867,6 +873,9 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "@odata.location": "str",  # Required.
+                    "additionalProperties": {
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                    },
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -894,6 +903,9 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "@odata.location": "str",  # Required.
+                    "additionalProperties": {
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                    },
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.

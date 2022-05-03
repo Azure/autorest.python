@@ -359,8 +359,8 @@ class AutoRestValidationTestOperationsMixin:
             content_type = content_type or "application/json"
 
         request = build_post_with_constant_in_body_request(
-            content_type=content_type,
             constant_param=constant_param,
+            content_type=content_type,
             json=_json,
             content=_content,
             template_url=self.post_with_constant_in_body.metadata["url"],

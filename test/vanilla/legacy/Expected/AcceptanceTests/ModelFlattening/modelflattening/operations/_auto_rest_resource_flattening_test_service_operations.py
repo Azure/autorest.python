@@ -1191,6 +1191,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             _name = flatten_parameter_group.name
             _odata_value = flatten_parameter_group.odata_value
             _product_id = flatten_parameter_group.product_id
+            _simple_body_product = flatten_parameter_group.simple_body_product
         _simple_body_product = _models.SimpleProduct(
             capacity=capacity,
             description=_description,

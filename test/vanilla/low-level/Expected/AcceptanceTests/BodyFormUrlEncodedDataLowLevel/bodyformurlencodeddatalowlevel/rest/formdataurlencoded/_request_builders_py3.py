@@ -65,7 +65,6 @@ def build_update_pet_with_form_request(
         method="POST",
         url=_url,
         headers=_headers,
-        data=data,
         **kwargs
     )
 
@@ -107,6 +106,5 @@ def build_partial_constant_body_request(
         method="POST",
         url=_url,
         headers=_headers,
-        data=data,
         **kwargs
     )

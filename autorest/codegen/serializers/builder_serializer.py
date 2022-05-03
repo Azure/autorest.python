@@ -383,7 +383,7 @@ class RequestBuilderSerializer(
             retval.append("    params=_params,")
         if builder.parameters.headers:
             retval.append("    headers=_headers,")
-        if builder.parameters.has_body:
+        if builder.parameters.has_body and builder.parameters.body_parameter.in_method_signature:
             body_param = builder.parameters.body_parameter
             if body_param.constant or (self.is_python3_file and body_param.method_location != ParameterMethodLocation.KWARG):
                 # we only need to pass it through if it's not a kwarg or it's a popped kwarg

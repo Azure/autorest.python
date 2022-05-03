@@ -553,6 +553,9 @@ def build_create_ap_in_properties_with_ap_string_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "@odata.location": "str",  # Required.
+                "additionalProperties": {
+                    "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                },
                 "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.

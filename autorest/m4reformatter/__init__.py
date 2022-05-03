@@ -134,7 +134,7 @@ def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict
         # add additional properties property
         properties.append({
             "clientName": "additional_properties",
-            "restApiName": "additionalProperties",
+            "restApiName": "",
             "type": update_type(dict_parents[0]),
             "optional": True,
             "description": "Unmatched properties from the message are deserialized to this collection.",

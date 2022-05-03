@@ -388,9 +388,9 @@ def build_put_client_constants_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    path_constant = kwargs.pop('path_constant', "path")  # type: str
     header_constant = kwargs.pop('header_constant', _headers.pop('header-constant', True))  # type: bool
     query_constant = kwargs.pop('query_constant', _params.pop('query-constant', 100))  # type: int
+    path_constant = kwargs.pop('path_constant', "path")  # type: str
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/clientConstants/{path-constant}")
     path_format_arguments = {

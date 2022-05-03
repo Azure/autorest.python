@@ -161,8 +161,8 @@ def build_put_mbcs_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop('json', "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -210,8 +210,8 @@ def build_put_whitespace_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop('json', "    Now is the time for all good men to come to the aid of their country    ")  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', "    Now is the time for all good men to come to the aid of their country    ")  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
