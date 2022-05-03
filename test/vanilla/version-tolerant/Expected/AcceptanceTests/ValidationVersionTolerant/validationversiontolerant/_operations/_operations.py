@@ -67,7 +67,9 @@ def build_validation_of_method_parameters_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_validation_of_body_request(resource_group_name: str, id: int, subscription_id: str, **kwargs) -> HttpRequest:
+def build_validation_of_body_request(
+    resource_group_name: str, id: int, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -111,7 +113,7 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_post_with_constant_in_body_request(**kwargs) -> HttpRequest:
+def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
@@ -156,18 +158,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -250,18 +252,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -276,18 +278,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -334,18 +336,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -386,18 +388,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -422,7 +424,10 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _json = body
+            if body is not None:
+                _json = body
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_validation_of_body_request(
@@ -524,18 +529,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -550,18 +555,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -600,18 +605,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -648,18 +653,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.Constant string. Required.
+                          string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.Constant string2. Required.
+                          Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -684,7 +689,10 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _json = body
+            if body is not None:
+                _json = body
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_post_with_constant_in_body_request(

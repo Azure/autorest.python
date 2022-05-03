@@ -49,7 +49,7 @@ def build_basic_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_basic_put_valid_request(**kwargs) -> HttpRequest:
+def build_basic_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -141,7 +141,7 @@ def build_primitive_get_int_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_int_request(**kwargs) -> HttpRequest:
+def build_primitive_put_int_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -172,7 +172,7 @@ def build_primitive_get_long_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_long_request(**kwargs) -> HttpRequest:
+def build_primitive_put_long_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -203,7 +203,7 @@ def build_primitive_get_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_float_request(**kwargs) -> HttpRequest:
+def build_primitive_put_float_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -234,7 +234,7 @@ def build_primitive_get_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_double_request(**kwargs) -> HttpRequest:
+def build_primitive_put_double_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -265,7 +265,7 @@ def build_primitive_get_bool_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_bool_request(**kwargs) -> HttpRequest:
+def build_primitive_put_bool_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -296,7 +296,7 @@ def build_primitive_get_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_string_request(**kwargs) -> HttpRequest:
+def build_primitive_put_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -327,7 +327,7 @@ def build_primitive_get_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_date_request(**kwargs) -> HttpRequest:
+def build_primitive_put_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -358,7 +358,7 @@ def build_primitive_get_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_date_time_request(**kwargs) -> HttpRequest:
+def build_primitive_put_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -389,7 +389,7 @@ def build_primitive_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_date_time_rfc1123_request(**kwargs) -> HttpRequest:
+def build_primitive_put_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -420,7 +420,7 @@ def build_primitive_get_duration_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_duration_request(**kwargs) -> HttpRequest:
+def build_primitive_put_duration_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -451,7 +451,7 @@ def build_primitive_get_byte_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_byte_request(**kwargs) -> HttpRequest:
+def build_primitive_put_byte_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -482,7 +482,7 @@ def build_array_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_valid_request(**kwargs) -> HttpRequest:
+def build_array_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -513,7 +513,7 @@ def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_empty_request(**kwargs) -> HttpRequest:
+def build_array_put_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -558,7 +558,7 @@ def build_dictionary_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_valid_request(**kwargs) -> HttpRequest:
+def build_dictionary_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -589,7 +589,7 @@ def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_empty_request(**kwargs) -> HttpRequest:
+def build_dictionary_put_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -648,7 +648,7 @@ def build_inheritance_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_inheritance_put_valid_request(**kwargs) -> HttpRequest:
+def build_inheritance_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -679,7 +679,7 @@ def build_polymorphism_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_polymorphism_put_valid_request(**kwargs) -> HttpRequest:
+def build_polymorphism_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -752,7 +752,7 @@ def build_polymorphism_get_complicated_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_polymorphism_put_complicated_request(**kwargs) -> HttpRequest:
+def build_polymorphism_put_complicated_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -769,7 +769,7 @@ def build_polymorphism_put_complicated_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_polymorphism_put_missing_discriminator_request(**kwargs) -> HttpRequest:
+def build_polymorphism_put_missing_discriminator_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -786,7 +786,7 @@ def build_polymorphism_put_missing_discriminator_request(**kwargs) -> HttpReques
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_polymorphism_put_valid_missing_required_request(**kwargs) -> HttpRequest:
+def build_polymorphism_put_valid_missing_required_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -817,7 +817,7 @@ def build_polymorphicrecursive_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_polymorphicrecursive_put_valid_request(**kwargs) -> HttpRequest:
+def build_polymorphicrecursive_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -848,7 +848,7 @@ def build_readonlyproperty_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_readonlyproperty_put_valid_request(**kwargs) -> HttpRequest:
+def build_readonlyproperty_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

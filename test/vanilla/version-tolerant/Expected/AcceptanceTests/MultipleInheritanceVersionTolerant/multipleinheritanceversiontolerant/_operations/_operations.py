@@ -52,7 +52,7 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_horse_request(**kwargs) -> HttpRequest:
+def build_put_horse_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -83,7 +83,7 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_pet_request(**kwargs) -> HttpRequest:
+def build_put_pet_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -114,7 +114,7 @@ def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_feline_request(**kwargs) -> HttpRequest:
+def build_put_feline_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -145,7 +145,7 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_cat_request(**kwargs) -> HttpRequest:
+def build_put_cat_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -176,7 +176,7 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_kitten_request(**kwargs) -> HttpRequest:
+def build_put_kitten_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

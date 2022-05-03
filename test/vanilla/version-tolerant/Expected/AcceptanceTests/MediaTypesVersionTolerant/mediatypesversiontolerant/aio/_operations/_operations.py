@@ -113,7 +113,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _json = input
+            if input is not None:
+                _json = input
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_analyze_body_request(
@@ -221,7 +224,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _json = input
+            if input is not None:
+                _json = input
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_analyze_body_no_accept_header_request(
@@ -265,7 +271,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        _content = input
+        if input is not None:
+            _content = input
+        else:
+            _content = None
 
         request = build_content_type_with_encoding_request(
             content_type=content_type,

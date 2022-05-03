@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_availability_sets_update_request(resource_group_name: str, avset: str, **kwargs) -> HttpRequest:
+def build_availability_sets_update_request(resource_group_name: str, avset: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -100,8 +100,7 @@ class AvailabilitySetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 tags = {
                     "tags": {
-                        "str": "str"  # A description about the set of tags.A description
-                          about the set of tags. Required.
+                        "str": "str"  # A description about the set of tags. Required.
                     }
                 }
         """

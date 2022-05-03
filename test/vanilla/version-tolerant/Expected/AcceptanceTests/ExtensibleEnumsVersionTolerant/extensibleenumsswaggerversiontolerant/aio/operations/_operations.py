@@ -65,8 +65,9 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
-                      "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
                     "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
@@ -126,16 +127,18 @@ class PetOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 pet_param = {
-                    "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
-                      "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
                     "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
-                      "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
                     "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
@@ -163,8 +166,9 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
-                      "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
                     "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
@@ -190,8 +194,9 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
-                      "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
                     "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
@@ -210,7 +215,10 @@ class PetOperations:
         if isinstance(pet_param, (IO, bytes)):
             _content = pet_param
         else:
-            _json = pet_param
+            if pet_param is not None:
+                _json = pet_param
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_pet_add_pet_request(

@@ -55,7 +55,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: str, **kwargs) -> HttpRequest:
+def build_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -128,14 +128,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -188,19 +180,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "hello": "str"  # Required.
-                }
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
 
         ...
@@ -222,14 +201,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
 
         ...
@@ -251,14 +222,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -316,20 +279,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: An iterator like instance of ProductResult
         :rtype: ~azure.core.paging.ItemPaged[~dpgtestmodelsversiontolerant.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "received": "str"  # Required. Known values are: "raw" or
-                              "model".
-                        }
-                    ]
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -435,15 +384,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: An instance of LROPoller that returns LROProduct
         :rtype: ~azure.core.polling.LROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -13,6 +13,7 @@ from .parameter import (
 )
 from .base_type import BaseType
 from .primitive_types import BinaryType, StringType
+from .combined_type import CombinedType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -32,7 +33,7 @@ class RequestBuilderBodyParameter(BodyParameter):
 
     @property
     def method_location(self) -> ParameterMethodLocation:
-        return ParameterMethodLocation.KWARG if self.constant else ParameterMethodLocation.KEYWORD_ONLY
+        return ParameterMethodLocation.KWARG if (self.constant or isinstance(self.type, CombinedType)) else ParameterMethodLocation.KEYWORD_ONLY
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderBodyParameter":
@@ -87,6 +88,8 @@ class RequestBuilderParameter(Parameter):
     @property
     def method_location(self) -> ParameterMethodLocation:
         super_method_location = super().method_location
+        if super_method_location == ParameterMethodLocation.KWARG:
+            return super_method_location
         if self.in_overriden and super_method_location == ParameterMethodLocation.KEYWORD_ONLY:
             return ParameterMethodLocation.KWARG
         if self.location != ParameterLocation.PATH:

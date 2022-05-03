@@ -102,7 +102,7 @@ class StorageAccountsOperations:
                       false, the name has already been taken or invalid and cannot be used.
                     "reason": "str"  # Optional. Gets the reason that a storage account name
                       could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values are: "AccountNameInvalid" or "AlreadyExists".
+                      Known values are: "AccountNameInvalid" and "AlreadyExists".
                 }
         """
 
@@ -137,7 +137,7 @@ class StorageAccountsOperations:
                       false, the name has already been taken or invalid and cannot be used.
                     "reason": "str"  # Optional. Gets the reason that a storage account name
                       could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values are: "AccountNameInvalid" or "AlreadyExists".
+                      Known values are: "AccountNameInvalid" and "AlreadyExists".
                 }
         """
 
@@ -170,7 +170,7 @@ class StorageAccountsOperations:
                       false, the name has already been taken or invalid and cannot be used.
                     "reason": "str"  # Optional. Gets the reason that a storage account name
                       could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values are: "AccountNameInvalid" or "AlreadyExists".
+                      Known values are: "AccountNameInvalid" and "AlreadyExists".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -322,7 +322,7 @@ class StorageAccountsOperations:
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str"  # Optional. Gets or sets the account type.
@@ -338,7 +338,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -390,11 +390,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" or "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" or "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
@@ -449,7 +449,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -501,11 +501,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" or "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" or "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
@@ -555,7 +555,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -607,11 +607,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" or "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" or "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
@@ -739,7 +739,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -791,11 +791,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" or "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" or "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
@@ -883,7 +883,7 @@ class StorageAccountsOperations:
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets or sets the account type.
@@ -908,7 +908,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -960,11 +960,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" or "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" or "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
@@ -1016,7 +1016,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1068,11 +1068,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" or "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" or "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
@@ -1118,7 +1118,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.Resource location. Required.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1170,11 +1170,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" or "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" or "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
@@ -1313,8 +1313,7 @@ class StorageAccountsOperations:
                     "value": [
                         {
                             "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Resource location.Resource location.
-                              Required.
+                            "location": "str",  # Resource location. Required.
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
@@ -1373,13 +1372,13 @@ class StorageAccountsOperations:
                                   Only available if the accountType is StandardGRS or StandardRAGRS.
                                 "statusOfPrimary": "str",  # Optional. Gets the
                                   status indicating whether the primary location of the storage account
-                                  is available or unavailable. Known values are: "Available" or
+                                  is available or unavailable. Known values are: "Available" and
                                   "Unavailable".
                                 "statusOfSecondary": "str"  # Optional. Gets the
                                   status indicating whether the secondary location of the storage
                                   account is available or unavailable. Only available if the
                                   accountType is StandardGRS or StandardRAGRS. Known values are:
-                                  "Available" or "Unavailable".
+                                  "Available" and "Unavailable".
                             },
                             "tags": {
                                 "str": "str"  # Optional. Resource tags.
@@ -1465,8 +1464,7 @@ class StorageAccountsOperations:
                     "value": [
                         {
                             "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Resource location.Resource location.
-                              Required.
+                            "location": "str",  # Resource location. Required.
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
@@ -1525,13 +1523,13 @@ class StorageAccountsOperations:
                                   Only available if the accountType is StandardGRS or StandardRAGRS.
                                 "statusOfPrimary": "str",  # Optional. Gets the
                                   status indicating whether the primary location of the storage account
-                                  is available or unavailable. Known values are: "Available" or
+                                  is available or unavailable. Known values are: "Available" and
                                   "Unavailable".
                                 "statusOfSecondary": "str"  # Optional. Gets the
                                   status indicating whether the secondary location of the storage
                                   account is available or unavailable. Only available if the
                                   accountType is StandardGRS or StandardRAGRS. Known values are:
-                                  "Available" or "Unavailable".
+                                  "Available" and "Unavailable".
                             },
                             "tags": {
                                 "str": "str"  # Optional. Resource tags.
@@ -1630,7 +1628,7 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
-                    "keyName": "str"  # Optional. Known values are: "key1" or "key2".
+                    "keyName": "str"  # Optional. Known values are: "key1" and "key2".
                 }
 
                 # response body for status code(s): 200

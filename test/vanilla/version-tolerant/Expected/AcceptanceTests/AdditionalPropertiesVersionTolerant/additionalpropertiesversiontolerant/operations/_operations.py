@@ -36,7 +36,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_pets_create_ap_true_request(**kwargs) -> HttpRequest:
+def build_pets_create_ap_true_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -53,7 +53,7 @@ def build_pets_create_ap_true_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_pets_create_cat_ap_true_request(**kwargs) -> HttpRequest:
+def build_pets_create_cat_ap_true_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -70,7 +70,7 @@ def build_pets_create_cat_ap_true_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_pets_create_ap_object_request(**kwargs) -> HttpRequest:
+def build_pets_create_ap_object_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -87,7 +87,7 @@ def build_pets_create_ap_object_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_pets_create_ap_string_request(**kwargs) -> HttpRequest:
+def build_pets_create_ap_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -104,7 +104,7 @@ def build_pets_create_ap_string_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_pets_create_ap_in_properties_request(**kwargs) -> HttpRequest:
+def build_pets_create_ap_in_properties_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -121,7 +121,7 @@ def build_pets_create_ap_in_properties_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_pets_create_ap_in_properties_with_ap_string_request(**kwargs) -> HttpRequest:
+def build_pets_create_ap_in_properties_with_ap_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

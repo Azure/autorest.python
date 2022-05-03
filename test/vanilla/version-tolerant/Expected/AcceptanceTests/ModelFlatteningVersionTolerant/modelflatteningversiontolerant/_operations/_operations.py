@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_array_request(**kwargs) -> HttpRequest:
+def build_put_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -69,7 +69,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_wrapped_array_request(**kwargs) -> HttpRequest:
+def build_put_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -100,7 +100,7 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_dictionary_request(**kwargs) -> HttpRequest:
+def build_put_dictionary_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -131,7 +131,7 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_resource_collection_request(**kwargs) -> HttpRequest:
+def build_put_resource_collection_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -162,7 +162,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_product_request(**kwargs) -> HttpRequest:
+def build_put_simple_product_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -179,7 +179,7 @@ def build_put_simple_product_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_flattened_simple_product_request(**kwargs) -> HttpRequest:
+def build_post_flattened_simple_product_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -196,7 +196,7 @@ def build_post_flattened_simple_product_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_product_with_grouping_request(name: str, **kwargs) -> HttpRequest:
+def build_put_simple_product_with_grouping_request(name: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -301,7 +301,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
         else:
-            _json = resource_array
+            if resource_array is not None:
+                _json = resource_array
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_put_array_request(
@@ -471,7 +474,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
         else:
-            _json = resource_array
+            if resource_array is not None:
+                _json = resource_array
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_put_wrapped_array_request(
@@ -645,7 +651,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         if isinstance(resource_dictionary, (IO, bytes)):
             _content = resource_dictionary
         else:
-            _json = resource_dictionary
+            if resource_dictionary is not None:
+                _json = resource_dictionary
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_put_dictionary_request(
@@ -873,7 +882,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         if isinstance(resource_complex_object, (IO, bytes)):
             _content = resource_complex_object
         else:
-            _json = resource_complex_object
+            if resource_complex_object is not None:
+                _json = resource_complex_object
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_put_resource_collection_request(
@@ -1032,15 +1044,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1053,15 +1062,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1095,15 +1101,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1136,15 +1139,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1166,7 +1166,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
-            _json = simple_body_product
+            if simple_body_product is not None:
+                _json = simple_body_product
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_put_simple_product_request(
@@ -1221,15 +1224,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1242,15 +1242,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1284,15 +1281,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1327,15 +1321,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1357,7 +1348,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
-            _json = simple_body_product
+            if simple_body_product is not None:
+                _json = simple_body_product
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_post_flattened_simple_product_request(
@@ -1419,15 +1413,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1440,15 +1431,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1484,15 +1472,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1529,15 +1514,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.Unique identifier
-                      representing a specific product for a given latitude & longitude. For example,
-                      uberX in San Francisco will have a different product_id than uberX in Los
-                      Angeles. Required.
+                      will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people.Capacity of product. For example, 4 people. Required. "Large"
-                        "max_product_display_name": "str",  # Display name of product.Display
-                          name of product. Required.
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1559,7 +1541,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
-            _json = simple_body_product
+            if simple_body_product is not None:
+                _json = simple_body_product
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_put_simple_product_with_grouping_request(

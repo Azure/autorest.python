@@ -1203,7 +1203,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("base64", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("bytearray", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)

@@ -101,7 +101,7 @@ def build_params_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_params_post_parameters_request(**kwargs) -> HttpRequest:
+def build_params_post_parameters_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

@@ -51,14 +51,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -111,19 +103,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "hello": "str"  # Required.
-                }
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
 
         ...
@@ -147,14 +126,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
 
         ...
@@ -176,14 +147,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -242,20 +205,6 @@ class DPGClientOperationsMixin(MixinABC):
         :rtype:
          ~azure.core.async_paging.AsyncItemPaged[~dpgtestmodelsversiontolerant.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "received": "str"  # Required. Known values are: "raw" or
-                              "model".
-                        }
-                    ]
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -361,15 +310,6 @@ class DPGClientOperationsMixin(MixinABC):
         :return: An instance of AsyncLROPoller that returns LROProduct
         :rtype: ~azure.core.polling.AsyncLROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" or "model".
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -383,8 +383,11 @@ class RequestBuilderSerializer(
             retval.append("    params=_params,")
         if builder.parameters.headers:
             retval.append("    headers=_headers,")
-        if builder.parameters.has_body and builder.parameters.body_parameter.constant:
-            retval.append(f"    {builder.parameters.body_parameter.client_name}={builder.parameters.body_parameter.client_name},")
+        if builder.parameters.has_body:
+            body_param = builder.parameters.body_parameter
+            if body_param.method_location != ParameterMethodLocation.KWARG or body_param.constant:
+                # we only need to pass it through if it's not a kwarg or it's a popped kwarg
+                retval.append(f"    {builder.parameters.body_parameter.client_name}={builder.parameters.body_parameter.client_name},")
         retval.append("    **kwargs")
         retval.append(")")
         return retval

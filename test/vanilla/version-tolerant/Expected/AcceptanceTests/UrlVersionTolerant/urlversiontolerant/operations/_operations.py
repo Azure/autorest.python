@@ -377,7 +377,7 @@ def build_paths_byte_multi_byte_request(byte_path: bytes, **kwargs: Any) -> Http
     # Construct URL
     _url = "/paths/byte/multibyte/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, "base64"),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -397,7 +397,7 @@ def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/paths/byte/empty/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, "base64"),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -416,7 +416,7 @@ def build_paths_byte_null_request(byte_path: bytes, **kwargs: Any) -> HttpReques
     # Construct URL
     _url = "/paths/byte/null/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, "base64"),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -974,7 +974,7 @@ def build_queries_byte_multi_byte_request(*, byte_query: Optional[bytes] = None,
 
     # Construct parameters
     if byte_query is not None:
-        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "base64")
+        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -993,7 +993,7 @@ def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
     _url = "/queries/byte/empty"
 
     # Construct parameters
-    _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "base64")
+    _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1012,7 +1012,7 @@ def build_queries_byte_null_request(*, byte_query: Optional[bytes] = None, **kwa
 
     # Construct parameters
     if byte_query is not None:
-        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "base64")
+        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

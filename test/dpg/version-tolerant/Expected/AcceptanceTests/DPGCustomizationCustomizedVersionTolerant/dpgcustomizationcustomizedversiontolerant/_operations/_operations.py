@@ -60,7 +60,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: str, **kwargs) -> HttpRequest:
+def build_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -139,7 +139,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -205,7 +205,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
 
@@ -234,7 +234,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
 
@@ -263,7 +263,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw" or "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -334,7 +334,7 @@ class DPGClientOperationsMixin(MixinABC):
                     "nextLink": "str",  # Optional.
                     "values": [
                         {
-                            "received": "str"  # Required. Known values are: "raw" or
+                            "received": "str"  # Required. Known values are: "raw" and
                               "model".
                         }
                     ]
@@ -454,7 +454,7 @@ class DPGClientOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" or "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

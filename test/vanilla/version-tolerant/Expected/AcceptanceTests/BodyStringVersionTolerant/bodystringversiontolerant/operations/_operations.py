@@ -314,7 +314,7 @@ def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_put_referenced_constant_request(**kwargs) -> HttpRequest:
+def build_enum_put_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -411,7 +411,10 @@ class StringOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _content = string_body
+        if string_body is not None:
+            _content = string_body
+        else:
+            _content = None
 
         request = build_string_put_null_request(
             content_type=content_type,
@@ -1120,7 +1123,7 @@ class EnumOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description.Referenced Color Constant Description. Required.
+                      Color Constant Description. Required.
                     "field1": "str"  # Optional. Sample string.
                 }
         """
@@ -1179,7 +1182,7 @@ class EnumOperations:
                 # JSON input template you can fill out and use as your body input.
                 enum_string_body = {
                     "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description.Referenced Color Constant Description. Required.
+                      Color Constant Description. Required.
                     "field1": "str"  # Optional. Sample string.
                 }
         """

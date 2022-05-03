@@ -46,7 +46,7 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar received: Required. Known values are: "raw" or "model".
+    :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
     """
 
@@ -60,7 +60,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(self, *, received: Union[str, "_models.ProductReceived"], **kwargs):
         """
-        :keyword received: Required. Known values are: "raw" or "model".
+        :keyword received: Required. Known values are: "raw" and "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
         """
         super().__init__(**kwargs)
@@ -72,7 +72,7 @@ class LROProduct(Product):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar received: Required. Known values are: "raw" or "model".
+    :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
     :ivar provisioning_state: Required.
     :vartype provisioning_state: str
@@ -90,7 +90,7 @@ class LROProduct(Product):
 
     def __init__(self, *, received: Union[str, "_models.ProductReceived"], provisioning_state: str, **kwargs):
         """
-        :keyword received: Required. Known values are: "raw" or "model".
+        :keyword received: Required. Known values are: "raw" and "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
         :keyword provisioning_state: Required.
         :paramtype provisioning_state: str
@@ -113,9 +113,7 @@ class ProductResult(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = "None", **kwargs
-    ):
+    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword values:
         :paramtype values: list[~dpgtestmodelsversiontolerant.models.Product]

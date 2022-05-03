@@ -414,7 +414,7 @@ def build_header_param_byte_request(*, scenario: str, value: bytes, **kwargs: An
 
     # Construct headers
     _headers["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    _headers["value"] = _SERIALIZER.header("value", value, "base64")
+    _headers["value"] = _SERIALIZER.header("value", value, "bytearray")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -1617,7 +1617,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("base64", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("bytearray", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)

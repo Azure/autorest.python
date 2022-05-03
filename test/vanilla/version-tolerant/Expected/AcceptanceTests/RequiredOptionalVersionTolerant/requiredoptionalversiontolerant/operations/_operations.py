@@ -251,7 +251,7 @@ def build_explicit_post_optional_integer_parameter_request(*, json: Optional[int
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_required_integer_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_required_integer_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -268,7 +268,7 @@ def build_explicit_post_required_integer_property_request(**kwargs) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_integer_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_optional_integer_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -354,7 +354,7 @@ def build_explicit_post_optional_string_parameter_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_explicit_post_required_string_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_required_string_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -371,7 +371,7 @@ def build_explicit_post_required_string_property_request(**kwargs) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_string_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_optional_string_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -421,7 +421,7 @@ def build_explicit_post_optional_string_header_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_class_parameter_request(**kwargs) -> HttpRequest:
+def build_explicit_post_required_class_parameter_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -438,7 +438,7 @@ def build_explicit_post_required_class_parameter_request(**kwargs) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_class_parameter_request(**kwargs) -> HttpRequest:
+def build_explicit_post_optional_class_parameter_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -455,7 +455,7 @@ def build_explicit_post_optional_class_parameter_request(**kwargs) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_class_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_required_class_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -472,7 +472,7 @@ def build_explicit_post_required_class_property_request(**kwargs) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_class_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_optional_class_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -489,7 +489,7 @@ def build_explicit_post_optional_class_property_request(**kwargs) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_array_parameter_request(**kwargs) -> HttpRequest:
+def build_explicit_post_required_array_parameter_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -506,7 +506,7 @@ def build_explicit_post_required_array_parameter_request(**kwargs) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_array_parameter_request(**kwargs) -> HttpRequest:
+def build_explicit_post_optional_array_parameter_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -523,7 +523,7 @@ def build_explicit_post_optional_array_parameter_request(**kwargs) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_array_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_required_array_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -540,7 +540,7 @@ def build_explicit_post_required_array_property_request(**kwargs) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_array_property_request(**kwargs) -> HttpRequest:
+def build_explicit_post_optional_array_property_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -748,7 +748,10 @@ class ImplicitOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _content = body_parameter
+        if body_parameter is not None:
+            _content = body_parameter
+        else:
+            _content = None
 
         request = build_implicit_put_optional_body_request(
             content_type=content_type,
@@ -1095,7 +1098,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = body_parameter
+        if body_parameter is not None:
+            _json = body_parameter
+        else:
+            _json = None
 
         request = build_explicit_post_optional_integer_parameter_request(
             content_type=content_type,
@@ -1292,7 +1298,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
-            _json = body_parameter
+            if body_parameter is not None:
+                _json = body_parameter
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_integer_property_request(
@@ -1464,7 +1473,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _content = body_parameter
+        if body_parameter is not None:
+            _content = body_parameter
+        else:
+            _content = None
 
         request = build_explicit_post_optional_string_parameter_request(
             content_type=content_type,
@@ -1661,7 +1673,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
-            _json = body_parameter
+            if body_parameter is not None:
+                _json = body_parameter
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_string_property_request(
@@ -1943,7 +1958,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
-            _json = body_parameter
+            if body_parameter is not None:
+                _json = body_parameter
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_class_parameter_request(
@@ -2148,7 +2166,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
-            _json = body_parameter
+            if body_parameter is not None:
+                _json = body_parameter
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_class_property_request(
@@ -2347,7 +2368,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
-            _json = body_parameter
+            if body_parameter is not None:
+                _json = body_parameter
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_array_parameter_request(
@@ -2550,7 +2574,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
-            _json = body_parameter
+            if body_parameter is not None:
+                _json = body_parameter
+            else:
+                _json = None
             content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_array_property_request(
