@@ -63,14 +63,20 @@ class ListType(BaseType):
 
     @property
     def docstring_type(self) -> str:
-        if self.code_model.options["version_tolerant"] and self.element_type.xml_metadata:
+        if (
+            self.code_model.options["version_tolerant"]
+            and self.element_type.xml_metadata
+        ):
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.docstring_type
         return f"list[{self.element_type.docstring_type}]"
 
     @property
     def docstring_text(self) -> str:
-        if self.code_model.options["version_tolerant"] and self.element_type.xml_metadata:
+        if (
+            self.code_model.options["version_tolerant"]
+            and self.element_type.xml_metadata
+        ):
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.docstring_text
         return f"list of {self.element_type.docstring_text}"
@@ -87,10 +93,20 @@ class ListType(BaseType):
             validation["unique"] = True
         return validation or None
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
-        return [self.element_type.get_json_template_representation(
-            optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
-        )]
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
+        return [
+            self.element_type.get_json_template_representation(
+                optional=optional,
+                client_default_value_declaration=client_default_value_declaration,
+                description=description,
+            )
+        ]
 
     @property
     def instance_check_template(self) -> str:
@@ -101,17 +117,24 @@ class ListType(BaseType):
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "ListType":
         from . import build_type
+
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            element_type=build_type(yaml_data=yaml_data["elementType"], code_model=code_model),
+            element_type=build_type(
+                yaml_data=yaml_data["elementType"], code_model=code_model
+            ),
         )
 
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
-        if not (self.code_model.options["version_tolerant"] and self.element_type.is_xml):
+        if not (
+            self.code_model.options["version_tolerant"] and self.element_type.is_xml
+        ):
             file_import.add_submodule_import(
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-        file_import.merge(self.element_type.imports(is_operation_file=is_operation_file))
+        file_import.merge(
+            self.element_type.imports(is_operation_file=is_operation_file)
+        )
         return file_import

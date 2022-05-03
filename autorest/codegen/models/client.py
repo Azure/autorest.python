@@ -13,7 +13,7 @@ from .lro_operation import LROOperation
 
 ParameterListType = TypeVar(
     "ParameterListType",
-    bound=Union[ClientGlobalParameterList, ConfigGlobalParameterList]
+    bound=Union[ClientGlobalParameterList, ConfigGlobalParameterList],
 )
 
 if TYPE_CHECKING:
@@ -41,12 +41,13 @@ class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
     def name(self) -> str:
         return self.yaml_data["name"]
 
+
 class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        parameters: ClientGlobalParameterList
+        parameters: ClientGlobalParameterList,
     ):
         super().__init__(yaml_data, code_model, parameters)
 
@@ -61,7 +62,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     @property
     def send_request_name(self) -> str:
-        return "send_request" if self.code_model.options["show_send_request"] else "_send_request"
+        return (
+            "send_request"
+            if self.code_model.options["show_send_request"]
+            else "_send_request"
+        )
 
     @property
     def has_parameterized_host(self) -> bool:
@@ -151,9 +156,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         file_import = self._imports_shared(async_mode)
         try:
             mixin_operation = next(
-                og
-                for og in self.code_model.operation_groups
-                if og.is_mixin
+                og for og in self.code_model.operation_groups if og.is_mixin
             )
             file_import.add_submodule_import(
                 "._operations_mixin", mixin_operation.class_name, ImportType.LOCAL
@@ -172,7 +175,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
 
 class Config(_ClientConfigBase[ConfigGlobalParameterList]):
-
     @property
     def description(self) -> str:
         return (
@@ -214,7 +216,6 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 "azure.mgmt.core.policies", policy, ImportType.AZURECORE
             )
         return file_import
-
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Config":

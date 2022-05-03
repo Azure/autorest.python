@@ -6,14 +6,31 @@
 import logging
 from abc import abstractmethod
 from itertools import chain
-from typing import Dict, List, Any, Optional, Type, Union, TYPE_CHECKING, cast, TypeVar, Generic
+from typing import (
+    Dict,
+    List,
+    Any,
+    Optional,
+    Type,
+    Union,
+    TYPE_CHECKING,
+    cast,
+    TypeVar,
+    Generic,
+)
 
 from .utils import OrderedSet
 
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import Response
-from .parameter import MultipartBodyParameter, BodyParameter, Parameter, UrlEncodedBodyParameter, ParameterLocation
+from .parameter import (
+    MultipartBodyParameter,
+    BodyParameter,
+    Parameter,
+    UrlEncodedBodyParameter,
+    ParameterLocation,
+)
 from .parameter_list import ParameterList, OverloadedOperationParameterList
 from .model_type import ModelType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
@@ -23,7 +40,10 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-ParameterListType = TypeVar("ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList])
+ParameterListType = TypeVar(
+    "ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList]
+)
+
 
 class OperationBase(BaseBuilder[ParameterListType]):
     def __init__(
@@ -67,16 +87,15 @@ class OperationBase(BaseBuilder[ParameterListType]):
         bodies and some are None
         """
         # means if we have at least one successful response with a body and one without
-        successful_response_with_body = any(
-            r for r in self.responses if r.type
-        )
-        successful_response_without_body = any(
-            r for r in self.responses if not r.type
-        )
+        successful_response_with_body = any(r for r in self.responses if r.type)
+        successful_response_without_body = any(r for r in self.responses if not r.type)
         return successful_response_with_body and successful_response_without_body
 
     def response_type_annotation(self, **kwargs) -> str:
-        if self.code_model.options["head_as_boolean"] and self.request_builder.method.lower() == "head":
+        if (
+            self.code_model.options["head_as_boolean"]
+            and self.request_builder.method.lower() == "head"
+        ):
             return "bool"
         response_body_annotations: OrderedSet[str] = {}
         for response in [r for r in self.responses if r.type]:
@@ -95,7 +114,10 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
     def _response_docstring_helper(self, attr_name: str) -> str:
         responses_with_body = [r for r in self.responses if r.type]
-        if (self.request_builder.method.lower() == "head" and self.code_model.options["head_as_boolean"]):
+        if (
+            self.request_builder.method.lower() == "head"
+            and self.code_model.options["head_as_boolean"]
+        ):
             return "bool"
         if responses_with_body:
             response_docstring_values: OrderedSet[str] = {
@@ -113,17 +135,13 @@ class OperationBase(BaseBuilder[ParameterListType]):
             retval += " or the result of cls(response)"
         return retval
 
-
     def response_docstring_type(self, **kwargs) -> str:
         return self._response_docstring_helper("docstring_type")
 
     @property
     def has_response_body(self) -> bool:
         """Tell if at least one response has a body."""
-        return any(
-            response.type
-            for response in self.responses
-        )
+        return any(response.type for response in self.responses)
 
     @property
     def any_response_has_headers(self) -> bool:
@@ -131,7 +149,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
     @property
     def default_error_deserialization(self) -> Optional[str]:
-        default_exceptions = [e for e in self.exceptions if "default" in e.status_codes and e.type]
+        default_exceptions = [
+            e for e in self.exceptions if "default" in e.status_codes and e.type
+        ]
         if not default_exceptions:
             return None
         excep_schema = default_exceptions[0].type
@@ -140,12 +160,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
         # in this case, it's just an AnyType
         return "'object'"
 
-
     @property
     def non_default_errors(self) -> List[Response]:
-        return [
-            e for e in self.exceptions if "default" not in e.status_codes
-        ]
+        return [e for e in self.exceptions if "default" not in e.status_codes]
 
     @property
     def non_default_error_status_codes(self) -> List[Union[str, int]]:
@@ -170,11 +187,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         for response in self.responses:
             file_import.merge(response.imports())
 
-        response_types = [
-            r.type_annotation()
-            for r in self.responses
-            if r.type
-        ]
+        response_types = [r.type_annotation() for r in self.responses if r.type]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -203,11 +216,16 @@ class OperationBase(BaseBuilder[ParameterListType]):
         kwargs_to_pop: List[Parameter], location: ParameterLocation
     ) -> bool:
         return any(
-            (kwarg.client_default_value or kwarg.optional) and kwarg.location == location
+            (kwarg.client_default_value or kwarg.optional)
+            and kwarg.location == location
             for kwarg in kwargs_to_pop
         )
 
-    def get_request_builder_import(self, request_builder: Union[RequestBuilder, OverloadedRequestBuilder], async_mode: bool) -> FileImport:
+    def get_request_builder_import(
+        self,
+        request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
+        async_mode: bool,
+    ) -> FileImport:
         """Helper method to get a request builder import."""
         file_import = FileImport()
         if self.code_model.options["builders_visibility"] != "embedded":
@@ -229,7 +247,10 @@ class OperationBase(BaseBuilder[ParameterListType]):
                 )
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             suffix = (
-                "_py3" if self.code_model.options["add_python3_operation_files"] and not self.code_model.options["python3_only"] else ""
+                "_py3"
+                if self.code_model.options["add_python3_operation_files"]
+                and not self.code_model.options["python3_only"]
+                else ""
             )
             file_import.add_submodule_import(
                 f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
@@ -324,7 +345,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
                 ImportType.AZURECORE,
             )
         if not self.abstract:
-            file_import.merge(self.get_request_builder_import(self.request_builder, async_mode))
+            file_import.merge(
+                self.get_request_builder_import(self.request_builder, async_mode)
+            )
         return file_import
 
     def get_response_from_status(
@@ -333,16 +356,14 @@ class OperationBase(BaseBuilder[ParameterListType]):
         try:
             return next(r for r in self.responses if status_code in r.status_codes)
         except StopIteration:
-            raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
+            raise ValueError(
+                f"Incorrect status code {status_code}, operation {self.name}"
+            )
 
     @property
     def success_status_codes(self) -> List[Union[str, int]]:
         """The list of all successfull status code."""
-        return [
-            code
-            for response in self.responses
-            for code in response.status_codes
-        ]
+        return [code for response in self.responses for code in response.status_codes]
 
     @property
     def filename(self) -> str:
@@ -376,20 +397,26 @@ class OperationBase(BaseBuilder[ParameterListType]):
         name = yaml_data["name"]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
-        exceptions = [Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]]
+        exceptions = [
+            Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
+        ]
         parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
         overloads = [
             cls.overload_operation_class().from_yaml(overload, code_model)
             for overload in yaml_data.get("overloads", [])
         ]
         abstract = False
-        if code_model.options["version_tolerant"] and parameter_list.has_body and isinstance(parameter_list.body_parameter, MultipartBodyParameter):
+        if (
+            code_model.options["version_tolerant"]
+            and parameter_list.has_body
+            and isinstance(parameter_list.body_parameter, MultipartBodyParameter)
+        ):
             _LOGGER.warning(
-                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '\
-                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "\
-                "Please write your own custom operation in the \"_patch.py\" file "\
+                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
+                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
+                'Please write your own custom operation in the "_patch.py" file '
                 "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-                name
+                name,
             )
             abstract = True
 
@@ -408,14 +435,12 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
 
 class Operation(OperationBase[ParameterList]):
-
     @staticmethod
     def parameter_list_type() -> Type[ParameterList]:
         return ParameterList
 
 
 class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
-
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = super()._imports_shared(async_mode)
         file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
@@ -429,16 +454,31 @@ class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
     def parameter_list_type() -> Type[OverloadedOperationParameterList]:
         return OverloadedOperationParameterList
 
+
 def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":
-        from .lro_paging_operation import LROPagingOperation, OverloadedLROPagingOperation
-        operation_cls = OverloadedLROPagingOperation if yaml_data.get("overloads") else LROPagingOperation
+        from .lro_paging_operation import (
+            LROPagingOperation,
+            OverloadedLROPagingOperation,
+        )
+
+        operation_cls = (
+            OverloadedLROPagingOperation
+            if yaml_data.get("overloads")
+            else LROPagingOperation
+        )
     elif yaml_data["discriminator"] == "lro":
         from .lro_operation import LROOperation, OverloadedLROOperation
-        operation_cls = OverloadedLROOperation if yaml_data.get("overloads") else LROOperation
+
+        operation_cls = (
+            OverloadedLROOperation if yaml_data.get("overloads") else LROOperation
+        )
     elif yaml_data["discriminator"] == "paging":
         from .paging_operation import PagingOperation, OverloadedPagingOperation
-        operation_cls = OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation
+
+        operation_cls = (
+            OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation
+        )
     else:
         operation_cls = OverloadedOperation if yaml_data.get("overloads") else Operation
     return operation_cls.from_yaml(yaml_data, code_model)

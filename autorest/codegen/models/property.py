@@ -36,11 +36,16 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def description(self, *, is_operation_file: bool) -> str:
         from .model_type import ModelType
+
         description = self.yaml_data["description"]
         if not (self.optional or self.client_default_value):
             description = add_to_description(description, "Required.")
         # don't want model type documentation as part of property doc
-        type_description = "" if isinstance(self.type, ModelType) else self.type.description(is_operation_file=is_operation_file)
+        type_description = (
+            ""
+            if isinstance(self.type, ModelType)
+            else self.type.description(is_operation_file=is_operation_file)
+        )
         return add_to_description(description, type_description)
 
     @property
@@ -74,12 +79,24 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
         return self.type.type_annotation(is_operation_file=is_operation_file)
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         if self.client_default_value:
-            client_default_value_declaration = self.type.get_declaration(self.client_default_value)
+            client_default_value_declaration = self.type.get_declaration(
+                self.client_default_value
+            )
         if self.description(is_operation_file=True):
             description = self.description(is_operation_file=True)
-        return self.type.get_json_template_representation(optional=self.optional, client_default_value_declaration=client_default_value_declaration, description=description)
+        return self.type.get_json_template_representation(
+            optional=self.optional,
+            client_default_value_declaration=client_default_value_declaration,
+            description=description,
+        )
 
     @property
     def validation(self) -> Optional[Dict[str, Any]]:
@@ -96,7 +113,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     @property
     def attribute_map(self) -> str:
         if self.flattened_names:
-            attribute_key = ".".join(n.replace(".", "\\\\.") for n in self.flattened_names)
+            attribute_key = ".".join(
+                n.replace(".", "\\\\.") for n in self.flattened_names
+            )
         else:
             attribute_key = self.rest_api_name.replace(".", "\\\\.")
         if self.type.xml_serialization_ctxt:
@@ -107,6 +126,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def imports(self) -> FileImport:
         from .model_type import ModelType
+
         file_import = self.type.imports(is_operation_file=False)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
@@ -126,8 +146,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         code_model: "CodeModel",
     ) -> "Property":
         from . import build_type  # pylint: disable=import-outside-toplevel
+
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            type=build_type(yaml_data["type"], code_model)
+            type=build_type(yaml_data["type"], code_model),
         )

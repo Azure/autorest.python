@@ -11,14 +11,12 @@ from .base_type import BaseType
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 class CombinedType(BaseType):
     """A type that consists of multiple different types"""
 
     def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        types: List[BaseType]
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", types: List[BaseType]
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.types = types
@@ -43,8 +41,12 @@ class CombinedType(BaseType):
 
     def description(self, *, is_operation_file: bool) -> str:
         if len(self.types) == 2:
-            return f"Is either a {self.types[0].type} type or a {self.types[1].type} type."
-        return f"Is one of the following types: {', '.join([t.type for t in self.types])}"
+            return (
+                f"Is either a {self.types[0].type} type or a {self.types[1].type} type."
+            )
+        return (
+            f"Is one of the following types: {', '.join([t.type for t in self.types])}"
+        )
 
     @property
     def docstring_text(self) -> str:
@@ -61,9 +63,17 @@ class CombinedType(BaseType):
         """
         return f'Union[{", ".join(type.type_annotation(is_operation_file=True) for type in self.types)}]'
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         """Template of what this schema would look like as JSON input"""
-        raise ValueError("You shouldn't get a JSON template representation of multiple types")
+        raise ValueError(
+            "You shouldn't get a JSON template representation of multiple types"
+        )
 
     @property
     def instance_check_template(self) -> str:
@@ -78,7 +88,9 @@ class CombinedType(BaseType):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BaseType":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "BaseType":
         from . import build_type
 
         return cls(

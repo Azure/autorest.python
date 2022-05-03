@@ -45,8 +45,12 @@ class GeneralSerializer:
 
         template = self.env.get_template("client.py.jinja2")
 
-        if self.code_model.credential and isinstance(self.code_model.credential.type, TokenCredentialType):
-            self._correct_credential_parameter(self.code_model.client.parameters.credential)
+        if self.code_model.credential and isinstance(
+            self.code_model.credential.type, TokenCredentialType
+        ):
+            self._correct_credential_parameter(
+                self.code_model.client.parameters.credential
+            )
 
         python3_only = self.code_model.options["python3_only"]
         return template.render(
@@ -113,8 +117,12 @@ class GeneralSerializer:
             package_name if package_name else self.code_model.client.name.lower()
         )
 
-        if self.code_model.credential and isinstance(self.code_model.credential.type, TokenCredentialType):
-            self._correct_credential_parameter(self.code_model.config.parameters.credential)
+        if self.code_model.credential and isinstance(
+            self.code_model.credential.type, TokenCredentialType
+        ):
+            self._correct_credential_parameter(
+                self.code_model.config.parameters.credential
+            )
 
         template = self.env.get_template("config.py.jinja2")
         python3_only = self.code_model.options["python3_only"]

@@ -30,7 +30,9 @@ class BaseType(BaseModel, ABC):
     ) -> "BaseType":
         return cls(yaml_data=yaml_data, code_model=code_model)
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=no-self-use
+    def imports(
+        self, *, is_operation_file: bool
+    ) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()
 
     @property
@@ -122,7 +124,13 @@ class BaseType(BaseModel, ABC):
         return str(value)
 
     @abstractmethod
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         """Template of what this schema would look like as JSON input"""
         ...
 

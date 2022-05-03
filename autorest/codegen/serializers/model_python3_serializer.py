@@ -39,7 +39,9 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     and not prop.constant
                     and not prop.readonly
                 ):
-                    properties_to_pass_to_super.append(f"{prop.client_name}={prop.client_name}")
+                    properties_to_pass_to_super.append(
+                        f"{prop.client_name}={prop.client_name}"
+                    )
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
 

@@ -46,9 +46,7 @@ class ClientSerializer:
 
     def class_definition(self, async_mode) -> str:
         class_name = self.code_model.client.name
-        has_mixin_og = any(
-            og for og in self.code_model.operation_groups if og.is_mixin
-        )
+        has_mixin_og = any(og for og in self.code_model.operation_groups if og.is_mixin)
         base_class = ""
         if has_mixin_og:
             base_class = f"{class_name}OperationsMixin"
@@ -64,11 +62,7 @@ class ClientSerializer:
     def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []
         operations_folder = ".aio.operations." if async_mode else ".operations."
-        for og in [
-            og
-            for og in self.code_model.operation_groups
-            if not og.is_mixin
-        ]:
+        for og in [og for og in self.code_model.operation_groups if not og.is_mixin]:
             retval.append(f":ivar {og.property_name}: {og.class_name} operations")
             retval.append(
                 f":vartype {og.property_name}: {self.code_model.namespace}{operations_folder}{og.class_name}"
@@ -103,7 +97,9 @@ class ClientSerializer:
     @property
     def host_variable_name(self) -> str:
         try:
-            return next(p for p in self.code_model.client.parameters if p.is_host).client_name
+            return next(
+                p for p in self.code_model.client.parameters if p.is_host
+            ).client_name
         except StopIteration:
             return "_endpoint"
 
@@ -129,9 +125,7 @@ class ClientSerializer:
         if not self.code_model.options["client_side_validation"]:
             retval.append("self._serialize.client_side_validation = False")
         operation_groups = [
-            og
-            for og in self.code_model.operation_groups
-            if not og.is_mixin
+            og for og in self.code_model.operation_groups if not og.is_mixin
         ]
         for og in operation_groups:
             disable_check = (
@@ -155,8 +149,9 @@ class ClientSerializer:
             if is_python3_file
             else "request,  # type: HttpRequest"
         ]
-        send_request_signature = request_signature + self.code_model.client.parameters.method_signature_kwargs(
-            is_python3_file
+        send_request_signature = (
+            request_signature
+            + self.code_model.client.parameters.method_signature_kwargs(is_python3_file)
         )
         return self.parameter_serializer.serialize_method(
             function_def="def",
@@ -307,9 +302,7 @@ class ConfigSerializer:
     def property_descriptions(self) -> List[str]:
         retval: List[str] = []
         for p in self.code_model.config.parameters.method:
-            retval.append(
-                f":{p.description_keyword} {p.client_name}: {p.description}"
-            )
+            retval.append(f":{p.description_keyword} {p.client_name}: {p.description}")
             retval.append(
                 f":{p.docstring_type_keyword} {p.client_name}: {p.docstring_type}"
             )

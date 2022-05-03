@@ -8,8 +8,6 @@ from typing import List
 from ..models import ListType, Parameter, ParameterLocation
 
 
-
-
 def method_signature_and_response_type_annotation_template(
     *,
     is_python3_file: bool,

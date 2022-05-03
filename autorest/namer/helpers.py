@@ -6,6 +6,7 @@
 import re
 from .python_mappings import PadType, RESERVED_WORDS
 
+
 def to_snake_case(name: str) -> str:
     def replace_upper_characters(m: re.Match[str]) -> str:
         match_str = m.group().lower()

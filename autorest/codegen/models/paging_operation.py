@@ -7,13 +7,18 @@ from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, Type, cast
 
 from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
-from .request_builder import OverloadedRequestBuilder, RequestBuilder, get_request_builder
+from .request_builder import (
+    OverloadedRequestBuilder,
+    RequestBuilder,
+    get_request_builder,
+)
 from .imports import ImportType, FileImport, TypingSection
 from .parameter_list import ParameterList
 from .model_type import ModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+
 
 class _PagingOperationBase(OperationBase):
     def __init__(
@@ -45,9 +50,13 @@ class _PagingOperationBase(OperationBase):
             want_tracing=want_tracing,
             abstract=abstract,
         )
-        self.next_request_builder: Optional[Union[RequestBuilder, OverloadedRequestBuilder]] = get_request_builder(
-            self.yaml_data["nextOperation"], code_model) if self.yaml_data.get("nextOperation"
-        ) else None
+        self.next_request_builder: Optional[
+            Union[RequestBuilder, OverloadedRequestBuilder]
+        ] = (
+            get_request_builder(self.yaml_data["nextOperation"], code_model)
+            if self.yaml_data.get("nextOperation")
+            else None
+        )
         self.override_success_response_to_200 = override_success_response_to_200
         self.pager_sync: str = yaml_data["pagerSync"]
         self.pager_async: str = yaml_data["pagerAsync"]
@@ -56,11 +65,14 @@ class _PagingOperationBase(OperationBase):
         response = self.responses[0]
         try:
             return next(
-                p.client_name for p in cast(ModelType, response.type).properties
-                if p. rest_api_name == rest_api_name
+                p.client_name
+                for p in cast(ModelType, response.type).properties
+                if p.rest_api_name == rest_api_name
             )
         except StopIteration:
-            raise ValueError(f"Can't find a matching property in response for {rest_api_name}")
+            raise ValueError(
+                f"Can't find a matching property in response for {rest_api_name}"
+            )
 
     @property
     def continuation_token_name(self) -> Optional[str]:
@@ -84,7 +96,9 @@ class _PagingOperationBase(OperationBase):
         return "paging"
 
     def get_pager_path(self, async_mode: bool) -> str:
-        return self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
+        return (
+            self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
+        )
 
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]
@@ -165,16 +179,18 @@ class _PagingOperationBase(OperationBase):
                 ImportType.AZURECORE,
             )
         if self.next_request_builder:
-            file_import.merge(self.get_request_builder_import(self.next_request_builder, async_mode))
+            file_import.merge(
+                self.get_request_builder_import(self.next_request_builder, async_mode)
+            )
 
         return file_import
+
 
 class PagingOperation(Operation, _PagingOperationBase):
     ...
 
 
 class OverloadedPagingOperation(OverloadedOperation, _PagingOperationBase):
-
     @staticmethod
     def overload_operation_class() -> Type[Operation]:
         return PagingOperation

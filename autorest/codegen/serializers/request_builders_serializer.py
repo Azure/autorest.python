@@ -18,7 +18,7 @@ class RequestBuildersSerializer:
         code_model: CodeModel,
         env: Environment,
         request_builders: List[RequestBuilder],
-        is_python3_file: bool
+        is_python3_file: bool,
     ) -> None:
         self.code_model = code_model
         self.env = env
@@ -37,7 +37,8 @@ class RequestBuildersSerializer:
     def serialize_init(self) -> str:
         template = self.env.get_template("rest_init.py.jinja2")
         return template.render(
-            code_model=self.code_model, request_builders=[r for r in self.request_builders if not r.is_overload]
+            code_model=self.code_model,
+            request_builders=[r for r in self.request_builders if not r.is_overload],
         )
 
     def serialize_request_builders(self) -> str:
@@ -50,5 +51,7 @@ class RequestBuildersSerializer:
                 self.imports,
                 is_python3_file=True,
             ),
-            request_builder_serializer=RequestBuilderSerializer(self.code_model, async_mode=False, is_python3_file=self.is_python3_file),
+            request_builder_serializer=RequestBuilderSerializer(
+                self.code_model, async_mode=False, is_python3_file=self.is_python3_file
+            ),
         )

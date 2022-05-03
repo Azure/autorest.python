@@ -18,6 +18,7 @@ from .models.request_builder import get_request_builder
 from .models.operation_group import OperationGroup
 from .serializers import JinjaSerializer
 
+
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
     if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
@@ -32,6 +33,7 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
     if code_model.options["show_operations"]:
         # LRO operation
         code_model.format_lro_operations()
+
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
@@ -148,13 +150,19 @@ class CodeGenerator(Plugin):
         if yaml_data.get("operationGroups"):
             for og_group in yaml_data["operationGroups"]:
                 for operation_yaml in og_group["operations"]:
-                    request_builder = get_request_builder(operation_yaml, code_model=code_model)
+                    request_builder = get_request_builder(
+                        operation_yaml, code_model=code_model
+                    )
                     if request_builder.overloads:
                         code_model.request_builders.extend(request_builder.overloads)
                     code_model.request_builders.append(request_builder)
                     if operation_yaml.get("nextOperation"):
                         # i am a paging operation and i have a next operation. Make sure to include my next operation
-                        code_model.request_builders.append(get_request_builder(operation_yaml["nextOperation"], code_model=code_model))
+                        code_model.request_builders.append(
+                            get_request_builder(
+                                operation_yaml["nextOperation"], code_model=code_model
+                            )
+                        )
 
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
         code_model.package_dependency = self._build_package_dependency()
@@ -172,21 +180,24 @@ class CodeGenerator(Plugin):
             )
             license_header += "\n# --------------------------------------------------------------------------"
 
-        low_level_client = cast(bool, self._autorestapi.get_boolean_value(
-            "low-level-client", False
-        ))
-        version_tolerant = cast(bool, self._autorestapi.get_boolean_value(
-            "version-tolerant", False
-        ))
+        low_level_client = cast(
+            bool, self._autorestapi.get_boolean_value("low-level-client", False)
+        )
+        version_tolerant = cast(
+            bool, self._autorestapi.get_boolean_value("version-tolerant", False)
+        )
         show_operations = self._autorestapi.get_boolean_value(
             "show-operations", not low_level_client
         )
         models_mode_default = (
             "none" if low_level_client or version_tolerant else "msrest"
         )
-        python3_only = cast(bool, self._autorestapi.get_boolean_value(
-            "python3-only", low_level_client or version_tolerant
-        ))
+        python3_only = cast(
+            bool,
+            self._autorestapi.get_boolean_value(
+                "python3-only", low_level_client or version_tolerant
+            ),
+        )
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -226,7 +237,8 @@ class CodeGenerator(Plugin):
                 low_level_client or version_tolerant,
             ),
             "add_python3_operation_files": self._autorestapi.get_boolean_value(
-                "add-python3-operation-files", python3_only and not (low_level_client or version_tolerant)
+                "add-python3-operation-files",
+                python3_only and not (low_level_client or version_tolerant),
             ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,

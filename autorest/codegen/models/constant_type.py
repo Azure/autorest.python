@@ -36,7 +36,7 @@ class ConstantType(BaseType):
         self.value_type = value_type
         self.value = value
 
-    def get_declaration(self, value = None):
+    def get_declaration(self, value=None):
         if value and value != self.value:
             _LOGGER.warning(
                 "Passed in value of %s differs from constant value of %s. Choosing constant value",
@@ -50,7 +50,10 @@ class ConstantType(BaseType):
     def description(self, *, is_operation_file: bool) -> str:
         if is_operation_file:
             return ""
-        return add_to_description(self.yaml_data.get("description", ""), f"Default value is {self.get_declaration()}.")
+        return add_to_description(
+            self.yaml_data.get("description", ""),
+            f"Default value is {self.get_declaration()}.",
+        )
 
     @property
     def serialization_type(self) -> str:
@@ -97,9 +100,17 @@ class ConstantType(BaseType):
             value=yaml_data["value"],
         )
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         return self.value_type.get_json_template_representation(
-            optional=optional, client_default_value_declaration=self.get_declaration(), description=description
+            optional=optional,
+            client_default_value_declaration=self.get_declaration(),
+            description=description,
         )
 
     def imports(self, *, is_operation_file: bool) -> FileImport:

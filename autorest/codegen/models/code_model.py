@@ -13,6 +13,7 @@ from .client import Client, Config
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
 from .parameter import Parameter
 
+
 class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
@@ -46,12 +47,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     ) -> None:
         self.yaml_data = yaml_data
         self.options = options
-        self.types_map: Dict[int, BaseType] = {} # map yaml id to schema
+        self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
         self._object_types: List[ModelType] = []
         self._client: Optional[Client] = None
         self._config: Optional[Config] = None
-        self.request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
+        self.request_builders: List[
+            Union[RequestBuilder, OverloadedRequestBuilder]
+        ] = []
         self.package_dependency: Dict[str, str] = {}
         self.namespace: str = yaml_data["client"]["namespace"].lower()
         self.module_name: str = self.yaml_data["client"]["moduleName"]
@@ -65,11 +68,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :raises: KeyError if schema is not found
         """
         try:
-            return next(
-                type
-                for id, type in self.types_map.items()
-                if id == schema_id
-            )
+            return next(type for id, type in self.types_map.items() if id == schema_id)
         except StopIteration:
             raise KeyError(f"Couldn't find schema with id {schema_id}")
 
@@ -97,7 +96,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def config(self, val: Config) -> None:
         self._config = val
 
-    def lookup_request_builder(self, request_builder_id: int) -> Union[RequestBuilder, OverloadedRequestBuilder]:
+    def lookup_request_builder(
+        self, request_builder_id: int
+    ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
         """Find the request builder based off of id"""
         try:
             return next(
@@ -111,7 +112,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     @property
     def object_types(self) -> List[ModelType]:
         if not self._object_types:
-            self._object_types = [t for t in self.types_map.values() if isinstance(t, ModelType)]
+            self._object_types = [
+                t for t in self.types_map.values() if isinstance(t, ModelType)
+            ]
         return self._object_types
 
     @object_types.setter
@@ -123,7 +126,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
     @staticmethod
-    def _sort_schemas_helper(current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]):
+    def _sort_schemas_helper(
+        current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]
+    ):
         if current.id in seen_schema_yaml_ids:
             return []
         if current.name in seen_schema_names:

@@ -32,16 +32,34 @@ from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterMethodLocation, ParameterLocation, BodyParameter, ParameterDelimeter, MultipartBodyParameter
+from .parameter import (
+    Parameter,
+    ParameterMethodLocation,
+    ParameterLocation,
+    BodyParameter,
+    ParameterDelimeter,
+    MultipartBodyParameter,
+)
 from .operation import Operation, OverloadedOperation, OperationBase
 from .property import Property
 from .operation_group import OperationGroup
 from .response import Response
-from .parameter_list import ParameterList, ClientGlobalParameterList, ConfigGlobalParameterList
-from .request_builder import RequestBuilder, OverloadedRequestBuilder, RequestBuilderBase
+from .parameter_list import (
+    ParameterList,
+    ClientGlobalParameterList,
+    ConfigGlobalParameterList,
+)
+from .request_builder import (
+    RequestBuilder,
+    OverloadedRequestBuilder,
+    RequestBuilderBase,
+)
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
-from .request_builder_parameter import RequestBuilderParameter, RequestBuilderBodyParameter
+from .request_builder_parameter import (
+    RequestBuilderParameter,
+    RequestBuilderBodyParameter,
+)
 from .credential_types import (
     TokenCredentialType,
     AzureKeyCredentialType,
@@ -118,6 +136,7 @@ TYPE_TO_OBJECT = {
     "time": TimeType,
 }
 
+
 def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     yaml_id = id(yaml_data)
     try:
@@ -131,8 +150,6 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
     else:
-        response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(
-            yaml_data, code_model
-        )
+        response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(yaml_data, code_model)
     code_model.types_map[yaml_id] = response
     return response

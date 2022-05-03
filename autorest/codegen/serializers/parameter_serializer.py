@@ -6,15 +6,23 @@
 from typing import List, Union
 from enum import Enum, auto
 
-from ..models import CodeModel, Parameter, ParameterLocation, BodyParameter, ListType, ParameterDelimeter
+from ..models import (
+    CodeModel,
+    Parameter,
+    ParameterLocation,
+    BodyParameter,
+    ListType,
+    ParameterDelimeter,
+)
+
 
 class PopKwargType(Enum):
     NO = auto()
     SIMPLE = auto()
     CASE_INSENSITIVE = auto()
 
-class ParameterSerializer:
 
+class ParameterSerializer:
     def __init__(self, code_model: CodeModel):
         self.code_model = code_model
 
@@ -71,7 +79,9 @@ class ParameterSerializer:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
         return serialize_line
 
-    def serialize_path(self, parameters: List[Parameter], serializer_name: str) -> List[str]:
+    def serialize_path(
+        self, parameters: List[Parameter], serializer_name: str
+    ) -> List[str]:
         retval = ["path_format_arguments = {"]
         retval.extend(
             [
@@ -110,7 +120,8 @@ class ParameterSerializer:
             if kwarg.client_default_value is not None or kwarg.optional:
                 default_value = kwarg.client_default_value_declaration
                 if check_kwarg_dict and (
-                    kwarg.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]
+                    kwarg.location
+                    in [ParameterLocation.HEADER, ParameterLocation.QUERY]
                 ):
                     kwarg_dict = (
                         "headers"

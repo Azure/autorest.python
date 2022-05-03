@@ -11,17 +11,21 @@ from .imports import FileImport, ImportType, TypingSection
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 def _get_properties(type: "ModelType", properties: List[Property]) -> List[Property]:
     for parent in type.parents:
         # here we're adding the properties from our parents
 
         # need to make sure that the properties we choose from our parent also don't contain
         # any of our own properties
-        property_names = set([p.client_name for p in properties] + [p.client_name for p in type.properties])
-        chosen_parent_properties = [p for p in parent.properties if p.client_name not in property_names]
-        properties = (
-            _get_properties(parent, chosen_parent_properties) + properties
+        property_names = set(
+            [p.client_name for p in properties]
+            + [p.client_name for p in type.properties]
         )
+        chosen_parent_properties = [
+            p for p in parent.properties if p.client_name not in property_names
+        ]
+        properties = _get_properties(parent, chosen_parent_properties) + properties
     return properties
 
 
@@ -50,7 +54,9 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         self.properties = properties or []
         self.parents = parents or []
         self.discriminated_subtypes = discriminated_subtypes or {}
-        self.discriminator_value: Optional[str] = self.yaml_data.get("discriminatorValue")
+        self.discriminator_value: Optional[str] = self.yaml_data.get(
+            "discriminatorValue"
+        )
         self._created_json_template_representation = False
 
     @property
@@ -101,7 +107,13 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         # but we don't want to write a serialization context for an object.
         return super().xml_serialization_ctxt
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         if self._created_json_template_representation:
             return "..."  # do this to avoid loop
         self._created_json_template_representation = True
@@ -109,7 +121,9 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         # additional properties in the template
         representation = {
             f'"{prop.rest_api_name}"': prop.get_json_template_representation(
-                optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
+                optional=optional,
+                client_default_value_declaration=client_default_value_declaration,
+                description=description,
             )
             for prop in [
                 p
@@ -144,6 +158,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         self, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> None:
         from . import build_type
+
         self.parents = [
             cast(ModelType, build_type(bm, code_model))
             for bm in yaml_data.get("parents", [])

@@ -28,7 +28,6 @@ class RawString(object):
 
 
 class PrimitiveType(BaseType):
-
     def description(self, *, is_operation_file: bool) -> str:
         return ""
 
@@ -41,16 +40,29 @@ class PrimitiveType(BaseType):
     def docstring_text(self) -> str:
         return self.docstring_type
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         comment = ""
         if optional:
             comment = add_to_description(comment, "Optional.")
         if self.client_default_value is not None:
-            client_default_value_declaration = client_default_value_declaration or self.get_declaration(self.client_default_value)
+            client_default_value_declaration = (
+                client_default_value_declaration
+                or self.get_declaration(self.client_default_value)
+            )
         if client_default_value_declaration:
-            comment = add_to_description(comment, f"Default value is {client_default_value_declaration}.")
+            comment = add_to_description(
+                comment, f"Default value is {client_default_value_declaration}."
+            )
         else:
-            client_default_value_declaration = self.default_template_representation_declaration
+            client_default_value_declaration = (
+                self.default_template_representation_declaration
+            )
         if description:
             comment = add_to_description(comment, description)
         if comment:
@@ -61,8 +73,8 @@ class PrimitiveType(BaseType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type)
 
-class BooleanType(PrimitiveType):
 
+class BooleanType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "bool"
@@ -104,9 +116,7 @@ class BinaryType(PrimitiveType):
 
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import(
-            "typing", "IO", ImportType.STDLIB
-        )
+        file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
         return file_import
 
     @property
@@ -141,7 +151,10 @@ class AnyType(PrimitiveType):
 
     @property
     def instance_check_template(self) -> str:
-        raise ValueError("Shouldn't do instance check on an anytype, it can be anything")
+        raise ValueError(
+            "Shouldn't do instance check on an anytype, it can be anything"
+        )
+
 
 class AnyObjectType(PrimitiveType):
     @property
@@ -218,14 +231,13 @@ class NumberType(PrimitiveType):
             validation["multiple"] = self.multiple
         return validation or None
 
-
     @property
     def default_template_representation_declaration(self) -> str:
         default_value = 0 if self.docstring_type == "int" else 0.0
         return self.get_declaration(default_value)
 
-class IntegerType(NumberType):
 
+class IntegerType(NumberType):
     @property
     def serialization_type(self) -> str:
         return "int"
@@ -247,8 +259,8 @@ class IntegerType(NumberType):
     def instance_check_template(self) -> str:
         return "isinstance({}, int)"
 
-class FloatType(NumberType):
 
+class FloatType(NumberType):
     @property
     def serialization_type(self) -> str:
         return "float"

@@ -12,6 +12,7 @@ from .base_model import BaseModel
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 class EnumValue(BaseModel):
     """Model containing necessary information for a single value of an enum.
 
@@ -20,16 +21,16 @@ class EnumValue(BaseModel):
     :param str description: Optional. The description for this enum value
     """
 
-    def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> None:
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name: str = self.yaml_data["name"]
         self.value: str = self.yaml_data["value"]
         self.description: Optional[str] = self.yaml_data.get("description")
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "EnumValue":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "EnumValue":
         """Constructs an EnumValue from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this object
@@ -89,9 +90,10 @@ class EnumType(BaseType):
         if len(possible_values) == 2:
             possible_values_str = " and ".join(possible_values)
         else:
-            possible_values_str = ", ".join(
-                possible_values[: len(possible_values) - 1]
-            ) + f", and {possible_values[-1]}"
+            possible_values_str = (
+                ", ".join(possible_values[: len(possible_values) - 1])
+                + f", and {possible_values[-1]}"
+            )
 
         enum_description = f"Known values are: {possible_values_str}."
         return enum_description
@@ -122,10 +124,18 @@ class EnumType(BaseType):
             return f"{self.value_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
         return self.value_type.type_annotation()
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         # for better display effect, use the only value instead of var type
         return self.value_type.get_json_template_representation(
-            optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
+            optional=optional,
+            client_default_value_declaration=client_default_value_declaration,
+            description=description,
         )
 
     @property
@@ -145,13 +155,14 @@ class EnumType(BaseType):
         :rtype: ~autorest.models.EnumType
         """
         from . import build_type
+
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             value_type=build_type(yaml_data["valueType"], code_model),
             values=[
                 EnumValue.from_yaml(value, code_model) for value in yaml_data["values"]
-            ]
+            ],
         )
 
     def imports(self, *, is_operation_file: bool) -> FileImport:

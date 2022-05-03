@@ -13,6 +13,7 @@ from .base_type import BaseType
 from .request_builder import RequestBuilder
 from .response import Response
 from .parameter_list import ParameterList
+
 _LOGGER = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
@@ -69,7 +70,9 @@ class _LROOperationBase(OperationBase):
         if len(num_response_schemas) > 1:
             # choose the response that has a status code of 200
             try:
-                response = next(r for r in responses_with_bodies if 200 in r.status_codes)
+                response = next(
+                    r for r in responses_with_bodies if 200 in r.status_codes
+                )
             except StopIteration:
                 raise ValueError(
                     f"Your swagger is invalid because you have multiple response schemas for LRO"
@@ -81,18 +84,24 @@ class _LROOperationBase(OperationBase):
         return response
 
     def get_poller_path(self, async_mode: bool) -> str:
-        return self.yaml_data["pollerAsync"] if async_mode else self.yaml_data["pollerSync"]
+        return (
+            self.yaml_data["pollerAsync"]
+            if async_mode
+            else self.yaml_data["pollerSync"]
+        )
 
     def get_poller(self, async_mode: bool) -> str:
         return self.get_poller_path(async_mode).split(".")[-1]
 
     def get_polling_method_path(self, async_mode: bool) -> str:
-        return self.yaml_data["pollingMethodAsync"] if async_mode else self.yaml_data["pollingMethodSync"]
+        return (
+            self.yaml_data["pollingMethodAsync"]
+            if async_mode
+            else self.yaml_data["pollingMethodSync"]
+        )
 
     def get_polling_method(self, async_mode: bool) -> str:
-        return self.get_polling_method_path(async_mode).split(".")[
-            -1
-        ]
+        return self.get_polling_method_path(async_mode).split(".")[-1]
 
     def get_no_polling_method_path(self, async_mode: bool) -> str:
         return f"azure.core.polling.{'Async' if async_mode else ''}NoPolling"
@@ -183,6 +192,7 @@ class _LROOperationBase(OperationBase):
             )
         return file_import
 
+
 class LROOperation(Operation, _LROOperationBase):
     @property
     def initial_operation(self) -> Operation:
@@ -199,8 +209,8 @@ class LROOperation(Operation, _LROOperationBase):
             want_tracing=False,
         )
 
-class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
 
+class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
     @staticmethod
     def overload_operation_class() -> Type[Operation]:
         return LROOperation

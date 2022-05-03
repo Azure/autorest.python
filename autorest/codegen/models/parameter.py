@@ -7,7 +7,17 @@ import logging
 import abc
 from enum import Enum, auto
 
-from typing import Dict, Any, TYPE_CHECKING, List, Optional, Set, TypeVar, Union, Generic
+from typing import (
+    Dict,
+    Any,
+    TYPE_CHECKING,
+    List,
+    Optional,
+    Set,
+    TypeVar,
+    Union,
+    Generic,
+)
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
@@ -19,6 +29,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
     from .request_builder_parameter import RequestBuilderBodyParameter
 
+
 class ParameterLocation(str, Enum):
     HEADER = "header"
     PATH = "path"
@@ -27,16 +38,19 @@ class ParameterLocation(str, Enum):
     BODY = "body"
     OTHER = "other"
 
+
 class ParameterMethodLocation(Enum):
     POSITIONAL = auto()
     KEYWORD_ONLY = auto()
     KWARG = auto()
+
 
 class ParameterDelimeter(str, Enum):
     SPACE = "space"
     PIPE = "pipe"
     TAB = "tab"
     COMMA = "comma"
+
 
 class _ParameterBase(BaseModel, abc.ABC):
     def __init__(
@@ -59,7 +73,9 @@ class _ParameterBase(BaseModel, abc.ABC):
         self.grouped_by: Optional[str] = self.yaml_data.get("groupedBy")
         # property matching property name to parameter name for grouping params
         # and flattened body params
-        self.property_to_parameter_name: Optional[Dict[str, str]] = self.yaml_data.get("propertyToParameterName")
+        self.property_to_parameter_name: Optional[Dict[str, str]] = self.yaml_data.get(
+            "propertyToParameterName"
+        )
         self.flattened: bool = self.yaml_data.get("flattened", False)
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
@@ -79,15 +95,27 @@ class _ParameterBase(BaseModel, abc.ABC):
         if type_description:
             base_description = add_to_description(base_description, type_description)
         if self.optional and isinstance(self.type, ConstantType):
-            base_description = add_to_description(base_description, f"Known values are {self.type.get_declaration()} and None.")
+            base_description = add_to_description(
+                base_description,
+                f"Known values are {self.type.get_declaration()} and None.",
+            )
         if not (self.optional or self.client_default_value):
             base_description = add_to_description(base_description, "Required.")
         if self.client_default_value is not None:
-            base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
+            base_description = add_to_description(
+                base_description,
+                f"Default value is {self.client_default_value_declaration}.",
+            )
         if self.optional and self.client_default_value is None:
-            base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
+            base_description = add_to_description(
+                base_description,
+                f"Default value is {self.client_default_value_declaration}.",
+            )
         if self.constant:
-            base_description = add_to_description(base_description, "Note that overriding this default value may result in unsupported behavior.")
+            base_description = add_to_description(
+                base_description,
+                "Note that overriding this default value may result in unsupported behavior.",
+            )
         return base_description
 
     @property
@@ -127,11 +155,19 @@ class _ParameterBase(BaseModel, abc.ABC):
 
     @property
     def description_keyword(self) -> str:
-        return "param" if self.method_location == ParameterMethodLocation.POSITIONAL else "keyword"
+        return (
+            "param"
+            if self.method_location == ParameterMethodLocation.POSITIONAL
+            else "keyword"
+        )
 
     @property
     def docstring_type_keyword(self) -> str:
-        return "type" if self.method_location == ParameterMethodLocation.POSITIONAL else "paramtype"
+        return (
+            "type"
+            if self.method_location == ParameterMethodLocation.POSITIONAL
+            else "paramtype"
+        )
 
     @property
     @abc.abstractmethod
@@ -148,15 +184,19 @@ class _ParameterBase(BaseModel, abc.ABC):
             return f"{self.client_name}={self.client_default_value_declaration},  # type: {type_annot}"
         return f"{self.client_name},  # type: {type_annot}"
 
-class _BodyParameterBase(_ParameterBase):
 
+class _BodyParameterBase(_ParameterBase):
     @property
     def is_partial_body(self) -> bool:
         return self.yaml_data.get("isPartialBody", False)
 
     @property
     def method_location(self) -> ParameterMethodLocation:
-        return ParameterMethodLocation.KWARG if self.constant else ParameterMethodLocation.POSITIONAL
+        return (
+            ParameterMethodLocation.KWARG
+            if self.constant
+            else ParameterMethodLocation.POSITIONAL
+        )
 
     @property
     def in_method_signature(self) -> bool:
@@ -164,8 +204,7 @@ class _BodyParameterBase(_ParameterBase):
 
 
 class BodyParameter(_BodyParameterBase):
-    """Body parameters for the overload operations. Only has one type per overload
-    """
+    """Body parameters for the overload operations. Only has one type per overload"""
 
     @property
     def content_types(self) -> List[str]:
@@ -176,17 +215,29 @@ class BodyParameter(_BodyParameterBase):
         return self.yaml_data["defaultContentType"]
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BodyParameter":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "BodyParameter":
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             type=code_model.lookup_type(id(yaml_data["type"])),
         )
 
-EntryBodyParameterType = TypeVar("EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"])
+
+EntryBodyParameterType = TypeVar(
+    "EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"]
+)
+
 
 class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType, entries: List[EntryBodyParameterType]) -> None:
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        type: BaseType,
+        entries: List[EntryBodyParameterType],
+    ) -> None:
         super().__init__(yaml_data, code_model, type)
         self.entries = entries
 
@@ -196,19 +247,26 @@ class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
         # and legacy generates with the multipart body arguments splatted out
         return False
 
-class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
 
+class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "MultipartBodyParameter":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "MultipartBodyParameter":
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             type=code_model.lookup_type(id(yaml_data["type"])),
-            entries=[BodyParameter.from_yaml(entry, code_model) for entry in yaml_data["entries"]]
+            entries=[
+                BodyParameter.from_yaml(entry, code_model)
+                for entry in yaml_data["entries"]
+            ],
         )
+
 
 class UrlEncodedBodyParameter(_ParameterBase):
     ...
+
 
 class Parameter(_ParameterBase):
     def __init__(
@@ -276,11 +334,11 @@ class Parameter(_ParameterBase):
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"]))
+            type=code_model.lookup_type(id(yaml_data["type"])),
         )
 
-class ClientParameter(Parameter):
 
+class ClientParameter(Parameter):
     @property
     def is_host(self) -> bool:
         return self.rest_api_name == "$host"
@@ -289,16 +347,16 @@ class ClientParameter(Parameter):
     def method_location(self) -> ParameterMethodLocation:
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if (
-            self.is_host and
-            (self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"])
+        if self.is_host and (
+            self.code_model.options["version_tolerant"]
+            or self.code_model.options["low_level_client"]
         ):
             # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
-class ConfigParameter(Parameter):
 
+class ConfigParameter(Parameter):
     @property
     def in_method_signature(self) -> bool:
         return not self.is_host
@@ -313,7 +371,10 @@ class ConfigParameter(Parameter):
             return ParameterMethodLocation.KWARG
         return ParameterMethodLocation.POSITIONAL
 
-def get_body_parameter(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union[BodyParameter, MultipartBodyParameter]:
+
+def get_body_parameter(
+    yaml_data: Dict[str, Any], code_model: "CodeModel"
+) -> Union[BodyParameter, MultipartBodyParameter]:
     if yaml_data.get("entries"):
         return MultipartBodyParameter.from_yaml(yaml_data, code_model)
     return BodyParameter.from_yaml(yaml_data, code_model)

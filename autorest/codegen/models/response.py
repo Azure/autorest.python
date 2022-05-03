@@ -15,7 +15,9 @@ if TYPE_CHECKING:
 
 
 class ResponseHeader(BaseModel):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType) -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType
+    ) -> None:
         super().__init__(yaml_data, code_model)
         self.rest_api_name: str = yaml_data["restApiName"]
         self.type = type
@@ -25,12 +27,15 @@ class ResponseHeader(BaseModel):
         return self.type.serialization_type
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ResponseHeader":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "ResponseHeader":
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"]))
+            type=code_model.lookup_type(id(yaml_data["type"])),
         )
+
 
 class Response(BaseModel):
     def __init__(
@@ -93,8 +98,13 @@ class Response(BaseModel):
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            headers=[ResponseHeader.from_yaml(header, code_model) for header in yaml_data["headers"]],
-            type=code_model.lookup_type(id(yaml_data["type"])) if yaml_data.get("type") else None
+            headers=[
+                ResponseHeader.from_yaml(header, code_model)
+                for header in yaml_data["headers"]
+            ],
+            type=code_model.lookup_type(id(yaml_data["type"]))
+            if yaml_data.get("type")
+            else None,
         )
 
     def __repr__(self) -> str:

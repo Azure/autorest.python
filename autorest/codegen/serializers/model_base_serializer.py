@@ -17,7 +17,9 @@ def _documentation_string(
     retval: List[str] = []
     sphinx_prefix = f":{description_keyword} {prop.client_name}:"
     retval.append(
-        f"{sphinx_prefix} {prop.description(is_operation_file=False)}" if prop.description(is_operation_file=False) else sphinx_prefix
+        f"{sphinx_prefix} {prop.description(is_operation_file=False)}"
+        if prop.description(is_operation_file=False)
+        else sphinx_prefix
     )
     retval.append(
         f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type}"
@@ -73,9 +75,7 @@ class ModelBaseSerializer:
     def declare_model(model: ModelType) -> str:
         basename = "msrest.serialization.Model"
         if model.parents:
-            basename = ", ".join(
-                [cast(ModelType, m).name for m in model.parents]
-            )
+            basename = ", ".join([cast(ModelType, m).name for m in model.parents])
         return f"class {model.name}({basename}):"
 
     @staticmethod
@@ -92,7 +92,9 @@ class ModelBaseSerializer:
         ...
 
     def super_call(self, model: ModelType):
-        return self.super_call_template(model).format(self.properties_to_pass_to_super(model))
+        return self.super_call_template(model).format(
+            self.properties_to_pass_to_super(model)
+        )
 
     def initialize_properties(self, model: ModelType) -> List[str]:
         init_args = []

@@ -16,9 +16,7 @@ class ModelInitSerializer:
         schemas = [s.name for s in self.code_model.object_types]
         schemas.sort()
         enums = (
-            [e.name for e in self.code_model.enums]
-            if self.code_model.enums
-            else None
+            [e.name for e in self.code_model.enums] if self.code_model.enums else None
         )
 
         if enums:

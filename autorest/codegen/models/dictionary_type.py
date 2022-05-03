@@ -66,10 +66,18 @@ class DictionaryType(BaseType):
         """
         return f"dict[str, {self.element_type.docstring_type}]"
 
-    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
         return {
             f'"str"': self.element_type.get_json_template_representation(
-                optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
+                optional=optional,
+                client_default_value_declaration=client_default_value_declaration,
+                description=description,
             )
         }
 
@@ -102,7 +110,9 @@ class DictionaryType(BaseType):
         file_import.add_submodule_import(
             "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        file_import.merge(self.element_type.imports(is_operation_file=is_operation_file))
+        file_import.merge(
+            self.element_type.imports(is_operation_file=is_operation_file)
+        )
         return file_import
 
     @property

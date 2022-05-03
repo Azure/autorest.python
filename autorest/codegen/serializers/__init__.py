@@ -251,9 +251,7 @@ class JinjaSerializer:
         self, env: Environment, namespace_path: Path
     ) -> None:
         rest_path = namespace_path / Path(self.code_model.rest_layer_name)
-        group_names = {
-            rb.group_name for rb in self.code_model.request_builders
-        }
+        group_names = {rb.group_name for rb in self.code_model.request_builders}
 
         for group_name in group_names:
             request_builders = [
@@ -274,14 +272,15 @@ class JinjaSerializer:
         self, env: Environment, rest_path: Path, request_builders: List[RequestBuilder]
     ) -> None:
         group_name = request_builders[0].group_name
-        output_path = (
-            rest_path / Path(group_name) if group_name else rest_path
-        )
+        output_path = rest_path / Path(group_name) if group_name else rest_path
         # write generic request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders.py"),
             RequestBuildersSerializer(
-                code_model=self.code_model, env=env, request_builders=request_builders, is_python3_file=False
+                code_model=self.code_model,
+                env=env,
+                request_builders=request_builders,
+                is_python3_file=False,
             ).serialize_request_builders(),
         )
 
@@ -289,7 +288,10 @@ class JinjaSerializer:
         self._autorestapi.write_file(
             output_path / Path("_request_builders_py3.py"),
             RequestBuildersSerializer(
-                code_model=self.code_model, env=env, request_builders=request_builders, is_python3_file=True
+                code_model=self.code_model,
+                env=env,
+                request_builders=request_builders,
+                is_python3_file=True,
             ).serialize_request_builders(),
         )
 
@@ -297,7 +299,10 @@ class JinjaSerializer:
         self._autorestapi.write_file(
             output_path / Path("__init__.py"),
             RequestBuildersSerializer(
-                code_model=self.code_model, env=env, request_builders=request_builders, is_python3_file=True
+                code_model=self.code_model,
+                env=env,
+                request_builders=request_builders,
+                is_python3_file=True,
             ).serialize_init(),
         )
 

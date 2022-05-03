@@ -4,7 +4,18 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import abstractmethod
-from typing import Set, Optional, Type, Any, Dict, TYPE_CHECKING, List, Generic, TypeVar, Union
+from typing import (
+    Set,
+    Optional,
+    Type,
+    Any,
+    Dict,
+    TYPE_CHECKING,
+    List,
+    Generic,
+    TypeVar,
+    Union,
+)
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_type import BaseType
@@ -14,7 +25,6 @@ if TYPE_CHECKING:
 
 
 class _CredentialPolicyBaseType:
-
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         self.yaml_data = yaml_data
         self.code_model = code_model
@@ -25,7 +35,12 @@ class _CredentialPolicyBaseType:
 
 
 class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", credential_scopes: List[str]) -> None:
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        credential_scopes: List[str],
+    ) -> None:
         super().__init__(yaml_data, code_model)
         self.credential_scopes = credential_scopes
 
@@ -34,38 +49,54 @@ class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
         return f"policies.{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BaseType":
-        return cls(
-            yaml_data, code_model, yaml_data["credentialScopes"]
-        )
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "BaseType":
+        return cls(yaml_data, code_model, yaml_data["credentialScopes"])
+
 
 class ARMChallengeAuthenticationPolicyType(BearerTokenCredentialPolicyType):
     def call(self, async_mode: bool) -> str:
         policy_name = f"{'Async' if async_mode else ''}ARMChallengeAuthenticationPolicy"
         return f"{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
 
+
 class AzureKeyCredentialPolicyType(_CredentialPolicyBaseType):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", key: str) -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", key: str
+    ) -> None:
         super().__init__(yaml_data, code_model)
         self.key = key
 
     def call(self, async_mode: bool) -> str:
         return f'policies.AzureKeyCredentialPolicy(self.credential, "{self.key}", **kwargs)'
 
-
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BaseType":
-        return cls(
-            yaml_data, code_model, yaml_data["key"]
-        )
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "BaseType":
+        return cls(yaml_data, code_model, yaml_data["key"])
 
-CredentialPolicyType = TypeVar("CredentialPolicyType", bound=Union[BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType, AzureKeyCredentialPolicyType])
+
+CredentialPolicyType = TypeVar(
+    "CredentialPolicyType",
+    bound=Union[
+        BearerTokenCredentialPolicyType,
+        ARMChallengeAuthenticationPolicyType,
+        AzureKeyCredentialPolicyType,
+    ],
+)
 
 
 class CredentialType(BaseType, Generic[CredentialPolicyType]):
     """Store info about credential."""
 
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", policy: CredentialPolicyType) -> None:
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        policy: CredentialPolicyType,
+    ) -> None:
         super().__init__(yaml_data, code_model)
         self.policy = policy
 
@@ -86,22 +117,29 @@ class CredentialType(BaseType, Generic[CredentialPolicyType]):
         return self.docstring_type
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "CredentialType":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "CredentialType":
         from . import build_type
+
         return cls(
-            yaml_data,
-            code_model,
-            policy=build_type(yaml_data["policy"], code_model)
+            yaml_data, code_model, policy=build_type(yaml_data["policy"], code_model)
         )
 
-class TokenCredentialType(CredentialType[Union[BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType]]):
 
+class TokenCredentialType(
+    CredentialType[
+        Union[BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType]
+    ]
+):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        policy: Union[BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType],
-        async_mode: bool = False
+        policy: Union[
+            BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType
+        ],
+        async_mode: bool = False,
     ) -> None:
         super().__init__(yaml_data, code_model, policy)
         self.async_mode = async_mode
@@ -141,8 +179,8 @@ class TokenCredentialType(CredentialType[Union[BearerTokenCredentialPolicyType, 
     def instance_check_template(self) -> str:
         return "hasattr({}, get_token)"
 
-class AzureKeyCredentialType(CredentialType[AzureKeyCredentialPolicyType]):
 
+class AzureKeyCredentialType(CredentialType[AzureKeyCredentialPolicyType]):
     @property
     def docstring_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"

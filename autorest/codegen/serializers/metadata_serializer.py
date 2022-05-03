@@ -199,9 +199,7 @@ class MetadataSerializer:
             self.code_model.options["azure_arm"]
             and not self.code_model.client.parameters.host
         ):
-            self.code_model.client.parameters.add_host(
-                "https://management.azure.com"
-            )
+            self.code_model.client.parameters.add_host("https://management.azure.com")
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,

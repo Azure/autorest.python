@@ -6,15 +6,29 @@
 from abc import abstractmethod
 from typing import Any, Dict, List, Optional, TypeVar, Union, TYPE_CHECKING, Generic
 from .base_model import BaseModel
-from .parameter_list import ParameterList, RequestBuilderParameterList, OverloadedOperationParameterList, OverloadedRequestBuilderParameterList
+from .parameter_list import (
+    ParameterList,
+    RequestBuilderParameterList,
+    OverloadedOperationParameterList,
+    OverloadedRequestBuilderParameterList,
+)
 
-ParameterListType = TypeVar("ParameterListType", bound=Union[ParameterList, RequestBuilderParameterList, OverloadedOperationParameterList, OverloadedRequestBuilderParameterList])
+ParameterListType = TypeVar(
+    "ParameterListType",
+    bound=Union[
+        ParameterList,
+        RequestBuilderParameterList,
+        OverloadedOperationParameterList,
+        OverloadedRequestBuilderParameterList,
+    ],
+)
 
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
     from .operation import Operation
     from .request_builder import RequestBuilder
+
 
 class BaseBuilder(BaseModel, Generic[ParameterListType]):
     """Base class for Operations and Request Builders"""
