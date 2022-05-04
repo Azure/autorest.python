@@ -14,7 +14,6 @@ from .. import YamlUpdatePlugin
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
-
 OAUTH_TYPE = "OAuth2"
 KEY_TYPE = "Key"
 
@@ -53,12 +52,18 @@ def get_type(yaml_data: Dict[str, Any]):
     except KeyError:
         return KNOWN_TYPES[yaml_data["type"]]
 
+def _get_api_versions(api_versions: List[Dict[str, str]]) -> List[str]:
+    return list({
+        api_version["version"]: None
+        for api_version in api_versions
+    }.keys())
 
 def _update_type_base(updated_type: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "type": updated_type,
         "clientDefaultValue": yaml_data.get("defaultValue"),
         "xmlMetadata": yaml_data.get("serialization", {}).get("xml", {}),
+        "apiVersions": _get_api_versions(yaml_data.get("apiVersions", []))
     }
 
 
@@ -486,6 +491,7 @@ class M4Reformatter(YamlUpdatePlugin):
             "groupName": group_name,
             "discriminator": "operation",
             "isOverload": is_overload,
+            "apiVersions": _get_api_versions(yaml_data.get("apiVersions", [])),
         }
 
     def get_operation_creator(
@@ -1019,3 +1025,4 @@ class M4Reformatter(YamlUpdatePlugin):
         del yaml_data["protocol"]
         del yaml_data["schemas"]
         del yaml_data["security"]
+        ORIGINAL_ID_TO_UPDATED_TYPE.clear()

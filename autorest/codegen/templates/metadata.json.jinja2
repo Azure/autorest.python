@@ -18,22 +18,22 @@
     },
     "global_parameters": {
         "sync": {
-            {% for gp in sync_global_parameters.method | rejectattr("client_name", "equalto", "api_version") %}
+            {% for gp in sync_global_parameters.method | rejectattr("client_name", "equalto", "api_version") | rejectattr("is_host") %}
             {{ gp.client_name | tojson }}: {
                 "signature": {{ gp.method_signature(is_python3_file=False) | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
-                "required": {{ not gp.optional | tojson }}
+                "required": {{ (not gp.optional) | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         },
         "async": {
-            {% for gp in async_global_parameters.method | rejectattr("client_name", "equalto", "api_version") %}
+            {% for gp in async_global_parameters.method | rejectattr("client_name", "equalto", "api_version") | rejectattr("is_host") %}
             {{ gp.client_name | tojson }}: {
                 "signature": {{ (gp.method_signature(is_python3_file=True)) | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
-                "required": {{ not gp.optional | tojson }}
+                "required": {{ (not gp.optional) | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         },
@@ -42,7 +42,7 @@
             {{ gp.client_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "call": {{ code_model.client.parameters.method | rejectattr("client_name", "equalto", "api_version") | map(attribute="client_name") | join(', ') | tojson }},
+        "call": {{ code_model.client.parameters.method | rejectattr("client_name", "equalto", "api_version") | rejectattr("is_host") | map(attribute="client_name") | join(', ') | tojson }},
         "service_client_specific": {
             "sync": {
                 "api_version": {

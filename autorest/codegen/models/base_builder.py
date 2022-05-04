@@ -58,7 +58,7 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
         self.want_tracing = want_tracing
         self.group_name: str = yaml_data["groupName"]
         self.is_overload: bool = yaml_data["isOverload"]
-        self.api_versions: List[str] = yaml_data.get("apiVersions", [])
+        self.api_versions: List[str] = yaml_data["apiVersions"]
 
     @property
     def summary(self) -> Optional[str]:
