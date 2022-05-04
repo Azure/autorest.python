@@ -164,9 +164,8 @@ class Namer(YamlUpdatePlugin):
             for operation in operation_group["operations"]:
                 self.get_operation_updater(operation)(operation)
 
-    def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
         update_client(yaml_data["client"])
         update_types(yaml_data["types"])
         self.update_operation_groups(yaml_data)
-        return yaml_data

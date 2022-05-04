@@ -996,7 +996,7 @@ class M4Reformatter(YamlUpdatePlugin):
             or yaml_data["language"]["default"]["name"],
         }
 
-    def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
         # First we update the types, so we can access for when we're creating parameters etc.
         for type_group, types in yaml_data["schemas"].items():
@@ -1008,11 +1008,14 @@ class M4Reformatter(YamlUpdatePlugin):
                     # we don't generate cloud error
                     continue
                 update_type(t)
-        return {
-            "client": self.update_client(yaml_data),
-            "operationGroups": [
-                self.update_operation_group(og) for og in yaml_data["operationGroups"]
-            ],
-            "types": list(ORIGINAL_ID_TO_UPDATED_TYPE.values())
-            + list(KNOWN_TYPES.values()),
-        }
+        yaml_data["client"] = self.update_client(yaml_data)
+        yaml_data["operationGroups"] = [
+            self.update_operation_group(og) for og in yaml_data["operationGroups"]
+        ]
+        yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(KNOWN_TYPES.values())
+        del yaml_data["globalParameters"]
+        del yaml_data["info"]
+        del yaml_data["language"]
+        del yaml_data["protocol"]
+        del yaml_data["schemas"]
+        del yaml_data["security"]
