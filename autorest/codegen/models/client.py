@@ -41,13 +41,6 @@ class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
 
 
 class Client(_ClientConfigBase[ClientGlobalParameterList]):
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        parameters: ClientGlobalParameterList,
-    ):
-        super().__init__(yaml_data, code_model, parameters)
 
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:

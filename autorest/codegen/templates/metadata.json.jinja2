@@ -8,7 +8,7 @@
         "name": {{ code_model.client.name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.client.description | tojson }},
-        "host_value": {{ (client.parameters.host.default_value_declaration if not client.has_parameterized_host else None) | tojson }},
+        "host_value": {{ (client.parameters.host.client_default_value_declaration if not client.has_parameterized_host else None) | tojson }},
         "parameterized_host_template": {{ (keywords.escape_str(client.parameterized_host_template) if client.has_parameterized_host else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
@@ -18,31 +18,31 @@
     },
     "global_parameters": {
         "sync": {
-            {% for gp in sync_global_parameters.config_method | rejectattr("serialized_name", "equalto", "api_version") %}
-            {{ gp.serialized_name | tojson }}: {
+            {% for gp in sync_global_parameters.method | rejectattr("client_name", "equalto", "api_version") %}
+            {{ gp.client_name | tojson }}: {
                 "signature": {{ gp.method_signature(is_python3_file=False) | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
-                "required": {{ gp.required | tojson }}
+                "required": {{ not gp.optional | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         },
         "async": {
-            {% for gp in async_global_parameters.config_method | rejectattr("serialized_name", "equalto", "api_version") %}
-            {{ gp.serialized_name | tojson }}: {
+            {% for gp in async_global_parameters.method | rejectattr("client_name", "equalto", "api_version") %}
+            {{ gp.client_name | tojson }}: {
                 "signature": {{ (gp.method_signature(is_python3_file=True)) | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
-                "required": {{ gp.required | tojson }}
+                "required": {{ not gp.optional | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         },
         "constant": {
-            {% for gp in code_model.global_parameters.constant | rejectattr("serialized_name", "equalto", "api_version") %}
-            {{ gp.serialized_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
+            {% for gp in code_model.client.parameters.constant | rejectattr("client_name", "equalto", "api_version") %}
+            {{ gp.client_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "call": {{ code_model.global_parameters.config_method | rejectattr("serialized_name", "equalto", "api_version") | map(attribute="serialized_name") | join(', ') | tojson }},
+        "call": {{ code_model.client.parameters.method | rejectattr("client_name", "equalto", "api_version") | map(attribute="client_name") | join(', ') | tojson }},
         "service_client_specific": {
             "sync": {
                 "api_version": {
@@ -91,16 +91,16 @@
         }
     },
     "config": {
-        "credential": {{ code_model.options['credential'] | tojson }},
-        "credential_scopes": {{ (code_model.credential_model.credential_schema_policy.credential_scopes if code_model.options['credential'] and code_model.credential_model.credential_schema_policy.credential_scopes is defined else None)| tojson}},
-        "credential_call_sync": {{ (code_model.credential_model.credential_schema_policy.call(async_mode=False) if code_model.options['credential'] else None) | tojson }},
-        "credential_call_async": {{ (code_model.credential_model.credential_schema_policy.call(async_mode=True) if code_model.options['credential'] else None) | tojson }},
+        "credential": {{ has_credential | tojson }},
+        "credential_scopes": {{ (code_model.credential.type.policy.credential_scopes if has_credential and code_model.credential.type.policy.credential_scopes is defined else None)| tojson}},
+        "credential_call_sync": {{ (code_model.credential.type.policy.call(async_mode=False) if has_credential else None) | tojson }},
+        "credential_call_async": {{ (code_model.credential.type.policy.call(async_mode=True) if has_credential else None) | tojson }},
         "sync_imports": {{ sync_config_imports | tojson }},
         "async_imports": {{ async_config_imports | tojson }}
     },
     "operation_groups": {
         {% for operation_group in code_model.operation_groups | rejectattr('is_mixin') %}
-        {{ operation_group.name | tojson }}: {{ operation_group.class_name | tojson }}{{ "," if not loop.last else "" }}
+        {{ operation_group.property_name | tojson }}: {{ operation_group.class_name | tojson }}{{ "," if not loop.last else "" }}
         {% endfor %}
     }{{ "," if mixin_operations }}
     {% if mixin_operations %}
@@ -109,7 +109,7 @@
         "async_imports": {{ str(async_mixin_imports) | tojson }},
         "operations": {
             {% for operation in mixin_operations %}
-            {{ operation.python_name | tojson }} : {
+            {{ operation.name | tojson }} : {
                 {% set request_builder = operation.request_builder %}
                 "sync": {
                     {% set operation_serializer = get_sync_operation_serializer(operation) %}
@@ -126,9 +126,9 @@
                         {% from "operation.py.jinja2" import operation_docstring with context %}
                         {% set sync_return_type_wrapper = "" %}
                     {% endif %}
-                    "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation, False, want_decorators=False) + "\n") | tojson }},
+                    "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation, want_decorators=False) + "\n") | tojson }},
                     "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }},
-                    "call": {{ operation.parameters.call(is_python3_file=False) | join(', ') | tojson }}
+                    "call": {{ operation.parameters.call | join(', ') | tojson }}
                 },
                 "async": {
                     {% set coroutine = False if (is_paging(operation) and not is_lro(operation)) else True %}
@@ -147,9 +147,9 @@
                         {% from "operation.py.jinja2" import operation_docstring with context %}
                         {% set async_return_type_wrapper = "" %}
                     {% endif %}
-                    "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation, True, want_decorators=False) + "\n") | tojson }},
+                    "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation, want_decorators=False) + "\n") | tojson }},
                     "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }},
-                    "call": {{ operation.parameters.call(is_python3_file=True) | join(', ') | tojson }}
+                    "call": {{ operation.parameters.call | join(', ') | tojson }}
                 }
             }{{ "," if not loop.last else "" }}
             {% endfor %}

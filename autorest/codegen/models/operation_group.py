@@ -3,8 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 from typing import Dict, List, Any, TYPE_CHECKING
+
+from autorest.codegen.models.utils import OrderedSet
 
 from .base_model import BaseModel
 from .operation import OperationBase, get_operation
@@ -12,10 +13,6 @@ from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-
-
-_LOGGER = logging.getLogger(__name__)
-
 
 class OperationGroup(BaseModel):
     """Represent an operation group."""
@@ -25,11 +22,13 @@ class OperationGroup(BaseModel):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         operations: List[OperationBase],
+        api_versions: List[str],
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.class_name: str = yaml_data["className"]
         self.property_name: str = yaml_data["propertyName"]
         self.operations = operations
+        self.api_versions = api_versions
 
     @property
     def has_abstract_operations(self) -> bool:
@@ -91,8 +90,14 @@ class OperationGroup(BaseModel):
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "OperationGroup":
+        operations = [get_operation(o, code_model) for o in yaml_data["operations"]]
+        api_versions: OrderedSet[str] = {}
+        for operation in operations:
+            for api_version in operation.api_versions:
+                api_versions[api_version] = None
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            operations=[get_operation(o, code_model) for o in yaml_data["operations"]],
+            operations=operations,
+            api_versions=list(api_versions.keys()),
         )

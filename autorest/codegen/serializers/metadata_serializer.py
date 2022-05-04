@@ -6,7 +6,7 @@
 import functools
 import copy
 import json
-from typing import List, Optional, Set, Tuple, Dict, Union
+from typing import List, Optional, Set, Tuple, Dict, Union, cast
 from jinja2 import Environment
 from ..models import (
     CodeModel,
@@ -18,19 +18,27 @@ from ..models import (
     TypingSection,
     ImportType,
     ClientGlobalParameterList,
+    Parameter,
+    TokenCredentialType,
+    CredentialType,
 )
 from .builder_serializer import get_operation_serializer
 
 
 def _correct_credential_parameter(
-    global_parameters: ParameterList, async_mode: bool
+    client_parameters: ClientGlobalParameterList, async_mode: bool
 ) -> None:
-    credential_param = [
+    credential = next(
         gp
-        for gp in global_parameters.parameters
-        if isinstance(gp.schema, TokenCredentialSchema)
-    ][0]
-    credential_param.schema = TokenCredentialSchema(async_mode=async_mode)
+        for gp in client_parameters.parameters
+        if isinstance(gp.type, TokenCredentialType)
+    )
+    credential.type = TokenCredentialType(
+        credential.type.yaml_data,
+        credential.type.code_model,
+        async_mode=async_mode,
+        policy=cast(CredentialType, credential.type).policy,
+    )
 
 
 def _json_serialize_imports(
@@ -105,49 +113,9 @@ class MetadataSerializer:
         return chosen_version, total_api_version_list
 
     def _make_async_copy_of_global_parameters(self) -> ClientGlobalParameterList:
-        global_parameters = copy.deepcopy(self.code_model.global_parameters)
+        global_parameters = copy.deepcopy(self.code_model.client.parameters)
         _correct_credential_parameter(global_parameters, True)
         return global_parameters
-
-    def _service_client_imports(
-        self,
-        global_parameters: ParameterList,
-        mixin_operation_group: Optional[OperationGroup],
-        async_mode: bool,
-    ) -> str:
-        file_import = FileImport()
-        for gp in global_parameters:
-            file_import.merge(gp.imports())
-        file_import.add_submodule_import(
-            "azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE
-        )
-        file_import.add_submodule_import(
-            "azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE
-        )
-        file_import.add_submodule_import(
-            "azure.profiles.multiapiclient",
-            "MultiApiClientMixin",
-            import_type=ImportType.AZURECORE,
-        )
-        file_import.add_submodule_import(
-            "._configuration",
-            f"{self.code_model.client.name}Configuration",
-            ImportType.LOCAL,
-        )
-        # api_version and potentially endpoint require Optional typing
-        file_import.add_submodule_import(
-            "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
-        if mixin_operation_group:
-            file_import.add_submodule_import(
-                "._operations_mixin",
-                f"{self.code_model.client.name}OperationsMixin",
-                ImportType.LOCAL,
-            )
-        file_import.merge(
-            self.code_model.client.imports_for_multiapi(async_mode=async_mode)
-        )
-        return _json_serialize_imports(file_import.to_dict())
 
     def serialize(self) -> str:
         def _is_lro(operation):
@@ -174,37 +142,23 @@ class MetadataSerializer:
         # we separate out async and sync for the case of credentials.
         # In this case, we need two copies of the credential global parameter
         # for typing purposes.
-        async_global_parameters = self.code_model.global_parameters
-        if self.code_model.options["credential"] and isinstance(
-            self.code_model.credential_model.credential_schema_policy.credential,
-            TokenCredentialSchema,
+        async_global_parameters = self.code_model.client.parameters
+        if self.code_model.credential and isinstance(
+            self.code_model.credential.type, TokenCredentialType
         ):
             # this ensures that the TokenCredentialSchema showing up in the list of code model's global parameters
             # is sync. This way we only have to make a copy for an async_credential
-            _correct_credential_parameter(self.code_model.global_parameters, False)
+            _correct_credential_parameter(self.code_model.client.parameters, False)
             async_global_parameters = self._make_async_copy_of_global_parameters()
-
-        sync_client_imports = self._service_client_imports(
-            self.code_model.global_parameters, mixin_operation_group, async_mode=False
-        )
-        async_client_imports = self._service_client_imports(
-            async_global_parameters, mixin_operation_group, async_mode=True
-        )
 
         template = self.env.get_template("metadata.json.jinja2")
 
         # setting to true, because for multiapi we always generate with a version file with version 0.1.0
-        self.code_model.options["package_version"] = "0.1.0"
-        if (
-            self.code_model.options["azure_arm"]
-            and not self.code_model.client.parameters.host
-        ):
-            self.code_model.client.parameters.add_host("https://management.azure.com")
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,
             code_model=self.code_model,
-            sync_global_parameters=self.code_model.global_parameters,
+            sync_global_parameters=self.code_model.client.parameters,
             async_global_parameters=async_global_parameters,
             mixin_operations=mixin_operations,
             any=any,
@@ -213,8 +167,8 @@ class MetadataSerializer:
             str=str,
             sync_mixin_imports=sync_mixin_imports,
             async_mixin_imports=async_mixin_imports,
-            sync_client_imports=sync_client_imports,
-            async_client_imports=async_client_imports,
+            sync_client_imports=_json_serialize_imports(self.code_model.client.imports(False).to_dict()),
+            async_client_imports=_json_serialize_imports(self.code_model.client.imports(True).to_dict()),
             sync_config_imports=_json_serialize_imports(
                 self.code_model.config.imports(async_mode=False).to_dict()
             ),
@@ -233,4 +187,5 @@ class MetadataSerializer:
                 async_mode=False,
                 is_python3_file=False,
             ),
+            has_credential=bool(self.code_model.credential)
         )

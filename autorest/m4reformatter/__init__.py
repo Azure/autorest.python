@@ -361,7 +361,7 @@ def update_response(
     if yaml_data.get("binary"):
         type = KNOWN_TYPES["binary"]
     elif yaml_data.get("schema"):
-        type = update_type(yaml_data["schema"])
+        type = get_type(yaml_data["schema"])
     else:
         type = None
     return {

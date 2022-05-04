@@ -419,6 +419,13 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
     def path(self) -> List[ClientParameter]:
         return [p for p in super().path if not p.is_host]
 
+    @property
+    def host(self) -> Optional[ClientParameter]:
+        try:
+            return next(p for p in self.parameters if p.is_host)
+        except StopIteration:
+            return None
+
     def kwargs_to_pop(
         self, is_python3_file: bool
     ) -> List[Union[ClientParameter, BodyParameter]]:

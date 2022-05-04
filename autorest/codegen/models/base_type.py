@@ -23,6 +23,7 @@ class BaseType(BaseModel, ABC):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data, code_model)
         self.type = yaml_data["type"]
+        self.api_versions: List[str] = yaml_data.get("apiVersions", [])
 
     @classmethod
     def from_yaml(

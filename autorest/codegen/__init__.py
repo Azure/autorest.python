@@ -298,8 +298,8 @@ class CodeGenerator(Plugin):
 
         # Parse the received YAML
         yaml_data = yaml.safe_load(file_content)
-        # with open('temp.yaml', 'w') as outfile:
-        #     yaml.dump(yaml_data, outfile, default_flow_style=False)
+        with open('temp.yaml', 'w') as outfile:
+            yaml.dump(yaml_data, outfile, default_flow_style=False)
 
         options = self._build_code_model_options()
 
