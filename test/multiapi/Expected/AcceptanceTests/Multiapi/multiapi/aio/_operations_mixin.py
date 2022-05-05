@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Any, AsyncIterable, Optional
+from typing import Any, AsyncIterable, IO, Optional, Union, overload
 
 from azure.core.async_paging import AsyncItemPaged
 from azure.core.polling import AsyncLROPoller
@@ -21,13 +21,16 @@ class MultiapiServiceClientOperationsMixin(object):
 
     async def begin_test_lro(
         self,
-        product: Optional[_models.Product] = None,
+        product: Optional[Union[_models.Product, IO]] = None,
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Default value is None.
-        :type product: ~multiapi.v1.models.Product
+        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :type product: ~multiapi.v1.models.Product or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -59,10 +62,10 @@ class MultiapiServiceClientOperationsMixin(object):
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncItemPaged[_models.PagingResult]]:
+    ) -> AsyncLROPoller[AsyncIterable[_models.PagingResult]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options: ~multiapi.v1.models.TestLroAndPagingOptions
@@ -74,8 +77,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns an iterator like instance of either
-         PagingResult or the result of cls(response)
+        :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
+         or the result of cls(response)
         :rtype:
          ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapi.v1.models.PagingResult]]
         :raises: ~azure.core.exceptions.HttpResponseError
