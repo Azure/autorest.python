@@ -14,7 +14,7 @@ class ClientSerializer:
     def __init__(self, code_model: CodeModel, is_python3_file: bool) -> None:
         self.code_model = code_model
         self.is_python3_file = is_python3_file
-        self.parameter_serializer = ParameterSerializer(code_model)
+        self.parameter_serializer = ParameterSerializer()
 
     def _init_signature(self, async_mode: bool) -> str:
         return self.parameter_serializer.serialize_method(
@@ -105,7 +105,10 @@ class ClientSerializer:
 
     def initialize_pipeline_client(self, async_mode: bool) -> str:
         pipeline_client_name = self.code_model.client.pipeline_class(async_mode)
-        return f"self._client = {pipeline_client_name}(base_url={self.host_variable_name}, config=self._config, **kwargs)"
+        return (
+            f"self._client = {pipeline_client_name}(base_url={self.host_variable_name}, "
+            "config=self._config, **kwargs)"
+        )
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
@@ -253,7 +256,7 @@ class ClientSerializer:
 class ConfigSerializer:
     def __init__(self, code_model: CodeModel, is_python3_file: bool) -> None:
         self.code_model = code_model
-        self.parameter_serializer = ParameterSerializer(code_model)
+        self.parameter_serializer = ParameterSerializer()
         self.is_python3_file = is_python3_file
 
     def _init_signature(self, async_mode: bool) -> str:

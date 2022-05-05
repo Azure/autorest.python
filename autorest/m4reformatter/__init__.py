@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
@@ -8,7 +9,7 @@
 import re
 import copy
 import logging
-from typing import Callable, Dict, Any, Iterable, List, Optional, Sequence, Set, Tuple
+from typing import Callable, Dict, Any, Iterable, List, Optional, Set
 
 from .. import YamlUpdatePlugin
 
@@ -200,7 +201,9 @@ def update_number_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return base
 
 
-def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+def update_primitive(  # pylint: disable=too-many-return-statements
+    type_group: str, yaml_data: Dict[str, Any]
+) -> Dict[str, Any]:
     if type_group in ("integer", "number"):
         return update_number_type(yaml_data)
     if type_group in ("string", "uuid", "uri"):
@@ -382,7 +385,9 @@ def update_response(
     }
 
 
-def _get_default_content_type(content_types: Iterable[str]) -> Optional[str]:
+def _get_default_content_type(  # pylint: disable=too-many-return-statements
+    content_types: Iterable[str],
+) -> Optional[str]:
     json_values = [ct for ct in content_types if JSON_REGEXP.match(ct)]
     if json_values:
         if "application/json" in json_values:
@@ -418,7 +423,7 @@ def update_client_url(yaml_data: Dict[str, Any]) -> str:
     ]["uri"]
 
 
-class M4Reformatter(YamlUpdatePlugin):
+class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-methods
     """Add Python naming information."""
 
     @property
@@ -516,7 +521,7 @@ class M4Reformatter(YamlUpdatePlugin):
             if yaml_data.get("requestMediaTypes")
             else None
         )
-        if (
+        if (  # pylint: disable=too-many-boolean-expressions
             body_parameter
             and body_parameter["type"]["type"] != "combined"
             and yaml_data.get("requestMediaTypes")
@@ -692,7 +697,7 @@ class M4Reformatter(YamlUpdatePlugin):
         )
         return self._update_body_parameter_helper(yaml_data, body_param, body_type)
 
-    def update_parameters(
+    def update_parameters(  # pylint: disable=too-many-branches,too-many-statements
         self,
         yaml_data: Dict[str, Any],
         body_parameter: Optional[Dict[str, Any]],
@@ -727,7 +732,7 @@ class M4Reformatter(YamlUpdatePlugin):
             sub_requests = yaml_data["requestMediaTypes"].values()
         else:
             sub_requests = yaml_data.get("requests", [])
-        for request in sub_requests:
+        for request in sub_requests:  # pylint: disable=too-many-nested-blocks
             for param in request.get("parameters", []):
                 if has_flattened_body and param.get("targetProperty"):
                     if not body_parameter:
@@ -775,7 +780,10 @@ class M4Reformatter(YamlUpdatePlugin):
                             if not (in_overriden or in_overload):
                                 param["inDocstring"] = False
                             elif in_overload:
-                                description += f" Content type parameter for {get_body_type_for_description(body_parameter)} body."
+                                description += (
+                                    " Content type parameter for "
+                                    f"{get_body_type_for_description(body_parameter)} body."
+                                )
                             elif not in_overload:
                                 content_types = (
                                     "'"

@@ -315,7 +315,9 @@ class _ParameterListBase(
 
 
 class _ParameterList(
-    _ParameterListBase[Parameter, Union[MultipartBodyParameter, BodyParameter]]
+    _ParameterListBase[  # pylint: disable=unsubscriptable-object
+        Parameter, Union[MultipartBodyParameter, BodyParameter]
+    ]
 ):
     """Base Parameter class for the two operation ParameterLists"""
 
@@ -347,7 +349,9 @@ class ParameterList(_ParameterList):
 
 
 class _RequestBuilderParameterList(
-    _ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameterType]
+    _ParameterListBase[  # pylint: disable=unsubscriptable-object
+        RequestBuilderParameter, RequestBuilderBodyParameterType
+    ]
 ):
     """_RequestBuilderParameterList is base parameter list for RequestBuilder classes"""
 
@@ -411,7 +415,10 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
         ) + self.method_signature_kwargs(is_python3_file)
 
 
-class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):
+class _ClientGlobalParameterList(
+    # pylint: disable=unsubscriptable-object
+    _ParameterListBase[ParameterType, BodyParameter]
+):
     """Base parameter list for client and config classes"""
 
     @staticmethod

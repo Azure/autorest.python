@@ -28,12 +28,8 @@ class PopKwargType(Enum):
 
 
 class ParameterSerializer:
-    def __init__(self, code_model: CodeModel):
-        self.code_model = code_model
-
-    def serialize_parameter(
-        self, parameter: ParameterType, serializer_name: str
-    ) -> str:
+    @staticmethod
+    def serialize_parameter(parameter: ParameterType, serializer_name: str) -> str:
         optional_parameters = []
 
         if parameter.skip_url_encoding:
@@ -86,8 +82,8 @@ class ParameterSerializer:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
         return serialize_line
 
+    @staticmethod
     def serialize_path(
-        self,
         parameters: Union[
             List[Parameter],
             List[RequestBuilderParameter],
@@ -109,8 +105,8 @@ class ParameterSerializer:
         retval.append("}")
         return retval
 
+    @staticmethod
     def pop_kwargs_from_signature(
-        self,
         parameters: Sequence[_ParameterBase],
         check_kwarg_dict: bool,
         pop_headers_kwarg: PopKwargType,
@@ -156,8 +152,8 @@ class ParameterSerializer:
                 )
         return retval
 
+    @staticmethod
     def serialize_method(
-        self,
         *,
         function_def: str,
         method_name: str,

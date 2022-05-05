@@ -256,7 +256,9 @@ class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
         return False
 
 
-class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
+class MultipartBodyParameter(
+    _MultipartBodyParameter[BodyParameter]  # pylint: disable=unsubscriptable-object
+):
     """Multipart body parameter for Operation. Used for files and data input."""
 
     @classmethod

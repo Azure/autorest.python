@@ -153,7 +153,7 @@ class CredentialType(
 
 
 class TokenCredentialType(
-    CredentialType[
+    CredentialType[  # pylint: disable=unsubscriptable-object
         Union[BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType]
     ]
 ):
@@ -211,7 +211,10 @@ class TokenCredentialType(
         return "hasattr({}, get_token)"
 
 
-class AzureKeyCredentialType(CredentialType[AzureKeyCredentialPolicyType]):
+class AzureKeyCredentialType(
+    # pylint: disable=unsubscriptable-object
+    CredentialType[AzureKeyCredentialPolicyType]
+):
     """Type for an AzureKeyCredential"""
 
     @property

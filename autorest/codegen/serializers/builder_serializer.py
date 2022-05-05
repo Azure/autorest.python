@@ -160,7 +160,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         self.code_model = code_model
         self.async_mode = async_mode
         self.is_python3_file = is_python3_file
-        self.parameter_serializer = ParameterSerializer(code_model)
+        self.parameter_serializer = ParameterSerializer()
 
     @property
     @abstractmethod
@@ -1010,7 +1010,7 @@ class _PagingOperationSerializer(
         self.code_model = code_model
         self.async_mode = async_mode
         self.is_python3_file = is_python3_file
-        self.parameter_serializer = ParameterSerializer(code_model)
+        self.parameter_serializer = ParameterSerializer()
 
     def serialize_path(self, builder: PagingOperationType) -> List[str]:
         return self.parameter_serializer.serialize_path(
@@ -1144,7 +1144,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         self.code_model = code_model
         self.async_mode = async_mode
         self.is_python3_file = is_python3_file
-        self.parameter_serializer = ParameterSerializer(code_model)
+        self.parameter_serializer = ParameterSerializer()
 
     def param_description(self, builder: LROOperationType) -> List[str]:
         retval = super().param_description(builder)

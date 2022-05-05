@@ -62,7 +62,9 @@ class RequestBuilderBodyParameter(BodyParameter):
 
 
 class RequestBuilderMultipartBodyParameter(
-    _MultipartBodyParameter[RequestBuilderBodyParameter]
+    _MultipartBodyParameter[  # pylint: disable=unsubscriptable-object
+        RequestBuilderBodyParameter
+    ]
 ):
     """Multipart body parameter for Request BUilders"""
 

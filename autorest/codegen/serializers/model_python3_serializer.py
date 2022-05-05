@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, List
+from typing import List
 from jinja2 import Environment
 from .model_base_serializer import ModelBaseSerializer
 from ..models import ModelType, CodeModel, Property
