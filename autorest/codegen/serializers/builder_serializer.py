@@ -1017,7 +1017,7 @@ class _PagingOperationSerializer(
             builder.parameters.path, self.serializer_name
         )
 
-    def decorators(self, builder: PagingOperation) -> List[str]:
+    def decorators(self, builder: PagingOperationType) -> List[str]:
         """Decorators for the method"""
         retval: List[str] = []
         if self.code_model.options["tracing"] and builder.want_tracing:
