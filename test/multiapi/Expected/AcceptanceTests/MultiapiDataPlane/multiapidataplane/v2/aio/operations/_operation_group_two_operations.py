@@ -69,8 +69,8 @@ class OperationGroupTwoOperations:
 
         
         request = build_test_four_request(
-            api_version=api_version,
             parameter_one=parameter_one,
+            api_version=api_version,
             template_url=self.test_four.metadata['url'],
             headers=_headers,
             params=_params,

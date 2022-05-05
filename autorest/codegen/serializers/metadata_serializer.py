@@ -24,7 +24,6 @@ from ..models import (
 )
 from .builder_serializer import get_operation_serializer
 
-
 def _correct_credential_parameter(
     client_parameters: ClientGlobalParameterList, async_mode: bool
 ) -> None:
@@ -46,7 +45,7 @@ def _json_serialize_imports(
         TypingSection,
         Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
     ]
-):
+) -> str:
     if not imports:
         return None
 
@@ -117,6 +116,79 @@ class MetadataSerializer:
         _correct_credential_parameter(global_parameters, True)
         return global_parameters
 
+    def _service_client_imports(
+        self,
+        global_parameters: ParameterList,
+        mixin_operation_group: Optional[OperationGroup],
+        async_mode: bool,
+    ) -> str:
+        file_import = FileImport()
+        for gp in global_parameters:
+            file_import.merge(gp.imports())
+        file_import.add_submodule_import(
+            "azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.profiles.multiapiclient",
+            "MultiApiClientMixin",
+            import_type=ImportType.AZURECORE,
+        )
+        file_import.add_submodule_import(
+            "._configuration",
+            f"{self.code_model.client.name}Configuration",
+            ImportType.LOCAL,
+        )
+        # api_version and potentially endpoint require Optional typing
+        file_import.add_submodule_import(
+            "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        if mixin_operation_group:
+            file_import.add_submodule_import(
+                "._operations_mixin",
+                mixin_operation_group.class_name,
+                ImportType.LOCAL,
+            )
+        file_import.merge(
+            self.code_model.client.imports_for_multiapi(async_mode=async_mode)
+        )
+        return _json_serialize_imports(file_import.to_dict())
+
+    def _config_imports(
+        self, global_parameters: ParameterList, async_mode: bool
+    ) -> FileImport:
+        file_import = FileImport()
+        file_import.add_submodule_import(
+            "azure.core.configuration", "Configuration", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.core.pipeline", "policies", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        if self.code_model.options["package_version"]:
+            file_import.add_submodule_import(
+                ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
+            )
+        for gp in global_parameters:
+            file_import.merge(gp.imports())
+        if self.code_model.options["azure_arm"]:
+            policy = (
+                "AsyncARMChallengeAuthenticationPolicy"
+                if async_mode
+                else "ARMChallengeAuthenticationPolicy"
+            )
+            file_import.add_submodule_import(
+                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE
+            )
+            file_import.add_submodule_import(
+                "azure.mgmt.core.policies", policy, ImportType.AZURECORE
+            )
+        return _json_serialize_imports(file_import.to_dict())
+
     def serialize(self) -> str:
         def _is_lro(operation):
             return isinstance(operation, LROOperation)
@@ -151,9 +223,17 @@ class MetadataSerializer:
             _correct_credential_parameter(self.code_model.client.parameters, False)
             async_global_parameters = self._make_async_copy_of_global_parameters()
 
-        template = self.env.get_template("metadata.json.jinja2")
+        sync_client_imports = self._service_client_imports(
+            self.code_model.client.parameters, mixin_operation_group, async_mode=False
+        )
+        async_client_imports = self._service_client_imports(
+            async_global_parameters, mixin_operation_group, async_mode=True
+        )
 
         # setting to true, because for multiapi we always generate with a version file with version 0.1.0
+        self.code_model.options["package_version"] = "0.1.0"
+        template = self.env.get_template("metadata.json.jinja2")
+
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,
@@ -167,13 +247,13 @@ class MetadataSerializer:
             str=str,
             sync_mixin_imports=sync_mixin_imports,
             async_mixin_imports=async_mixin_imports,
-            sync_client_imports=_json_serialize_imports(self.code_model.client.imports(False).to_dict()),
-            async_client_imports=_json_serialize_imports(self.code_model.client.imports(True).to_dict()),
-            sync_config_imports=_json_serialize_imports(
-                self.code_model.config.imports(async_mode=False).to_dict()
+            sync_client_imports=sync_client_imports,
+            async_client_imports=async_client_imports,
+            sync_config_imports=self._config_imports(
+                self.code_model.client.parameters, async_mode=False
             ),
-            async_config_imports=_json_serialize_imports(
-                self.code_model.config.imports(async_mode=True).to_dict()
+            async_config_imports=self._config_imports(
+                async_global_parameters, async_mode=True
             ),
             get_async_operation_serializer=functools.partial(
                 get_operation_serializer,
