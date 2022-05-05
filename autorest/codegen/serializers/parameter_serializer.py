@@ -8,7 +8,6 @@ from enum import Enum, auto
 
 
 from ..models import (
-    CodeModel,
     Parameter,
     ParameterLocation,
     ListType,
@@ -82,8 +81,8 @@ class ParameterSerializer:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
         return serialize_line
 
-    @staticmethod
     def serialize_path(
+        self,
         parameters: Union[
             List[Parameter],
             List[RequestBuilderParameter],
