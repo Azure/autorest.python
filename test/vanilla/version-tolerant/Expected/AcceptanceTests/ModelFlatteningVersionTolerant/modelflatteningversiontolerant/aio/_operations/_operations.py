@@ -79,8 +79,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
 
-        ...
-
     @overload
     async def put_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -96,8 +94,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_array(  # pylint: disable=inconsistent-return-statements
@@ -250,8 +246,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
 
-        ...
-
     @overload
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -268,8 +262,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -429,8 +421,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
         self, resource_dictionary: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -446,8 +436,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -659,8 +647,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -677,8 +663,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -904,8 +888,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def put_simple_product(
         self, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -942,8 +924,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
@@ -1084,8 +1064,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def post_flattened_simple_product(
         self, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1122,8 +1100,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def post_flattened_simple_product(
@@ -1273,8 +1249,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def put_simple_product_with_grouping(
         self, name: str, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1313,8 +1287,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(

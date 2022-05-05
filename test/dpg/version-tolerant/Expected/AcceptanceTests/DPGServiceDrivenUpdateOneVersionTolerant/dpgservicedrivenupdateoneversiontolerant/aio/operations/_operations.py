@@ -236,8 +236,6 @@ class ParamsOperations:
                 }
         """
 
-        ...
-
     @overload
     async def post_parameters(self, parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
@@ -252,8 +250,6 @@ class ParamsOperations:
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:

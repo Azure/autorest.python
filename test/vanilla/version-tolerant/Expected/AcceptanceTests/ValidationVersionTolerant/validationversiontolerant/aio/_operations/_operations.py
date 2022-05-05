@@ -203,8 +203,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def validation_of_body(
         self,
@@ -260,8 +258,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def validation_of_body(
@@ -480,8 +476,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def post_with_constant_in_body(
         self, body: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -529,8 +523,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:

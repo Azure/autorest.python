@@ -162,8 +162,6 @@ class MediaTypesClientOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     def analyze_body(self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
@@ -177,8 +175,6 @@ class MediaTypesClientOperationsMixin(MixinABC):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:
@@ -267,8 +263,6 @@ class MediaTypesClientOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
         self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -285,8 +279,6 @@ class MediaTypesClientOperationsMixin(MixinABC):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements

@@ -1133,8 +1133,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1150,8 +1148,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -1481,8 +1477,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1498,8 +1492,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
@@ -1729,8 +1721,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1746,8 +1736,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
@@ -1977,8 +1965,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1994,8 +1980,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
@@ -2225,8 +2209,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2242,8 +2224,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
@@ -2473,8 +2453,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2490,8 +2468,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
@@ -2721,8 +2697,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2738,8 +2712,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
@@ -2969,8 +2941,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2986,8 +2956,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
@@ -3219,8 +3187,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3237,8 +3203,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
@@ -3471,8 +3435,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3489,8 +3451,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
@@ -3621,8 +3581,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3638,8 +3596,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
@@ -3771,8 +3727,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3789,8 +3743,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
@@ -4245,8 +4197,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4263,8 +4213,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
@@ -4609,8 +4557,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4627,8 +4573,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
@@ -4977,8 +4921,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4996,8 +4938,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements

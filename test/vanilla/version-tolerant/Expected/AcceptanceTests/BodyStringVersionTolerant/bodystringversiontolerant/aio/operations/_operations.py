@@ -909,8 +909,6 @@ class EnumOperations:
                 }
         """
 
-        ...
-
     @overload
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
         self, enum_string_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -926,8 +924,6 @@ class EnumOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements

@@ -185,8 +185,6 @@ class PetOperations:
                 }
         """
 
-        ...
-
     @overload
     def add_pet(self, pet_param: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """add pet.
@@ -212,8 +210,6 @@ class PetOperations:
                     "name": "str"  # Optional. name.
                 }
         """
-
-        ...
 
     @distributed_trace
     def add_pet(self, pet_param: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:

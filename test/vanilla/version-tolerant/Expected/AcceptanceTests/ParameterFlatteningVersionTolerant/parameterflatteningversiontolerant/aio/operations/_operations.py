@@ -80,8 +80,6 @@ class AvailabilitySetsOperations:
                 }
         """
 
-        ...
-
     @overload
     async def update(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, avset: str, tags: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -101,8 +99,6 @@ class AvailabilitySetsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def update(  # pylint: disable=inconsistent-return-statements

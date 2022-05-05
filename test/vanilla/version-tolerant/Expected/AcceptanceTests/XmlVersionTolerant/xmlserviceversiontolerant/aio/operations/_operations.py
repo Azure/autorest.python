@@ -1921,8 +1921,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
         self, properties: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1939,8 +1937,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def json_input(  # pylint: disable=inconsistent-return-statements

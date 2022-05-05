@@ -182,8 +182,6 @@ class DPGClientOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def post_model(self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
@@ -202,8 +200,6 @@ class DPGClientOperationsMixin(MixinABC):
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def post_model(self, mode: str, input: Union[_models.Input, IO], **kwargs: Any) -> _models.Product:

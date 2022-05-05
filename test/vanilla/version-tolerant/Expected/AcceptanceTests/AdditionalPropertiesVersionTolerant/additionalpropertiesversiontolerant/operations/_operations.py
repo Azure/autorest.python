@@ -186,8 +186,6 @@ class PetsOperations:
                 }
         """
 
-        ...
-
     @overload
     def create_ap_true(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -211,8 +209,6 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def create_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -318,8 +314,6 @@ class PetsOperations:
                 }
         """
 
-        ...
-
     @overload
     def create_cat_ap_true(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
@@ -344,8 +338,6 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def create_cat_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -450,8 +442,6 @@ class PetsOperations:
                 }
         """
 
-        ...
-
     @overload
     def create_ap_object(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -475,8 +465,6 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def create_ap_object(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -580,8 +568,6 @@ class PetsOperations:
                 }
         """
 
-        ...
-
     @overload
     def create_ap_string(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -605,8 +591,6 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def create_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -710,8 +694,6 @@ class PetsOperations:
                 }
         """
 
-        ...
-
     @overload
     def create_ap_in_properties(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -737,8 +719,6 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def create_ap_in_properties(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -850,8 +830,6 @@ class PetsOperations:
                 }
         """
 
-        ...
-
     @overload
     def create_ap_in_properties_with_ap_string(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -881,8 +859,6 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:

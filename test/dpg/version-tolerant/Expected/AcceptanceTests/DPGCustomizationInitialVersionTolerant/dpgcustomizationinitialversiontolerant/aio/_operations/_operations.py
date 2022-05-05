@@ -134,8 +134,6 @@ class DPGClientOperationsMixin(MixinABC):
                 }
         """
 
-        ...
-
     @overload
     async def post_model(self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
@@ -162,8 +160,6 @@ class DPGClientOperationsMixin(MixinABC):
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def post_model(self, mode: str, input: Union[JSON, IO], **kwargs: Any) -> JSON:

@@ -978,8 +978,6 @@ class BasicOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -995,8 +993,6 @@ class BasicOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -1365,8 +1361,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1382,8 +1376,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_int(  # pylint: disable=inconsistent-return-statements
@@ -1515,8 +1507,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1532,8 +1522,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_long(  # pylint: disable=inconsistent-return-statements
@@ -1666,8 +1654,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1683,8 +1669,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_float(  # pylint: disable=inconsistent-return-statements
@@ -1819,8 +1803,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1837,8 +1819,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_double(  # pylint: disable=inconsistent-return-statements
@@ -1972,8 +1952,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1989,8 +1967,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_bool(  # pylint: disable=inconsistent-return-statements
@@ -2124,8 +2100,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2141,8 +2115,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_string(  # pylint: disable=inconsistent-return-statements
@@ -2275,8 +2247,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2292,8 +2262,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date(  # pylint: disable=inconsistent-return-statements
@@ -2427,8 +2395,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2445,8 +2411,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date_time(  # pylint: disable=inconsistent-return-statements
@@ -2580,8 +2544,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2598,8 +2560,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -2730,8 +2690,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_duration(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2747,8 +2705,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_duration(  # pylint: disable=inconsistent-return-statements
@@ -2880,8 +2836,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def put_byte(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2898,8 +2852,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_byte(  # pylint: disable=inconsistent-return-statements
@@ -3053,8 +3005,6 @@ class ArrayOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3071,8 +3021,6 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -3207,8 +3155,6 @@ class ArrayOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3224,8 +3170,6 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -3430,8 +3374,6 @@ class DictionaryOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3448,8 +3390,6 @@ class DictionaryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -3585,8 +3525,6 @@ class DictionaryOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3602,8 +3540,6 @@ class DictionaryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -3878,8 +3814,6 @@ class InheritanceOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3897,8 +3831,6 @@ class InheritanceOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -4093,8 +4025,6 @@ class PolymorphismOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4142,8 +4072,6 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -4538,8 +4466,6 @@ class PolymorphismOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4556,8 +4482,6 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -4673,8 +4597,6 @@ class PolymorphismOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_missing_discriminator(self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
@@ -4710,8 +4632,6 @@ class PolymorphismOperations:
                     fishtype: salmon
                 }
         """
-
-        ...
 
     @distributed_trace
     def put_missing_discriminator(self, complex_body: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -4852,8 +4772,6 @@ class PolymorphismOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4896,8 +4814,6 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
@@ -5136,8 +5052,6 @@ class PolymorphicrecursiveOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -5205,8 +5119,6 @@ class PolymorphicrecursiveOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -5408,8 +5320,6 @@ class ReadonlypropertyOperations:
                 }
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -5425,8 +5335,6 @@ class ReadonlypropertyOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements

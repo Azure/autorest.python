@@ -105,8 +105,6 @@ class DPGClientOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def post_model(
         self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -127,8 +125,6 @@ class DPGClientOperationsMixin(MixinABC):
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def post_model(self, mode: str, input: Union[_models.Input, IO], **kwargs: Any) -> _models.Product:

@@ -4,9 +4,7 @@
 {% if code_model.options["builders_visibility"] == "public" %}
     {{ op_tools.description(request_builder, request_builder_serializer) | indent }}
 {% endif %}
-{% if request_builder.is_overload %}
-    ...
-{% else %}
+{% if not request_builder.is_overload %}
     {% if request_builder.abstract %}
     raise NotImplementedError(
         "You need to write a custom operation for '{{ request_builder.name }}'. "

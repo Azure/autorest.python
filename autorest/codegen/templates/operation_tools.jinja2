@@ -61,5 +61,4 @@ _SERIALIZER.client_side_validation = False
 {% for overload in operation.overloads %}
 {{ operation_serializer.method_signature_and_response_type_annotation(overload) }}
     {{ description(overload, operation_serializer) | indent }}
-    ...
 {% endfor %}{% endmacro %}
