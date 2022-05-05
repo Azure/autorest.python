@@ -89,9 +89,11 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         )
 
     def get_poller(self, async_mode: bool) -> str:
+        """Get the name of the poller. Default is LROPoller / AsyncLROPoller"""
         return self.get_poller_path(async_mode).split(".")[-1]
 
     def get_polling_method_path(self, async_mode: bool) -> str:
+        """Get the full name of the poller path. Default are the azure core pollers"""
         return (
             self.yaml_data["pollingMethodAsync"]
             if async_mode
@@ -99,20 +101,25 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         )
 
     def get_polling_method(self, async_mode: bool) -> str:
+        """Get the default pollint method"""
         return self.get_polling_method_path(async_mode).split(".")[-1]
 
     @staticmethod
     def get_no_polling_method_path(async_mode: bool) -> str:
+        """Get the path of the default of no polling method"""
         return f"azure.core.polling.{'Async' if async_mode else ''}NoPolling"
 
     def get_no_polling_method(self, async_mode: bool) -> str:
+        """Get the default no polling method"""
         return self.get_no_polling_method_path(async_mode).split(".")[-1]
 
     @staticmethod
     def get_base_polling_method_path(async_mode: bool) -> str:
+        """Get the base polling method path. Used in docstrings and type annotations."""
         return f"azure.core.polling.{'Async' if async_mode else ''}PollingMethod"
 
     def get_base_polling_method(self, async_mode: bool) -> str:
+        """Get the base polling method."""
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
@@ -131,6 +138,7 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{super().response_docstring_type(**kwargs)}]"
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
+        """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
         return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
 
     def response_docstring_text(self, **kwargs) -> str:
@@ -144,6 +152,7 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
 
     @property
     def initial_operation(self) -> Union[Operation, OverloadedOperation]:
+        """Initial operation that creates the first call for LRO polling"""
         return self.initial_operation_type()(
             yaml_data=self.yaml_data,
             code_model=self.code_model,
@@ -160,6 +169,7 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
     @staticmethod
     @abstractmethod
     def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
+        """We want different initial operation types for operations and overloaded operations."""
         ...
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:

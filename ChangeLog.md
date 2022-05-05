@@ -4,14 +4,16 @@
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.6.2`     |
-| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.1`    |
 | `azure-core` dep of generated code                                      | `1.23.0`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
+
 - Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
+- Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type.  #1230
 
 **Breaking Changes in Request Builders**
 

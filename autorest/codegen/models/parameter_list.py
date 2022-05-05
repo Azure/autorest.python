@@ -76,6 +76,8 @@ def _sort(params):
 class _ParameterListBase(
     MutableSequence, Generic[ParameterType, BodyParameterType]
 ):  # pylint: disable=too-many-public-methods
+    """Base class for all of our different ParameterList classes"""
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -112,6 +114,7 @@ class _ParameterListBase(
     @staticmethod
     @abstractmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ParameterType]:
+        """Callable for creating parameters"""
         ...
 
     @staticmethod
@@ -119,10 +122,12 @@ class _ParameterListBase(
     def body_parameter_creator() -> Callable[
         [Dict[str, Any], "CodeModel"], BodyParameterType
     ]:
+        """Callable for creating body parameters"""
         ...
 
     @property
     def grouped(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All parameters that are inside a parameter group"""
         params: List[Union[ParameterType, BodyParameterType]] = [
             p for p in self.parameters if p.grouped_by
         ]
@@ -132,10 +137,12 @@ class _ParameterListBase(
 
     @property
     def has_body(self) -> bool:
+        """Whether there is a body parameter in the parameter list"""
         return bool(self._body_parameter)
 
     @property
     def path(self) -> List[ParameterType]:
+        """All path parameters"""
         return [
             p
             for p in self.parameters
@@ -144,18 +151,22 @@ class _ParameterListBase(
 
     @property
     def query(self) -> List[ParameterType]:
+        """All query parameters"""
         return [p for p in self.parameters if p.location == ParameterLocation.QUERY]
 
     @property
     def headers(self) -> List[ParameterType]:
+        """All header parameters"""
         return [p for p in self.parameters if p.location == ParameterLocation.HEADER]
 
     @property
     def constant(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All constant parameters"""
         return [p for p in self.parameters if p.constant]
 
     @property
     def positional(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All positional parameters"""
         return _sort(
             [
                 p
@@ -166,6 +177,7 @@ class _ParameterListBase(
 
     @property
     def keyword_only(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All keyword only parameters"""
         return _sort(
             [
                 p
@@ -176,6 +188,7 @@ class _ParameterListBase(
 
     @property
     def kwarg(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All kwargs"""
         return _sort(
             [
                 p
@@ -186,6 +199,7 @@ class _ParameterListBase(
 
     @property
     def body_parameter(self) -> BodyParameterType:
+        """The body parameter of the parameter list. Will only ever be at most one."""
         if not self._body_parameter:
             raise ValueError("There is no body parameter")
         return self._body_parameter
@@ -193,10 +207,12 @@ class _ParameterListBase(
     @property
     @abstractmethod
     def implementation(self) -> str:
+        """Whether this is a client or a method parameter"""
         ...
 
     @property
     def unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """Method params before sorting"""
         method_params: List[Union[ParameterType, BodyParameterType]] = [
             p
             for p in self.parameters
@@ -216,9 +232,11 @@ class _ParameterListBase(
 
     @property
     def method(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """Sorted method params. First positional, then keyword only, then kwarg"""
         return self.positional + self.keyword_only + self.kwarg
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
+        """Method signature for this parameter list."""
         return method_signature_helper(
             positional=self.method_signature_positional(is_python3_file),
             keyword_only=self.method_signature_keyword_only(is_python3_file),
@@ -226,11 +244,13 @@ class _ParameterListBase(
         )
 
     def method_signature_positional(self, is_python3_file: bool) -> List[str]:
+        """Signature for positional parameters"""
         return [
             parameter.method_signature(is_python3_file) for parameter in self.positional
         ]
 
     def method_signature_keyword_only(self, is_python3_file: bool) -> List[str]:
+        """Signature for keyword only parameters"""
         if not (self.keyword_only and is_python3_file):
             return []
         return ["*,"] + [
@@ -240,11 +260,13 @@ class _ParameterListBase(
 
     @staticmethod
     def method_signature_kwargs(is_python3_file: bool) -> List[str]:
+        """Signature for kwargs"""
         return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
 
     def kwargs_to_pop(
         self, is_python3_file: bool
     ) -> List[Union[ParameterType, BodyParameterType]]:
+        """Method kwargs we want to pop"""
         # don't want to pop bodies unless it's a constant
         kwargs_to_pop = self.kwarg
         if not is_python3_file:
@@ -257,6 +279,7 @@ class _ParameterListBase(
 
     @property
     def call(self) -> List[str]:
+        """How to pass in parameters to call the operation"""
         retval = [
             p.client_name
             for p in self.method
@@ -294,6 +317,8 @@ class _ParameterListBase(
 class _ParameterList(
     _ParameterListBase[Parameter, Union[MultipartBodyParameter, BodyParameter]]
 ):
+    """Base Parameter class for the two operation ParameterLists"""
+
     @staticmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], Parameter]:
         return Parameter.from_yaml
@@ -316,6 +341,7 @@ class _ParameterList(
 
 
 class ParameterList(_ParameterList):
+    """ParameterList is the parameter list for Operation classes"""
 
     ...
 
@@ -329,6 +355,8 @@ class OverloadedOperationParameterList(_ParameterList):
 class _RequestBuilderParameterList(
     _ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameterType]
 ):
+    """_RequestBuilderParameterList is base parameter list for RequestBuilder classes"""
+
     @staticmethod
     def parameter_creator() -> Callable[
         [Dict[str, Any], "CodeModel"], RequestBuilderParameter
@@ -375,10 +403,14 @@ class _RequestBuilderParameterList(
 
 
 class RequestBuilderParameterList(_RequestBuilderParameterList):
+    """Parameter list for Request Builder"""
+
     ...
 
 
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
+    """Parameter list for OverloadedRequestBuilder"""
+
     def method_signature(self, is_python3_file: bool) -> List[str]:
         return self.method_signature_positional(
             is_python3_file
@@ -386,6 +418,8 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
 
 
 class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):
+    """Base parameter list for client and config classes"""
+
     @staticmethod
     def body_parameter_creator() -> Callable[
         [Dict[str, Any], "CodeModel"], BodyParameter
@@ -411,6 +445,8 @@ class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter
 
 
 class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
+    """Parameter list for Client class"""
+
     @staticmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ClientParameter]:
         return ClientParameter.from_yaml
@@ -421,6 +457,7 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 
     @property
     def host(self) -> Optional[ClientParameter]:
+        """Get the host parameter"""
         try:
             return next(p for p in self.parameters if p.is_host)
         except StopIteration:
@@ -429,6 +466,7 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
     def kwargs_to_pop(
         self, is_python3_file: bool
     ) -> List[Union[ClientParameter, BodyParameter]]:
+        """We only want to pass base url path parameters in the client"""
         return [
             k
             for k in super().kwargs_to_pop(is_python3_file=is_python3_file)
@@ -437,6 +475,8 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 
 
 class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
+    """Parameter list for config"""
+
     @staticmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ConfigParameter]:
         return ConfigParameter.from_yaml

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 class BaseType(BaseModel, ABC):
-    """This is the base class for all schema models.
+    """This is the base class for all types.
 
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
@@ -22,8 +22,10 @@ class BaseType(BaseModel, ABC):
 
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data, code_model)
-        self.type = yaml_data["type"]
-        self.api_versions: List[str] = yaml_data.get("apiVersions", [])
+        self.type = yaml_data["type"]  # the type discriminator
+        self.api_versions: List[str] = yaml_data.get(
+            "apiVersions", []
+        )  # api versions this type is in.
 
     @classmethod
     def from_yaml(
@@ -38,10 +40,12 @@ class BaseType(BaseModel, ABC):
 
     @property
     def xml_metadata(self) -> Dict[str, Any]:
+        """XML metadata for the type, if the type has it."""
         return self.yaml_data.get("xmlMetadata", {})
 
     @property
     def is_xml(self) -> bool:
+        """Whether the type is an XML type or not. Most likely not."""
         return bool(self.xml_metadata)
 
     @property
@@ -77,6 +81,7 @@ class BaseType(BaseModel, ABC):
 
     @property
     def client_default_value(self) -> Any:
+        """Whether there's a client default value for this type"""
         return self.yaml_data.get("clientDefaultValue")
 
     @abstractmethod
@@ -109,6 +114,11 @@ class BaseType(BaseModel, ABC):
 
     @property
     def validation(self) -> Optional[Dict[str, Any]]:
+        """Whether there's any validation constraints on this type.
+
+        Even though we generate validation maps if there are validation constraints,
+        only SDKs with client-side-validate=true (0.001% libraries, if any) actually raise in this case.
+        """
         return None
 
     def get_declaration(self, value: Any) -> str:  # pylint: disable=no-self-use
@@ -143,4 +153,5 @@ class BaseType(BaseModel, ABC):
 
     @property
     def serialization_constraints(self) -> List[str]:
+        """Whether there are any serialization constraints when serializing this type."""
         return []

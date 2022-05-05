@@ -50,7 +50,7 @@ class ModelBaseSerializer:
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_import("msrest.serialization", ImportType.AZURECORE)
-        for model in self.code_model.object_types:
+        for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
         return file_import
 

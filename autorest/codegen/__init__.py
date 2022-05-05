@@ -28,7 +28,7 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         ]
     if yaml_data.get("types"):
         if code_model.options["models_mode"]:
-            code_model.sort_schemas()
+            code_model.sort_model_types()
 
     if code_model.options["show_operations"]:
         # LRO operation
@@ -298,8 +298,6 @@ class CodeGenerator(Plugin):
 
         # Parse the received YAML
         yaml_data = yaml.safe_load(file_content)
-        # with open('temp.yaml', 'w') as outfile:
-        #     yaml.dump(yaml_data, outfile, default_flow_style=False)
 
         options = self._build_code_model_options()
 

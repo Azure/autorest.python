@@ -24,16 +24,26 @@ if TYPE_CHECKING:
 
 
 class _CredentialPolicyBaseType:
+    """Base class for our different credential policy types.
+
+    Inherited by our BearerTokenCredentialPolicy and AzureKeyCredentialPolicy types.
+    """
+
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         self.yaml_data = yaml_data
         self.code_model = code_model
 
     @abstractmethod
     def call(self, async_mode: bool) -> str:
+        """
+        How to call this credential policy. Used to initialize the credential policy in the config file.
+        """
         ...
 
 
 class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
+    """Credential policy type representing BearerTokenCredentialPolicy"""
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -55,6 +65,8 @@ class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
 
 
 class ARMChallengeAuthenticationPolicyType(BearerTokenCredentialPolicyType):
+    """Credential policy type representing ARMChallengeAuthenticationPolicy"""
+
     def call(self, async_mode: bool) -> str:
         policy_name = f"{'Async' if async_mode else ''}ARMChallengeAuthenticationPolicy"
         return f"{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
@@ -90,7 +102,7 @@ CredentialPolicyType = TypeVar(
 class CredentialType(
     BaseType, Generic[CredentialPolicyType]
 ):  # pylint:disable=abstract-method
-    """Store info about credential."""
+    """Store info about the type of the credential. Can be either an AzureKeyCredential or a TokenCredential"""
 
     def __init__(
         self,
@@ -145,6 +157,8 @@ class TokenCredentialType(
         Union[BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType]
     ]
 ):
+    """Type of a token credential. Used by BearerAuth and ARMChallenge policies"""
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -198,6 +212,8 @@ class TokenCredentialType(
 
 
 class AzureKeyCredentialType(CredentialType[AzureKeyCredentialPolicyType]):
+    """Type for an AzureKeyCredential"""
+
     @property
     def docstring_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"

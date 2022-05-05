@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
-    """A service client."""
+    """The service client base. Shared across our Client and Config type"""
 
     def __init__(
         self,
@@ -29,7 +29,9 @@ class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
     ):
         super().__init__(yaml_data, code_model)
         self.parameters = parameters
-        self.url: str = self.yaml_data["url"]
+        self.url: str = self.yaml_data[
+            "url"
+        ]  # the base endpoint of the client. Can be parameterized or not
 
     @property
     def description(self) -> str:
@@ -41,6 +43,8 @@ class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
 
 
 class Client(_ClientConfigBase[ClientGlobalParameterList]):
+    """Model representing our service client"""
+
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
             if async_mode:
@@ -52,6 +56,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     @property
     def send_request_name(self) -> str:
+        """Name of the send request function"""
         return (
             "send_request"
             if self.code_model.options["show_send_request"]
@@ -60,10 +65,12 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     @property
     def has_parameterized_host(self) -> bool:
+        """Whether the base url is parameterized or not"""
         return not any(p for p in self.parameters if p.is_host)
 
     @property
     def filename(self) -> str:
+        """Name of the file for the client"""
         if (
             self.code_model.options["version_tolerant"]
             or self.code_model.options["low_level_client"]
@@ -130,7 +137,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 ImportType.LOCAL,
             )
 
-        if self.code_model.object_types and self.code_model.options["models_mode"]:
+        if self.code_model.model_types and self.code_model.options["models_mode"]:
             path_to_models = ".." if async_mode else "."
             file_import.add_submodule_import(path_to_models, "models", ImportType.LOCAL)
         else:
@@ -165,6 +172,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
 
 class Config(_ClientConfigBase[ConfigGlobalParameterList]):
+    """Model representing our Config type."""
+
     @property
     def description(self) -> str:
         return (

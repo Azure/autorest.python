@@ -2,6 +2,6 @@
 {{ code_model.options['license_header'] }}
 
 {{ imports }}
-{% for model in code_model.object_types %}
+{% for model in code_model.model_types %}
 {% include "model.py.jinja2" %}
 {% endfor %}

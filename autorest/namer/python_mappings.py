@@ -55,7 +55,7 @@ class PadType(str, Enum):
     MODEL = "Model"
     METHOD = "_method"
     PARAMETER = "_parameter"
-    ENUM = "Enum"
+    ENUM = "_enum"
     PROPERTY = "_property"
     OPERATION_GROUP = "Operations"
 

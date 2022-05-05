@@ -13,13 +13,17 @@ if TYPE_CHECKING:
 
 
 class CombinedType(BaseType):
-    """A type that consists of multiple different types"""
+    """A type that consists of multiple different types.
+
+    Used by body parameters that have multiple types, i.e. one that can be
+    a stream body or a JSON body.
+    """
 
     def __init__(
         self, yaml_data: Dict[str, Any], code_model: "CodeModel", types: List[BaseType]
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.types = types
+        self.types = types  # the types that this type is combining
 
     @property
     def serialization_type(self) -> str:

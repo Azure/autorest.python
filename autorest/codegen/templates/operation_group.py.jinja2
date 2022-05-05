@@ -11,7 +11,7 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         :attr:`{{ operation_group.property_name }}` attribute.
     """
 
-{% if code_model.object_types and code_model.options["models_mode"] %}
+{% if code_model.model_types and code_model.options["models_mode"] %}
     models = _models
 
 {% endif %}

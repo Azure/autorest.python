@@ -61,7 +61,7 @@ class OperationGroup(BaseModel):
             file_import.merge(operation.imports(async_mode, is_python3_file))
         local_path = "..." if async_mode else ".."
         if (
-            self.code_model.object_types or self.code_model.enums
+            self.code_model.model_types or self.code_model.enums
         ) and self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
                 local_path, "models", ImportType.LOCAL, alias="_models"

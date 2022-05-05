@@ -20,6 +20,8 @@ if TYPE_CHECKING:
 
 
 class RequestBuilderBodyParameter(BodyParameter):
+    """BOdy parmaeter for RequestBuilders"""
+
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if isinstance(self.type, (BinaryType, StringType)) or any(
@@ -62,6 +64,8 @@ class RequestBuilderBodyParameter(BodyParameter):
 class RequestBuilderMultipartBodyParameter(
     _MultipartBodyParameter[RequestBuilderBodyParameter]
 ):
+    """Multipart body parameter for Request BUilders"""
+
     @property
     def name_in_high_level_operation(self) -> str:
         return f"_{self.client_name}"
@@ -82,6 +86,8 @@ class RequestBuilderMultipartBodyParameter(
 
 
 class RequestBuilderParameter(Parameter):
+    """Basic RequestBuilder Parameter."""
+
     def __init__(
         self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType
     ) -> None:
@@ -133,6 +139,7 @@ class RequestBuilderParameter(Parameter):
 def get_request_body_parameter(
     yaml_data: Dict[str, Any], code_model: "CodeModel"
 ) -> Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]:
+    """Get body parameter for a request builder"""
     if yaml_data.get("entries"):
         return RequestBuilderMultipartBodyParameter.from_yaml(yaml_data, code_model)
     return RequestBuilderBodyParameter.from_yaml(yaml_data, code_model)

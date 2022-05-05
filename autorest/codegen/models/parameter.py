@@ -53,6 +53,8 @@ class ParameterDelimeter(str, Enum):
 class _ParameterBase(
     BaseModel, abc.ABC
 ):  # pylint: disable=too-many-instance-attributes
+    """Base class for all parameters"""
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -120,6 +122,7 @@ class _ParameterBase(
 
     @property
     def client_default_value_declaration(self):
+        """Declaration of parameter's client default value"""
         if self.client_default_value is None:
             return None
         return self.type.get_declaration(self.client_default_value)
@@ -186,8 +189,11 @@ class _ParameterBase(
 
 
 class _BodyParameterBase(_ParameterBase):
+    """Base class for body parameters"""
+
     @property
     def is_partial_body(self) -> bool:
+        """Whether it's part of a bigger body parameter, i.e. a MultipartBodyParameter"""
         return self.yaml_data.get("isPartialBody", False)
 
     @property
@@ -204,7 +210,7 @@ class _BodyParameterBase(_ParameterBase):
 
 
 class BodyParameter(_BodyParameterBase):
-    """Body parameters for the overload operations. Only has one type per overload"""
+    """Body parameter."""
 
     @property
     def content_types(self) -> List[str]:
@@ -231,6 +237,8 @@ EntryBodyParameterType = TypeVar(
 
 
 class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
+    """Base class for MultipartBodyParameter and RequestBuilderMultipartBodyParameter"""
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -249,6 +257,8 @@ class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
 
 
 class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
+    """Multipart body parameter for Operation. Used for files and data input."""
+
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
@@ -265,6 +275,8 @@ class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
 
 
 class Parameter(_ParameterBase):
+    """Basic Parameter class"""
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -327,6 +339,8 @@ class Parameter(_ParameterBase):
 
 
 class ClientParameter(Parameter):
+    """Client parameter"""
+
     @property
     def is_host(self) -> bool:
         return self.rest_api_name == "$host"
@@ -345,6 +359,8 @@ class ClientParameter(Parameter):
 
 
 class ConfigParameter(Parameter):
+    """Config Parameter"""
+
     @property
     def in_method_signature(self) -> bool:
         return not self.is_host
@@ -363,6 +379,7 @@ class ConfigParameter(Parameter):
 def get_body_parameter(
     yaml_data: Dict[str, Any], code_model: "CodeModel"
 ) -> Union[BodyParameter, MultipartBodyParameter]:
+    """Creates a regular body parameter or Multipart body parameter"""
     if yaml_data.get("entries"):
         return MultipartBodyParameter.from_yaml(yaml_data, code_model)
     return BodyParameter.from_yaml(yaml_data, code_model)
