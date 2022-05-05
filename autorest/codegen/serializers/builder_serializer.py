@@ -1313,7 +1313,7 @@ class LROPagingOperationSerializer(
 
     def decorators(self, builder: LROPagingOperation) -> List[str]:  # type: ignore
         """Decorators for the method"""
-        return _LROOperationSerializer.decorators(self, builder)
+        return _LROOperationSerializer.decorators(self, builder)  # type: ignore
 
 
 def get_operation_serializer(
