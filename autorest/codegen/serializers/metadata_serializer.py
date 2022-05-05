@@ -14,11 +14,9 @@ from ..models import (
     OperationGroup,
     LROOperation,
     PagingOperation,
-    ParameterList,
     TypingSection,
     ImportType,
     ClientGlobalParameterList,
-    Parameter,
     TokenCredentialType,
     CredentialType,
 )
@@ -48,7 +46,7 @@ def _json_serialize_imports(
     ]
 ) -> str:
     if not imports:
-        return None
+        return ""
 
     json_serialize_imports = {}
     # need to make name_import set -> list to make the dictionary json serializable
@@ -119,7 +117,7 @@ class MetadataSerializer:
 
     def _service_client_imports(
         self,
-        global_parameters: ParameterList,
+        global_parameters: ClientGlobalParameterList,
         mixin_operation_group: Optional[OperationGroup],
         async_mode: bool,
     ) -> str:
@@ -158,8 +156,8 @@ class MetadataSerializer:
         return _json_serialize_imports(file_import.to_dict())
 
     def _config_imports(
-        self, global_parameters: ParameterList, async_mode: bool
-    ) -> FileImport:
+        self, global_parameters: ClientGlobalParameterList, async_mode: bool
+    ) -> str:
         file_import = FileImport()
         file_import.add_submodule_import(
             "azure.core.configuration", "Configuration", ImportType.AZURECORE
