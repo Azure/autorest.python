@@ -4,17 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from abc import abstractmethod
 from itertools import chain
 from typing import (
-    Callable,
     Dict,
     List,
     Any,
     Optional,
     Union,
     TYPE_CHECKING,
-    TypeVar,
 )
 
 from autorest.codegen.models.request_builder_parameter import RequestBuilderParameter
@@ -30,7 +27,7 @@ from .parameter import (
     Parameter,
     ParameterLocation,
 )
-from .parameter_list import ParameterList, OverloadedOperationParameterList
+from .parameter_list import ParameterList
 from .model_type import ModelType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
 
@@ -39,21 +36,15 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-ParameterListType = TypeVar(
-    "ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList]
-)
 
-
-class OperationBase(
-    BaseBuilder[ParameterListType]
-):  # pylint: disable=too-many-public-methods
+class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
-        parameters: ParameterListType,
+        parameters: ParameterList,
         responses: List[Response],
         exceptions: List[Response],
         *,
@@ -395,22 +386,6 @@ class OperationBase(
     def has_stream_response(self) -> bool:
         return any(r.is_stream_response for r in self.responses)
 
-    @staticmethod
-    @abstractmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], ParameterListType
-    ]:
-        ...
-
-    @staticmethod
-    def overload_operation_class() -> Callable[
-        [Dict[str, Any], "CodeModel"], "Operation"
-    ]:
-        # Not raising notimplementederror or making this abstract
-        # because want to make sure all overloaded operation types
-        # have this property, but base class is shared with regular operations
-        raise ValueError("Don't call me")
-
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         name = yaml_data["name"]
@@ -419,9 +394,9 @@ class OperationBase(
         exceptions = [
             Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
         ]
-        parameter_list = cls.parameter_list_type()(yaml_data, code_model)
+        parameter_list = ParameterList.from_yaml(yaml_data, code_model)
         overloads = [
-            cls.overload_operation_class()(overload, code_model)
+            cls.from_yaml(overload, code_model)
             for overload in yaml_data.get("overloads", [])
         ]
         abstract = False
@@ -453,55 +428,13 @@ class OperationBase(
         )
 
 
-class Operation(OperationBase[ParameterList]):
-    @staticmethod
-    def parameter_list_type() -> Callable[[Dict[str, Any], "CodeModel"], ParameterList]:
-        return ParameterList.from_yaml
-
-
-class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
-    def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = super()._imports_shared(async_mode)
-        file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
-        return file_import
-
-    @staticmethod
-    def overload_operation_class() -> Callable[
-        [Dict[str, Any], "CodeModel"], "Operation"
-    ]:
-        return Operation.from_yaml
-
-    @staticmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], OverloadedOperationParameterList
-    ]:
-        return OverloadedOperationParameterList.from_yaml
-
-
-def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
+def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Operation:
     if yaml_data["discriminator"] == "lropaging":
-        from .lro_paging_operation import (
-            LROPagingOperation,
-            OverloadedLROPagingOperation,
-        )
-
-        operation_cls = (
-            OverloadedLROPagingOperation
-            if yaml_data.get("overloads")
-            else LROPagingOperation
-        )
+        from .lro_paging_operation import LROPagingOperation as OperationCls
     elif yaml_data["discriminator"] == "lro":
-        from .lro_operation import LROOperation, OverloadedLROOperation
-
-        operation_cls = (
-            OverloadedLROOperation if yaml_data.get("overloads") else LROOperation  # type: ignore
-        )
+        from .lro_operation import LROOperation as OperationCls  # type: ignore
     elif yaml_data["discriminator"] == "paging":
-        from .paging_operation import PagingOperation, OverloadedPagingOperation
-
-        operation_cls = (
-            OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation  # type: ignore
-        )
+        from .paging_operation import PagingOperation as OperationCls  # type: ignore
     else:
-        operation_cls = OverloadedOperation if yaml_data.get("overloads") else Operation  # type: ignore
-    return operation_cls.from_yaml(yaml_data, code_model)
+        from . import Operation as OperationCls  # type: ignore
+    return OperationCls.from_yaml(yaml_data, code_model)

@@ -346,12 +346,6 @@ class ParameterList(_ParameterList):
     ...
 
 
-class OverloadedOperationParameterList(_ParameterList):
-    """This parameter list is used if we have overloads for an operation due to multiple types of the body parameter"""
-
-    ...
-
-
 class _RequestBuilderParameterList(
     _ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameterType]
 ):

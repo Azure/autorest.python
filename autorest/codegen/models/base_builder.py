@@ -9,7 +9,6 @@ from .base_model import BaseModel
 from .parameter_list import (
     ParameterList,
     RequestBuilderParameterList,
-    OverloadedOperationParameterList,
     OverloadedRequestBuilderParameterList,
 )
 
@@ -18,7 +17,6 @@ ParameterListType = TypeVar(
     bound=Union[
         ParameterList,
         RequestBuilderParameterList,
-        OverloadedOperationParameterList,
         OverloadedRequestBuilderParameterList,
     ],
 )

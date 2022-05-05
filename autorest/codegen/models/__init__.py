@@ -42,7 +42,7 @@ from .parameter import (
     ClientParameter,
     ConfigParameter,
 )
-from .operation import Operation, OverloadedOperation, OperationBase
+from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 from .response import Response
@@ -104,8 +104,6 @@ __all__ = [
     "ConfigGlobalParameterList",
     "ParameterMethodLocation",
     "ParameterLocation",
-    "OverloadedOperation",
-    "OperationBase",
     "OverloadedRequestBuilder",
     "RequestBuilderBase",
     "BodyParameter",

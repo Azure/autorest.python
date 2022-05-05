@@ -3,9 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Callable, Dict, List, Any, Optional, Union, TYPE_CHECKING, cast
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast
 
-from .operation import Operation, OperationBase, OverloadedOperation
+from .operation import Operation
 from .response import Response
 from .request_builder import (
     OverloadedRequestBuilder,
@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class _PagingOperationBase(OperationBase):  # pylint: disable=abstract-method
+class PagingOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -186,15 +186,3 @@ class _PagingOperationBase(OperationBase):  # pylint: disable=abstract-method
             )
 
         return file_import
-
-
-class PagingOperation(Operation, _PagingOperationBase):
-    ...
-
-
-class OverloadedPagingOperation(OverloadedOperation, _PagingOperationBase):
-    @staticmethod
-    def overload_operation_class() -> Callable[
-        [Dict[str, Any], "CodeModel"], "Operation"
-    ]:
-        return PagingOperation.from_yaml
