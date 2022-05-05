@@ -252,8 +252,8 @@ def test_retry_status_codes_502(send_request):
     request = http_retry.build_get502_request()
     send_request(request)
 
-    # TODO, 4042586: Support options operations in swagger modeler
-    #client.http_retry.options429()
+    request = http_retry.build_options502_request()
+    send_request(request)
 
 def test_retry_status_codes_500(send_request):
     request = http_retry.build_put500_request()
