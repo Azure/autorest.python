@@ -63,7 +63,6 @@ class OperationGroupOneOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     async def test_two(
         self,
@@ -85,7 +84,6 @@ class OperationGroupOneOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace_async
     async def test_two(
@@ -116,7 +114,7 @@ class OperationGroupOneOperations:
 
         api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
         content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelThree]
 
         _json = None
         _content = None

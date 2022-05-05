@@ -130,7 +130,6 @@ class OperationGroupTwoOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     def test_four(  # pylint: disable=inconsistent-return-statements
         self,
@@ -151,7 +150,6 @@ class OperationGroupTwoOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace
     def test_four(  # pylint: disable=inconsistent-return-statements

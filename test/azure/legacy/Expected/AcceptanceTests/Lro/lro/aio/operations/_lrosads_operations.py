@@ -88,7 +88,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -160,8 +160,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_non_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -186,8 +184,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_non_retry400(
@@ -265,7 +261,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -338,8 +334,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_non_retry201_creating400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -365,8 +359,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400(
@@ -445,7 +437,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -518,8 +510,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_non_retry201_creating400_invalid_json(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -545,8 +535,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400_invalid_json(
@@ -625,7 +613,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -701,8 +689,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_async_relative_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -728,8 +714,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_async_relative_retry400(
@@ -1151,8 +1135,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post_non_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1176,8 +1158,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post_non_retry400(
@@ -1319,8 +1299,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post202_non_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1344,8 +1322,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post202_non_retry400(
@@ -1491,8 +1467,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post_async_relative_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1517,8 +1491,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post_async_relative_retry400(
@@ -1594,7 +1566,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -1666,8 +1638,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_error201_no_provisioning_state_payload(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1692,8 +1662,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_error201_no_provisioning_state_payload(
@@ -1771,7 +1739,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -1848,8 +1816,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_async_relative_retry_no_status(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1876,8 +1842,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status(
@@ -1965,7 +1929,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -2042,8 +2006,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_async_relative_retry_no_status_payload(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2070,8 +2032,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status_payload(
@@ -2403,8 +2363,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post202_no_location(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2429,8 +2387,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post202_no_location(
@@ -2578,8 +2534,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post_async_relative_retry_no_payload(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2605,8 +2559,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_no_payload(
@@ -2683,7 +2635,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Product]]
 
         _json = None
         _content = None
@@ -2754,8 +2706,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put200_invalid_json(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2781,8 +2731,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put200_invalid_json(
@@ -2861,7 +2809,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -2938,8 +2886,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_async_relative_retry_invalid_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2966,8 +2912,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_header(
@@ -3055,7 +2999,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -3132,8 +3076,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_async_relative_retry_invalid_json_polling(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3160,8 +3102,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_json_polling(
@@ -3590,8 +3530,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post202_retry_invalid_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3616,8 +3554,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post202_retry_invalid_header(
@@ -3765,8 +3701,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post_async_relative_retry_invalid_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3792,8 +3726,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_header(
@@ -3942,8 +3874,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post_async_relative_retry_invalid_json_polling(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3969,8 +3899,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_json_polling(

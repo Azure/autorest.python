@@ -57,7 +57,6 @@ def build_create_ap_true_request(
             }
     """
 
-    ...
 
 @overload
 def build_create_ap_true_request(
@@ -82,7 +81,6 @@ def build_create_ap_true_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_create_ap_true_request(
     **kwargs: Any
@@ -158,7 +156,6 @@ def build_create_cat_ap_true_request(
             }
     """
 
-    ...
 
 @overload
 def build_create_cat_ap_true_request(
@@ -183,7 +180,6 @@ def build_create_cat_ap_true_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_create_cat_ap_true_request(
     **kwargs: Any
@@ -258,7 +254,6 @@ def build_create_ap_object_request(
             }
     """
 
-    ...
 
 @overload
 def build_create_ap_object_request(
@@ -283,7 +278,6 @@ def build_create_ap_object_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_create_ap_object_request(
     **kwargs: Any
@@ -358,7 +352,6 @@ def build_create_ap_string_request(
             }
     """
 
-    ...
 
 @overload
 def build_create_ap_string_request(
@@ -383,7 +376,6 @@ def build_create_ap_string_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_create_ap_string_request(
     **kwargs: Any
@@ -458,7 +450,6 @@ def build_create_ap_in_properties_request(
             }
     """
 
-    ...
 
 @overload
 def build_create_ap_in_properties_request(
@@ -483,7 +474,6 @@ def build_create_ap_in_properties_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_create_ap_in_properties_request(
     **kwargs: Any
@@ -562,7 +552,6 @@ def build_create_ap_in_properties_with_ap_string_request(
             }
     """
 
-    ...
 
 @overload
 def build_create_ap_in_properties_with_ap_string_request(
@@ -587,7 +576,6 @@ def build_create_ap_in_properties_with_ap_string_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_create_ap_in_properties_with_ap_string_request(
     **kwargs: Any

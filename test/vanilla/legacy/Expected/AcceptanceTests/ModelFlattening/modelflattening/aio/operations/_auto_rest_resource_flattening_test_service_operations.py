@@ -63,8 +63,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -81,8 +79,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_array(  # pylint: disable=inconsistent-return-statements
@@ -215,8 +211,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -234,8 +228,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -369,8 +361,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
         self, resource_dictionary: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -387,8 +377,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -521,8 +509,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -540,8 +526,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -673,8 +657,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_simple_product(
         self, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -691,8 +673,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_simple_product(

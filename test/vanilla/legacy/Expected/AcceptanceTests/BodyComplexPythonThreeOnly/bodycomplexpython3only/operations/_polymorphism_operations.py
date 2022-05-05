@@ -284,8 +284,6 @@ class PolymorphismOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -334,8 +332,6 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -632,8 +628,6 @@ class PolymorphismOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -651,8 +645,6 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -732,8 +724,6 @@ class PolymorphismOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_missing_discriminator(
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -750,8 +740,6 @@ class PolymorphismOperations:
         :rtype: ~bodycomplexpython3only.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_missing_discriminator(self, complex_body: Union[_models.Salmon, IO], **kwargs: Any) -> _models.Salmon:
@@ -859,8 +847,6 @@ class PolymorphismOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -904,8 +890,6 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements

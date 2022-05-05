@@ -86,8 +86,6 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def check_name_availability(
         self, account_name: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -106,8 +104,6 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def check_name_availability(
@@ -135,7 +131,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CheckNameAvailabilityResult]
 
         _json = None
         _content = None
@@ -192,7 +188,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.StorageAccount]]
 
         _json = None
         _content = None
@@ -279,8 +275,6 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_create(
         self,
@@ -321,8 +315,6 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_create(
@@ -490,7 +482,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageAccount]
 
         request = build_get_properties_request(
             resource_group_name=resource_group_name,
@@ -560,8 +552,6 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def update(
         self,
@@ -598,8 +588,6 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def update(
@@ -643,7 +631,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageAccount]
 
         _json = None
         _content = None
@@ -708,7 +696,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageAccountKeys]
 
         request = build_list_keys_request(
             resource_group_name=resource_group_name,
@@ -925,7 +913,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageAccountKeys]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         _json = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")

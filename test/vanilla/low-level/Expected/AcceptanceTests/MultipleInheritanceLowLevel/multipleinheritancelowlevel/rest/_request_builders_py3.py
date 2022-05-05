@@ -88,7 +88,6 @@ def build_put_horse_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_horse_request(
@@ -113,7 +112,6 @@ def build_put_horse_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_horse_request(
     **kwargs: Any
@@ -219,7 +217,6 @@ def build_put_pet_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_pet_request(
@@ -244,7 +241,6 @@ def build_put_pet_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_pet_request(
     **kwargs: Any
@@ -350,7 +346,6 @@ def build_put_feline_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_feline_request(
@@ -375,7 +370,6 @@ def build_put_feline_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_feline_request(
     **kwargs: Any
@@ -485,7 +479,6 @@ def build_put_cat_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_cat_request(
@@ -511,7 +504,6 @@ def build_put_cat_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_cat_request(
     **kwargs: Any
@@ -624,7 +616,6 @@ def build_put_kitten_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_kitten_request(
@@ -651,7 +642,6 @@ def build_put_kitten_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_kitten_request(
     **kwargs: Any

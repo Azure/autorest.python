@@ -238,7 +238,7 @@ class LRORetrysOperations(object):
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -314,8 +314,6 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def begin_put201_creating_succeeded200(
         self,
@@ -344,8 +342,6 @@ class LRORetrysOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
@@ -430,7 +426,7 @@ class LRORetrysOperations(object):
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -509,8 +505,6 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def begin_put_async_relative_retry_succeeded(
         self,
@@ -539,8 +533,6 @@ class LRORetrysOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(
@@ -630,7 +622,7 @@ class LRORetrysOperations(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         request = build_delete_provisioning202_accepted200_succeeded_request(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
@@ -997,8 +989,6 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def begin_post202_retry200(
         self,
@@ -1026,8 +1016,6 @@ class LRORetrysOperations(object):
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_retry200(
@@ -1184,8 +1172,6 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def begin_post_async_relative_retry_succeeded(
         self,
@@ -1214,8 +1200,6 @@ class LRORetrysOperations(object):
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(

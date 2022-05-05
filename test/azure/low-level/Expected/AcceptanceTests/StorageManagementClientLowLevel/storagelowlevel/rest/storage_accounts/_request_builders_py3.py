@@ -65,7 +65,6 @@ def build_check_name_availability_request(
             }
     """
 
-    ...
 
 @overload
 def build_check_name_availability_request(
@@ -96,7 +95,6 @@ def build_check_name_availability_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_check_name_availability_request(
     subscription_id: str,
@@ -213,7 +211,6 @@ def build_create_request(
             }
     """
 
-    ...
 
 @overload
 def build_create_request(
@@ -254,7 +251,6 @@ def build_create_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_create_request(
     resource_group_name: str,
@@ -508,7 +504,6 @@ def build_update_request(
             }
     """
 
-    ...
 
 @overload
 def build_update_request(
@@ -553,7 +548,6 @@ def build_update_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_update_request(
     resource_group_name: str,
@@ -829,7 +823,6 @@ def build_regenerate_key_request(
             }
     """
 
-    ...
 
 @overload
 def build_regenerate_key_request(
@@ -867,7 +860,6 @@ def build_regenerate_key_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_regenerate_key_request(
     resource_group_name: str,

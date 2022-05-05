@@ -63,7 +63,6 @@ def build_update_request(
             }
     """
 
-    ...
 
 @overload
 def build_update_request(
@@ -92,7 +91,6 @@ def build_update_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_update_request(
     resource_group_name,  # type: str

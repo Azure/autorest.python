@@ -87,7 +87,6 @@ def build_put_int_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_int_request(
@@ -112,7 +111,6 @@ def build_put_int_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_int_request(
     **kwargs: Any
@@ -218,7 +216,6 @@ def build_put_long_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_long_request(
@@ -243,7 +240,6 @@ def build_put_long_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_long_request(
     **kwargs: Any
@@ -350,7 +346,6 @@ def build_put_float_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_float_request(
@@ -375,7 +370,6 @@ def build_put_float_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_float_request(
     **kwargs: Any
@@ -483,7 +477,6 @@ def build_put_double_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_double_request(
@@ -509,7 +502,6 @@ def build_put_double_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_double_request(
     **kwargs: Any
@@ -617,7 +609,6 @@ def build_put_bool_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_bool_request(
@@ -642,7 +633,6 @@ def build_put_bool_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_bool_request(
     **kwargs: Any
@@ -749,7 +739,6 @@ def build_put_string_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_string_request(
@@ -774,7 +763,6 @@ def build_put_string_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_string_request(
     **kwargs: Any
@@ -881,7 +869,6 @@ def build_put_date_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_date_request(
@@ -906,7 +893,6 @@ def build_put_date_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_date_request(
     **kwargs: Any
@@ -1014,7 +1000,6 @@ def build_put_date_time_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_date_time_request(
@@ -1040,7 +1025,6 @@ def build_put_date_time_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_date_time_request(
     **kwargs: Any
@@ -1148,7 +1132,6 @@ def build_put_date_time_rfc1123_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_date_time_rfc1123_request(
@@ -1174,7 +1157,6 @@ def build_put_date_time_rfc1123_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_date_time_rfc1123_request(
     **kwargs: Any
@@ -1280,7 +1262,6 @@ def build_put_duration_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_duration_request(
@@ -1305,7 +1286,6 @@ def build_put_duration_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_duration_request(
     **kwargs: Any
@@ -1410,7 +1390,6 @@ def build_put_byte_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_byte_request(
@@ -1436,7 +1415,6 @@ def build_put_byte_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_byte_request(
     **kwargs: Any

@@ -306,7 +306,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     def begin_test_lro(
         self,
@@ -334,7 +333,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace
     def begin_test_lro(

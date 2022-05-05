@@ -105,7 +105,6 @@ def build_post_model_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_model_request(
@@ -134,7 +133,6 @@ def build_post_model_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_model_request(
     mode,  # type: str

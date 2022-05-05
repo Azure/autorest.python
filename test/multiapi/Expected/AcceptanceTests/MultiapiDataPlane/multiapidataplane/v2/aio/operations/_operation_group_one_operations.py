@@ -62,7 +62,6 @@ class OperationGroupOneOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     async def test_two(
         self,
@@ -84,7 +83,6 @@ class OperationGroupOneOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace_async
     async def test_two(

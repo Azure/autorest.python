@@ -124,7 +124,6 @@ def build_put_valid_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_valid_request(
@@ -179,7 +178,6 @@ def build_put_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_valid_request(
     **kwargs  # type: Any
@@ -437,7 +435,6 @@ def build_put_complicated_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_complicated_request(
@@ -461,7 +458,6 @@ def build_put_complicated_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_complicated_request(
     **kwargs  # type: Any
@@ -550,7 +546,6 @@ def build_put_missing_discriminator_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_missing_discriminator_request(
@@ -573,7 +568,6 @@ def build_put_missing_discriminator_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_missing_discriminator_request(
     **kwargs  # type: Any
@@ -679,7 +673,6 @@ def build_put_valid_missing_required_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_valid_missing_required_request(
@@ -729,7 +722,6 @@ def build_put_valid_missing_required_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_valid_missing_required_request(
     **kwargs  # type: Any

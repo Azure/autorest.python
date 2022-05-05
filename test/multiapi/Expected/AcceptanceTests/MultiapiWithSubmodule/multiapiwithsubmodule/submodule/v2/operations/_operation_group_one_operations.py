@@ -130,7 +130,6 @@ class OperationGroupOneOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     def test_two(
         self,
@@ -151,7 +150,6 @@ class OperationGroupOneOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace
     def test_two(
@@ -183,7 +181,7 @@ class OperationGroupOneOperations(object):
 
         api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
         content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelTwo]
 
         _json = None
         _content = None

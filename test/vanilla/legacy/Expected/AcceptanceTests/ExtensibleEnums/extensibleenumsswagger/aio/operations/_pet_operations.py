@@ -112,8 +112,6 @@ class PetOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def add_pet(
         self, pet_param: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -130,8 +128,6 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def add_pet(self, pet_param: Optional[Union[_models.Pet, IO]] = None, **kwargs: Any) -> _models.Pet:

@@ -205,8 +205,6 @@ class MediaTypesClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def analyze_body(
         self,
@@ -226,8 +224,6 @@ class MediaTypesClientOperationsMixin(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def analyze_body(
@@ -319,8 +315,6 @@ class MediaTypesClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
         self,
@@ -341,8 +335,6 @@ class MediaTypesClientOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements

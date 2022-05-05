@@ -120,8 +120,6 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def validation_of_body(
         self,
@@ -149,8 +147,6 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def validation_of_body(
@@ -294,8 +290,6 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def post_with_constant_in_body(
         self, body: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -315,8 +309,6 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def post_with_constant_in_body(

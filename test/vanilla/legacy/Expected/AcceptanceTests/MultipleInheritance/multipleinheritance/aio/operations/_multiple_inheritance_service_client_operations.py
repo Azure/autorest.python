@@ -101,8 +101,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_horse(self, horse: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
@@ -117,8 +115,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_horse(self, horse: Union[_models.Horse, IO], **kwargs: Any) -> str:
@@ -339,8 +335,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_feline(self, feline: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
@@ -355,8 +349,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_feline(self, feline: Union[_models.Feline, IO], **kwargs: Any) -> str:
@@ -481,8 +473,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_cat(self, cat: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -498,8 +488,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_cat(self, cat: Union[_models.Cat, IO], **kwargs: Any) -> str:
@@ -626,8 +614,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_kitten(self, kitten: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
@@ -644,8 +630,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_kitten(self, kitten: Union[_models.Kitten, IO], **kwargs: Any) -> str:

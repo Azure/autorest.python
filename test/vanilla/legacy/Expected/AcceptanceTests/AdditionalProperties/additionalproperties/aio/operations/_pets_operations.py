@@ -72,8 +72,6 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def create_ap_true(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -90,8 +88,6 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def create_ap_true(self, create_parameters: Union[_models.PetAPTrue, IO], **kwargs: Any) -> _models.PetAPTrue:
@@ -172,8 +168,6 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def create_cat_ap_true(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -190,8 +184,6 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def create_cat_ap_true(
@@ -274,8 +266,6 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def create_ap_object(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -292,8 +282,6 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def create_ap_object(
@@ -376,8 +364,6 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def create_ap_string(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -394,8 +380,6 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def create_ap_string(
@@ -478,8 +462,6 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def create_ap_in_properties(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -496,8 +478,6 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def create_ap_in_properties(
@@ -584,8 +564,6 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def create_ap_in_properties_with_ap_string(
         self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -602,8 +580,6 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(

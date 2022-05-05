@@ -232,7 +232,6 @@ def build_put_referenced_constant_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_referenced_constant_request(
@@ -255,7 +254,6 @@ def build_put_referenced_constant_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_referenced_constant_request(
     **kwargs  # type: Any

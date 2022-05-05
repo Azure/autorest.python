@@ -858,8 +858,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -876,8 +876,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -913,8 +913,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -949,8 +949,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1034,8 +1034,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1052,8 +1052,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1089,8 +1089,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1127,8 +1127,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1219,8 +1219,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1237,8 +1237,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1276,8 +1276,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {
@@ -1316,8 +1316,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
                     "details": {
-                        "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. Required. "Large"
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
                         "max_product_display_name": "str",  # Display name of product.
                           Required.
                         "max_product_image": {

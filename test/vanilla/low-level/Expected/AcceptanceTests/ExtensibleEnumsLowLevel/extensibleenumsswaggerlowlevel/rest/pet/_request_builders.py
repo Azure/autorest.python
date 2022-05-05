@@ -100,7 +100,6 @@ def build_add_pet_request(
             }
     """
 
-    ...
 
 @overload
 def build_add_pet_request(
@@ -123,7 +122,6 @@ def build_add_pet_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_add_pet_request(
     **kwargs  # type: Any

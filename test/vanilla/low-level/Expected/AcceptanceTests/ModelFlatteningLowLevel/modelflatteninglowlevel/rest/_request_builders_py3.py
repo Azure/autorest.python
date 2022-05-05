@@ -65,7 +65,6 @@ def build_put_array_request(
             ]
     """
 
-    ...
 
 @overload
 def build_put_array_request(
@@ -90,7 +89,6 @@ def build_put_array_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_array_request(
     **kwargs: Any
@@ -199,7 +197,6 @@ def build_put_wrapped_array_request(
             ]
     """
 
-    ...
 
 @overload
 def build_put_wrapped_array_request(
@@ -225,7 +222,6 @@ def build_put_wrapped_array_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_wrapped_array_request(
     **kwargs: Any
@@ -349,7 +345,6 @@ def build_put_dictionary_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_dictionary_request(
@@ -374,7 +369,6 @@ def build_put_dictionary_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_dictionary_request(
     **kwargs: Any
@@ -541,7 +535,6 @@ def build_put_resource_collection_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_resource_collection_request(
@@ -566,7 +559,6 @@ def build_put_resource_collection_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_resource_collection_request(
     **kwargs: Any
@@ -685,7 +677,6 @@ def build_put_simple_product_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_simple_product_request(
@@ -710,7 +701,6 @@ def build_put_simple_product_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_simple_product_request(
     **kwargs: Any
@@ -797,7 +787,6 @@ def build_post_flattened_simple_product_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_flattened_simple_product_request(
@@ -822,7 +811,6 @@ def build_post_flattened_simple_product_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_flattened_simple_product_request(
     **kwargs: Any
@@ -912,7 +900,6 @@ def build_put_simple_product_with_grouping_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_simple_product_with_grouping_request(
@@ -940,7 +927,6 @@ def build_put_simple_product_with_grouping_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_simple_product_with_grouping_request(
     name: str,

@@ -1357,7 +1357,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
 
         _maxresults = None
         _timeout = None

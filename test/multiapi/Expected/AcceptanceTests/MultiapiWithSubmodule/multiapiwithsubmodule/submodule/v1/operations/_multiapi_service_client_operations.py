@@ -231,7 +231,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
         _json = None
         _content = None
@@ -307,7 +307,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     def begin_test_lro(
         self,
@@ -335,7 +334,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace
     def begin_test_lro(
@@ -427,7 +425,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.PagingResult]
 
         _maxresults = None
         _timeout = None

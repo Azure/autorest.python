@@ -89,7 +89,6 @@ def build_put_valid_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_valid_request(
@@ -115,7 +114,6 @@ def build_put_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_valid_request(
     **kwargs: Any
@@ -224,7 +222,6 @@ def build_put_empty_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_empty_request(
@@ -249,7 +246,6 @@ def build_put_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_empty_request(
     **kwargs: Any

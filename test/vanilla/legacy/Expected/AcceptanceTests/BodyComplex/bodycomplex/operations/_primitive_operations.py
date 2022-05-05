@@ -641,8 +641,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
         self,
@@ -662,8 +660,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_int(  # pylint: disable=inconsistent-return-statements
@@ -796,8 +792,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
         self,
@@ -817,8 +811,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_long(  # pylint: disable=inconsistent-return-statements
@@ -952,8 +944,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
         self,
@@ -973,8 +963,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_float(  # pylint: disable=inconsistent-return-statements
@@ -1108,8 +1096,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1130,8 +1116,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_double(  # pylint: disable=inconsistent-return-statements
@@ -1266,8 +1250,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1287,8 +1269,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_bool(  # pylint: disable=inconsistent-return-statements
@@ -1421,8 +1401,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1442,8 +1420,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_string(  # pylint: disable=inconsistent-return-statements
@@ -1577,8 +1553,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1598,8 +1572,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date(  # pylint: disable=inconsistent-return-statements
@@ -1734,8 +1706,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1756,8 +1726,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1892,8 +1860,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1914,8 +1880,6 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements

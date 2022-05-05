@@ -341,8 +341,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_horse(
         self,
@@ -362,8 +360,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_horse(
@@ -605,8 +601,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_feline(
         self,
@@ -626,8 +620,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_feline(
@@ -765,8 +757,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_cat(
         self,
@@ -787,8 +777,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_cat(
@@ -928,8 +916,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_kitten(
         self,
@@ -951,8 +937,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_kitten(

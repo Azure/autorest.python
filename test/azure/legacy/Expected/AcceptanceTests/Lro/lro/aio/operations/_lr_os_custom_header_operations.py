@@ -66,7 +66,7 @@ class LROsCustomHeaderOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -144,8 +144,6 @@ class LROsCustomHeaderOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put_async_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -173,8 +171,6 @@ class LROsCustomHeaderOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
@@ -263,7 +259,7 @@ class LROsCustomHeaderOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = None
         _content = None
@@ -338,8 +334,6 @@ class LROsCustomHeaderOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_put201_creating_succeeded200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -367,8 +361,6 @@ class LROsCustomHeaderOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
@@ -518,8 +510,6 @@ class LROsCustomHeaderOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post202_retry200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -545,8 +535,6 @@ class LROsCustomHeaderOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post202_retry200(
@@ -696,8 +684,6 @@ class LROsCustomHeaderOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def begin_post_async_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -724,8 +710,6 @@ class LROsCustomHeaderOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(

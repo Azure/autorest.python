@@ -365,8 +365,6 @@ class PolymorphismOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -418,8 +416,6 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -734,8 +730,6 @@ class PolymorphismOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
         self,
@@ -756,8 +750,6 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -843,8 +835,6 @@ class PolymorphismOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_missing_discriminator(
         self,
@@ -864,8 +854,6 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_missing_discriminator(
@@ -981,8 +969,6 @@ class PolymorphismOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1029,8 +1015,6 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements

@@ -1421,8 +1421,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1443,8 +1441,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1530,8 +1526,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1551,8 +1545,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1753,8 +1745,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1775,8 +1765,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1862,8 +1850,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1883,8 +1869,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements

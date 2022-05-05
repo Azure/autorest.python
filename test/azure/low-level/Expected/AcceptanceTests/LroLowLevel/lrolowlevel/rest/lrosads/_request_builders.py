@@ -65,7 +65,6 @@ def build_put_non_retry400_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_non_retry400_request(
@@ -88,7 +87,6 @@ def build_put_non_retry400_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_non_retry400_request(
     **kwargs  # type: Any
@@ -173,7 +171,6 @@ def build_put_non_retry201_creating400_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_non_retry201_creating400_request(
@@ -197,7 +194,6 @@ def build_put_non_retry201_creating400_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_non_retry201_creating400_request(
     **kwargs  # type: Any
@@ -283,7 +279,6 @@ def build_put_non_retry201_creating400_invalid_json_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_non_retry201_creating400_invalid_json_request(
@@ -307,7 +302,6 @@ def build_put_non_retry201_creating400_invalid_json_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_non_retry201_creating400_invalid_json_request(
     **kwargs  # type: Any
@@ -393,7 +387,6 @@ def build_put_async_relative_retry400_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_async_relative_retry400_request(
@@ -417,7 +410,6 @@ def build_put_async_relative_retry400_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_async_relative_retry400_request(
     **kwargs  # type: Any
@@ -602,7 +594,6 @@ def build_post_non_retry400_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_non_retry400_request(
@@ -625,7 +616,6 @@ def build_post_non_retry400_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_non_retry400_request(
     **kwargs  # type: Any
@@ -709,7 +699,6 @@ def build_post202_non_retry400_request(
             }
     """
 
-    ...
 
 @overload
 def build_post202_non_retry400_request(
@@ -732,7 +721,6 @@ def build_post202_non_retry400_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post202_non_retry400_request(
     **kwargs  # type: Any
@@ -817,7 +805,6 @@ def build_post_async_relative_retry400_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_async_relative_retry400_request(
@@ -841,7 +828,6 @@ def build_post_async_relative_retry400_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_async_relative_retry400_request(
     **kwargs  # type: Any
@@ -926,7 +912,6 @@ def build_put_error201_no_provisioning_state_payload_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_error201_no_provisioning_state_payload_request(
@@ -949,7 +934,6 @@ def build_put_error201_no_provisioning_state_payload_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_error201_no_provisioning_state_payload_request(
     **kwargs  # type: Any
@@ -1035,7 +1019,6 @@ def build_put_async_relative_retry_no_status_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_async_relative_retry_no_status_request(
@@ -1060,7 +1043,6 @@ def build_put_async_relative_retry_no_status_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_async_relative_retry_no_status_request(
     **kwargs  # type: Any
@@ -1148,7 +1130,6 @@ def build_put_async_relative_retry_no_status_payload_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_async_relative_retry_no_status_payload_request(
@@ -1173,7 +1154,6 @@ def build_put_async_relative_retry_no_status_payload_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_async_relative_retry_no_status_payload_request(
     **kwargs  # type: Any
@@ -1327,7 +1307,6 @@ def build_post202_no_location_request(
             }
     """
 
-    ...
 
 @overload
 def build_post202_no_location_request(
@@ -1351,7 +1330,6 @@ def build_post202_no_location_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post202_no_location_request(
     **kwargs  # type: Any
@@ -1438,7 +1416,6 @@ def build_post_async_relative_retry_no_payload_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_async_relative_retry_no_payload_request(
@@ -1463,7 +1440,6 @@ def build_post_async_relative_retry_no_payload_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_async_relative_retry_no_payload_request(
     **kwargs  # type: Any
@@ -1550,7 +1526,6 @@ def build_put200_invalid_json_request(
             }
     """
 
-    ...
 
 @overload
 def build_put200_invalid_json_request(
@@ -1574,7 +1549,6 @@ def build_put200_invalid_json_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put200_invalid_json_request(
     **kwargs  # type: Any
@@ -1661,7 +1635,6 @@ def build_put_async_relative_retry_invalid_header_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_async_relative_retry_invalid_header_request(
@@ -1686,7 +1659,6 @@ def build_put_async_relative_retry_invalid_header_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_async_relative_retry_invalid_header_request(
     **kwargs  # type: Any
@@ -1774,7 +1746,6 @@ def build_put_async_relative_retry_invalid_json_polling_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_async_relative_retry_invalid_json_polling_request(
@@ -1799,7 +1770,6 @@ def build_put_async_relative_retry_invalid_json_polling_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_async_relative_retry_invalid_json_polling_request(
     **kwargs  # type: Any
@@ -1988,7 +1958,6 @@ def build_post202_retry_invalid_header_request(
             }
     """
 
-    ...
 
 @overload
 def build_post202_retry_invalid_header_request(
@@ -2012,7 +1981,6 @@ def build_post202_retry_invalid_header_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post202_retry_invalid_header_request(
     **kwargs  # type: Any
@@ -2099,7 +2067,6 @@ def build_post_async_relative_retry_invalid_header_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_async_relative_retry_invalid_header_request(
@@ -2124,7 +2091,6 @@ def build_post_async_relative_retry_invalid_header_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_async_relative_retry_invalid_header_request(
     **kwargs  # type: Any
@@ -2212,7 +2178,6 @@ def build_post_async_relative_retry_invalid_json_polling_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_async_relative_retry_invalid_json_polling_request(
@@ -2237,7 +2202,6 @@ def build_post_async_relative_retry_invalid_json_polling_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_async_relative_retry_invalid_json_polling_request(
     **kwargs  # type: Any

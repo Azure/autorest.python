@@ -59,7 +59,7 @@ def build_get_complex_type_ref_no_meta_request(
 
 def build_put_complex_type_ref_no_meta_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts a complex type that has a ref to a complex type with no XML node.
@@ -139,7 +139,7 @@ def build_get_complex_type_ref_with_meta_request(
 
 def build_put_complex_type_ref_with_meta_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts a complex type that has a ref to a complex type with XML node.
@@ -219,7 +219,7 @@ def build_get_simple_request(
 
 def build_put_simple_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Put a simple XML document.
@@ -310,7 +310,7 @@ def build_get_wrapped_lists_request(
 
 def build_put_wrapped_lists_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Put an XML document with multiple wrapped lists.
@@ -419,7 +419,7 @@ def build_get_empty_list_request(
 
 def build_put_empty_list_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts an empty list.
@@ -507,7 +507,7 @@ def build_get_empty_wrapped_lists_request(
 
 def build_put_empty_wrapped_lists_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts some empty wrapped lists.
@@ -589,7 +589,7 @@ def build_get_root_list_request(
 
 def build_put_root_list_request(
     *,
-    content: List[ET.Element],
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts a list as the root element.
@@ -671,7 +671,7 @@ def build_get_root_list_single_item_request(
 
 def build_put_root_list_single_item_request(
     *,
-    content: List[ET.Element],
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts a list with a single item.
@@ -753,7 +753,7 @@ def build_get_empty_root_list_request(
 
 def build_put_empty_root_list_request(
     *,
-    content: List[ET.Element],
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts an empty list as the root element.
@@ -835,7 +835,7 @@ def build_get_empty_child_element_request(
 
 def build_put_empty_child_element_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts a value with an empty child element.
@@ -970,7 +970,7 @@ def build_get_service_properties_request(
 
 def build_put_service_properties_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts storage service properties.
@@ -1151,7 +1151,7 @@ def build_get_acls_request(
 
 def build_put_acls_request(
     *,
-    content: List[ET.Element],
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Puts storage ACLs for a container.
@@ -1296,7 +1296,6 @@ def build_json_input_request(
             }
     """
 
-    ...
 
 @overload
 def build_json_input_request(
@@ -1322,7 +1321,6 @@ def build_json_input_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_json_input_request(
     **kwargs: Any
@@ -1461,7 +1459,7 @@ def build_get_bytes_request(
 
 def build_put_binary_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Put an XML document with binary property.
@@ -1541,7 +1539,7 @@ def build_get_uri_request(
 
 def build_put_uri_request(
     *,
-    content: ET.Element,
+    content: Any,
     **kwargs: Any
 ) -> HttpRequest:
     """Put an XML document with uri property.

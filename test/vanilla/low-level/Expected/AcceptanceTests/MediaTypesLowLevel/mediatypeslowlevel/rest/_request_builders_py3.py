@@ -55,7 +55,6 @@ def build_analyze_body_request(
             }
     """
 
-    ...
 
 @overload
 def build_analyze_body_request(
@@ -80,7 +79,6 @@ def build_analyze_body_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_analyze_body_request(
     **kwargs: Any
@@ -154,7 +152,6 @@ def build_analyze_body_no_accept_header_request(
             }
     """
 
-    ...
 
 @overload
 def build_analyze_body_no_accept_header_request(
@@ -180,7 +177,6 @@ def build_analyze_body_no_accept_header_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_analyze_body_no_accept_header_request(
     **kwargs: Any

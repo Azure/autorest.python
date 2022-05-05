@@ -206,7 +206,6 @@ def build_post_required_integer_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_required_integer_property_request(
@@ -230,7 +229,6 @@ def build_post_required_integer_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_required_integer_property_request(
     **kwargs  # type: Any
@@ -303,7 +301,6 @@ def build_post_optional_integer_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_optional_integer_property_request(
@@ -326,7 +323,6 @@ def build_post_optional_integer_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_optional_integer_property_request(
     **kwargs  # type: Any
@@ -552,7 +548,6 @@ def build_post_required_string_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_required_string_property_request(
@@ -576,7 +571,6 @@ def build_post_required_string_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_required_string_property_request(
     **kwargs  # type: Any
@@ -649,7 +643,6 @@ def build_post_optional_string_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_optional_string_property_request(
@@ -672,7 +665,6 @@ def build_post_optional_string_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_optional_string_property_request(
     **kwargs  # type: Any
@@ -822,7 +814,6 @@ def build_post_required_class_parameter_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_required_class_parameter_request(
@@ -846,7 +837,6 @@ def build_post_required_class_parameter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_required_class_parameter_request(
     **kwargs  # type: Any
@@ -920,7 +910,6 @@ def build_post_optional_class_parameter_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_optional_class_parameter_request(
@@ -943,7 +932,6 @@ def build_post_optional_class_parameter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_optional_class_parameter_request(
     **kwargs  # type: Any
@@ -1019,7 +1007,6 @@ def build_post_required_class_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_required_class_property_request(
@@ -1043,7 +1030,6 @@ def build_post_required_class_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_required_class_property_request(
     **kwargs  # type: Any
@@ -1119,7 +1105,6 @@ def build_post_optional_class_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_optional_class_property_request(
@@ -1142,7 +1127,6 @@ def build_post_optional_class_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_optional_class_property_request(
     **kwargs  # type: Any
@@ -1215,7 +1199,6 @@ def build_post_required_array_parameter_request(
             ]
     """
 
-    ...
 
 @overload
 def build_post_required_array_parameter_request(
@@ -1239,7 +1222,6 @@ def build_post_required_array_parameter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_required_array_parameter_request(
     **kwargs  # type: Any
@@ -1312,7 +1294,6 @@ def build_post_optional_array_parameter_request(
             ]
     """
 
-    ...
 
 @overload
 def build_post_optional_array_parameter_request(
@@ -1335,7 +1316,6 @@ def build_post_optional_array_parameter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_optional_array_parameter_request(
     **kwargs  # type: Any
@@ -1410,7 +1390,6 @@ def build_post_required_array_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_required_array_property_request(
@@ -1434,7 +1413,6 @@ def build_post_required_array_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_required_array_property_request(
     **kwargs  # type: Any
@@ -1509,7 +1487,6 @@ def build_post_optional_array_property_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_optional_array_property_request(
@@ -1532,7 +1509,6 @@ def build_post_optional_array_property_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_optional_array_property_request(
     **kwargs  # type: Any

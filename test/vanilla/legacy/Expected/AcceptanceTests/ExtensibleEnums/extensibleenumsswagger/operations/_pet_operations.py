@@ -181,8 +181,6 @@ class PetOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def add_pet(
         self,
@@ -202,8 +200,6 @@ class PetOperations(object):
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def add_pet(

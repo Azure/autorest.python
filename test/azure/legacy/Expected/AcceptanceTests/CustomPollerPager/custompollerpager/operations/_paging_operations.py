@@ -161,8 +161,8 @@ def build_get_with_query_params_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
     query_constant = kwargs.pop('query_constant', _params.pop('queryConstant', True))  # type: bool
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1958,7 +1958,7 @@ class PagingOperations(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
 
         _maxresults = None
         _timeout = None

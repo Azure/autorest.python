@@ -141,7 +141,6 @@ def build_validation_of_body_request(
             }
     """
 
-    ...
 
 @overload
 def build_validation_of_body_request(
@@ -174,7 +173,6 @@ def build_validation_of_body_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_validation_of_body_request(
     resource_group_name,  # type: str
@@ -327,7 +325,6 @@ def build_post_with_constant_in_body_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_with_constant_in_body_request(
@@ -353,7 +350,6 @@ def build_post_with_constant_in_body_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_with_constant_in_body_request(
     **kwargs  # type: Any

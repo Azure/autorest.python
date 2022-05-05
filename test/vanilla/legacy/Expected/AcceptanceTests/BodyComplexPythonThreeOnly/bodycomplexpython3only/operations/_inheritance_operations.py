@@ -147,8 +147,6 @@ class InheritanceOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -167,8 +165,6 @@ class InheritanceOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements

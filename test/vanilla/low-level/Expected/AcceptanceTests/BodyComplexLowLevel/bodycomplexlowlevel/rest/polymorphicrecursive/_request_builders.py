@@ -144,7 +144,6 @@ def build_put_valid_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_valid_request(
@@ -219,7 +218,6 @@ def build_put_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_valid_request(
     **kwargs  # type: Any

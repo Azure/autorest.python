@@ -1285,7 +1285,6 @@ def build_json_input_request(
             }
     """
 
-    ...
 
 @overload
 def build_json_input_request(
@@ -1309,7 +1308,6 @@ def build_json_input_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_json_input_request(
     **kwargs  # type: Any

@@ -101,7 +101,6 @@ class OperationGroupOneOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     def test_two(
         self,
@@ -122,7 +121,6 @@ class OperationGroupOneOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace
     def test_two(

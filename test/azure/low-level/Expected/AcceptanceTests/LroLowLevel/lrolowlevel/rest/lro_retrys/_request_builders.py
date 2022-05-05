@@ -67,7 +67,6 @@ def build_put201_creating_succeeded200_request(
             }
     """
 
-    ...
 
 @overload
 def build_put201_creating_succeeded200_request(
@@ -92,7 +91,6 @@ def build_put201_creating_succeeded200_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put201_creating_succeeded200_request(
     **kwargs  # type: Any
@@ -180,7 +178,6 @@ def build_put_async_relative_retry_succeeded_request(
             }
     """
 
-    ...
 
 @overload
 def build_put_async_relative_retry_succeeded_request(
@@ -205,7 +202,6 @@ def build_put_async_relative_retry_succeeded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_put_async_relative_retry_succeeded_request(
     **kwargs  # type: Any
@@ -395,7 +391,6 @@ def build_post202_retry200_request(
             }
     """
 
-    ...
 
 @overload
 def build_post202_retry200_request(
@@ -419,7 +414,6 @@ def build_post202_retry200_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post202_retry200_request(
     **kwargs  # type: Any
@@ -506,7 +500,6 @@ def build_post_async_relative_retry_succeeded_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_async_relative_retry_succeeded_request(
@@ -531,7 +524,6 @@ def build_post_async_relative_retry_succeeded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_async_relative_retry_succeeded_request(
     **kwargs  # type: Any

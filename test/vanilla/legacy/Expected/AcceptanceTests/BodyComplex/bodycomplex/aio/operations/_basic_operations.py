@@ -117,8 +117,6 @@ class BasicOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -135,8 +133,6 @@ class BasicOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements

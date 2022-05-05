@@ -179,7 +179,6 @@ def build_post_parameters_request(
             }
     """
 
-    ...
 
 @overload
 def build_post_parameters_request(
@@ -205,7 +204,6 @@ def build_post_parameters_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    ...
 
 def build_post_parameters_request(
     **kwargs: Any

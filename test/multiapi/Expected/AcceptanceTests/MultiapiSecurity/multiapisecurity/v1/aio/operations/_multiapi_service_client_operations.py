@@ -179,7 +179,6 @@ class MultiapiServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
     @overload
     async def begin_test_lro(
         self,
@@ -209,7 +208,6 @@ class MultiapiServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
 
     @distributed_trace_async
     async def begin_test_lro(

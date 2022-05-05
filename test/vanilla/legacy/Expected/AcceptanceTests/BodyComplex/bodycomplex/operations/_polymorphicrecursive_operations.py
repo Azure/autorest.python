@@ -222,8 +222,6 @@ class PolymorphicrecursiveOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        ...
-
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -295,8 +293,6 @@ class PolymorphicrecursiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
