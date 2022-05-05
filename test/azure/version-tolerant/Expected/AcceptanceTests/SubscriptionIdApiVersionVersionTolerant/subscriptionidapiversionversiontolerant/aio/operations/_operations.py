@@ -77,7 +77,7 @@ class GroupOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2014-04-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_group_get_sample_resource_group_request(
             resource_group_name=resource_group_name,

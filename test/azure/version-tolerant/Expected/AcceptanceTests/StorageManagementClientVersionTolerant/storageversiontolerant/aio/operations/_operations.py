@@ -181,7 +181,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None
         _content = None
@@ -233,7 +233,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         _json = None
         _content = None
@@ -810,7 +810,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_storage_accounts_get_properties_request(
             resource_group_name=resource_group_name,
@@ -1190,7 +1190,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None
         _content = None
@@ -1262,7 +1262,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_storage_accounts_list_keys_request(
             resource_group_name=resource_group_name,
@@ -1720,7 +1720,7 @@ class StorageAccountsOperations:
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None
         _content = None
@@ -1820,7 +1820,7 @@ class UsageOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_usage_list_request(
             subscription_id=self._config.subscription_id,

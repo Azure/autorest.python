@@ -1020,10 +1020,13 @@ class M4Reformatter(YamlUpdatePlugin):
         yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(
             KNOWN_TYPES.values()
         )
-        del yaml_data["globalParameters"]
+        if yaml_data.get("globalParameters"):
+            del yaml_data["globalParameters"]
         del yaml_data["info"]
         del yaml_data["language"]
         del yaml_data["protocol"]
-        del yaml_data["schemas"]
-        del yaml_data["security"]
+        if yaml_data.get("schemas"):
+            del yaml_data["schemas"]
+        if yaml_data.get("security"):
+            del yaml_data["security"]
         ORIGINAL_ID_TO_UPDATED_TYPE.clear()

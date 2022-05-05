@@ -29,6 +29,11 @@ class RequestBuilderBodyParameter(BodyParameter):
         else:
             self.client_name = "json"
 
+    def type_annotation(self) -> str:
+        if self.type.is_xml:
+            return "Any"  # xml type technically not in type signature for HttpRequest content param
+        return super().type_annotation()
+
     @property
     def in_method_signature(self) -> bool:
         return super().in_method_signature and not self.is_partial_body

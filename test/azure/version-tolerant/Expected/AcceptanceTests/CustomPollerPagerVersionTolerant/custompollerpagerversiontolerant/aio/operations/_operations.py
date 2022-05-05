@@ -1386,7 +1386,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_paging_get_multiple_pages_lro_request(
             client_request_id=client_request_id,

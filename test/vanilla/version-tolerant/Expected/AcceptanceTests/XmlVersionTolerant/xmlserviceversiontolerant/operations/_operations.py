@@ -51,7 +51,7 @@ def build_xml_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_complex_type_ref_no_meta_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -79,7 +79,7 @@ def build_xml_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_complex_type_ref_with_meta_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -107,7 +107,7 @@ def build_xml_get_simple_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_simple_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -138,7 +138,7 @@ def build_xml_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_wrapped_lists_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -176,7 +176,7 @@ def build_xml_get_empty_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_empty_list_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -204,7 +204,7 @@ def build_xml_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_empty_wrapped_lists_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -232,7 +232,7 @@ def build_xml_get_root_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_root_list_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -260,7 +260,7 @@ def build_xml_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_root_list_single_item_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -288,7 +288,7 @@ def build_xml_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_empty_root_list_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -316,7 +316,7 @@ def build_xml_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_empty_child_element_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -370,7 +370,7 @@ def build_xml_get_service_properties_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_xml_put_service_properties_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_service_properties_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -412,7 +412,7 @@ def build_xml_get_acls_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_xml_put_acls_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -510,7 +510,7 @@ def build_xml_get_bytes_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_binary_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -541,7 +541,7 @@ def build_xml_get_uri_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_uri_request(*, content: ET.Element, **kwargs: Any) -> HttpRequest:
+def build_xml_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
