@@ -1462,8 +1462,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put200_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1507,8 +1505,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put200_succeeded(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -1713,8 +1709,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_patch200_succeeded_ignore_headers(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -1758,8 +1752,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_patch200_succeeded_ignore_headers(
@@ -1977,8 +1969,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_patch201_retry_with_async_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2021,8 +2011,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_patch201_retry_with_async_header(
@@ -2238,8 +2226,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_patch202_retry_with_async_and_location_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2283,8 +2269,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_patch202_retry_with_async_and_location_header(
@@ -2484,8 +2468,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put201_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2529,8 +2511,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put201_succeeded(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -2848,8 +2828,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put200_succeeded_no_state(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -2893,8 +2871,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put200_succeeded_no_state(
@@ -3095,8 +3071,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put202_retry200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3141,8 +3115,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put202_retry200(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -3349,8 +3321,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put201_creating_succeeded200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3395,8 +3365,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
@@ -3598,8 +3566,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put200_updating_succeeded204(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3644,8 +3610,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put200_updating_succeeded204(
@@ -3854,8 +3818,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put201_creating_failed200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -3900,8 +3862,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put201_creating_failed200(
@@ -4103,8 +4063,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put200_acceptedcanceled200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4149,8 +4107,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put200_acceptedcanceled200(
@@ -4354,8 +4310,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_no_header_in_retry(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4399,8 +4353,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_no_header_in_retry(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -4609,8 +4561,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4655,8 +4605,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_retry_succeeded(
@@ -4871,8 +4819,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_no_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -4917,8 +4863,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_no_retry_succeeded(
@@ -5133,8 +5077,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_retry_failed(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -5179,8 +5121,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_retry_failed(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -5393,8 +5333,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_no_retrycanceled(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -5439,8 +5377,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_no_retrycanceled(
@@ -5653,8 +5589,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_no_header_in_retry(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -5699,8 +5633,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_no_header_in_retry(
@@ -5883,8 +5815,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_non_resource(
         self, sku: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -5916,8 +5846,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str"  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_non_resource(self, sku: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -6075,8 +6003,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_non_resource(
         self, sku: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -6108,8 +6034,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str"  # Optional.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_non_resource(self, sku: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -6277,8 +6201,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_sub_resource(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -6315,8 +6237,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_sub_resource(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -6494,8 +6414,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_sub_resource(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -6532,8 +6450,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_sub_resource(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -7985,8 +7901,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post202_retry200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -8010,8 +7924,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_retry200(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[None]:
@@ -8187,8 +8099,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post202_no_retry204(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -8232,8 +8142,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_no_retry204(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -8782,8 +8690,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -8828,8 +8734,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_retry_succeeded(
@@ -9043,8 +8947,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_no_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -9089,8 +8991,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_no_retry_succeeded(
@@ -9277,8 +9177,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_retry_failed(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -9303,8 +9201,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_retry_failed(
@@ -9465,8 +9361,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_retrycanceled(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -9491,8 +9385,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_retrycanceled(
@@ -9693,8 +9585,6 @@ class LRORetrysOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_put201_creating_succeeded200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -9739,8 +9629,6 @@ class LRORetrysOperations:
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
@@ -9951,8 +9839,6 @@ class LRORetrysOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_relative_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -9997,8 +9883,6 @@ class LRORetrysOperations:
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(
@@ -10474,8 +10358,6 @@ class LRORetrysOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_post202_retry200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -10499,8 +10381,6 @@ class LRORetrysOperations:
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_retry200(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[None]:
@@ -10658,8 +10538,6 @@ class LRORetrysOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_relative_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -10684,8 +10562,6 @@ class LRORetrysOperations:
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(
@@ -10884,8 +10760,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_non_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -10928,8 +10802,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_non_retry400(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -11133,8 +11005,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_non_retry201_creating400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -11178,8 +11048,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_non_retry201_creating400(
@@ -11388,8 +11256,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_non_retry201_creating400_invalid_json(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -11433,8 +11299,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_non_retry201_creating400_invalid_json(
@@ -11641,8 +11505,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_relative_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -11686,8 +11548,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_relative_retry400(
@@ -12118,8 +11978,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_non_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -12142,8 +12000,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_non_retry400(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[None]:
@@ -12295,8 +12151,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post202_non_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -12319,8 +12173,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_non_retry400(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[None]:
@@ -12476,8 +12328,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_relative_retry400(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -12501,8 +12351,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_relative_retry400(
@@ -12684,8 +12532,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_error201_no_provisioning_state_payload(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -12728,8 +12574,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_error201_no_provisioning_state_payload(
@@ -12938,8 +12782,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_relative_retry_no_status(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -12984,8 +12826,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status(
@@ -13203,8 +13043,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_relative_retry_no_status_payload(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -13249,8 +13087,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status_payload(
@@ -13600,8 +13436,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post202_no_location(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -13625,8 +13459,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_no_location(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[None]:
@@ -13784,8 +13616,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_relative_retry_no_payload(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -13810,8 +13640,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_relative_retry_no_payload(
@@ -13988,8 +13816,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put200_invalid_json(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -14033,8 +13859,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put200_invalid_json(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[JSON]:
@@ -14242,8 +14066,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_relative_retry_invalid_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -14288,8 +14110,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_header(
@@ -14507,8 +14327,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_relative_retry_invalid_json_polling(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -14553,8 +14371,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_json_polling(
@@ -14996,8 +14812,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post202_retry_invalid_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -15021,8 +14835,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_retry_invalid_header(
@@ -15182,8 +14994,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_relative_retry_invalid_header(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -15208,8 +15018,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_header(
@@ -15370,8 +15178,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_relative_retry_invalid_json_polling(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -15396,8 +15202,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_json_polling(
@@ -15599,8 +15403,6 @@ class LROsCustomHeaderOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_put_async_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -15646,8 +15448,6 @@ class LROsCustomHeaderOperations:
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put_async_retry_succeeded(
@@ -15865,8 +15665,6 @@ class LROsCustomHeaderOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_put201_creating_succeeded200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -15912,8 +15710,6 @@ class LROsCustomHeaderOperations:
                     "type": "str"  # Optional. Resource Type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
@@ -16098,8 +15894,6 @@ class LROsCustomHeaderOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_post202_retry200(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -16124,8 +15918,6 @@ class LROsCustomHeaderOperations:
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post202_retry200(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> LROPoller[None]:
@@ -16285,8 +16077,6 @@ class LROsCustomHeaderOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_post_async_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
@@ -16312,8 +16102,6 @@ class LROsCustomHeaderOperations:
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
-        ...
 
     @distributed_trace
     def begin_post_async_retry_succeeded(

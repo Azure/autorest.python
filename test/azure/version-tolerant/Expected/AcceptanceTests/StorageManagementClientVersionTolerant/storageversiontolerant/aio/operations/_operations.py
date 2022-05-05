@@ -106,8 +106,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     async def check_name_availability(
         self, account_name: IO, *, content_type: Optional[str] = None, **kwargs: Any
@@ -140,8 +138,6 @@ class StorageAccountsOperations:
                       Known values are: "AccountNameInvalid" and "AlreadyExists".
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def check_name_availability(self, account_name: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -403,8 +399,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     async def begin_create(
         self,
@@ -513,8 +507,6 @@ class StorageAccountsOperations:
                     "type": "str"  # Optional. Resource type.
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def begin_create(
@@ -973,8 +965,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     async def update(
         self,
@@ -1080,8 +1070,6 @@ class StorageAccountsOperations:
                     "type": "str"  # Optional. Resource type.
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def update(
@@ -1638,8 +1626,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     async def regenerate_key(
         self,
@@ -1677,8 +1663,6 @@ class StorageAccountsOperations:
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
         """
-
-        ...
 
     @distributed_trace_async
     async def regenerate_key(

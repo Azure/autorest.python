@@ -374,8 +374,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     def check_name_availability(self, account_name: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Checks that account name is valid and is not in use.
@@ -406,8 +404,6 @@ class StorageAccountsOperations:
                       Known values are: "AccountNameInvalid" and "AlreadyExists".
                 }
         """
-
-        ...
 
     @distributed_trace
     def check_name_availability(self, account_name: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -669,8 +665,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     def begin_create(
         self,
@@ -779,8 +773,6 @@ class StorageAccountsOperations:
                     "type": "str"  # Optional. Resource type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def begin_create(
@@ -1239,8 +1231,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     def update(
         self,
@@ -1346,8 +1336,6 @@ class StorageAccountsOperations:
                     "type": "str"  # Optional. Resource type.
                 }
         """
-
-        ...
 
     @distributed_trace
     def update(self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
@@ -1902,8 +1890,6 @@ class StorageAccountsOperations:
                 }
         """
 
-        ...
-
     @overload
     def regenerate_key(
         self,
@@ -1941,8 +1927,6 @@ class StorageAccountsOperations:
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
         """
-
-        ...
 
     @distributed_trace
     def regenerate_key(
