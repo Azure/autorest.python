@@ -14,6 +14,7 @@ from .imports import FileImport, ImportType, TypingSection
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 class OperationGroup(BaseModel):
     """Represent an operation group."""
 

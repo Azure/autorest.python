@@ -24,6 +24,7 @@ from ..models import (
 )
 from .builder_serializer import get_operation_serializer
 
+
 def _correct_credential_parameter(
     client_parameters: ClientGlobalParameterList, async_mode: bool
 ) -> None:
@@ -267,5 +268,5 @@ class MetadataSerializer:
                 async_mode=False,
                 is_python3_file=False,
             ),
-            has_credential=bool(self.code_model.credential)
+            has_credential=bool(self.code_model.credential),
         )

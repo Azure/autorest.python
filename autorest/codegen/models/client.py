@@ -41,7 +41,6 @@ class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
 
 
 class Client(_ClientConfigBase[ClientGlobalParameterList]):
-
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
             if async_mode:

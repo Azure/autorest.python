@@ -435,6 +435,7 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
             if k.location == ParameterLocation.ENDPOINT_PATH
         ]
 
+
 class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
     @staticmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ConfigParameter]:

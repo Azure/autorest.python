@@ -52,18 +52,17 @@ def get_type(yaml_data: Dict[str, Any]):
     except KeyError:
         return KNOWN_TYPES[yaml_data["type"]]
 
+
 def _get_api_versions(api_versions: List[Dict[str, str]]) -> List[str]:
-    return list({
-        api_version["version"]: None
-        for api_version in api_versions
-    }.keys())
+    return list({api_version["version"]: None for api_version in api_versions}.keys())
+
 
 def _update_type_base(updated_type: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "type": updated_type,
         "clientDefaultValue": yaml_data.get("defaultValue"),
         "xmlMetadata": yaml_data.get("serialization", {}).get("xml", {}),
-        "apiVersions": _get_api_versions(yaml_data.get("apiVersions", []))
+        "apiVersions": _get_api_versions(yaml_data.get("apiVersions", [])),
     }
 
 
@@ -1018,7 +1017,9 @@ class M4Reformatter(YamlUpdatePlugin):
         yaml_data["operationGroups"] = [
             self.update_operation_group(og) for og in yaml_data["operationGroups"]
         ]
-        yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(KNOWN_TYPES.values())
+        yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(
+            KNOWN_TYPES.values()
+        )
         del yaml_data["globalParameters"]
         del yaml_data["info"]
         del yaml_data["language"]
