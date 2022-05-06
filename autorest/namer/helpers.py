@@ -8,7 +8,7 @@ from .python_mappings import PadType, RESERVED_WORDS
 
 
 def to_snake_case(name: str) -> str:
-    def replace_upper_characters(m: re.Match[str]) -> str:
+    def replace_upper_characters(m) -> str:
         match_str = m.group().lower()
         if m.start() > 0 and name[m.start() - 1] == "_":
             # we are good if a '_' already exists
