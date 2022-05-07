@@ -35,7 +35,7 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DeserializationError
 
 from additionalproperties import AdditionalPropertiesClient
 from additionalproperties.models import (

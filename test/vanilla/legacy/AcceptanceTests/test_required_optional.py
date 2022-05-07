@@ -33,7 +33,6 @@ import io
 from datetime import date, datetime, timedelta
 from os.path import dirname, pardir, join, realpath
 
-from azure.core.exceptions import DeserializationError, SerializationError
 from msrest.exceptions import ValidationError
 
 from requiredoptional import AutoRestRequiredOptionalTestService

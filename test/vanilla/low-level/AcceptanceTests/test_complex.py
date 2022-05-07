@@ -39,7 +39,7 @@ from bodycomplexlowlevel.rest import (
     inheritance,
 )
 from azure.core.exceptions import HttpResponseError
-from msrest import Serializer, Deserializer
+from bodycomplexlowlevel._serialization import Serializer, Deserializer
 from base64 import b64decode, b64encode
 
 class UTC(tzinfo):

@@ -473,7 +473,6 @@ class JinjaSerializer:
             not self.code_model.options["client_side_validation"]
             and not self.code_model.options["multiapi"]
         ):
-            # serialization.py from msrest
             self._autorestapi.write_file(
                 namespace_path / Path("_serialization.py"),
                 general_serializer.serialize_serialization_file(),

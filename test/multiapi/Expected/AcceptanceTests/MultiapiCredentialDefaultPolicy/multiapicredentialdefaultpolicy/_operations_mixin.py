@@ -8,7 +8,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from msrest import Serializer, Deserializer
+from ._serialization import Serializer, Deserializer
 from typing import TYPE_CHECKING
 
 from . import models as _models

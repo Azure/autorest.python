@@ -34,8 +34,7 @@ from datetime import date, datetime, timedelta, tzinfo
 import os
 from os.path import dirname, pardir, join, realpath
 
-from azure.core.exceptions import DeserializationError, SerializationError
-from msrest.exceptions import ValidationError
+from msrest.exceptions import DeserializationError, ValidationError
 
 from bodycomplex import AutoRestComplexTestService
 from bodycomplex.models import *

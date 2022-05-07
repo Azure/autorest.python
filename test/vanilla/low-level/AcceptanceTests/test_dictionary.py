@@ -28,6 +28,7 @@ import json
 from datetime import timedelta
 from bodydictionarylowlevel.rest import dictionary
 from bodydictionarylowlevel import AutoRestSwaggerBATDictionaryService
+from bodydictionarylowlevel._serialization import Serializer, Deserializer
 from azure.core.exceptions import DecodeError
 from .utils import JSON_DECODE_ERROR
 
@@ -75,6 +76,14 @@ def test_dict():
     test_product2 = {"integer": 3, "string": "4"}
     test_product3 = {"integer": 5, "string": "6"}
     return {"0":test_product1, "1":test_product2, "2":test_product3}
+
+@pytest.fixture
+def serializer():
+    return Serializer()
+
+@pytest.fixture
+def deserializer():
+    return Deserializer()
 
 # Primitive types
 def test_boolean_tfft(send_request, send_request_json_response):
@@ -173,97 +182,97 @@ def test_get_string_with_null_and_invalid(send_request_json_response):
     request = dictionary.build_get_string_with_invalid_request()
     assert string_invalid_dict == send_request_json_response(request)
 
-def test_date_valid(send_request, get_serialized_dict, get_deserialized_dict, msrest_serializer, msrest_deserializer):
+def test_date_valid(send_request, get_serialized_dict, get_deserialized_dict, serializer, deserializer):
     date1 = isodate.parse_date("2000-12-01T00:00:00Z")
     date2 = isodate.parse_date("1980-01-02T00:00:00Z")
     date3 = isodate.parse_date("1492-10-12T00:00:00Z")
     valid_date_dict = {"0":date1, "1":date2, "2":date3}
 
     request = dictionary.build_get_date_valid_request()
-    assert get_deserialized_dict(request, msrest_deserializer.deserialize_date) ==  valid_date_dict
+    assert get_deserialized_dict(request, deserializer.deserialize_date) ==  valid_date_dict
 
-    request = dictionary.build_put_date_valid_request(json=get_serialized_dict(valid_date_dict, msrest_serializer.serialize_date))
+    request = dictionary.build_put_date_valid_request(json=get_serialized_dict(valid_date_dict, serializer.serialize_date))
     send_request(request)
 
-def test_get_date_invalid(send_request_json_response, msrest_deserializer, get_deserialized_dict):
+def test_get_date_invalid(send_request_json_response, deserializer, get_deserialized_dict):
     date_null_dict = {"0":isodate.parse_date("2012-01-01"),
                         "1":None,
                         "2":isodate.parse_date("1776-07-04")}
     request = dictionary.build_get_date_invalid_null_request()
-    assert date_null_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_date)
+    assert date_null_dict == get_deserialized_dict(request, deserializer.deserialize_date)
 
     request = dictionary.build_get_date_invalid_chars_request()
     assert {"0": "2011-03-22", "1": "date"} == send_request_json_response(request)
 
-def test_date_time_valid(send_request, get_deserialized_dict, get_serialized_dict, msrest_serializer, msrest_deserializer):
+def test_date_time_valid(send_request, get_deserialized_dict, get_serialized_dict, serializer, deserializer):
     datetime1 = isodate.parse_datetime("2000-12-01T00:00:01Z")
     datetime2 = isodate.parse_datetime("1980-01-02T00:11:35+01:00")
     datetime3 = isodate.parse_datetime("1492-10-12T10:15:01-08:00")
     valid_datetime_dict = {"0":datetime1, "1":datetime2, "2":datetime3}
 
     request = dictionary.build_get_date_time_valid_request()
-    assert valid_datetime_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_iso)
+    assert valid_datetime_dict == get_deserialized_dict(request, deserializer.deserialize_iso)
 
     request = dictionary.build_put_date_time_valid_request(
-        json=get_serialized_dict(valid_datetime_dict, msrest_serializer.serialize_iso)
+        json=get_serialized_dict(valid_datetime_dict, serializer.serialize_iso)
     )
     send_request(request)
 
-def test_get_date_time_invalid(send_request_json_response, msrest_deserializer, get_deserialized_dict):
+def test_get_date_time_invalid(send_request_json_response, deserializer, get_deserialized_dict):
     datetime_null_dict = {"0":isodate.parse_datetime("2000-12-01T00:00:01Z"), "1":None}
     request = dictionary.build_get_date_time_invalid_null_request()
-    assert datetime_null_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_iso)
+    assert datetime_null_dict == get_deserialized_dict(request, deserializer.deserialize_iso)
 
     request = dictionary.build_get_date_time_invalid_chars_request()
     assert {"0": "2000-12-01t00:00:01z", "1": "date-time"} == send_request_json_response(request)
 
-def test_date_time_rfc1123_valid(send_request, get_deserialized_dict, get_serialized_dict, msrest_serializer, msrest_deserializer):
+def test_date_time_rfc1123_valid(send_request, get_deserialized_dict, get_serialized_dict, serializer, deserializer):
     rfc_datetime1 = isodate.parse_datetime("2000-12-01T00:00:01Z")
     rfc_datetime2 = isodate.parse_datetime("1980-01-02T00:11:35Z")
     rfc_datetime3 = isodate.parse_datetime("1492-10-12T10:15:01Z")
     valid_rfc_dict = {"0":rfc_datetime1, "1":rfc_datetime2, "2":rfc_datetime3}
 
     request = dictionary.build_get_date_time_rfc1123_valid_request()
-    assert valid_rfc_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_rfc)
+    assert valid_rfc_dict == get_deserialized_dict(request, deserializer.deserialize_rfc)
 
-    request = dictionary.build_put_date_time_rfc1123_valid_request(json=get_serialized_dict(valid_rfc_dict, msrest_serializer.serialize_rfc))
+    request = dictionary.build_put_date_time_rfc1123_valid_request(json=get_serialized_dict(valid_rfc_dict, serializer.serialize_rfc))
     send_request(request)
 
-def test_get_duration_valid(send_request, msrest_serializer, msrest_deserializer, get_deserialized_dict, get_serialized_dict):
+def test_get_duration_valid(send_request, serializer, deserializer, get_deserialized_dict, get_serialized_dict):
     duration1 = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
     duration2 = timedelta(days=5, hours=1)
     valid_duration_dict = {"0":duration1, "1":duration2}
 
     request = dictionary.build_get_duration_valid_request()
-    assert valid_duration_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_duration)
+    assert valid_duration_dict == get_deserialized_dict(request, deserializer.deserialize_duration)
 
-    request = dictionary.build_put_duration_valid_request(json=get_serialized_dict(valid_duration_dict, msrest_serializer.serialize_duration))
+    request = dictionary.build_put_duration_valid_request(json=get_serialized_dict(valid_duration_dict, serializer.serialize_duration))
     send_request(request)
 
-def test_bytes_valid(send_request, msrest_serializer, msrest_deserializer, get_serialized_dict, get_deserialized_dict):
+def test_bytes_valid(send_request, serializer, deserializer, get_serialized_dict, get_deserialized_dict):
     bytes1 = bytearray([0x0FF, 0x0FF, 0x0FF, 0x0FA])
     bytes2 = bytearray([0x01, 0x02, 0x03])
     bytes3 = bytearray([0x025, 0x029, 0x043])
     bytes4 = bytearray([0x0AB, 0x0AC, 0x0AD])
 
     bytes_valid = {"0":bytes1, "1":bytes2, "2":bytes3}
-    request = dictionary.build_put_byte_valid_request(json=get_serialized_dict(bytes_valid, msrest_serializer.serialize_bytearray))
+    request = dictionary.build_put_byte_valid_request(json=get_serialized_dict(bytes_valid, serializer.serialize_bytearray))
     send_request(request)
 
     request = dictionary.build_get_byte_valid_request()
-    assert bytes_valid == get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray)
+    assert bytes_valid == get_deserialized_dict(request, deserializer.deserialize_bytearray)
 
-def test_get_byte_invalid_null(msrest_deserializer, get_deserialized_dict):
+def test_get_byte_invalid_null(deserializer, get_deserialized_dict):
     bytes4 = bytearray([0x0AB, 0x0AC, 0x0AD])
     bytes_null = {"0":bytes4, "1":None}
     request = dictionary.build_get_byte_invalid_null_request()
-    assert bytes_null == get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray)
-def test_get_base64_url(msrest_deserializer, get_deserialized_dict):
+    assert bytes_null == get_deserialized_dict(request, deserializer.deserialize_bytearray)
+def test_get_base64_url(deserializer, get_deserialized_dict):
     test_dict = {'0': 'a string that gets encoded with base64url'.encode(),
                     '1': 'test string'.encode(),
                     '2': 'Lorem ipsum'.encode()}
     request = dictionary.build_get_base64_url_request()
-    assert test_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_base64)
+    assert test_dict == get_deserialized_dict(request, deserializer.deserialize_base64)
 
 # Basic dictionary parsing
 def test_empty(send_request, send_request_json_response):
