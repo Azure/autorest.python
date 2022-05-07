@@ -28,6 +28,7 @@ from async_generator import yield_, async_generator
 
 from paginglowlevel.aio import AutoRestPagingTestService
 from paginglowlevel.rest import paging
+from paginglowlevel._serialization import Serializer, Deserializer
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, RequestIdPolicy
@@ -108,6 +109,14 @@ def get_pager(get_next_fixture, extract_data_fixture):
 
         return AsyncItemPaged(get_next, extract_data)
     return _callback
+
+@pytest.fixture()
+def serializer():
+    return Serializer()
+
+@pytest.fixture()
+def deserializer():
+    return Deserializer()
 
 @pytest.mark.asyncio
 async def test_get_no_item_name_pages(get_pager):
