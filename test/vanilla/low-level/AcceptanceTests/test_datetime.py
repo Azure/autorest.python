@@ -26,7 +26,7 @@
 
 import isodate
 
-from msrest.exceptions import DeserializationError, SerializationError
+from azure.core.exceptions import DeserializationError, SerializationError
 
 from bodydatetimelowlevel import AutoRestDateTimeTestService
 from bodydatetimelowlevel.rest import datetime

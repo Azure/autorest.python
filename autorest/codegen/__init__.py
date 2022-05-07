@@ -148,7 +148,7 @@ class CodeGenerator(Plugin):
     def _build_package_dependency() -> Dict[str, str]:
         return {
             "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.0",
-            "dependency_azure_core": "azure-core<2.0.0,>=1.23.0",
+            "dependency_azure_core": "azure-core<2.0.0,>=1.24.0",
             "dependency_msrest": "msrest>=0.6.21",
         }
 

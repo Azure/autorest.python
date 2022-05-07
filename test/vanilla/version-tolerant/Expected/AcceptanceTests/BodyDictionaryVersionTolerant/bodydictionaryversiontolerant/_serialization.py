@@ -48,8 +48,7 @@ import isodate
 
 from typing import Dict, Any, cast, TYPE_CHECKING
 
-from msrest.exceptions import DeserializationError, SerializationError
-from azure.core.exceptions import AzureError, raise_with_traceback
+from azure.core.exceptions import DeserializationError, SerializationError, raise_with_traceback
 
 _BOM = codecs.BOM_UTF8.decode(encoding="utf-8")
 

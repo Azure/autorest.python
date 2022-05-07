@@ -27,7 +27,7 @@
 import isodate
 from async_generator import yield_, async_generator
 
-from msrest.exceptions import DeserializationError, SerializationError
+from azure.core.exceptions import DeserializationError, SerializationError
 
 from bodydatetimelowlevel.aio import AutoRestDateTimeTestService
 from bodydatetimelowlevel.rest import datetime
