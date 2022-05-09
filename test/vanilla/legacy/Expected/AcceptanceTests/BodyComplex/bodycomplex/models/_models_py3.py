@@ -9,7 +9,6 @@
 import datetime
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 if TYPE_CHECKING:
@@ -33,7 +32,7 @@ class ArrayWrapper(msrest.serialization.Model):
         :keyword array:
         :paramtype array: list[str]
         """
-        super(ArrayWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.array = array
 
 
@@ -45,7 +44,7 @@ class Basic(msrest.serialization.Model):
     :ivar name: Name property with a very long description that does not fit on a single line and a
      line break.
     :vartype name: str
-    :ivar color: Known values are: "cyan", "Magenta", "YELLOW", "blacK".
+    :ivar color: Known values are: "cyan", "Magenta", "YELLOW", and "blacK".
     :vartype color: str or ~bodycomplex.models.CMYKColors
     """
 
@@ -69,10 +68,10 @@ class Basic(msrest.serialization.Model):
         :keyword name: Name property with a very long description that does not fit on a single line
          and a line break.
         :paramtype name: str
-        :keyword color: Known values are: "cyan", "Magenta", "YELLOW", "blacK".
+        :keyword color: Known values are: "cyan", "Magenta", "YELLOW", and "blacK".
         :paramtype color: str or ~bodycomplex.models.CMYKColors
         """
-        super(Basic, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name
         self.color = color
@@ -99,7 +98,7 @@ class BooleanWrapper(msrest.serialization.Model):
         :keyword field_false:
         :paramtype field_false: bool
         """
-        super(BooleanWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field_true = field_true
         self.field_false = field_false
 
@@ -108,19 +107,19 @@ class ByteWrapper(msrest.serialization.Model):
     """ByteWrapper.
 
     :ivar field:
-    :vartype field: bytearray
+    :vartype field: bytes
     """
 
     _attribute_map = {
         "field": {"key": "field", "type": "bytearray"},
     }
 
-    def __init__(self, *, field: Optional[bytearray] = None, **kwargs):
+    def __init__(self, *, field: Optional[bytes] = None, **kwargs):
         """
         :keyword field:
-        :paramtype field: bytearray
+        :paramtype field: bytes
         """
-        super(ByteWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field = field
 
 
@@ -145,7 +144,7 @@ class Pet(msrest.serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(Pet, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name
 
@@ -189,7 +188,7 @@ class Cat(Pet):
         :keyword hates:
         :paramtype hates: list[~bodycomplex.models.Dog]
         """
-        super(Cat, self).__init__(id=id, name=name, **kwargs)
+        super().__init__(id=id, name=name, **kwargs)
         self.color = color
         self.hates = hates
 
@@ -202,7 +201,7 @@ class Fish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -237,7 +236,7 @@ class Fish(msrest.serialization.Model):
         :keyword siblings:
         :paramtype siblings: list[~bodycomplex.models.Fish]
         """
-        super(Fish, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.fishtype = None  # type: Optional[str]
         self.species = species
         self.length = length
@@ -252,7 +251,7 @@ class Shark(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -307,7 +306,7 @@ class Shark(Fish):
         :keyword birthday: Required.
         :paramtype birthday: ~datetime.datetime
         """
-        super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
+        super().__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype = "shark"  # type: str
         self.age = age
         self.birthday = birthday
@@ -318,7 +317,7 @@ class Cookiecuttershark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -369,9 +368,7 @@ class Cookiecuttershark(Shark):
         :keyword birthday: Required.
         :paramtype birthday: ~datetime.datetime
         """
-        super(Cookiecuttershark, self).__init__(
-            species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
-        )
+        super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = "cookiecuttershark"  # type: str
 
 
@@ -396,7 +393,7 @@ class Datetimerfc1123Wrapper(msrest.serialization.Model):
         :keyword now:
         :paramtype now: ~datetime.datetime
         """
-        super(Datetimerfc1123Wrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field = field
         self.now = now
 
@@ -422,7 +419,7 @@ class DatetimeWrapper(msrest.serialization.Model):
         :keyword now:
         :paramtype now: ~datetime.datetime
         """
-        super(DatetimeWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field = field
         self.now = now
 
@@ -448,7 +445,7 @@ class DateWrapper(msrest.serialization.Model):
         :keyword leap:
         :paramtype leap: ~datetime.date
         """
-        super(DateWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field = field
         self.leap = leap
 
@@ -469,7 +466,7 @@ class DictionaryWrapper(msrest.serialization.Model):
         :keyword default_program: Dictionary of :code:`<string>`.
         :paramtype default_program: dict[str, str]
         """
-        super(DictionaryWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.default_program = default_program
 
 
@@ -499,7 +496,7 @@ class Dog(Pet):
         :keyword food:
         :paramtype food: str
         """
-        super(Dog, self).__init__(id=id, name=name, **kwargs)
+        super().__init__(id=id, name=name, **kwargs)
         self.food = food
 
 
@@ -511,7 +508,7 @@ class DotFish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fish_type: Required. Constant filled by server.
+    :ivar fish_type: Required.
     :vartype fish_type: str
     :ivar species:
     :vartype species: str
@@ -533,7 +530,7 @@ class DotFish(msrest.serialization.Model):
         :keyword species:
         :paramtype species: str
         """
-        super(DotFish, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.fish_type = None  # type: Optional[str]
         self.species = species
 
@@ -577,7 +574,7 @@ class DotFishMarket(msrest.serialization.Model):
         :keyword fishes:
         :paramtype fishes: list[~bodycomplex.models.DotFish]
         """
-        super(DotFishMarket, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.sample_salmon = sample_salmon
         self.salmons = salmons
         self.sample_fish = sample_fish
@@ -589,7 +586,7 @@ class DotSalmon(DotFish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fish_type: Required. Constant filled by server.
+    :ivar fish_type: Required.
     :vartype fish_type: str
     :ivar species:
     :vartype species: str
@@ -621,7 +618,7 @@ class DotSalmon(DotFish):
         :keyword iswild:
         :paramtype iswild: bool
         """
-        super(DotSalmon, self).__init__(species=species, **kwargs)
+        super().__init__(species=species, **kwargs)
         self.fish_type = "DotSalmon"  # type: str
         self.location = location
         self.iswild = iswild
@@ -665,7 +662,7 @@ class DoubleWrapper(msrest.serialization.Model):
          field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
          float
         """
-        super(DoubleWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field1 = field1
         self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = (
             field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
@@ -688,7 +685,7 @@ class DurationWrapper(msrest.serialization.Model):
         :keyword field:
         :paramtype field: ~datetime.timedelta
         """
-        super(DurationWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field = field
 
 
@@ -713,7 +710,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -739,7 +736,7 @@ class FloatWrapper(msrest.serialization.Model):
         :keyword field2:
         :paramtype field2: float
         """
-        super(FloatWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
 
@@ -749,7 +746,7 @@ class Goblinshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -763,8 +760,7 @@ class Goblinshark(Shark):
     :vartype birthday: ~datetime.datetime
     :ivar jawsize:
     :vartype jawsize: int
-    :ivar color: Colors possible. Known values are: "pink", "gray", "brown", "RED", "red". Default
-     value: "gray".
+    :ivar color: Colors possible. Known values are: "pink", "gray", "brown", "RED", and "red".
     :vartype color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
@@ -810,13 +806,10 @@ class Goblinshark(Shark):
         :paramtype birthday: ~datetime.datetime
         :keyword jawsize:
         :paramtype jawsize: int
-        :keyword color: Colors possible. Known values are: "pink", "gray", "brown", "RED", "red".
-         Default value: "gray".
+        :keyword color: Colors possible. Known values are: "pink", "gray", "brown", "RED", and "red".
         :paramtype color: str or ~bodycomplex.models.GoblinSharkColor
         """
-        super(Goblinshark, self).__init__(
-            species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
-        )
+        super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = "goblin"  # type: str
         self.jawsize = jawsize
         self.color = color
@@ -843,7 +836,7 @@ class IntWrapper(msrest.serialization.Model):
         :keyword field2:
         :paramtype field2: int
         """
-        super(IntWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
 
@@ -852,24 +845,24 @@ class LongWrapper(msrest.serialization.Model):
     """LongWrapper.
 
     :ivar field1:
-    :vartype field1: long
+    :vartype field1: int
     :ivar field2:
-    :vartype field2: long
+    :vartype field2: int
     """
 
     _attribute_map = {
-        "field1": {"key": "field1", "type": "long"},
-        "field2": {"key": "field2", "type": "long"},
+        "field1": {"key": "field1", "type": "int"},
+        "field2": {"key": "field2", "type": "int"},
     }
 
     def __init__(self, *, field1: Optional[int] = None, field2: Optional[int] = None, **kwargs):
         """
         :keyword field1:
-        :paramtype field1: long
+        :paramtype field1: int
         :keyword field2:
-        :paramtype field2: long
+        :paramtype field2: int
         """
-        super(LongWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
 
@@ -882,7 +875,7 @@ class MyBaseType(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: Required. Constant filled by server. Known values are: "Kind1".
+    :ivar kind: Required. "Kind1"
     :vartype kind: str or ~bodycomplex.models.MyKind
     :ivar prop_b1:
     :vartype prop_b1: str
@@ -909,7 +902,7 @@ class MyBaseType(msrest.serialization.Model):
         :keyword prop_bh1:
         :paramtype prop_bh1: str
         """
-        super(MyBaseType, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.kind = None  # type: Optional[str]
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
@@ -920,7 +913,7 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: Required. Constant filled by server. Known values are: "Kind1".
+    :ivar kind: Required. "Kind1"
     :vartype kind: str or ~bodycomplex.models.MyKind
     :ivar prop_b1:
     :vartype prop_b1: str
@@ -952,7 +945,7 @@ class MyDerivedType(MyBaseType):
         :keyword prop_d1:
         :paramtype prop_d1: str
         """
-        super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
+        super().__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
         self.kind = "Kind1"  # type: str
         self.prop_d1 = prop_d1
 
@@ -982,7 +975,7 @@ class ReadonlyObj(msrest.serialization.Model):
         :keyword size:
         :paramtype size: int
         """
-        super(ReadonlyObj, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = None
         self.size = size
 
@@ -995,7 +988,7 @@ class Salmon(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -1047,7 +1040,7 @@ class Salmon(Fish):
         :keyword iswild:
         :paramtype iswild: bool
         """
-        super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
+        super().__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype = "salmon"  # type: str
         self.location = location
         self.iswild = iswild
@@ -1058,7 +1051,7 @@ class Sawshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -1071,7 +1064,7 @@ class Sawshark(Shark):
     :ivar birthday: Required.
     :vartype birthday: ~datetime.datetime
     :ivar picture:
-    :vartype picture: bytearray
+    :vartype picture: bytes
     """
 
     _validation = {
@@ -1098,7 +1091,7 @@ class Sawshark(Shark):
         species: Optional[str] = None,
         siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
-        picture: Optional[bytearray] = None,
+        picture: Optional[bytes] = None,
         **kwargs
     ):
         """
@@ -1113,11 +1106,9 @@ class Sawshark(Shark):
         :keyword birthday: Required.
         :paramtype birthday: ~datetime.datetime
         :keyword picture:
-        :paramtype picture: bytearray
+        :paramtype picture: bytes
         """
-        super(Sawshark, self).__init__(
-            species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
-        )
+        super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = "sawshark"  # type: str
         self.picture = picture
 
@@ -1167,7 +1158,7 @@ class Siamese(Cat):
         :keyword breed:
         :paramtype breed: str
         """
-        super(Siamese, self).__init__(id=id, name=name, color=color, hates=hates, **kwargs)
+        super().__init__(id=id, name=name, color=color, hates=hates, **kwargs)
         self.breed = breed
 
 
@@ -1176,7 +1167,7 @@ class SmartSalmon(Salmon):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -1240,9 +1231,7 @@ class SmartSalmon(Salmon):
         :keyword college_degree:
         :paramtype college_degree: str
         """
-        super(SmartSalmon, self).__init__(
-            species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs
-        )
+        super().__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
         self.fishtype = "smart_salmon"  # type: str
         self.additional_properties = additional_properties
         self.college_degree = college_degree
@@ -1276,7 +1265,7 @@ class StringWrapper(msrest.serialization.Model):
         :keyword null:
         :paramtype null: str
         """
-        super(StringWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field = field
         self.empty = empty
         self.null = null

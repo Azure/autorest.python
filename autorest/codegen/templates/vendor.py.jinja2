@@ -30,7 +30,7 @@ def _format_url_section(template, **kwargs):
 class MixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
     _client: "{{ keywords.async_class }}PipelineClient"
-    _config: {{ code_model.class_name }}Configuration
+    _config: {{ code_model.client.name }}Configuration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
 {% endif %}

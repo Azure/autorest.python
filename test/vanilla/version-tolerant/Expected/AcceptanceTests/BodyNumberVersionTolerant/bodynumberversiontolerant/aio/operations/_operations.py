@@ -255,9 +255,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -343,9 +341,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -419,8 +415,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big double value 99999999.99.
 
-        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
+        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None
@@ -432,15 +428,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_double_positive_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -507,7 +503,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big double value -99999999.99.
 
-        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -520,15 +516,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_double_negative_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -607,9 +603,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -683,8 +677,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big decimal value 99999999.99.
 
-        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
+        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None
@@ -696,15 +690,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_decimal_positive_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -771,7 +765,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big decimal value -99999999.99.
 
-        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -784,15 +778,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_decimal_negative_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -871,9 +865,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -959,9 +951,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1047,9 +1037,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body

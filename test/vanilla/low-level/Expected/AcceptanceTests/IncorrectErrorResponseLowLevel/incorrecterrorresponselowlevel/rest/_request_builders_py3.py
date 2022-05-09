@@ -14,8 +14,11 @@ from azure.core.rest import HttpRequest
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
-def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
+def build_get_incorrect_error_from_server_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an error response from the server that is not as described in our Error object. Want to
     swallow the deserialization error and still return an HttpResponseError to the users.
 
@@ -31,4 +34,8 @@ def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/incorrectError"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        **kwargs
+    )

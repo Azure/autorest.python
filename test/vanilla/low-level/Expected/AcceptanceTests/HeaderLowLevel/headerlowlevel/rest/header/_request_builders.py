@@ -6,16 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Any, Optional
 
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -102,6 +98,9 @@ def build_param_protected_key_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword content_type: Send a post request with header value "Content-Type": "text/html".
+     Required.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -256,7 +255,7 @@ def build_param_long_request(
      Required.
     :paramtype scenario: str
     :keyword value: Send a post request with header values 105 or -2. Required.
-    :paramtype value: long
+    :paramtype value: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -274,7 +273,7 @@ def build_param_long_request(
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    _headers['value'] = _SERIALIZER.header("value", value, 'long')
+    _headers['value'] = _SERIALIZER.header("value", value, 'int')
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
@@ -986,7 +985,7 @@ def build_param_byte_request(
     :keyword scenario: Send a post request with header values "scenario": "valid". Required.
     :paramtype scenario: str
     :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
-    :paramtype value: bytearray
+    :paramtype value: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -996,7 +995,7 @@ def build_param_byte_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: bytearray
+    value = kwargs.pop('value')  # type: bytes
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

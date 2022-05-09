@@ -43,9 +43,9 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        _base_url = '{Endpoint}/multiapiCustomBaseUrl/v1'
+        _endpoint = '{Endpoint}/multiapiCustomBaseUrl/v1'
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
-        self._client = PipelineClient(base_url=_base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

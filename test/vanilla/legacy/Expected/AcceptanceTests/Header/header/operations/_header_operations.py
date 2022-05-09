@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from msrest import Serializer
 
@@ -195,7 +195,7 @@ def build_param_long_request(
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    _headers['value'] = _SERIALIZER.header("value", value, 'long')
+    _headers['value'] = _SERIALIZER.header("value", value, 'int')
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
@@ -639,7 +639,7 @@ def build_param_byte_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: bytearray
+    value = kwargs.pop('value')  # type: bytes
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -878,6 +878,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Send a post request with header value "Content-Type": "text/html".
 
+        :keyword content_type: Send a post request with header value "Content-Type": "text/html".
+         Required.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1087,7 +1090,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          Required.
         :type scenario: str
         :param value: Send a post request with header values 105 or -2. Required.
-        :type value: long
+        :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1173,7 +1176,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("long", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("int", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -2043,7 +2046,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     def param_byte(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
-        value,  # type: bytearray
+        value,  # type: bytes
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2052,7 +2055,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
-        :type value: bytearray
+        :type value: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -2158,7 +2161,8 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty". Required.
         :type scenario: str
-        :param value: Send a post request with header values 'GREY'. Default value is None.
+        :param value: Send a post request with header values 'GREY'. Known values are: "White",
+         "black", and "GREY". Default value is None.
         :type value: str or ~header.models.GreyscaleColors
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

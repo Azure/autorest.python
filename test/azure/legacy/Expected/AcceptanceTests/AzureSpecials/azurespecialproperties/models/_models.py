@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -19,7 +18,7 @@ class Error(msrest.serialization.Model):
 
     :ivar status:
     :vartype status: int
-    :ivar constant_id:  Has constant value: 1.
+    :ivar constant_id: Required. Default value is 1.
     :vartype constant_id: int
     :ivar message:
     :vartype message: str
@@ -54,7 +53,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar foo_client_request_id: Required. The fooRequestId.
+    :ivar foo_client_request_id: The fooRequestId. Required.
     :vartype foo_client_request_id: str
     """
 
@@ -68,7 +67,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     def __init__(self, **kwargs):
         """
-        :keyword foo_client_request_id: Required. The fooRequestId.
+        :keyword foo_client_request_id: The fooRequestId. Required.
         :paramtype foo_client_request_id: str
         """
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)

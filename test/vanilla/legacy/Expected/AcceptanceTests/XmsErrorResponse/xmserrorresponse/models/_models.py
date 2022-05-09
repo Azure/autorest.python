@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -62,7 +61,7 @@ class NotFoundErrorBase(BaseError):
     :vartype some_base_prop: str
     :ivar reason:
     :vartype reason: str
-    :ivar what_not_found: Required. Constant filled by server.
+    :ivar what_not_found: Required.
     :vartype what_not_found: str
     """
 
@@ -87,7 +86,7 @@ class NotFoundErrorBase(BaseError):
         """
         super(NotFoundErrorBase, self).__init__(**kwargs)
         self.reason = kwargs.get("reason", None)
-        self.what_not_found = "NotFoundErrorBase"  # type: str
+        self.what_not_found = None  # type: Optional[str]
 
 
 class AnimalNotFound(NotFoundErrorBase):
@@ -99,7 +98,7 @@ class AnimalNotFound(NotFoundErrorBase):
     :vartype some_base_prop: str
     :ivar reason:
     :vartype reason: str
-    :ivar what_not_found: Required. Constant filled by server.
+    :ivar what_not_found: Required.
     :vartype what_not_found: str
     :ivar name:
     :vartype name: str
@@ -139,7 +138,7 @@ class LinkNotFound(NotFoundErrorBase):
     :vartype some_base_prop: str
     :ivar reason:
     :vartype reason: str
-    :ivar what_not_found: Required. Constant filled by server.
+    :ivar what_not_found: Required.
     :vartype what_not_found: str
     :ivar what_sub_address:
     :vartype what_sub_address: str
@@ -229,7 +228,7 @@ class PetActionError(PetAction):
 
     :ivar action_response: action feedback.
     :vartype action_response: str
-    :ivar error_type: Required. Constant filled by server.
+    :ivar error_type: Required.
     :vartype error_type: str
     :ivar error_message: the error message.
     :vartype error_message: str
@@ -255,7 +254,7 @@ class PetActionError(PetAction):
         :paramtype error_message: str
         """
         super(PetActionError, self).__init__(**kwargs)
-        self.error_type = "PetActionError"  # type: str
+        self.error_type = None  # type: Optional[str]
         self.error_message = kwargs.get("error_message", None)
 
 
@@ -269,7 +268,7 @@ class PetSadError(PetActionError):
 
     :ivar action_response: action feedback.
     :vartype action_response: str
-    :ivar error_type: Required. Constant filled by server.
+    :ivar error_type: Required.
     :vartype error_type: str
     :ivar error_message: the error message.
     :vartype error_message: str
@@ -311,7 +310,7 @@ class PetHungryOrThirstyError(PetSadError):
 
     :ivar action_response: action feedback.
     :vartype action_response: str
-    :ivar error_type: Required. Constant filled by server.
+    :ivar error_type: Required.
     :vartype error_type: str
     :ivar error_message: the error message.
     :vartype error_message: str

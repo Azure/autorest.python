@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -130,19 +130,17 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if string_body is not None:
-            _json = string_body
+            _content = string_body
         else:
-            _json = None
+            _content = None
 
         request = build_string_put_null_request(
             content_type=content_type,
-            json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -207,8 +205,8 @@ class StringOperations:
     async def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value empty ''.
 
-        :keyword string_body: string body. Default value is "". Note that overriding this default value
-         may result in unsupported behavior.
+        :keyword string_body: string body. Required. Default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_body: str
         :return: None
         :rtype: None
@@ -220,15 +218,15 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         string_body = kwargs.pop("string_body", "")  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        _json = string_body
 
         request = build_string_put_empty_request(
             content_type=content_type,
-            json=string_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -307,17 +305,17 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = string_body
+
         request = build_string_put_mbcs_request(
             content_type=content_type,
-            json=string_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -400,17 +398,17 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "    Now is the time for all good men to come to the aid of their country    "
         )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = string_body
+
         request = build_string_put_whitespace_request(
             content_type=content_type,
-            json=string_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -472,11 +470,11 @@ class StringOperations:
         return cast(str, deserialized)
 
     @distributed_trace_async
-    async def get_base64_encoded(self, **kwargs: Any) -> bytearray:
+    async def get_base64_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64 encoded.
 
-        :return: bytearray
-        :rtype: bytearray
+        :return: bytes
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -485,7 +483,7 @@ class StringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_string_get_base64_encoded_request(
             headers=_headers,
@@ -509,9 +507,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytearray, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})
 
-        return cast(bytearray, deserialized)
+        return cast(bytes, deserialized)
 
     @distributed_trace_async
     async def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
@@ -573,9 +571,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body
@@ -665,15 +661,9 @@ class EnumOperations:
     async def get_not_expandable(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: str. Known values are: "red color", "green-color", and "blue_color".
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == "str"  # Optional.
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -728,9 +718,7 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body
@@ -760,15 +748,9 @@ class EnumOperations:
     async def get_referenced(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: str. Known values are: "red color", "green-color", and "blue_color".
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == "str"  # Optional.
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -823,9 +805,7 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = enum_string_body
@@ -865,7 +845,7 @@ class EnumOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description. Has constant value: "green-color".
+                      Color Constant Description. Required.
                     "field1": "str"  # Optional. Sample string.
                 }
         """
@@ -903,14 +883,17 @@ class EnumOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: JSON, **kwargs: Any
+        self, enum_string_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body. Required.
         :type enum_string_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -921,9 +904,41 @@ class EnumOperations:
                 # JSON input template you can fill out and use as your body input.
                 enum_string_body = {
                     "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description. Has constant value: "green-color".
+                      Color Constant Description. Required.
                     "field1": "str"  # Optional. Sample string.
                 }
+        """
+
+    @overload
+    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
+        self, enum_string_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Sends value 'green-color' from a constant.
+
+        :param enum_string_body: enum string body. Required.
+        :type enum_string_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace_async
+    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
+        self, enum_string_body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Sends value 'green-color' from a constant.
+
+        :param enum_string_body: enum string body. Is either a model type or a IO type. Required.
+        :type enum_string_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -931,16 +946,21 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = enum_string_body
+        _json = None
+        _content = None
+        if isinstance(enum_string_body, (IO, bytes)):
+            _content = enum_string_body
+        else:
+            _json = enum_string_body
+            content_type = content_type or "application/json"
 
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

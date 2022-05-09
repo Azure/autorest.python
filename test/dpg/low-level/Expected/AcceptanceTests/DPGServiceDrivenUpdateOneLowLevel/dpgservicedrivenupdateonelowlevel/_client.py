@@ -44,7 +44,7 @@ class DPGClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from dpgservicedrivenupdateonelowlevel.rest import params
-        >>> request = params.build_head_no_params_request(**kwargs)
+        >>> request = params.build_head_no_params_request(new_parameter=new_parameter, **kwargs)
         <HttpRequest [HEAD], url: '/serviceDriven/parameters'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

@@ -8,7 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -28,7 +27,7 @@ class MyException(msrest.serialization.Model):
         :keyword status_code:
         :paramtype status_code: str
         """
-        super(MyException, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status_code = status_code
 
 
@@ -53,7 +52,7 @@ class B(MyException):
         :keyword text_status_code:
         :paramtype text_status_code: str
         """
-        super(B, self).__init__(status_code=status_code, **kwargs)
+        super().__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
 
 
@@ -73,7 +72,7 @@ class C(msrest.serialization.Model):
         :keyword http_code:
         :paramtype http_code: str
         """
-        super(C, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.http_code = http_code
 
 
@@ -93,7 +92,7 @@ class D(msrest.serialization.Model):
         :keyword http_status_code:
         :paramtype http_status_code: str
         """
-        super(D, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.http_status_code = http_status_code
 
 
@@ -118,6 +117,6 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message

@@ -6,7 +6,7 @@
 from abc import abstractmethod
 from typing import cast, List
 from jinja2 import Environment
-from ..models import ObjectSchema, CodeModel, Property
+from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
 
@@ -15,12 +15,14 @@ def _documentation_string(
     prop: Property, description_keyword: str, docstring_type_keyword: str
 ) -> List[str]:
     retval: List[str] = []
-    sphinx_prefix = f":{description_keyword} {prop.name}:"
+    sphinx_prefix = f":{description_keyword} {prop.client_name}:"
     retval.append(
-        f"{sphinx_prefix} {prop.description}" if prop.description else sphinx_prefix
+        f"{sphinx_prefix} {prop.description(is_operation_file=False)}"
+        if prop.description(is_operation_file=False)
+        else sphinx_prefix
     )
     retval.append(
-        f":{docstring_type_keyword} {prop.name}: {prop.schema.docstring_type}"
+        f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type}"
     )
     return retval
 
@@ -42,29 +44,25 @@ class ModelBaseSerializer:
                 self.imports(), is_python3_file=self.is_python3_file
             ),
             str=str,
-            init_line=self.init_line,
-            init_args=self.init_args,
-            input_documentation_string=ModelBaseSerializer.input_documentation_string,
-            variable_documentation_string=ModelBaseSerializer.variable_documentation_string,
-            declare_model=ModelBaseSerializer.declare_model,
+            serializer=self,
         )
 
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_import("msrest.serialization", ImportType.AZURECORE)
-        for model in self.code_model.sorted_schemas:
-            file_import.merge(model.imports())
+        for model in self.code_model.model_types:
+            file_import.merge(model.imports(is_operation_file=False))
         return file_import
 
     @staticmethod
-    def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
-        if model.base_models:
+    def get_properties_to_initialize(model: ModelType) -> List[Property]:
+        if model.parents:
             properties_to_initialize = list(
                 {
-                    p.name: p
-                    for bm in model.base_models
+                    p.client_name: p
+                    for bm in model.parents
                     for p in model.properties
-                    if p not in cast(ObjectSchema, bm).properties
+                    if p not in cast(ModelType, bm).properties
                     or p.is_discriminator
                     or p.constant
                 }.values()
@@ -74,12 +72,10 @@ class ModelBaseSerializer:
         return properties_to_initialize
 
     @staticmethod
-    def declare_model(model: ObjectSchema) -> str:
+    def declare_model(model: ModelType) -> str:
         basename = "msrest.serialization.Model"
-        if model.base_models:
-            basename = ", ".join(
-                [cast(ObjectSchema, m).name for m in model.base_models]
-            )
+        if model.parents:
+            basename = ", ".join([cast(ModelType, m).name for m in model.parents])
         return f"class {model.name}({basename}):"
 
     @staticmethod
@@ -91,12 +87,17 @@ class ModelBaseSerializer:
     def variable_documentation_string(prop: Property) -> List[str]:
         return _documentation_string(prop, "ivar", "vartype")
 
-    def init_args(self, model: ObjectSchema) -> List[str]:
-        init_args = []
-        properties_to_pass_to_super = self.properties_to_pass_to_super(model)
-        init_args.append(
-            f"super({model.name}, self).__init__({properties_to_pass_to_super})"
+    @abstractmethod
+    def super_call_template(self, model: ModelType) -> str:
+        ...
+
+    def super_call(self, model: ModelType):
+        return self.super_call_template(model).format(
+            self.properties_to_pass_to_super(model)
         )
+
+    def initialize_properties(self, model: ModelType) -> List[str]:
+        init_args = []
         for prop in ModelBaseSerializer.get_properties_to_initialize(model):
             if prop.is_discriminator:
                 discriminator_value = (
@@ -109,25 +110,25 @@ class ModelBaseSerializer:
                 else:
                     typing = "str"
                 init_args.append(
-                    f"self.{prop.name} = {discriminator_value}  # type: {typing}"
+                    f"self.{prop.client_name} = {discriminator_value}  # type: {typing}"
                 )
             elif prop.readonly:
-                init_args.append(f"self.{prop.name} = None")
+                init_args.append(f"self.{prop.client_name} = None")
             elif not prop.constant:
                 init_args.append(self.initialize_standard_arg(prop))
         return init_args
 
     def initialize_standard_property(self, prop: Property):
-        if prop.required and not prop.default_value:
+        if not (prop.optional or prop.client_default_value is not None):
             return self.required_property_no_default_init(prop)
         return self.optional_property_init(prop)
 
     @abstractmethod
-    def init_line(self, model: ObjectSchema) -> List[str]:
+    def init_line(self, model: ModelType) -> List[str]:
         ...
 
     @abstractmethod
-    def properties_to_pass_to_super(self, model: ObjectSchema) -> str:
+    def properties_to_pass_to_super(self, model: ModelType) -> str:
         ...
 
     @abstractmethod

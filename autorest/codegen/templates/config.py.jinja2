@@ -11,32 +11,32 @@
 VERSION = "unknown"
 {% endif %}
 
-class {{ code_model.class_name }}Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for {{ code_model.class_name }}.
+class {{ code_model.client.name }}Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for {{ code_model.client.name }}.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-{% if code_model.global_parameters.config_method | first %}
+{% if code_model.config.parameters.method | first %}
 
 {% endif %}
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
-        super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
-    {% if code_model.service_client.parameters.config_kwargs_to_pop(async_mode) %}
+        super({{ code_model.client.name }}Configuration, self).__init__(**kwargs)
+    {% if code_model.config.parameters.kwargs_to_pop(async_mode) %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
 {% if serializer.check_required_parameters() %}
         {{ op_tools.serialize(serializer.check_required_parameters()) | indent(8) -}}
 {% endif %}
 
-{% for parameter in code_model.global_parameters.config_method %}
-        self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}
+{% for parameter in code_model.config.parameters.method %}
+        self.{{ parameter.client_name }} = {{ parameter.client_name }}
 {% endfor %}
 {% if serializer.set_constants() %}
         {{ op_tools.serialize(serializer.set_constants()) | indent(8) -}}
 {% endif %}
-{% if code_model.options['credential'] and code_model.credential_model.credential_schema_policy.credential_scopes is defined %}
-        self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.credential_model.credential_schema_policy.credential_scopes }})
+{% if code_model.credential and code_model.credential.type.policy.credential_scopes is defined %}
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.credential.type.policy.credential_scopes }})
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ sdk_moniker }}/{}'.format(VERSION))
         self._configure(**kwargs)
@@ -57,12 +57,12 @@ class {{ code_model.class_name }}Configuration(Configuration):  # pylint: disabl
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ keywords.async_class }}RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
-        {% if code_model.options['credential'] %}
+        {% if code_model.credential %}
         {# only adding this if credential_scopes is not passed during code generation #}
-        {% if code_model.credential_model.credential_schema_policy.credential_scopes is defined and code_model.credential_model.credential_schema_policy.credential_scopes|length == 0 %}
+        {% if code_model.credential.type.policy.credential_scopes is defined and code_model.credential.type.policy.credential_scopes | length == 0 %}
         if not self.credential_scopes and not self.authentication_policy:
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         {% endif %}
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = {{ code_model.credential_model.credential_schema_policy.call(async_mode) }}
+            self.authentication_policy = {{ code_model.credential.type.policy.call(async_mode) }}
         {% endif %}

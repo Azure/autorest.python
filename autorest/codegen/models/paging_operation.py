@@ -3,21 +3,21 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
-from typing import cast, Dict, List, Any, Optional, Set, TYPE_CHECKING
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast
 
 from .operation import Operation
-from .schema_response import SchemaResponse
-from .request_builder import RequestBuilder
+from .response import Response
+from .request_builder import (
+    OverloadedRequestBuilder,
+    RequestBuilder,
+    get_request_builder,
+)
 from .imports import ImportType, FileImport, TypingSection
-from .object_schema import ObjectSchema
-from .schema_request import SchemaRequest
 from .parameter_list import ParameterList
+from .model_type import ModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-
-_LOGGER = logging.getLogger(__name__)
 
 
 class PagingOperation(Operation):
@@ -25,115 +25,86 @@ class PagingOperation(Operation):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        request_builder: RequestBuilder,
         name: str,
-        description: str,
-        api_versions: Set[str],
+        request_builder: RequestBuilder,
         parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
-        schema_requests: List[SchemaRequest],
-        summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
-        want_description_docstring: bool = True,
-        want_tracing: bool = True,
+        responses: List[Response],
+        exceptions: List[Response],
         *,
+        overloads: Optional[List[Operation]] = None,
+        public: bool = True,
+        want_tracing: bool = True,
         abstract: bool = False,
         override_success_response_to_200: bool = False,
     ) -> None:
         super().__init__(
-            yaml_data,
-            code_model,
-            request_builder,
-            name,
-            description,
-            api_versions,
-            parameters,
-            multiple_content_type_parameters,
-            schema_requests,
-            summary,
-            responses,
-            exceptions,
-            want_description_docstring,
+            code_model=code_model,
+            yaml_data=yaml_data,
+            name=name,
+            request_builder=request_builder,
+            parameters=parameters,
+            responses=responses,
+            exceptions=exceptions,
+            overloads=overloads,
+            public=public,
             want_tracing=want_tracing,
             abstract=abstract,
         )
-        self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
-        self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get(
-            "nextLinkName"
+        self.next_request_builder: Optional[
+            Union[RequestBuilder, OverloadedRequestBuilder]
+        ] = (
+            get_request_builder(self.yaml_data["nextOperation"], code_model)
+            if self.yaml_data.get("nextOperation")
+            else None
         )
-        self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get(
-            "operationName"
-        )
-        self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
+        self.pager_sync: str = yaml_data["pagerSync"]
+        self.pager_async: str = yaml_data["pagerAsync"]
 
-    def _get_response(self) -> SchemaResponse:
+    def _get_attr_name(self, rest_api_name: str) -> str:
         response = self.responses[0]
-        if not isinstance(response.schema, ObjectSchema):
-            raise ValueError(
-                "The response of a paging operation must be of type "
-                + f"ObjectSchema but {response.schema} is not"
-            )
-        return response
-
-    def _find_python_name(self, rest_api_name: str, log_name: str) -> str:
-        response = self.responses[0]
-        response_schema = cast(ObjectSchema, response.schema)
-        if response_schema:
-            for prop in response_schema.properties:
-                if prop.original_swagger_name == rest_api_name:
-                    return prop.name
-        raise ValueError(
-            f"While scanning x-ms-pageable, was unable to find "
-            + f"{log_name}:{rest_api_name} in model {response_schema.name}"
-        )
-
-    def _get_paging_extension(self, extension_name):
-        return self.yaml_data["extensions"][extension_name]
-
-    def item_name(self, code_model) -> str:
-        item_name = self._item_name or "value"
         try:
-            return (
-                self._find_python_name(item_name, "itemName")
-                if code_model.options["models_mode"]
-                else item_name
+            return next(
+                p.client_name
+                for p in cast(ModelType, response.type).properties
+                if p.rest_api_name == rest_api_name
             )
-        except ValueError:
-            response = self._get_response()
+        except StopIteration:
             raise ValueError(
-                f"While scanning x-ms-pageable, itemName was not defined and object"
-                + f" {cast(ObjectSchema, response.schema).name} has no array called 'value'"
+                f"Can't find a matching property in response for {rest_api_name}"
             )
 
     @property
-    def next_link_name(self) -> Optional[str]:
-        if not self._next_link_name:
+    def continuation_token_name(self) -> Optional[str]:
+        rest_api_name = self.yaml_data["continuationTokenName"]
+        if not rest_api_name:
             # That's an ok scenario, it just means no next page possible
             return None
         if self.code_model.options["models_mode"]:
-            return self._find_python_name(self._next_link_name, "nextLinkName")
-        return self._next_link_name
+            return self._get_attr_name(rest_api_name)
+        return rest_api_name
 
     @property
-    def has_optional_return_type(self) -> bool:
-        """A paging will never have an optional return type, we will always return a pager"""
-        return False
+    def item_name(self) -> str:
+        rest_api_name = self.yaml_data["itemName"]
+        if self.code_model.options["models_mode"]:
+            return self._get_attr_name(rest_api_name)
+        return rest_api_name
+
+    @property
+    def operation_type(self) -> str:
+        return "paging"
 
     def get_pager_path(self, async_mode: bool) -> str:
-        extension_name = "pager-async" if async_mode else "pager-sync"
-        return self._get_paging_extension(extension_name)
+        return (
+            self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
+        )
 
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]
 
-    @property
-    def next_request_builder(self) -> Optional[RequestBuilder]:
-        if not self.next_operation:
-            return None
-        next_request_builder = self.next_operation.request_builder
-        return next_request_builder
+    def cls_type_annotation(self, *, async_mode: bool) -> str:
+        return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = super()._imports_shared(async_mode)
@@ -152,6 +123,26 @@ class PagingOperation(Operation):
         ):
             file_import.merge(self.next_request_builder.imports())
         return file_import
+
+    @property
+    def has_optional_return_type(self) -> bool:
+        return False
+
+    def response_type_annotation(self, **kwargs) -> str:
+        async_mode = kwargs.pop("async_mode")
+        iterable = "AsyncIterable" if async_mode else "Iterable"
+        return f"{iterable}[{super().response_type_annotation(async_mode=async_mode)}]"
+
+    def response_docstring_type(self, **kwargs) -> str:
+        async_mode = kwargs.pop("async_mode")
+        return f"~{self.get_pager_path(async_mode)}[{super().response_docstring_type(async_mode=async_mode)}]"
+
+    def response_docstring_text(self, **kwargs) -> str:
+        super_text = super().response_docstring_text(**kwargs)
+        base_description = "An iterator like instance of "
+        if not self.code_model.options["version_tolerant"]:
+            base_description += "either "
+        return base_description + super_text
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = super().imports_for_multiapi(async_mode)
@@ -188,6 +179,10 @@ class PagingOperation(Operation):
                 "azure.core.tracing.decorator",
                 "distributed_trace",
                 ImportType.AZURECORE,
+            )
+        if self.next_request_builder:
+            file_import.merge(
+                self.get_request_builder_import(self.next_request_builder, async_mode)
             )
 
         return file_import

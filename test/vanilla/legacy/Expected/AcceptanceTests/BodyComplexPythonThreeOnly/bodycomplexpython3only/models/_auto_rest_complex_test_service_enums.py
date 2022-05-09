@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class CMYKColors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """CMYKColors."""
 
     CYAN = "cyan"
     MAGENTA = "Magenta"
@@ -19,17 +20,18 @@ class CMYKColors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class GoblinSharkColor(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Colors possible"""
+    """Colors possible."""
 
     PINK = "pink"
     GRAY = "gray"
     BROWN = "brown"
-    #: Uppercase RED.
+    #: Uppercase RED
     UPPER_RED = "RED"
-    #: Lowercase RED.
+    #: Lowercase RED
     LOWER_RED = "red"
 
 
 class MyKind(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """MyKind."""
 
     KIND1 = "Kind1"

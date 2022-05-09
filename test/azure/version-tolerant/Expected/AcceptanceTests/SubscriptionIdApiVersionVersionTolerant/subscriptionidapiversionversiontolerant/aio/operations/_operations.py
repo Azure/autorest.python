@@ -80,8 +80,8 @@ class GroupOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_group_get_sample_resource_group_request(
-            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
+            subscription_id=self._config.subscription_id,
             api_version=api_version,
             headers=_headers,
             params=_params,

@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class UriColor(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """UriColor."""
 
     RED_COLOR = "red color"
     GREEN_COLOR = "green color"

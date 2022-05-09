@@ -5,29 +5,18 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Union, Type
+from typing import Dict, Any, Union, cast
 from pathlib import Path
 import yaml
 
-from .. import Plugin
-from .models.code_model import CodeModel
-from .models import build_schema, RequestBuilder
-from .models.operation_group import OperationGroup
-from .models.parameter import Parameter
-from .models.parameter_list import GlobalParameterList
-from .serializers import JinjaSerializer
-from .models.credential_schema_policy import (
-    CredentialSchemaPolicy,
-    get_credential_schema_policy_type,
-)
-from .models.credential_schema_policy import (
-    BearerTokenCredentialPolicy,
-    AzureKeyCredentialPolicy,
-)
-from .models.credential_model import CredentialModel
 
-_AAD_TYPE = "AADToken"
-_KEY_TYPE = "AzureKey"
+from .. import Plugin
+from .models.client import Client, Config
+from .models.code_model import CodeModel
+from .models import build_type
+from .models.request_builder import get_request_builder
+from .models.operation_group import OperationGroup
+from .serializers import JinjaSerializer
 
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
@@ -37,17 +26,13 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
             OperationGroup.from_yaml(op_group, code_model)
             for op_group in yaml_data["operationGroups"]
         ]
-    if yaml_data.get("schemas"):
-        code_model.add_inheritance_to_models()
+    if yaml_data.get("types"):
         if code_model.options["models_mode"]:
-            code_model.sort_schemas()
+            code_model.sort_model_types()
 
     if code_model.options["show_operations"]:
-        code_model.generate_single_parameter_from_multiple_content_types_operation()
-        code_model.link_operation_to_request_builder()
         # LRO operation
         code_model.format_lro_operations()
-        code_model.remove_next_operation()
 
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
@@ -149,200 +134,43 @@ class CodeGenerator(Plugin):
             "dependency_msrest": "msrest>=0.6.21",
         }
 
-    @staticmethod
-    def _build_with_security_definition(
-        yaml_data: Dict[str, Any], credential_model: CredentialModel
-    ):
-        security_yaml = yaml_data.get("security", {})
-        if security_yaml.get("authenticationRequired"):
-            for scheme in security_yaml.get("schemes"):
-                if _AAD_TYPE == scheme["type"]:
-                    credential_model.credential_scopes.update(scheme["scopes"])
-                elif _KEY_TYPE == scheme["type"]:
-                    # only accept the last one
-                    credential_model.key_header_name = scheme["headerName"]
-
-        if credential_model.credential_scopes:
-            credential_model.policy_type = BearerTokenCredentialPolicy
-        elif credential_model.key_header_name:
-            credential_model.policy_type = AzureKeyCredentialPolicy
-
-    @staticmethod
-    def _build_credential_model(
-        code_model: CodeModel, credential_model: CredentialModel
-    ):
-        if credential_model.policy_type:
-            code_model.options["credential"] = True
-            credential_model.build_authentication_policy()
-            code_model.credential_model = credential_model
-
-    def _handle_credential_model(
-        self, yaml_data: Dict[str, Any], code_model: CodeModel
-    ):
-        credential_model = CredentialModel(code_model.options["azure_arm"])
-
-        # credential info with security definition will be overridded by credential flags
-        self._build_with_security_definition(yaml_data, credential_model)
-        self._build_with_credential_flags(code_model, credential_model)
-
-        self._build_credential_model(code_model, credential_model)
-
     def _create_code_model(
         self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]
     ) -> CodeModel:
         # Create a code model
 
         code_model = CodeModel(yaml_data, options=options)
-        self._handle_credential_model(yaml_data, code_model)
-        code_model.module_name = yaml_data["info"]["python_title"]
-        code_model.class_name = yaml_data["info"]["pascal_case_title"]
-        code_model.description = (
-            yaml_data["info"]["description"]
-            if yaml_data["info"].get("description")
-            else ""
-        )
+        for type_yaml in yaml_data.get("types", []):
+            build_type(yaml_data=type_yaml, code_model=code_model)
 
-        # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
-        _LOGGER.debug("Namespace parameter was %s", namespace)
-        if not namespace:
-            namespace = yaml_data["info"]["python_title"]
-        code_model.namespace = namespace
-
-        if yaml_data.get("schemas"):
-            for type_list in yaml_data["schemas"].values():
-                for schema in type_list:
-                    build_schema(yaml_data=schema, code_model=code_model)
-
-        # Global parameters
-        code_model.global_parameters = GlobalParameterList(
-            code_model,
-            [
-                Parameter.from_yaml(param, code_model=code_model)
-                for param in yaml_data.get("globalParameters", [])
-            ],
-        )
-
-        # Custom URL
-        code_model.setup_client_input_parameters(yaml_data)
+        code_model.client = Client.from_yaml(yaml_data["client"], code_model)
+        code_model.config = Config.from_yaml(yaml_data["client"], code_model)
 
         # Build request builders
         if yaml_data.get("operationGroups"):
-            code_model.request_builders = [
-                RequestBuilder.from_yaml(operation_yaml, code_model=code_model)
-                for og_group in yaml_data["operationGroups"]
-                for operation_yaml in og_group["operations"]
-            ]
+            for og_group in yaml_data["operationGroups"]:
+                for operation_yaml in og_group["operations"]:
+                    request_builder = get_request_builder(
+                        operation_yaml, code_model=code_model
+                    )
+                    if request_builder.overloads:
+                        code_model.request_builders.extend(request_builder.overloads)  # type: ignore
+                    code_model.request_builders.append(request_builder)
+                    if operation_yaml.get("nextOperation"):
+                        # i am a paging operation and i have a next operation. Make sure to include my next operation
+                        code_model.request_builders.append(
+                            get_request_builder(
+                                operation_yaml["nextOperation"], code_model=code_model
+                            )
+                        )
+
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
-
-        if options["credential"]:
-            code_model.global_parameters.add_credential_global_parameter()
-
         code_model.package_dependency = self._build_package_dependency()
         return code_model
-
-    def _get_credential_scopes(self, credential):
-        credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
-        credential_scopes = (
-            credential_scopes_temp.split(",") if credential_scopes_temp else None
-        )
-        if credential_scopes and not credential:
-            raise ValueError(
-                "--credential-scopes must be used with the --add-credential flag"
-            )
-
-        # check to see if user just passes in --credential-scopes with no value
-        if (
-            self._autorestapi.get_boolean_value("credential-scopes", False)
-            and not credential_scopes
-        ):
-            raise ValueError(
-                "--credential-scopes takes a list of scopes in comma separated format. "
-                "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
-            )
-        return credential_scopes
-
-    def _update_with_credential_flags(
-        self,
-        code_model: CodeModel,
-        credential_schema_policy: Type[CredentialSchemaPolicy],
-        credential_model: CredentialModel,
-    ):
-        credential_model.policy_type = credential_schema_policy
-        credential_scopes = self._get_credential_scopes(
-            code_model.options["credential"]
-        )
-        credential_key_header_name = self._autorestapi.get_value(
-            "credential-key-header-name"
-        )
-        azure_arm = code_model.options["azure_arm"]
-        credential = code_model.options["credential"]
-
-        if hasattr(credential_schema_policy, "credential_scopes"):
-            if not credential_scopes:
-                if azure_arm:
-                    credential_scopes = ["https://management.azure.com/.default"]
-                elif credential:
-                    # If add-credential is specified, we still want to add a credential_scopes variable.
-                    # Will make it an empty list so we can differentiate between this case and None
-                    _LOGGER.warning(
-                        "You have default credential policy %s "
-                        "but not the --credential-scopes flag set while generating non-management plane code. "
-                        "This is not recommend because it forces the customer to pass credential scopes "
-                        "through kwargs if they want to authenticate.",
-                        credential_schema_policy.name(),
-                    )
-                    credential_scopes = []
-
-            if credential_key_header_name:
-                raise ValueError(
-                    "You have passed in a credential key header name with default credential policy type "
-                    f"{credential_schema_policy.name()}. This is not allowed, since credential key header "
-                    "name is tied with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you "
-                    "pass in --credential-scopes."
-                )
-            credential_model.credential_scopes = set(credential_scopes)
-        else:
-            # currently the only other credential policy is AzureKeyCredentialPolicy
-            if credential_scopes:
-                raise ValueError(
-                    "You have passed in credential scopes with default credential policy type "
-                    "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    f"{credential_model.default_authentication_policy.name()}. Instead, with this policy "
-                    "you must pass in --credential-key-header-name."
-                )
-            if not credential_key_header_name:
-                credential_key_header_name = "api-key"
-                _LOGGER.info(
-                    "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
-                )
-
-            credential_model.key_header_name = credential_key_header_name
-
-    def _build_with_credential_flags(
-        self, code_model: CodeModel, credential_model: CredentialModel
-    ):
-        if not code_model.options["credential"]:
-            return
-
-        credential_schema_policy_name = (
-            self._autorestapi.get_value("credential-default-policy-type")
-            or credential_model.default_authentication_policy.name()
-        )
-        credential_schema_policy_type = get_credential_schema_policy_type(
-            credential_schema_policy_name
-        )
-        self._update_with_credential_flags(
-            code_model, credential_schema_policy_type, credential_model
-        )
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
-        credential = self._autorestapi.get_boolean_value(
-            "add-credentials", False
-        ) or self._autorestapi.get_boolean_value("add-credential", False)
-
         license_header = self._autorestapi.get_value("header-text")
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
@@ -352,11 +180,11 @@ class CodeGenerator(Plugin):
             )
             license_header += "\n# --------------------------------------------------------------------------"
 
-        low_level_client = self._autorestapi.get_boolean_value(
-            "low-level-client", False
+        low_level_client = cast(
+            bool, self._autorestapi.get_boolean_value("low-level-client", False)
         )
-        version_tolerant = self._autorestapi.get_boolean_value(
-            "version-tolerant", False
+        version_tolerant = cast(
+            bool, self._autorestapi.get_boolean_value("version-tolerant", False)
         )
         show_operations = self._autorestapi.get_boolean_value(
             "show-operations", not low_level_client
@@ -364,13 +192,15 @@ class CodeGenerator(Plugin):
         models_mode_default = (
             "none" if low_level_client or version_tolerant else "msrest"
         )
-        python3_only = self._autorestapi.get_boolean_value(
-            "python3-only", low_level_client or version_tolerant
+        python3_only = cast(
+            bool,
+            self._autorestapi.get_boolean_value(
+                "python3-only", low_level_client or version_tolerant
+            ),
         )
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
-            "credential": credential,
             "head_as_boolean": self._autorestapi.get_boolean_value(
                 "head-as-boolean", False
             ),
@@ -407,7 +237,8 @@ class CodeGenerator(Plugin):
                 low_level_client or version_tolerant,
             ),
             "add_python3_operation_files": self._autorestapi.get_boolean_value(
-                "add-python3-operation-files", python3_only and not low_level_client
+                "add-python3-operation-files",
+                python3_only and not (low_level_client or version_tolerant),
             ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,
@@ -444,7 +275,6 @@ class CodeGenerator(Plugin):
 
         # Force some options in ARM MODE:
         if azure_arm:
-            options["credential"] = True
             options["head_as_boolean"] = True
         return options
 
@@ -455,7 +285,16 @@ class CodeGenerator(Plugin):
         if "code-model-v4-no-tags.yaml" not in inputs:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
-        file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
+        if self._autorestapi.get_value("input-yaml"):
+            input_yaml = self._autorestapi.get_value("input-yaml")
+            file_content = self._autorestapi.read_file(input_yaml)
+        else:
+            inputs = self._autorestapi.list_inputs()
+            _LOGGER.debug("Possible Inputs: %s", inputs)
+            if "code-model-v4-no-tags.yaml" not in inputs:
+                raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
+
+            file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         # Parse the received YAML
         yaml_data = yaml.safe_load(file_content)

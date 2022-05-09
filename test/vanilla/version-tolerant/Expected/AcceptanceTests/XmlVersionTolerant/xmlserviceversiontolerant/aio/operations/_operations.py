@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 from xml.etree import ElementTree as ET
 
 from azure.core.exceptions import (
@@ -87,11 +87,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> JSON:
+    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> ET.Element:
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        :return: JSON object
-        :rtype: JSON
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -111,7 +111,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_complex_type_ref_no_meta_request(
             headers=_headers,
@@ -135,18 +135,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(ET.Element, deserialized), {})
 
-        return cast(JSON, deserialized)
+        return cast(ET.Element, deserialized)
 
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: JSON, **kwargs: Any
+        self, model: ET.Element, **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model: Required.
-        :type model: JSON
+        :type model: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -168,9 +168,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = model
@@ -197,11 +195,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> JSON:
+    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> ET.Element:
         """Get a complex type that has a ref to a complex type with XML node.
 
-        :return: JSON object
-        :rtype: JSON
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -221,7 +219,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_complex_type_ref_with_meta_request(
             headers=_headers,
@@ -245,18 +243,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(ET.Element, deserialized), {})
 
-        return cast(JSON, deserialized)
+        return cast(ET.Element, deserialized)
 
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: JSON, **kwargs: Any
+        self, model: ET.Element, **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model: Required.
-        :type model: JSON
+        :type model: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -278,9 +276,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = model
@@ -404,9 +400,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = slideshow
@@ -433,11 +427,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_wrapped_lists(self, **kwargs: Any) -> JSON:
+    async def get_wrapped_lists(self, **kwargs: Any) -> ET.Element:
         """Get an XML document with multiple wrapped lists.
 
-        :return: JSON object
-        :rtype: JSON
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -459,7 +453,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_wrapped_lists_request(
             headers=_headers,
@@ -483,18 +477,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(ET.Element, deserialized), {})
 
-        return cast(JSON, deserialized)
+        return cast(ET.Element, deserialized)
 
     @distributed_trace_async
     async def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, wrapped_lists: JSON, **kwargs: Any
+        self, wrapped_lists: ET.Element, **kwargs: Any
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists: Required.
-        :type wrapped_lists: JSON
+        :type wrapped_lists: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -518,9 +512,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = wrapped_lists
@@ -682,9 +674,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = slideshow
@@ -711,11 +701,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty_wrapped_lists(self, **kwargs: Any) -> JSON:
+    async def get_empty_wrapped_lists(self, **kwargs: Any) -> ET.Element:
         """Gets some empty wrapped lists.
 
-        :return: JSON object
-        :rtype: JSON
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -737,7 +727,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_empty_wrapped_lists_request(
             headers=_headers,
@@ -761,18 +751,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(ET.Element, deserialized), {})
 
-        return cast(JSON, deserialized)
+        return cast(ET.Element, deserialized)
 
     @distributed_trace_async
     async def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, apple_barrel: JSON, **kwargs: Any
+        self, apple_barrel: ET.Element, **kwargs: Any
     ) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel: Required.
-        :type apple_barrel: JSON
+        :type apple_barrel: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -796,9 +786,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = apple_barrel
@@ -910,9 +898,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = bananas
@@ -1024,9 +1010,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = bananas
@@ -1138,9 +1122,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = bananas
@@ -1248,9 +1230,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = banana
@@ -1280,7 +1260,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def list_containers(self, **kwargs: Any) -> ET.Element:
         """Lists containers in a storage account.
 
-        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+        :keyword comp: Default value is "list". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
         :return: XML Element
@@ -1303,13 +1283,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                 "Etag": "str",  # Required.
                                 "Last-Modified": "2020-02-20 00:00:00",  # Required.
                                 "LeaseDuration": "str",  # Optional. Known values
-                                  are: "infinite", "fixed".
+                                  are: "infinite" and "fixed".
                                 "LeaseState": "str",  # Optional. Known values are:
-                                  "available", "leased", "expired", "breaking", "broken".
+                                  "available", "leased", "expired", "breaking", and "broken".
                                 "LeaseStatus": "str",  # Optional. Known values are:
-                                  "locked", "unlocked".
+                                  "locked" and "unlocked".
                                 "PublicAccess": "str"  # Optional. Known values are:
-                                  "container", "blob".
+                                  "container" and "blob".
                             }
                         }
                     ],
@@ -1357,17 +1337,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return cast(ET.Element, deserialized)
 
     @distributed_trace_async
-    async def get_service_properties(self, **kwargs: Any) -> JSON:
+    async def get_service_properties(self, **kwargs: Any) -> ET.Element:
         """Gets storage service properties.
 
-        :keyword comp:  Default value is "properties". Note that overriding this default value may
+        :keyword comp: Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "service". Note that overriding this default value may
+        :keyword restype: Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
-        :return: JSON object
-        :rtype: JSON
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1377,22 +1357,22 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 response.json() == {
                     "Cors": [
                         {
-                            "AllowedHeaders": "str",  # Required. the request headers
-                              that the origin domain may specify on the CORS request.
-                            "AllowedMethods": "str",  # Required. The methods (HTTP
-                              request verbs) that the origin domain may use for a CORS request. (comma
-                              separated).
-                            "AllowedOrigins": "str",  # Required. The origin domains that
-                              are permitted to make a request against the storage service via CORS. The
+                            "AllowedHeaders": "str",  # the request headers that the
+                              origin domain may specify on the CORS request. Required.
+                            "AllowedMethods": "str",  # The methods (HTTP request verbs)
+                              that the origin domain may use for a CORS request. (comma separated).
+                              Required.
+                            "AllowedOrigins": "str",  # The origin domains that are
+                              permitted to make a request against the storage service via CORS. The
                               origin domain is the domain from which the request originates. Note that
                               the origin must be an exact case-sensitive match with the origin that the
                               user age sends to the service. You can also use the wildcard character
-                              '*' to allow all origin domains to make requests via CORS.
-                            "ExposedHeaders": "str",  # Required. The response headers
-                              that may be sent in the response to the CORS request and exposed by the
-                              browser to the request issuer.
-                            "MaxAgeInSeconds": 0  # Required. The maximum amount time
-                              that a browser should cache the preflight OPTIONS request.
+                              '*' to allow all origin domains to make requests via CORS. Required.
+                            "ExposedHeaders": "str",  # The response headers that may be
+                              sent in the response to the CORS request and exposed by the browser to
+                              the request issuer. Required.
+                            "MaxAgeInSeconds": 0  # The maximum amount time that a
+                              browser should cache the preflight OPTIONS request. Required.
                         }
                     ],
                     "DefaultServiceVersion": "str",  # Optional. The default version to use for
@@ -1402,52 +1382,52 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "Days": 0,  # Optional. Indicates the number of days that metrics or
                           logging or soft-deleted data should be retained. All data older than this
                           value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention policy is
-                          enabled for the storage service.
+                        "Enabled": bool  # Indicates whether a retention policy is enabled
+                          for the storage service. Required.
                     },
                     "HourMetrics": {
-                        "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                          for the Blob service.
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the
+                          Blob service. Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
+                            "Enabled": bool  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
                     },
                     "Logging": {
-                        "Delete": bool,  # Required. Indicates whether all delete requests
-                          should be logged.
-                        "Read": bool,  # Required. Indicates whether all read requests should
-                          be logged.
+                        "Delete": bool,  # Indicates whether all delete requests should be
+                          logged. Required.
+                        "Read": bool,  # Indicates whether all read requests should be
+                          logged. Required.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
+                            "Enabled": bool  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
-                        "Version": "str",  # Required. The version of Storage Analytics to
-                          configure.
-                        "Write": bool  # Required. Indicates whether all write requests
-                          should be logged.
+                        "Version": "str",  # The version of Storage Analytics to configure.
+                          Required.
+                        "Write": bool  # Indicates whether all write requests should be
+                          logged. Required.
                     },
                     "MinuteMetrics": {
-                        "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                          for the Blob service.
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the
+                          Blob service. Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
+                            "Enabled": bool  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1462,7 +1442,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_service_properties_request(
             comp=comp,
@@ -1488,22 +1468,22 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(ET.Element, deserialized), {})
 
-        return cast(JSON, deserialized)
+        return cast(ET.Element, deserialized)
 
     @distributed_trace_async
     async def put_service_properties(  # pylint: disable=inconsistent-return-statements
-        self, properties: JSON, **kwargs: Any
+        self, properties: ET.Element, **kwargs: Any
     ) -> None:
         """Puts storage service properties.
 
         :param properties: Required.
-        :type properties: JSON
-        :keyword comp:  Default value is "properties". Note that overriding this default value may
+        :type properties: ET.Element
+        :keyword comp: Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "service". Note that overriding this default value may
+        :keyword restype: Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: None
@@ -1517,22 +1497,22 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 properties = {
                     "Cors": [
                         {
-                            "AllowedHeaders": "str",  # Required. the request headers
-                              that the origin domain may specify on the CORS request.
-                            "AllowedMethods": "str",  # Required. The methods (HTTP
-                              request verbs) that the origin domain may use for a CORS request. (comma
-                              separated).
-                            "AllowedOrigins": "str",  # Required. The origin domains that
-                              are permitted to make a request against the storage service via CORS. The
+                            "AllowedHeaders": "str",  # the request headers that the
+                              origin domain may specify on the CORS request. Required.
+                            "AllowedMethods": "str",  # The methods (HTTP request verbs)
+                              that the origin domain may use for a CORS request. (comma separated).
+                              Required.
+                            "AllowedOrigins": "str",  # The origin domains that are
+                              permitted to make a request against the storage service via CORS. The
                               origin domain is the domain from which the request originates. Note that
                               the origin must be an exact case-sensitive match with the origin that the
                               user age sends to the service. You can also use the wildcard character
-                              '*' to allow all origin domains to make requests via CORS.
-                            "ExposedHeaders": "str",  # Required. The response headers
-                              that may be sent in the response to the CORS request and exposed by the
-                              browser to the request issuer.
-                            "MaxAgeInSeconds": 0  # Required. The maximum amount time
-                              that a browser should cache the preflight OPTIONS request.
+                              '*' to allow all origin domains to make requests via CORS. Required.
+                            "ExposedHeaders": "str",  # The response headers that may be
+                              sent in the response to the CORS request and exposed by the browser to
+                              the request issuer. Required.
+                            "MaxAgeInSeconds": 0  # The maximum amount time that a
+                              browser should cache the preflight OPTIONS request. Required.
                         }
                     ],
                     "DefaultServiceVersion": "str",  # Optional. The default version to use for
@@ -1542,52 +1522,52 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "Days": 0,  # Optional. Indicates the number of days that metrics or
                           logging or soft-deleted data should be retained. All data older than this
                           value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention policy is
-                          enabled for the storage service.
+                        "Enabled": bool  # Indicates whether a retention policy is enabled
+                          for the storage service. Required.
                     },
                     "HourMetrics": {
-                        "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                          for the Blob service.
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the
+                          Blob service. Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
+                            "Enabled": bool  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
                     },
                     "Logging": {
-                        "Delete": bool,  # Required. Indicates whether all delete requests
-                          should be logged.
-                        "Read": bool,  # Required. Indicates whether all read requests should
-                          be logged.
+                        "Delete": bool,  # Indicates whether all delete requests should be
+                          logged. Required.
+                        "Read": bool,  # Indicates whether all read requests should be
+                          logged. Required.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
+                            "Enabled": bool  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
-                        "Version": "str",  # Required. The version of Storage Analytics to
-                          configure.
-                        "Write": bool  # Required. Indicates whether all write requests
-                          should be logged.
+                        "Version": "str",  # The version of Storage Analytics to configure.
+                          Required.
+                        "Write": bool  # Indicates whether all write requests should be
+                          logged. Required.
                     },
                     "MinuteMetrics": {
-                        "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                          for the Blob service.
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the
+                          Blob service. Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
+                            "Enabled": bool  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1602,9 +1582,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = properties
@@ -1636,10 +1614,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def get_acls(self, **kwargs: Any) -> ET.Element:
         """Gets storage ACLs for a container.
 
-        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+        :keyword comp: Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "container". Note that overriding this default value may
+        :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: XML Element
@@ -1653,14 +1631,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 response.json() == [
                     {
                         "AccessPolicy": {
-                            "Expiry": "2020-02-20 00:00:00",  # Required. the date-time
-                              the policy expires.
-                            "Permission": "str",  # Required. the permissions for the acl
-                              policy.
-                            "Start": "2020-02-20 00:00:00"  # Required. the date-time the
-                              policy is active.
+                            "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
+                              expires. Required.
+                            "Permission": "str",  # the permissions for the acl policy.
+                              Required.
+                            "Start": "2020-02-20 00:00:00"  # the date-time the policy is
+                              active. Required.
                         },
-                        "Id": "str"  # Required. a unique id.
+                        "Id": "str"  # a unique id. Required.
                     }
                 ]
         """
@@ -1710,10 +1688,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties: Required.
         :type properties: ET.Element
-        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+        :keyword comp: Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "container". Note that overriding this default value may
+        :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: None
@@ -1727,14 +1705,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 properties = [
                     {
                         "AccessPolicy": {
-                            "Expiry": "2020-02-20 00:00:00",  # Required. the date-time
-                              the policy expires.
-                            "Permission": "str",  # Required. the permissions for the acl
-                              policy.
-                            "Start": "2020-02-20 00:00:00"  # Required. the date-time the
-                              policy is active.
+                            "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
+                              expires. Required.
+                            "Permission": "str",  # the permissions for the acl policy.
+                              Required.
+                            "Start": "2020-02-20 00:00:00"  # the date-time the policy is
+                              active. Required.
                         },
-                        "Id": "str"  # Required. a unique id.
+                        "Id": "str"  # a unique id. Required.
                     }
                 ]
         """
@@ -1746,9 +1724,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = properties
@@ -1780,10 +1756,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def list_blobs(self, **kwargs: Any) -> ET.Element:
         """Lists blobs in a storage container.
 
-        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+        :keyword comp: Default value is "list". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "container". Note that overriding this default value may
+        :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: XML Element
@@ -1807,62 +1783,62 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                 "Properties": {
                                     "AccessTier": "str",  # Optional. Known
                                       values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
-                                      "Cool", "Archive".
+                                      "Cool", and "Archive".
                                     "AccessTierInferred": bool,  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "ArchiveStatus": "str",  # Optional. Known
-                                      values are: "rehydrate-pending-to-hot",
+                                      values are: "rehydrate-pending-to-hot" and
                                       "rehydrate-pending-to-cool".
                                     "BlobType": "str",  # Optional. Known values
-                                      are: "BlockBlob", "PageBlob", "AppendBlob".
+                                      are: "BlockBlob", "PageBlob", and "AppendBlob".
                                     "Cache-Control": "str",  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "Content-Disposition": "str",  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "Content-Encoding": "str",  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "Content-Language": "str",  # Optional.
-                                      Required. Properties of a blob.
-                                    "Content-Length": 0.0,  # Optional. Size in
+                                      Properties of a blob. Required.
+                                    "Content-Length": 0,  # Optional. Size in
                                       bytes.
-                                    "Content-MD5": "str",  # Optional. Required.
-                                      Properties of a blob.
-                                    "Content-Type": "str",  # Optional. Required.
-                                      Properties of a blob.
+                                    "Content-MD5": "str",  # Optional. Properties
+                                      of a blob. Required.
+                                    "Content-Type": "str",  # Optional.
+                                      Properties of a blob. Required.
                                     "CopyCompletionTime": "2020-02-20 00:00:00",
-                                      # Optional. Required. Properties of a blob.
-                                    "CopyId": "str",  # Optional. Required.
-                                      Properties of a blob.
-                                    "CopyProgress": "str",  # Optional. Required.
-                                      Properties of a blob.
-                                    "CopySource": "str",  # Optional. Required.
-                                      Properties of a blob.
+                                      # Optional. Properties of a blob. Required.
+                                    "CopyId": "str",  # Optional. Properties of a
+                                      blob. Required.
+                                    "CopyProgress": "str",  # Optional.
+                                      Properties of a blob. Required.
+                                    "CopySource": "str",  # Optional. Properties
+                                      of a blob. Required.
                                     "CopyStatus": "str",  # Optional. Known
-                                      values are: "pending", "success", "aborted", "failed".
+                                      values are: "pending", "success", "aborted", and "failed".
                                     "CopyStatusDescription": "str",  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "DeletedTime": "2020-02-20 00:00:00",  #
-                                      Optional. Required. Properties of a blob.
+                                      Optional. Properties of a blob. Required.
                                     "DestinationSnapshot": "str",  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "Etag": "str",  # Required.
                                     "IncrementalCopy": bool,  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "Last-Modified": "2020-02-20 00:00:00",  #
                                       Required.
                                     "LeaseDuration": "str",  # Optional. Known
-                                      values are: "infinite", "fixed".
+                                      values are: "infinite" and "fixed".
                                     "LeaseState": "str",  # Optional. Known
-                                      values are: "available", "leased", "expired", "breaking",
+                                      values are: "available", "leased", "expired", "breaking", and
                                       "broken".
                                     "LeaseStatus": "str",  # Optional. Known
-                                      values are: "locked", "unlocked".
+                                      values are: "locked" and "unlocked".
                                     "RemainingRetentionDays": 0,  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "ServerEncrypted": bool,  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                     "x-ms-blob-sequence-number": 0  # Optional.
-                                      Required. Properties of a blob.
+                                      Properties of a blob. Required.
                                 },
                                 "Snapshot": "str"  # Required.
                             }
@@ -1920,15 +1896,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return cast(ET.Element, deserialized)
 
-    @distributed_trace_async
+    @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: JSON, **kwargs: Any
+        self, properties: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties: Required.
         :type properties: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1941,22 +1920,61 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     "id": 0  # Optional.
                 }
         """
+
+    @overload
+    async def json_input(  # pylint: disable=inconsistent-return-statements
+        self, properties: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+        number 42.
+
+        :param properties: Required.
+        :type properties: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace_async
+    async def json_input(  # pylint: disable=inconsistent-return-statements
+        self, properties: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+        number 42.
+
+        :param properties: Is either a model type or a IO type. Required.
+        :type properties: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = properties
+        _json = None
+        _content = None
+        if isinstance(properties, (IO, bytes)):
+            _content = properties
+        else:
+            _json = properties
+            content_type = content_type or "application/json"
 
         request = build_xml_json_input_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2078,11 +2096,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return cast(ET.Element, deserialized)
 
     @distributed_trace_async
-    async def get_bytes(self, **kwargs: Any) -> JSON:
+    async def get_bytes(self, **kwargs: Any) -> ET.Element:
         """Get an XML document with binary property.
 
-        :return: JSON object
-        :rtype: JSON
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2090,7 +2108,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "Bytes": bytearray("bytearray", encoding="utf-8")  # Optional.
+                    "Bytes": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2099,7 +2117,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_bytes_request(
             headers=_headers,
@@ -2123,18 +2141,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(ET.Element, deserialized), {})
 
-        return cast(JSON, deserialized)
+        return cast(ET.Element, deserialized)
 
     @distributed_trace_async
     async def put_binary(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: JSON, **kwargs: Any
+        self, slideshow: ET.Element, **kwargs: Any
     ) -> None:
         """Put an XML document with binary property.
 
         :param slideshow: Required.
-        :type slideshow: JSON
+        :type slideshow: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2144,7 +2162,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 slideshow = {
-                    "Bytes": bytearray("bytearray", encoding="utf-8")  # Optional.
+                    "Bytes": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2153,9 +2171,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = slideshow
@@ -2182,11 +2198,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_uri(self, **kwargs: Any) -> JSON:
+    async def get_uri(self, **kwargs: Any) -> ET.Element:
         """Get an XML document with uri property.
 
-        :return: JSON object
-        :rtype: JSON
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2194,7 +2210,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "Url": str  # Optional.
+                    "Url": "str"  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2203,7 +2219,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_uri_request(
             headers=_headers,
@@ -2227,16 +2243,16 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(ET.Element, deserialized), {})
 
-        return cast(JSON, deserialized)
+        return cast(ET.Element, deserialized)
 
     @distributed_trace_async
-    async def put_uri(self, model: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_uri(self, model: ET.Element, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put an XML document with uri property.
 
         :param model: Required.
-        :type model: JSON
+        :type model: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2246,7 +2262,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 model = {
-                    "Url": str  # Optional.
+                    "Url": "str"  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2255,9 +2271,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = model

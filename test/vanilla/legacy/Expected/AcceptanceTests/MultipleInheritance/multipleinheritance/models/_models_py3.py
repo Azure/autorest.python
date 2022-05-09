@@ -8,7 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -33,7 +32,7 @@ class Feline(msrest.serialization.Model):
         :keyword hisses:
         :paramtype hisses: bool
         """
-        super(Feline, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.meows = meows
         self.hisses = hisses
 
@@ -60,7 +59,7 @@ class Pet(msrest.serialization.Model):
         :keyword name: Required.
         :paramtype name: str
         """
-        super(Pet, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
 
 
@@ -109,7 +108,7 @@ class Cat(Pet, Feline):
         :keyword likes_milk:
         :paramtype likes_milk: bool
         """
-        super(Cat, self).__init__(name=name, meows=meows, hisses=hisses, **kwargs)
+        super().__init__(name=name, meows=meows, hisses=hisses, **kwargs)
         self.meows = meows
         self.hisses = hisses
         self.likes_milk = likes_milk
@@ -137,7 +136,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -169,7 +168,7 @@ class Horse(Pet):
         :keyword is_a_show_horse:
         :paramtype is_a_show_horse: bool
         """
-        super(Horse, self).__init__(name=name, **kwargs)
+        super().__init__(name=name, **kwargs)
         self.is_a_show_horse = is_a_show_horse
 
 
@@ -224,5 +223,5 @@ class Kitten(Cat):
         :keyword eats_mice_yet:
         :paramtype eats_mice_yet: bool
         """
-        super(Kitten, self).__init__(meows=meows, hisses=hisses, name=name, likes_milk=likes_milk, **kwargs)
+        super().__init__(meows=meows, hisses=hisses, name=name, likes_milk=likes_milk, **kwargs)
         self.eats_mice_yet = eats_mice_yet

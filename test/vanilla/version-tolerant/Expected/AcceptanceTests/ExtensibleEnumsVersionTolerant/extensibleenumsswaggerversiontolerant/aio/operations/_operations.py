@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -67,8 +67,8 @@ class PetOperations:
                 response.json() == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", "Sunday". Default value: "Friday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", "3".
+                      "Saturday", and "Sunday".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -107,12 +107,17 @@ class PetOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def add_pet(self, pet_param: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    @overload
+    async def add_pet(
+        self, pet_param: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
         :type pet_param: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -124,8 +129,8 @@ class PetOperations:
                 pet_param = {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", "Sunday". Default value: "Friday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", "3".
+                      "Saturday", and "Sunday".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
 
@@ -133,8 +138,62 @@ class PetOperations:
                 response.json() == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", "Sunday". Default value: "Friday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", "3".
+                      "Saturday", and "Sunday".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
+                    "name": "str"  # Optional. name.
+                }
+        """
+
+    @overload
+    async def add_pet(
+        self, pet_param: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """add pet.
+
+        :param pet_param: pet param. Default value is None.
+        :type pet_param: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
+                    "name": "str"  # Optional. name.
+                }
+        """
+
+    @distributed_trace_async
+    async def add_pet(self, pet_param: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+        """add pet.
+
+        :param pet_param: pet param. Is either a model type or a IO type. Default value is None.
+        :type pet_param: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -144,19 +203,24 @@ class PetOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        if pet_param is not None:
-            _json = pet_param
+        _json = None
+        _content = None
+        if isinstance(pet_param, (IO, bytes)):
+            _content = pet_param
         else:
-            _json = None
+            if pet_param is not None:
+                _json = pet_param
+            else:
+                _json = None
+            content_type = content_type or "application/json"
 
         request = build_pet_add_pet_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

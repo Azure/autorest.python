@@ -61,7 +61,7 @@ class YamlUpdatePlugin(Plugin):
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """The code-model-v4-no-tags yaml model tree.
 
-        :rtype: None
+        :rtype: updated yaml
         :raises Exception: Could raise any exception, stacktrace will be sent to autorest API
         """
         raise NotImplementedError()

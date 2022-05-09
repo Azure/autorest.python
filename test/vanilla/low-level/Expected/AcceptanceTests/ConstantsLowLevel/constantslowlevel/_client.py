@@ -56,7 +56,7 @@ class AutoRestSwaggerConstantService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from constantslowlevel.rest import contants
-        >>> request = contants.build_put_no_model_as_string_no_required_two_value_no_default_request(**kwargs)
+        >>> request = contants.build_put_no_model_as_string_no_required_two_value_no_default_request(input=input, **kwargs)
         <HttpRequest [PUT], url: '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

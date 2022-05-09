@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class ProductReceived(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """ProductReceived."""
 
     RAW = "raw"
     MODEL = "model"

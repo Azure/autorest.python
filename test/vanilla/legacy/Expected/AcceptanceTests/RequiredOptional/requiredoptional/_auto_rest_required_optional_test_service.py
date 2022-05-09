@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
@@ -19,7 +19,7 @@ from .operations import ExplicitOperations, ImplicitOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 

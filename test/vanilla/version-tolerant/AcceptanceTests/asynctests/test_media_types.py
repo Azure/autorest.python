@@ -48,11 +48,6 @@ async def test_json(client):
     assert result == "Nice job with JSON"
 
 @pytest.mark.asyncio
-async def test_incorrect_content_type(client):
-    with pytest.raises(ValueError):
-        await client.analyze_body(input=b"PDF", content_type="text/plain")
-
-@pytest.mark.asyncio
 async def test_content_type_with_encoding(client):
     result = await client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
     assert result == "Nice job sending content type with encoding"
@@ -69,7 +64,7 @@ async def test_json_no_accept_header(client):
 @pytest.mark.asyncio
 async def test_binary_body_two_content_types(client):
     json_input = {"hello":"world"}
-    await client.binary_body_with_two_content_types(json_input, content_type="application/json")
+    await client.binary_body_with_two_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
     await client.binary_body_with_two_content_types(content, content_type="application/octet-stream")
@@ -77,7 +72,7 @@ async def test_binary_body_two_content_types(client):
 @pytest.mark.asyncio
 async def test_binary_body_three_content_types(client):
     json_input = {"hello":"world"}
-    await client.binary_body_with_three_content_types(json_input)
+    await client.binary_body_with_three_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
     await client.binary_body_with_three_content_types(content, content_type="application/octet-stream")

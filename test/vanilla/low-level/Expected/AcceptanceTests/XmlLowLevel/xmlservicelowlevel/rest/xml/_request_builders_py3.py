@@ -6,7 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Optional
+from typing import Any, IO, List, Optional, Union, overload
+from xml.etree import ElementTree as ET
 
 from msrest import Serializer
 
@@ -22,8 +23,11 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
-def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_type_ref_no_meta_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get a complex type that has a ref to a complex type with no XML node.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -33,12 +37,48 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/complex-type-ref-no-meta"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_complex_type_ref_no_meta_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts a complex type that has a ref to a complex type with no XML node.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "RefToModel": {
                     "ID": "str"  # Optional. The id of the res.
                 },
@@ -48,46 +88,26 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/complex-type-ref-no-meta"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts a complex type that has a ref to a complex type with no XML node.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_type_ref_with_meta_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get a complex type that has a ref to a complex type with XML node.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -97,12 +117,48 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/complex-type-ref-with-meta"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_complex_type_ref_with_meta_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts a complex type that has a ref to a complex type with XML node.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "RefToModel": {
                     "ID": "str"  # Optional. The id of the res.
                 },
@@ -112,46 +168,26 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/complex-type-ref-with-meta"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts a complex type that has a ref to a complex type with XML node.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_simple_request(**kwargs: Any) -> HttpRequest:
+def build_get_simple_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get a simple XML document.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -161,12 +197,48 @@ def build_get_simple_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/simple"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_simple_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Put a simple XML document.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "author": "str",  # Optional.
                 "date": "str",  # Optional.
                 "slides": [
@@ -184,49 +256,29 @@ def build_get_simple_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/simple"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Put a simple XML document.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/xml")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/simple"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
+def build_get_wrapped_lists_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an XML document with multiple wrapped lists.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -236,12 +288,48 @@ def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/wrapped-lists"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_wrapped_lists_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Put an XML document with multiple wrapped lists.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "BadApples": [
                     "str"  # Optional.
                 ],
@@ -253,49 +341,29 @@ def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/wrapped-lists"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Put an XML document with multiple wrapped lists.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/xml")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/wrapped-lists"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_headers_request(**kwargs: Any) -> HttpRequest:
+def build_get_headers_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get strongly-typed response headers.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -310,10 +378,16 @@ def build_get_headers_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/xml/headers"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        **kwargs
+    )
 
 
-def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_list_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an empty list.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -323,12 +397,48 @@ def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/empty-list"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_empty_list_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts an empty list.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "author": "str",  # Optional.
                 "date": "str",  # Optional.
                 "slides": [
@@ -346,46 +456,26 @@ def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/empty-list"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts an empty list.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-list"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_wrapped_lists_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Gets some empty wrapped lists.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -395,12 +485,48 @@ def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/empty-wrapped-lists"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_empty_wrapped_lists_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts some empty wrapped lists.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "BadApples": [
                     "str"  # Optional.
                 ],
@@ -412,46 +538,26 @@ def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/empty-wrapped-lists"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts some empty wrapped lists.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
+def build_get_root_list_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Gets a list as the root element.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -461,12 +567,48 @@ def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/root-list"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_root_list_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts a list as the root element.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: list[ET.Element]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == [
+            # JSON input template you can fill out and use as your body input.
+            content = [
                 {
                     "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                       you should reconsider eating this banana.
@@ -478,46 +620,26 @@ def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/root-list"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts a list as the root element.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
+def build_get_root_list_single_item_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Gets a list with a single item.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -527,12 +649,48 @@ def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/root-list-single-item"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_root_list_single_item_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts a list with a single item.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: list[ET.Element]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == [
+            # JSON input template you can fill out and use as your body input.
+            content = [
                 {
                     "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                       you should reconsider eating this banana.
@@ -544,46 +702,26 @@ def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/root-list-single-item"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts a list with a single item.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list-single-item"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_root_list_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Gets an empty list as the root element.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -593,12 +731,48 @@ def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/empty-root-list"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_empty_root_list_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts an empty list as the root element.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: list[ET.Element]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == [
+            # JSON input template you can fill out and use as your body input.
+            content = [
                 {
                     "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                       you should reconsider eating this banana.
@@ -610,46 +784,26 @@ def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/empty-root-list"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts an empty list as the root element.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-root-list"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_child_element_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Gets an XML document with an empty child element.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -659,12 +813,48 @@ def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/empty-child-element"
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_empty_child_element_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts a value with an empty child element.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you
                   should reconsider eating this banana.
                 "flavor": "str",  # Optional.
@@ -674,121 +864,126 @@ def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
-
-    # Construct URL
-    _url = "/xml/empty-child-element"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts a value with an empty child element.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-child-element"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_list_containers_request(**kwargs: Any) -> HttpRequest:
+def build_list_containers_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Lists containers in a storage account.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:  Default value is "list". Note that overriding this default value may result in
+    :keyword comp: Default value is "list". Note that overriding this default value may result in
      unsupported behavior.
     :paramtype comp: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Containers": [
-                    {
-                        "Metadata": {
-                            "str": "str"  # Optional. Dictionary of
-                              :code:`<string>`.
-                        },
-                        "Name": "str",  # Required.
-                        "Properties": {
-                            "Etag": "str",  # Required.
-                            "Last-Modified": "2020-02-20 00:00:00",  # Required.
-                            "LeaseDuration": "str",  # Optional. Known values
-                              are: "infinite", "fixed".
-                            "LeaseState": "str",  # Optional. Known values are:
-                              "available", "leased", "expired", "breaking", "broken".
-                            "LeaseStatus": "str",  # Optional. Known values are:
-                              "locked", "unlocked".
-                            "PublicAccess": "str"  # Optional. Known values are:
-                              "container", "blob".
-                        }
-                    }
-                ],
-                "Marker": "str",  # Optional.
-                "MaxResults": 0,  # Required.
-                "NextMarker": "str",  # Required.
-                "Prefix": "str",  # Required.
-                "ServiceEndpoint": "str"  # Required.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
-    accept = _headers.pop("Accept", "application/xml")
+    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
+def build_get_service_properties_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Gets storage service properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:  Default value is "properties". Note that overriding this default value may
+    :keyword comp: Default value is "properties". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype comp: str
-    :keyword restype:  Default value is "service". Note that overriding this default value may
+    :keyword restype: Default value is "service". Note that overriding this default value may
+     result in unsupported behavior.
+    :paramtype restype: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
+
+    # Construct URL
+    _url = "/xml/"
+
+    # Construct parameters
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+
+    # Construct headers
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )
+
+
+def build_put_service_properties_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts storage service properties.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: ET.Element
+    :keyword comp: Default value is "properties". Note that overriding this default value may
+     result in unsupported behavior.
+    :paramtype comp: str
+    :keyword restype: Default value is "service". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -799,26 +994,26 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == {
+            # JSON input template you can fill out and use as your body input.
+            content = {
                 "Cors": [
                     {
-                        "AllowedHeaders": "str",  # Required. the request headers
-                          that the origin domain may specify on the CORS request.
-                        "AllowedMethods": "str",  # Required. The methods (HTTP
-                          request verbs) that the origin domain may use for a CORS request. (comma
-                          separated).
-                        "AllowedOrigins": "str",  # Required. The origin domains that
-                          are permitted to make a request against the storage service via CORS. The
+                        "AllowedHeaders": "str",  # the request headers that the
+                          origin domain may specify on the CORS request. Required.
+                        "AllowedMethods": "str",  # The methods (HTTP request verbs)
+                          that the origin domain may use for a CORS request. (comma separated).
+                          Required.
+                        "AllowedOrigins": "str",  # The origin domains that are
+                          permitted to make a request against the storage service via CORS. The
                           origin domain is the domain from which the request originates. Note that
                           the origin must be an exact case-sensitive match with the origin that the
                           user age sends to the service. You can also use the wildcard character
-                          '*' to allow all origin domains to make requests via CORS.
-                        "ExposedHeaders": "str",  # Required. The response headers
-                          that may be sent in the response to the CORS request and exposed by the
-                          browser to the request issuer.
-                        "MaxAgeInSeconds": 0  # Required. The maximum amount time
-                          that a browser should cache the preflight OPTIONS request.
+                          '*' to allow all origin domains to make requests via CORS. Required.
+                        "ExposedHeaders": "str",  # The response headers that may be
+                          sent in the response to the CORS request and exposed by the browser to
+                          the request issuer. Required.
+                        "MaxAgeInSeconds": 0  # The maximum amount time that a
+                          browser should cache the preflight OPTIONS request. Required.
                     }
                 ],
                 "DefaultServiceVersion": "str",  # Optional. The default version to use for
@@ -828,52 +1023,52 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
                     "Days": 0,  # Optional. Indicates the number of days that metrics or
                       logging or soft-deleted data should be retained. All data older than this
                       value will be deleted.
-                    "Enabled": bool  # Required. Indicates whether a retention policy is
-                      enabled for the storage service.
+                    "Enabled": bool  # Indicates whether a retention policy is enabled
+                      for the storage service. Required.
                 },
                 "HourMetrics": {
-                    "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                      for the Blob service.
+                    "Enabled": bool,  # Indicates whether metrics are enabled for the
+                      Blob service. Required.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                       generate summary statistics for called API operations.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention
-                          policy is enabled for the storage service.
+                        "Enabled": bool  # Indicates whether a retention policy is
+                          enabled for the storage service. Required.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to
                       configure.
                 },
                 "Logging": {
-                    "Delete": bool,  # Required. Indicates whether all delete requests
-                      should be logged.
-                    "Read": bool,  # Required. Indicates whether all read requests should
-                      be logged.
+                    "Delete": bool,  # Indicates whether all delete requests should be
+                      logged. Required.
+                    "Read": bool,  # Indicates whether all read requests should be
+                      logged. Required.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention
-                          policy is enabled for the storage service.
+                        "Enabled": bool  # Indicates whether a retention policy is
+                          enabled for the storage service. Required.
                     },
-                    "Version": "str",  # Required. The version of Storage Analytics to
-                      configure.
-                    "Write": bool  # Required. Indicates whether all write requests
-                      should be logged.
+                    "Version": "str",  # The version of Storage Analytics to configure.
+                      Required.
+                    "Write": bool  # Indicates whether all write requests should be
+                      logged. Required.
                 },
                 "MinuteMetrics": {
-                    "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                      for the Blob service.
+                    "Enabled": bool,  # Indicates whether metrics are enabled for the
+                      Blob service. Required.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                       generate summary statistics for called API operations.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention
-                          policy is enabled for the storage service.
+                        "Enabled": bool  # Indicates whether a retention policy is
+                          enabled for the storage service. Required.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to
                       configure.
@@ -884,38 +1079,44 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-    accept = _headers.pop("Accept", "application/xml")
-
+    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_put_service_properties_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts storage service properties.
+def build_get_acls_request(
+    **kwargs: Any
+) -> HttpRequest:
+    """Gets storage ACLs for a container.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:  Default value is "properties". Note that overriding this default value may
-     result in unsupported behavior.
+    :keyword comp: Default value is "acl". Note that overriding this default value may result in
+     unsupported behavior.
     :paramtype comp: str
-    :keyword restype:  Default value is "service". Note that overriding this default value may
+    :keyword restype: Default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -925,33 +1126,45 @@ def build_put_service_properties_request(*, content: Any, **kwargs: Any) -> Http
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
-    _url = "/xml/"
+    _url = "/xml/mycontainer"
 
     # Construct parameters
-    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_acls_request(**kwargs: Any) -> HttpRequest:
-    """Gets storage ACLs for a container.
+def build_put_acls_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts storage ACLs for a container.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+    :keyword content: Required.
+    :paramtype content: list[ET.Element]
+    :keyword comp: Default value is "acl". Note that overriding this default value may result in
      unsupported behavior.
     :paramtype comp: str
-    :keyword restype:  Default value is "container". Note that overriding this default value may
+    :keyword restype: Default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -962,18 +1175,18 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
-            # response body for status code(s): 200
-            response.json() == [
+            # JSON input template you can fill out and use as your body input.
+            content = [
                 {
                     "AccessPolicy": {
-                        "Expiry": "2020-02-20 00:00:00",  # Required. the date-time
-                          the policy expires.
-                        "Permission": "str",  # Required. the permissions for the acl
-                          policy.
-                        "Start": "2020-02-20 00:00:00"  # Required. the date-time the
-                          policy is active.
+                        "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
+                          expires. Required.
+                        "Permission": "str",  # the permissions for the acl policy.
+                          Required.
+                        "Start": "2020-02-20 00:00:00"  # the date-time the policy is
+                          active. Required.
                     },
-                    "Id": "str"  # Required. a unique id.
+                    "Id": "str"  # a unique id. Required.
                 }
             ]
     """
@@ -981,207 +1194,94 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-    accept = _headers.pop("Accept", "application/xml")
-
+    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-def build_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    """Puts storage ACLs for a container.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword comp:  Default value is "acl". Note that overriding this default value may result in
-     unsupported behavior.
-    :paramtype comp: str
-    :keyword restype:  Default value is "container". Note that overriding this default value may
-     result in unsupported behavior.
-    :paramtype restype: str
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    # Construct URL
-    _url = "/xml/mycontainer"
-
-    # Construct parameters
-    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
+def build_list_blobs_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Lists blobs in a storage container.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:  Default value is "list". Note that overriding this default value may result in
+    :keyword comp: Default value is "list". Note that overriding this default value may result in
      unsupported behavior.
     :paramtype comp: str
-    :keyword restype:  Default value is "container". Note that overriding this default value may
+    :keyword restype: Default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Blobs": {
-                    "Blob": [
-                        {
-                            "Deleted": bool,  # Required.
-                            "Metadata": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
-                            },
-                            "Name": "str",  # Required.
-                            "Properties": {
-                                "AccessTier": "str",  # Optional. Known
-                                  values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
-                                  "Cool", "Archive".
-                                "AccessTierInferred": bool,  # Optional.
-                                  Required. Properties of a blob.
-                                "ArchiveStatus": "str",  # Optional. Known
-                                  values are: "rehydrate-pending-to-hot",
-                                  "rehydrate-pending-to-cool".
-                                "BlobType": "str",  # Optional. Known values
-                                  are: "BlockBlob", "PageBlob", "AppendBlob".
-                                "Cache-Control": "str",  # Optional.
-                                  Required. Properties of a blob.
-                                "Content-Disposition": "str",  # Optional.
-                                  Required. Properties of a blob.
-                                "Content-Encoding": "str",  # Optional.
-                                  Required. Properties of a blob.
-                                "Content-Language": "str",  # Optional.
-                                  Required. Properties of a blob.
-                                "Content-Length": 0.0,  # Optional. Size in
-                                  bytes.
-                                "Content-MD5": "str",  # Optional. Required.
-                                  Properties of a blob.
-                                "Content-Type": "str",  # Optional. Required.
-                                  Properties of a blob.
-                                "CopyCompletionTime": "2020-02-20 00:00:00",
-                                  # Optional. Required. Properties of a blob.
-                                "CopyId": "str",  # Optional. Required.
-                                  Properties of a blob.
-                                "CopyProgress": "str",  # Optional. Required.
-                                  Properties of a blob.
-                                "CopySource": "str",  # Optional. Required.
-                                  Properties of a blob.
-                                "CopyStatus": "str",  # Optional. Known
-                                  values are: "pending", "success", "aborted", "failed".
-                                "CopyStatusDescription": "str",  # Optional.
-                                  Required. Properties of a blob.
-                                "DeletedTime": "2020-02-20 00:00:00",  #
-                                  Optional. Required. Properties of a blob.
-                                "DestinationSnapshot": "str",  # Optional.
-                                  Required. Properties of a blob.
-                                "Etag": "str",  # Required.
-                                "IncrementalCopy": bool,  # Optional.
-                                  Required. Properties of a blob.
-                                "Last-Modified": "2020-02-20 00:00:00",  #
-                                  Required.
-                                "LeaseDuration": "str",  # Optional. Known
-                                  values are: "infinite", "fixed".
-                                "LeaseState": "str",  # Optional. Known
-                                  values are: "available", "leased", "expired", "breaking",
-                                  "broken".
-                                "LeaseStatus": "str",  # Optional. Known
-                                  values are: "locked", "unlocked".
-                                "RemainingRetentionDays": 0,  # Optional.
-                                  Required. Properties of a blob.
-                                "ServerEncrypted": bool,  # Optional.
-                                  Required. Properties of a blob.
-                                "x-ms-blob-sequence-number": 0  # Optional.
-                                  Required. Properties of a blob.
-                            },
-                            "Snapshot": "str"  # Required.
-                        }
-                    ],
-                    "BlobPrefix": [
-                        {
-                            "Name": "str"  # Required.
-                        }
-                    ]
-                },
-                "ContainerName": "str",  # Required.
-                "Delimiter": "str",  # Required.
-                "Marker": "str",  # Required.
-                "MaxResults": 0,  # Required.
-                "NextMarker": "str",  # Required.
-                "Prefix": "str",  # Required.
-                "ServiceEndpoint": "str"  # Optional.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-    accept = _headers.pop("Accept", "application/xml")
+    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_json_input_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+@overload
+def build_json_input_request(
+    *,
+    json: JSON,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
     number 42.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1196,20 +1296,73 @@ def build_json_input_request(*, json: Optional[JSON] = None, content: Any = None
             }
     """
 
+
+@overload
+def build_json_input_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+    number 42.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_json_input_request(
+    **kwargs: Any
+) -> HttpRequest:
+    """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+    number 42.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/jsoninput"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_json_output_request(**kwargs: Any) -> HttpRequest:
+def build_json_output_request(
+    **kwargs: Any
+) -> HttpRequest:
     """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1219,30 +1372,29 @@ def build_json_output_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "id": 0  # Optional.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/xml/jsonoutput"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_xms_text_request(**kwargs: Any) -> HttpRequest:
+def build_get_xms_text_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get back an XML object with an x-ms-text property, which should translate to the returned
     object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
@@ -1253,31 +1405,29 @@ def build_get_xms_text_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "content": "str",  # Optional. Returned value should be 'I am text'.
-                "language": "str"  # Optional. Returned value should be 'english'.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/x-ms-text"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
+def build_get_bytes_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an XML document with binary property.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1287,61 +1437,77 @@ def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Bytes": bytearray("bytearray", encoding="utf-8")  # Optional.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_put_binary_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
     """Put an XML document with binary property.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
+    :keyword content: Required.
+    :paramtype content: ET.Element
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your body input.
+            content = {
+                "Bytes": bytes("bytes", encoding="utf-8")  # Optional.
+            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/xml")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_uri_request(**kwargs: Any) -> HttpRequest:
+def build_get_uri_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an XML document with uri property.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1351,55 +1517,69 @@ def build_get_uri_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Url": str  # Optional.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/xml")
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_put_uri_request(
+    *,
+    content: Any,
+    **kwargs: Any
+) -> HttpRequest:
     """Put an XML document with uri property.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Required.
-    :paramtype content: any
+    :keyword content: Required.
+    :paramtype content: ET.Element
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your body input.
+            content = {
+                "Url": "str"  # Optional.
+            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/xml")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        content=content,
+        **kwargs
+    )

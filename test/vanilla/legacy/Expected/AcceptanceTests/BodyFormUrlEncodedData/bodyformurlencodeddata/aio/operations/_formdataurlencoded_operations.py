@@ -68,9 +68,11 @@ class FormdataurlencodedOperations:
 
         :param pet_id: ID of pet that needs to be updated. Required.
         :type pet_id: int
-        :param pet_type: Can take a value of dog, or cat, or fish. Required.
+        :param pet_type: Can take a value of dog, or cat, or fish. Known values are: "dog", "cat", and
+         "fish". Required.
         :type pet_type: str or ~bodyformurlencodeddata.models.PetType
-        :param pet_food: Can take a value of meat, or fish, or plant. Required.
+        :param pet_food: Can take a value of meat, or fish, or plant. Known values are: "meat", "fish",
+         and "plant". Required.
         :type pet_food: str or ~bodyformurlencodeddata.models.PetFood
         :param pet_age: How many years is it old?. Required.
         :type pet_age: int
@@ -91,7 +93,7 @@ class FormdataurlencodedOperations:
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: Optional[str]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data
@@ -157,7 +159,7 @@ class FormdataurlencodedOperations:
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: Optional[str]
+        )  # type: str
         grant_type = kwargs.pop("grant_type", "access_token")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

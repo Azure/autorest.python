@@ -34,9 +34,9 @@ modelerfour:
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ~3.6.2
+version: ~3.8.1
 use-extension:
-  "@autorest/modelerfour": ~4.19.1
+  "@autorest/modelerfour": ~4.23.1
 
 modelerfour:
   resolve-schema-name-collisons: true
@@ -69,8 +69,11 @@ pipeline:
   python/m2r:
     input: python
 
-  python/namer:
+  python/m4reformatter:
     input: python/m2r
+
+  python/namer:
+    input: python/m4reformatter
 
   python/codegen:
     input: python/namer

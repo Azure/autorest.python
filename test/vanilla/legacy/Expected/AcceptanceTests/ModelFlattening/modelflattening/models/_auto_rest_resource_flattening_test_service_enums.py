@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class FlattenedProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """FlattenedProductPropertiesProvisioningStateValues."""
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"

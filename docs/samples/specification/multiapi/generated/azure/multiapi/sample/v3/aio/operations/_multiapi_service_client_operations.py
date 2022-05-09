@@ -133,10 +133,10 @@ class MultiapiServiceClientOperationsMixin:
 
         
         request = build_test_different_calls_request(
-            api_version=api_version,
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
+            api_version=api_version,
             template_url=self.test_different_calls.metadata['url'],
             headers=_headers,
             params=_params,

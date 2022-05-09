@@ -3,13 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
+from autorest.codegen.models.request_builder import OverloadedRequestBuilder
 
 from ...jsonrpc import AutorestAPI
-from ..models import CodeModel, OperationGroup, RequestBuilder, TokenCredentialSchema
+from ..models import CodeModel, OperationGroup, RequestBuilder
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .model_generic_serializer import ModelGenericSerializer
@@ -18,11 +19,7 @@ from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
-from .request_builders_serializer import (
-    RequestBuildersPython3Serializer,
-    RequestBuildersGenericSerializer,
-    RequestBuildersSerializer,
-)
+from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 
 __all__ = [
@@ -73,7 +70,7 @@ class JinjaSerializer:
             self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"), env)
 
         if self.code_model.options["models_mode"] and (
-            self.code_model.schemas or self.code_model.enums
+            self.code_model.model_types or self.code_model.enums
         ):
             self._keep_patch_file(
                 namespace_path / Path("models") / Path("_patch.py"), env
@@ -125,7 +122,7 @@ class JinjaSerializer:
                 )
 
         if self.code_model.options["models_mode"] and (
-            self.code_model.schemas or self.code_model.enums
+            self.code_model.model_types or self.code_model.enums
         ):
             self._serialize_and_write_models_folder(
                 env=env, namespace_path=namespace_path
@@ -157,10 +154,11 @@ class JinjaSerializer:
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
             try:
-                token_cred = isinstance(
-                    self.code_model.credential_model.credential_schema_policy.credential,
-                    TokenCredentialSchema,
-                )
+                # token_cred = isinstance(
+                #     self.code_model.credential_model.credential_schema_policy.credential,
+                #     TokenCredentialSchema,
+                # )
+                token_cred = False
             except ValueError:
                 token_cred = False
             version = self.code_model.options["package_version"]
@@ -178,7 +176,7 @@ class JinjaSerializer:
                     for i in range(len(package_parts))
                 ],
                 "dev_status": dev_status,
-                "client_name": self.code_model.class_name,
+                "client_name": self.code_model.client.name,
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
@@ -223,7 +221,7 @@ class JinjaSerializer:
     ) -> None:
         # Write the models folder
         models_path = namespace_path / Path("models")
-        if self.code_model.schemas:
+        if self.code_model.model_types:
             if not self.code_model.options["python3_only"]:
                 self._autorestapi.write_file(
                     models_path
@@ -255,45 +253,50 @@ class JinjaSerializer:
         self, env: Environment, namespace_path: Path
     ) -> None:
         rest_path = namespace_path / Path(self.code_model.rest_layer_name)
-        operation_group_names = {
-            rb.operation_group_name for rb in self.code_model.request_builders
-        }
+        group_names = {rb.group_name for rb in self.code_model.request_builders}
 
-        for operation_group_name in operation_group_names:
+        for group_name in group_names:
             request_builders = [
                 r
                 for r in self.code_model.request_builders
-                if r.operation_group_name == operation_group_name
+                if r.group_name == group_name
             ]
             self._serialize_and_write_single_rest_layer(
                 env, rest_path, request_builders
             )
-        if not "" in operation_group_names:
+        if not "" in group_names:
             self._autorestapi.write_file(
                 rest_path / Path("__init__.py"),
                 self.code_model.options["license_header"],
             )
 
     def _serialize_and_write_single_rest_layer(
-        self, env: Environment, rest_path: Path, request_builders: List[RequestBuilder]
+        self,
+        env: Environment,
+        rest_path: Path,
+        request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]],
     ) -> None:
-        builder_group_name = request_builders[0].builder_group_name
-        output_path = (
-            rest_path / Path(builder_group_name) if builder_group_name else rest_path
-        )
+        group_name = request_builders[0].group_name
+        output_path = rest_path / Path(group_name) if group_name else rest_path
         # write generic request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders.py"),
-            RequestBuildersGenericSerializer(
-                code_model=self.code_model, env=env, request_builders=request_builders
+            RequestBuildersSerializer(
+                code_model=self.code_model,
+                env=env,
+                request_builders=request_builders,
+                is_python3_file=False,
             ).serialize_request_builders(),
         )
 
         # write python3 request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders_py3.py"),
-            RequestBuildersPython3Serializer(
-                code_model=self.code_model, env=env, request_builders=request_builders
+            RequestBuildersSerializer(
+                code_model=self.code_model,
+                env=env,
+                request_builders=request_builders,
+                is_python3_file=True,
             ).serialize_request_builders(),
         )
 
@@ -301,7 +304,10 @@ class JinjaSerializer:
         self._autorestapi.write_file(
             output_path / Path("__init__.py"),
             RequestBuildersSerializer(
-                code_model=self.code_model, env=env, request_builders=request_builders
+                code_model=self.code_model,
+                env=env,
+                request_builders=request_builders,
+                is_python3_file=True,
             ).serialize_init(),
         )
 
@@ -452,7 +458,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.request_builders:
             self._autorestapi.write_file(
-                namespace_path / Path(f"{self.code_model.service_client.filename}.py"),
+                namespace_path / Path(f"{self.code_model.client.filename}.py"),
                 general_serializer.serialize_service_client_file(),
             )
 
@@ -499,7 +505,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.request_builders:
             self._autorestapi.write_file(
-                aio_path / Path(f"{self.code_model.service_client.filename}.py"),
+                aio_path / Path(f"{self.code_model.client.filename}.py"),
                 aio_general_serializer.serialize_service_client_file(),
             )
 
