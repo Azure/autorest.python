@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Any, AsyncIterable, IO, Optional, Union, overload
+from typing import Any, AsyncIterable, IO, Optional, Union
 
 from azure.core.async_paging import AsyncItemPaged
 from azure.core.polling import AsyncLROPoller

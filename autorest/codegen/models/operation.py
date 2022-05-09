@@ -182,9 +182,6 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         for response in self.responses:
             file_import.merge(response.imports())
 
-        if self.overloads:
-            file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
-
         response_types = [r.type_annotation() for r in self.responses if r.type]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import(
@@ -354,6 +351,8 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             file_import.merge(
                 self.get_request_builder_import(self.request_builder, async_mode)
             )
+        if self.overloads:
+            file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
 
     def get_response_from_status(

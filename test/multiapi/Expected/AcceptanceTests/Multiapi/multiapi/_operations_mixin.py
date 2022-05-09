@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import IO, Optional, TYPE_CHECKING, Union, overload
+from typing import IO, Optional, TYPE_CHECKING, Union
 
 from . import models as _models
 
