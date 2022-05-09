@@ -1247,7 +1247,10 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         return retval
 
     def get_long_running_output(self, builder: LROOperationType) -> List[str]:
-        retval = ["def get_long_running_output(pipeline_response):"]
+        pylint_disable = ""
+        if not builder.lro_response:
+            pylint_disable = "  # pylint: disable=inconsistent-return-statements"
+        retval = [f"def get_long_running_output(pipeline_response):{pylint_disable}"]
         if builder.lro_response:
             if builder.lro_response.headers:
                 retval.append("    response_headers = {}")
