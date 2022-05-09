@@ -176,6 +176,7 @@ class JinjaSerializer:
                     for i in range(len(package_parts))
                 ],
                 "dev_status": dev_status,
+                "client_name": self.code_model.client.name,
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
