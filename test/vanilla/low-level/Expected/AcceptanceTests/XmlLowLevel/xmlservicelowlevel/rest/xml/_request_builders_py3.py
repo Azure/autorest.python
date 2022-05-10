@@ -12,7 +12,7 @@ from xml.etree import ElementTree as ET
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
+from ..._serialization import Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

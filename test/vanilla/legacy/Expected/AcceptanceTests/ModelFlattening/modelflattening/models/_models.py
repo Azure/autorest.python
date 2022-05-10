@@ -206,8 +206,8 @@ class FlattenParameterGroup(_serialization.Model):
     :vartype description: str
     :ivar max_product_display_name: Display name of product.
     :vartype max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. "Large"
-    :vartype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+    :ivar capacity: Capacity of product. For example, 4 people. Default value is "Large".
+    :vartype capacity: str
     :ivar generic_value: Generic URL value.
     :vartype generic_value: str
     :ivar odata_value: URL value.
@@ -244,8 +244,8 @@ class FlattenParameterGroup(_serialization.Model):
         :paramtype description: str
         :keyword max_product_display_name: Display name of product.
         :paramtype max_product_display_name: str
-        :keyword capacity: Capacity of product. For example, 4 people. "Large"
-        :paramtype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+        :keyword capacity: Capacity of product. For example, 4 people. Default value is "Large".
+        :paramtype capacity: str
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
         :keyword odata_value: URL value.
@@ -372,8 +372,8 @@ class SimpleProduct(BaseProduct):
     :vartype description: str
     :ivar max_product_display_name: Display name of product.
     :vartype max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. "Large"
-    :vartype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+    :ivar capacity: Capacity of product. For example, 4 people. Default value is "Large".
+    :vartype capacity: str
     :ivar generic_value: Generic URL value.
     :vartype generic_value: str
     :ivar odata_value: URL value.
@@ -403,8 +403,8 @@ class SimpleProduct(BaseProduct):
         :paramtype description: str
         :keyword max_product_display_name: Display name of product.
         :paramtype max_product_display_name: str
-        :keyword capacity: Capacity of product. For example, 4 people. "Large"
-        :paramtype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+        :keyword capacity: Capacity of product. For example, 4 people. Default value is "Large".
+        :paramtype capacity: str
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
         :keyword odata_value: URL value.

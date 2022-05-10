@@ -189,7 +189,6 @@ class FormdataurlencodedOperations(object):
     @distributed_trace
     def partial_constant_body(  # pylint: disable=inconsistent-return-statements
         self,
-        grant_type,  # type: Union[str, "_models.PostContentSchemaGrantType"]
         service,  # type: str
         access_token,  # type: str
         **kwargs  # type: Any
@@ -198,13 +197,14 @@ class FormdataurlencodedOperations(object):
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 
-        :param grant_type: Constant part of a formdata body. "access_token" Required.
-        :type grant_type: str or ~bodyformurlencodeddata.models.PostContentSchemaGrantType
         :param service: Indicates the name of your Azure container registry. Required.
         :type service: str
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
          or access_token. Required.
         :type access_token: str
+        :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
+         that overriding this default value may result in unsupported behavior.
+        :paramtype grant_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -219,6 +219,7 @@ class FormdataurlencodedOperations(object):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
         )  # type: str
+        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data

@@ -24,9 +24,3 @@ class PetType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     DOG = "dog"
     CAT = "cat"
     FISH = "fish"
-
-
-class PostContentSchemaGrantType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Constant part of a formdata body."""
-
-    ACCESS_TOKEN = "access_token"

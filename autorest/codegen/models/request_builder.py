@@ -82,7 +82,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        relative_path = ".."
         if not self.abstract:
             if self.parameters.path:
                 relative_path = ".."
@@ -103,7 +102,12 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         )
         file_import.add_msrest_import(
             self.code_model,
-            relative_path,
+            "..."
+            if (
+                not self.code_model.options["builders_visibility"] == "embedded"
+                and self.group_name
+            )
+            else "..",
             MsrestImportType.Serializer,
             TypingSection.REGULAR,
         )
