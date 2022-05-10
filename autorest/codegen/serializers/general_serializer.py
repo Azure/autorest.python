@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
+from ..models.imports import MsrestImportType
 from ..models import (
     FileImport,
     ImportType,
@@ -123,32 +124,12 @@ class GeneralSerializer:
                 f"{self.code_model.class_name}Configuration",
                 ImportType.LOCAL,
             )
-            if self.code_model.options["client_side_validation"]:
-                file_import.add_submodule_import(
-                    "msrest", "Serializer", ImportType.THIRDPARTY, TypingSection.TYPING
-                )
-                file_import.add_submodule_import(
-                    "msrest",
-                    "Deserializer",
-                    ImportType.THIRDPARTY,
-                    TypingSection.TYPING,
-                )
-            else:
-                relative_path = "."
-                if self.code_model.options["multiapi"]:
-                    relative_path += "."
-                file_import.add_submodule_import(
-                    f"{relative_path}_serialization",
-                    "Serializer",
-                    ImportType.LOCAL,
-                    TypingSection.TYPING,
-                )
-                file_import.add_submodule_import(
-                    f"{relative_path}_serialization",
-                    "Deserializer",
-                    ImportType.LOCAL,
-                    TypingSection.TYPING,
-                )
+            file_import.add_msrest_import(
+                self.code_model,
+                ".",
+                MsrestImportType.SerializerDeserializer,
+                TypingSection.TYPING,
+            )
 
         return template.render(
             code_model=self.code_model,

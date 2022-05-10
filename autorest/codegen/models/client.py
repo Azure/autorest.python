@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import List, Optional, TYPE_CHECKING
 from .parameter_list import GlobalParameterList
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -53,23 +53,13 @@ class Client:
             file_import.add_submodule_import(
                 "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-        if self.code_model.options["client_side_validation"]:
-            file_import.add_submodule_import(
-                "msrest", "Serializer", ImportType.THIRDPARTY
-            )
-            file_import.add_submodule_import(
-                "msrest", "Deserializer", ImportType.THIRDPARTY
-            )
-        else:
-            relative_path = ".." if async_mode else "."
-            if self.code_model.options["multiapi"]:
-                relative_path += "."
-            file_import.add_submodule_import(
-                f"{relative_path}_serialization", "Serializer", ImportType.LOCAL
-            )
-            file_import.add_submodule_import(
-                f"{relative_path}_serialization", "Deserializer", ImportType.LOCAL
-            )
+
+        file_import.add_msrest_import(
+            self.code_model,
+            ".." if async_mode else ".",
+            MsrestImportType.SerializerDeserializer,
+            TypingSection.REGULAR,
+        )
 
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(

@@ -3,8 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from enum import Enum
-from typing import Dict, List, Optional, Tuple, Union, Set, Mapping
+from enum import Enum, auto
+from typing import Dict, List, Optional, Tuple, Union, Set, Mapping, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 class ImportType(str, Enum):
@@ -18,6 +21,16 @@ class TypingSection(str, Enum):
     REGULAR = "regular"  # this import is always a typing import
     CONDITIONAL = "conditional"  # is a typing import when we're dealing with files that py2 will use, else regular
     TYPING = "typing"  # never a typing import
+
+
+class MsrestImportType(Enum):
+    Module = auto()  # import _serialization.py or msrest.serialization as Module
+    Serializer = (
+        auto()
+    )  # from _serialization.py or msrest.serialization import Serializer
+    SerializerDeserializer = (
+        auto()
+    )  # from _serialization.py or msrest.serialization import Serializer and Deserializer
 
 
 class ImportModel:
@@ -189,3 +202,45 @@ class FileImport:
                 i.import_type, dict()
             ).setdefault(i.module_name, set()).add(name_import)
         return retval
+
+    def add_msrest_import(
+        self,
+        code_model: "CodeModel",
+        relative_path: str,
+        msrest_import_type: MsrestImportType,
+        typing_section: TypingSection,
+    ):
+        if code_model.options["client_side_validation"]:
+            if msrest_import_type == MsrestImportType.Module:
+                self.add_import(
+                    "msrest.serialization", ImportType.AZURECORE, typing_section
+                )
+            else:
+                self.add_submodule_import(
+                    "msrest", "Serializer", ImportType.THIRDPARTY, typing_section
+                )
+                if msrest_import_type == MsrestImportType.SerializerDeserializer:
+                    self.add_submodule_import(
+                        "msrest", "Deserializer", ImportType.THIRDPARTY, typing_section
+                    )
+        else:
+            if code_model.options["multiapi"]:
+                relative_path += "."
+            if msrest_import_type == MsrestImportType.Module:
+                self.add_submodule_import(
+                    relative_path, "_serialization", ImportType.LOCAL, typing_section
+                )
+            else:
+                self.add_submodule_import(
+                    f"{relative_path}_serialization",
+                    "Serializer",
+                    ImportType.LOCAL,
+                    typing_section,
+                )
+                if msrest_import_type == MsrestImportType.SerializerDeserializer:
+                    self.add_submodule_import(
+                        f"{relative_path}_serialization",
+                        "Deserializer",
+                        ImportType.LOCAL,
+                        typing_section,
+                    )

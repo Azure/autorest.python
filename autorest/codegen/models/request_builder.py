@@ -11,7 +11,7 @@ from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
 from .schema_response import SchemaResponse
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .parameter import Parameter
 
 if TYPE_CHECKING:
@@ -103,16 +103,13 @@ class RequestBuilder(BaseBuilder):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        if self.code_model.options["client_side_validation"]:
-            file_import.add_submodule_import(
-                "msrest", "Serializer", ImportType.THIRDPARTY
-            )
-        else:
-            if self.code_model.options["multiapi"]:
-                relative_path += "."
-            file_import.add_submodule_import(
-                f"{relative_path}_serialization", "Serializer", ImportType.LOCAL
-            )
+
+        file_import.add_msrest_import(
+            self.code_model,
+            relative_path,
+            MsrestImportType.Serializer,
+            TypingSection.REGULAR,
+        )
         return file_import
 
     @classmethod

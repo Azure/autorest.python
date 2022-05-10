@@ -7,7 +7,7 @@ from abc import abstractmethod
 from typing import cast, List
 from jinja2 import Environment
 from ..models import ObjectSchema, CodeModel, Property
-from ..models.imports import FileImport, ImportType
+from ..models.imports import FileImport, TypingSection, MsrestImportType
 from .import_serializer import FileImportSerializer
 
 
@@ -51,15 +51,9 @@ class ModelBaseSerializer:
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        if self.code_model.options["client_side_validation"]:
-            file_import.add_import("msrest.serialization", ImportType.AZURECORE)
-        else:
-            relative_path = ".."
-            if self.code_model.options["multiapi"]:
-                relative_path += "."
-            file_import.add_submodule_import(
-                relative_path, "_serialization", ImportType.LOCAL
-            )
+        file_import.add_msrest_import(
+            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+        )
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
