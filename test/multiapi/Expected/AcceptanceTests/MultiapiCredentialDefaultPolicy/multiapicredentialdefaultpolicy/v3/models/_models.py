@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
-
 from ... import _serialization
 
 
@@ -21,8 +19,8 @@ class Error(_serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
     def __init__(
@@ -48,7 +46,7 @@ class ModelThree(_serialization.Model):
     """
 
     _attribute_map = {
-        'optional_property': {'key': 'optionalProperty', 'type': 'str'},
+        "optional_property": {"key": "optionalProperty", "type": "str"},
     }
 
     def __init__(
@@ -73,8 +71,8 @@ class PagingResult(_serialization.Model):
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[ModelThree]'},
-        'next_link': {'key': 'nextLink', 'type': 'str'},
+        "values": {"key": "values", "type": "[ModelThree]"},
+        "next_link": {"key": "nextLink", "type": "str"},
     }
 
     def __init__(
@@ -100,11 +98,11 @@ class SourcePath(_serialization.Model):
     """
 
     _validation = {
-        'source': {'max_length': 2048, 'min_length': 0},
+        'source': {'max_length': 2048},
     }
 
     _attribute_map = {
-        'source': {'key': 'source', 'type': 'str'},
+        "source": {"key": "source", "type": "str"},
     }
 
     def __init__(

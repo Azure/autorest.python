@@ -8,8 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 
@@ -29,7 +27,7 @@ class Animal(_serialization.Model):
         :keyword ani_type:
         :paramtype ani_type: str
         """
-        super(Animal, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.ani_type = ani_type
 
 
@@ -49,7 +47,7 @@ class BaseError(_serialization.Model):
         :keyword some_base_prop:
         :paramtype some_base_prop: str
         """
-        super(BaseError, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.some_base_prop = some_base_prop
 
 
@@ -65,7 +63,7 @@ class NotFoundErrorBase(BaseError):
     :vartype some_base_prop: str
     :ivar reason:
     :vartype reason: str
-    :ivar what_not_found: Required. Constant filled by server.
+    :ivar what_not_found: Required.
     :vartype what_not_found: str
     """
 
@@ -88,9 +86,9 @@ class NotFoundErrorBase(BaseError):
         :keyword reason:
         :paramtype reason: str
         """
-        super(NotFoundErrorBase, self).__init__(some_base_prop=some_base_prop, **kwargs)
+        super().__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
-        self.what_not_found = "NotFoundErrorBase"  # type: str
+        self.what_not_found = None  # type: Optional[str]
 
 
 class AnimalNotFound(NotFoundErrorBase):
@@ -102,7 +100,7 @@ class AnimalNotFound(NotFoundErrorBase):
     :vartype some_base_prop: str
     :ivar reason:
     :vartype reason: str
-    :ivar what_not_found: Required. Constant filled by server.
+    :ivar what_not_found: Required.
     :vartype what_not_found: str
     :ivar name:
     :vartype name: str
@@ -135,7 +133,7 @@ class AnimalNotFound(NotFoundErrorBase):
         :keyword name:
         :paramtype name: str
         """
-        super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
+        super().__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = "AnimalNotFound"  # type: str
         self.name = name
 
@@ -149,7 +147,7 @@ class LinkNotFound(NotFoundErrorBase):
     :vartype some_base_prop: str
     :ivar reason:
     :vartype reason: str
-    :ivar what_not_found: Required. Constant filled by server.
+    :ivar what_not_found: Required.
     :vartype what_not_found: str
     :ivar what_sub_address:
     :vartype what_sub_address: str
@@ -182,7 +180,7 @@ class LinkNotFound(NotFoundErrorBase):
         :keyword what_sub_address:
         :paramtype what_sub_address: str
         """
-        super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
+        super().__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = "InvalidResourceLink"  # type: str
         self.what_sub_address = what_sub_address
 
@@ -212,7 +210,7 @@ class Pet(Animal):
         :keyword ani_type:
         :paramtype ani_type: str
         """
-        super(Pet, self).__init__(ani_type=ani_type, **kwargs)
+        super().__init__(ani_type=ani_type, **kwargs)
         self.name = None
 
 
@@ -232,7 +230,7 @@ class PetAction(_serialization.Model):
         :keyword action_response: action feedback.
         :paramtype action_response: str
         """
-        super(PetAction, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.action_response = action_response
 
 
@@ -246,7 +244,7 @@ class PetActionError(PetAction):
 
     :ivar action_response: action feedback.
     :vartype action_response: str
-    :ivar error_type: Required. Constant filled by server.
+    :ivar error_type: Required.
     :vartype error_type: str
     :ivar error_message: the error message.
     :vartype error_message: str
@@ -271,8 +269,8 @@ class PetActionError(PetAction):
         :keyword error_message: the error message.
         :paramtype error_message: str
         """
-        super(PetActionError, self).__init__(action_response=action_response, **kwargs)
-        self.error_type = "PetActionError"  # type: str
+        super().__init__(action_response=action_response, **kwargs)
+        self.error_type = None  # type: Optional[str]
         self.error_message = error_message
 
 
@@ -286,7 +284,7 @@ class PetSadError(PetActionError):
 
     :ivar action_response: action feedback.
     :vartype action_response: str
-    :ivar error_type: Required. Constant filled by server.
+    :ivar error_type: Required.
     :vartype error_type: str
     :ivar error_message: the error message.
     :vartype error_message: str
@@ -323,7 +321,7 @@ class PetSadError(PetActionError):
         :keyword reason: why is the pet sad.
         :paramtype reason: str
         """
-        super(PetSadError, self).__init__(action_response=action_response, error_message=error_message, **kwargs)
+        super().__init__(action_response=action_response, error_message=error_message, **kwargs)
         self.error_type = "PetSadError"  # type: str
         self.reason = reason
 
@@ -335,7 +333,7 @@ class PetHungryOrThirstyError(PetSadError):
 
     :ivar action_response: action feedback.
     :vartype action_response: str
-    :ivar error_type: Required. Constant filled by server.
+    :ivar error_type: Required.
     :vartype error_type: str
     :ivar error_message: the error message.
     :vartype error_message: str
@@ -376,8 +374,6 @@ class PetHungryOrThirstyError(PetSadError):
         :keyword hungry_or_thirsty: is the pet hungry or thirsty or both.
         :paramtype hungry_or_thirsty: str
         """
-        super(PetHungryOrThirstyError, self).__init__(
-            action_response=action_response, error_message=error_message, reason=reason, **kwargs
-        )
+        super().__init__(action_response=action_response, error_message=error_message, reason=reason, **kwargs)
         self.error_type = "PetHungryOrThirstyError"  # type: str
         self.hungry_or_thirsty = hungry_or_thirsty

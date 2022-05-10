@@ -386,13 +386,13 @@ class PagingOperations:
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -515,8 +515,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_paging_get_with_query_params_request(
-                    query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
+                    query_constant=query_constant,
                     headers=_headers,
                     params=_params,
                 )
@@ -646,13 +646,13 @@ class PagingOperations:
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -744,13 +744,13 @@ class PagingOperations:
 
         :param offset: Offset of return value. Required.
         :type offset: int
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1425,16 +1425,16 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: int = 30,
         **kwargs: Any
-    ) -> AsyncCustomPoller[AsyncItemPaged[JSON]]:
+    ) -> AsyncCustomPoller[AsyncIterable[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Default value is 30.
         :paramtype timeout: int
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1443,7 +1443,7 @@ class PagingOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncCustomPoller that returns an iterator like instance of JSON object
+        :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype:
          ~custompollerpagerdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[JSON]]
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 
@@ -16,11 +14,11 @@ class AccessPolicy(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar start: Required. the date-time the policy is active.
+    :ivar start: the date-time the policy is active. Required.
     :vartype start: ~datetime.datetime
-    :ivar expiry: Required. the date-time the policy expires.
+    :ivar expiry: the date-time the policy expires. Required.
     :vartype expiry: ~datetime.datetime
-    :ivar permission: Required. the permissions for the acl policy.
+    :ivar permission: the permissions for the acl policy. Required.
     :vartype permission: str
     """
 
@@ -38,11 +36,11 @@ class AccessPolicy(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword start: Required. the date-time the policy is active.
+        :keyword start: the date-time the policy is active. Required.
         :paramtype start: ~datetime.datetime
-        :keyword expiry: Required. the date-time the policy expires.
+        :keyword expiry: the date-time the policy expires. Required.
         :paramtype expiry: ~datetime.datetime
-        :keyword permission: Required. the permissions for the acl policy.
+        :keyword permission: the permissions for the acl policy. Required.
         :paramtype permission: str
         """
         super(AccessPolicy, self).__init__(**kwargs)
@@ -121,7 +119,7 @@ class Blob(_serialization.Model):
     :vartype deleted: bool
     :ivar snapshot: Required.
     :vartype snapshot: str
-    :ivar properties: Required. Properties of a blob.
+    :ivar properties: Properties of a blob. Required.
     :vartype properties: ~xmlservice.models.BlobProperties
     :ivar metadata: Dictionary of :code:`<string>`.
     :vartype metadata: dict[str, str]
@@ -151,7 +149,7 @@ class Blob(_serialization.Model):
         :paramtype deleted: bool
         :keyword snapshot: Required.
         :paramtype snapshot: str
-        :keyword properties: Required. Properties of a blob.
+        :keyword properties: Properties of a blob. Required.
         :paramtype properties: ~xmlservice.models.BlobProperties
         :keyword metadata: Dictionary of :code:`<string>`.
         :paramtype metadata: dict[str, str]
@@ -200,7 +198,7 @@ class BlobProperties(_serialization.Model):
     :ivar etag: Required.
     :vartype etag: str
     :ivar content_length: Size in bytes.
-    :vartype content_length: long
+    :vartype content_length: int
     :ivar content_type:
     :vartype content_type: str
     :ivar content_encoding:
@@ -215,17 +213,18 @@ class BlobProperties(_serialization.Model):
     :vartype cache_control: str
     :ivar blob_sequence_number:
     :vartype blob_sequence_number: int
-    :ivar blob_type: Known values are: "BlockBlob", "PageBlob", "AppendBlob".
+    :ivar blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
     :vartype blob_type: str or ~xmlservice.models.BlobType
-    :ivar lease_status: Known values are: "locked", "unlocked".
+    :ivar lease_status: Known values are: "locked" and "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
-    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", "broken".
+    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
+     "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
-    :ivar lease_duration: Known values are: "infinite", "fixed".
+    :ivar lease_duration: Known values are: "infinite" and "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
     :ivar copy_id:
     :vartype copy_id: str
-    :ivar copy_status: Known values are: "pending", "success", "aborted", "failed".
+    :ivar copy_status: Known values are: "pending", "success", "aborted", and "failed".
     :vartype copy_status: str or ~xmlservice.models.CopyStatusType
     :ivar copy_source:
     :vartype copy_source: str
@@ -246,11 +245,11 @@ class BlobProperties(_serialization.Model):
     :ivar remaining_retention_days:
     :vartype remaining_retention_days: int
     :ivar access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
-     "Cool", "Archive".
+     "Cool", and "Archive".
     :vartype access_tier: str or ~xmlservice.models.AccessTier
     :ivar access_tier_inferred:
     :vartype access_tier_inferred: bool
-    :ivar archive_status: Known values are: "rehydrate-pending-to-hot",
+    :ivar archive_status: Known values are: "rehydrate-pending-to-hot" and
      "rehydrate-pending-to-cool".
     :vartype archive_status: str or ~xmlservice.models.ArchiveStatus
     """
@@ -263,7 +262,7 @@ class BlobProperties(_serialization.Model):
     _attribute_map = {
         "last_modified": {"key": "Last-Modified", "type": "rfc-1123"},
         "etag": {"key": "Etag", "type": "str"},
-        "content_length": {"key": "Content-Length", "type": "long"},
+        "content_length": {"key": "Content-Length", "type": "int"},
         "content_type": {"key": "Content-Type", "type": "str"},
         "content_encoding": {"key": "Content-Encoding", "type": "str"},
         "content_language": {"key": "Content-Language", "type": "str"},
@@ -298,7 +297,7 @@ class BlobProperties(_serialization.Model):
         :keyword etag: Required.
         :paramtype etag: str
         :keyword content_length: Size in bytes.
-        :paramtype content_length: long
+        :paramtype content_length: int
         :keyword content_type:
         :paramtype content_type: str
         :keyword content_encoding:
@@ -313,17 +312,18 @@ class BlobProperties(_serialization.Model):
         :paramtype cache_control: str
         :keyword blob_sequence_number:
         :paramtype blob_sequence_number: int
-        :keyword blob_type: Known values are: "BlockBlob", "PageBlob", "AppendBlob".
+        :keyword blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
         :paramtype blob_type: str or ~xmlservice.models.BlobType
-        :keyword lease_status: Known values are: "locked", "unlocked".
+        :keyword lease_status: Known values are: "locked" and "unlocked".
         :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
-        :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", "broken".
+        :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", and
+         "broken".
         :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
-        :keyword lease_duration: Known values are: "infinite", "fixed".
+        :keyword lease_duration: Known values are: "infinite" and "fixed".
         :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
         :keyword copy_id:
         :paramtype copy_id: str
-        :keyword copy_status: Known values are: "pending", "success", "aborted", "failed".
+        :keyword copy_status: Known values are: "pending", "success", "aborted", and "failed".
         :paramtype copy_status: str or ~xmlservice.models.CopyStatusType
         :keyword copy_source:
         :paramtype copy_source: str
@@ -344,11 +344,11 @@ class BlobProperties(_serialization.Model):
         :keyword remaining_retention_days:
         :paramtype remaining_retention_days: int
         :keyword access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
-         "Cool", "Archive".
+         "Cool", and "Archive".
         :paramtype access_tier: str or ~xmlservice.models.AccessTier
         :keyword access_tier_inferred:
         :paramtype access_tier_inferred: bool
-        :keyword archive_status: Known values are: "rehydrate-pending-to-hot",
+        :keyword archive_status: Known values are: "rehydrate-pending-to-hot" and
          "rehydrate-pending-to-cool".
         :paramtype archive_status: str or ~xmlservice.models.ArchiveStatus
         """
@@ -394,7 +394,7 @@ class Blobs(_serialization.Model):
 
     _attribute_map = {
         "blob_prefix": {"key": "BlobPrefix", "type": "[BlobPrefix]"},
-        "blob": {"key": "Blob", "type": "[Blob]"},
+        "blob": {"key": "Blob", "type": "[Blob]", "xml": {"itemsName": "Blob"}},
     }
 
     def __init__(self, **kwargs):
@@ -457,7 +457,7 @@ class Container(_serialization.Model):
 
     :ivar name: Required.
     :vartype name: str
-    :ivar properties: Required. Properties of a container.
+    :ivar properties: Properties of a container. Required.
     :vartype properties: ~xmlservice.models.ContainerProperties
     :ivar metadata: Dictionary of :code:`<string>`.
     :vartype metadata: dict[str, str]
@@ -478,7 +478,7 @@ class Container(_serialization.Model):
         """
         :keyword name: Required.
         :paramtype name: str
-        :keyword properties: Required. Properties of a container.
+        :keyword properties: Properties of a container. Required.
         :paramtype properties: ~xmlservice.models.ContainerProperties
         :keyword metadata: Dictionary of :code:`<string>`.
         :paramtype metadata: dict[str, str]
@@ -498,13 +498,14 @@ class ContainerProperties(_serialization.Model):
     :vartype last_modified: ~datetime.datetime
     :ivar etag: Required.
     :vartype etag: str
-    :ivar lease_status: Known values are: "locked", "unlocked".
+    :ivar lease_status: Known values are: "locked" and "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
-    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", "broken".
+    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
+     "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
-    :ivar lease_duration: Known values are: "infinite", "fixed".
+    :ivar lease_duration: Known values are: "infinite" and "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :ivar public_access: Known values are: "container", "blob".
+    :ivar public_access: Known values are: "container" and "blob".
     :vartype public_access: str or ~xmlservice.models.PublicAccessType
     """
 
@@ -528,13 +529,14 @@ class ContainerProperties(_serialization.Model):
         :paramtype last_modified: ~datetime.datetime
         :keyword etag: Required.
         :paramtype etag: str
-        :keyword lease_status: Known values are: "locked", "unlocked".
+        :keyword lease_status: Known values are: "locked" and "unlocked".
         :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
-        :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", "broken".
+        :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", and
+         "broken".
         :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
-        :keyword lease_duration: Known values are: "infinite", "fixed".
+        :keyword lease_duration: Known values are: "infinite" and "fixed".
         :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
-        :keyword public_access: Known values are: "container", "blob".
+        :keyword public_access: Known values are: "container" and "blob".
         :paramtype public_access: str or ~xmlservice.models.PublicAccessType
         """
         super(ContainerProperties, self).__init__(**kwargs)
@@ -551,23 +553,23 @@ class CorsRule(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar allowed_origins: Required. The origin domains that are permitted to make a request
-     against the storage service via CORS. The origin domain is the domain from which the request
-     originates. Note that the origin must be an exact case-sensitive match with the origin that the
-     user age sends to the service. You can also use the wildcard character '*' to allow all origin
-     domains to make requests via CORS.
+    :ivar allowed_origins: The origin domains that are permitted to make a request against the
+     storage service via CORS. The origin domain is the domain from which the request originates.
+     Note that the origin must be an exact case-sensitive match with the origin that the user age
+     sends to the service. You can also use the wildcard character '*' to allow all origin domains
+     to make requests via CORS. Required.
     :vartype allowed_origins: str
-    :ivar allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
-     use for a CORS request. (comma separated).
+    :ivar allowed_methods: The methods (HTTP request verbs) that the origin domain may use for a
+     CORS request. (comma separated). Required.
     :vartype allowed_methods: str
-    :ivar allowed_headers: Required. the request headers that the origin domain may specify on the
-     CORS request.
+    :ivar allowed_headers: the request headers that the origin domain may specify on the CORS
+     request. Required.
     :vartype allowed_headers: str
-    :ivar exposed_headers: Required. The response headers that may be sent in the response to the
-     CORS request and exposed by the browser to the request issuer.
+    :ivar exposed_headers: The response headers that may be sent in the response to the CORS
+     request and exposed by the browser to the request issuer. Required.
     :vartype exposed_headers: str
-    :ivar max_age_in_seconds: Required. The maximum amount time that a browser should cache the
-     preflight OPTIONS request.
+    :ivar max_age_in_seconds: The maximum amount time that a browser should cache the preflight
+     OPTIONS request. Required.
     :vartype max_age_in_seconds: int
     """
 
@@ -590,23 +592,23 @@ class CorsRule(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword allowed_origins: Required. The origin domains that are permitted to make a request
-         against the storage service via CORS. The origin domain is the domain from which the request
-         originates. Note that the origin must be an exact case-sensitive match with the origin that the
-         user age sends to the service. You can also use the wildcard character '*' to allow all origin
-         domains to make requests via CORS.
+        :keyword allowed_origins: The origin domains that are permitted to make a request against the
+         storage service via CORS. The origin domain is the domain from which the request originates.
+         Note that the origin must be an exact case-sensitive match with the origin that the user age
+         sends to the service. You can also use the wildcard character '*' to allow all origin domains
+         to make requests via CORS. Required.
         :paramtype allowed_origins: str
-        :keyword allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
-         use for a CORS request. (comma separated).
+        :keyword allowed_methods: The methods (HTTP request verbs) that the origin domain may use for a
+         CORS request. (comma separated). Required.
         :paramtype allowed_methods: str
-        :keyword allowed_headers: Required. the request headers that the origin domain may specify on
-         the CORS request.
+        :keyword allowed_headers: the request headers that the origin domain may specify on the CORS
+         request. Required.
         :paramtype allowed_headers: str
-        :keyword exposed_headers: Required. The response headers that may be sent in the response to
-         the CORS request and exposed by the browser to the request issuer.
+        :keyword exposed_headers: The response headers that may be sent in the response to the CORS
+         request and exposed by the browser to the request issuer. Required.
         :paramtype exposed_headers: str
-        :keyword max_age_in_seconds: Required. The maximum amount time that a browser should cache the
-         preflight OPTIONS request.
+        :keyword max_age_in_seconds: The maximum amount time that a browser should cache the preflight
+         OPTIONS request. Required.
         :paramtype max_age_in_seconds: int
         """
         super(CorsRule, self).__init__(**kwargs)
@@ -823,15 +825,15 @@ class Logging(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar version: Required. The version of Storage Analytics to configure.
+    :ivar version: The version of Storage Analytics to configure. Required.
     :vartype version: str
-    :ivar delete: Required. Indicates whether all delete requests should be logged.
+    :ivar delete: Indicates whether all delete requests should be logged. Required.
     :vartype delete: bool
-    :ivar read: Required. Indicates whether all read requests should be logged.
+    :ivar read: Indicates whether all read requests should be logged. Required.
     :vartype read: bool
-    :ivar write: Required. Indicates whether all write requests should be logged.
+    :ivar write: Indicates whether all write requests should be logged. Required.
     :vartype write: bool
-    :ivar retention_policy: Required. the retention policy.
+    :ivar retention_policy: the retention policy. Required.
     :vartype retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
@@ -853,15 +855,15 @@ class Logging(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword version: Required. The version of Storage Analytics to configure.
+        :keyword version: The version of Storage Analytics to configure. Required.
         :paramtype version: str
-        :keyword delete: Required. Indicates whether all delete requests should be logged.
+        :keyword delete: Indicates whether all delete requests should be logged. Required.
         :paramtype delete: bool
-        :keyword read: Required. Indicates whether all read requests should be logged.
+        :keyword read: Indicates whether all read requests should be logged. Required.
         :paramtype read: bool
-        :keyword write: Required. Indicates whether all write requests should be logged.
+        :keyword write: Indicates whether all write requests should be logged. Required.
         :paramtype write: bool
-        :keyword retention_policy: Required. the retention policy.
+        :keyword retention_policy: the retention policy. Required.
         :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
         """
         super(Logging, self).__init__(**kwargs)
@@ -879,7 +881,7 @@ class Metrics(_serialization.Model):
 
     :ivar version: The version of Storage Analytics to configure.
     :vartype version: str
-    :ivar enabled: Required. Indicates whether metrics are enabled for the Blob service.
+    :ivar enabled: Indicates whether metrics are enabled for the Blob service. Required.
     :vartype enabled: bool
     :ivar include_apis: Indicates whether metrics should generate summary statistics for called API
      operations.
@@ -903,7 +905,7 @@ class Metrics(_serialization.Model):
         """
         :keyword version: The version of Storage Analytics to configure.
         :paramtype version: str
-        :keyword enabled: Required. Indicates whether metrics are enabled for the Blob service.
+        :keyword enabled: Indicates whether metrics are enabled for the Blob service. Required.
         :paramtype enabled: bool
         :keyword include_apis: Indicates whether metrics should generate summary statistics for called
          API operations.
@@ -922,7 +924,7 @@ class ModelWithByteProperty(_serialization.Model):
     """ModelWithByteProperty.
 
     :ivar bytes:
-    :vartype bytes: bytearray
+    :vartype bytes: bytes
     """
 
     _attribute_map = {
@@ -932,7 +934,7 @@ class ModelWithByteProperty(_serialization.Model):
     def __init__(self, **kwargs):
         """
         :keyword bytes:
-        :paramtype bytes: bytearray
+        :paramtype bytes: bytes
         """
         super(ModelWithByteProperty, self).__init__(**kwargs)
         self.bytes = kwargs.get("bytes", None)
@@ -990,8 +992,8 @@ class RetentionPolicy(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar enabled: Required. Indicates whether a retention policy is enabled for the storage
-     service.
+    :ivar enabled: Indicates whether a retention policy is enabled for the storage service.
+     Required.
     :vartype enabled: bool
     :ivar days: Indicates the number of days that metrics or logging or soft-deleted data should be
      retained. All data older than this value will be deleted.
@@ -1010,8 +1012,8 @@ class RetentionPolicy(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword enabled: Required. Indicates whether a retention policy is enabled for the storage
-         service.
+        :keyword enabled: Indicates whether a retention policy is enabled for the storage service.
+         Required.
         :paramtype enabled: bool
         :keyword days: Indicates the number of days that metrics or logging or soft-deleted data should
          be retained. All data older than this value will be deleted.
@@ -1079,9 +1081,9 @@ class SignedIdentifier(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Required. a unique id.
+    :ivar id: a unique id. Required.
     :vartype id: str
-    :ivar access_policy: Required. The access policy.
+    :ivar access_policy: The access policy. Required.
     :vartype access_policy: ~xmlservice.models.AccessPolicy
     """
 
@@ -1098,9 +1100,9 @@ class SignedIdentifier(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword id: Required. a unique id.
+        :keyword id: a unique id. Required.
         :paramtype id: str
-        :keyword access_policy: Required. The access policy.
+        :keyword access_policy: The access policy. Required.
         :paramtype access_policy: ~xmlservice.models.AccessPolicy
         """
         super(SignedIdentifier, self).__init__(**kwargs)
@@ -1158,7 +1160,7 @@ class Slideshow(_serialization.Model):
         "title": {"key": "title", "type": "str", "xml": {"attr": True}},
         "date": {"key": "date", "type": "str", "xml": {"attr": True}},
         "author": {"key": "author", "type": "str", "xml": {"attr": True}},
-        "slides": {"key": "slides", "type": "[Slide]"},
+        "slides": {"key": "slides", "type": "[Slide]", "xml": {"itemsName": "slide"}},
     }
     _xml_map = {"name": "slideshow"}
 

@@ -95,7 +95,7 @@ def test_post_optional_integer(send_request_required_client):
     send_request_required_client(request)
 
 def test_post_optional_string(send_request_required_client):
-    request = explicit.build_post_optional_string_parameter_request(json=None)
+    request = explicit.build_post_optional_string_parameter_request(content=None)
     send_request_required_client(request)
 
 
@@ -141,7 +141,7 @@ def test_post_required_string(send_request_client):
         send_request_client(request)
 
     with pytest.raises(HttpResponseError) as ex:
-        request = explicit.build_post_required_string_parameter_request()
+        request = explicit.build_post_required_string_parameter_request(content=None)
         send_request_client(request)
 
     assert "Not Found" in str(ex.value)

@@ -68,9 +68,11 @@ class FormdataurlencodedOperations:
 
         :param pet_id: ID of pet that needs to be updated. Required.
         :type pet_id: int
-        :param pet_type: Can take a value of dog, or cat, or fish. Required.
+        :param pet_type: Can take a value of dog, or cat, or fish. Known values are: "dog", "cat", and
+         "fish". Required.
         :type pet_type: str or ~bodyformurlencodeddata.models.PetType
-        :param pet_food: Can take a value of meat, or fish, or plant. Required.
+        :param pet_food: Can take a value of meat, or fish, or plant. Known values are: "meat", "fish",
+         and "plant". Required.
         :type pet_food: str or ~bodyformurlencodeddata.models.PetFood
         :param pet_age: How many years is it old?. Required.
         :type pet_age: int
@@ -79,7 +81,7 @@ class FormdataurlencodedOperations:
         :param status: Updated status of the pet. Default value is None.
         :type status: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -91,7 +93,7 @@ class FormdataurlencodedOperations:
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: Optional[str]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data
@@ -131,21 +133,24 @@ class FormdataurlencodedOperations:
 
     @distributed_trace_async
     async def partial_constant_body(  # pylint: disable=inconsistent-return-statements
-        self, service: str, access_token: str, **kwargs: Any
+        self,
+        grant_type: Union[str, "_models.PostContentSchemaGrantType"],
+        service: str,
+        access_token: str,
+        **kwargs: Any
     ) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 
+        :param grant_type: Constant part of a formdata body. "access_token" Required.
+        :type grant_type: str or ~bodyformurlencodeddata.models.PostContentSchemaGrantType
         :param service: Indicates the name of your Azure container registry. Required.
         :type service: str
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
          or access_token. Required.
         :type access_token: str
-        :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype grant_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,8 +162,7 @@ class FormdataurlencodedOperations:
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: Optional[str]
-        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data

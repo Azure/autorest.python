@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
-
 from ... import _serialization
 
 
@@ -21,8 +19,8 @@ class Error(_serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
     def __init__(
@@ -50,8 +48,8 @@ class PagingResult(_serialization.Model):
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[Product]'},
-        'next_link': {'key': 'nextLink', 'type': 'str'},
+        "values": {"key": "values", "type": "[Product]"},
+        "next_link": {"key": "nextLink", "type": "str"},
     }
 
     def __init__(
@@ -77,7 +75,7 @@ class Product(_serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
+        "id": {"key": "id", "type": "int"},
     }
 
     def __init__(

@@ -3,13 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, Any, Dict, Union, List, Optional, TYPE_CHECKING
+from typing import Any, Dict, Optional, TYPE_CHECKING, List
 
 from .base_model import BaseModel
-from .constant_schema import ConstantSchema
+from .constant_type import ConstantType
+from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .base_schema import BaseSchema
-from .enum_schema import EnumSchema
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -20,117 +20,50 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        name: str,
-        schema: BaseSchema,
-        original_swagger_name: str,
-        *,
-        flattened_names: Optional[List[str]] = None,
-        description: Optional[str] = None,
-        client_default_value: Optional[Any] = None,
+        type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.name = name
-        self.schema = schema
-        self.original_swagger_name = original_swagger_name
-        self.flattened_names = flattened_names or []
-
-        self.required: bool = yaml_data.get("required", False)
-        self.readonly: bool = yaml_data.get("readOnly", False)
+        self.rest_api_name: str = self.yaml_data["restApiName"]
+        self.client_name: str = self.yaml_data["clientName"]
+        self.type = type
+        self.optional: bool = self.yaml_data["optional"]
+        self.readonly: bool = self.yaml_data.get("readonly", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
-        self.client_default_value = client_default_value
-        self.description = self._create_description(description, yaml_data)
+        self.client_default_value = yaml_data.get("clientDefaultValue", None)
+        if self.client_default_value is None:
+            self.client_default_value = self.type.client_default_value
+        self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
 
-    def _create_description(
-        self, description_input: Optional[str], yaml_data: Dict[str, Any]
-    ) -> str:
-        description: str = (
-            description_input or yaml_data["language"]["python"]["description"]
+    def description(self, *, is_operation_file: bool) -> str:
+        from .model_type import ModelType
+
+        description = self.yaml_data["description"]
+        if not (self.optional or self.client_default_value):
+            description = add_to_description(description, "Required.")
+        # don't want model type documentation as part of property doc
+        type_description = (
+            ""
+            if isinstance(self.type, ModelType)
+            else self.type.description(is_operation_file=is_operation_file)
         )
-        if description and description[-1] != ".":
-            description += "."
-        if self.name == "tags":
-            description = "A set of tags. " + description
-        if self.constant:
-            description += f" Has constant value: {self.constant_declaration}."
-        elif self.required:
-            if description:
-                description = "Required. " + description
-            else:
-                description = "Required. "
-        elif isinstance(self.schema, ConstantSchema):
-            description += (
-                f" The only acceptable values to pass in are None and {self.constant_declaration}. "
-                + f"The default value is {self.default_value_declaration}."
-            )
-        if self.is_discriminator:
-            description += "Constant filled by server. "
-        if isinstance(self.schema, EnumSchema):
-            values = [
-                self.schema.enum_type.get_declaration(v.value)
-                for v in self.schema.values
-            ]
-            if description and description[-1] != " ":
-                description += " "
-            description += "Known values are: {}.".format(", ".join(values))
-            if self.schema.default_value:
-                description += f' Default value: "{self.schema.default_value}".'
-        return description
+        return add_to_description(description, type_description)
+
+    @property
+    def client_default_value_declaration(self) -> str:
+        if self.client_default_value is not None:
+            return self.type.get_declaration(self.client_default_value)
+        if self.type.client_default_value is not None:
+            return self.type.get_declaration(self.type.client_default_value)
+        return "None"
 
     @property
     def constant(self) -> bool:
         # this bool doesn't consider you to be constant if you are a discriminator
         # you also have to be required to be considered a constant
         return (
-            isinstance(self.schema, ConstantSchema)
-            and self.required
+            isinstance(self.type, ConstantType)
+            and not self.optional
             and not self.is_discriminator
-        )
-
-    @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        retval: Dict[str, Union[bool, int, str]] = {}
-        if self.required:
-            retval["required"] = True
-        if self.readonly:
-            retval["readonly"] = True
-        if self.constant:
-            retval["constant"] = True
-        if self.schema.validation_map:
-            validation_map_from_schema = cast(
-                Dict[str, Union[bool, int, str]], self.schema.validation_map
-            )
-            retval.update(validation_map_from_schema)
-        return retval or None
-
-    @property
-    def escaped_swagger_name(self) -> str:
-        """Return the RestAPI name correctly escaped for serialization."""
-        if self.flattened_names:
-            return ".".join(n.replace(".", "\\\\.") for n in self.flattened_names)
-        return self.original_swagger_name.replace(".", "\\\\.")
-
-    @classmethod
-    def from_yaml(
-        cls,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        *,
-        has_additional_properties: Optional[bool] = None,
-    ) -> "Property":
-        from . import build_schema  # pylint: disable=import-outside-toplevel
-
-        name = yaml_data["language"]["python"]["name"]
-        if name == "additional_properties" and has_additional_properties:
-            name = "additional_properties1"
-        schema = build_schema(yaml_data=yaml_data["schema"], code_model=code_model)
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            name=name,
-            schema=schema,
-            original_swagger_name=yaml_data["serializedName"],
-            flattened_names=yaml_data.get("flattenedNames", []),
-            client_default_value=yaml_data.get("clientDefaultValue"),
         )
 
     @property
@@ -138,55 +71,84 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return not (self.constant or self.readonly or self.is_discriminator)
 
     @property
-    def constant_declaration(self) -> str:
-        if self.schema:
-            if isinstance(self.schema, ConstantSchema):
-                return self.schema.get_declaration(self.schema.value)
-            raise ValueError(
-                "Trying to get constant declaration for a schema that is not ConstantSchema"
-            )
-        raise ValueError("Trying to get a declaration for a schema that doesn't exist")
-
-    @property
     def serialization_type(self) -> str:
-        return self.schema.serialization_type
-
-    @property
-    def xml_metadata(self) -> str:
-        if self.schema.has_xml_serialization_ctxt:
-            return f", 'xml': {{{self.schema.xml_serialization_ctxt()}}}"
-        return ""
-
-    @property
-    def default_value(self) -> Any:
-        return self.client_default_value or self.schema.default_value
-
-    @property
-    def default_value_declaration(self) -> Any:
-        if self.client_default_value:
-            return self.schema.get_declaration(self.client_default_value)
-        return self.schema.default_value_declaration
+        return self.type.serialization_type
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        if self.required or self.default_value:
-            return self.schema.type_annotation(is_operation_file=is_operation_file)
-        return f"Optional[{self.schema.type_annotation(is_operation_file=is_operation_file)}]"
+        if self.optional and self.client_default_value is None:
+            return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
+        return self.type.type_annotation(is_operation_file=is_operation_file)
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        kwargs["optional"] = not self.required
-        if self.default_value:
-            kwargs["default_value_declaration"] = self.schema.get_declaration(
-                self.default_value
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,  # pylint: disable=unused-argument
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
+        if self.client_default_value:
+            client_default_value_declaration = self.type.get_declaration(
+                self.client_default_value
             )
-        if self.description:
-            kwargs["description"] = self.description
-        return self.schema.get_json_template_representation(**kwargs)
+        if self.description(is_operation_file=True):
+            description = self.description(is_operation_file=True)
+        return self.type.get_json_template_representation(
+            optional=self.optional,
+            client_default_value_declaration=client_default_value_declaration,
+            description=description,
+        )
 
-    def model_file_imports(self) -> FileImport:
-        file_import = self.schema.model_file_imports()
-        if not (self.required or self.default_value):
-            file_import.add_submodule_import(
-                "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
+    @property
+    def validation(self) -> Optional[Dict[str, Any]]:
+        retval: Dict[str, Any] = {}
+        if not self.optional:
+            retval["required"] = True
+        if self.readonly:
+            retval["readonly"] = True
+        if self.constant:
+            retval["constant"] = True
+        retval.update(self.type.validation or {})
+        return retval or None
+
+    @property
+    def attribute_map(self) -> str:
+        if self.flattened_names:
+            attribute_key = ".".join(
+                n.replace(".", "\\\\.") for n in self.flattened_names
             )
-        file_import.merge(self.schema.model_file_imports())
+        else:
+            attribute_key = self.rest_api_name.replace(".", "\\\\.")
+        if self.type.xml_serialization_ctxt:
+            xml_metadata = f", 'xml': {{{self.type.xml_serialization_ctxt}}}"
+        else:
+            xml_metadata = ""
+        return f'"{self.client_name}": {{"key": "{attribute_key}", "type": "{self.serialization_type}"{xml_metadata}}},'
+
+    def imports(self) -> FileImport:
+        from .model_type import ModelType
+
+        file_import = self.type.imports(is_operation_file=False)
+        if self.optional and self.client_default_value is None:
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        if isinstance(self.type, ModelType):
+            file_import.add_import(
+                "__init__",
+                ImportType.LOCAL,
+                typing_section=TypingSection.TYPING,
+                alias="_models",
+            )
         return file_import
+
+    @classmethod
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+    ) -> "Property":
+        from . import build_type  # pylint: disable=import-outside-toplevel
+
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            type=build_type(yaml_data["type"], code_model),
+        )

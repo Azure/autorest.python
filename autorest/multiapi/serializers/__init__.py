@@ -18,7 +18,7 @@ __all__ = [
 
 _FILE_TO_TEMPLATE = {
     "init": "multiapi_init.py.jinja2",
-    "service_client": "multiapi_service_client.py.jinja2",
+    "client": "multiapi_service_client.py.jinja2",
     "config": "multiapi_config.py.jinja2",
     "models": "multiapi_models.py.jinja2",
     "operations_mixin": "multiapi_operations_mixin.py.jinja2",
@@ -58,11 +58,11 @@ class MultiAPISerializer(object):
 
         # serialize service client file
         imports = FileImportSerializer(
-            code_model.service_client.imports(async_mode), is_python3_file=async_mode
+            code_model.client.imports(async_mode), is_python3_file=async_mode
         )
         self._autorestapi.write_file(
-            _get_file_path(code_model.service_client.filename, async_mode),
-            _render_template("service_client", imports=imports),
+            _get_file_path(code_model.client.filename, async_mode),
+            _render_template("client", imports=imports),
         )
 
         # serialize config file
@@ -116,7 +116,7 @@ class MultiAPISerializer(object):
 
         self._autorestapi.write_file(Path("py.typed"), "# Marker file for PEP 561.")
 
-        if not code_model.service_client.client_side_validation:
+        if not code_model.client.client_side_validation:
             codegen_env = Environment(
                 loader=PackageLoader("autorest.codegen", "templates"),
                 keep_trailing_newline=True,

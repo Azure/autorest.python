@@ -17,7 +17,7 @@ class SourcePath(_serialization.Model):
     """
 
     _validation = {
-        "source": {"max_length": 2048, "min_length": 0},
+        "source": {"max_length": 2048},
     }
 
     _attribute_map = {

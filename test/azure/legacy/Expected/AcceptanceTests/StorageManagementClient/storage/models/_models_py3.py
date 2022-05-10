@@ -32,7 +32,7 @@ class Bar(_serialization.Model):
         :keyword recursive_point: Recursive Endpoints.
         :paramtype recursive_point: ~storage.models.Endpoints
         """
-        super(Bar, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.recursive_point = recursive_point
 
 
@@ -44,7 +44,7 @@ class CheckNameAvailabilityResult(_serialization.Model):
      and cannot be used.
     :vartype name_available: bool
     :ivar reason: Gets the reason that a storage account name could not be used. The Reason element
-     is only returned if NameAvailable is false. Known values are: "AccountNameInvalid",
+     is only returned if NameAvailable is false. Known values are: "AccountNameInvalid" and
      "AlreadyExists".
     :vartype reason: str or ~storage.models.Reason
     :ivar message: Gets an error message explaining the Reason value in more detail.
@@ -71,13 +71,13 @@ class CheckNameAvailabilityResult(_serialization.Model):
          invalid and cannot be used.
         :paramtype name_available: bool
         :keyword reason: Gets the reason that a storage account name could not be used. The Reason
-         element is only returned if NameAvailable is false. Known values are: "AccountNameInvalid",
+         element is only returned if NameAvailable is false. Known values are: "AccountNameInvalid" and
          "AlreadyExists".
         :paramtype reason: str or ~storage.models.Reason
         :keyword message: Gets an error message explaining the Reason value in more detail.
         :paramtype message: str
         """
-        super(CheckNameAvailabilityResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name_available = name_available
         self.reason = reason
         self.message = message
@@ -106,7 +106,7 @@ class CustomDomain(_serialization.Model):
          is false. This should only be set on updates.
         :paramtype use_sub_domain: bool
         """
-        super(CustomDomain, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.use_sub_domain = use_sub_domain
 
@@ -156,7 +156,7 @@ class Endpoints(_serialization.Model):
         :keyword foo_point: Foo point.
         :paramtype foo_point: ~storage.models.Foo
         """
-        super(Endpoints, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.blob = blob
         self.queue = queue
         self.table = table
@@ -180,7 +180,7 @@ class Foo(_serialization.Model):
         :keyword bar_point: Bar point.
         :paramtype bar_point: ~storage.models.Bar
         """
-        super(Foo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.bar_point = bar_point
 
 
@@ -197,9 +197,9 @@ class Resource(_serialization.Model):
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
-    :ivar location: Required. Resource location.
+    :ivar location: Resource location. Required.
     :vartype location: str
-    :ivar tags: A set of tags. Resource tags.
+    :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
     """
 
@@ -220,12 +220,12 @@ class Resource(_serialization.Model):
 
     def __init__(self, *, location: str, tags: Optional[Dict[str, str]] = None, **kwargs):
         """
-        :keyword location: Required. Resource location.
+        :keyword location: Resource location. Required.
         :paramtype location: str
-        :keyword tags: A set of tags. Resource tags.
+        :keyword tags: Resource tags.
         :paramtype tags: dict[str, str]
         """
-        super(Resource, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = None
         self.name = None
         self.type = None
@@ -246,15 +246,15 @@ class StorageAccount(Resource):
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
-    :ivar location: Required. Resource location.
+    :ivar location: Resource location. Required.
     :vartype location: str
-    :ivar tags: A set of tags. Resource tags.
+    :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
     :ivar provisioning_state: Gets the status of the storage account at the time the operation was
-     called. Known values are: "Creating", "ResolvingDNS", "Succeeded".
+     called. Known values are: "Creating", "ResolvingDNS", and "Succeeded".
     :vartype provisioning_state: str or ~storage.models.ProvisioningState
     :ivar account_type: Gets the type of the storage account. Known values are: "Standard_LRS",
-     "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+     "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
     :vartype account_type: str or ~storage.models.AccountType
     :ivar primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
      queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
@@ -263,7 +263,7 @@ class StorageAccount(Resource):
     :ivar primary_location: Gets the location of the primary for the storage account.
     :vartype primary_location: str
     :ivar status_of_primary: Gets the status indicating whether the primary location of the storage
-     account is available or unavailable. Known values are: "Available", "Unavailable".
+     account is available or unavailable. Known values are: "Available" and "Unavailable".
     :vartype status_of_primary: str or ~storage.models.AccountStatus
     :ivar last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
      the secondary location. Only the most recent timestamp is retained. This element is not
@@ -275,7 +275,7 @@ class StorageAccount(Resource):
     :vartype secondary_location: str
     :ivar status_of_secondary: Gets the status indicating whether the secondary location of the
      storage account is available or unavailable. Only available if the accountType is StandardGRS
-     or StandardRAGRS. Known values are: "Available", "Unavailable".
+     or StandardRAGRS. Known values are: "Available" and "Unavailable".
     :vartype status_of_secondary: str or ~storage.models.AccountStatus
     :ivar creation_time: Gets the creation date and time of the storage account in UTC.
     :vartype creation_time: ~datetime.datetime
@@ -332,15 +332,15 @@ class StorageAccount(Resource):
         **kwargs
     ):
         """
-        :keyword location: Required. Resource location.
+        :keyword location: Resource location. Required.
         :paramtype location: str
-        :keyword tags: A set of tags. Resource tags.
+        :keyword tags: Resource tags.
         :paramtype tags: dict[str, str]
         :keyword provisioning_state: Gets the status of the storage account at the time the operation
-         was called. Known values are: "Creating", "ResolvingDNS", "Succeeded".
+         was called. Known values are: "Creating", "ResolvingDNS", and "Succeeded".
         :paramtype provisioning_state: str or ~storage.models.ProvisioningState
         :keyword account_type: Gets the type of the storage account. Known values are: "Standard_LRS",
-         "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+         "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
         :paramtype account_type: str or ~storage.models.AccountType
         :keyword primary_endpoints: Gets the URLs that are used to perform a retrieval of a public
          blob, queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
@@ -349,7 +349,7 @@ class StorageAccount(Resource):
         :keyword primary_location: Gets the location of the primary for the storage account.
         :paramtype primary_location: str
         :keyword status_of_primary: Gets the status indicating whether the primary location of the
-         storage account is available or unavailable. Known values are: "Available", "Unavailable".
+         storage account is available or unavailable. Known values are: "Available" and "Unavailable".
         :paramtype status_of_primary: str or ~storage.models.AccountStatus
         :keyword last_geo_failover_time: Gets the timestamp of the most recent instance of a failover
          to the secondary location. Only the most recent timestamp is retained. This element is not
@@ -361,7 +361,7 @@ class StorageAccount(Resource):
         :paramtype secondary_location: str
         :keyword status_of_secondary: Gets the status indicating whether the secondary location of the
          storage account is available or unavailable. Only available if the accountType is StandardGRS
-         or StandardRAGRS. Known values are: "Available", "Unavailable".
+         or StandardRAGRS. Known values are: "Available" and "Unavailable".
         :paramtype status_of_secondary: str or ~storage.models.AccountStatus
         :keyword creation_time: Gets the creation date and time of the storage account in UTC.
         :paramtype creation_time: ~datetime.datetime
@@ -372,7 +372,7 @@ class StorageAccount(Resource):
          if the accountType is StandardRAGRS.
         :paramtype secondary_endpoints: ~storage.models.Endpoints
         """
-        super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
+        super().__init__(location=location, tags=tags, **kwargs)
         self.provisioning_state = provisioning_state
         self.account_type = account_type
         self.primary_endpoints = primary_endpoints
@@ -413,7 +413,7 @@ class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):
         :keyword type:
         :paramtype type: str
         """
-        super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.type = type
 
@@ -431,12 +431,12 @@ class StorageAccountCreateParameters(Resource):
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
-    :ivar location: Required. Resource location.
+    :ivar location: Resource location. Required.
     :vartype location: str
-    :ivar tags: A set of tags. Resource tags.
+    :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
     :ivar account_type: Gets or sets the account type. Known values are: "Standard_LRS",
-     "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+     "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
     :vartype account_type: str or ~storage.models.AccountType
     """
 
@@ -465,15 +465,15 @@ class StorageAccountCreateParameters(Resource):
         **kwargs
     ):
         """
-        :keyword location: Required. Resource location.
+        :keyword location: Resource location. Required.
         :paramtype location: str
-        :keyword tags: A set of tags. Resource tags.
+        :keyword tags: Resource tags.
         :paramtype tags: dict[str, str]
         :keyword account_type: Gets or sets the account type. Known values are: "Standard_LRS",
-         "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+         "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
         :paramtype account_type: str or ~storage.models.AccountType
         """
-        super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
+        super().__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
 
 
@@ -498,7 +498,7 @@ class StorageAccountKeys(_serialization.Model):
         :keyword key2: Gets the value of key 2.
         :paramtype key2: str
         """
-        super(StorageAccountKeys, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.key1 = key1
         self.key2 = key2
 
@@ -528,7 +528,7 @@ class StorageAccountListResult(_serialization.Model):
          empty as the API does not support pagination.
         :paramtype next_link: str
         """
-        super(StorageAccountListResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link
 
@@ -536,7 +536,7 @@ class StorageAccountListResult(_serialization.Model):
 class StorageAccountRegenerateKeyParameters(_serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
-    :ivar key_name: Known values are: "key1", "key2".
+    :ivar key_name: Known values are: "key1" and "key2".
     :vartype key_name: str or ~storage.models.KeyName
     """
 
@@ -546,10 +546,10 @@ class StorageAccountRegenerateKeyParameters(_serialization.Model):
 
     def __init__(self, *, key_name: Optional[Union[str, "_models.KeyName"]] = None, **kwargs):
         """
-        :keyword key_name: Known values are: "key1", "key2".
+        :keyword key_name: Known values are: "key1" and "key2".
         :paramtype key_name: str or ~storage.models.KeyName
         """
-        super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.key_name = key_name
 
 
@@ -566,14 +566,14 @@ class StorageAccountUpdateParameters(Resource):
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
-    :ivar location: Required. Resource location.
+    :ivar location: Resource location. Required.
     :vartype location: str
-    :ivar tags: A set of tags. Resource tags.
+    :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
     :ivar account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
      accounts cannot be changed to other account types, and other account types cannot be changed to
      StandardZRS or PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-     "Standard_RAGRS", "Premium_LRS".
+     "Standard_RAGRS", and "Premium_LRS".
     :vartype account_type: str or ~storage.models.AccountType
     :ivar custom_domain: User domain assigned to the storage account. Name is the CNAME source.
      Only one custom domain is supported per storage account at this time. To clear the existing
@@ -608,21 +608,21 @@ class StorageAccountUpdateParameters(Resource):
         **kwargs
     ):
         """
-        :keyword location: Required. Resource location.
+        :keyword location: Resource location. Required.
         :paramtype location: str
-        :keyword tags: A set of tags. Resource tags.
+        :keyword tags: Resource tags.
         :paramtype tags: dict[str, str]
         :keyword account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
          accounts cannot be changed to other account types, and other account types cannot be changed to
          StandardZRS or PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-         "Standard_RAGRS", "Premium_LRS".
+         "Standard_RAGRS", and "Premium_LRS".
         :paramtype account_type: str or ~storage.models.AccountType
         :keyword custom_domain: User domain assigned to the storage account. Name is the CNAME source.
          Only one custom domain is supported per storage account at this time. To clear the existing
          custom domain, use an empty string for the custom domain name property.
         :paramtype custom_domain: ~storage.models.CustomDomain
         """
-        super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
+        super().__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
 
@@ -643,7 +643,7 @@ class SubResource(_serialization.Model):
         :keyword id: Resource Id.
         :paramtype id: str
         """
-        super(SubResource, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
 
 
@@ -651,7 +651,7 @@ class Usage(_serialization.Model):
     """Describes Storage Resource Usage.
 
     :ivar unit: Gets the unit of measurement. Known values are: "Count", "Bytes", "Seconds",
-     "Percent", "CountsPerSecond", "BytesPerSecond".
+     "Percent", "CountsPerSecond", and "BytesPerSecond".
     :vartype unit: str or ~storage.models.UsageUnit
     :ivar current_value: Gets the current count of the allocated resources in the subscription.
     :vartype current_value: int
@@ -679,7 +679,7 @@ class Usage(_serialization.Model):
     ):
         """
         :keyword unit: Gets the unit of measurement. Known values are: "Count", "Bytes", "Seconds",
-         "Percent", "CountsPerSecond", "BytesPerSecond".
+         "Percent", "CountsPerSecond", and "BytesPerSecond".
         :paramtype unit: str or ~storage.models.UsageUnit
         :keyword current_value: Gets the current count of the allocated resources in the subscription.
         :paramtype current_value: int
@@ -689,7 +689,7 @@ class Usage(_serialization.Model):
         :keyword name: Gets the name of the type of usage.
         :paramtype name: ~storage.models.UsageName
         """
-        super(Usage, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.unit = unit
         self.current_value = current_value
         self.limit = limit
@@ -712,7 +712,7 @@ class UsageListResult(_serialization.Model):
         :keyword value: Gets or sets the list Storage Resource Usages.
         :paramtype value: list[~storage.models.Usage]
         """
-        super(UsageListResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -737,6 +737,6 @@ class UsageName(_serialization.Model):
         :keyword localized_value: Gets a localized string describing the resource name.
         :paramtype localized_value: str
         """
-        super(UsageName, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
         self.localized_value = localized_value

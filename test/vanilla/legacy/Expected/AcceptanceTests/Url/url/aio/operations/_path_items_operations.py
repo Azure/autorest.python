@@ -76,7 +76,7 @@ class PathItemsOperations:
         :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -90,11 +90,11 @@ class PathItemsOperations:
 
         request = build_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_all_with_values.metadata["url"],
             headers=_headers,
             params=_params,
@@ -142,7 +142,7 @@ class PathItemsOperations:
         :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -156,11 +156,11 @@ class PathItemsOperations:
 
         request = build_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_global_query_null.metadata["url"],
             headers=_headers,
             params=_params,
@@ -208,7 +208,7 @@ class PathItemsOperations:
         :param local_string_query: should contain null value. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -222,11 +222,11 @@ class PathItemsOperations:
 
         request = build_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
             headers=_headers,
             params=_params,
@@ -273,7 +273,7 @@ class PathItemsOperations:
         :param local_string_query: should contain value null. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -287,11 +287,11 @@ class PathItemsOperations:
 
         request = build_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
             headers=_headers,
             params=_params,

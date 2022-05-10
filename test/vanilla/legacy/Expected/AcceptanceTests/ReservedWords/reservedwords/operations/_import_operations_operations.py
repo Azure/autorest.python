@@ -101,7 +101,7 @@ class ImportOperations(object):
         :param parameter1: Pass in 'foo' to pass this test. Required.
         :type parameter1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """

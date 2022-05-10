@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, Dict, IO, List, Optional, Union, overload
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
@@ -14,21 +14,18 @@ from azure.core.utils import case_insensitive_dict
 from .._serialization import Serializer
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 # fmt: off
 
+@overload
 def build_put_array_request(
     **kwargs  # type: Any
 ):
@@ -38,13 +35,11 @@ def build_put_array_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as an Array to put. Default value is
-     None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as an Array to put. Default value is None.
     :paramtype json: list[JSON]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -60,12 +55,55 @@ def build_put_array_request(
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
             ]
+    """
+
+
+@overload
+def build_put_array_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put External Resource as an Array.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: External Resource as an Array to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_array_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put External Resource as an Array.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as an Array to put. Is either a list type or a IO type.
+     Default value is None.
+    :paramtype json: list[JSON] or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -102,31 +140,6 @@ def build_get_array_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Optional. Resource Location.
-                    "name": "str",  # Optional. Resource Name.
-                    "properties": {
-                        "p.name": "str",  # Optional.
-                        "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Known values
-                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
-                        "type": "str"  # Optional.
-                    },
-                    "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
-                    },
-                    "type": "str"  # Optional. Resource Type.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -147,6 +160,7 @@ def build_get_array_request(
     )
 
 
+@overload
 def build_put_wrapped_array_request(
     **kwargs  # type: Any
 ):
@@ -157,13 +171,11 @@ def build_put_wrapped_array_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as an Array to put. Default value is
-     None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as an Array to put. Default value is None.
     :paramtype json: list[JSON]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -178,6 +190,52 @@ def build_put_wrapped_array_request(
                     "value": "str"  # Optional. the product value.
                 }
             ]
+    """
+
+
+@overload
+def build_put_wrapped_array_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """No need to have a route in Express server for this operation. Used to verify the type flattened
+    is not removed if it's referenced in an array.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: External Resource as an Array to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_wrapped_array_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """No need to have a route in Express server for this operation. Used to verify the type flattened
+    is not removed if it's referenced in an array.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as an Array to put. Is either a list type or a IO type.
+     Default value is None.
+    :paramtype json: list[JSON] or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -215,18 +273,6 @@ def build_get_wrapped_array_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "property": {
-                        "value": "str"  # Optional. the product value.
-                    }
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -247,6 +293,7 @@ def build_get_wrapped_array_request(
     )
 
 
+@overload
 def build_put_dictionary_request(
     **kwargs  # type: Any
 ):
@@ -256,14 +303,11 @@ def build_put_dictionary_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as a Dictionary to put. Default value is
-     None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as a Dictionary to put. Default value is None.
     :paramtype json: dict[str, JSON]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
-     None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -283,16 +327,59 @@ def build_put_dictionary_request(
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str",  # Optional. Known values
                           are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
             }
+    """
+
+
+@overload
+def build_put_dictionary_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put External Resource as a Dictionary.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: External Resource as a Dictionary to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_dictionary_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put External Resource as a Dictionary.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as a Dictionary to put. Is either a dict type or a IO type.
+     Default value is None.
+    :paramtype json: dict[str, JSON] or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -329,31 +416,6 @@ def build_get_dictionary_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": {
-                    "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Optional. Resource Location.
-                    "name": "str",  # Optional. Resource Name.
-                    "properties": {
-                        "p.name": "str",  # Optional.
-                        "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Known values
-                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
-                        "type": "str"  # Optional.
-                    },
-                    "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
-                    },
-                    "type": "str"  # Optional. Resource Type.
-                }
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -374,6 +436,7 @@ def build_get_dictionary_request(
     )
 
 
+@overload
 def build_put_resource_collection_request(
     **kwargs  # type: Any
 ):
@@ -383,14 +446,11 @@ def build_put_resource_collection_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as a ResourceCollection to put. Default
-     value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as a ResourceCollection to put. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as a ResourceCollection to put. Default
-     value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -412,12 +472,12 @@ def build_put_resource_collection_request(
                             "provisioningStateValues": "str",  # Optional. Known
                               values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                              "OK".
+                              and "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary
-                              of :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of
+                              :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -435,13 +495,13 @@ def build_put_resource_collection_request(
                             "provisioningStateValues": "str",  # Optional. Known
                               values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                              "OK".
+                              and "OK".
                             "type": "str"  # Optional. Dictionary of
                               :code:`<FlattenedProduct>`.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary
-                              of :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of
+                              :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -455,16 +515,59 @@ def build_put_resource_collection_request(
                         "provisioningState": "str",  # Optional. Flattened product.
                         "provisioningStateValues": "str",  # Optional. Known values
                           are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
             }
+    """
+
+
+@overload
+def build_put_resource_collection_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put External Resource as a ResourceCollection.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: External Resource as a ResourceCollection to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_resource_collection_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put External Resource as a ResourceCollection.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: External Resource as a ResourceCollection to put. Is either a model type or a IO
+     type. Default value is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -501,76 +604,6 @@ def build_get_resource_collection_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "arrayofresources": [
-                    {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
-                        "properties": {
-                            "p.name": "str",  # Optional.
-                            "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Known
-                              values are: "Succeeded", "Failed", "canceled", "Accepted",
-                              "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                              "OK".
-                            "type": "str"  # Optional.
-                        },
-                        "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary
-                              of :code:`<string>`.
-                        },
-                        "type": "str"  # Optional. Resource Type.
-                    }
-                ],
-                "dictionaryofresources": {
-                    "str": {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
-                        "properties": {
-                            "p.name": "str",  # Optional. Dictionary of
-                              :code:`<FlattenedProduct>`.
-                            "provisioningState": "str",  # Optional. Dictionary
-                              of :code:`<FlattenedProduct>`.
-                            "provisioningStateValues": "str",  # Optional. Known
-                              values are: "Succeeded", "Failed", "canceled", "Accepted",
-                              "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                              "OK".
-                            "type": "str"  # Optional. Dictionary of
-                              :code:`<FlattenedProduct>`.
-                        },
-                        "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary
-                              of :code:`<string>`.
-                        },
-                        "type": "str"  # Optional. Resource Type.
-                    }
-                },
-                "productresource": {
-                    "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Optional. Resource Location.
-                    "name": "str",  # Optional. Resource Name.
-                    "properties": {
-                        "p.name": "str",  # Optional. Flattened product.
-                        "provisioningState": "str",  # Optional. Flattened product.
-                        "provisioningStateValues": "str",  # Optional. Known values
-                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
-                        "type": "str"  # Optional. Flattened product.
-                    },
-                    "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
-                    },
-                    "type": "str"  # Optional. Resource Type.
-                }
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -591,6 +624,7 @@ def build_get_resource_collection_request(
     )
 
 
+@overload
 def build_put_simple_product_request(
     **kwargs  # type: Any
 ):
@@ -600,12 +634,11 @@ def build_put_simple_product_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to put. Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Simple body product to put. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -617,38 +650,64 @@ def build_put_simple_product_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a
-                  specific product for a given latitude & longitude. For example, uberX in San
-                  Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Unique identifier representing a specific
+                  product for a given latitude & longitude. For example, uberX in San Francisco
+                  will have a different product_id than uberX in Los Angeles. Required.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of
-                      product.
+                    "max_product_capacity": "str",  # Capacity of product. For example, 4
+                      people. Required. "Large"
+                    "max_product_display_name": "str",  # Display name of product.
+                      Required.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a
-                  specific product for a given latitude & longitude. For example, uberX in San
-                  Francisco will have a different product_id than uberX in Los Angeles.
-                "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of
-                      product.
-                    "max_product_image": {
-                        "@odata.value": "str",  # Optional. URL value.
-                        "generic_value": "str"  # Optional. Generic URL value.
-                    }
-                }
-            }
+
+@overload
+def build_put_simple_product_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put Simple Product with client flattening true on the model.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Simple body product to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_simple_product_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put Simple Product with client flattening true on the model.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Simple body product to put. Is either a model type or a IO type. Default value
+     is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -672,6 +731,7 @@ def build_put_simple_product_request(
     )
 
 
+@overload
 def build_post_flattened_simple_product_request(
     **kwargs  # type: Any
 ):
@@ -681,12 +741,11 @@ def build_post_flattened_simple_product_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to post. Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Simple body product to post. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to post. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -698,38 +757,64 @@ def build_post_flattened_simple_product_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a
-                  specific product for a given latitude & longitude. For example, uberX in San
-                  Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Unique identifier representing a specific
+                  product for a given latitude & longitude. For example, uberX in San Francisco
+                  will have a different product_id than uberX in Los Angeles. Required.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of
-                      product.
+                    "max_product_capacity": "str",  # Capacity of product. For example, 4
+                      people. Required. "Large"
+                    "max_product_display_name": "str",  # Display name of product.
+                      Required.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a
-                  specific product for a given latitude & longitude. For example, uberX in San
-                  Francisco will have a different product_id than uberX in Los Angeles.
-                "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of
-                      product.
-                    "max_product_image": {
-                        "@odata.value": "str",  # Optional. URL value.
-                        "generic_value": "str"  # Optional. Generic URL value.
-                    }
-                }
-            }
+
+@overload
+def build_post_flattened_simple_product_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put Flattened Simple Product with client flattening true on the parameter.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Simple body product to post. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_post_flattened_simple_product_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put Flattened Simple Product with client flattening true on the parameter.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Simple body product to post. Is either a model type or a IO type. Default value
+     is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -753,6 +838,7 @@ def build_post_flattened_simple_product_request(
     )
 
 
+@overload
 def build_put_simple_product_with_grouping_request(
     name,  # type: str
     **kwargs  # type: Any
@@ -765,12 +851,11 @@ def build_put_simple_product_with_grouping_request(
 
     :param name: Product name with value 'groupproduct'. Required.
     :type name: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to put. Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Simple body product to put. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -782,38 +867,70 @@ def build_put_simple_product_with_grouping_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a
-                  specific product for a given latitude & longitude. For example, uberX in San
-                  Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Unique identifier representing a specific
+                  product for a given latitude & longitude. For example, uberX in San Francisco
+                  will have a different product_id than uberX in Los Angeles. Required.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of
-                      product.
+                    "max_product_capacity": "str",  # Capacity of product. For example, 4
+                      people. Required. "Large"
+                    "max_product_display_name": "str",  # Display name of product.
+                      Required.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a
-                  specific product for a given latitude & longitude. For example, uberX in San
-                  Francisco will have a different product_id than uberX in Los Angeles.
-                "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of
-                      product.
-                    "max_product_image": {
-                        "@odata.value": "str",  # Optional. URL value.
-                        "generic_value": "str"  # Optional. Generic URL value.
-                    }
-                }
-            }
+
+@overload
+def build_put_simple_product_with_grouping_request(
+    name,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put Simple Product with client flattening true on the model.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param name: Product name with value 'groupproduct'. Required.
+    :type name: str
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Simple body product to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_simple_product_with_grouping_request(
+    name,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put Simple Product with client flattening true on the model.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param name: Product name with value 'groupproduct'. Required.
+    :type name: str
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Simple body product to put. Is either a model type or a IO type. Default value
+     is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

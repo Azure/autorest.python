@@ -131,7 +131,7 @@ def build_header_param_long_request(*, scenario: str, value: int, **kwargs: Any)
 
     # Construct headers
     _headers["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    _headers["value"] = _SERIALIZER.header("value", value, "long")
+    _headers["value"] = _SERIALIZER.header("value", value, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -404,7 +404,7 @@ def build_header_response_duration_request(*, scenario: str, **kwargs: Any) -> H
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) -> HttpRequest:
+def build_header_param_byte_request(*, scenario: str, value: bytes, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -581,6 +581,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a post request with header value "Content-Type": "text/html".
 
+        :keyword content_type: Send a post request with header value "Content-Type": "text/html".
+         Required.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -752,7 +755,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values 105 or -2. Required.
-        :paramtype value: long
+        :paramtype value: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -823,7 +826,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("long", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("int", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -1537,14 +1540,14 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def param_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: bytearray, **kwargs: Any
+        self, *, scenario: str, value: bytes, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid". Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
-        :paramtype value: bytearray
+        :paramtype value: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

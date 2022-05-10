@@ -8,8 +8,6 @@
 
 from typing import List, Optional, TYPE_CHECKING
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 if TYPE_CHECKING:
@@ -27,8 +25,8 @@ class Error(_serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
     def __init__(
@@ -44,7 +42,7 @@ class Error(_serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -57,7 +55,7 @@ class Product(_serialization.Model):
     """
 
     _attribute_map = {
-        'properties': {'key': 'properties', 'type': 'ProductProperties'},
+        "properties": {"key": "properties", "type": "ProductProperties"},
     }
 
     def __init__(
@@ -70,7 +68,7 @@ class Product(_serialization.Model):
         :keyword properties:
         :paramtype properties: ~azure.directives.sample.models.ProductProperties
         """
-        super(Product, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.properties = properties
 
 
@@ -84,8 +82,8 @@ class ProductProperties(_serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
     }
 
     def __init__(
@@ -101,7 +99,7 @@ class ProductProperties(_serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(ProductProperties, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name
 
@@ -116,8 +114,8 @@ class ProductResult(_serialization.Model):
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': '[Product]'},
-        'next_link': {'key': 'nextLink', 'type': 'str'},
+        "value": {"key": "value", "type": "[Product]"},
+        "next_link": {"key": "nextLink", "type": "str"},
     }
 
     def __init__(
@@ -133,6 +131,6 @@ class ProductResult(_serialization.Model):
         :keyword next_link:
         :paramtype next_link: str
         """
-        super(ProductResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link

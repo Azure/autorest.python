@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import IO, Optional, TYPE_CHECKING, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -1539,7 +1539,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get null dictionary value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1587,7 +1587,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get empty dictionary value {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1627,7 +1627,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_empty.metadata = {"url": "/dictionary/empty"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, str]
@@ -1638,8 +1638,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_empty(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_empty(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, str], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1649,16 +1692,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{str}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{str}")
+            content_type = content_type or "application/json"
 
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1690,7 +1738,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get Dictionary with null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1738,7 +1786,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get Dictionary with null key.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1786,7 +1834,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get Dictionary with key as empty string.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1834,7 +1882,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get invalid Dictionary value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1882,7 +1930,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bool, or the result of cls(response)
+        :return: dict mapping str to bool or the result of cls(response)
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1922,7 +1970,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_boolean_tfft.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, bool]
@@ -1933,8 +1981,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, bool]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, bool], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, bool] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1944,16 +2035,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{bool}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{bool}")
+            content_type = content_type or "application/json"
 
         request = build_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_boolean_tfft.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1985,7 +2081,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bool, or the result of cls(response)
+        :return: dict mapping str to bool or the result of cls(response)
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2033,7 +2129,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bool, or the result of cls(response)
+        :return: dict mapping str to bool or the result of cls(response)
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2081,7 +2177,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2121,7 +2217,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_integer_valid.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, int]
@@ -2132,8 +2228,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, int]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, int], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, int] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2143,16 +2282,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{int}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{int}")
+            content_type = content_type or "application/json"
 
         request = build_put_integer_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_integer_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2184,7 +2328,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2232,7 +2376,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2280,8 +2424,8 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to long, or the result of cls(response)
-        :rtype: dict[str, long]
+        :return: dict mapping str to int or the result of cls(response)
+        :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2311,7 +2455,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        deserialized = self._deserialize("{int}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2320,7 +2464,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_long_valid.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, int]
@@ -2330,9 +2474,52 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body: Required.
-        :type array_body: dict[str, long]
+        :type array_body: dict[str, int]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_long_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_long_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, int], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, int] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2342,16 +2529,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{long}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{int}")
+            content_type = content_type or "application/json"
 
         request = build_put_long_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_long_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2383,8 +2575,8 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to long, or the result of cls(response)
-        :rtype: dict[str, long]
+        :return: dict mapping str to int or the result of cls(response)
+        :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2414,7 +2606,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        deserialized = self._deserialize("{int}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2431,8 +2623,8 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to long, or the result of cls(response)
-        :rtype: dict[str, long]
+        :return: dict mapping str to int or the result of cls(response)
+        :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2462,7 +2654,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        deserialized = self._deserialize("{int}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2479,7 +2671,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2519,7 +2711,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_float_valid.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, float]
@@ -2530,8 +2722,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, float]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_float_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_float_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, float], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, float] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2541,16 +2776,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{float}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{float}")
+            content_type = content_type or "application/json"
 
         request = build_put_float_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_float_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2582,7 +2822,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2630,7 +2870,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2678,7 +2918,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2718,7 +2958,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_double_valid.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, float]
@@ -2729,8 +2969,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, float]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_double_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_double_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, float], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, float] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2740,16 +3023,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{float}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{float}")
+            content_type = content_type or "application/json"
 
         request = build_put_double_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_double_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2781,7 +3069,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2829,7 +3117,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2877,7 +3165,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2917,7 +3205,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_string_valid.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, str]
@@ -2928,8 +3216,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_string_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_string_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, str], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2939,16 +3270,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{str}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{str}")
+            content_type = content_type or "application/json"
 
         request = build_put_string_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_string_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2980,7 +3316,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3028,7 +3364,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3076,7 +3412,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to date, or the result of cls(response)
+        :return: dict mapping str to date or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3116,7 +3452,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_date_valid.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.date]
@@ -3127,8 +3463,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.date]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_date_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_date_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, datetime.date], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, ~datetime.date] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3138,16 +3517,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{date}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{date}")
+            content_type = content_type or "application/json"
 
         request = build_put_date_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3179,7 +3563,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to date, or the result of cls(response)
+        :return: dict mapping str to date or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3227,7 +3611,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to date, or the result of cls(response)
+        :return: dict mapping str to date or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3276,7 +3660,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "2": "1492-10-12T10:15:01-08:00"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3316,7 +3700,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_date_time_valid.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.datetime]
@@ -3328,8 +3712,53 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.datetime]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+        "1492-10-12T10:15:01-08:00"}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, datetime.datetime], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+        "1492-10-12T10:15:01-08:00"}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, ~datetime.datetime] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3339,16 +3768,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{iso-8601}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{iso-8601}")
+            content_type = content_type or "application/json"
 
         request = build_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_time_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3380,7 +3814,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3428,7 +3862,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3477,7 +3911,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3517,7 +3951,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_date_time_rfc1123_valid.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.datetime]
@@ -3529,8 +3963,53 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.datetime]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
+        00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, datetime.datetime], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
+        00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, ~datetime.datetime] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3540,16 +4019,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{rfc-1123}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{rfc-1123}")
+            content_type = content_type or "application/json"
 
         request = build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_time_rfc1123_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3581,7 +4065,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to timedelta, or the result of cls(response)
+        :return: dict mapping str to timedelta or the result of cls(response)
         :rtype: dict[str, ~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3621,7 +4105,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_duration_valid.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.timedelta]
@@ -3632,8 +4116,51 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.timedelta]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, datetime.timedelta], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, ~datetime.timedelta] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3643,16 +4170,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{duration}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{duration}")
+            content_type = content_type or "application/json"
 
         request = build_put_duration_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_duration_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3680,13 +4212,13 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     def get_byte_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bytearray]
+        # type: (...) -> Dict[str, bytes]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each item encoded in base64.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bytearray, or the result of cls(response)
-        :rtype: dict[str, bytearray]
+        :return: dict mapping str to bytes or the result of cls(response)
+        :rtype: dict[str, bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3695,7 +4227,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
 
         request = build_get_byte_valid_request(
             template_url=self.get_byte_valid.metadata["url"],
@@ -3725,10 +4257,10 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_byte_valid.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
         self,
-        array_body,  # type: Dict[str, bytearray]
+        array_body,  # type: Dict[str, bytes]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -3736,9 +4268,54 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         with each elementencoded in base 64.
 
         :param array_body: Required.
-        :type array_body: dict[str, bytearray]
+        :type array_body: dict[str, bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_byte_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
+        with each elementencoded in base 64.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_byte_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, bytes], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
+        with each elementencoded in base 64.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, bytes] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3748,16 +4325,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{bytearray}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{bytearray}")
+            content_type = content_type or "application/json"
 
         request = build_put_byte_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_byte_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3785,13 +4367,13 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     def get_byte_invalid_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bytearray]
+        # type: (...) -> Dict[str, bytes]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
         encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bytearray, or the result of cls(response)
-        :rtype: dict[str, bytearray]
+        :return: dict mapping str to bytes or the result of cls(response)
+        :rtype: dict[str, bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3800,7 +4382,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
 
         request = build_get_byte_invalid_null_request(
             template_url=self.get_byte_invalid_null.metadata["url"],
@@ -3839,7 +4421,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         string", "2": "Lorem ipsum"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bytes, or the result of cls(response)
+        :return: dict mapping str to bytes or the result of cls(response)
         :rtype: dict[str, bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3887,7 +4469,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get dictionary of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget or None, or the result of cls(response)
+        :return: dict mapping str to Widget or None or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3935,7 +4517,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get empty dictionary of complex type {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
+        :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3984,7 +4566,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
+        :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4033,7 +4615,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
+        :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4082,7 +4664,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
+        :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4122,7 +4704,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, _models.Widget]
@@ -4134,8 +4716,53 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, ~bodydictionary.models.Widget]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
+        {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, _models.Widget], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
+        {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, ~bodydictionary.models.Widget] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4145,16 +4772,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{Widget}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{Widget}")
+            content_type = content_type or "application/json"
 
         request = build_put_complex_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_complex_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -4186,7 +4818,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str or None, or the result of cls(response)
+        :return: dict mapping str to list of str or None or the result of cls(response)
         :rtype: dict[str, list[str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4234,7 +4866,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get an empty dictionary {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4282,7 +4914,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4330,7 +4962,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4379,7 +5011,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4419,7 +5051,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_array_valid.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, List[str]]
@@ -4431,8 +5063,53 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, list[str]]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_array_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
+        "9"]}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_array_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, List[str]], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
+        "9"]}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, list[str]] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4442,16 +5119,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{[str]}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{[str]}")
+            content_type = content_type or "application/json"
 
         request = build_put_array_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_array_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -4483,7 +5165,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get an dictionaries of dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4531,7 +5213,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4580,7 +5262,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4629,7 +5311,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4679,7 +5361,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4719,7 +5401,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
     get_dictionary_valid.metadata = {"url": "/dictionary/dictionary/valid"}  # type: ignore
 
-    @distributed_trace
+    @overload
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, Dict[str, str]]
@@ -4732,8 +5414,55 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
 
         :param array_body: Required.
         :type array_body: dict[str, dict[str, str]]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @overload
+    def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+        "eight", "9": "nine"}}.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+        self,
+        array_body,  # type: Union[Dict[str, Dict[str, str]], IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+        "eight", "9": "nine"}}.
+
+        :param array_body: Is either a dict type or a IO type. Required.
+        :type array_body: dict[str, dict[str, str]] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4743,16 +5472,21 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "{{str}}")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "{{str}}")
+            content_type = content_type or "application/json"
 
         request = build_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_dictionary_valid.metadata["url"],
             headers=_headers,
             params=_params,

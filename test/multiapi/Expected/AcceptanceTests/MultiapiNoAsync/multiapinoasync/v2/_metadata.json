@@ -89,32 +89,32 @@
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"local\": {\".\": [[\"models\", \"_models\"]]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\".\": [[\"models\", \"_models\"]]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
         "operations": {
             "test_one" : {
                 "sync": {
                     "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e _models.ModelTwo\n",
-                    "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter. Required.\n:type id: int\n:param message: An optional string parameter. Default value is None.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo, or the result of cls(response)\n:rtype: ~multiapinoasync.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+                    "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter. Required.\n:type id: int\n:param message: An optional string parameter. Default value is None.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo or the result of cls(response)\n:rtype: ~multiapinoasync.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
                     "call": "id, message, **kwargs"
                 },
                 "async": {
                     "coroutine": true,
                     "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs: Any\n) -\u003e _models.ModelTwo:\n",
-                    "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter. Required.\n:type id: int\n:param message: An optional string parameter. Default value is None.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo, or the result of cls(response)\n:rtype: ~multiapinoasync.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+                    "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter. Required.\n:type id: int\n:param message: An optional string parameter. Default value is None.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo or the result of cls(response)\n:rtype: ~multiapinoasync.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
                     "call": "id, message, **kwargs"
                 }
             },
             "test_different_calls" : {
                 "sync": {
                     "signature": "def test_different_calls(  # pylint: disable=inconsistent-return-statements\n    self,\n    greeting_in_english,  # type: str\n    greeting_in_chinese=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e None\n",
-                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test. Default value is None.\n:type greeting_in_chinese: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test. Default value is None.\n:type greeting_in_chinese: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
                     "call": "greeting_in_english, greeting_in_chinese, **kwargs"
                 },
                 "async": {
                     "coroutine": true,
                     "signature": "async def test_different_calls(  # pylint: disable=inconsistent-return-statements\n    self,\n    greeting_in_english: str,\n    greeting_in_chinese: Optional[str] = None,\n    **kwargs: Any\n) -\u003e None:\n",
-                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test. Default value is None.\n:type greeting_in_chinese: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test. Default value is None.\n:type greeting_in_chinese: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
                     "call": "greeting_in_english, greeting_in_chinese, **kwargs"
                 }
             }

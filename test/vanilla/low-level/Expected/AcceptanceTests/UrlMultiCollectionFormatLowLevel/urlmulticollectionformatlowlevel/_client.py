@@ -43,7 +43,7 @@ class AutoRestUrlMutliCollectionFormatTestService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from urlmulticollectionformatlowlevel.rest import queries
-        >>> request = queries.build_array_string_multi_null_request(**kwargs)
+        >>> request = queries.build_array_string_multi_null_request(array_query=array_query, **kwargs)
         <HttpRequest [GET], url: '/queries/array/multi/string/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

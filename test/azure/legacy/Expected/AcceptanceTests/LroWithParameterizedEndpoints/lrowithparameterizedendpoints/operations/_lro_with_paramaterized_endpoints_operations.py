@@ -123,7 +123,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         response_headers = {}
@@ -248,7 +249,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         response_headers = {}

@@ -53,7 +53,7 @@ class ReadonlypropertyOperations:
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ReadonlyObj, or the result of cls(response)
+        :return: ReadonlyObj or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.ReadonlyObj
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -99,10 +99,10 @@ class ReadonlypropertyOperations:
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param size:  Default value is None.
+        :param size: Default value is None.
         :type size: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -112,9 +112,7 @@ class ReadonlypropertyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _complex_body = _models.ReadonlyObj(size=size)

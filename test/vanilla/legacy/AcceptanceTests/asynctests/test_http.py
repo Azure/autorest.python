@@ -253,9 +253,7 @@ class TestHttp(object):
     @pytest.mark.asyncio
     async def test_retry_status_codes_502(self, client):
         await client.http_retry.get502()
-
-        # TODO, 4042586: Support options operations in swagger modeler
-        #await client.http_retry.options429()
+        await client.http_retry.options502()
 
     @pytest.mark.asyncio
     async def test_retry_status_codes_500(self, client):

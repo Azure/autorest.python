@@ -16,9 +16,14 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
 def build_get_empty_request(
-    key_name: str, subscription_id: str, *, key_version: str = "v1", **kwargs: Any
+    key_name: str,
+    subscription_id: str,
+    *,
+    key_version: str = "v1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Get a 200 to test a valid base uri.
 
@@ -40,22 +45,28 @@ def build_get_empty_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/customuri/{subscriptionId}/{keyName}"
     path_format_arguments = {
-        "keyName": _SERIALIZER.url("key_name", key_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "keyName": _SERIALIZER.url("key_name", key_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
     if key_version is not None:
-        _params["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
+        _params['keyVersion'] = _SERIALIZER.query("key_version", key_version, 'str')
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )

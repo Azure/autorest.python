@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, IO, Optional, Union, overload
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
@@ -14,15 +14,11 @@ from azure.core.utils import case_insensitive_dict
 from .._serialization import Serializer
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -48,14 +44,6 @@ def build_get_model_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "received": "str"  # Required. Known values are: "raw", "model".
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -81,6 +69,7 @@ def build_get_model_request(
     )
 
 
+@overload
 def build_post_model_request(
     mode,  # type: str
     **kwargs  # type: Any
@@ -96,14 +85,11 @@ def build_post_model_request(
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
      before returning to users. Required.
     :type mode: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please put {'hello': 'world!'}. Required. Default value is
-     None.
+    :keyword json: Please put {'hello': 'world!'}. Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put {'hello': 'world!'}. Required. Default value is
-     None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -116,11 +102,61 @@ def build_post_model_request(
             json = {
                 "hello": "str"  # Required.
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "received": "str"  # Required. Known values are: "raw", "model".
-            }
+
+@overload
+def build_post_model_request(
+    mode,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+    take a model instead, and put in 'model' as mode.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+     with the raw body, and 'model' if you are going to convert the raw body to a customized body
+     before returning to users. Required.
+    :type mode: str
+    :keyword content: Please put {'hello': 'world!'}. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_post_model_request(
+    mode,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+    take a model instead, and put in 'model' as mode.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+     with the raw body, and 'model' if you are going to convert the raw body to a customized body
+     before returning to users. Required.
+    :type mode: str
+    :keyword json: Please put {'hello': 'world!'}. Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -168,20 +204,6 @@ def build_get_pages_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str",  # Optional.
-                "values": [
-                    {
-                        "received": "str"  # Required. Known values are: "raw",
-                          "model".
-                    }
-                ]
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -226,15 +248,6 @@ def build_lro_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "provisioningState": "str",  # Required.
-                "received": "str"  # Required. Known values are: "raw", "model".
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

@@ -7,7 +7,7 @@ import re
 {% endif -%}
 from setuptools import setup, find_packages
 
-{% set package_name_render = package_name or code_model.class_name %}
+{% set package_name_render = package_name or code_model.client.name %}
 
 PACKAGE_NAME = "{{ package_name_render|lower }}"
 {% if package_mode -%}
@@ -30,7 +30,7 @@ if not version:
 {% else %}
 version = "{{ code_model.options['package_version'] }}"
 {% set description = "%s"|format(package_name_render) %}
-{% set long_description = code_model.description %}
+{% set long_description = code_model.client.description %}
 {% set author_email = "" %}
 {% set url = "" %}
 {% endif -%}
@@ -89,7 +89,7 @@ setup(
     python_requires=">=3.6",
     {% else %}
     long_description="""\
-    {{ code_model.description }}
+    {{ code_model.client.description }}
     """
     {% endif %}
 )

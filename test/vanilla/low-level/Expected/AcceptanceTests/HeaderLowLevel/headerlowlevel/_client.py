@@ -43,7 +43,7 @@ class AutoRestSwaggerBATHeaderService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from headerlowlevel.rest import header
-        >>> request = header.build_param_existing_key_request(**kwargs)
+        >>> request = header.build_param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
         <HttpRequest [POST], url: '/header/param/existingkey'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

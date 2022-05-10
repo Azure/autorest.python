@@ -79,8 +79,8 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "key": "str",  # Required. The secret key.
-                    "value": "str"  # Required. The secret value.
+                    "key": "str",  # The secret key. Required.
+                    "value": "str"  # The secret value. Required.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

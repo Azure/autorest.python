@@ -42,7 +42,7 @@ class AutoRestResourceFlatteningTestService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from modelflatteninglowlevel.rest import build_put_array_request
-        >>> request = build_put_array_request(json=json, content=content, **kwargs)
+        >>> request = build_put_array_request(content_type=content_type, json=json, **kwargs)
         <HttpRequest [PUT], url: '/model-flatten/array'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

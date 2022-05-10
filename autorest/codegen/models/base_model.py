@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class BaseModel:
-    """This is the base class for model that are based on some YAML data.
+    """This is the base class for model representations that are based on some YAML data.
 
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]

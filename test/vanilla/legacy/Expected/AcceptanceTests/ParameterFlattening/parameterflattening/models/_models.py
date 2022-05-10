@@ -14,7 +14,7 @@ class AvailabilitySetUpdateParameters(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar tags: Required. A set of tags. A description about the set of tags.
+    :ivar tags: A description about the set of tags. Required.
     :vartype tags: dict[str, str]
     """
 
@@ -28,7 +28,7 @@ class AvailabilitySetUpdateParameters(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword tags: Required. A set of tags. A description about the set of tags.
+        :keyword tags: A description about the set of tags. Required.
         :paramtype tags: dict[str, str]
         """
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)

@@ -39,7 +39,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_group_get_sample_resource_group_request(
-    subscription_id: str, resource_group_name: str, **kwargs: Any
+    resource_group_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -111,8 +111,8 @@ class GroupOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_group_get_sample_resource_group_request(
-            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
+            subscription_id=self._config.subscription_id,
             api_version=api_version,
             headers=_headers,
             params=_params,

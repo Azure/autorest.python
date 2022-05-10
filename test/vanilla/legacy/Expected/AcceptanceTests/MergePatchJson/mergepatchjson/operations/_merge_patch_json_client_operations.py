@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -79,7 +79,7 @@ class MergePatchJsonClientOperationsMixin(object):
         :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
         :type body: JSON
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -91,7 +91,7 @@ class MergePatchJsonClientOperationsMixin(object):
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/merge-patch+json")
-        )  # type: Optional[str]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(body, "object")

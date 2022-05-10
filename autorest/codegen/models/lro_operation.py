@@ -3,21 +3,16 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
-from typing import Dict, List, Any, Optional, Set, cast, TYPE_CHECKING
+from typing import Any, Dict, Optional, List, TYPE_CHECKING
 from .imports import FileImport
 from .operation import Operation
-from .parameter_list import ParameterList
-from .schema_response import SchemaResponse
+from .response import Response
 from .imports import ImportType, TypingSection
-from .base_schema import BaseSchema
-from .schema_request import SchemaRequest
 from .request_builder import RequestBuilder
+from .parameter_list import ParameterList
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-
-_LOGGER = logging.getLogger(__name__)
 
 
 class LROOperation(Operation):
@@ -25,133 +20,105 @@ class LROOperation(Operation):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        request_builder: RequestBuilder,
         name: str,
-        description: str,
-        api_versions: Set[str],
+        request_builder: RequestBuilder,
         parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
-        schema_requests: List[SchemaRequest],
-        summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
-        want_description_docstring: bool = True,
-        want_tracing: bool = True,
+        responses: List[Response],
+        exceptions: List[Response],
         *,
+        overloads: Optional[List[Operation]] = None,
+        public: bool = True,
+        want_tracing: bool = True,
         abstract: bool = False,
     ) -> None:
         super().__init__(
-            yaml_data,
-            code_model,
-            request_builder,
-            name,
-            description,
-            api_versions,
-            parameters,
-            multiple_content_type_parameters,
-            schema_requests,
-            summary,
-            responses,
-            exceptions,
-            want_description_docstring,
+            code_model=code_model,
+            yaml_data=yaml_data,
+            name=name,
+            request_builder=request_builder,
+            parameters=parameters,
+            responses=responses,
+            exceptions=exceptions,
+            overloads=overloads,
+            public=public,
             want_tracing=want_tracing,
             abstract=abstract,
         )
-        self.lro_options = yaml_data.get("extensions", {}).get(
-            "x-ms-long-running-operation-options", {}
-        )
         self.name = "begin_" + self.name
+        self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
 
     @property
-    def lro_response(self) -> Optional[SchemaResponse]:
+    def operation_type(self) -> str:
+        return "lro"
+
+    @property
+    def has_optional_return_type(self) -> bool:
+        return False
+
+    @property
+    def lro_response(self) -> Optional[Response]:
         if not self.responses:
             return None
-        responses_with_bodies = [r for r in self.responses if r.has_body]
-        num_response_schemas = {r.schema for r in responses_with_bodies}
+        responses_with_bodies = [r for r in self.responses if r.type]
+        num_response_schemas = {
+            id(r.type.yaml_data) for r in responses_with_bodies if r.type
+        }
         response = None
         if len(num_response_schemas) > 1:
             # choose the response that has a status code of 200
-            responses_with_200_status_codes = [
-                r for r in responses_with_bodies if 200 in r.status_codes
-            ]
             try:
-                response = responses_with_200_status_codes[0]
-                schema_types = {r.schema for r in responses_with_bodies}
-                response_schema = cast(BaseSchema, response.schema).serialization_type
-                _LOGGER.warning(
-                    "Multiple schema types in responses: %s. Choosing: %s",
-                    schema_types,
-                    response_schema,
+                response = next(
+                    r for r in responses_with_bodies if 200 in r.status_codes
                 )
-            except IndexError:
+            except StopIteration:
                 raise ValueError(
                     f"Your swagger is invalid because you have multiple response schemas for LRO"
-                    + f" method {self.python_name} and none of them have a 200 status code."
+                    + f" method {self.name} and none of them have a 200 status code."
                 )
 
         elif num_response_schemas:
             response = responses_with_bodies[0]
         return response
 
-    @property
-    def initial_operation(self) -> Operation:
-        operation = Operation(
-            yaml_data={},
-            code_model=self.code_model,
-            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
-            name=self.name[5:] + "_initial",
-            description="",
-            api_versions=self.api_versions,
-            parameters=self.parameters,
-            schema_requests=self.schema_requests,
-            multiple_content_type_parameters=self.multiple_content_type_parameters,
-            summary=self.summary,
-            responses=self.responses,
-            want_description_docstring=False,
-            want_tracing=False,
-        )
-        operation.request_builder = self.request_builder
-        return operation
-
-    @property
-    def has_optional_return_type(self) -> bool:
-        """An LROOperation will never have an optional return type, we will always return a poller"""
-        return False
-
-    def _get_lro_extension(self, extension_base, async_mode, *, azure_arm=None):
-        extension_name = extension_base + ("-async" if async_mode else "-sync")
-        extension = self.yaml_data["extensions"][extension_name]
-        arm_extension = None
-        if azure_arm is not None:
-            arm_extension = "azure-arm" if azure_arm else "data-plane"
-        return extension[arm_extension] if arm_extension else extension
-
     def get_poller_path(self, async_mode: bool) -> str:
-        return self._get_lro_extension("poller", async_mode)
+        return (
+            self.yaml_data["pollerAsync"]
+            if async_mode
+            else self.yaml_data["pollerSync"]
+        )
 
     def get_poller(self, async_mode: bool) -> str:
+        """Get the name of the poller. Default is LROPoller / AsyncLROPoller"""
         return self.get_poller_path(async_mode).split(".")[-1]
 
-    def get_default_polling_method_path(self, async_mode: bool, azure_arm: bool) -> str:
-        return self._get_lro_extension(
-            "default-polling-method", async_mode, azure_arm=azure_arm
+    def get_polling_method_path(self, async_mode: bool) -> str:
+        """Get the full name of the poller path. Default are the azure core pollers"""
+        return (
+            self.yaml_data["pollingMethodAsync"]
+            if async_mode
+            else self.yaml_data["pollingMethodSync"]
         )
 
-    def get_default_polling_method(self, async_mode: bool, azure_arm: bool) -> str:
-        return self.get_default_polling_method_path(async_mode, azure_arm).split(".")[
-            -1
-        ]
+    def get_polling_method(self, async_mode: bool) -> str:
+        """Get the default pollint method"""
+        return self.get_polling_method_path(async_mode).split(".")[-1]
 
-    def get_default_no_polling_method_path(self, async_mode: bool) -> str:
-        return self._get_lro_extension("default-no-polling-method", async_mode)
+    @staticmethod
+    def get_no_polling_method_path(async_mode: bool) -> str:
+        """Get the path of the default of no polling method"""
+        return f"azure.core.polling.{'Async' if async_mode else ''}NoPolling"
 
-    def get_default_no_polling_method(self, async_mode: bool) -> str:
-        return self.get_default_no_polling_method_path(async_mode).split(".")[-1]
+    def get_no_polling_method(self, async_mode: bool) -> str:
+        """Get the default no polling method"""
+        return self.get_no_polling_method_path(async_mode).split(".")[-1]
 
-    def get_base_polling_method_path(self, async_mode: bool) -> str:
-        return self._get_lro_extension("base-polling-method", async_mode)
+    @staticmethod
+    def get_base_polling_method_path(async_mode: bool) -> str:
+        """Get the base polling method path. Used in docstrings and type annotations."""
+        return f"azure.core.polling.{'Async' if async_mode else ''}PollingMethod"
 
     def get_base_polling_method(self, async_mode: bool) -> str:
+        """Get the base polling method."""
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
@@ -162,6 +129,41 @@ class LROOperation(Operation):
             poller_import_path, poller, ImportType.AZURECORE, TypingSection.CONDITIONAL
         )
         return file_import
+
+    def response_type_annotation(self, **kwargs) -> str:
+        return f"{self.get_poller(kwargs.pop('async_mode'))}[{super().response_type_annotation(**kwargs)}]"
+
+    def response_docstring_type(self, **kwargs) -> str:
+        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{super().response_docstring_type(**kwargs)}]"
+
+    def cls_type_annotation(self, *, async_mode: bool) -> str:
+        """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
+        return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
+
+    def response_docstring_text(self, **kwargs) -> str:
+        super_text = super().response_docstring_text(**kwargs)
+        base_description = (
+            f"An instance of {self.get_poller(kwargs.pop('async_mode'))} that returns "
+        )
+        if not self.code_model.options["version_tolerant"]:
+            base_description += "either "
+        return base_description + super_text
+
+    @property
+    def initial_operation(self) -> Operation:
+        """Initial operation that creates the first call for LRO polling"""
+        return Operation(
+            yaml_data=self.yaml_data,
+            code_model=self.code_model,
+            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
+            name=self.name[5:] + "_initial",
+            overloads=self.overloads,
+            parameters=self.parameters,
+            responses=self.responses,
+            exceptions=self.exceptions,
+            public=False,
+            want_tracing=False,
+        )
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_base(async_mode, is_python3_file)
@@ -176,13 +178,9 @@ class LROOperation(Operation):
         )
 
         default_polling_method_import_path = ".".join(
-            self.get_default_polling_method_path(
-                async_mode, self.code_model.options["azure_arm"]
-            ).split(".")[:-1]
+            self.get_polling_method_path(async_mode).split(".")[:-1]
         )
-        default_polling_method = self.get_default_polling_method(
-            async_mode, self.code_model.options["azure_arm"]
-        )
+        default_polling_method = self.get_polling_method(async_mode)
         file_import.add_submodule_import(
             default_polling_method_import_path,
             default_polling_method,
@@ -190,9 +188,9 @@ class LROOperation(Operation):
         )
 
         default_no_polling_method_import_path = ".".join(
-            self.get_default_no_polling_method_path(async_mode).split(".")[:-1]
+            self.get_no_polling_method_path(async_mode).split(".")[:-1]
         )
-        default_no_polling_method = self.get_default_no_polling_method(async_mode)
+        default_no_polling_method = self.get_no_polling_method(async_mode)
         file_import.add_submodule_import(
             default_no_polling_method_import_path,
             default_no_polling_method,

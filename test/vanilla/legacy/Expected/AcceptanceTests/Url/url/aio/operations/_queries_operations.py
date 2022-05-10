@@ -93,7 +93,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -135,11 +135,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_query: false boolean value. Default value is False. Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword bool_query: false boolean value. Required. Default value is False. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -147,7 +147,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -186,7 +186,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param bool_query: null boolean value. Default value is None.
         :type bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -231,7 +231,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          this default value may result in unsupported behavior.
         :paramtype int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -279,7 +279,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          this default value may result in unsupported behavior.
         :paramtype int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -326,7 +326,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param int_query: null integer value. Default value is None.
         :type int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -369,9 +369,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_query: '10000000000' 64 bit integer value. Default value is 10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: long
+        :paramtype long_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -415,9 +415,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_query: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: long
+        :paramtype long_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -462,9 +462,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value. Default value is None.
-        :type long_query: long
+        :type long_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -509,7 +509,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          that overriding this default value may result in unsupported behavior.
         :paramtype float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -555,7 +555,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          overriding this default value may result in unsupported behavior.
         :paramtype float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -602,7 +602,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param float_query: null numeric value. Default value is None.
         :type float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -647,7 +647,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          overriding this default value may result in unsupported behavior.
         :paramtype double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -693,7 +693,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          overriding this default value may result in unsupported behavior.
         :paramtype double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -740,7 +740,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param double_query: null numeric value. Default value is None.
         :type double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -785,7 +785,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          that overriding this default value may result in unsupported behavior.
         :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -832,7 +832,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          unsupported behavior.
         :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -876,11 +876,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_query: '' string value. Default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_query: '' string value. Required. Default value is "". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -888,7 +888,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -927,7 +927,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param string_query: null string value. Default value is None.
         :type string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -970,10 +970,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
-        :param enum_query: 'green color' enum value. Default value is None.
+        :param enum_query: 'green color' enum value. Known values are: "red color", "green color", and
+         "blue color". Default value is None.
         :type enum_query: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1016,10 +1017,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (no query parameter in url).
 
-        :param enum_query: null string value. Default value is None.
+        :param enum_query: null string value. Known values are: "red color", "green color", and "blue
+         color". Default value is None.
         :type enum_query: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1058,15 +1060,15 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, byte_query: Optional[bytearray] = None, **kwargs: Any
+        self, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
          None.
-        :type byte_query: bytearray
+        :type byte_query: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1107,11 +1109,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype byte_query: bytearray
+        :keyword byte_query: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype byte_query: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1119,11 +1121,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-        byte_query = kwargs.pop(
-            "byte_query", _params.pop("byteQuery", bytearray("", encoding="utf-8"))
-        )  # type: bytearray
+        byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))  # type: bytes
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_byte_empty_request(
@@ -1153,14 +1153,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_null(  # pylint: disable=inconsistent-return-statements
-        self, byte_query: Optional[bytearray] = None, **kwargs: Any
+        self, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri). Default value is None.
-        :type byte_query: bytearray
+        :type byte_query: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1205,7 +1205,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          this default value may result in unsupported behavior.
         :paramtype date_query: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1252,7 +1252,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param date_query: null as date (no query parameters in uri). Default value is None.
         :type date_query: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1298,7 +1298,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          behavior.
         :paramtype date_time_query: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1347,7 +1347,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param date_time_query: null as date-time (no query parameters). Default value is None.
         :type date_time_query: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1395,7 +1395,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          ''] using the csv-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1441,7 +1441,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :param array_query: a null array of string using the csv-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1488,7 +1488,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1536,7 +1536,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1584,7 +1584,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          ''] using the ssv-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1632,7 +1632,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          ''] using the tsv-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1680,7 +1680,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
          ''] using the pipes-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

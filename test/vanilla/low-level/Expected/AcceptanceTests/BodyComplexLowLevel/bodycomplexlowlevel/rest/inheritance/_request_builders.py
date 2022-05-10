@@ -6,22 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, IO, Optional, Union, overload
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Serializer
+from .._serialization import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -41,24 +37,6 @@ def build_get_valid_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "breed": "str",  # Optional.
-                "color": "str",  # Optional.
-                "hates": [
-                    {
-                        "food": "str",  # Optional.
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ],
-                "id": 0,  # Optional.
-                "name": "str"  # Optional.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -79,6 +57,7 @@ def build_get_valid_request(
     )
 
 
+@overload
 def build_put_valid_request(
     **kwargs  # type: Any
 ):
@@ -88,17 +67,13 @@ def build_put_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please put a siamese with id=2, name="Siameee",
-     color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and
-     food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries". Required.
-     Default value is None.
+    :keyword json: Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
+     which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
+     named "Tomato" with id=-1 and food="french fries". Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put a siamese with id=2, name="Siameee", color=green,
-     breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-     the 2nd one named "Tomato" with id=-1 and food="french fries". Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -121,6 +96,54 @@ def build_put_valid_request(
                 "id": 0,  # Optional.
                 "name": "str"  # Optional.
             }
+    """
+
+
+@overload
+def build_put_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that extend others.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
+     which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
+     named "Tomato" with id=-1 and food="french fries". Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that extend others.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
+     which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
+     named "Tomato" with id=-1 and food="french fries". Is either a model type or a IO type.
+     Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

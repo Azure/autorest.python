@@ -59,7 +59,7 @@ class DurationOperations:
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or None, or the result of cls(response)
+        :return: timedelta or None or the result of cls(response)
         :rtype: ~datetime.timedelta or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -108,7 +108,7 @@ class DurationOperations:
         :param duration_body: duration body. Required.
         :type duration_body: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -118,9 +118,7 @@ class DurationOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(duration_body, "duration")
@@ -156,7 +154,7 @@ class DurationOperations:
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
+        :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -201,7 +199,7 @@ class DurationOperations:
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
+        :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """

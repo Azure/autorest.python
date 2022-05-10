@@ -3,43 +3,92 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from collections.abc import MutableSequence
 import logging
-from typing import cast, List, Callable, Optional, TypeVar, Dict, TYPE_CHECKING
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    TYPE_CHECKING,
+    Union,
+    Generic,
+    TypeVar,
+    cast,
+)
+from abc import abstractmethod
+from collections.abc import MutableSequence
+from enum import Enum
 
-from .parameter import Parameter, ParameterLocation, ParameterMethodLocation
-from .base_schema import BaseSchema
-from .primitive_schemas import StringSchema
-from .utils import JSON_REGEXP
+from .request_builder_parameter import (
+    RequestBuilderBodyParameter,
+    RequestBuilderMultipartBodyParameter,
+    RequestBuilderParameter,
+    get_request_body_parameter,
+)
+from .parameter import (
+    MultipartBodyParameter,
+    ParameterLocation,
+    BodyParameter,
+    Parameter,
+    ParameterMethodLocation,
+    ClientParameter,
+    ConfigParameter,
+    get_body_parameter,
+)
+
+ParameterType = TypeVar(
+    "ParameterType", bound=Union[Parameter, RequestBuilderParameter]
+)
+BodyParameterType = TypeVar(
+    "BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter]
+)
+RequestBuilderBodyParameterType = Union[
+    RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter
+]
+
 
 if TYPE_CHECKING:
-    from .schema_request import SchemaRequest
     from .code_model import CodeModel
 
-T = TypeVar("T")
-OrderedSet = Dict[T, None]
+
+class ParameterImplementation(Enum):
+    METHOD = "method"
+    CLIENT = "client"
+
 
 _LOGGER = logging.getLogger(__name__)
 
 
-def _method_signature_helper(
+def method_signature_helper(
     positional: List[str], keyword_only: Optional[List[str]], kwarg_params: List[str]
 ):
     keyword_only = keyword_only or []
     return positional + keyword_only + kwarg_params
 
 
-class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
+def _sort(params):
+    return sorted(
+        params, key=lambda x: not (x.client_default_value or x.optional), reverse=True
+    )
+
+
+class _ParameterListBase(
+    MutableSequence, Generic[ParameterType, BodyParameterType]
+):  # pylint: disable=too-many-public-methods
+    """Base class for all of our different ParameterList classes"""
+
     def __init__(
         self,
+        yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        parameters: Optional[List[Parameter]] = None,
-        schema_requests: Optional[List["SchemaRequest"]] = None,
+        parameters: List[ParameterType],
+        body_parameter: Optional[BodyParameterType] = None,
     ) -> None:
+        self.yaml_data = yaml_data
         self.code_model = code_model
-        self.schema_requests = schema_requests or []
         self.parameters = parameters or []
-        self._json_body: Optional[BaseSchema] = None
+        self._body_parameter = body_parameter
 
     # MutableSequence
 
@@ -57,216 +106,151 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def __delitem__(self, index):
         del self.parameters[index]
 
-    def insert(self, index: int, value: Parameter) -> None:
+    def insert(self, index: int, value: ParameterType) -> None:
         self.parameters.insert(index, value)
 
     # Parameter helpers
 
-    def has_any_location(self, location: ParameterLocation) -> bool:
-        return bool(
-            [
-                parameter
-                for parameter in self.parameters
-                if parameter.location == location
-            ]
-        )
+    @staticmethod
+    @abstractmethod
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ParameterType]:
+        """Callable for creating parameters"""
+        ...
 
-    def get_from_predicate(
-        self, predicate: Callable[[Parameter], bool]
-    ) -> List[Parameter]:
-        return [parameter for parameter in self.parameters if predicate(parameter)]
-
-    def get_from_location(self, location: ParameterLocation) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.location == location)
+    @staticmethod
+    @abstractmethod
+    def body_parameter_creator() -> Callable[
+        [Dict[str, Any], "CodeModel"], BodyParameterType
+    ]:
+        """Callable for creating body parameters"""
+        ...
 
     @property
-    def content_types(self) -> List[str]:
-        ordered_set = {
-            m: None for request in self.schema_requests for m in request.content_types
-        }
-        return list(ordered_set.keys())
-
-    @property
-    def default_content_type(self) -> str:
-        json_content_types = [c for c in self.content_types if JSON_REGEXP.match(c)]
-        if json_content_types:
-            if "application/json" in json_content_types:
-                return "application/json"
-            return json_content_types[0]
-
-        xml_content_types = [c for c in self.content_types if "xml" in c]
-        if xml_content_types:
-            if "application/xml" in xml_content_types:
-                return "application/xml"
-            return xml_content_types[0]
-        return self.content_types[0]
-
-    @property
-    def json_body(self) -> BaseSchema:
-        if not self._json_body:
-            self._json_body = self.body[0].schema
-        return self._json_body
+    def grouped(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All parameters that are inside a parameter group"""
+        params: List[Union[ParameterType, BodyParameterType]] = [
+            p for p in self.parameters if p.grouped_by
+        ]
+        if self.has_body and self.body_parameter.grouped_by:
+            params.append(self.body_parameter)
+        return params
 
     @property
     def has_body(self) -> bool:
-        return self.has_any_location(ParameterLocation.Body)
+        """Whether there is a body parameter in the parameter list"""
+        return bool(self._body_parameter)
 
     @property
-    def body(self) -> List[Parameter]:
-        if not self.has_body:
-            raise ValueError(f"Can't get body parameter")
-        # Should we check if there is two body? Modeler role right?
-        body_params = self.get_from_location(ParameterLocation.Body)
-        return body_params
-
-    @staticmethod
-    def _wanted_path_parameter(parameter: Parameter):
-        # TODO add 'and parameter.location == "Method"' as requirement to this check once
-        # I can use send_request on operations.
-        # Don't want to duplicate code from send_request.
-        return (
-            parameter.location == ParameterLocation.Uri
-            and parameter.rest_api_name != "$host"
-        )
-
-    @property
-    def implementation(self) -> str:
-        return "Method"
-
-    @property
-    def path(self) -> List[Parameter]:
+    def path(self) -> List[ParameterType]:
+        """All path parameters"""
         return [
-            parameter
-            for parameter in self.parameters
-            if self._wanted_path_parameter(parameter)
-        ]
-
-    @property
-    def query(self) -> List[Parameter]:
-        return self.get_from_location(ParameterLocation.Query)
-
-    @property
-    def headers(self) -> List[Parameter]:
-        headers = self.get_from_location(ParameterLocation.Header)
-        if not headers:
-            return headers
-        return list({header.serialized_name: header for header in headers}.values())
-
-    @property
-    def grouped(self) -> List[Parameter]:
-        return self.get_from_predicate(
-            lambda parameter: cast(bool, parameter.grouped_by)
-        )
-
-    @property
-    def groupers(self) -> List[Parameter]:
-        groupers: List[Parameter] = []
-        for parameter in self.parameters:
-            if any(
-                [
-                    p
-                    for p in self.grouped
-                    if p.grouped_by
-                    and id(p.grouped_by.yaml_data) == id(parameter.yaml_data)
-                ]
-            ):
-                groupers.append(parameter)
-        return groupers
-
-    @property
-    def constant(self) -> List[Parameter]:
-        """Return the constants of this parameter list.
-
-        This excludes the constant from flatening on purpose, since technically they are not
-        constant from this set of parameters, they are constants on the models and hence they do
-        not have impact on any generation at this level
-        """
-        return self.get_from_predicate(lambda parameter: parameter.constant)
-
-    @property
-    def multipart(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.is_multipart)
-
-    @property
-    def data_inputs(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.is_data_input)
-
-    def _filter_out_multiple_content_type(self, kwarg_params):
-        """We don't want multiple content type kwargs in the method signature"""
-        content_type_params = [
-            k for k in kwarg_params if k.rest_api_name == "Content-Type"
-        ]
-        if len(content_type_params) > 1:
-            # we don't want multiple content type params in the method, just one
-            # we'll pick the one with the default content type
-            seen_content_type = False
-            new_kwarg_params = []
-            for k in kwarg_params:
-                if k.rest_api_name == "Content-Type":
-                    if (
-                        not seen_content_type
-                        and k.default_value_declaration
-                        == f'"{self.default_content_type}"'
-                    ):
-                        new_kwarg_params.append(k)
-                        seen_content_type = True
-                    else:
-                        continue
-                else:
-                    new_kwarg_params.append(k)
-            kwarg_params = new_kwarg_params
-        return kwarg_params
-
-    @property
-    def method(self) -> List[Parameter]:
-        """The list of parameter used in method signature."""
-        # Client level should not be on Method, etc.
-        parameters_of_this_implementation = self.get_from_predicate(
-            lambda parameter: parameter.implementation == self.implementation
-            and parameter.in_method_signature
-        )
-        positional = [
             p
-            for p in parameters_of_this_implementation
-            if p.method_location == ParameterMethodLocation.POSITIONAL
+            for p in self.parameters
+            if p.location in (ParameterLocation.PATH, ParameterLocation.ENDPOINT_PATH)
         ]
-        keyword_only = self._filter_out_multiple_content_type(
+
+    @property
+    def query(self) -> List[ParameterType]:
+        """All query parameters"""
+        return [p for p in self.parameters if p.location == ParameterLocation.QUERY]
+
+    @property
+    def headers(self) -> List[ParameterType]:
+        """All header parameters"""
+        return [p for p in self.parameters if p.location == ParameterLocation.HEADER]
+
+    @property
+    def constant(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All constant parameters"""
+        return [p for p in self.parameters if p.constant]
+
+    @property
+    def positional(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All positional parameters"""
+        return _sort(
             [
                 p
-                for p in parameters_of_this_implementation
+                for p in self.unsorted_method_params
+                if p.method_location == ParameterMethodLocation.POSITIONAL
+            ]
+        )
+
+    @property
+    def keyword_only(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All keyword only parameters"""
+        return _sort(
+            [
+                p
+                for p in self.unsorted_method_params
                 if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
             ]
         )
-        kwargs = self._filter_out_multiple_content_type(
+
+    @property
+    def kwarg(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """All kwargs"""
+        return _sort(
             [
                 p
-                for p in parameters_of_this_implementation
-                if p.method_location
-                in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG)
+                for p in self.unsorted_method_params
+                if p.method_location == ParameterMethodLocation.KWARG
             ]
         )
 
-        def _sort(params):
-            return sorted(
-                params, key=lambda x: not x.default_value and x.required, reverse=True
-            )
+    @property
+    def body_parameter(self) -> BodyParameterType:
+        """The body parameter of the parameter list. Will only ever be at most one."""
+        if not self._body_parameter:
+            raise ValueError("There is no body parameter")
+        return self._body_parameter
 
-        signature_parameters = _sort(positional) + _sort(keyword_only) + _sort(kwargs)
-        return signature_parameters
+    @property
+    @abstractmethod
+    def implementation(self) -> str:
+        """Whether this is a client or a method parameter"""
+        ...
+
+    @property
+    def unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """Method params before sorting"""
+        method_params: List[Union[ParameterType, BodyParameterType]] = [
+            p
+            for p in self.parameters
+            if p.in_method_signature and p.implementation == self.implementation
+        ]
+        if self._body_parameter:
+            if self._body_parameter.in_method_signature:
+                method_params.append(self._body_parameter)
+            try:
+                # i am a multipart body parameter
+                # Only legacy generates operations with me, so I will follow the legacy rules
+                # I will splat out my entries as individual entries
+                method_params.extend(self._body_parameter.entries)  # type: ignore
+            except AttributeError:
+                pass
+        return method_params
+
+    @property
+    def method(self) -> List[Union[ParameterType, BodyParameterType]]:
+        """Sorted method params. First positional, then keyword only, then kwarg"""
+        return self.positional + self.keyword_only + self.kwarg
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
-        return _method_signature_helper(
+        """Method signature for this parameter list."""
+        return method_signature_helper(
             positional=self.method_signature_positional(is_python3_file),
             keyword_only=self.method_signature_keyword_only(is_python3_file),
             kwarg_params=self.method_signature_kwargs(is_python3_file),
         )
 
     def method_signature_positional(self, is_python3_file: bool) -> List[str]:
+        """Signature for positional parameters"""
         return [
             parameter.method_signature(is_python3_file) for parameter in self.positional
         ]
 
     def method_signature_keyword_only(self, is_python3_file: bool) -> List[str]:
+        """Signature for keyword only parameters"""
         if not (self.keyword_only and is_python3_file):
             return []
         return ["*,"] + [
@@ -276,220 +260,228 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     @staticmethod
     def method_signature_kwargs(is_python3_file: bool) -> List[str]:
+        """Signature for kwargs"""
         return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
 
-    @property
-    def positional(self) -> List[Parameter]:
+    def kwargs_to_pop(
+        self, is_python3_file: bool
+    ) -> List[Union[ParameterType, BodyParameterType]]:
+        """Method kwargs we want to pop"""
+        # don't want to pop bodies unless it's a constant
+        kwargs_to_pop = self.kwarg
+        if not is_python3_file:
+            kwargs_to_pop += self.keyword_only
         return [
-            p
+            k
+            for k in kwargs_to_pop
+            if k.location != ParameterLocation.BODY or k.constant
+        ]
+
+    @property
+    def call(self) -> List[str]:
+        """How to pass in parameters to call the operation"""
+        retval = [
+            p.client_name
             for p in self.method
             if p.method_location == ParameterMethodLocation.POSITIONAL
         ]
-
-    @property
-    def keyword_only(self) -> List[Parameter]:
-        return [
-            p
-            for p in self.method
-            if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
-        ]
-
-    @property
-    def kwargs(self) -> List[Parameter]:
-        return [
-            p
-            for p in self.method
-            if p.method_location
-            in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG)
-        ]
-
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
-        kwargs_to_pop = self.kwargs
-        if not is_python3_file:
-            kwargs_to_pop += self.keyword_only
-        return kwargs_to_pop
-
-    def call(self, is_python3_file: bool) -> List[str]:
-        retval = [p.serialized_name for p in self.positional]
-        if is_python3_file:
-            retval.extend(
-                [f"{p.serialized_name}={p.serialized_name}" for p in self.keyword_only]
-            )
+        retval.extend(
+            [
+                f"{p.client_name}={p.client_name}"
+                for p in self.method
+                if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
+            ]
+        )
         retval.append("**kwargs")
         return retval
 
-    @property
-    def is_flattened(self) -> bool:
-        return cast(
-            bool, self.get_from_predicate(lambda parameter: parameter.flattened)
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
+        parameters = [
+            cls.parameter_creator()(parameter, code_model)
+            for parameter in yaml_data["parameters"]
+        ]
+        body_parameter = None
+        if yaml_data.get("bodyParameter"):
+            body_parameter = cls.body_parameter_creator()(
+                yaml_data["bodyParameter"], code_model
+            )
+        return cls(
+            yaml_data,
+            code_model,
+            parameters=parameters,
+            body_parameter=body_parameter,
         )
 
 
-class GlobalParameterList(ParameterList):
+class _ParameterList(
+    _ParameterListBase[  # pylint: disable=unsubscriptable-object
+        Parameter, Union[MultipartBodyParameter, BodyParameter]
+    ]
+):
+    """Base Parameter class for the two operation ParameterLists"""
+
+    @staticmethod
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], Parameter]:
+        return Parameter.from_yaml
+
+    @staticmethod
+    def body_parameter_creator() -> Callable[
+        [Dict[str, Any], "CodeModel"], Union[MultipartBodyParameter, BodyParameter]
+    ]:
+        return get_body_parameter
+
+    @property
+    def implementation(self) -> str:
+        return "Method"
+
+    @property
+    def path(self) -> List[Parameter]:
+        return [
+            k for k in super().path if k.location == ParameterLocation.ENDPOINT_PATH
+        ]
+
+
+class ParameterList(_ParameterList):
+    """ParameterList is the parameter list for Operation classes"""
+
+    ...
+
+
+class _RequestBuilderParameterList(
+    _ParameterListBase[  # pylint: disable=unsubscriptable-object
+        RequestBuilderParameter, RequestBuilderBodyParameterType
+    ]
+):
+    """_RequestBuilderParameterList is base parameter list for RequestBuilder classes"""
+
+    @staticmethod
+    def parameter_creator() -> Callable[
+        [Dict[str, Any], "CodeModel"], RequestBuilderParameter
+    ]:
+        return RequestBuilderParameter.from_yaml
+
+    @staticmethod
+    def body_parameter_creator() -> Callable[
+        [Dict[str, Any], "CodeModel"], RequestBuilderBodyParameterType
+    ]:
+        return get_request_body_parameter
+
+    @property
+    def implementation(self) -> str:
+        return "Method"
+
+    @property
+    def unsorted_method_params(
+        self,
+    ) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameterType]]:
+        # don't have access to client params in request builder
+        retval = [
+            p
+            for p in super().unsorted_method_params
+            if not (
+                p.location == ParameterLocation.BODY
+                and cast(RequestBuilderBodyParameterType, p).is_partial_body
+            )
+        ]
+        retval.extend(
+            [
+                p
+                for p in self.parameters
+                if p.implementation == "Client" and p.in_method_signature
+            ]
+        )
+        return retval
+
+    @property
+    def path(self) -> List[RequestBuilderParameter]:
+        return [
+            p for p in super().path if p.location != ParameterLocation.ENDPOINT_PATH
+        ]
+
+
+class RequestBuilderParameterList(_RequestBuilderParameterList):
+    """Parameter list for Request Builder"""
+
+    ...
+
+
+class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
+    """Parameter list for OverloadedRequestBuilder"""
+
+    def method_signature(self, is_python3_file: bool) -> List[str]:
+        return self.method_signature_positional(
+            is_python3_file
+        ) + self.method_signature_kwargs(is_python3_file)
+
+
+class _ClientGlobalParameterList(
+    # pylint: disable=unsubscriptable-object
+    _ParameterListBase[ParameterType, BodyParameter]
+):
+    """Base parameter list for client and config classes"""
+
+    @staticmethod
+    def body_parameter_creator() -> Callable[
+        [Dict[str, Any], "CodeModel"], BodyParameter
+    ]:
+        return BodyParameter.from_yaml
+
     @property
     def implementation(self) -> str:
         return "Client"
 
     @property
-    def method(self) -> List[Parameter]:
-        """The list of parameter used in method signature."""
-        # Client level should not be on Method, etc.
-        positional = [
-            p
-            for p in self.parameters
-            if p.method_location == ParameterMethodLocation.POSITIONAL
-        ]
-        keyword_only = self._filter_out_multiple_content_type(
-            [
-                p
-                for p in self.parameters
-                if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
-            ]
-        )
-        kwargs = self._filter_out_multiple_content_type(
-            [
-                p
-                for p in self.parameters
-                if p.method_location
-                in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG)
-            ]
-        )
-
-        def _sort(params):
-            return sorted(
-                params, key=lambda x: not x.default_value and x.required, reverse=True
-            )
-
-        signature_parameters = _sort(positional) + _sort(keyword_only) + _sort(kwargs)
-        return signature_parameters
-
-    @property
-    def host_variable_name(self) -> str:
-        return "base_url" if self.code_model.is_legacy else "endpoint"
-
-    @staticmethod
-    def _wanted_path_parameter(parameter: Parameter) -> bool:
-        return (
-            parameter.location == ParameterLocation.Uri
-            and parameter.implementation == "Client"
-            and parameter.rest_api_name != "$host"
-        )
-
-    def add_host(self, host_value: Optional[str]) -> None:
-        # only adds if we don't have a parameterized host
-        host_param = Parameter(
-            yaml_data={},
-            code_model=self.code_model,
-            schema=StringSchema(yaml_data={"type": "str"}, code_model=self.code_model),
-            rest_api_name=self.host_variable_name,
-            serialized_name=self.host_variable_name,
-            description=f"Service URL.",
-            implementation="Client",
-            required=True,
-            location=ParameterLocation.Other,
-            skip_url_encoding=False,
-            constraints=[],
-            client_default_value=host_value,
-        )
-        if not self.code_model.is_legacy:
-            host_param.method_location = ParameterMethodLocation.KEYWORD_ONLY
-        self.parameters.append(host_param)
-
-    def add_credential_global_parameter(self) -> None:
-        credential_parameter = Parameter(
-            yaml_data={},
-            code_model=self.code_model,
-            schema=self.code_model.credential_model.credential_schema_policy.credential,
-            serialized_name="credential",
-            rest_api_name="credential",
-            implementation="Client",
-            description="Credential needed for the client to connect to Azure.",
-            required=True,
-            location=ParameterLocation.Other,
-            skip_url_encoding=True,
-            constraints=[],
-        )
-        if self.code_model.is_legacy:
-            self.parameters.insert(0, credential_parameter)
-        else:
-            self.parameters.append(credential_parameter)
-
-    @property
-    def host(self) -> Optional[Parameter]:
+    def credential(self) -> Optional[ParameterType]:
         try:
-            return next(
-                p
-                for p in self.parameters
-                if p.serialized_name == self.host_variable_name
-            )
+            return next(p for p in self.parameters if p.client_name == "credential")
         except StopIteration:
             return None
 
     @property
-    def host_value(self) -> Optional[str]:
-        if self.code_model.service_client.has_parameterized_host:
+    def path(self) -> List[ParameterType]:
+        return [
+            p for p in super().path if p.location == ParameterLocation.ENDPOINT_PATH
+        ]
+
+
+class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
+    """Parameter list for Client class"""
+
+    @staticmethod
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ClientParameter]:
+        return ClientParameter.from_yaml
+
+    @property
+    def path(self) -> List[ClientParameter]:
+        return [p for p in super().path if not p.is_host]
+
+    @property
+    def host(self) -> Optional[ClientParameter]:
+        """Get the host parameter"""
+        try:
+            return next(p for p in self.parameters if p.is_host)
+        except StopIteration:
             return None
-        return next(
-            p for p in self.parameters if p.serialized_name == self.host_variable_name
-        ).default_value_declaration
 
-    @property
-    def client_method(self) -> List[Parameter]:
-        return self.method
-
-    def _param_is_in_config_method(self, serialized_name):
-        if self.code_model.service_client.has_parameterized_host:
-            return True
-        return serialized_name != self.host_variable_name
-
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
+    def kwargs_to_pop(
+        self, is_python3_file: bool
+    ) -> List[Union[ClientParameter, BodyParameter]]:
+        """We only want to pass base url path parameters in the client"""
         return [
             k
-            for k in super().kwargs_to_pop(is_python3_file)
-            if not self._param_is_in_config_method(k.serialized_name)
+            for k in super().kwargs_to_pop(is_python3_file=is_python3_file)
+            if k.location == ParameterLocation.ENDPOINT_PATH
         ]
 
-    def config_kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
-        current_kwargs_to_pop = super().kwargs_to_pop(is_python3_file)
-        return [
-            k
-            for k in current_kwargs_to_pop
-            if self._param_is_in_config_method(k.serialized_name)
-        ]
+
+class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
+    """Parameter list for config"""
+
+    @staticmethod
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ConfigParameter]:
+        return ConfigParameter.from_yaml
 
     @property
-    def config_method(self) -> List[Parameter]:
-        return [
-            p for p in self.method if self._param_is_in_config_method(p.serialized_name)
-        ]
-
-    def client_method_signature(self, is_python3_file: bool) -> List[str]:
-        return self.method_signature(is_python3_file)
-
-    def config_method_signature(self, is_python3_file: bool) -> List[str]:
-
-        positional = [
-            p.method_signature(is_python3_file)
-            for p in self.positional
-            if self._param_is_in_config_method(p.serialized_name)
-        ]
-        keyword_only_params = [
-            p
-            for p in self.keyword_only
-            if self._param_is_in_config_method(p.serialized_name)
-        ]
-        keyword_only_method_signature = []
-        if is_python3_file:
-            keyword_only_method_signature = (
-                (
-                    ["*,"]
-                    + [p.method_signature(is_python3_file) for p in keyword_only_params]
-                )
-                if keyword_only_params
-                else []
-            )
-        return _method_signature_helper(
-            positional=positional,
-            keyword_only=keyword_only_method_signature,
-            kwarg_params=self.method_signature_kwargs(is_python3_file),
-        )
+    def implementation(self) -> str:
+        return "Client"

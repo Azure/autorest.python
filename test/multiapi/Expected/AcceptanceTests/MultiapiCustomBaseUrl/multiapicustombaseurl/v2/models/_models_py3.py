@@ -8,8 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
-
 from ... import _serialization
 
 
@@ -23,8 +21,8 @@ class Error(_serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
     def __init__(
@@ -40,6 +38,6 @@ class Error(_serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message

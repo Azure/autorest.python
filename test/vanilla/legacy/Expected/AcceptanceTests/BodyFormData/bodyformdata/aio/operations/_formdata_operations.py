@@ -62,7 +62,7 @@ class FormdataOperations:
          Required.
         :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -118,7 +118,7 @@ class FormdataOperations:
         :param file_content: File to upload. Required.
         :type file_content: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -128,9 +128,7 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/octet-stream")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         _content = file_content
@@ -172,7 +170,7 @@ class FormdataOperations:
         :param file_content: Files to upload. Required.
         :type file_content: list[IO]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -41,7 +41,7 @@ class ObjectTypeClientOperationsMixin:
         returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -90,7 +90,7 @@ class ObjectTypeClientOperationsMixin:
          Required.
         :type put_object: JSON
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -100,9 +100,7 @@ class ObjectTypeClientOperationsMixin:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(put_object, "object")

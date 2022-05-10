@@ -12,7 +12,7 @@ from .. import _serialization
 class ModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     """ModelAsStringNoRequiredOneValueDefault.
 
-    :ivar parameter: Known values are: "value1".
+    :ivar parameter: "value1"
     :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
     """
 
@@ -22,17 +22,17 @@ class ModelAsStringNoRequiredOneValueDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Known values are: "value1".
+        :keyword parameter: "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
         """
         super(ModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get("parameter", "value1")
+        self.parameter = kwargs.get("parameter", None)
 
 
 class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
     """ModelAsStringNoRequiredOneValueNoDefault.
 
-    :ivar parameter: Known values are: "value1".
+    :ivar parameter: "value1"
     :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
     """
 
@@ -42,7 +42,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Known values are: "value1".
+        :keyword parameter: "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
         """
         super(ModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
@@ -52,7 +52,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
 class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     """ModelAsStringNoRequiredTwoValueDefault.
 
-    :ivar parameter: Known values are: "value1", "value2".
+    :ivar parameter: Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
@@ -62,17 +62,17 @@ class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Known values are: "value1", "value2".
+        :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
         """
         super(ModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get("parameter", "value1")
+        self.parameter = kwargs.get("parameter", None)
 
 
 class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
     """ModelAsStringNoRequiredTwoValueNoDefault.
 
-    :ivar parameter: Known values are: "value1", "value2".
+    :ivar parameter: Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
@@ -82,7 +82,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Known values are: "value1", "value2".
+        :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
         """
         super(ModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
@@ -94,7 +94,7 @@ class ModelAsStringRequiredOneValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required. Known values are: "value1".
+    :ivar parameter: Required. "value1"
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
     """
 
@@ -108,11 +108,11 @@ class ModelAsStringRequiredOneValueDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Required. Known values are: "value1".
+        :keyword parameter: Required. "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
         """
         super(ModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get("parameter", "value1")
+        self.parameter = kwargs["parameter"]
 
 
 class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
@@ -120,7 +120,7 @@ class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required. Known values are: "value1".
+    :ivar parameter: Required. "value1"
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
     """
 
@@ -134,7 +134,7 @@ class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Required. Known values are: "value1".
+        :keyword parameter: Required. "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
         """
         super(ModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
@@ -146,7 +146,7 @@ class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required. Known values are: "value1", "value2".
+    :ivar parameter: Required. Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
     """
 
@@ -160,11 +160,11 @@ class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Required. Known values are: "value1", "value2".
+        :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
         """
         super(ModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get("parameter", "value1")
+        self.parameter = kwargs["parameter"]
 
 
 class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
@@ -172,7 +172,7 @@ class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required. Known values are: "value1", "value2".
+    :ivar parameter: Required. Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
@@ -186,7 +186,7 @@ class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Required. Known values are: "value1", "value2".
+        :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
         """
         super(ModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
@@ -196,8 +196,7 @@ class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
 class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
-    :ivar parameter:  The only acceptable values to pass in are None and "value1". The default
-     value is "value1".
+    :ivar parameter: Default value is "value1".
     :vartype parameter: str
     """
 
@@ -207,19 +206,17 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
-         value is "value1".
+        :keyword parameter: Default value is "value1".
         :paramtype parameter: str
         """
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get("parameter", "value1")
+        self.parameter = kwargs.get("parameter", None)
 
 
 class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
-    :ivar parameter:  The only acceptable values to pass in are None and "value1". The default
-     value is None.
+    :ivar parameter: Default value is "value1".
     :vartype parameter: str
     """
 
@@ -229,8 +226,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
-         value is None.
+        :keyword parameter: Default value is "value1".
         :paramtype parameter: str
         """
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
@@ -240,7 +236,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
 class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     """NoModelAsStringNoRequiredTwoValueDefault.
 
-    :ivar parameter: Known values are: "value1", "value2".
+    :ivar parameter: Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
@@ -250,17 +246,17 @@ class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Known values are: "value1", "value2".
+        :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
         """
         super(NoModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get("parameter", "value1")
+        self.parameter = kwargs.get("parameter", None)
 
 
 class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
-    :ivar parameter: Known values are: "value1", "value2".
+    :ivar parameter: Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
@@ -270,7 +266,7 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Known values are: "value1", "value2".
+        :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
         """
         super(NoModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
@@ -284,7 +280,7 @@ class NoModelAsStringRequiredOneValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter:  Has constant value: "value1".
+    :ivar parameter: Required. Default value is "value1".
     :vartype parameter: str
     """
 
@@ -310,7 +306,7 @@ class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter:  Has constant value: "value1".
+    :ivar parameter: Required. Default value is "value1".
     :vartype parameter: str
     """
 
@@ -334,7 +330,7 @@ class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required. Known values are: "value1", "value2".
+    :ivar parameter: Required. Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
     """
 
@@ -348,11 +344,11 @@ class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Required. Known values are: "value1", "value2".
+        :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
         """
         super(NoModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get("parameter", "value1")
+        self.parameter = kwargs["parameter"]
 
 
 class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
@@ -360,7 +356,7 @@ class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required. Known values are: "value1", "value2".
+    :ivar parameter: Required. Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
@@ -374,7 +370,7 @@ class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword parameter: Required. Known values are: "value1", "value2".
+        :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
         """
         super(NoModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)

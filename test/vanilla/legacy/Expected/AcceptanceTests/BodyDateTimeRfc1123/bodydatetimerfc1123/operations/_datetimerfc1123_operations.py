@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -268,7 +268,7 @@ class Datetimerfc1123Operations(object):
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or None, or the result of cls(response)
+        :return: datetime or None or the result of cls(response)
         :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -316,7 +316,7 @@ class Datetimerfc1123Operations(object):
         """Get invalid datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -364,7 +364,7 @@ class Datetimerfc1123Operations(object):
         """Get overflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -412,7 +412,7 @@ class Datetimerfc1123Operations(object):
         """Get underflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -464,7 +464,7 @@ class Datetimerfc1123Operations(object):
         :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -474,9 +474,7 @@ class Datetimerfc1123Operations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(datetime_body, "rfc-1123")
@@ -515,7 +513,7 @@ class Datetimerfc1123Operations(object):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -563,7 +561,7 @@ class Datetimerfc1123Operations(object):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -615,7 +613,7 @@ class Datetimerfc1123Operations(object):
         :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -625,9 +623,7 @@ class Datetimerfc1123Operations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(datetime_body, "rfc-1123")
@@ -666,7 +662,7 @@ class Datetimerfc1123Operations(object):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -50,10 +50,11 @@ class FloatOperations:
     async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
-        :param input: Input float enum. Default value is None.
+        :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
+         Default value is None.
         :type input: float or ~nonstringenums.models.FloatEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -63,9 +64,7 @@ class FloatOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         if input is not None:
@@ -107,7 +106,7 @@ class FloatOperations:
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatEnum, or the result of cls(response)
+        :return: FloatEnum or the result of cls(response)
         :rtype: float or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, IO, Optional, Union, overload
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
@@ -14,20 +14,82 @@ from azure.core.utils import case_insensitive_dict
 from ..._serialization import Serializer
 from ..._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 # fmt: off
+
+@overload
+def build_update_request(
+    resource_group_name,  # type: str
+    avset,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Updates the tags for an availability set.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group. Required.
+    :type resource_group_name: str
+    :param avset: The name of the storage availability set. Required.
+    :type avset: str
+    :keyword json: The tags. Required.
+    :paramtype json: JSON
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your body input.
+            json = {
+                "tags": {
+                    "str": "str"  # A description about the set of tags. Required.
+                }
+            }
+    """
+
+
+@overload
+def build_update_request(
+    resource_group_name,  # type: str
+    avset,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Updates the tags for an availability set.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group. Required.
+    :type resource_group_name: str
+    :param avset: The name of the storage availability set. Required.
+    :type avset: str
+    :keyword content: The tags. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
 
 def build_update_request(
     resource_group_name,  # type: str
@@ -44,27 +106,15 @@ def build_update_request(
     :type resource_group_name: str
     :param avset: The name of the storage availability set. Required.
     :type avset: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The tags. Required. Default value is None.
-    :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The tags. Required. Default value is None.
-    :paramtype content: any
+    :keyword json: The tags. Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = {
-                "tags": {
-                    "str": "str"  # Required. A set of tags. A description about the set
-                      of tags.
-                }
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -74,7 +124,7 @@ def build_update_request(
     _url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        "availabilitySetName": _SERIALIZER.url("avset", avset, 'str', max_length=80, min_length=0),
+        "availabilitySetName": _SERIALIZER.url("avset", avset, 'str', max_length=80),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)

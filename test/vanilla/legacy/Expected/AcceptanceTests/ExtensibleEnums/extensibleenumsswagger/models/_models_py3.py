@@ -6,9 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional, Union
+from typing import Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class Pet(_serialization.Model):
@@ -19,9 +23,9 @@ class Pet(_serialization.Model):
     :ivar name: name.
     :vartype name: str
     :ivar days_of_week: Type of Pet. Known values are: "Monday", "Tuesday", "Wednesday",
-     "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+     "Thursday", "Friday", "Saturday", and "Sunday".
     :vartype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
-    :ivar int_enum: Required. Known values are: "1", "2", "3".
+    :ivar int_enum: Required. Known values are: "1", "2", and "3".
     :vartype int_enum: str or ~extensibleenumsswagger.models.IntEnum
     """
 
@@ -47,12 +51,12 @@ class Pet(_serialization.Model):
         :keyword name: name.
         :paramtype name: str
         :keyword days_of_week: Type of Pet. Known values are: "Monday", "Tuesday", "Wednesday",
-         "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+         "Thursday", "Friday", "Saturday", and "Sunday".
         :paramtype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
-        :keyword int_enum: Required. Known values are: "1", "2", "3".
+        :keyword int_enum: Required. Known values are: "1", "2", and "3".
         :paramtype int_enum: str or ~extensibleenumsswagger.models.IntEnum
         """
-        super(Pet, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.days_of_week = days_of_week
         self.int_enum = int_enum

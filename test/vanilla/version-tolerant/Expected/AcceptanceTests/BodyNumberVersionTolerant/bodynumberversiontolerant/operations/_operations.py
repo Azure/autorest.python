@@ -86,7 +86,7 @@ def build_number_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_big_float_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_big_float_request(*, json: float, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -100,7 +100,7 @@ def build_number_put_big_float_request(*, json: Any = None, content: Any = None,
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_big_float_request(**kwargs: Any) -> HttpRequest:
@@ -117,7 +117,7 @@ def build_number_get_big_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_big_double_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_big_double_request(*, json: float, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -131,7 +131,7 @@ def build_number_put_big_double_request(*, json: Any = None, content: Any = None
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_big_double_request(**kwargs: Any) -> HttpRequest:
@@ -212,7 +212,7 @@ def build_number_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_big_decimal_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_big_decimal_request(*, json: float, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -226,7 +226,7 @@ def build_number_put_big_decimal_request(*, json: Any = None, content: Any = Non
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -307,7 +307,7 @@ def build_number_get_big_decimal_negative_decimal_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_small_float_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_small_float_request(*, json: float, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -321,7 +321,7 @@ def build_number_put_small_float_request(*, json: Any = None, content: Any = Non
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_small_float_request(**kwargs: Any) -> HttpRequest:
@@ -338,7 +338,7 @@ def build_number_get_small_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_small_double_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_small_double_request(*, json: float, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -352,7 +352,7 @@ def build_number_put_small_double_request(*, json: Any = None, content: Any = No
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_small_double_request(**kwargs: Any) -> HttpRequest:
@@ -369,7 +369,7 @@ def build_number_get_small_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_small_decimal_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_small_decimal_request(*, json: float, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -383,7 +383,7 @@ def build_number_put_small_decimal_request(*, json: Any = None, content: Any = N
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -603,9 +603,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -691,9 +689,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -765,8 +761,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_double_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big double value 99999999.99.
 
-        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
+        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None
@@ -778,15 +774,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_double_positive_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -851,7 +847,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_double_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big double value -99999999.99.
 
-        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -864,15 +860,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_double_negative_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -951,9 +947,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1025,8 +1019,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big decimal value 99999999.99.
 
-        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
+        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None
@@ -1038,15 +1032,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_decimal_positive_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -1111,7 +1105,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big decimal value -99999999.99.
 
-        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -1124,15 +1118,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = number_body
+
         request = build_number_put_big_decimal_negative_decimal_request(
             content_type=content_type,
-            json=number_body,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -1211,9 +1205,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1299,9 +1291,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1387,9 +1377,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body

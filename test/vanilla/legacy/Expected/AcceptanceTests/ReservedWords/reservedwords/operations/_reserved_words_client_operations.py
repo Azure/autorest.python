@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import IO, Optional, TYPE_CHECKING
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -28,7 +28,7 @@ from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, IO, List, Optional, TypeVar
+    from typing import Any, Callable, Dict, List, Optional, TypeVar
 
     if sys.version_info >= (3, 9):
         from collections.abc import MutableMapping
@@ -192,7 +192,7 @@ class ReservedWordsClientOperationsMixin(object):
         :param content: Pass in b'hello, world'. Required.
         :type content: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -202,9 +202,7 @@ class ReservedWordsClientOperationsMixin(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/octet-stream")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _content = content
@@ -250,7 +248,7 @@ class ReservedWordsClientOperationsMixin(object):
         :param json: Pass in {'hello': 'world'}. Required.
         :type json: any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -260,9 +258,7 @@ class ReservedWordsClientOperationsMixin(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = self._serialize.body(json, "object")
@@ -311,7 +307,7 @@ class ReservedWordsClientOperationsMixin(object):
         :param world: Pass in 'world'. Required.
         :type world: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -323,7 +319,7 @@ class ReservedWordsClientOperationsMixin(object):
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: Optional[str]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         # Construct form data
@@ -376,7 +372,7 @@ class ReservedWordsClientOperationsMixin(object):
         :param file_name: File name to upload. Pass in 'my.txt'. Required.
         :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -445,7 +441,7 @@ class ReservedWordsClientOperationsMixin(object):
          Pass in ['one', 'two'] to pass test. Default value is None.
         :type query_parameters: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """

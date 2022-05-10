@@ -19,7 +19,7 @@ class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype status: str or ~lro.models.OperationResultStatus
     :ivar error:
     :vartype error: ~lro.models.OperationResultError
@@ -40,12 +40,12 @@ class OperationResult(_serialization.Model):
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-         "OK".
+         and "OK".
         :paramtype status: str or ~lro.models.OperationResultStatus
         :keyword error:
         :paramtype error: ~lro.models.OperationResultError
         """
-        super(OperationResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.error = error
 
@@ -71,7 +71,7 @@ class OperationResultError(_serialization.Model):
         :keyword message: The detailed arror message.
         :paramtype message: str
         """
-        super(OperationResultError, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.code = code
         self.message = message
 
@@ -85,7 +85,7 @@ class Resource(_serialization.Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :ivar tags: Dictionary of :code:`<string>`.
     :vartype tags: dict[str, str]
     :ivar location: Resource Location.
     :vartype location: str
@@ -109,12 +109,12 @@ class Resource(_serialization.Model):
 
     def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs):
         """
-        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
         :keyword location: Resource Location.
         :paramtype location: str
         """
-        super(Resource, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = None
         self.type = None
         self.tags = tags
@@ -131,7 +131,7 @@ class Product(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :ivar tags: Dictionary of :code:`<string>`.
     :vartype tags: dict[str, str]
     :ivar location: Resource Location.
     :vartype location: str
@@ -140,7 +140,7 @@ class Product(Resource):
     :ivar provisioning_state:
     :vartype provisioning_state: str
     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
@@ -170,14 +170,14 @@ class Product(Resource):
         **kwargs
     ):
         """
-        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
         :keyword location: Resource Location.
         :paramtype location: str
         :keyword provisioning_state:
         :paramtype provisioning_state: str
         """
-        super(Product, self).__init__(tags=tags, location=location, **kwargs)
+        super().__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
 
@@ -203,7 +203,7 @@ class Sku(_serialization.Model):
         :keyword id:
         :paramtype id: str
         """
-        super(Sku, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.id = id
 
@@ -227,7 +227,7 @@ class SubResource(_serialization.Model):
 
     def __init__(self, **kwargs):
         """ """
-        super(SubResource, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = None
 
 
@@ -241,7 +241,7 @@ class SubProduct(SubResource):
     :ivar provisioning_state:
     :vartype provisioning_state: str
     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues
     """
@@ -262,6 +262,6 @@ class SubProduct(SubResource):
         :keyword provisioning_state:
         :paramtype provisioning_state: str
         """
-        super(SubProduct, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None

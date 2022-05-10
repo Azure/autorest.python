@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -42,17 +42,16 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MediaTypesClientOperationsMixin(MixinABC):
-    @distributed_trace_async
+    @overload
     async def analyze_body(
-        self, input: Optional[Union[IO, JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO or JSON
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
-         value is "application/json".
+        :type input: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -66,27 +65,55 @@ class MediaTypesClientOperationsMixin(MixinABC):
                     "source": "str"  # Optional. File source path.
                 }
         """
+
+    @overload
+    async def analyze_body(
+        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> str:
+        """Analyze body, that could be different media types.
+
+        :param input: Input parameter. Default value is None.
+        :type input: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace_async
+    async def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:
+        """Analyze body, that could be different media types.
+
+        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :type input: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = None
         _content = None
-        content_type = content_type or ""
-        if content_type.split(";")[0] in ["application/json"]:
-            if input is not None:
-                _json = input
-        elif content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
+        if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
-            )
+            if input is not None:
+                _json = input
+            else:
+                _json = None
+            content_type = content_type or "application/json"
 
         request = build_analyze_body_request(
             content_type=content_type,
@@ -117,18 +144,17 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         return cast(str, deserialized)
 
-    @distributed_trace_async
+    @overload
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[IO, JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO or JSON
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
-         value is "application/json".
+        :type input: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -142,27 +168,59 @@ class MediaTypesClientOperationsMixin(MixinABC):
                     "source": "str"  # Optional. File source path.
                 }
         """
+
+    @overload
+    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
+        type.
+
+        :param input: Input parameter. Default value is None.
+        :type input: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace_async
+    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+        self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any
+    ) -> None:
+        """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
+        type.
+
+        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :type input: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        content_type = content_type or ""
-        if content_type.split(";")[0] in ["application/json"]:
-            if input is not None:
-                _json = input
-        elif content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
+        if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
-            )
+            if input is not None:
+                _json = input
+            else:
+                _json = None
+            content_type = content_type or "application/json"
 
         request = build_analyze_body_no_accept_header_request(
             content_type=content_type,
@@ -202,12 +260,13 @@ class MediaTypesClientOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "text/plain; charset=UTF-8")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        _content = input
+        if input is not None:
+            _content = input
+        else:
+            _content = None
 
         request = build_content_type_with_encoding_request(
             content_type=content_type,
@@ -238,17 +297,12 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace_async
-    async def binary_body_with_two_content_types(
-        self, message: Union[IO, Any], *, content_type: Optional[str] = None, **kwargs: Any
-    ) -> str:
+    async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body. Required.
-        :type message: IO or Any
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/json" or "application/octet-stream". Default value is None.
-        :paramtype content_type: str
+        :type message: IO
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -256,27 +310,16 @@ class MediaTypesClientOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        _json = None
-        _content = None
-        content_type = content_type or ""
-        if content_type.split(";")[0] in ["application/json"]:
-            _json = message
-        elif content_type.split(";")[0] in ["application/octet-stream"]:
-            _content = message
-        else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'application/octet-stream']".format(content_type)
-            )
+        _content = message
 
         request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
-            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -304,19 +347,13 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace_async
-    async def binary_body_with_three_content_types(
-        self, message: Union[IO, str], *, content_type: str = "application/json", **kwargs: Any
-    ) -> str:
+    async def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
         :param message: The payload body. Required.
-        :type message: IO or str
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/json", "application/octet-stream", and "text/plain". Default value is
-         "application/json".
-        :paramtype content_type: str
+        :type message: IO
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -324,27 +361,16 @@ class MediaTypesClientOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        _json = None
-        _content = None
-        content_type = content_type or ""
-        if content_type.split(";")[0] in ["application/json"]:
-            _json = message
-        elif content_type.split(";")[0] in ["application/octet-stream", "text/plain"]:
-            _content = message
-        else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'application/octet-stream', 'text/plain']".format(content_type)
-            )
+        _content = message
 
         request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
-            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -372,16 +398,11 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace_async
-    async def put_text_and_json_body(
-        self, message: Union[str, str], *, content_type: Optional[str] = "application/json", **kwargs: Any
-    ) -> str:
+    async def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:
         """Body that's either text/plain or application/json.
 
         :param message: The payload body. Required.
-        :type message: str or str
-        :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
-         or "application/json". Default value is "application/json".
-        :paramtype content_type: str
+        :type message: str
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -389,27 +410,16 @@ class MediaTypesClientOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        _json = None
-        _content = None
-        content_type = content_type or ""
-        if content_type.split(";")[0] in ["application/json"]:
-            _json = message
-        elif content_type.split(";")[0] in ["text/plain"]:
-            _content = message
-        else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['text/plain', 'application/json']".format(content_type)
-            )
+        _content = message
 
         request = build_put_text_and_json_body_request(
             content_type=content_type,
-            json=_json,
             content=_content,
             headers=_headers,
             params=_params,

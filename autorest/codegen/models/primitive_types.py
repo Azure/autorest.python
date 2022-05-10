@@ -3,19 +3,16 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 import datetime
 from enum import Enum
-from typing import cast, Any, Dict, List, Optional, Union, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
-from .base_schema import BaseSchema
+from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-
-
-_LOGGER = logging.getLogger(__name__)
 
 
 class RawString(object):
@@ -26,21 +23,11 @@ class RawString(object):
         return "r'{}'".format(self.string.replace("'", "\\'"))
 
 
-class PrimitiveSchema(BaseSchema):
-    _TYPE_MAPPINGS = {
-        "boolean": "bool",
-    }
-
-    def _to_python_type(self) -> str:
-        return self._TYPE_MAPPINGS.get(self.yaml_data["type"], "str")
-
-    @property
-    def serialization_type(self) -> str:
-        return self._to_python_type()
-
-    @property
-    def docstring_type(self) -> str:
-        return self._to_python_type()
+class PrimitiveType(BaseType):  # pylint: disable=abstract-method
+    def description(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> str:
+        return ""
 
     def type_annotation(
         self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
@@ -51,39 +38,55 @@ class PrimitiveSchema(BaseSchema):
     def docstring_text(self) -> str:
         return self.docstring_type
 
-    def _add_optional_and_default_value_template_representation(
+    def get_json_template_representation(
         self,
         *,
         optional: bool = True,
-        default_value_declaration: Optional[str] = None,
+        client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
-    ):
+    ) -> Any:
         comment = ""
         if optional:
-            comment += " Optional."
-        if default_value_declaration:
-            comment += f" Default value is {default_value_declaration}."
-        else:
-            default_value_declaration = self.default_template_representation_declaration
-        if description:
-            comment += f" {description}"
-        if comment:
-            comment = f"#{comment}"
-        return f"{default_value_declaration}{comment}"
-
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        if self.default_value:
-            kwargs["default_value_declaration"] = kwargs.get(
-                "default_value_declaration", self.get_declaration(self.default_value)
+            comment = add_to_description(comment, "Optional.")
+        if self.client_default_value is not None:
+            client_default_value_declaration = (
+                client_default_value_declaration
+                or self.get_declaration(self.client_default_value)
             )
-        return self._add_optional_and_default_value_template_representation(**kwargs)
+        if client_default_value_declaration:
+            comment = add_to_description(
+                comment, f"Default value is {client_default_value_declaration}."
+            )
+        else:
+            client_default_value_declaration = (
+                self.default_template_representation_declaration
+            )
+        if description:
+            comment = add_to_description(comment, description)
+        if comment:
+            comment = f"# {comment}"
+        return f"{client_default_value_declaration}{comment}"
 
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type)
 
 
-class IOSchema(PrimitiveSchema):
+class BooleanType(PrimitiveType):
+    @property
+    def serialization_type(self) -> str:
+        return "bool"
+
+    @property
+    def docstring_type(self) -> str:
+        return "bool"
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, bool)"
+
+
+class BinaryType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.type = "IO"
@@ -109,15 +112,19 @@ class IOSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(b"bytes")
 
-    def imports(self) -> FileImport:
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import(
-            "typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
         return file_import
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, (IO, bytes))"
 
-class AnySchema(PrimitiveSchema):
+
+class AnyType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "object"
@@ -135,15 +142,23 @@ class AnySchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration({})
 
-    def imports(self) -> FileImport:
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         return file_import
 
+    @property
+    def instance_check_template(self) -> str:
+        raise ValueError(
+            "Shouldn't do instance check on an anytype, it can be anything"
+        )
 
-class AnyObjectSchema(PrimitiveSchema):
+
+class AnyObjectType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "object"
@@ -161,22 +176,28 @@ class AnyObjectSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration({})
 
-    def imports(self) -> FileImport:
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, MutableMapping)"
+
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
-        file_import.add_import("sys", ImportType.STDLIB)
         file_import.define_mutable_mapping_type()
+        file_import.add_import("sys", ImportType.STDLIB)
         return file_import
 
 
-class NumberSchema(PrimitiveSchema):
+class NumberType(PrimitiveType):  # pylint: disable=abstract-method
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.precision = cast(int, yaml_data["precision"])
-        self.multiple = cast(int, yaml_data.get("multipleOf"))
-        self.maximum = cast(int, yaml_data.get("maximum"))
-        self.minimum = cast(int, yaml_data.get("minimum"))
-        self.exclusive_maximum = cast(int, yaml_data.get("exclusiveMaximum"))
-        self.exclusive_minimum = cast(int, yaml_data.get("exclusiveMinimum"))
+        self.precision: Optional[int] = yaml_data.get("precision")
+        self.multiple: Optional[int] = yaml_data.get("multipleOf")
+        self.maximum: Optional[int] = yaml_data.get("maximum")
+        self.minimum: Optional[int] = yaml_data.get("minimum")
+        self.exclusive_maximum: Optional[int] = yaml_data.get("exclusiveMaximum")
+        self.exclusive_minimum: Optional[int] = yaml_data.get("exclusiveMinimum")
 
     @property
     def serialization_constraints(self) -> List[str]:
@@ -198,45 +219,21 @@ class NumberSchema(PrimitiveSchema):
         return [x for x in validation_constraints if x is not None]
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+    def validation(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation: Dict[str, Union[bool, int, str]] = {}
         if self.maximum is not None:
             if self.exclusive_maximum:
-                validation_map["maximum_ex"] = self.maximum
+                validation["maximum_ex"] = self.maximum
             else:
-                validation_map["maximum"] = self.maximum
+                validation["maximum"] = self.maximum
         if self.minimum is not None:
             if self.exclusive_minimum:
-                validation_map["minimum_ex"] = self.minimum
+                validation["minimum_ex"] = self.minimum
             else:
-                validation_map["minimum"] = self.minimum
+                validation["minimum"] = self.minimum
         if self.multiple:
-            validation_map["multiple"] = self.multiple
-        return validation_map or None
-
-    @property
-    def serialization_type(self) -> str:
-        if self.yaml_data["type"] == "integer":
-            if self.precision == 64:
-                return "long"
-            return "int"
-        return "float"
-
-    @property
-    def docstring_type(self) -> str:
-        if self.yaml_data["type"] == "integer":
-            if self.precision == 64:
-                return "long"
-            return "int"
-        return "float"
-
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
-        python_type = self.docstring_type
-        if python_type == "long":
-            return "int"
-        return python_type
+            validation["multiple"] = self.multiple
+        return validation or None
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -244,19 +241,62 @@ class NumberSchema(PrimitiveSchema):
         return self.get_declaration(default_value)
 
 
-class StringSchema(PrimitiveSchema):
+class IntegerType(NumberType):
+    @property
+    def serialization_type(self) -> str:
+        return "int"
+
+    @property
+    def docstring_type(self) -> str:
+        return "int"
+
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
+        return "int"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(0)
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, int)"
+
+
+class FloatType(NumberType):
+    @property
+    def serialization_type(self) -> str:
+        return "float"
+
+    @property
+    def docstring_type(self) -> str:
+        return "float"
+
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
+        return "float"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(0.0)
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, float)"
+
+
+class StringType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.max_length = cast(int, yaml_data.get("maxLength"))
-        self.min_length = cast(
-            int,
-            (
-                yaml_data.get("minLength", 0)
-                if yaml_data.get("maxLength")
-                else yaml_data.get("minLength")
-            ),
+        self.max_length: Optional[int] = yaml_data.get("maxLength")
+        self.min_length: Optional[int] = (
+            yaml_data.get("minLength", 0)
+            if yaml_data.get("maxLength")
+            else yaml_data.get("minLength")
         )
-        self.pattern = cast(str, yaml_data.get("pattern"))
+        self.pattern: Optional[str] = yaml_data.get("pattern")
 
     @property
     def serialization_constraints(self) -> List[str]:
@@ -268,22 +308,34 @@ class StringSchema(PrimitiveSchema):
         return [x for x in validation_constraints if x is not None]
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+    def validation(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation: Dict[str, Union[bool, int, str]] = {}
         if self.max_length is not None:
-            validation_map["max_length"] = self.max_length
+            validation["max_length"] = self.max_length
         if self.min_length is not None:
-            validation_map["min_length"] = self.min_length
+            validation["min_length"] = self.min_length
         if self.pattern:
             # https://github.com/Azure/autorest.python/issues/407
-            validation_map["pattern"] = RawString(self.pattern)  # type: ignore
-        return validation_map or None
+            validation["pattern"] = RawString(self.pattern)  # type: ignore
+        return validation or None
 
     def get_declaration(self, value) -> str:
         return f'"{value}"'
 
+    @property
+    def serialization_type(self) -> str:
+        return "str"
 
-class DatetimeSchema(PrimitiveSchema):
+    @property
+    def docstring_type(self) -> str:
+        return "str"
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, str)"
+
+
+class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.format = self.Formats(yaml_data["format"])
@@ -319,7 +371,9 @@ class DatetimeSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -328,8 +382,12 @@ class DatetimeSchema(PrimitiveSchema):
     def default_template_representation_declaration(self):
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.datetime)"
 
-class TimeSchema(PrimitiveSchema):
+
+class TimeType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "time"
@@ -353,7 +411,9 @@ class TimeSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -362,8 +422,12 @@ class TimeSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.time(12, 30, 0))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.time)"
 
-class UnixTimeSchema(PrimitiveSchema):
+
+class UnixTimeType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "unix-time"
@@ -387,7 +451,9 @@ class UnixTimeSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -396,8 +462,12 @@ class UnixTimeSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.time)"
 
-class DateSchema(PrimitiveSchema):
+
+class DateType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "date"
@@ -421,7 +491,9 @@ class DateSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -430,8 +502,12 @@ class DateSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.date(2020, 2, 20))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.date)"
 
-class DurationSchema(PrimitiveSchema):
+
+class DurationType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "duration"
@@ -455,7 +531,9 @@ class DurationSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -464,57 +542,29 @@ class DurationSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.timedelta(1))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.timedelta)"
 
-class ByteArraySchema(PrimitiveSchema):
+
+class ByteArraySchema(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = self.Formats(yaml_data["format"])
-
-    class Formats(str, Enum):
-        base64url = "base64url"
-        byte = "byte"
+        self.format = yaml_data["format"]
 
     @property
     def serialization_type(self) -> str:
-        if self.format == ByteArraySchema.Formats.base64url:
+        if self.format == "base64url":
             return "base64"
         return "bytearray"
 
     @property
     def docstring_type(self) -> str:
-        if self.format == ByteArraySchema.Formats.base64url:
-            return "bytes"
-        return "bytearray"
+        return "bytes"
 
     def get_declaration(self, value: str) -> str:
-        if self.format == ByteArraySchema.Formats.base64url:
-            return f'bytes("{value}", encoding="utf-8")'
-        return f'bytearray("{value}", encoding="utf-8")'
+        return f'bytes("{value}", encoding="utf-8")'
 
-
-def get_primitive_schema(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
-) -> "PrimitiveSchema":
-    mapping = {
-        "integer": NumberSchema,
-        "number": NumberSchema,
-        "string": StringSchema,
-        "char": StringSchema,
-        "date-time": DatetimeSchema,
-        "time": TimeSchema,
-        "unixtime": UnixTimeSchema,
-        "date": DateSchema,
-        "duration": DurationSchema,
-        "byte-array": ByteArraySchema,
-        "any": AnySchema,
-        "any-object": AnySchema,
-        "binary": IOSchema,
-    }
-    schema_type = yaml_data["type"]
-    primitive_schema = cast(
-        PrimitiveSchema,
-        mapping.get(schema_type, PrimitiveSchema).from_yaml(
-            yaml_data=yaml_data, code_model=code_model
-        ),
-    )
-    return primitive_schema
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, bytes)"

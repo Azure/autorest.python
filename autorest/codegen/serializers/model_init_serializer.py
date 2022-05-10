@@ -13,12 +13,10 @@ class ModelInitSerializer:
         self.env = env
 
     def serialize(self) -> str:
-        schemas = [s.name for s in self.code_model.sorted_schemas]
+        schemas = [s.name for s in self.code_model.model_types]
         schemas.sort()
         enums = (
-            [e.name for e in self.code_model.enums.values()]
-            if self.code_model.enums
-            else None
+            [e.name for e in self.code_model.enums] if self.code_model.enums else None
         )
 
         if enums:

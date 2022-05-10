@@ -6,15 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, TYPE_CHECKING
-
-from azure.core.exceptions import HttpResponseError
+from typing import List, Optional
 
 from ... import _serialization
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    import __init__ as _models
 
 
 class Error(_serialization.Model):
@@ -27,8 +21,8 @@ class Error(_serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
     def __init__(
@@ -44,7 +38,7 @@ class Error(_serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -57,7 +51,7 @@ class ModelThree(_serialization.Model):
     """
 
     _attribute_map = {
-        'optional_property': {'key': 'optionalProperty', 'type': 'str'},
+        "optional_property": {"key": "optionalProperty", "type": "str"},
     }
 
     def __init__(
@@ -70,7 +64,7 @@ class ModelThree(_serialization.Model):
         :keyword optional_property:
         :paramtype optional_property: str
         """
-        super(ModelThree, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.optional_property = optional_property
 
 
@@ -84,8 +78,8 @@ class PagingResult(_serialization.Model):
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[ModelThree]'},
-        'next_link': {'key': 'nextLink', 'type': 'str'},
+        "values": {"key": "values", "type": "[ModelThree]"},
+        "next_link": {"key": "nextLink", "type": "str"},
     }
 
     def __init__(
@@ -101,7 +95,7 @@ class PagingResult(_serialization.Model):
         :keyword next_link:
         :paramtype next_link: str
         """
-        super(PagingResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.values = values
         self.next_link = next_link
 
@@ -114,11 +108,11 @@ class SourcePath(_serialization.Model):
     """
 
     _validation = {
-        'source': {'max_length': 2048, 'min_length': 0},
+        'source': {'max_length': 2048},
     }
 
     _attribute_map = {
-        'source': {'key': 'source', 'type': 'str'},
+        "source": {"key": "source", "type": "str"},
     }
 
     def __init__(
@@ -131,5 +125,5 @@ class SourcePath(_serialization.Model):
         :keyword source: File source path.
         :paramtype source: str
         """
-        super(SourcePath, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.source = source

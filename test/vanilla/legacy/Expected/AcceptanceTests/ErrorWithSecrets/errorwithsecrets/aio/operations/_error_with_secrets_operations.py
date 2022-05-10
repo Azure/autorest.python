@@ -22,7 +22,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._errorwith_secrets_operations import (
+from ...operations._error_with_secrets_operations import (
     build_create_secret_request,
     build_get_error_with_secrets_request,
 )
@@ -37,7 +37,7 @@ class ErrorWithSecretsOperationsMixin:
         """Creates a secret.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SecretResponse, or the result of cls(response)
+        :return: SecretResponse or the result of cls(response)
         :rtype: ~errorwithsecrets.models.SecretResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -82,7 +82,7 @@ class ErrorWithSecretsOperationsMixin:
         """Gets an error response containing secrets and PII.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

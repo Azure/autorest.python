@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -246,7 +246,7 @@ class DateOperations(object):
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or None, or the result of cls(response)
+        :return: date or None or the result of cls(response)
         :rtype: ~datetime.date or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -294,7 +294,7 @@ class DateOperations(object):
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -342,7 +342,7 @@ class DateOperations(object):
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -390,7 +390,7 @@ class DateOperations(object):
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -442,7 +442,7 @@ class DateOperations(object):
         :param date_body: date body. Required.
         :type date_body: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -452,9 +452,7 @@ class DateOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(date_body, "date")
@@ -493,7 +491,7 @@ class DateOperations(object):
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -545,7 +543,7 @@ class DateOperations(object):
         :param date_body: date body. Required.
         :type date_body: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -555,9 +553,7 @@ class DateOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(date_body, "date")
@@ -596,7 +592,7 @@ class DateOperations(object):
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """

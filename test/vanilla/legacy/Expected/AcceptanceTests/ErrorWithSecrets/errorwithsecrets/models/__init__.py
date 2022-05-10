@@ -17,7 +17,7 @@ except (SyntaxError, ImportError):
     from ._models import InnerError  # type: ignore
     from ._models import SecretResponse  # type: ignore
 
-from ._errorwith_secrets_enums import (
+from ._error_with_secrets_enums import (
     ErrorCode,
     InnerErrorCode,
 )

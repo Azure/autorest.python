@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -101,7 +101,7 @@ def build_params_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_params_post_parameters_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_params_post_parameters_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -115,7 +115,7 @@ def build_params_post_parameters_request(*, json: Any = None, content: Any = Non
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_params_delete_parameters_request(**kwargs: Any) -> HttpRequest:
@@ -334,17 +334,53 @@ class ParamsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def post_parameters(
-        self, parameter: Union[IO, JSON], *, content_type: Optional[str] = "application/json", **kwargs: Any
-    ) -> JSON:
+    @overload
+    def post_parameters(self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: IO or JSON
-        :keyword content_type: Media type of the body sent to the API. Known values are: "image/jpeg"
-         or "application/json". Default value is "application/json".
+        :type parameter: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameter = {
+                    "url": "str"  # Required.
+                }
+        """
+
+    @overload
+    def post_parameters(self, parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """POST a JSON or a JPEG.
+
+        :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
+         url: "http://example.org/myimage.jpeg" }. Required.
+        :type parameter: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+    @distributed_trace
+    def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """POST a JSON or a JPEG.
+
+        :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
+         url: "http://example.org/myimage.jpeg" }. Is either a model type or a IO type. Required.
+        :type parameter: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'image/jpeg'. Default value is None.
         :paramtype content_type: str
         :return: JSON
         :rtype: JSON
@@ -353,23 +389,19 @@ class ParamsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None
         _content = None
-        content_type = content_type or ""
-        if content_type.split(";")[0] in ["application/json"]:
-            _json = parameter
-        elif content_type.split(";")[0] in ["image/jpeg"]:
+        if isinstance(parameter, (IO, bytes)):
             _content = parameter
         else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['image/jpeg', 'application/json']".format(content_type)
-            )
+            _json = parameter
+            content_type = content_type or "application/json"
 
         request = build_params_post_parameters_request(
             content_type=content_type,

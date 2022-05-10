@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 
@@ -44,7 +42,8 @@ class RefColorConstant(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar color_constant: Referenced Color Constant Description. Has constant value: "green-color".
+    :ivar color_constant: Referenced Color Constant Description. Required. Default value is
+     "green-color".
     :vartype color_constant: str
     :ivar field1: Sample string.
     :vartype field1: str

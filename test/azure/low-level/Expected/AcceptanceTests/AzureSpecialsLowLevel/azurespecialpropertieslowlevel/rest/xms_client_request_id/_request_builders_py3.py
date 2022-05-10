@@ -10,13 +10,16 @@ from typing import Any
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Serializer
+from .._serialization import Serializer
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
-def build_get_request(**kwargs: Any) -> HttpRequest:
+def build_get_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get method that overwrites x-ms-client-request header with value
     9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -32,10 +35,18 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/azurespecials/overwrite/x-ms-client-request-id/method/"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        **kwargs
+    )
 
 
-def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> HttpRequest:
+def build_param_get_request(
+    *,
+    x_ms_client_request_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Get method that overwrites x-ms-client-request header with value
     9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -53,13 +64,18 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
 
     # Construct headers
-    _headers["x-ms-client-request-id"] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['x-ms-client-request-id'] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )

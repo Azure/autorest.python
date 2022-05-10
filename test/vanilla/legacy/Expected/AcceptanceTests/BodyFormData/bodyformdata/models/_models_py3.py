@@ -8,8 +8,6 @@
 
 from typing import IO, List, Optional
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 
@@ -34,7 +32,7 @@ class Error(_serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -44,9 +42,9 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar file_content: Required. File to upload.
+    :ivar file_content: File to upload. Required.
     :vartype file_content: IO
-    :ivar file_name: Required. File name to upload. Name has to be spelled exactly as written here.
+    :ivar file_name: File name to upload. Name has to be spelled exactly as written here. Required.
     :vartype file_name: str
     """
 
@@ -62,15 +60,13 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     def __init__(self, *, file_content: IO, file_name: str, **kwargs):
         """
-        :keyword file_content: Required. File to upload.
+        :keyword file_content: File to upload. Required.
         :paramtype file_content: IO
-        :keyword file_name: Required. File name to upload. Name has to be spelled exactly as written
-         here.
+        :keyword file_name: File name to upload. Name has to be spelled exactly as written here.
+         Required.
         :paramtype file_name: str
         """
-        super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(
-            **kwargs
-        )
+        super().__init__(**kwargs)
         self.file_content = file_content
         self.file_name = file_name
 
@@ -80,7 +76,7 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar file_content: Required. Files to upload.
+    :ivar file_content: Files to upload. Required.
     :vartype file_content: list[IO]
     """
 
@@ -94,10 +90,8 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     def __init__(self, *, file_content: List[IO], **kwargs):
         """
-        :keyword file_content: Required. Files to upload.
+        :keyword file_content: Files to upload. Required.
         :paramtype file_content: list[IO]
         """
-        super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(
-            **kwargs
-        )
+        super().__init__(**kwargs)
         self.file_content = file_content

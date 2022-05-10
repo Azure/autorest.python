@@ -92,7 +92,7 @@ class OperationGroupTwoOperations(object):
         :param parameter_one: A boolean parameter. Required.
         :type parameter_one: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -109,8 +109,8 @@ class OperationGroupTwoOperations(object):
 
         
         request = build_test_four_request(
-            api_version=api_version,
             parameter_one=parameter_one,
+            api_version=api_version,
             template_url=self.test_four.metadata['url'],
             headers=_headers,
             params=_params,

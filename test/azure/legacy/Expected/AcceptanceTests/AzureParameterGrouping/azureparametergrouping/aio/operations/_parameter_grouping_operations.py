@@ -66,7 +66,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_required_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -76,9 +76,7 @@ class ParameterGroupingOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _custom_header = None
@@ -86,18 +84,18 @@ class ParameterGroupingOperations:
         _path = None
         _body = None
         if parameter_grouping_post_required_parameters is not None:
-            _custom_header = parameter_grouping_post_required_parameters.custom_header
-            _query = parameter_grouping_post_required_parameters.query
-            _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
+            _custom_header = parameter_grouping_post_required_parameters.custom_header
+            _path = parameter_grouping_post_required_parameters.path
+            _query = parameter_grouping_post_required_parameters.query
         _json = self._serialize.body(_body, "int")
 
         request = build_post_required_request(
             path=_path,
-            content_type=content_type,
-            json=_json,
             custom_header=_custom_header,
             query=_query,
+            content_type=content_type,
+            json=_json,
             template_url=self.post_required.metadata["url"],
             headers=_headers,
             params=_params,
@@ -133,7 +131,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_optional_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -192,7 +190,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_reserved_words_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostReservedWordsParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -207,8 +205,8 @@ class ParameterGroupingOperations:
         _from_parameter = None
         _accept_parameter = None
         if parameter_grouping_post_reserved_words_parameters is not None:
-            _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
             _accept_parameter = parameter_grouping_post_reserved_words_parameters.accept
+            _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
 
         request = build_post_reserved_words_request(
             from_parameter=_from_parameter,
@@ -254,7 +252,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_multi_param_groups_second_param_group:
          ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -314,7 +312,7 @@ class ParameterGroupingOperations:
         :param first_parameter_group: Parameter group. Default value is None.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -11,11 +11,9 @@ from ..models import (
     CodeModel,
     OperationGroup,
     FileImport,
-    LROOperation,
-    PagingOperation,
 )
 from .import_serializer import FileImportSerializer
-from .builder_serializer import get_operation_serializer, get_request_builder_serializer
+from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
 
 
 class OperationGroupsSerializer:
@@ -34,12 +32,6 @@ class OperationGroupsSerializer:
         self.operation_group = operation_group
 
     def serialize(self) -> str:
-        def _is_lro(operation):
-            return isinstance(operation, LROOperation)
-
-        def _is_paging(operation):
-            return isinstance(operation, PagingOperation)
-
         operation_groups = (
             [self.operation_group]
             if self.operation_group
@@ -67,16 +59,15 @@ class OperationGroupsSerializer:
             ),
             async_mode=self.async_mode,
             is_python3_file=self.is_python3_file,
-            is_lro=_is_lro,
-            is_paging=_is_paging,
             get_operation_serializer=functools.partial(
                 get_operation_serializer,
                 code_model=self.code_model,
                 async_mode=self.async_mode,
                 is_python3_file=self.is_python3_file,
             ),
-            request_builder_serializer=get_request_builder_serializer(
+            request_builder_serializer=RequestBuilderSerializer(
                 self.code_model,
-                self.is_python3_file,
+                async_mode=False,
+                is_python3_file=self.is_python3_file,
             ),
         )

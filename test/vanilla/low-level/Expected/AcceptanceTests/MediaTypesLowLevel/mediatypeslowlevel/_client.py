@@ -43,7 +43,7 @@ class MediaTypesClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from mediatypeslowlevel.rest import build_analyze_body_request
-        >>> request = build_analyze_body_request(**kwargs)
+        >>> request = build_analyze_body_request(content_type=content_type, json=json, **kwargs)
         <HttpRequest [POST], url: '/mediatypes/analyze'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
-
 from ... import _serialization
 
 
@@ -21,8 +19,8 @@ class Error(_serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
     def __init__(
@@ -56,8 +54,8 @@ class ModelTwo(_serialization.Model):
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "id": {"key": "id", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
     def __init__(

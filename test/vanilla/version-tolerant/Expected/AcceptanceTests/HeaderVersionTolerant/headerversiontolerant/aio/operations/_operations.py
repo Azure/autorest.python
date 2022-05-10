@@ -157,6 +157,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     async def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a post request with header value "Content-Type": "text/html".
 
+        :keyword content_type: Send a post request with header value "Content-Type": "text/html".
+         Required.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -328,7 +331,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values 105 or -2. Required.
-        :paramtype value: long
+        :paramtype value: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -401,7 +404,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("long", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("int", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -1121,14 +1124,14 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def param_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: bytearray, **kwargs: Any
+        self, *, scenario: str, value: bytes, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid". Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
-        :paramtype value: bytearray
+        :paramtype value: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

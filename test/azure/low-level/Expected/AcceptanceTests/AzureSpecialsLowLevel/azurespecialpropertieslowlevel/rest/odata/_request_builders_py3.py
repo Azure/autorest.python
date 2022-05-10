@@ -10,14 +10,19 @@ from typing import Any, Optional
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Serializer
+from .._serialization import Serializer
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
 def build_get_with_filter_request(
-    *, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs: Any
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    orderby: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
@@ -40,20 +45,26 @@ def build_get_with_filter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/odata/filter"
 
     # Construct parameters
     if filter is not None:
-        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+        _params['$filter'] = _SERIALIZER.query("filter", filter, 'str')
     if top is not None:
-        _params["$top"] = _SERIALIZER.query("top", top, "int")
+        _params['$top'] = _SERIALIZER.query("top", top, 'int')
     if orderby is not None:
-        _params["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+        _params['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )

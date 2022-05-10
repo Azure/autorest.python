@@ -35,7 +35,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         :param id: An int parameter. Put in 2 to pass. Required.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -52,8 +52,8 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
 
         
         request = build_test_request(
-            api_version=api_version,
             id=id,
+            api_version=api_version,
             template_url=self.test.metadata['url'],
             headers=_headers,
             params=_params,

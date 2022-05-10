@@ -6,17 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Any, List
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
 from ..._serialization import Serializer
 from ..._vendor import _format_url_section
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, List
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -74,8 +70,8 @@ def build_get_boolean_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword bool_path: false boolean value. Default value is False. Note that overriding this
-     default value may result in unsupported behavior.
+    :keyword bool_path: false boolean value. Required. Default value is False. Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype bool_path: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -202,7 +198,7 @@ def build_get_ten_billion_request(
 
     :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
      overriding this default value may result in unsupported behavior.
-    :paramtype long_path: long
+    :paramtype long_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -217,7 +213,7 @@ def build_get_ten_billion_request(
     # Construct URL
     _url = "/paths/long/10000000000/{longPath}"
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -244,7 +240,7 @@ def build_get_negative_ten_billion_request(
 
     :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
      that overriding this default value may result in unsupported behavior.
-    :paramtype long_path: long
+    :paramtype long_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -259,7 +255,7 @@ def build_get_negative_ten_billion_request(
     # Construct URL
     _url = "/paths/long/-10000000000/{longPath}"
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -582,8 +578,8 @@ def build_string_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword string_path: '' string value. Default value is "". Note that overriding this default
-     value may result in unsupported behavior.
+    :keyword string_path: '' string value. Required. Default value is "". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -741,7 +737,7 @@ def build_enum_null_request(
 
 
 def build_byte_multi_byte_request(
-    byte_path,  # type: bytearray
+    byte_path,  # type: bytes
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -751,7 +747,7 @@ def build_byte_multi_byte_request(
     into your code flow.
 
     :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
-    :type byte_path: bytearray
+    :type byte_path: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -790,9 +786,9 @@ def build_byte_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-     that overriding this default value may result in unsupported behavior.
-    :paramtype byte_path: bytearray
+    :keyword byte_path: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype byte_path: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -801,7 +797,7 @@ def build_byte_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    byte_path = kwargs.pop('byte_path', bytearray("", encoding="utf-8"))  # type: bytearray
+    byte_path = kwargs.pop('byte_path', bytes("", encoding="utf-8"))  # type: bytes
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -824,7 +820,7 @@ def build_byte_empty_request(
 
 
 def build_byte_null_request(
-    byte_path,  # type: bytearray
+    byte_path,  # type: bytes
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -834,7 +830,7 @@ def build_byte_null_request(
     into your code flow.
 
     :param byte_path: null as byte array (should throw). Required.
-    :type byte_path: bytearray
+    :type byte_path: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

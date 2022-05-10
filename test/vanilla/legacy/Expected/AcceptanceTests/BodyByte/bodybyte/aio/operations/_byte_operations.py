@@ -55,12 +55,12 @@ class ByteOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> bytearray:
+    async def get_null(self, **kwargs: Any) -> bytes:
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
+        :return: bytes or the result of cls(response)
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -69,7 +69,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
@@ -100,12 +100,12 @@ class ByteOperations:
     get_null.metadata = {"url": "/byte/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> bytearray:
+    async def get_empty(self, **kwargs: Any) -> bytes:
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
+        :return: bytes or the result of cls(response)
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -114,7 +114,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
@@ -145,12 +145,12 @@ class ByteOperations:
     get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_non_ascii(self, **kwargs: Any) -> bytearray:
+    async def get_non_ascii(self, **kwargs: Any) -> bytes:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
+        :return: bytes or the result of cls(response)
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -159,7 +159,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_get_non_ascii_request(
             template_url=self.get_non_ascii.metadata["url"],
@@ -191,15 +191,15 @@ class ByteOperations:
 
     @distributed_trace_async
     async def put_non_ascii(  # pylint: disable=inconsistent-return-statements
-        self, byte_body: bytearray, **kwargs: Any
+        self, byte_body: bytes, **kwargs: Any
     ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
          Required.
-        :type byte_body: bytearray
+        :type byte_body: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -209,9 +209,7 @@ class ByteOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(byte_body, "bytearray")
@@ -243,12 +241,12 @@ class ByteOperations:
     put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> bytearray:
+    async def get_invalid(self, **kwargs: Any) -> bytes:
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
+        :return: bytes or the result of cls(response)
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -257,7 +255,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],

@@ -8,8 +8,6 @@
 
 from typing import Any, Dict, Optional
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 
@@ -55,7 +53,7 @@ class PetAPTrue(_serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(PetAPTrue, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
@@ -115,7 +113,7 @@ class CatAPTrue(PetAPTrue):
         :keyword friendly:
         :paramtype friendly: bool
         """
-        super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
+        super().__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
         self.friendly = friendly
 
 
@@ -140,7 +138,7 @@ class Error(_serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -185,7 +183,7 @@ class PetAPInProperties(_serialization.Model):
         :keyword additional_properties: Dictionary of :code:`<number>`.
         :paramtype additional_properties: dict[str, float]
         """
-        super(PetAPInProperties, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name
         self.status = None
@@ -252,7 +250,7 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
         :keyword additional_properties1: Dictionary of :code:`<number>`.
         :paramtype additional_properties1: dict[str, float]
         """
-        super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
@@ -303,7 +301,7 @@ class PetAPObject(_serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(PetAPObject, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
@@ -352,7 +350,7 @@ class PetAPString(_serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(PetAPString, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name

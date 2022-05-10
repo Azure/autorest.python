@@ -344,7 +344,7 @@ class PagingOperations:
     ) -> AsyncIterable[_models.ProductResult]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
@@ -457,8 +457,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_get_with_query_params_request(
-                    query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
+                    query_constant=query_constant,
                     template_url=self.get_with_query_params.metadata["url"],
                     headers=_headers,
                     params=_params,
@@ -583,7 +583,7 @@ class PagingOperations:
     ) -> AsyncIterable[_models.OdataProductResult]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_odata_multiple_pages_options:
@@ -677,7 +677,7 @@ class PagingOperations:
         :param paging_get_multiple_pages_with_offset_options: Parameter group. Required.
         :type paging_get_multiple_pages_with_offset_options:
          ~paging.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -1305,10 +1305,10 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncItemPaged[_models.ProductResult]]:
+    ) -> AsyncLROPoller[AsyncIterable[_models.ProductResult]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
@@ -1320,7 +1320,7 @@ class PagingOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns an iterator like instance of either
+        :return: An instance of LROPoller that returns an iterator like instance of either
          ProductResult or the result of cls(response)
         :rtype:
          ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]]

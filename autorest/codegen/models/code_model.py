@@ -3,24 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
-from typing import cast, List, Dict, Optional, Any, Set
+from typing import List, Dict, Optional, Any, Set, Union
 
-from .base_schema import BaseSchema
-from .enum_schema import EnumSchema
-from .object_schema import ObjectSchema
+from .base_type import BaseType
+from .enum_type import EnumType
+from .model_type import ModelType
 from .operation_group import OperationGroup
-from .operation import Operation
-from .lro_operation import LROOperation
-from .paging_operation import PagingOperation
+from .client import Client, Config
+from .request_builder import OverloadedRequestBuilder, RequestBuilder
 from .parameter import Parameter
-from .client import Client
-from .parameter_list import GlobalParameterList
-from .property import Property
-from .request_builder import RequestBuilder
-from .credential_model import CredentialModel
-
-_LOGGER = logging.getLogger(__name__)
 
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
@@ -34,21 +25,19 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     :param str description: The description of the client
     :param str namespace: The namespace of our module
     :param schemas: The list of schemas we are going to serialize in the models files. Maps their yaml
-     id to our created ObjectSchema.
-    :type schemas: dict[int, ~autorest.models.ObjectSchema]
+     id to our created ModelType.
+    :type schemas: dict[int, ~autorest.models.ModelType]
     :param sorted_schemas: Our schemas in order by inheritance and alphabet
-    :type sorted_schemas: list[~autorest.models.ObjectSchema]
-    :param enums: The enums, if any, we are going to serialize. Maps their yaml id to our created EnumSchema.
-    :type enums: Dict[int, ~autorest.models.EnumSchema]
+    :type sorted_schemas: list[~autorest.models.ModelType]
+    :param enums: The enums, if any, we are going to serialize. Maps their yaml id to our created EnumType.
+    :type enums: Dict[int, ~autorest.models.EnumType]
     :param primitives: List of schemas we've created that are not EnumSchemas or ObjectSchemas. Maps their
      yaml id to our created schemas.
-    :type primitives: Dict[int, ~autorest.models.BaseSchema]
+    :type primitives: Dict[int, ~autorest.models.BaseType]
     :param operation_groups: The operation groups we are going to serialize
     :type operation_groups: list[~autorest.models.OperationGroup]
     :param package_dependency: All the dependencies needed in setup.py
     :type package_dependency: Dict[str, str]
-    :param credential_model: The class contains all the credential info
-    :type credential_model: CredentialMode
     """
 
     def __init__(
@@ -57,53 +46,60 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         options: Dict[str, Any],
     ) -> None:
         self.yaml_data = yaml_data
-        self.send_request_name = (
-            "send_request" if options["show_send_request"] else "_send_request"
-        )
-        self.rest_layer_name = (
-            "rest" if options["builders_visibility"] == "public" else "_rest"
-        )
         self.options = options
-        self.module_name: str = ""
-        self.class_name: str = ""
-        self.description: str = ""
-        self.namespace: str = ""
-        self.namespace_path: str = ""
-        self.schemas: Dict[int, ObjectSchema] = {}
-        self.sorted_schemas: List[ObjectSchema] = []
-        self.enums: Dict[int, EnumSchema] = {}
-        self.primitives: Dict[int, BaseSchema] = {}
+        self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
-        params = GlobalParameterList(self)
-        params.code_model = self
-        self.service_client: Client = Client(self, params)
-        self.request_builders: List[RequestBuilder] = []
+        self._model_types: List[ModelType] = []
+        self._client: Optional[Client] = None
+        self._config: Optional[Config] = None
+        self.request_builders: List[
+            Union[RequestBuilder, OverloadedRequestBuilder]
+        ] = []
         self.package_dependency: Dict[str, str] = {}
-        self._credential_model: Optional[CredentialModel] = None
+        self.namespace: str = yaml_data["client"]["namespace"].lower()
+        self.module_name: str = self.yaml_data["client"]["moduleName"]
 
-    @property
-    def global_parameters(self) -> GlobalParameterList:
-        return self.service_client.parameters
-
-    @global_parameters.setter
-    def global_parameters(self, val: GlobalParameterList) -> None:
-        self.service_client.parameters = val
-
-    def lookup_schema(self, schema_id: int) -> BaseSchema:
+    def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
 
         :param int schema_id: The yaml id of the schema
         :return: If created, we return the created schema, otherwise, we throw.
-        :rtype: ~autorest.models.BaseSchema
+        :rtype: ~autorest.models.BaseType
         :raises: KeyError if schema is not found
         """
-        for attr in [self.schemas, self.enums, self.primitives]:
-            for elt_key, elt_value in attr.items():  # type: ignore
-                if schema_id == elt_key:
-                    return elt_value
-        raise KeyError("Didn't find it!!!!!")
+        try:
+            return next(type for id, type in self.types_map.items() if id == schema_id)
+        except StopIteration:
+            raise KeyError(f"Couldn't find schema with id {schema_id}")
 
-    def lookup_request_builder(self, request_builder_id: int) -> RequestBuilder:
+    @property
+    def credential(self) -> Optional[Parameter]:
+        """The credential param, if one exists"""
+        return self.client.parameters.credential
+
+    @property
+    def client(self) -> Client:
+        if not self._client:
+            raise ValueError("You haven't linked the client yet")
+        return self._client
+
+    @client.setter
+    def client(self, val: Client) -> None:
+        self._client = val
+
+    @property
+    def config(self) -> Config:
+        if not self._config:
+            raise ValueError("You haven't linked the config yet")
+        return self._config
+
+    @config.setter
+    def config(self, val: Config) -> None:
+        self._config = val
+
+    def lookup_request_builder(
+        self, request_builder_id: int
+    ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
         """Find the request builder based off of id"""
         try:
             return next(
@@ -115,20 +111,27 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
-    def exception_ids(self) -> Set[int]:
-        exceptions_set = set()
-        for group in self.yaml_data["operationGroups"]:
-            for operation in group["operations"]:
-                if not operation.get("exceptions"):
-                    continue
-                for exception in operation["exceptions"]:
-                    if not exception.get("schema"):
-                        continue
-                    exceptions_set.add(id(exception["schema"]))
-        return exceptions_set
+    def model_types(self) -> List[ModelType]:
+        """All of the model types in this class"""
+        if not self._model_types:
+            self._model_types = [
+                t for t in self.types_map.values() if isinstance(t, ModelType)
+            ]
+        return self._model_types
+
+    @model_types.setter
+    def model_types(self, val: List[ModelType]) -> None:
+        self._model_types = val
+
+    @property
+    def enums(self) -> List[EnumType]:
+        """All of the enums"""
+        return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
     @staticmethod
-    def _sort_schemas_helper(current, seen_schema_names, seen_schema_yaml_ids):
+    def _sort_model_types_helper(
+        current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]
+    ):
         if current.id in seen_schema_yaml_ids:
             return []
         if current.name in seen_schema_names:
@@ -136,15 +139,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 f"We have already generated a schema with name {current.name}"
             )
         ancestors = [current]
-        if current.base_models:
-            for base_model in current.base_models:
-                parent = cast(ObjectSchema, base_model)
+        if current.parents:
+            for parent in current.parents:
                 if parent.id in seen_schema_yaml_ids:
                     continue
                 seen_schema_names.add(current.name)
                 seen_schema_yaml_ids.add(current.id)
                 ancestors = (
-                    CodeModel._sort_schemas_helper(
+                    CodeModel._sort_model_types_helper(
                         parent, seen_schema_names, seen_schema_yaml_ids
                     )
                     + ancestors
@@ -153,7 +155,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         seen_schema_yaml_ids.add(current.id)
         return ancestors
 
-    def sort_schemas(self) -> None:
+    def sort_model_types(self) -> None:
         """Sorts the final object schemas by inheritance and by alphabetical order.
 
         :return: None
@@ -161,38 +163,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         """
         seen_schema_names: Set[str] = set()
         seen_schema_yaml_ids: Set[int] = set()
-        sorted_schemas: List[ObjectSchema] = []
-        for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
-            sorted_schemas.extend(
-                CodeModel._sort_schemas_helper(
+        sorted_object_schemas: List[ModelType] = []
+        for schema in sorted(self.model_types, key=lambda x: x.name.lower()):
+            sorted_object_schemas.extend(
+                CodeModel._sort_model_types_helper(
                     schema, seen_schema_names, seen_schema_yaml_ids
                 )
             )
-        self.sorted_schemas = sorted_schemas
-
-    def setup_client_input_parameters(self, yaml_data: Dict[str, Any]):
-        dollar_host = [
-            parameter
-            for parameter in self.global_parameters
-            if parameter.rest_api_name == "$host"
-        ]
-        if not dollar_host:
-            # We don't want to support multi-api customurl YET (will see if that goes well....)
-            # So far now, let's get the first one in the first operation
-            # UGLY as hell.....
-            if yaml_data.get("operationGroups"):
-                first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0][
-                    "operations"
-                ][0]["requests"][0]
-                self.service_client.parameterized_host_template = (
-                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
-                )
-        else:
-            for host in dollar_host:
-                self.global_parameters.remove(host)
-            self.service_client.parameters.add_host(
-                dollar_host[0].yaml_data["clientDefaultValue"]
-            )
+        self.model_types = sorted_object_schemas
 
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.
@@ -203,156 +181,23 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             i = 0
             while i < len(operation_group.operations):
                 operation = operation_group.operations[i]
-                if isinstance(operation, LROOperation):
-                    operation_group.operations.insert(i, operation.initial_operation)
+                if operation.operation_type in ("lro", "lropaging"):
+                    operation_group.operations.insert(i, operation.initial_operation)  # type: ignore
                     i += 1
                 i += 1
 
-    def remove_next_operation(self) -> None:
-        """Linking paging operations together."""
-
-        def _lookup_operation(yaml_id: int) -> Operation:
-            for operation_group in self.operation_groups:
-                for operation in operation_group.operations:
-                    if operation.id == yaml_id:
-                        return operation
-            raise KeyError("Didn't find it!!!!!")
-
-        for operation_group in self.operation_groups:
-            next_operations = []
-            for operation in operation_group.operations:
-                # when we add in "LRO" functions we don't include yaml_data, so yaml_data can be empty in these cases
-                next_link_yaml = None
-                if operation.yaml_data and operation.yaml_data["language"][
-                    "python"
-                ].get("paging"):
-                    next_link_yaml = operation.yaml_data["language"]["python"][
-                        "paging"
-                    ].get("nextLinkOperation")
-                if isinstance(operation, PagingOperation) and next_link_yaml:
-                    next_operation = _lookup_operation(id(next_link_yaml))
-                    operation.next_operation = next_operation
-                    next_operations.append(next_operation)
-
-            operation_group.operations = [
-                operation
-                for operation in operation_group.operations
-                if operation not in next_operations
-            ]
-
-    @property
-    def has_schemas(self):
-        return self.schemas or self.enums
-
-    @property
-    def credential_model(self) -> CredentialModel:
-        if not self._credential_model:
-            raise ValueError(
-                "You want to find the Credential Model, but have not given a value"
-            )
-        return self._credential_model
-
-    @credential_model.setter
-    def credential_model(self, val: CredentialModel) -> None:
-        self._credential_model = val
-
-    @staticmethod
-    def _add_properties_from_inheritance_helper(schema, properties) -> List[Property]:
-        if not schema.base_models:
-            return properties
-        if schema.base_models:
-            for base_model in schema.base_models:
-                parent = cast(ObjectSchema, base_model)
-                # need to make sure that the properties we choose from our parent also don't contain
-                # any of our own properties
-                schema_property_names = set(
-                    [p.name for p in properties] + [p.name for p in schema.properties]
-                )
-                chosen_parent_properties = [
-                    p for p in parent.properties if p.name not in schema_property_names
-                ]
-                properties = (
-                    CodeModel._add_properties_from_inheritance_helper(
-                        parent, chosen_parent_properties
-                    )
-                    + properties
-                )
-
-        return properties
-
     @property
     def operations_folder_name(self) -> str:
+        """Get the name of the operations folder that holds operations."""
         name = "operations"
         if self.options["version_tolerant"] and not any(
-            og for og in self.operation_groups if not og.is_empty_operation_group
+            og for og in self.operation_groups if not og.is_mixin
         ):
             name = f"_{name}"
         return name
 
-    def _add_properties_from_inheritance(self) -> None:
-        """Adds properties from base classes to schemas with parents.
-
-        :return: None
-        :rtype: None
-        """
-        for schema in self.schemas.values():
-            schema.properties = CodeModel._add_properties_from_inheritance_helper(
-                schema, schema.properties
-            )
-
-    @staticmethod
-    def _add_exceptions_from_inheritance_helper(schema) -> bool:
-        if schema.is_exception:
-            return True
-        parent_is_exception: List[bool] = []
-        for base_model in schema.base_models:
-            parent = cast(ObjectSchema, base_model)
-            parent_is_exception.append(
-                CodeModel._add_exceptions_from_inheritance_helper(parent)
-            )
-        return any(parent_is_exception)
-
-    def _add_exceptions_from_inheritance(self) -> None:
-        """Sets a class as an exception if it's parent is an exception.
-
-        :return: None
-        :rtype: None
-        """
-        for schema in self.schemas.values():
-            schema.is_exception = CodeModel._add_exceptions_from_inheritance_helper(
-                schema
-            )
-
-    def add_inheritance_to_models(self) -> None:
-        """Adds base classes and properties from base classes to schemas with parents.
-
-        :return: None
-        :rtype: None
-        """
-        for schema in self.schemas.values():
-            if schema.base_models:
-                # right now, the base model property just holds the name of the parent class
-                schema.base_models = [
-                    b for b in self.schemas.values() if b.id in schema.base_models
-                ]
-        self._add_properties_from_inheritance()
-        self._add_exceptions_from_inheritance()
-
-    def _populate_target_property(self, parameter: Parameter) -> None:
-        for obj in self.schemas.values():
-            for prop in obj.properties:
-                if prop.id == parameter.target_property_name:
-                    parameter.target_property_name = prop.name
-                    return
-        raise KeyError("Didn't find the target property")
-
-    def generate_single_parameter_from_multiple_content_types_operation(self) -> None:
-        for operation_group in self.operation_groups:
-            for operation in operation_group.operations:
-                if operation.multiple_content_type_parameters:
-                    operation.convert_multiple_content_type_parameters()
-
     def need_vendored_code(self, async_mode: bool) -> bool:
+        """Whether we need to vendor code in the _vendor.py file for this SDK"""
         if async_mode:
             return self.need_mixin_abc
         return (
@@ -361,6 +206,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def need_request_converter(self) -> bool:
+        """
+        Whether we need to convert our created azure.core.rest.HttpRequests to
+        azure.core.pipeline.transport.HttpRequests
+        """
         return (
             self.options["show_operations"]
             and bool(self.request_builders)
@@ -369,34 +218,31 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def need_format_url(self) -> bool:
+        """Whether we need to format urls. If so, we need to vendor core."""
         return any(rq for rq in self.request_builders if rq.parameters.path)
 
     @property
     def need_mixin_abc(self) -> bool:
+        """Do we want a mixin ABC class for typing purposes?"""
         return any(
             o
             for o in self.operation_groups
-            if o.is_empty_operation_group and self.options["python3_only"]
+            if o.is_mixin and self.options["python3_only"]
         )
 
     @property
     def has_lro_operations(self) -> bool:
+        """Are there any LRO operations in this SDK?"""
         return any(
             [
-                isinstance(operation, LROOperation)
+                operation.operation_type in ("lro", "lropaging")
                 for operation_group in self.operation_groups
                 for operation in operation_group.operations
             ]
         )
 
-    def link_operation_to_request_builder(self) -> None:
-        for operation_group in self.operation_groups:
-            for operation in operation_group.operations:
-                request_builder = operation.request_builder
-                operation.request_builder = request_builder
-                operation.link_body_kwargs_to_body_params()
-
     def get_models_filename(self, is_python3_file: bool) -> str:
+        """Get the names of the model file(s)"""
         if not self.is_legacy and self.options["python3_only"]:
             return "_models"
         if is_python3_file:
@@ -405,6 +251,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def enums_filename(self) -> str:
+        """The name of the enums file"""
         if not self.is_legacy:
             return "_enums"
         return f"_{self.module_name}_enums"
@@ -414,3 +261,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         return not (
             self.options["version_tolerant"] or self.options["low_level_client"]
         )
+
+    @property
+    def rest_layer_name(self) -> str:
+        """If we have a separate rest layer, what is its name?"""
+        return "rest" if self.options["builders_visibility"] == "public" else "_rest"

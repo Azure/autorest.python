@@ -152,7 +152,7 @@ class PetOperations(object):
         :param pet_id: pet id. Required.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
+        :return: Pet or None or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -214,7 +214,7 @@ class PetOperations(object):
         :param what_action: what action the pet should do. Required.
         :type what_action: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAction, or the result of cls(response)
+        :return: PetAction or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -276,7 +276,7 @@ class PetOperations(object):
          input name 'models'. Use client default value in call. Default value is "value1".
         :type models: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

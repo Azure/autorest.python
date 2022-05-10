@@ -8,8 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 
@@ -34,6 +32,6 @@ class Error(_serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message

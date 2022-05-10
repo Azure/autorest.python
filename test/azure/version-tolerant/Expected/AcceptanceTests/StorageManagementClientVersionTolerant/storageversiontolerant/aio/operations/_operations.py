@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -66,9 +66,9 @@ class StorageAccountsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @distributed_trace_async
+    @overload
     async def check_name_availability(
-        self, account_name: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, account_name: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Checks that account name is valid and is not in use.
 
@@ -76,8 +76,8 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: JSON
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/json" or "text/json". Default value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -102,25 +102,97 @@ class StorageAccountsOperations:
                       false, the name has already been taken or invalid and cannot be used.
                     "reason": "str"  # Optional. Gets the reason that a storage account name
                       could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values are: "AccountNameInvalid", "AlreadyExists".
+                      Known values are: "AccountNameInvalid" and "AlreadyExists".
+                }
+        """
+
+    @overload
+    async def check_name_availability(
+        self, account_name: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """Checks that account name is valid and is not in use.
+
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Required.
+        :type account_name: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "message": "str",  # Optional. Gets an error message explaining the Reason
+                      value in more detail.
+                    "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
+                      whether the name is available for you to use. If true, the name is available. If
+                      false, the name has already been taken or invalid and cannot be used.
+                    "reason": "str"  # Optional. Gets the reason that a storage account name
+                      could not be used. The Reason element is only returned if NameAvailable is false.
+                      Known values are: "AccountNameInvalid" and "AlreadyExists".
+                }
+        """
+
+    @distributed_trace_async
+    async def check_name_availability(self, account_name: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Checks that account name is valid and is not in use.
+
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Is either a model type or a IO type. Required.
+        :type account_name: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'text/json'. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "message": "str",  # Optional. Gets an error message explaining the Reason
+                      value in more detail.
+                    "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
+                      whether the name is available for you to use. If true, the name is available. If
+                      false, the name has already been taken or invalid and cannot be used.
+                    "reason": "str"  # Optional. Gets the reason that a storage account name
+                      could not be used. The Reason element is only returned if NameAvailable is false.
+                      Known values are: "AccountNameInvalid" and "AlreadyExists".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = account_name
+        _json = None
+        _content = None
+        if isinstance(account_name, (IO, bytes)):
+            _content = account_name
+        else:
+            _json = account_name
+            content_type = content_type or "application/json"
 
         request = build_storage_accounts_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -147,24 +219,25 @@ class StorageAccountsOperations:
         return cast(JSON, deserialized)
 
     async def _create_initial(
-        self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: JSON,
-        *,
-        content_type: Optional[str] = "application/json",
-        **kwargs: Any
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
-        _json = parameters
+        _json = None
+        _content = None
+        if isinstance(parameters, (IO, bytes)):
+            _content = parameters
+        else:
+            _json = parameters
+            content_type = content_type or "application/json"
 
         request = build_storage_accounts_create_request(
             resource_group_name=resource_group_name,
@@ -173,6 +246,7 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -200,14 +274,14 @@ class StorageAccountsOperations:
 
         return deserialized
 
-    @distributed_trace_async
+    @overload
     async def begin_create(
         self,
         resource_group_name: str,
         account_name: str,
         parameters: JSON,
         *,
-        content_type: Optional[str] = "application/json",
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -224,8 +298,8 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account. Required.
         :type parameters: JSON
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/json" or "text/json". Default value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -244,15 +318,15 @@ class StorageAccountsOperations:
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Required. Resource location.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str"  # Optional. Gets or sets the account type.
                           Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", "Premium_LRS".
+                          "Standard_RAGRS", and "Premium_LRS".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Resource tags.
+                        "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. Resource type.
                 }
@@ -260,12 +334,12 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Required. Resource location.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
                           account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", "Premium_LRS".
+                          "Standard_RAGRS", and "Premium_LRS".
                         "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
                           date and time of the storage account in UTC.
                         "customDomain": {
@@ -295,7 +369,7 @@ class StorageAccountsOperations:
                           primary for the storage account.
                         "provisioningState": "str",  # Optional. Gets the status of the
                           storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", "Succeeded".
+                          "Creating", "ResolvingDNS", and "Succeeded".
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
@@ -312,22 +386,236 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available", "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available", "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Resource tags.
+                        "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. Resource type.
                 }
         """
-        _headers = kwargs.pop("headers", {}) or {}
+
+    @overload
+    async def begin_create(
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: IO,
+        *,
+        content_type: Optional[str] = None,
+        **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
+        """Asynchronously creates a new storage account with the specified parameters. Existing accounts
+        cannot be updated with this API and should instead use the Update Storage Account API. If an
+        account is already created and subsequent PUT request is issued with exact same set of
+        properties, then HTTP 200 would be returned.
+
+        :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
+        :type resource_group_name: str
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Required.
+        :type account_name: str
+        :param parameters: The parameters to provide for the created account. Required.
+        :type parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns JSON object
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Resource location. Required.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str",  # Optional. Gets the type of the storage
+                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
+                          date and time of the storage account in UTC.
+                        "customDomain": {
+                            "name": "str",  # Optional. Gets or sets the custom domain
+                              name. Name is the CNAME source.
+                            "useSubDomain": bool  # Optional. Indicates whether indirect
+                              CName validation is enabled. Default value is false. This should only be
+                              set on updates.
+                        },
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
+                          timestamp of the most recent instance of a failover to the secondary
+                          location. Only the most recent timestamp is retained. This element is not
+                          returned if there has never been a failover instance. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "primaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "primaryLocation": "str",  # Optional. Gets the location of the
+                          primary for the storage account.
+                        "provisioningState": "str",  # Optional. Gets the status of the
+                          storage account at the time the operation was called. Known values are:
+                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "secondaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
+                          replicated secondary for the storage account. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
+                          whether the primary location of the storage account is available or
+                          unavailable. Known values are: "Available" and "Unavailable".
+                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
+                          whether the secondary location of the storage account is available or
+                          unavailable. Only available if the accountType is StandardGRS or
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
+        """
+
+    @distributed_trace_async
+    async def begin_create(
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
+        """Asynchronously creates a new storage account with the specified parameters. Existing accounts
+        cannot be updated with this API and should instead use the Update Storage Account API. If an
+        account is already created and subsequent PUT request is issued with exact same set of
+        properties, then HTTP 200 would be returned.
+
+        :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
+        :type resource_group_name: str
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Required.
+        :type account_name: str
+        :param parameters: The parameters to provide for the created account. Is either a model type or
+         a IO type. Required.
+        :type parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'text/json'. Default value is None.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns JSON object
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Resource location. Required.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str",  # Optional. Gets the type of the storage
+                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
+                          date and time of the storage account in UTC.
+                        "customDomain": {
+                            "name": "str",  # Optional. Gets or sets the custom domain
+                              name. Name is the CNAME source.
+                            "useSubDomain": bool  # Optional. Indicates whether indirect
+                              CName validation is enabled. Default value is false. This should only be
+                              set on updates.
+                        },
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
+                          timestamp of the most recent instance of a failover to the secondary
+                          location. Only the most recent timestamp is retained. This element is not
+                          returned if there has never been a failover instance. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "primaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "primaryLocation": "str",  # Optional. Gets the location of the
+                          primary for the storage account.
+                        "provisioningState": "str",  # Optional. Gets the status of the
+                          storage account at the time the operation was called. Known values are:
+                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "secondaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
+                          replicated secondary for the storage account. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
+                          whether the primary location of the storage account is available or
+                          unavailable. Known values are: "Available" and "Unavailable".
+                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
+                          whether the secondary location of the storage account is available or
+                          unavailable. Only available if the accountType is StandardGRS or
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -337,8 +625,8 @@ class StorageAccountsOperations:
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
-                content_type=content_type,
                 api_version=api_version,
+                content_type=content_type,
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
@@ -443,12 +731,12 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Required. Resource location.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
                           account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", "Premium_LRS".
+                          "Standard_RAGRS", and "Premium_LRS".
                         "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
                           date and time of the storage account in UTC.
                         "customDomain": {
@@ -478,7 +766,7 @@ class StorageAccountsOperations:
                           primary for the storage account.
                         "provisioningState": "str",  # Optional. Gets the status of the
                           storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", "Succeeded".
+                          "Creating", "ResolvingDNS", and "Succeeded".
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
@@ -495,14 +783,14 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available", "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available", "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Resource tags.
+                        "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. Resource type.
                 }
@@ -546,14 +834,14 @@ class StorageAccountsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
+    @overload
     async def update(
         self,
         resource_group_name: str,
         account_name: str,
         parameters: JSON,
         *,
-        content_type: Optional[str] = "application/json",
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -574,8 +862,8 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API. Required.
         :type parameters: JSON
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/json" or "text/json". Default value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -587,14 +875,14 @@ class StorageAccountsOperations:
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Required. Resource location.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets or sets the account type.
                           Note that StandardZRS and PremiumLRS accounts cannot be changed to other
                           account types, and other account types cannot be changed to StandardZRS or
                           PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", "Premium_LRS".
+                          "Standard_RAGRS", and "Premium_LRS".
                         "customDomain": {
                             "name": "str",  # Optional. Gets or sets the custom domain
                               name. Name is the CNAME source.
@@ -604,7 +892,7 @@ class StorageAccountsOperations:
                         }
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Resource tags.
+                        "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. Resource type.
                 }
@@ -612,12 +900,12 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Required. Resource location.
+                    "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
                           account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", "Premium_LRS".
+                          "Standard_RAGRS", and "Premium_LRS".
                         "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
                           date and time of the storage account in UTC.
                         "customDomain": {
@@ -647,7 +935,7 @@ class StorageAccountsOperations:
                           primary for the storage account.
                         "provisioningState": "str",  # Optional. Gets the status of the
                           storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", "Succeeded".
+                          "Creating", "ResolvingDNS", and "Succeeded".
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
@@ -664,14 +952,220 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available", "Unavailable".
+                          unavailable. Known values are: "Available" and "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available", "Unavailable".
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Resource tags.
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
+        """
+
+    @overload
+    async def update(
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: IO,
+        *,
+        content_type: Optional[str] = None,
+        **kwargs: Any
+    ) -> JSON:
+        """Updates the account type or tags for a storage account. It can also be used to add a custom
+        domain (note that custom domains cannot be added via the Create operation). Only one custom
+        domain is supported per storage account. This API can only be used to update one of tags,
+        accountType, or customDomain per call. To update multiple of these properties, call the API
+        multiple times with one change per call. This call does not change the storage keys for the
+        account. If you want to change storage account keys, use the RegenerateKey operation. The
+        location and name of the storage account cannot be changed after creation.
+
+        :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
+        :type resource_group_name: str
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Required.
+        :type account_name: str
+        :param parameters: The parameters to update on the account. Note that only one property can be
+         changed at a time using this API. Required.
+        :type parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Resource location. Required.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str",  # Optional. Gets the type of the storage
+                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
+                          date and time of the storage account in UTC.
+                        "customDomain": {
+                            "name": "str",  # Optional. Gets or sets the custom domain
+                              name. Name is the CNAME source.
+                            "useSubDomain": bool  # Optional. Indicates whether indirect
+                              CName validation is enabled. Default value is false. This should only be
+                              set on updates.
+                        },
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
+                          timestamp of the most recent instance of a failover to the secondary
+                          location. Only the most recent timestamp is retained. This element is not
+                          returned if there has never been a failover instance. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "primaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "primaryLocation": "str",  # Optional. Gets the location of the
+                          primary for the storage account.
+                        "provisioningState": "str",  # Optional. Gets the status of the
+                          storage account at the time the operation was called. Known values are:
+                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "secondaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
+                          replicated secondary for the storage account. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
+                          whether the primary location of the storage account is available or
+                          unavailable. Known values are: "Available" and "Unavailable".
+                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
+                          whether the secondary location of the storage account is available or
+                          unavailable. Only available if the accountType is StandardGRS or
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
+        """
+
+    @distributed_trace_async
+    async def update(
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+    ) -> JSON:
+        """Updates the account type or tags for a storage account. It can also be used to add a custom
+        domain (note that custom domains cannot be added via the Create operation). Only one custom
+        domain is supported per storage account. This API can only be used to update one of tags,
+        accountType, or customDomain per call. To update multiple of these properties, call the API
+        multiple times with one change per call. This call does not change the storage keys for the
+        account. If you want to change storage account keys, use the RegenerateKey operation. The
+        location and name of the storage account cannot be changed after creation.
+
+        :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
+        :type resource_group_name: str
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Required.
+        :type account_name: str
+        :param parameters: The parameters to update on the account. Note that only one property can be
+         changed at a time using this API. Is either a model type or a IO type. Required.
+        :type parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'text/json'. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Resource location. Required.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str",  # Optional. Gets the type of the storage
+                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
+                          date and time of the storage account in UTC.
+                        "customDomain": {
+                            "name": "str",  # Optional. Gets or sets the custom domain
+                              name. Name is the CNAME source.
+                            "useSubDomain": bool  # Optional. Indicates whether indirect
+                              CName validation is enabled. Default value is false. This should only be
+                              set on updates.
+                        },
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
+                          timestamp of the most recent instance of a failover to the secondary
+                          location. Only the most recent timestamp is retained. This element is not
+                          returned if there has never been a failover instance. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "primaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "primaryLocation": "str",  # Optional. Gets the location of the
+                          primary for the storage account.
+                        "provisioningState": "str",  # Optional. Gets the status of the
+                          storage account at the time the operation was called. Known values are:
+                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "secondaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": ...
+                                }
+                            },
+                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "dummyEndPoint": ...,
+                            "queue": "str",  # Optional. Gets the queue endpoint.
+                            "table": "str"  # Optional. Gets the table endpoint.
+                        },
+                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
+                          replicated secondary for the storage account. Only available if the
+                          accountType is StandardGRS or StandardRAGRS.
+                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
+                          whether the primary location of the storage account is available or
+                          unavailable. Known values are: "Available" and "Unavailable".
+                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
+                          whether the secondary location of the storage account is available or
+                          unavailable. Only available if the accountType is StandardGRS or
+                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. Resource type.
                 }
@@ -679,13 +1173,20 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = parameters
+        _json = None
+        _content = None
+        if isinstance(parameters, (IO, bytes)):
+            _content = parameters
+        else:
+            _json = parameters
+            content_type = content_type or "application/json"
 
         request = build_storage_accounts_update_request(
             resource_group_name=resource_group_name,
@@ -694,6 +1195,7 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -799,12 +1301,12 @@ class StorageAccountsOperations:
                     "value": [
                         {
                             "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Required. Resource location.
+                            "location": "str",  # Resource location. Required.
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
                                   the storage account. Known values are: "Standard_LRS",
-                                  "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                                  "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
                                 "creationTime": "2020-02-20 00:00:00",  # Optional.
                                   Gets the creation date and time of the storage account in UTC.
                                 "customDomain": {
@@ -838,7 +1340,7 @@ class StorageAccountsOperations:
                                   location of the primary for the storage account.
                                 "provisioningState": "str",  # Optional. Gets the
                                   status of the storage account at the time the operation was called.
-                                  Known values are: "Creating", "ResolvingDNS", "Succeeded".
+                                  Known values are: "Creating", "ResolvingDNS", and "Succeeded".
                                 "secondaryEndpoints": {
                                     "FooPoint": {
                                         "Bar.Point": {
@@ -858,17 +1360,16 @@ class StorageAccountsOperations:
                                   Only available if the accountType is StandardGRS or StandardRAGRS.
                                 "statusOfPrimary": "str",  # Optional. Gets the
                                   status indicating whether the primary location of the storage account
-                                  is available or unavailable. Known values are: "Available",
+                                  is available or unavailable. Known values are: "Available" and
                                   "Unavailable".
                                 "statusOfSecondary": "str"  # Optional. Gets the
                                   status indicating whether the secondary location of the storage
                                   account is available or unavailable. Only available if the
                                   accountType is StandardGRS or StandardRAGRS. Known values are:
-                                  "Available", "Unavailable".
+                                  "Available" and "Unavailable".
                             },
                             "tags": {
-                                "str": "str"  # Optional. A set of tags. Resource
-                                  tags.
+                                "str": "str"  # Optional. Resource tags.
                             },
                             "type": "str"  # Optional. Resource type.
                         }
@@ -951,12 +1452,12 @@ class StorageAccountsOperations:
                     "value": [
                         {
                             "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Required. Resource location.
+                            "location": "str",  # Resource location. Required.
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
                                   the storage account. Known values are: "Standard_LRS",
-                                  "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                                  "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
                                 "creationTime": "2020-02-20 00:00:00",  # Optional.
                                   Gets the creation date and time of the storage account in UTC.
                                 "customDomain": {
@@ -990,7 +1491,7 @@ class StorageAccountsOperations:
                                   location of the primary for the storage account.
                                 "provisioningState": "str",  # Optional. Gets the
                                   status of the storage account at the time the operation was called.
-                                  Known values are: "Creating", "ResolvingDNS", "Succeeded".
+                                  Known values are: "Creating", "ResolvingDNS", and "Succeeded".
                                 "secondaryEndpoints": {
                                     "FooPoint": {
                                         "Bar.Point": {
@@ -1010,17 +1511,16 @@ class StorageAccountsOperations:
                                   Only available if the accountType is StandardGRS or StandardRAGRS.
                                 "statusOfPrimary": "str",  # Optional. Gets the
                                   status indicating whether the primary location of the storage account
-                                  is available or unavailable. Known values are: "Available",
+                                  is available or unavailable. Known values are: "Available" and
                                   "Unavailable".
                                 "statusOfSecondary": "str"  # Optional. Gets the
                                   status indicating whether the secondary location of the storage
                                   account is available or unavailable. Only available if the
                                   accountType is StandardGRS or StandardRAGRS. Known values are:
-                                  "Available", "Unavailable".
+                                  "Available" and "Unavailable".
                             },
                             "tags": {
-                                "str": "str"  # Optional. A set of tags. Resource
-                                  tags.
+                                "str": "str"  # Optional. Resource tags.
                             },
                             "type": "str"  # Optional. Resource type.
                         }
@@ -1083,14 +1583,14 @@ class StorageAccountsOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
+    @overload
     async def regenerate_key(
         self,
         resource_group_name: str,
         account_name: str,
         regenerate_key: JSON,
         *,
-        content_type: Optional[str] = "application/json",
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
         """Regenerates the access keys for the specified storage account.
@@ -1104,8 +1604,8 @@ class StorageAccountsOperations:
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated. Required.
         :type regenerate_key: JSON
-        :keyword content_type: Media type of the body sent to the API. Known values are:
-         "application/json" or "text/json". Default value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1116,8 +1616,79 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
-                    "keyName": "str"  # Optional. Known values are: "key1", "key2".
+                    "keyName": "str"  # Optional. Known values are: "key1" and "key2".
                 }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "key1": "str",  # Optional. Gets the value of key 1.
+                    "key2": "str"  # Optional. Gets the value of key 2.
+                }
+        """
+
+    @overload
+    async def regenerate_key(
+        self,
+        resource_group_name: str,
+        account_name: str,
+        regenerate_key: IO,
+        *,
+        content_type: Optional[str] = None,
+        **kwargs: Any
+    ) -> JSON:
+        """Regenerates the access keys for the specified storage account.
+
+        :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
+        :type resource_group_name: str
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Required.
+        :type account_name: str
+        :param regenerate_key: Specifies name of the key which should be regenerated. Required.
+        :type regenerate_key: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "key1": "str",  # Optional. Gets the value of key 1.
+                    "key2": "str"  # Optional. Gets the value of key 2.
+                }
+        """
+
+    @distributed_trace_async
+    async def regenerate_key(
+        self, resource_group_name: str, account_name: str, regenerate_key: Union[JSON, IO], **kwargs: Any
+    ) -> JSON:
+        """Regenerates the access keys for the specified storage account.
+
+        :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
+        :type resource_group_name: str
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only. Required.
+        :type account_name: str
+        :param regenerate_key: Specifies name of the key which should be regenerated. Is either a model
+         type or a IO type. Required.
+        :type regenerate_key: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'text/json'. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
 
                 # response body for status code(s): 200
                 response.json() == {
@@ -1128,13 +1699,20 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = regenerate_key
+        _json = None
+        _content = None
+        if isinstance(regenerate_key, (IO, bytes)):
+            _content = regenerate_key
+        else:
+            _json = regenerate_key
+            content_type = content_type or "application/json"
 
         request = build_storage_accounts_regenerate_key_request(
             resource_group_name=resource_group_name,
@@ -1143,6 +1721,7 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1213,7 +1792,7 @@ class UsageOperations:
                             },
                             "unit": "str"  # Optional. Gets the unit of measurement.
                               Known values are: "Count", "Bytes", "Seconds", "Percent",
-                              "CountsPerSecond", "BytesPerSecond".
+                              "CountsPerSecond", and "BytesPerSecond".
                         }
                     ]
                 }

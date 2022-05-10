@@ -43,7 +43,7 @@ class AutoRestReportService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from reportlowlevel.rest import build_get_report_request
-        >>> request = build_get_report_request(**kwargs)
+        >>> request = build_get_report_request(qualifier=qualifier, **kwargs)
         <HttpRequest [GET], url: '/report'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

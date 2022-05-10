@@ -19,7 +19,7 @@ class SourcePath(_serialization.Model):
     """
 
     _validation = {
-        "source": {"max_length": 2048, "min_length": 0},
+        "source": {"max_length": 2048},
     }
 
     _attribute_map = {
@@ -31,5 +31,5 @@ class SourcePath(_serialization.Model):
         :keyword source: File source path.
         :paramtype source: str
         """
-        super(SourcePath, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.source = source

@@ -20,9 +20,9 @@ class CustomParameterGroup(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar api_version: Required. Sets the api version to use.
+    :ivar api_version: Sets the api version to use. Required.
     :vartype api_version: str
-    :ivar tenant: Required. Sets the tenant to use.
+    :ivar tenant: Sets the tenant to use. Required.
     :vartype tenant: str
     """
 
@@ -38,12 +38,12 @@ class CustomParameterGroup(_serialization.Model):
 
     def __init__(self, *, api_version: str, tenant: str, **kwargs):
         """
-        :keyword api_version: Required. Sets the api version to use.
+        :keyword api_version: Sets the api version to use. Required.
         :paramtype api_version: str
-        :keyword tenant: Required. Sets the tenant to use.
+        :keyword tenant: Sets the tenant to use. Required.
         :paramtype tenant: str
         """
-        super(CustomParameterGroup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.api_version = api_version
         self.tenant = tenant
 
@@ -71,7 +71,7 @@ class OdataProductResult(_serialization.Model):
         :keyword odata_next_link:
         :paramtype odata_next_link: str
         """
-        super(OdataProductResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.values = values
         self.odata_next_link = odata_next_link
 
@@ -80,7 +80,7 @@ class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype status: str or ~paging.models.OperationResultStatus
     """
 
@@ -92,10 +92,10 @@ class OperationResult(_serialization.Model):
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-         "OK".
+         and "OK".
         :paramtype status: str or ~paging.models.OperationResultStatus
         """
-        super(OperationResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
 
 
@@ -122,7 +122,7 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         """
-        super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
 
@@ -150,7 +150,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         """
-        super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
 
@@ -162,7 +162,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
     :vartype maxresults: int
-    :ivar offset: Required. Offset of return value.
+    :ivar offset: Offset of return value. Required.
     :vartype offset: int
     :ivar timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
@@ -183,13 +183,13 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
-        :keyword offset: Required. Offset of return value.
+        :keyword offset: Offset of return value. Required.
         :paramtype offset: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         """
-        super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.maxresults = maxresults
         self.offset = offset
         self.timeout = timeout
@@ -218,7 +218,7 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         """
-        super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
 
@@ -239,7 +239,7 @@ class Product(_serialization.Model):
         :keyword properties:
         :paramtype properties: ~paging.models.ProductProperties
         """
-        super(Product, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.properties = properties
 
 
@@ -264,7 +264,7 @@ class ProductProperties(_serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(ProductProperties, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name
 
@@ -290,7 +290,7 @@ class ProductResult(_serialization.Model):
         :keyword next_link:
         :paramtype next_link: str
         """
-        super(ProductResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.values = values
         self.next_link = next_link
 
@@ -316,7 +316,7 @@ class ProductResultValue(_serialization.Model):
         :keyword next_link:
         :paramtype next_link: str
         """
-        super(ProductResultValue, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link
 
@@ -342,6 +342,6 @@ class ProductResultValueWithXMSClientName(_serialization.Model):
         :keyword next_link:
         :paramtype next_link: str
         """
-        super(ProductResultValueWithXMSClientName, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.indexes = indexes
         self.next_link = next_link

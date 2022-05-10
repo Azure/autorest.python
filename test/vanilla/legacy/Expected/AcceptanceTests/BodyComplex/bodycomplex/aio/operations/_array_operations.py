@@ -59,7 +59,7 @@ class ArrayOperations:
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper, or the result of cls(response)
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -105,10 +105,10 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property.
 
-        :param array:  Default value is None.
+        :param array: Default value is None.
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -118,9 +118,7 @@ class ArrayOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _complex_body = _models.ArrayWrapper(array=array)
@@ -157,7 +155,7 @@ class ArrayOperations:
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper, or the result of cls(response)
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -203,10 +201,10 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param array:  Default value is None.
+        :param array: Default value is None.
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -216,9 +214,7 @@ class ArrayOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _complex_body = _models.ArrayWrapper(array=array)
@@ -255,7 +251,7 @@ class ArrayOperations:
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper, or the result of cls(response)
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """

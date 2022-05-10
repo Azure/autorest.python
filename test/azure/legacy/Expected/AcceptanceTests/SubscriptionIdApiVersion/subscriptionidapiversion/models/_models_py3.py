@@ -8,8 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
-
 from .. import _serialization
 
 
@@ -34,7 +32,7 @@ class Error(_serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.code = code
         self.message = message
 
@@ -60,6 +58,6 @@ class SampleResourceGroup(_serialization.Model):
         :keyword location: resource group location 'West US'.
         :paramtype location: str
         """
-        super(SampleResourceGroup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.location = location

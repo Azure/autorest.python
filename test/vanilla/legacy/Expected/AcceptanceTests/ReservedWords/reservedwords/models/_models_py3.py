@@ -18,9 +18,9 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar data: Required. Pass in 'hello'.
+    :ivar data: Pass in 'hello'. Required.
     :vartype data: str
-    :ivar world: Required. Pass in 'world'.
+    :ivar world: Pass in 'world'. Required.
     :vartype world: str
     """
 
@@ -36,14 +36,12 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 
     def __init__(self, *, data: str, world: str, **kwargs):
         """
-        :keyword data: Required. Pass in 'hello'.
+        :keyword data: Pass in 'hello'. Required.
         :paramtype data: str
-        :keyword world: Required. Pass in 'world'.
+        :keyword world: Pass in 'world'. Required.
         :paramtype world: str
         """
-        super(
-            PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema, self
-        ).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.data = data
         self.world = world
 
@@ -53,9 +51,9 @@ class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDa
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar files: Required. Files to upload. Pass in list of input streams.
+    :ivar files: Files to upload. Pass in list of input streams. Required.
     :vartype files: IO
-    :ivar file_name: Required. File name to upload. Pass in 'my.txt'.
+    :ivar file_name: File name to upload. Pass in 'my.txt'. Required.
     :vartype file_name: str
     """
 
@@ -71,13 +69,11 @@ class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDa
 
     def __init__(self, *, files: IO, file_name: str, **kwargs):
         """
-        :keyword files: Required. Files to upload. Pass in list of input streams.
+        :keyword files: Files to upload. Pass in list of input streams. Required.
         :paramtype files: IO
-        :keyword file_name: Required. File name to upload. Pass in 'my.txt'.
+        :keyword file_name: File name to upload. Pass in 'my.txt'. Required.
         :paramtype file_name: str
         """
-        super(PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema, self).__init__(
-            **kwargs
-        )
+        super().__init__(**kwargs)
         self.files = files
         self.file_name = file_name

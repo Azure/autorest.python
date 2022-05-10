@@ -13,7 +13,7 @@ class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype status: str or ~lro.models.OperationResultStatus
     :ivar error:
     :vartype error: ~lro.models.OperationResultError
@@ -28,7 +28,7 @@ class OperationResult(_serialization.Model):
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-         "OK".
+         and "OK".
         :paramtype status: str or ~lro.models.OperationResultStatus
         :keyword error:
         :paramtype error: ~lro.models.OperationResultError
@@ -73,7 +73,7 @@ class Resource(_serialization.Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :ivar tags: Dictionary of :code:`<string>`.
     :vartype tags: dict[str, str]
     :ivar location: Resource Location.
     :vartype location: str
@@ -97,7 +97,7 @@ class Resource(_serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
         :keyword location: Resource Location.
         :paramtype location: str
@@ -119,7 +119,7 @@ class Product(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :ivar tags: Dictionary of :code:`<string>`.
     :vartype tags: dict[str, str]
     :ivar location: Resource Location.
     :vartype location: str
@@ -128,7 +128,7 @@ class Product(Resource):
     :ivar provisioning_state:
     :vartype provisioning_state: str
     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
@@ -151,7 +151,7 @@ class Product(Resource):
 
     def __init__(self, **kwargs):
         """
-        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
         :keyword location: Resource Location.
         :paramtype location: str
@@ -222,7 +222,7 @@ class SubProduct(SubResource):
     :ivar provisioning_state:
     :vartype provisioning_state: str
     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues
     """

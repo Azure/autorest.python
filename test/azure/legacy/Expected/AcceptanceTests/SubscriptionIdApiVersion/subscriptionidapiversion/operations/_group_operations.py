@@ -38,8 +38,8 @@ _SERIALIZER.client_side_validation = False
 # fmt: off
 
 def build_get_sample_resource_group_request(
-    subscription_id,  # type: str
     resource_group_name,  # type: str
+    subscription_id,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -104,7 +104,7 @@ class GroupOperations(object):
         :param resource_group_name: Resource Group name 'testgroup101'. Required.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SampleResourceGroup, or the result of cls(response)
+        :return: SampleResourceGroup or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -118,8 +118,8 @@ class GroupOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.SampleResourceGroup]
 
         request = build_get_sample_resource_group_request(
-            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
+            subscription_id=self._config.subscription_id,
             api_version=api_version,
             template_url=self.get_sample_resource_group.metadata["url"],
             headers=_headers,
