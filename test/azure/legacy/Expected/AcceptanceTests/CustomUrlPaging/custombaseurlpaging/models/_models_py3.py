@@ -36,7 +36,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -57,7 +57,7 @@ class Product(msrest.serialization.Model):
         :keyword properties:
         :paramtype properties: ~custombaseurlpaging.models.ProductProperties
         """
-        super(Product, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.properties = properties
 
 
@@ -82,7 +82,7 @@ class ProductProperties(msrest.serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(ProductProperties, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name
 
@@ -108,6 +108,6 @@ class ProductResult(msrest.serialization.Model):
         :keyword next_link:
         :paramtype next_link: str
         """
-        super(ProductResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.values = values
         self.next_link = next_link

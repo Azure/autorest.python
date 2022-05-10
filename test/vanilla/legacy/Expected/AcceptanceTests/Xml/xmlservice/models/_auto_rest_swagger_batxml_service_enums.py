@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class AccessTier(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """AccessTier."""
 
     P4 = "P4"
     P6 = "P6"
@@ -25,12 +26,14 @@ class AccessTier(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class ArchiveStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """ArchiveStatus."""
 
     REHYDRATE_PENDING_TO_HOT = "rehydrate-pending-to-hot"
     REHYDRATE_PENDING_TO_COOL = "rehydrate-pending-to-cool"
 
 
 class BlobType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """BlobType."""
 
     BLOCK_BLOB = "BlockBlob"
     PAGE_BLOB = "PageBlob"
@@ -38,6 +41,7 @@ class BlobType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class CopyStatusType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """CopyStatusType."""
 
     PENDING = "pending"
     SUCCESS = "success"
@@ -46,12 +50,14 @@ class CopyStatusType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class LeaseDurationType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """LeaseDurationType."""
 
     INFINITE = "infinite"
     FIXED = "fixed"
 
 
 class LeaseStateType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """LeaseStateType."""
 
     AVAILABLE = "available"
     LEASED = "leased"
@@ -61,12 +67,14 @@ class LeaseStateType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class LeaseStatusType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """LeaseStatusType."""
 
     LOCKED = "locked"
     UNLOCKED = "unlocked"
 
 
 class PublicAccessType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """PublicAccessType."""
 
     CONTAINER = "container"
     BLOB = "blob"

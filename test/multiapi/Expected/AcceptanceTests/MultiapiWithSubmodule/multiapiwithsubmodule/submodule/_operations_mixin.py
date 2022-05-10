@@ -9,13 +9,13 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import TYPE_CHECKING
+from typing import IO, Optional, TYPE_CHECKING, Union
 
 from . import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Iterable, Optional
+    from typing import Any, Iterable
 
     from azure.core.paging import ItemPaged
     from azure.core.polling import LROPoller
@@ -25,14 +25,17 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro(
         self,
-        product=None,  # type: Optional[_models.Product]
+        product=None,  # type: Optional[Union[_models.Product, IO]]
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[_models.Product]
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Default value is None.
-        :type product: ~multiapiwithsubmodule.submodule.v1.models.Product
+        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :type product: ~multiapiwithsubmodule.submodule.v1.models.Product or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -64,10 +67,10 @@ class MultiapiServiceClientOperationsMixin(object):
         test_lro_and_paging_options=None,  # type: Optional[_models.TestLroAndPagingOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[ItemPaged[_models.PagingResult]]
+        # type: (...) -> LROPoller[Iterable[_models.PagingResult]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options:

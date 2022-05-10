@@ -43,7 +43,7 @@ class MergePatchJsonClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from mergepatchjsonlowlevel.rest import build_patch_single_request
-        >>> request = build_patch_single_request(json=json, content=content, **kwargs)
+        >>> request = build_patch_single_request(json=json, **kwargs)
         <HttpRequest [PATCH], url: '/mergePatchJson/single'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

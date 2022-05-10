@@ -34,7 +34,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.azure_arm = default_version_metadata["client"]["azure_arm"]
         self.default_version_metadata = default_version_metadata
         self.version_path_to_metadata = version_path_to_metadata
-        self.service_client = Client(
+        self.client = Client(
             self.azure_arm, default_version_metadata, version_path_to_metadata
         )
         self.config = Config(default_version_metadata)

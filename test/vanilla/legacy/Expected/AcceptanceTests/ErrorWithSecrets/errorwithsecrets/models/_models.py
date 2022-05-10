@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -18,10 +17,10 @@ class Error(msrest.serialization.Model):
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :vartype additional_properties: dict[str, any]
-    :ivar code: Required. One of a server-defined set of error codes. Known values are:
-     "BadParameter", "Unauthorized".
+    :ivar code: One of a server-defined set of error codes. Required. Known values are:
+     "BadParameter" and "Unauthorized".
     :vartype code: str or ~errorwithsecrets.models.ErrorCode
-    :ivar message: Required. A human-readable representation of the error.
+    :ivar message: A human-readable representation of the error. Required.
     :vartype message: str
     :ivar target: The target of the error.
     :vartype target: str
@@ -51,10 +50,10 @@ class Error(msrest.serialization.Model):
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
         :paramtype additional_properties: dict[str, any]
-        :keyword code: Required. One of a server-defined set of error codes. Known values are:
-         "BadParameter", "Unauthorized".
+        :keyword code: One of a server-defined set of error codes. Required. Known values are:
+         "BadParameter" and "Unauthorized".
         :paramtype code: str or ~errorwithsecrets.models.ErrorCode
-        :keyword message: Required. A human-readable representation of the error.
+        :keyword message: A human-readable representation of the error. Required.
         :paramtype message: str
         :keyword target: The target of the error.
         :paramtype target: str
@@ -81,7 +80,7 @@ class ErrorResponse(msrest.serialization.Model):
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :vartype additional_properties: dict[str, any]
-    :ivar error: Required. The error object.
+    :ivar error: The error object. Required.
     :vartype error: ~errorwithsecrets.models.Error
     """
 
@@ -99,7 +98,7 @@ class ErrorResponse(msrest.serialization.Model):
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
         :paramtype additional_properties: dict[str, any]
-        :keyword error: Required. The error object.
+        :keyword error: The error object. Required.
         :paramtype error: ~errorwithsecrets.models.Error
         """
         super(ErrorResponse, self).__init__(**kwargs)
@@ -115,10 +114,10 @@ class InnerError(msrest.serialization.Model):
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :vartype additional_properties: dict[str, any]
-    :ivar code: Required. One of a server-defined set of error codes. Known values are:
-     "MissingSharedKey", "UnauthorizedSharedKey".
+    :ivar code: One of a server-defined set of error codes. Required. Known values are:
+     "MissingSharedKey" and "UnauthorizedSharedKey".
     :vartype code: str or ~errorwithsecrets.models.InnerErrorCode
-    :ivar message: Required. Error message.
+    :ivar message: Error message. Required.
     :vartype message: str
     :ivar innererror: An object containing more specific information than the current object about
      the error.
@@ -142,10 +141,10 @@ class InnerError(msrest.serialization.Model):
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
         :paramtype additional_properties: dict[str, any]
-        :keyword code: Required. One of a server-defined set of error codes. Known values are:
-         "MissingSharedKey", "UnauthorizedSharedKey".
+        :keyword code: One of a server-defined set of error codes. Required. Known values are:
+         "MissingSharedKey" and "UnauthorizedSharedKey".
         :paramtype code: str or ~errorwithsecrets.models.InnerErrorCode
-        :keyword message: Required. Error message.
+        :keyword message: Error message. Required.
         :paramtype message: str
         :keyword innererror: An object containing more specific information than the current object
          about the error.
@@ -163,9 +162,9 @@ class SecretResponse(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar key: Required. The secret key.
+    :ivar key: The secret key. Required.
     :vartype key: str
-    :ivar value: Required. The secret value.
+    :ivar value: The secret value. Required.
     :vartype value: str
     """
 
@@ -181,9 +180,9 @@ class SecretResponse(msrest.serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword key: Required. The secret key.
+        :keyword key: The secret key. Required.
         :paramtype key: str
-        :keyword value: Required. The secret value.
+        :keyword value: The secret value. Required.
         :paramtype value: str
         """
         super(SecretResponse, self).__init__(**kwargs)

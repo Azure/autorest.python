@@ -8,7 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -33,7 +32,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -45,7 +44,8 @@ class RefColorConstant(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar color_constant: Referenced Color Constant Description. Has constant value: "green-color".
+    :ivar color_constant: Referenced Color Constant Description. Required. Default value is
+     "green-color".
     :vartype color_constant: str
     :ivar field1: Sample string.
     :vartype field1: str
@@ -67,5 +67,5 @@ class RefColorConstant(msrest.serialization.Model):
         :keyword field1: Sample string.
         :paramtype field1: str
         """
-        super(RefColorConstant, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.field1 = field1

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
+from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
 from msrest import Serializer
 
@@ -60,9 +60,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(
-    mode: str, *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -81,7 +79,7 @@ def build_post_model_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_pages_request(mode: str, **kwargs: Any) -> HttpRequest:
@@ -141,7 +139,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -179,8 +177,8 @@ class DPGClientOperationsMixin(MixinABC):
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def post_model(self, mode: str, input: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def post_model(self, mode: str, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -190,6 +188,9 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -204,7 +205,61 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+        """
+
+    @overload
+    def post_model(self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+        take a model instead, and put in 'model' as mode.
+
+        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+         with the raw body, and 'model' if you are going to convert the raw body to a customized body
+         before returning to users. Required.
+        :type mode: str
+        :param input: Please put {'hello': 'world!'}. Required.
+        :type input: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+        """
+
+    @distributed_trace
+    def post_model(self, mode: str, input: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+        take a model instead, and put in 'model' as mode.
+
+        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+         with the raw body, and 'model' if you are going to convert the raw body to a customized body
+         before returning to users. Required.
+        :type mode: str
+        :param input: Please put {'hello': 'world!'}. Is either a model type or a IO type. Required.
+        :type input: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -213,17 +268,22 @@ class DPGClientOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = input
+        _json = None
+        _content = None
+        if isinstance(input, (IO, bytes)):
+            _content = input
+        else:
+            _json = input
+            content_type = content_type or "application/json"
 
         request = build_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -270,7 +330,7 @@ class DPGClientOperationsMixin(MixinABC):
                     "nextLink": "str",  # Optional.
                     "values": [
                         {
-                            "received": "str"  # Required. Known values are: "raw",
+                            "received": "str"  # Required. Known values are: "raw" and
                               "model".
                         }
                     ]
@@ -390,7 +450,7 @@ class DPGClientOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

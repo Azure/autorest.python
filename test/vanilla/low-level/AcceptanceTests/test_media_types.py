@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 from mediatypeslowlevel import MediaTypesClient
 from mediatypeslowlevel.rest import *
+import json
 import pytest
 
 @pytest.fixture
@@ -65,8 +66,8 @@ def test_json_no_accept_header(send_request):
     send_request(request)
 
 def test_binary_body_two_content_types(send_request):
-    json_input = {"hello":"world"}
-    request = build_binary_body_with_two_content_types_request(json=json_input, content_type="application/json")
+    json_input = json.dumps({"hello":"world"})
+    request = build_binary_body_with_two_content_types_request(content=json_input, content_type="application/json")
     send_request(request)
 
     content = b"hello, world"
@@ -74,8 +75,8 @@ def test_binary_body_two_content_types(send_request):
     send_request(request)
 
 def test_binary_body_three_content_types(send_request):
-    json_input = {"hello":"world"}
-    request = build_binary_body_with_three_content_types_request(json=json_input, content_type="application/json")
+    json_input = json.dumps({"hello":"world"})
+    request = build_binary_body_with_three_content_types_request(content=json_input, content_type="application/json")
     send_request(request)
 
     content = b"hello, world"

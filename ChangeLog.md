@@ -4,14 +4,16 @@
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.6.2`     |
-| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.1`    |
 | `azure-core` dep of generated code                                      | `1.23.0`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
+
 - Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
+- Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type.  #1230
 
 **Breaking Changes in Request Builders**
 
@@ -22,6 +24,7 @@
 
 - Make sure `any-object` schemas from swagger are typed with `MutableMapping`s  #1243
 - Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger  #1244
+- Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
 
 ### 2022-04-18 - 5.16.0
 
@@ -68,7 +71,7 @@
 
 **Breaking Changes in Version Tolerant Generation**
 
-- Change client filenames to `_client.py`  #1206
+- Change client filenames to `_client.py` #1206
 - Change the models filename from `_models_py3.py` to `_models.py` #1204
 - Change the enums filename to `_enums.py` #1204
 
@@ -739,7 +742,7 @@ Modelerfour version: 4.13.351
 **Bug Fixes**
 
 - Corrected ordering of summary and description in generated methods #640
-- Have `IOSchema` call super init to get all of the properties shared in `BaseSchema` #642
+- Have `IOSchema` call super init to get all of the properties shared in `BaseType` #642
 
 ### 2020-05-15 - 5.0.0-preview.7
 
@@ -884,7 +887,7 @@ Modelerfour version: 4.12.276
 
 - Will no longer permit generated enums and models to have the same name #504
 - No longer exposing models from operation groups without importing them #486
-- Now correctly deserializes error's that have an empty object (AnySchema) as a model #516
+- Now correctly deserializes error's that have an empty object (AnyType) as a model #516
 - Added a list of parameter names to reserved parameter words, so there won't be clashes #525
 - If a property's schema is readonly, we will show that property as being readonly (taken from m4 update #234)
 - Remove `"azure-"` prefix from user agent name #523

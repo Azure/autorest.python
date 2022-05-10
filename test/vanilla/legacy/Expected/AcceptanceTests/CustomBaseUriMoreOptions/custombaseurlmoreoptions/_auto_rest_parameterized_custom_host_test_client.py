@@ -43,11 +43,11 @@ class AutoRestParameterizedCustomHostTestClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        _base_url = "{vault}{secret}{dnsSuffix}"
+        _endpoint = "{vault}{secret}{dnsSuffix}"
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
         )
-        self._client = PipelineClient(base_url=_base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

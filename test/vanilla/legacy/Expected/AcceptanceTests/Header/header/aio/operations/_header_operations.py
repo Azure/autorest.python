@@ -173,6 +173,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     async def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a post request with header value "Content-Type": "text/html".
 
+        :keyword content_type: Send a post request with header value "Content-Type": "text/html".
+         Required.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -368,7 +371,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          Required.
         :type scenario: str
         :param value: Send a post request with header values 105 or -2. Required.
-        :type value: long
+        :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -451,7 +454,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("long", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("int", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -1263,14 +1266,14 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def param_byte(  # pylint: disable=inconsistent-return-statements
-        self, scenario: str, value: bytearray, **kwargs: Any
+        self, scenario: str, value: bytes, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
-        :type value: bytearray
+        :type value: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1369,7 +1372,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty". Required.
         :type scenario: str
-        :param value: Send a post request with header values 'GREY'. Default value is None.
+        :param value: Send a post request with header values 'GREY'. Known values are: "White",
+         "black", and "GREY". Default value is None.
         :type value: str or ~header.models.GreyscaleColors
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

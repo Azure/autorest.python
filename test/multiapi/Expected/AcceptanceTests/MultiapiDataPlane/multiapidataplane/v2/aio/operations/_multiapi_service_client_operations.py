@@ -54,9 +54,9 @@ class MultiapiServiceClientOperationsMixin:
 
         
         request = build_test_one_request(
-            api_version=api_version,
             id=id,
             message=message,
+            api_version=api_version,
             template_url=self.test_one.metadata['url'],
             headers=_headers,
             params=_params,
@@ -118,9 +118,9 @@ class MultiapiServiceClientOperationsMixin:
 
         
         request = build_test_different_calls_request(
-            api_version=api_version,
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
+            api_version=api_version,
             template_url=self.test_different_calls.metadata['url'],
             headers=_headers,
             params=_params,

@@ -17,8 +17,11 @@ from .._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
-def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
+def build_poll_with_parameterized_endpoints_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Poll with method and client level parameters in endpoint.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -32,18 +35,25 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/lroParameterizedEndpoints"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
+def build_poll_with_constant_parameterized_endpoints_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Poll with method and client level parameters in endpoint, with a constant value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -60,18 +70,23 @@ def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> H
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
-    accept = _headers.pop("Accept", "application/json")
+    constant_parameter = kwargs.pop('constant_parameter', "iAmConstant")  # type: str
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/lroConstantParameterizedEndpoints/{constantParameter}"
     path_format_arguments = {
-        "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, "str", skip_quote=True),
+        "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )

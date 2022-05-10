@@ -1,8 +1,11 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
 {# actual template starts here #}
-{{ operation_serializer.method_signature_and_response_type_annotation(operation, async_mode) }}
-{% if operation.want_description_docstring %}
+{% if operation.overloads and operation.public %}
+{{ op_tools.generate_overloads(operation_serializer, operation) }}
+{% endif %}
+{{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
+{% if operation.public %}
     {{ op_tools.description(operation, operation_serializer) | indent }}{% endif %}
     {% if not operation.abstract %}
         {% if operation.deprecated %}

@@ -70,8 +70,8 @@ class GroupOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.SampleResourceGroup]
 
         request = build_get_sample_resource_group_request(
-            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
+            subscription_id=self._config.subscription_id,
             api_version=api_version,
             template_url=self.get_sample_resource_group.metadata["url"],
             headers=_headers,

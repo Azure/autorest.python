@@ -240,9 +240,7 @@ class TestHttp(object):
 
     def test_retry_status_codes_502(self, client):
         client.http_retry.get502()
-
-        # TODO, 4042586: Support options operations in swagger modeler
-        #client.http_retry.options429()
+        client.http_retry.options502()
 
     def test_retry_status_codes_500(self, client):
         client.http_retry.put500()

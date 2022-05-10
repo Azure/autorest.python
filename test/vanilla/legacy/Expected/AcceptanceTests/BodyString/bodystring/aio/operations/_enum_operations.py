@@ -106,7 +106,8 @@ class EnumOperations:
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param string_body: string body. Required.
+        :param string_body: string body. Known values are: "red color", "green-color", and
+         "blue_color". Required.
         :type string_body: str or ~bodystring.models.Colors
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -119,9 +120,7 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(string_body, "str")
@@ -203,7 +202,8 @@ class EnumOperations:
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param enum_string_body: enum string body. Required.
+        :param enum_string_body: enum string body. Known values are: "red color", "green-color", and
+         "blue_color". Required.
         :type enum_string_body: str or ~bodystring.models.Colors
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -216,9 +216,7 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(enum_string_body, "str")
@@ -316,9 +314,7 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         color_constant = kwargs.pop("color_constant", "green-color")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

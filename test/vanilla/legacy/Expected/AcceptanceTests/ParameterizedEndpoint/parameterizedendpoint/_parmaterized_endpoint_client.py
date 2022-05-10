@@ -36,9 +36,9 @@ class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        _base_url = "{endpoint}"
+        _endpoint = "{endpoint}"
         self._config = ParmaterizedEndpointClientConfiguration(endpoint=endpoint, **kwargs)
-        self._client = PipelineClient(base_url=_base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)

@@ -57,7 +57,7 @@ def build_import_operations_operation_one_request(*, parameter1: str, **kwargs: 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_operation_with_content_param_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -74,7 +74,7 @@ def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_operation_with_json_param_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -88,7 +88,7 @@ def build_operation_with_json_param_request(*, json: Any = None, content: Any = 
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_operation_with_data_param_request(*args, **kwargs) -> HttpRequest:
@@ -214,9 +214,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/octet-stream")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _content = content
@@ -265,9 +263,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = json

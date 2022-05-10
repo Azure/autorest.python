@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -123,7 +122,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     :vartype custom_header: str
     :ivar query: Query parameter with default.
     :vartype query: int
-    :ivar path: Required. Path parameter.
+    :ivar path: Path parameter. Required.
     :vartype path: str
     :ivar body: Required.
     :vartype body: int
@@ -147,7 +146,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         :paramtype custom_header: str
         :keyword query: Query parameter with default.
         :paramtype query: int
-        :keyword path: Required. Path parameter.
+        :keyword path: Path parameter. Required.
         :paramtype path: str
         :keyword body: Required.
         :paramtype body: int

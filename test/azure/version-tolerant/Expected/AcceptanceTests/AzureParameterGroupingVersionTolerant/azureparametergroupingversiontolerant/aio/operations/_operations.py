@@ -60,7 +60,7 @@ class ParameterGroupingOperations:
         :type path: str
         :param body: Required.
         :type body: int
-        :keyword custom_header:  Default value is None.
+        :keyword custom_header: Default value is None.
         :paramtype custom_header: str
         :keyword query: Query parameter with default. Default value is 30.
         :paramtype query: int
@@ -74,19 +74,17 @@ class ParameterGroupingOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = body
 
         request = build_parameter_grouping_post_required_request(
             path=path,
-            content_type=content_type,
-            json=_json,
             custom_header=custom_header,
             query=query,
+            content_type=content_type,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -111,7 +109,7 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
-        :keyword custom_header:  Default value is None.
+        :keyword custom_header: Default value is None.
         :paramtype custom_header: str
         :keyword query: Query parameter with default. Default value is 30.
         :paramtype query: int
@@ -205,11 +203,11 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
-        :keyword header_one:  Default value is None.
+        :keyword header_one: Default value is None.
         :paramtype header_one: str
         :keyword query_one: Query parameter with default. Default value is 30.
         :paramtype query_one: int
-        :keyword header_two:  Default value is None.
+        :keyword header_two: Default value is None.
         :paramtype header_two: str
         :keyword query_two: Query parameter with default. Default value is 30.
         :paramtype query_two: int
@@ -254,7 +252,7 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters with a shared parameter group object.
 
-        :keyword header_one:  Default value is None.
+        :keyword header_one: Default value is None.
         :paramtype header_one: str
         :keyword query_one: Query parameter with default. Default value is 30.
         :paramtype query_one: int

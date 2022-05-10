@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._errorwith_secrets import ErrorWithSecrets
+from ._error_with_secrets import ErrorWithSecrets
 from ._version import VERSION
 
 __version__ = VERSION

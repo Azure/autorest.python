@@ -28,8 +28,8 @@ def __init__(
 # --------------------------------------------------------------------------
 {{ imports }}
 
-class {{ code_model.service_client.name }}Configuration(Configuration):
-    """Configuration for {{ code_model.service_client.name }}.
+class {{ code_model.client.name }}Configuration(Configuration):
+    """Configuration for {{ code_model.client.name }}.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -52,7 +52,7 @@ class {{ code_model.service_client.name }}Configuration(Configuration):
             raise ValueError("Parameter '{{ parameter.name }}' must not be None.")
     {% endif %}
 {% endfor %}
-        super({{ code_model.service_client.name }}Configuration, self).__init__(**kwargs)
+        super({{ code_model.client.name }}Configuration, self).__init__(**kwargs)
 
 {% for parameter in code_model.global_parameters.parameters %}
         self.{{ parameter.name }} = {{ parameter.name }}

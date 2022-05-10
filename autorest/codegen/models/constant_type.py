@@ -5,9 +5,9 @@
 # --------------------------------------------------------------------------
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
-from .base_schema import BaseSchema
-from .primitive_schemas import get_primitive_schema, PrimitiveSchema
+from .base_type import BaseType
 from .imports import FileImport
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -15,29 +15,29 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-class ConstantSchema(BaseSchema):
+class ConstantType(BaseType):
     """Schema for constants that will be serialized.
 
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     :param str value: The actual value of this constant.
     :param schema: The schema for the value of this constant.
-    :type schema: ~autorest.models.PrimitiveSchema
+    :type schema: ~autorest.models.PrimitiveType
     """
 
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        schema: PrimitiveSchema,
+        value_type: BaseType,
         value: Optional[str],
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
+        self.value_type = value_type
         self.value = value
-        self.schema = schema
 
-    def get_declaration(self, value: Any):
-        if value != self.value:
+    def get_declaration(self, value=None):
+        if value and value != self.value:
             _LOGGER.warning(
                 "Passed in value of %s differs from constant value of %s. Choosing constant value",
                 str(value),
@@ -45,7 +45,15 @@ class ConstantSchema(BaseSchema):
             )
         if self.value is None:
             return "None"
-        return self.schema.get_declaration(self.value)
+        return self.value_type.get_declaration(self.value)
+
+    def description(self, *, is_operation_file: bool) -> str:
+        if is_operation_file:
+            return ""
+        return add_to_description(
+            self.yaml_data.get("description", ""),
+            f"Default value is {self.get_declaration()}.",
+        )
 
     @property
     def serialization_type(self) -> str:
@@ -54,7 +62,7 @@ class ConstantSchema(BaseSchema):
         :return: The serialization value for msrest
         :rtype: str
         """
-        return self.schema.serialization_type
+        return self.value_type.serialization_type
 
     @property
     def docstring_text(self) -> str:
@@ -66,48 +74,51 @@ class ConstantSchema(BaseSchema):
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return self.schema.docstring_type
+        return self.value_type.docstring_type
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        return self.schema.type_annotation(is_operation_file=is_operation_file)
+        return self.value_type.type_annotation(is_operation_file=is_operation_file)
 
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "ConstantSchema":
-        """Constructs a ConstantSchema from yaml data.
+    ) -> "ConstantType":
+        """Constructs a ConstantType from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
         :type yaml_data: dict[str, Any]
 
-        :return: A created ConstantSchema
-        :rtype: ~autorest.models.ConstantSchema
+        :return: A created ConstantType
+        :rtype: ~autorest.models.ConstantType
         """
-        name = (
-            yaml_data["language"]["python"]["name"]
-            if yaml_data["language"]["python"].get("name")
-            else ""
-        )
-        _LOGGER.debug("Parsing %s constant", name)
+        from . import build_type
+
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            schema=get_primitive_schema(
-                yaml_data=yaml_data["valueType"], code_model=code_model
-            ),
-            value=yaml_data.get("value", {}).get("value", None),
+            value_type=build_type(yaml_data["valueType"], code_model),
+            value=yaml_data["value"],
         )
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        kwargs["default_value_declaration"] = self.schema.get_declaration(self.value)
-        return self.schema.get_json_template_representation(**kwargs)
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        # pylint: disable=unused-argument
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
+        return self.value_type.get_json_template_representation(
+            optional=optional,
+            client_default_value_declaration=self.get_declaration(),
+            description=description,
+        )
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
-        file_import.merge(self.schema.imports())
+        file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
         return file_import
 
-    def model_file_imports(self) -> FileImport:
-        file_import = self.imports()
-        file_import.merge(self.schema.model_file_imports())
-        return file_import
+    @property
+    def instance_check_template(self) -> str:
+        return self.value_type.instance_check_template

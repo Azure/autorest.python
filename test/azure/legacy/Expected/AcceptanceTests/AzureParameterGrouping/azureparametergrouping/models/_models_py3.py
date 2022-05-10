@@ -8,7 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -33,7 +32,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -59,7 +58,7 @@ class FirstParameterGroup(msrest.serialization.Model):
         :keyword query_one: Query parameter with default.
         :paramtype query_one: int
         """
-        super(FirstParameterGroup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.header_one = header_one
         self.query_one = query_one
 
@@ -85,7 +84,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
         :keyword query_two: Query parameter with default.
         :paramtype query_two: int
         """
-        super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.header_two = header_two
         self.query_two = query_two
 
@@ -111,7 +110,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
         :keyword query: Query parameter with default.
         :paramtype query: int
         """
-        super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.custom_header = custom_header
         self.query = query
 
@@ -125,7 +124,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     :vartype custom_header: str
     :ivar query: Query parameter with default.
     :vartype query: int
-    :ivar path: Required. Path parameter.
+    :ivar path: Path parameter. Required.
     :vartype path: str
     :ivar body: Required.
     :vartype body: int
@@ -149,12 +148,12 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         :paramtype custom_header: str
         :keyword query: Query parameter with default.
         :paramtype query: int
-        :keyword path: Required. Path parameter.
+        :keyword path: Path parameter. Required.
         :paramtype path: str
         :keyword body: Required.
         :paramtype body: int
         """
-        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.custom_header = custom_header
         self.query = query
         self.path = path
@@ -182,6 +181,6 @@ class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
         :keyword accept: 'accept' is a reserved word. Pass in 'yes' to pass.
         :paramtype accept: str
         """
-        super(ParameterGroupingPostReservedWordsParameters, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.from_property = from_property
         self.accept = accept

@@ -104,7 +104,7 @@ class BoolOperations:
     async def put_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set Boolean value true.
 
-        :keyword bool_body:  Default value is True. Note that overriding this default value may result
+        :keyword bool_body: Default value is True. Note that overriding this default value may result
          in unsupported behavior.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -118,15 +118,15 @@ class BoolOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         bool_body = kwargs.pop("bool_body", True)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = self._serialize.body(bool_body, "bool")
+
         request = build_put_true_request(
             content_type=content_type,
-            json=bool_body,
+            json=_json,
             template_url=self.put_true.metadata["url"],
             headers=_headers,
             params=_params,
@@ -199,8 +199,8 @@ class BoolOperations:
     async def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set Boolean value false.
 
-        :keyword bool_body:  Default value is False. Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword bool_body: Required. Default value is False. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -213,15 +213,15 @@ class BoolOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         bool_body = kwargs.pop("bool_body", False)  # type: bool
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        _json = self._serialize.body(bool_body, "bool")
 
         request = build_put_false_request(
             content_type=content_type,
-            json=bool_body,
+            json=_json,
             template_url=self.put_false.metadata["url"],
             headers=_headers,
             params=_params,

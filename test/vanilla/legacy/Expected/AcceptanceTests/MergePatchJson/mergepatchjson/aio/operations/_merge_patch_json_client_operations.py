@@ -54,7 +54,7 @@ class MergePatchJsonClientOperationsMixin:
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/merge-patch+json")
-        )  # type: Optional[str]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(body, "object")

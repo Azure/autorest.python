@@ -92,8 +92,8 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
         
         request = build_test_request(
-            api_version=api_version,
             id=id,
+            api_version=api_version,
             template_url=self.test.metadata['url'],
             headers=_headers,
             params=_params,

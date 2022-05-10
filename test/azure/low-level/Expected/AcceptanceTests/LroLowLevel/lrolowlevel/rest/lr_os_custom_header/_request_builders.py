@@ -6,28 +6,25 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, IO, Optional, Union, overload
 
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 # fmt: off
 
+@overload
 def build_put_async_retry_succeeded_request(
     **kwargs  # type: Any
 ):
@@ -40,12 +37,11 @@ def build_put_async_retry_succeeded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Product to put. Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Product to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -63,32 +59,62 @@ def build_put_async_retry_succeeded_request(
                     "provisioningState": "str",  # Optional.
                     "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                      "Updating", "Updated", "Deleting", "Deleted", "OK".
+                      "Updating", "Updated", "Deleting", "Deleted", and "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of
-                      :code:`<string>`.
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Optional. Resource Location.
-                "name": "str",  # Optional. Resource Name.
-                "properties": {
-                    "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values are:
-                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                      "Updating", "Updated", "Deleting", "Deleted", "OK".
-                },
-                "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of
-                      :code:`<string>`.
-                },
-                "type": "str"  # Optional. Resource Type.
-            }
+
+@overload
+def build_put_async_retry_succeeded_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running put request, service returns a 200 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+    Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Product to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put_async_retry_succeeded_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running put request, service returns a 200 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+    Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -112,6 +138,7 @@ def build_put_async_retry_succeeded_request(
     )
 
 
+@overload
 def build_put201_creating_succeeded200_request(
     **kwargs  # type: Any
 ):
@@ -124,12 +151,11 @@ def build_put201_creating_succeeded200_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Product to put. Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Product to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -147,32 +173,62 @@ def build_put201_creating_succeeded200_request(
                     "provisioningState": "str",  # Optional.
                     "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                      "Updating", "Updated", "Deleting", "Deleted", "OK".
+                      "Updating", "Updated", "Deleting", "Deleted", and "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of
-                      :code:`<string>`.
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
+    """
 
-            # response body for status code(s): 200, 201
-            response.json() == {
-                "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Optional. Resource Location.
-                "name": "str",  # Optional. Resource Name.
-                "properties": {
-                    "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values are:
-                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                      "Updating", "Updated", "Deleting", "Deleted", "OK".
-                },
-                "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of
-                      :code:`<string>`.
-                },
-                "type": "str"  # Optional. Resource Type.
-            }
+
+@overload
+def build_put201_creating_succeeded200_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running put request, service returns a 201 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+    returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Product to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_put201_creating_succeeded200_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running put request, service returns a 201 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+    returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -196,6 +252,7 @@ def build_put201_creating_succeeded200_request(
     )
 
 
+@overload
 def build_post202_retry200_request(
     **kwargs  # type: Any
 ):
@@ -207,12 +264,11 @@ def build_post202_retry200_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Product to put. Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Product to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -230,14 +286,60 @@ def build_post202_retry200_request(
                     "provisioningState": "str",  # Optional.
                     "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                      "Updating", "Updated", "Deleting", "Deleted", "OK".
+                      "Updating", "Updated", "Deleting", "Deleted", and "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of
-                      :code:`<string>`.
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
+    """
+
+
+@overload
+def build_post202_retry200_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running post request, service returns a 202 to the initial request, with
+    'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Product to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_post202_retry200_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running post request, service returns a 202 to the initial request, with
+    'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -261,6 +363,7 @@ def build_post202_retry200_request(
     )
 
 
+@overload
 def build_post_async_retry_succeeded_request(
     **kwargs  # type: Any
 ):
@@ -273,12 +376,11 @@ def build_post_async_retry_succeeded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Product to put. Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Product to put. Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -296,14 +398,62 @@ def build_post_async_retry_succeeded_request(
                     "provisioningState": "str",  # Optional.
                     "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                      "Updating", "Updated", "Deleting", "Deleted", "OK".
+                      "Updating", "Updated", "Deleting", "Deleted", and "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of
-                      :code:`<string>`.
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
+    """
+
+
+@overload
+def build_post_async_retry_succeeded_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running post request, service returns a 202 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+    Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Product to put. Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_post_async_retry_succeeded_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running post request, service returns a 202 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+    Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
