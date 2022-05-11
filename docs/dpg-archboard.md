@@ -1,5 +1,6 @@
 # Python DPG Client
 
+--------------------------------- Isabella ---------------------------------
 ## Intro
 
 ### Goals of DPG Clients
@@ -16,6 +17,9 @@ be able to accessed as dicts and as models as well
 3. We've added glass breaker `send_request` to all of our clients. Clients can now send an `HttpRequest` directly to the server leveraging our client pipelines.
 4. We've also added easy-to-use customizations, and are going to be pushing these customizations for SDK authors.
 
+
+--------------------------------------------------------------------------
+--------------------------------- Yuchao ---------------------------------
 
 ## Developer Experience
 
@@ -82,6 +86,9 @@ response.raise_for_status()
 json_response = response.json()
 ```
 
+--------------------------------------------------------------------------
+--------------------------------- Changlong ---------------------------------
+
 ### Streams
 
 #### Inputs
@@ -143,6 +150,8 @@ for page in pages:
     print(page["id"])
 ```
 
+--------------------------------------------------------------------------
+--------------------------------- Isabella ---------------------------------
 
 ## Customization
 
@@ -153,3 +162,5 @@ https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md
 ### Metrics Advisor Customizations
 
 How did we tackle the two clients?
+
+--------------------------------------------------------------------------
