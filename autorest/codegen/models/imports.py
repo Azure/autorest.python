@@ -168,6 +168,7 @@ class FileImport:
                 ),
             },
         )
+        self.add_submodule_import("typing", "Any", ImportType.STDLIB)
 
     def to_dict(
         self,
