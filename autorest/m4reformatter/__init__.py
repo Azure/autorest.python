@@ -697,7 +697,120 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         )
         return self._update_body_parameter_helper(yaml_data, body_param, body_type)
 
-    def update_parameters(  # pylint: disable=too-many-branches,too-many-statements
+    def update_flattened_parameter(
+        self, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]
+    ) -> Dict[str, Any]:
+        if not body_parameter:
+            raise ValueError(
+                "Has to have a body parameter if it's flattened"
+            )
+        # this means i'm a property that is part of a flattened model
+        target_property_name = yaml_data["targetProperty"]["language"][
+            "default"
+        ]["name"]
+        param = self.update_parameter(yaml_data)
+        body_parameter.setdefault("propertyToParameterName", {})[
+            target_property_name
+        ] = param["clientName"]
+        param["inFlattenedBody"] = True
+        return param
+
+
+    def update_content_type_parameter(
+        self,
+        yaml_data: Dict[str, Any],
+        body_parameter: Optional[Dict[str, Any]],
+        request_media_types: List[str],
+        *,
+        in_overload: bool = False,
+        in_overriden: bool = False,
+    ) -> Dict[str, Any]:
+        if not body_parameter:
+            raise ValueError(
+                "Has to be a body parameter for content type"
+            )
+        # override content type type to string
+        param = copy.deepcopy(yaml_data)
+        param["schema"] = KNOWN_TYPES[
+            "string"
+        ]  # override to string type
+        param["required"] = False
+        description = param["language"]["default"]["description"]
+        if description and description[-1] != ".":
+            description += "."
+        if not (in_overriden or in_overload):
+            param["inDocstring"] = False
+        elif in_overload:
+            description += (
+                " Content type parameter for "
+                f"{get_body_type_for_description(body_parameter)} body."
+            )
+        elif not in_overload:
+            content_types = (
+                "'"
+                + "', '".join(request_media_types)
+                + "'"
+            )
+            description += f" Known values are: {content_types}."
+        if not in_overload and not in_overriden:
+            param["clientDefaultValue"] = body_parameter[
+                "defaultContentType"
+            ]
+        param["language"]["default"]["description"] = description
+        return param
+
+    def _update_parameters_helper(
+        self,
+        parameters: List[Dict[str, Any]],
+        body_parameter: Optional[Dict[str, Any]],
+        seen_rest_api_names: Set[str],
+        groupers: Dict[str, Dict[str, Any]],
+        request_media_types: List[str],
+        *,
+        in_overload: bool = False,
+        in_overriden: bool = False,
+    ) -> List[Dict[str, Any]]:
+        retval: List[Dict[str, Any]] = []
+        has_flattened_body = body_parameter and body_parameter.get("flattened")
+        for param in parameters:
+            serialized_name = param["language"]["default"].get("serializedName")
+            if (
+                param["language"]["default"]["name"] == "$host" or
+                (serialized_name and serialized_name in seen_rest_api_names)
+            ):
+                continue
+            if param.get("origin") == "modelerfour:synthesized/api-version":
+                param["inDocstring"] = False
+                param["implementation"] = "Method"
+            if has_flattened_body and param.get("targetProperty"):
+                retval.append(self.update_flattened_parameter(param, body_parameter))
+                continue
+            if param["schema"]["type"] == "group":
+                # this means i'm a parameter group parameter
+                param = self.update_parameter(param)
+                param["grouper"] = True
+                groupers[param["clientName"]] = param
+                retval.append(param)
+                continue
+            if is_body(param):
+                continue
+            if serialized_name == "Content-Type":
+                param = self.update_content_type_parameter(
+                    param,
+                    body_parameter,
+                    request_media_types,
+                    in_overload=in_overload,
+                    in_overriden=in_overriden,
+                )
+            updated_param = self.update_parameter(
+                param, in_overload=in_overload, in_overriden=in_overriden
+            )
+            retval.append(updated_param)
+            seen_rest_api_names.add(updated_param["restApiName"])
+        return retval
+
+
+    def update_parameters(
         self,
         yaml_data: Dict[str, Any],
         body_parameter: Optional[Dict[str, Any]],
@@ -707,24 +820,18 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
     ) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
         seen_rest_api_names: Set[str] = set()
-        has_flattened_body = body_parameter and body_parameter.get("flattened")
         groupers: Dict[str, Dict[str, Any]] = {}
-        for param in yaml_data["parameters"]:
-            if param["language"]["default"]["name"] == "$host":
-                continue
-            if (
-                param["language"]["default"]["serializedName"]
-                not in seen_rest_api_names
-            ):
-                if param.get("origin") == "modelerfour:synthesized/api-version":
-                    param["inDocstring"] = False
-                    param["implementation"] = "Method"
-                updated_param = self.update_parameter(
-                    param, in_overload=in_overload, in_overriden=in_overriden
-                )
-                retval.append(updated_param)
-                seen_rest_api_names.add(updated_param["restApiName"])
-
+        # first update top level parameters
+        request_media_types = yaml_data.get("requestMediaTypes", [])
+        retval.extend(self._update_parameters_helper(
+            yaml_data["parameters"],
+            body_parameter,
+            seen_rest_api_names,
+            groupers,
+            request_media_types,
+            in_overload=in_overload,
+            in_overriden=in_overriden,
+        ))
         # now we handle content type and accept headers.
         # We only care about the content types on the body parameter itself,
         # so ignoring the different content types for now
@@ -733,74 +840,15 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         else:
             sub_requests = yaml_data.get("requests", [])
         for request in sub_requests:  # pylint: disable=too-many-nested-blocks
-            for param in request.get("parameters", []):
-                if has_flattened_body and param.get("targetProperty"):
-                    if not body_parameter:
-                        raise ValueError(
-                            "Has to have a body parameter if it's flattened"
-                        )
-                    # this means i'm a property that is part of a flattened model
-                    target_property_name = param["targetProperty"]["language"][
-                        "default"
-                    ]["name"]
-                    param = self.update_parameter(param)
-                    body_parameter.setdefault("propertyToParameterName", {})[
-                        target_property_name
-                    ] = param["clientName"]
-                    retval.append(param)
-                    param["inFlattenedBody"] = True
-                elif param["schema"]["type"] == "group":
-                    # this means i'm a parameter group parameter
-                    param = self.update_parameter(param)
-                    param["grouper"] = True
-                    groupers[param["clientName"]] = param
-                    retval.append(param)
-                elif not is_body(param):
-                    if (
-                        param["language"]["default"]["serializedName"]
-                        not in seen_rest_api_names
-                    ):
-                        if (
-                            param["language"]["default"]["serializedName"]
-                            == "Content-Type"
-                        ):
-                            if not body_parameter:
-                                raise ValueError(
-                                    "Has to be a body parameter for content type"
-                                )
-                            # override content type type to string
-                            param = copy.deepcopy(param)
-                            param["schema"] = KNOWN_TYPES[
-                                "string"
-                            ]  # override to string type
-                            param["required"] = False
-                            description = param["language"]["default"]["description"]
-                            if description and description[-1] != ".":
-                                description += "."
-                            if not (in_overriden or in_overload):
-                                param["inDocstring"] = False
-                            elif in_overload:
-                                description += (
-                                    " Content type parameter for "
-                                    f"{get_body_type_for_description(body_parameter)} body."
-                                )
-                            elif not in_overload:
-                                content_types = (
-                                    "'"
-                                    + "', '".join(yaml_data["requestMediaTypes"])
-                                    + "'"
-                                )
-                                description += f" Known values are: {content_types}."
-                            if not in_overload and not in_overriden:
-                                param["clientDefaultValue"] = body_parameter[
-                                    "defaultContentType"
-                                ]
-                            param["language"]["default"]["description"] = description
-                        param = self.update_parameter(
-                            param, in_overload=in_overload, in_overriden=in_overriden
-                        )
-                        retval.append(param)
-                        seen_rest_api_names.add(param["restApiName"])
+            retval.extend(self._update_parameters_helper(
+                request.get("parameters", []),
+                body_parameter,
+                seen_rest_api_names,
+                groupers,
+                request_media_types,
+                in_overload=in_overload,
+                in_overriden=in_overriden,
+            ))
         all_params = (retval + [body_parameter]) if body_parameter else retval
         for grouper_name, grouper in groupers.items():
             grouper["propertyToParameterName"] = {
