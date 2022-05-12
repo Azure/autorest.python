@@ -27,6 +27,8 @@
 
 ### Creating A Client
 
+yuchao-note: endpoint order
+
 Creating A Client is largely the same as it was before. We have made the client arguments align with the Python guidelines, generating an `endpoint` and `credential` parameter.
 
 ```python
@@ -38,7 +40,7 @@ client = PurviewCatalogClient("http://myendpoint.com", DefaultAzureCredential())
 
 #### Creating A Client - API Diff
 
-![Screen Shot 2022-05-11 at 11 28 26 AM](https://user-images.githubusercontent.com/43154838/167920536-02f11833-23c9-4446-b8fd-452529223a34.png)
+![Screen Shot 2022-05-11 at 11 24 07 AM](https://user-images.githubusercontent.com/43154838/167919888-81d5cf38-1e8e-4a50-9d1c-5f01df972a6b.png)
 
 #### Creating A Client - User Behavior Diff
 
@@ -64,7 +66,7 @@ client = PurviewCatalogClient("http://my-endpoint.com", DefaultAzureCredential()
 
 ### Simple GET/DELETE Request
 
-yuchao-note: 1. return type 2. api change: keyword-only
+yuchao-note: 1. return type 2. Api change: keyword-only
 
 GET/DELETE requests are largely the same as before. Since a lot of Azure services are JSON based and return JSON payloads, here is a main place where we will see differences between GET/DELETE requests with current generated code, because we no longer return models in this case.
 We return raw JSON, so in most cases this means users access them like a dict. Python users have been very receptive to just accessing these
@@ -107,6 +109,8 @@ print(response["guidAssignments"])
   
 
 ### Creating POST Request
+
+yuchao-note: convenience of body parameters for customers 
 
 POST requests are another area where we're going to see JSON bodies pop up.
 
@@ -161,6 +165,8 @@ with open("myJsonInput.json", "rb") as fd:
   ```
 
 ### Break The Glass Scenario
+
+ycuhao-note: convenience for customers to send any customized request
 
 Our DPG clients all come with a `send_request` function on a client. Here, you can create your own request and use our client to send it to the service. This way you get all of the existing pipeline setup for free, and can send your request
 
