@@ -90,7 +90,7 @@ json_response = response.json()
 --------------------------------- Changlong ---------------------------------
 
 ### Streams
-
+Streams can be used to transfer large ammounts of data without using too big memory.
 #### Inputs
 
 As mentioned above, we've opened up streamed inputs to include more cases, so users with large input bodies aren't forced
@@ -98,23 +98,98 @@ to read their bodies into memory before passing them to the service. Otherwise, 
 as they are in our current generation
 
 ```python
-with open("my_file", "rb") as fd:
-    client.stream_file(fd)
+# in RP WebPubSub
+with open("temp/blob.txt", "rb") as fd:
+    client.send_to_all(fd)
 ```
+
+One thing for Stream special is we don't support retry for stream sendings since the IO handler is in one way reading mode.
+- Ask about what other languages are doing for retry streams
+> Synced with Java that it don't have retry on streams too.
 
 #### Outputs
 
 With streamed outputs, users used to iterate over `.stream_download()` on the response object. We've changed this method to
-`iter_bytes()`. This is the syntax that `httpx` uses, which is the HTTP stack that Python is migrating to.
+`iter_bytes()`. This is the syntax that [`httpx`](https://www.python-httpx.org/) uses, which is the HTTP stack that Python is migrating to.
 More aligned with `httpx`.
 
-- Ask about what other languages are doing for retry streams
 
+Generation changes:
+```python
+# Legacy
+class FileOperations:
+    def get_file(self, **kwargs):
+        ...
+        response = pipeline_response.http_response
+        ...
+        deserialized = response.stream_download(self._client._pipeline)
+        return deserialized
+
+# DPG:
+class FileOperations:
+    def get_file(self, **kwargs: Any) -> IO:
+        ...
+        response = pipeline_response.http_response
+        ...
+        deserialized = response
+        return deserialized
+```
+
+Usage in DPG:
+```python
+# in testserver bodyfile
+
+with io.BytesIO() as file_handle:
+    stream = client.files.get_file()
+    assert not stream._internal_response._content_consumed
+
+    for data in stream.iter_bytes():
+        assert 0 < len(data) <= stream.block_size
+        file_handle.write(data)
+```
 
 ### Multiple Media Types
 
-Here is a place where we lied about not being completely break proof, and that is because of the added functionality
-of our overloads.
+We support multiple media types in both legacy and version-tolerant codegen. In version tolerant codegen, the main improvement is that the end user no need to provide content_type for the majority of cases.
+Generation changes:
+```python
+# Legacy, content_type is delivered in kwargs, and no default value.
+    @overload
+    def analyze_body(self, input=None, **kwargs):
+       pass
+
+    @overload
+    def analyze_body(self, input=None, **kwargs):
+        pass
+
+    def analyze_body(self, input=None, **kwargs):
+       ...
+
+# DPG, there is default value for content type
+    @overload
+    def analyze_body(
+        self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
+        pass
+
+    @overload
+    def analyze_body(self, input: Optional[IO] = None, *, content_type: Optional[str] = "application/octet-stream", **kwargs: Any) -> str:
+        pass
+
+    def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:
+        ...
+```
+
+Usage in DPG:
+```
+client.analyze_body({"hello": "world"})
+
+with open('C:\\ZZ\\foo.txt', 'rb') as fd:
+    client.analyze_body(fd)
+```
+
+### argues on breaking 
+One cons of the above designing is that it will bring us breaking change in an edge case.
 
 Say a service team starts out by just accepting a JSON input to an endpoint. Then our initial generation of this SDK
 will also allow users to pass a streamed body with default content type "application/json". If the service team
@@ -130,6 +205,10 @@ to add a new operation
 Overall we weighed the pros and cons here, and we feel that the benefit of helping users stream large inputs is bigger than the con
 of a technically breaking change we can easily catch and make non-breaking before getting to end users.
 
+
+# DPG code: https://github.com/Azure/autorest.python/blob/archboard_docs/test/vanilla/version-tolerant/Expected/AcceptanceTests/MediaTypesVersionTolerant/mediatypesversiontolerant/_operations/_operations.py#L180
+# Legacy code: https://github.com/Azure/autorest.python/blob/archboard_docs/test/vanilla/legacy/Expected/AcceptanceTests/MediaTypes/mediatypes/operations/_media_types_client_operations.py#L229
+
 ### LROs
 
 LROs are like what we have right now, with the exception of us dealing with raw JSON instead of models
@@ -137,7 +216,7 @@ LROs are like what we have right now, with the exception of us dealing with raw 
 ```python
 poller = client.begin_lro()
 response = poller.result()
-assert response["hello"] == "world!"
+assert response["hello"] == "world!"        # Be response.hello in legacy
 ```
 
 ### Paging
@@ -147,7 +226,7 @@ Paging is also the same as right now, with the exception of raw JSON instead of 
 ```python
 pages = client.list_pages()
 for page in pages:
-    print(page["id"])
+    print(page["id"])                       # Be page.id in legacy
 ```
 
 --------------------------------------------------------------------------
