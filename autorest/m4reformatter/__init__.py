@@ -442,6 +442,8 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         group_name: str,
         yaml_data: Dict[str, Any],
         body_parameter: Optional[Dict[str, Any]],
+        *,
+        content_types: Optional[List[str]] = None,
     ) -> List[Dict[str, Any]]:
         overloads: List[Dict[str, Any]] = []
         if not body_parameter:
@@ -450,7 +452,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         if not body_types:
             return overloads
         for body_type in body_types:
-            overload = self.update_overload(group_name, yaml_data, body_type)
+            overload = self.update_overload(group_name, yaml_data, body_type, content_types=content_types)
             for parameter in overload["parameters"]:
                 if parameter["restApiName"] == "Content-Type":
                     parameter["clientDefaultValue"] = overload["bodyParameter"][
@@ -521,6 +523,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             if yaml_data.get("requestMediaTypes")
             else None
         )
+        content_types = None
         if (  # pylint: disable=too-many-boolean-expressions
             body_parameter
             and body_parameter["type"]["type"] != "combined"
@@ -537,12 +540,10 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 [body_parameter["type"], KNOWN_TYPES["binary"]]
             )
             body_parameter["type"] = combined_type
-            body_parameter["contentTypes"] = []
-            # get default content type
-            body_parameter["defaultContentType"] = None
+            content_types = body_parameter["contentTypes"]
         operation = self._update_operation_helper(group_name, yaml_data, body_parameter)
         operation["overloads"] = self.update_overloads(
-            group_name, yaml_data, body_parameter
+            group_name, yaml_data, body_parameter, content_types=content_types
         )
         return operation
 
@@ -592,10 +593,10 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         return base_operation
 
     def update_overload(
-        self, group_name: str, yaml_data: Dict[str, Any], body_type: Dict[str, Any]
+        self, group_name: str, yaml_data: Dict[str, Any], body_type: Dict[str, Any], *, content_types: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         body_parameter = self.update_body_parameter_overload(
-            yaml_data["requestMediaTypes"], body_type
+            yaml_data["requestMediaTypes"], body_type, content_types=content_types
         )
         return self._update_operation_helper(
             group_name, yaml_data, body_parameter, is_overload=True
@@ -619,13 +620,15 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         yaml_data: Dict[str, Any],
         body_param: Dict[str, Any],
         body_type: Dict[str, Any],
+        *,
+        content_types: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         flattened = body_param.get("flattened")
         is_partial_body = body_param.get("isPartialBody")
         param_base = update_parameter_base(body_param)
         body_param = copy.deepcopy(param_base)
         body_param["type"] = body_type
-        body_param["contentTypes"] = [
+        body_param["contentTypes"] = content_types or [
             ct
             for ct, request in yaml_data.items()
             if id(body_type)
@@ -689,13 +692,13 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         return self._update_body_parameter_helper(yaml_data, body_param, body_type)
 
     def update_body_parameter_overload(
-        self, yaml_data: Dict[str, Any], body_type: Dict[str, Any]
+        self, yaml_data: Dict[str, Any], body_type: Dict[str, Any], *, content_types: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """For overloads we already know what body_type we want to go with"""
         body_param = next(
             p for sr in yaml_data.values() for p in sr["parameters"] if is_body(p)
         )
-        return self._update_body_parameter_helper(yaml_data, body_param, body_type)
+        return self._update_body_parameter_helper(yaml_data, body_param, body_type, content_types=content_types)
 
     def update_flattened_parameter(
         self, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]
