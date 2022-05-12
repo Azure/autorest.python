@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import IO, Optional, TYPE_CHECKING
+from typing import Any, IO, Optional, TYPE_CHECKING
 
 from msrest import Serializer
 
