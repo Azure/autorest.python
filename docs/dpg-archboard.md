@@ -1,6 +1,7 @@
 # Python DPG Client
 
 --------------------------------- Isabella ---------------------------------
+
 ## Intro
 
 ### Goals of DPG Clients
@@ -13,32 +14,61 @@
 
 1. Now only path and body parameters are positional, all other parameters are keyword only
 2. We've gotten rid of models for now and are just using raw JSON objects. When we add our DPG models, this won't be breaking, because our models will
-be able to accessed as dicts and as models as well
+   be able to accessed as dicts and as models as well
 3. We've added glass breaker `send_request` to all of our clients. Clients can now send an `HttpRequest` directly to the server leveraging our client pipelines.
 4. We've also added easy-to-use customizations, and are going to be pushing these customizations for SDK authors.
 
 
 --------------------------------------------------------------------------
+
 --------------------------------- Yuchao ---------------------------------
 
 ## Developer Experience
 
-### Creating a client
+### Creating A Client
 
-Creating a client is largely the same as it was before. We have made the client arguments align with the Python guidelines,
-generating an `endpoint` and `credential` parameter.
+yuchao-note: endpoint order
+
+Creating A Client is largely the same as it was before. We have made the client arguments align with the Python guidelines, generating an `endpoint` and `credential` parameter.
 
 ```python
 from azure.purview.catalog import PurviewCatalogClient
 from azure.identity import DefaultAzureCredential
 
-client = PurviewCatalogClient(endpoint="http://myendpoint.com", credential=DefaultAzureCredential())
+client = PurviewCatalogClient("http://myendpoint.com", DefaultAzureCredential())
 ```
 
-### Simple GET request
+#### Creating A Client - API Diff
 
-GET requests are largely the same as before. Since a lot of Azure services are JSON based and return JSON payloads, here is a main
-place where we will see differences between GET requests with current generated code, because we no longer return models in this case.
+![Screen Shot 2022-05-11 at 11 24 07 AM](https://user-images.githubusercontent.com/43154838/167919888-81d5cf38-1e8e-4a50-9d1c-5f01df972a6b.png)
+
+#### Creating A Client - User Behavior Diff
+
+- Legacy
+
+```python
+from azure.purview.catalog import PurviewCatalogClient
+from azure.identity import DefaultAzureCredential
+    
+client = PurviewCatalogClient(DefaultAzureCredential(), "http://my-endpoint.com")
+```
+
+- DPG
+
+```python
+from azure.purview.catalog import PurviewCatalogClient
+from azure.identity import DefaultAzureCredential
+    
+client = PurviewCatalogClient("http://my-endpoint.com", DefaultAzureCredential())
+```
+
+
+
+### Simple GET/DELETE Request
+
+yuchao-note: 1. return type 2. Api change: keyword-only
+
+GET/DELETE requests are largely the same as before. Since a lot of Azure services are JSON based and return JSON payloads, here is a main place where we will see differences between GET/DELETE requests with current generated code, because we no longer return models in this case.
 We return raw JSON, so in most cases this means users access them like a dict. Python users have been very receptive to just accessing these
 models as JSON, since Python users are already very comfortable with JSON. In fact, we've been getting issues over the years asking for our models
 to really be dicts, so this change has actually been quite welcomed.
@@ -47,31 +77,98 @@ We still see the importance of adding DPG models, in large part because of the d
 as a landing place for documentation. But when we add them, they will be non-breaking because you can still access them as a dict.
 
 ```python
-response = client.get_object()
-assert response["hello"] == "world"
+...
+response = client.delete_by_unique_attribute("type_name", attr_qualified_name="attr_qualified_name")
+print(response["guidAssignments"])
 ```
 
-### Creating a POST request
+#### Simple GET/DELETE Request - API Diff
+
+![Screen Shot 2022-05-11 at 11 28 26 AM](https://user-images.githubusercontent.com/43154838/167920536-02f11833-23c9-4446-b8fd-452529223a34.png)
+
+#### Simple GET/DELETE Request - User Behavior Diff
+
+- Legacy
+
+  ```python
+  ...
+  response = client.delete_by_unique_attribute("type_name", "attr_qualified_name")
+  print(response.guid_assignments)
+  ```
+
+  
+
+- DPG
+
+  ```python
+  ...
+  response = client.delete_by_unique_attribute("type_name", attr_qualified_name="attr_qualified_name")
+  print(response["guidAssignments"])
+  ```
+
+  
+
+### Creating POST Request
+
+yuchao-note: convenience of body parameters for customers 
 
 POST requests are another area where we're going to see JSON bodies pop up.
 
-We've also additionally added overloads for post methods where the input is a JSON type, for example a model. These overloads will be helpful to people
-who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the
-service.
+We've also additionally added overloads for post methods where the input is a JSON type, for example a model. These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service.
 
 ```python
-
-client.put_object({"hello": "world"})
-
-with open("myLargeJsonFile", "rb") as fd:
-    client.put_object(fd)
+...
+response = client.create_or_update(
+    "collection",
+    {
+        "entity": {"inputDict": {"my": "input"}}
+    }
+)
+# OR
+with open("myJsonInput.json", "rb") as fd:
+    # myJsonInput is a file with my serialized JSON input
+    response = client.create_or_update("collection", fd)
 ```
 
-### Break the glass scenario
+#### Creating POST Request - API Diff
 
-Our DPG clients all come with a `send_request` function on a client. Here, you can create your own request
-and use our client to send it to the service. This way you get all of the existing pipeline setup for free,
-and can send your request
+<img width="505" alt="Screen Shot 2022-05-11 at 4 48 51 PM" src="https://user-images.githubusercontent.com/43154838/167965431-5ab2e6a5-68d2-4114-bc03-0ee99cece1c2.png">
+
+#### Creating POST Request - User Behavior Diff
+
+- Legacy
+
+  ```python
+  from azure.purview.catalog.models import AtlasEntity, AtlasEntityWithExtInfo
+  ... 
+  sub_entity = AtlasEntity(attributes={"inputDict": {"my": "input"}})
+  entity = AtlasEntityWithExtInfo(entity=sub_entity)
+  response = client.create_or_update("collection", entity)
+  ```
+
+  
+
+- DPG
+
+  ```python
+  ...
+  response = client.create_or_update(
+      "collection",
+      {
+          "entity": {"inputDict": {"my": "input"}}
+      }
+  )
+  # OR
+  with open("myJsonInput.json", "rb") as fd:
+      # myJsonInput is a file with my serialized JSON input
+      response = client.create_or_update("collection", fd)
+  ```
+
+### Break The Glass Scenario
+
+ycuhao-note: convenience for customers to send any customized request
+
+Our DPG clients all come with a `send_request` function on a client. Here, you can create your own request and use our client to send it to the service. This way you get all of the existing pipeline setup for free, and can send your request
 
 ```python
 from azure.core.rest import HttpRequest
@@ -80,13 +177,20 @@ from azure.identity import DefaultAzureCredential
 
 client = PurviewCatalogClient(endpoint="endpoint", credential=DefaultAzureCredential())
 
-request = HttpRequest("GET", "http://new-endpoint.com")
+request = HttpRequest("GET", "/atlas/v2/entity/uniqueAttribute/type/mytypename")
 response = client.send_request(request)
 response.raise_for_status()
 json_response = response.json()
 ```
 
---------------------------------------------------------------------------
+Break The Glass Scenario - API Diff
+
+<img width="721" alt="Screen Shot 2022-05-11 at 3 51 48 PM" src="https://user-images.githubusercontent.com/43154838/167960222-71dd7d21-9ac9-4b8a-87c0-2b94a7ac5c9e.png">
+
+
+
+
+
 --------------------------------- Changlong ---------------------------------
 
 ### Streams
@@ -200,7 +304,7 @@ The reasons why we're ok with breaking in this scenario are because
 
 1. This is very much an edge case
 2. Our tooling can catch this breaking change, so we can either do a quick customization to make it unbreaking, or use `x-ms-paths`
-to add a new operation
+   to add a new operation
 
 Overall we weighed the pros and cons here, and we feel that the benefit of helping users stream large inputs is bigger than the con
 of a technically breaking change we can easily catch and make non-breaking before getting to end users.
@@ -230,6 +334,7 @@ for page in pages:
 ```
 
 --------------------------------------------------------------------------
+
 --------------------------------- Isabella ---------------------------------
 
 ## Customization
