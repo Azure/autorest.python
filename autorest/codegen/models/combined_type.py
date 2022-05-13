@@ -58,18 +58,18 @@ class CombinedType(BaseType):
     def docstring_text(self) -> str:
         return " or ".join(t.docstring_text for t in self.types)
 
-    @property
-    def docstring_type(self) -> str:
-        return " or ".join(t.docstring_type for t in self.types)
+    def docstring_type(self, **kwargs: Any) -> str:
+        return " or ".join(t.docstring_type(**kwargs) for t in self.types)
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        return f'Union[{", ".join(type.type_annotation(is_operation_file=True) for type in self.types)}]'
+        kwargs["is_operation_file"] = True
+        return (
+            f'Union[{", ".join(type.type_annotation(**kwargs) for type in self.types)}]'
+        )
 
     def get_json_template_representation(
         self,
@@ -88,10 +88,10 @@ class CombinedType(BaseType):
         """Template of what an instance check of a variable for this type would look like"""
         raise ValueError("You shouldn't do instance checks on a multiple type")
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         for type in self.types:
-            file_import.merge(type.imports(is_operation_file=is_operation_file))
+            file_import.merge(type.imports(**kwargs))
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         return file_import
 

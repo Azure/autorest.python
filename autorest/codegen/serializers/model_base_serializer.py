@@ -22,7 +22,7 @@ def _documentation_string(
         else sphinx_prefix
     )
     retval.append(
-        f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type}"
+        f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type()}"
     )
     return retval
 
