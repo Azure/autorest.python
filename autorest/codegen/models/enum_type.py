@@ -100,7 +100,7 @@ class EnumType(BaseType):
         enum_description = f"Known values are: {possible_values_str}."
         return enum_description
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
@@ -108,10 +108,10 @@ class EnumType(BaseType):
         """
         if self.code_model.options["models_mode"]:
             return (
-                f"Union[{self.value_type.type_annotation(is_operation_file=is_operation_file)},"
+                f"Union[{self.value_type.type_annotation(**kwargs)},"
                 f' "_models.{self.name}"]'
             )
-        return self.value_type.type_annotation(is_operation_file=is_operation_file)
+        return self.value_type.type_annotation(**kwargs)
 
     def get_declaration(self, value: Any) -> str:
         return self.value_type.get_declaration(value)

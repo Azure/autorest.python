@@ -29,9 +29,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
     ) -> str:
         return ""
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return self.docstring_type
 
     @property
@@ -99,9 +97,7 @@ class BinaryType(PrimitiveType):
     def docstring_type(self) -> str:
         return self.type
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return self.docstring_type
 
     @property
@@ -131,9 +127,7 @@ class AnyType(PrimitiveType):
     def docstring_type(self) -> str:
         return "any"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "Any"
 
     @property
@@ -163,9 +157,7 @@ class AnyObjectType(PrimitiveType):
     def docstring_type(self) -> str:
         return "JSON"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "JSON"
 
     @property
@@ -244,9 +236,7 @@ class IntegerType(NumberType):
     def docstring_type(self) -> str:
         return "int"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "int"
 
     @property
@@ -267,9 +257,7 @@ class FloatType(NumberType):
     def docstring_type(self) -> str:
         return "float"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "float"
 
     @property
@@ -350,9 +338,7 @@ class DatetimeType(PrimitiveType):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "datetime.datetime"
 
     @property
@@ -388,9 +374,7 @@ class TimeType(PrimitiveType):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "datetime.time"
 
     @property
@@ -426,9 +410,7 @@ class UnixTimeType(PrimitiveType):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "datetime.datetime"
 
     @property
@@ -464,9 +446,7 @@ class DateType(PrimitiveType):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "datetime.date"
 
     @property
@@ -502,9 +482,7 @@ class DurationType(PrimitiveType):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str
         return "datetime.timedelta"
 
     @property

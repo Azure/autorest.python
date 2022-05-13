@@ -76,8 +76,8 @@ class ConstantType(BaseType):
         """
         return self.value_type.docstring_type
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        return self.value_type.type_annotation(is_operation_file=is_operation_file)
+    def type_annotation(self, **kwargs: Any) -> str:
+        return self.value_type.type_annotation(**kwargs)
 
     @classmethod
     def from_yaml(

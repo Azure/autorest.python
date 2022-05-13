@@ -62,9 +62,7 @@ class CombinedType(BaseType):
     def docstring_type(self) -> str:
         return " or ".join(t.docstring_type for t in self.types)
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]

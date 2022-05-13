@@ -173,9 +173,7 @@ class TokenCredentialType(
         self._async_type = "~azure.core.credentials_async.AsyncTokenCredential"
         self._sync_type = "~azure.core.credentials.TokenCredential"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         if self.async_mode:
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
@@ -219,9 +217,7 @@ class AzureKeyCredentialType(
     def docstring_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
-    def type_annotation(  # pylint: disable=no-self-use
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "AzureKeyCredential"
 
     @property

@@ -103,7 +103,7 @@ class BaseType(BaseModel, ABC):
         ...
 
     @abstractmethod
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]

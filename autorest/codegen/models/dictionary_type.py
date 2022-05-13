@@ -38,13 +38,13 @@ class DictionaryType(BaseType):
         """
         return f"{{{self.element_type.serialization_type}}}"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f"Dict[str, {self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
+        return f"Dict[str, {self.element_type.type_annotation(**kwargs)}]"
 
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")

@@ -28,13 +28,11 @@ class ListType(BaseType):
     def serialization_type(self) -> str:
         return f"[{self.element_type.serialization_type}]"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["version_tolerant"] and self.element_type.is_xml:
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.type_annotation(
-                is_operation_file=is_operation_file
-            )
-        return f"List[{self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
+            return self.element_type.type_annotation(**kwargs)
+        return f"List[{self.element_type.type_annotation(**kwargs)}]"
 
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")
