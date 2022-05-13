@@ -105,13 +105,13 @@ class DictionaryType(BaseType):
             element_type=element_type,
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         file_import.merge(
-            self.element_type.imports(is_operation_file=is_operation_file)
+            self.element_type.imports(**kwargs: Any)
         )
         return file_import
 

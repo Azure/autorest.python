@@ -112,9 +112,7 @@ class BinaryType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(b"bytes")
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
         return file_import
@@ -142,9 +140,7 @@ class AnyType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration({})
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -180,9 +176,7 @@ class AnyObjectType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, MutableMapping)"
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.define_mutable_mapping_type()
         file_import.add_import("sys", ImportType.STDLIB)
@@ -371,9 +365,7 @@ class DatetimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -411,9 +403,7 @@ class TimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -451,9 +441,7 @@ class UnixTimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -491,9 +479,7 @@ class DateType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -531,9 +517,7 @@ class DurationType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import

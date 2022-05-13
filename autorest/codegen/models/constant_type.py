@@ -114,9 +114,9 @@ class ConstantType(BaseType):
             description=description,
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
+        file_import.merge(self.value_type.imports(**kwargs))
         return file_import
 
     @property

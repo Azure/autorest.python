@@ -170,7 +170,7 @@ class EnumType(BaseType):
             ],
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, *, is_operation_file: bool = False, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
@@ -183,5 +183,5 @@ class EnumType(BaseType):
                     typing_section=TypingSection.TYPING,
                     alias="_models",
                 )
-        file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
+        file_import.merge(self.value_type.imports(is_operation_file=is_operation_file, **kwargs))
         return file_import

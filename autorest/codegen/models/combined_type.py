@@ -88,10 +88,10 @@ class CombinedType(BaseType):
         """Template of what an instance check of a variable for this type would look like"""
         raise ValueError("You shouldn't do instance checks on a multiple type")
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         for type in self.types:
-            file_import.merge(type.imports(is_operation_file=is_operation_file))
+            file_import.merge(type.imports(**kwargs))
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         return file_import
 

@@ -126,7 +126,7 @@ class ListType(BaseType):
             ),
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if not (
             self.code_model.options["version_tolerant"] and self.element_type.is_xml
@@ -135,6 +135,6 @@ class ListType(BaseType):
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
         file_import.merge(
-            self.element_type.imports(is_operation_file=is_operation_file)
+            self.element_type.imports(**kwargs)
         )
         return file_import
