@@ -147,7 +147,9 @@ class _ParameterBase(
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
-        file_import.merge(self.type.imports(is_operation_file=True, async_mode=async_mode))
+        file_import.merge(
+            self.type.imports(is_operation_file=True, async_mode=async_mode)
+        )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import functools
 import json
-from typing import List, Optional, Set, Tuple, Dict, Union, cast
+from typing import List, Optional, Set, Tuple, Dict, Union
 from jinja2 import Environment
 from ..models import (
     CodeModel,
@@ -16,6 +16,7 @@ from ..models import (
     ImportType,
 )
 from .builder_serializer import get_operation_serializer
+
 
 def _json_serialize_imports(
     imports: Dict[
@@ -126,10 +127,18 @@ class MetadataSerializer:
             str=str,
             sync_mixin_imports=sync_mixin_imports,
             async_mixin_imports=async_mixin_imports,
-            sync_client_imports=_json_serialize_imports(self.code_model.client.imports_for_multiapi(async_mode=False).to_dict()),
-            async_client_imports=_json_serialize_imports(self.code_model.client.imports_for_multiapi(async_mode=True).to_dict()),
-            sync_config_imports=_json_serialize_imports(self.code_model.config.imports(async_mode=False).to_dict()),
-            async_config_imports=_json_serialize_imports(self.code_model.config.imports(async_mode=True).to_dict()),
+            sync_client_imports=_json_serialize_imports(
+                self.code_model.client.imports_for_multiapi(async_mode=False).to_dict()
+            ),
+            async_client_imports=_json_serialize_imports(
+                self.code_model.client.imports_for_multiapi(async_mode=True).to_dict()
+            ),
+            sync_config_imports=_json_serialize_imports(
+                self.code_model.config.imports(async_mode=False).to_dict()
+            ),
+            async_config_imports=_json_serialize_imports(
+                self.code_model.config.imports(async_mode=True).to_dict()
+            ),
             get_async_operation_serializer=functools.partial(
                 get_operation_serializer,
                 code_model=self.code_model,

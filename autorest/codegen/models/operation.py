@@ -115,6 +115,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             if isinstance(attr, Callable):
                 return attr()
             return attr
+
         responses_with_body = [r for r in self.responses if r.type]
         if (
             self.request_builder.method.lower() == "head"
@@ -123,7 +124,8 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             return "bool"
         if responses_with_body:
             response_docstring_values: OrderedSet[str] = {
-                _getattr_or_method(response, attr_name): None for response in responses_with_body
+                _getattr_or_method(response, attr_name): None
+                for response in responses_with_body
             }
             retval = " or ".join(response_docstring_values.keys())
             if self.has_optional_return_type:
@@ -175,9 +177,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             )
         )
 
-    def _imports_shared(
-        self, async_mode: bool
-    ) -> FileImport:
+    def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -196,9 +196,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             )
         return file_import
 
-    def imports_for_multiapi(
-        self, async_mode: bool
-    ) -> FileImport:
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         return self._imports_shared(async_mode)
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:

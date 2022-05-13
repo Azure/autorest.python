@@ -239,17 +239,24 @@ class _ParameterListBase(
         """Method signature for this parameter list."""
         return method_signature_helper(
             positional=self.method_signature_positional(is_python3_file, async_mode),
-            keyword_only=self.method_signature_keyword_only(is_python3_file, async_mode),
-            kwarg_params=self.method_signature_kwargs(is_python3_file, async_mode),
+            keyword_only=self.method_signature_keyword_only(
+                is_python3_file, async_mode
+            ),
+            kwarg_params=self.method_signature_kwargs(is_python3_file),
         )
 
-    def method_signature_positional(self, is_python3_file: bool, async_mode: bool) -> List[str]:
+    def method_signature_positional(
+        self, is_python3_file: bool, async_mode: bool
+    ) -> List[str]:
         """Signature for positional parameters"""
         return [
-            parameter.method_signature(is_python3_file, async_mode) for parameter in self.positional
+            parameter.method_signature(is_python3_file, async_mode)
+            for parameter in self.positional
         ]
 
-    def method_signature_keyword_only(self, is_python3_file: bool, async_mode: bool) -> List[str]:
+    def method_signature_keyword_only(
+        self, is_python3_file: bool, async_mode: bool
+    ) -> List[str]:
         """Signature for keyword only parameters"""
         if not (self.keyword_only and is_python3_file):
             return []
@@ -259,7 +266,7 @@ class _ParameterListBase(
         ]
 
     @staticmethod
-    def method_signature_kwargs(is_python3_file: bool, async_mode: bool) -> List[str]:
+    def method_signature_kwargs(is_python3_file: bool) -> List[str]:
         """Signature for kwargs"""
         return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
 
@@ -412,7 +419,7 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
     def method_signature(self, is_python3_file: bool, async_mode: bool) -> List[str]:
         return self.method_signature_positional(
             is_python3_file, async_mode
-        ) + self.method_signature_kwargs(is_python3_file, async_mode)
+        ) + self.method_signature_kwargs(is_python3_file)
 
 
 class _ClientGlobalParameterList(

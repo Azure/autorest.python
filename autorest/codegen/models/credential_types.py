@@ -159,19 +159,19 @@ class TokenCredentialType(
 ):
     """Type of a token credential. Used by BearerAuth and ARMChallenge policies"""
 
-    def type_annotation(self, *, async_mode: bool, **kwargs: Any) -> str:
-        if async_mode:
+    def type_annotation(self, **kwargs: Any) -> str:  # pylint: disable=no-self-use
+        if kwargs.pop("async_mode"):
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
-    def docstring_type(self, *, async_mode: bool, **kwargs: Any) -> str:
-        if async_mode:
+    def docstring_type(self, **kwargs: Any) -> str:  # pylint: disable=no-self-use
+        if kwargs.pop("async_mode"):
             return "~azure.core.credentials_async.AsyncTokenCredential"
         return "~azure.core.credentials.TokenCredential"
 
-    def imports(self, *, async_mode: bool, **kwargs: Any) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=no-self-use
         file_import = FileImport()
-        if async_mode:
+        if kwargs.pop("async_mode"):
             file_import.add_submodule_import(
                 "azure.core.credentials_async",
                 "AsyncTokenCredential",
@@ -198,17 +198,23 @@ class AzureKeyCredentialType(
 ):
     """Type for an AzureKeyCredential"""
 
-    def docstring_type(self, **kwargs: Any) -> str:
+    def docstring_type(  # pylint: disable=no-self-use
+        self, **kwargs: Any  # pylint: disable=unused-argument
+    ) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
-    def type_annotation(self, **kwargs: Any) -> str:
+    def type_annotation(  # pylint: disable=no-self-use
+        self, **kwargs: Any  # pylint: disable=unused-argument
+    ) -> str:
         return "AzureKeyCredential"
 
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, AzureKeyCredential)"
 
-    def imports(self, **kwargs: Any) -> FileImport:
+    def imports(  # pylint: disable=no-self-use
+        self, **kwargs: Any  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "azure.core.credentials",

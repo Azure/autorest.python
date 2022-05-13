@@ -154,7 +154,7 @@ class ClientSerializer:
         ]
         send_request_signature = (
             request_signature
-            + self.code_model.client.parameters.method_signature_kwargs(is_python3_file, async_mode)
+            + self.code_model.client.parameters.method_signature_kwargs(is_python3_file)
         )
         return self.parameter_serializer.serialize_method(
             function_def="def",

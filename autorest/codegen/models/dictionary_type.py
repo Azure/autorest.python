@@ -109,9 +109,7 @@ class DictionaryType(BaseType):
         file_import.add_submodule_import(
             "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        file_import.merge(
-            self.element_type.imports(**kwargs)
-        )
+        file_import.merge(self.element_type.imports(**kwargs))
         return file_import
 
     @property

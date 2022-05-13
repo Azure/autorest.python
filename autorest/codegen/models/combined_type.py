@@ -67,7 +67,9 @@ class CombinedType(BaseType):
         Special case for enum, for instance: Union[str, "EnumName"]
         """
         kwargs["is_operation_file"] = True
-        return f'Union[{", ".join(type.type_annotation(**kwargs) for type in self.types)}]'
+        return (
+            f'Union[{", ".join(type.type_annotation(**kwargs) for type in self.types)}]'
+        )
 
     def get_json_template_representation(
         self,

@@ -33,7 +33,9 @@ class BaseType(BaseModel, ABC):
     ) -> "BaseType":
         return cls(yaml_data=yaml_data, code_model=code_model)
 
-    def imports(self, **kwargs) -> FileImport:
+    def imports(  # pylint: disable=no-self-use
+        self, **kwargs  # pylint: disable=unused-argument
+    ) -> FileImport:
         return FileImport()
 
     @property

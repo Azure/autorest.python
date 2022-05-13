@@ -131,7 +131,5 @@ class ListType(BaseType):
             file_import.add_submodule_import(
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-        file_import.merge(
-            self.element_type.imports(**kwargs)
-        )
+        file_import.merge(self.element_type.imports(**kwargs))
         return file_import

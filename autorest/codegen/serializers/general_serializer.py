@@ -3,16 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Optional, cast
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import (
     FileImport,
     ImportType,
     CodeModel,
-    Parameter,
-    TokenCredentialType,
-    CredentialType,
 )
 from .client_serializer import ClientSerializer, ConfigSerializer
 
