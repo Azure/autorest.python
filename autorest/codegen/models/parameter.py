@@ -127,8 +127,9 @@ class _ParameterBase(
             return None
         return self.type.get_declaration(self.client_default_value)
 
-    def type_annotation(self) -> str:
-        type_annot = self.type.type_annotation(is_operation_file=True)
+    def type_annotation(self, **kwargs: Any) -> str:
+        kwargs["is_operation_file"] = True
+        type_annot = self.type.type_annotation(**kwargs)
         if self.optional and self.client_default_value is None:
             return f"Optional[{type_annot}]"
         return type_annot
@@ -144,9 +145,9 @@ class _ParameterBase(
     def serialization_type(self) -> str:
         return self.type.serialization_type
 
-    def imports(self) -> FileImport:
+    def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
-        file_import.merge(self.type.imports(is_operation_file=True))
+        file_import.merge(self.type.imports(is_operation_file=True, async_mode=async_mode))
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
@@ -176,8 +177,8 @@ class _ParameterBase(
     def in_method_signature(self) -> bool:
         ...
 
-    def method_signature(self, is_python3_file: bool) -> str:
-        type_annot = self.type_annotation()
+    def method_signature(self, is_python3_file: bool, async_mode: bool) -> str:
+        type_annot = self.type_annotation(async_mode=async_mode)
         if is_python3_file:
             if self.client_default_value is not None or self.optional:
                 return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"

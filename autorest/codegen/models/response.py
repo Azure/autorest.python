@@ -63,9 +63,10 @@ class Response(BaseModel):
             return self.type.serialization_type
         return "None"
 
-    def type_annotation(self) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         if self.type:
-            type_annot = self.type.type_annotation(is_operation_file=True)
+            kwargs["is_operation_file"] = True
+            type_annot = self.type.type_annotation(**kwargs)
             if self.nullable:
                 return f"Optional[{type_annot}]"
             return type_annot

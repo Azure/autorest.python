@@ -176,7 +176,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         )
 
     def _imports_shared(
-        self, async_mode: bool  # pylint: disable=unused-argument
+        self, async_mode: bool
     ) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
@@ -184,7 +184,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         )
         if not self.abstract:
             for param in self.parameters.method:
-                file_import.merge(param.imports())
+                file_import.merge(param.imports(async_mode))
 
         for response in self.responses:
             file_import.merge(response.imports())
@@ -198,7 +198,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
 
     def imports_for_multiapi(
         self, async_mode: bool
-    ) -> FileImport:  # pylint: disable=unused-argument
+    ) -> FileImport:
         return self._imports_shared(async_mode)
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:

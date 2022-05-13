@@ -33,25 +33,9 @@ class GeneralSerializer:
         template = self.env.get_template("init.py.jinja2")
         return template.render(code_model=self.code_model, async_mode=self.async_mode)
 
-    def _correct_credential_parameter(self, credential: Optional[Parameter]):
-        if credential:
-            credential.type = TokenCredentialType(
-                credential.type.yaml_data,
-                credential.type.code_model,
-                async_mode=self.async_mode,
-                policy=cast(CredentialType, credential.type).policy,
-            )
-
     def serialize_service_client_file(self) -> str:
 
         template = self.env.get_template("client.py.jinja2")
-
-        if self.code_model.credential and isinstance(
-            self.code_model.credential.type, TokenCredentialType
-        ):
-            self._correct_credential_parameter(
-                self.code_model.client.parameters.credential
-            )
 
         python3_only = self.code_model.options["python3_only"]
         return template.render(
@@ -117,14 +101,6 @@ class GeneralSerializer:
         sdk_moniker = (
             package_name if package_name else self.code_model.client.name.lower()
         )
-
-        if self.code_model.credential and isinstance(
-            self.code_model.credential.type, TokenCredentialType
-        ):
-            self._correct_credential_parameter(
-                self.code_model.config.parameters.credential
-            )
-
         template = self.env.get_template("config.py.jinja2")
         python3_only = self.code_model.options["python3_only"]
         return template.render(

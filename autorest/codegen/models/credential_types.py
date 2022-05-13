@@ -159,33 +159,19 @@ class TokenCredentialType(
 ):
     """Type of a token credential. Used by BearerAuth and ARMChallenge policies"""
 
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        policy: Union[
-            BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType
-        ],
-        async_mode: bool = False,
-    ) -> None:
-        super().__init__(yaml_data, code_model, policy)
-        self.async_mode = async_mode
-        self._async_type = "~azure.core.credentials_async.AsyncTokenCredential"
-        self._sync_type = "~azure.core.credentials.TokenCredential"
-
-    def type_annotation(self, **kwargs: Any) -> str:
-        if self.async_mode:
+    def type_annotation(self, *, async_mode: bool, **kwargs: Any) -> str:
+        if async_mode:
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
-    def docstring_type(self, **kwargs: Any) -> str:
-        if self.async_mode:
-            return self._async_type
-        return self._sync_type
+    def docstring_type(self, *, async_mode: bool, **kwargs: Any) -> str:
+        if async_mode:
+            return "~azure.core.credentials_async.AsyncTokenCredential"
+        return "~azure.core.credentials.TokenCredential"
 
-    def imports(self, **kwargs: Any) -> FileImport:
+    def imports(self, *, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        if self.async_mode:
+        if async_mode:
             file_import.add_submodule_import(
                 "azure.core.credentials_async",
                 "AsyncTokenCredential",

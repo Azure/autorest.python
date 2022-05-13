@@ -98,7 +98,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
 
         for gp in self.parameters:
-            file_import.merge(gp.imports())
+            file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
             "._configuration",
             f"{self.code_model.client.name}Configuration",
@@ -160,6 +160,17 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         except StopIteration:
             pass
+        file_import.add_submodule_import(
+            "azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.profiles.multiapiclient",
+            "MultiApiClientMixin",
+            import_type=ImportType.AZURECORE,
+        )
         return file_import
 
     @classmethod
@@ -201,7 +212,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
             )
         for gp in self.parameters:
-            file_import.merge(gp.imports())
+            file_import.merge(gp.imports(async_mode=async_mode))
         if self.code_model.options["azure_arm"]:
             policy = (
                 "AsyncARMChallengeAuthenticationPolicy"

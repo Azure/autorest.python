@@ -204,7 +204,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             method_name=builder.name,
             need_self_param=self._need_self_param,
             method_param_signatures=builder.method_signature(
-                self.async_mode or self.is_python3_file
+                self.async_mode or self.is_python3_file, self.async_mode
             ),
             ignore_inconsistent_return_statements=(
                 builder.response_type_annotation(async_mode=self.async_mode) == "None"
