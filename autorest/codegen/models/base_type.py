@@ -93,9 +93,8 @@ class BaseType(BaseModel, ABC):
         """The names used in rtype documentation"""
         ...
 
-    @property
     @abstractmethod
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input.
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'

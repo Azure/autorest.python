@@ -268,7 +268,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                 )
             )
             description_list.append(
-                f":{param.docstring_type_keyword} { param.client_name }: { param.docstring_type }"
+                f":{param.docstring_type_keyword} { param.client_name }: { param.docstring_type(async_mode=self.async_mode) }"
             )
         return description_list
 

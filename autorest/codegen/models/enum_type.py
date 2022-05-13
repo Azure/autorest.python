@@ -122,12 +122,11 @@ class EnumType(BaseType):
             return self.name
         return self.value_type.type_annotation()
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation."""
         if self.code_model.options["models_mode"]:
-            return f"{self.value_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
-        return self.value_type.type_annotation()
+            return f"{self.value_type.type_annotation(**kwargs)} or ~{self.code_model.namespace}.models.{self.name}"
+        return self.value_type.type_annotation(**kwargs)
 
     def get_json_template_representation(
         self,

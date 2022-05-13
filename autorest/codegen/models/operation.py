@@ -6,6 +6,7 @@
 import logging
 from itertools import chain
 from typing import (
+    Callable,
     Dict,
     List,
     Any,
@@ -108,6 +109,12 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         return f"ClsType[{self.response_type_annotation(async_mode=async_mode)}]"
 
     def _response_docstring_helper(self, attr_name: str) -> str:
+        def _getattr_or_method(response, attr_name):
+            # if it's a property attribute, directly return. Otherwise call it
+            attr = getattr(response, attr_name)
+            if isinstance(attr, Callable):
+                return attr()
+            return attr
         responses_with_body = [r for r in self.responses if r.type]
         if (
             self.request_builder.method.lower() == "head"
@@ -116,7 +123,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             return "bool"
         if responses_with_body:
             response_docstring_values: OrderedSet[str] = {
-                getattr(response, attr_name): None for response in responses_with_body
+                _getattr_or_method(response, attr_name): None for response in responses_with_body
             }
             retval = " or ".join(response_docstring_values.keys())
             if self.has_optional_return_type:

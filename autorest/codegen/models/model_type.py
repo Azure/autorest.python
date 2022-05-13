@@ -75,8 +75,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return retval if is_operation_file else f'"{retval}"'
         return "ET.Element" if self.is_xml else "JSON"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             return f"~{self.code_model.namespace}.models.{self.name}"
         return "ET.Element" if self.is_xml else "JSON"

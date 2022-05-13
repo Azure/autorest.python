@@ -72,7 +72,7 @@ class ClientSerializer:
                 f":{param.description_keyword} {param.client_name}: {param.description}"
             )
             retval.append(
-                f":{param.docstring_type_keyword} {param.client_name}: {param.docstring_type}"
+                f":{param.docstring_type_keyword} {param.client_name}: {param.docstring_type(async_mode=async_mode)}"
             )
         if self.code_model.has_lro_operations:
             retval.append(
@@ -307,7 +307,7 @@ class ConfigSerializer:
         for p in self.code_model.config.parameters.method:
             retval.append(f":{p.description_keyword} {p.client_name}: {p.description}")
             retval.append(
-                f":{p.docstring_type_keyword} {p.client_name}: {p.docstring_type}"
+                f":{p.docstring_type_keyword} {p.client_name}: {p.docstring_type()}"
             )
         retval.append('"""')
         return retval

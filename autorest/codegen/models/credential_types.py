@@ -135,7 +135,7 @@ class CredentialType(
 
     @property
     def serialization_type(self) -> str:
-        return self.docstring_type
+        return self.docstring_type()
 
     @classmethod
     def from_yaml(
@@ -178,8 +178,7 @@ class TokenCredentialType(
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         if self.async_mode:
             return self._async_type
         return self._sync_type
@@ -213,8 +212,7 @@ class AzureKeyCredentialType(
 ):
     """Type for an AzureKeyCredential"""
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
     def type_annotation(self, **kwargs: Any) -> str:

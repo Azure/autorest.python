@@ -58,9 +58,8 @@ class CombinedType(BaseType):
     def docstring_text(self) -> str:
         return " or ".join(t.docstring_text for t in self.types)
 
-    @property
-    def docstring_type(self) -> str:
-        return " or ".join(t.docstring_type for t in self.types)
+    def docstring_type(self, **kwargs: Any) -> str:
+        return " or ".join(t.docstring_type(**kwargs) for t in self.types)
 
     def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation

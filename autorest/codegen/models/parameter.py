@@ -137,9 +137,8 @@ class _ParameterBase(
     def docstring_text(self) -> str:
         return self.type.docstring_text
 
-    @property
-    def docstring_type(self) -> str:
-        return self.type.docstring_type
+    def docstring_type(self, **kwargs: Any) -> str:
+        return self.type.docstring_type(**kwargs)
 
     @property
     def serialization_type(self) -> str:

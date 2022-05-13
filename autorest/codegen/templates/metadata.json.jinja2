@@ -22,7 +22,7 @@
             {{ gp.client_name | tojson }}: {
                 "signature": {{ gp.method_signature(is_python3_file=False) | tojson }},
                 "description": {{ gp.description | tojson }},
-                "docstring_type": {{ gp.docstring_type | tojson }},
+                "docstring_type": {{ gp.docstring_type(async_mode=False) | tojson }},
                 "required": {{ (not gp.optional) | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
@@ -32,7 +32,7 @@
             {{ gp.client_name | tojson }}: {
                 "signature": {{ (gp.method_signature(is_python3_file=True)) | tojson }},
                 "description": {{ gp.description | tojson }},
-                "docstring_type": {{ gp.docstring_type | tojson }},
+                "docstring_type": {{ gp.docstring_type(async_mode=True) | tojson }},
                 "required": {{ (not gp.optional) | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}

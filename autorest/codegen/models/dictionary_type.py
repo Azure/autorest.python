@@ -58,13 +58,12 @@ class DictionaryType(BaseType):
         """No serialization ctxt for dictionaries"""
         return None
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return f"dict[str, {self.element_type.docstring_type}]"
+        return f"dict[str, {self.element_type.docstring_type(**kwargs)}]"
 
     def get_json_template_representation(
         self,
@@ -111,7 +110,7 @@ class DictionaryType(BaseType):
             "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         file_import.merge(
-            self.element_type.imports(**kwargs: Any)
+            self.element_type.imports(**kwargs)
         )
         return file_import
 

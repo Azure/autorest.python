@@ -59,15 +59,14 @@ class ListType(BaseType):
 
         return ", ".join(attrs_list)
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         if (
             self.code_model.options["version_tolerant"]
             and self.element_type.xml_metadata
         ):
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.docstring_type
-        return f"list[{self.element_type.docstring_type}]"
+            return self.element_type.docstring_type(**kwargs)
+        return f"list[{self.element_type.docstring_type(**kwargs)}]"
 
     @property
     def docstring_text(self) -> str:

@@ -68,13 +68,12 @@ class ConstantType(BaseType):
     def docstring_text(self) -> str:
         return "constant"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return self.value_type.docstring_type
+        return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
         return self.value_type.type_annotation(**kwargs)
