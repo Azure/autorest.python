@@ -116,6 +116,38 @@ class BinaryType(PrimitiveType):
         return "isinstance({}, (IO, bytes))"
 
 
+class BinaryIteratorType(PrimitiveType):
+    """Type returned by response if response is a streamed response"""
+
+    @property
+    def serialization_type(self) -> str:
+        return "IO"
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return "AsyncIterator[bytes]" if kwargs.pop("async_mode") else "Iterator[bytes]"
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        return self.docstring_type(**kwargs)
+
+    @property
+    def docstring_text(self) -> str:
+        return "Iterator of the response bytes"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(f"Iterator[bytes]")
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = FileImport()
+        iterator = "AsyncIterator" if kwargs.pop("async_mode") else "Iterator"
+        file_import.add_submodule_import("typing", iterator, ImportType.STDLIB)
+        return file_import
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, Iterator)"
+
+
 class AnyType(PrimitiveType):
     @property
     def serialization_type(self) -> str:

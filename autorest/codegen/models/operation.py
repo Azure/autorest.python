@@ -92,7 +92,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             return "bool"
         response_body_annotations: OrderedSet[str] = {}
         for response in [r for r in self.responses if r.type]:
-            response_body_annotations[response.type_annotation()] = None
+            response_body_annotations[response.type_annotation(**kwargs)] = None
         response_str = ", ".join(response_body_annotations.keys()) or "None"
         if len(response_body_annotations) > 1:
             return f"Union[{response_str}]"
@@ -108,12 +108,12 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             return "ClsType[None]"
         return f"ClsType[{self.response_type_annotation(async_mode=async_mode)}]"
 
-    def _response_docstring_helper(self, attr_name: str) -> str:
+    def _response_docstring_helper(self, attr_name: str, **kwargs: Any) -> str:
         def _getattr_or_method(response, attr_name):
             # if it's a property attribute, directly return. Otherwise call it
             attr = getattr(response, attr_name)
             if isinstance(attr, Callable):
-                return attr()
+                return attr(**kwargs)
             return attr
 
         responses_with_body = [r for r in self.responses if r.type]
@@ -134,13 +134,13 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         return "None"
 
     def response_docstring_text(self, **kwargs) -> str:
-        retval = self._response_docstring_helper("docstring_text")
+        retval = self._response_docstring_helper("docstring_text", **kwargs)
         if not self.code_model.options["version_tolerant"]:
             retval += " or the result of cls(response)"
         return retval
 
     def response_docstring_type(self, **kwargs) -> str:
-        return self._response_docstring_helper("docstring_type")
+        return self._response_docstring_helper("docstring_type", **kwargs)
 
     @property
     def has_response_body(self) -> bool:
@@ -187,9 +187,11 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
                 file_import.merge(param.imports(async_mode))
 
         for response in self.responses:
-            file_import.merge(response.imports())
+            file_import.merge(response.imports(async_mode=async_mode))
 
-        response_types = [r.type_annotation() for r in self.responses if r.type]
+        response_types = [
+            r.type_annotation(async_mode=async_mode) for r in self.responses if r.type
+        ]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL

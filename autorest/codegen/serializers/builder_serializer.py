@@ -827,7 +827,7 @@ class _OperationSerializer(
         if response.is_stream_response:
             retval.append(
                 "deserialized = {}".format(
-                    "response"
+                    "response.iter_bytes()"
                     if self.code_model.options["version_tolerant"]
                     else "response.stream_download(self._client._pipeline)"
                 )
