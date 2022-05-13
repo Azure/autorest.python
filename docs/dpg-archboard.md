@@ -26,11 +26,14 @@ The rest of the archboard is split into two large chunks. In the first half, Yuc
 
 
 --------------------------------------------------------------------------
+
 --------------------------------- Yuchao ---------------------------------
 
 ## Developer Experience
 
-### Creating a client
+### Creating A Client
+
+yuchao-note: endpoint order
 
 The end-users experience of creating a client is the same as it was before. We are not compromising on any user input here, this behavior is consistent with Python guidelines and existing user behavior.
 
@@ -38,10 +41,33 @@ The end-users experience of creating a client is the same as it was before. We a
 from azure.purview.catalog import PurviewCatalogClient
 from azure.identity import DefaultAzureCredential
 
-client = PurviewCatalogClient(endpoint="http://myendpoint.com", credential=DefaultAzureCredential())
+client = PurviewCatalogClient("http://myendpoint.com", DefaultAzureCredential())
 ```
 
-### Simple GET request
+#### Creating A Client - API Diff
+
+![Screen Shot 2022-05-11 at 11 24 07 AM](https://user-images.githubusercontent.com/43154838/167919888-81d5cf38-1e8e-4a50-9d1c-5f01df972a6b.png)
+
+#### Creating A Client - User Behavior Diff
+
+- Legacy
+
+```python
+from azure.purview.catalog import PurviewCatalogClient
+from azure.identity import DefaultAzureCredential
+
+client = PurviewCatalogClient(DefaultAzureCredential(), "http://my-endpoint.com")
+```
+
+- DPG
+
+```python
+from azure.purview.catalog import PurviewCatalogClient
+from azure.identity import DefaultAzureCredential
+
+client = PurviewCatalogClient("http://my-endpoint.com", DefaultAzureCredential())
+```
+
 
 The overall flow of all operation calls are largely the same as before. Users must still initialize their client, then either call operations directly on the client, or on operation group attributes.
 
@@ -51,7 +77,35 @@ There are two main things I want to talk about with these basic REST calls.
 2. GET requests will also be the main place where we see the differences with us going from models to just returning raw JSON. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
 
 
-### Creating a POST request
+#### Simple GET/DELETE Request - API Diff
+
+![Screen Shot 2022-05-11 at 11 28 26 AM](https://user-images.githubusercontent.com/43154838/167920536-02f11833-23c9-4446-b8fd-452529223a34.png)
+
+#### Simple GET/DELETE Request - User Behavior Diff
+
+- Legacy
+
+  ```python
+  ...
+  response = client.delete_by_unique_attribute("type_name", "attr_qualified_name")
+  print(response.guid_assignments)
+  ```
+
+
+
+- DPG
+
+  ```python
+  ...
+  response = client.delete_by_unique_attribute("type_name", attr_qualified_name="attr_qualified_name")
+  print(response["guidAssignments"])
+  ```
+
+
+
+### Creating POST Request
+
+yuchao-note: convenience of body parameters for customers
 
 POST requests are another area where we're going to see JSON bodies pop up.
 
@@ -64,8 +118,6 @@ We've also additionally added overloads for post methods where the input is a JS
 
 I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity. These are for intellisense purposes only.
 
-### Break the glass scenario
-
 Our DPG clients all come with a `send_request` function on a client. Here, you can create your own request and use our client to send that request to the service through our client pipeline. This way you can use the existing client pipeline set up to send requests that we maybe haven't added to our SDK yet. These requests can be done to relative or full URLs.
 
 In the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
@@ -74,14 +126,25 @@ In the second example, we are making a request to a whole new URL. Both of these
 
 One file note is the `raise_for_status()`. This method on the response is common across all Python stack libraries, and it raises an `HttpResponseError` if the status code is 400 and up.
 
---------------------------------------------------------------------------
+Break The Glass Scenario - API Diff
+
+<img width="721" alt="Screen Shot 2022-05-11 at 3 51 48 PM" src="https://user-images.githubusercontent.com/43154838/167960222-71dd7d21-9ac9-4b8a-87c0-2b94a7ac5c9e.png">
+
+
+
+
+
 --------------------------------- Changlong ---------------------------------
 
 ### Streams
-
+Streams can be used to transfer large ammounts of data without using too big memory.
 #### Inputs
 
 The way users stream inputs to services stays the same. The only change here is we've opened up streamed inputs to include more cases. This is the scenario that Yuchao talked about, so users with large input bodies aren't forced to read their bodies into memory before passing them to the service. Otherwise, streamed inputs are the same as our current generation.
+
+One thing for Stream special is we don't support retry for stream sendings since the IO handler is in one way reading mode.
+- Ask about what other languages are doing for retry streams
+> Synced with Java that it don't have retry on streams too.
 
 #### Outputs
 
@@ -106,6 +169,10 @@ to add a new operation. Basically we can easily fix this manually if we don't wa
 Overall we weighed the pros and cons here, and we feel that the benefit of helping users stream large inputs is bigger than the con
 of a technically breaking change we can easily catch and make non-breaking before getting to end users.
 
+
+DPG code: https://github.com/Azure/autorest.python/blob/archboard_docs/test/vanilla/version-tolerant/Expected/AcceptanceTests/MediaTypesVersionTolerant/mediatypesversiontolerant/_operations/_operations.py#L180
+Legacy code: https://github.com/Azure/autorest.python/blob/archboard_docs/test/vanilla/legacy/Expected/AcceptanceTests/MediaTypes/mediatypes/operations/_media_types_client_operations.py#L229
+
 ### LROs
 
 LROs are like what we have right now, with the exception of us dealing with raw JSON instead of models.
@@ -122,10 +189,11 @@ Paging is also the same as right now, with the exception of raw JSON instead of 
 ```python
 pages = client.list_pages()
 for page in pages:
-    print(page["id"])
+    print(page["id"])                       # Be page.id in legacy
 ```
 
 --------------------------------------------------------------------------
+
 --------------------------------- Isabella ---------------------------------
 
 ## Customization
