@@ -33,41 +33,9 @@ The rest of the archboard is split into two large chunks. In the first half, Yuc
 
 ### Creating A Client
 
-yuchao-note: endpoint order
-
 The end-users experience of creating a client is the same as it was before. We are not compromising on any user input here, this behavior is consistent with Python guidelines and existing user behavior.
 
-```python
-from azure.purview.catalog import PurviewCatalogClient
-from azure.identity import DefaultAzureCredential
-
-client = PurviewCatalogClient("http://myendpoint.com", DefaultAzureCredential())
-```
-
-#### Creating A Client - API Diff
-
-![Screen Shot 2022-05-11 at 11 24 07 AM](https://user-images.githubusercontent.com/43154838/167919888-81d5cf38-1e8e-4a50-9d1c-5f01df972a6b.png)
-
-#### Creating A Client - User Behavior Diff
-
-- Legacy
-
-```python
-from azure.purview.catalog import PurviewCatalogClient
-from azure.identity import DefaultAzureCredential
-
-client = PurviewCatalogClient(DefaultAzureCredential(), "http://my-endpoint.com")
-```
-
-- DPG
-
-```python
-from azure.purview.catalog import PurviewCatalogClient
-from azure.identity import DefaultAzureCredential
-
-client = PurviewCatalogClient("http://my-endpoint.com", DefaultAzureCredential())
-```
-
+### Simple GET Request
 
 The overall flow of all operation calls are largely the same as before. Users must still initialize their client, then either call operations directly on the client, or on operation group attributes.
 
@@ -75,32 +43,6 @@ There are two main things I want to talk about with these basic REST calls.
 
 1. You can see here that we've moved all query and header parameters to keyword-only. This really solves all of our potential versioning issues with parameter ordering. Since path parameters are always required, we are comfortable including them as positional arguments, and we are positioning them based off of their location in the url. The body parameter will always be the last positional argument. Finally, all query and header parameters are keyword-only, they're kind of in Python's options bag. Here ordering doesn't matter.
 2. GET requests will also be the main place where we see the differences with us going from models to just returning raw JSON. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
-
-
-#### Simple GET/DELETE Request - API Diff
-
-![Screen Shot 2022-05-11 at 11 28 26 AM](https://user-images.githubusercontent.com/43154838/167920536-02f11833-23c9-4446-b8fd-452529223a34.png)
-
-#### Simple GET/DELETE Request - User Behavior Diff
-
-- Legacy
-
-  ```python
-  ...
-  response = client.delete_by_unique_attribute("type_name", "attr_qualified_name")
-  print(response.guid_assignments)
-  ```
-
-
-
-- DPG
-
-  ```python
-  ...
-  response = client.delete_by_unique_attribute("type_name", attr_qualified_name="attr_qualified_name")
-  print(response["guidAssignments"])
-  ```
-
 
 
 ### Creating POST Request
@@ -118,6 +60,9 @@ We've also additionally added overloads for post methods where the input is a JS
 
 I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity. These are for intellisense purposes only.
 
+
+### Break the Glass
+
 Our DPG clients all come with a `send_request` function on a client. Here, you can create your own request and use our client to send that request to the service through our client pipeline. This way you can use the existing client pipeline set up to send requests that we maybe haven't added to our SDK yet. These requests can be done to relative or full URLs.
 
 In the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
@@ -125,13 +70,6 @@ In the first example, we are making a request with a relative URL. This url will
 In the second example, we are making a request to a whole new URL. Both of these scenarios are possible.
 
 One file note is the `raise_for_status()`. This method on the response is common across all Python stack libraries, and it raises an `HttpResponseError` if the status code is 400 and up.
-
-Break The Glass Scenario - API Diff
-
-<img width="721" alt="Screen Shot 2022-05-11 at 3 51 48 PM" src="https://user-images.githubusercontent.com/43154838/167960222-71dd7d21-9ac9-4b8a-87c0-2b94a7ac5c9e.png">
-
-
-
 
 
 --------------------------------- Changlong ---------------------------------
