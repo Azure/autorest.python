@@ -151,6 +151,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
+        file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         try:
             mixin_operation = next(
                 og for og in self.code_model.operation_groups if og.is_mixin
