@@ -14,7 +14,7 @@
 
 1. Now only path and body parameters are positional, all other parameters are keyword only. Path parameters are always required, path are ordered by their position in the template. Body is always the last positional parameter. Query and header params are always keyword-only, even if they are required. Keyword only is just like an options bag.
 2. We've gotten rid of models for now and are just using raw JSON objects. Python people are happy with this, and have been asking for this for a long time. So we are able to better fulfill end user goals while being more version tolerant. We may provide compatible models later based on customer feedback, and we may never do it if we don't have user asks.
-be able to accessed as dicts and as models as well
+   be able to accessed as dicts and as models as well
 3. We've added glass breaker `send_request` to all of our clients. Clients can now send an `HttpRequest` directly to the server leveraging our client pipelines.
 4. We've also added easy-to-use for SDK writers customizations, and this the foundation of our grow up story. We are no longer wrapping all of generated code, customizing in place.
 
@@ -42,12 +42,10 @@ The overall flow of all operation calls are largely the same as before. Users mu
 There are two main things I want to talk about with these basic REST calls.
 
 1. You can see here that we've moved all query and header parameters to keyword-only. This really solves all of our potential versioning issues with parameter ordering. Since path parameters are always required, we are comfortable including them as positional arguments, and we are positioning them based off of their location in the url. The body parameter will always be the last positional argument. Finally, all query and header parameters are keyword-only, they're kind of in Python's options bag. Here ordering doesn't matter.
-2. GET requests will also be the main place where we see the differences with us going from models to just returning raw JSON. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
+2. GET requests will also be the main place where we see the differences with us going from models to just returning raw JSON. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
 
 
 ### Creating POST Request
-
-yuchao-note: convenience of body parameters for customers
 
 POST requests are another area where we're going to see JSON bodies pop up.
 
@@ -56,7 +54,7 @@ We have invested a lot of effort into good docs even though we are removing mode
 Now, it's even easier for users to input their bodies, because they can directly copy the template, fill in the information,
 and pass that to the service. This also removes a lot of the imports and lines they'd have to dedicate to importing and initializing these models before passing them to the server.
 
-We've also additionally added overloads for post methods where the input is a JSON type. These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service. None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan has been wanting to solve for a long time, and now we have a well-typed solution for users.
+We've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service**. None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan has been wanting to solve for a long time, and now we have a well-typed solution for users.
 
 I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity. These are for intellisense purposes only.
 
@@ -75,13 +73,17 @@ One file note is the `raise_for_status()`. This method on the response is common
 --------------------------------- Changlong ---------------------------------
 
 ### Streams
+
 Streams can be used to transfer large ammounts of data without using too big memory.
+
 #### Inputs
 
 The way users stream inputs to services stays the same. The only change here is we've opened up streamed inputs to include more cases. This is the scenario that Yuchao talked about, so users with large input bodies aren't forced to read their bodies into memory before passing them to the service. Otherwise, streamed inputs are the same as our current generation.
 
 One thing for Stream special is we don't support retry for stream sendings since the IO handler is in one way reading mode.
+
 - Ask about what other languages are doing for retry streams
+
 > Synced with Java that it don't have retry on streams too.
 
 #### Outputs
@@ -102,7 +104,7 @@ The reasons why we're ok with breaking in this scenario are because
 
 1. This is very much an edge case
 2. Our tooling can catch this breaking change, so we can either do a quick customization to make it unbreaking, or use `x-ms-paths`
-to add a new operation. Basically we can easily fix this manually if we don't want to break customers
+   to add a new operation. Basically we can easily fix this manually if we don't want to break customers
 
 Overall we weighed the pros and cons here, and we feel that the benefit of helping users stream large inputs is bigger than the con
 of a technically breaking change we can easily catch and make non-breaking before getting to end users.
