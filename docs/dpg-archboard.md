@@ -13,14 +13,13 @@
 ### Main changes from current generation
 
 1. Now only path and body parameters are positional, all other parameters are keyword only. Path parameters are always required, path are ordered by their position in the template. Body is always the last positional parameter. Query and header params are always keyword-only, even if they are required. Keyword only is just like an options bag.
-2. We've gotten rid of models for now and are just using raw JSON objects. Python people are happy with this, and have been asking for this for a long time. So we are able to better fulfill end user goals while being more version tolerant. We may provide compatible models later based on customer feedback, and we may never do it if we don't have user asks.
-   be able to accessed as dicts and as models as well
+2. We've gotten rid of models for now and are just using raw JSON objects. Python users are happy with this, and have been asking for this for a long time. So we are able to better fulfill end user goals while being more version tolerant. We may provide compatible models later based on customer feedback, and we may never do it if we don't have user asks. Of course, the model will be able to accessed as dicts and as models as well
 3. We've added glass breaker `send_request` to all of our clients. Clients can now send an `HttpRequest` directly to the server leveraging our client pipelines.
-4. We've also added easy-to-use for SDK writers customizations, and this the foundation of our grow up story. We are no longer wrapping all of generated code, customizing in place.
+4. We've also added easy-to-use for SDK developers to customize SDK code, and this is the foundation of our grow up story. We are no longer wrapping all of generated code, customizing in place.
 
 ### Things Staying the Same
 
-1. Client and Operation group structure stays the same. Client looks exactly regular, has endpoint, has credential.
+1. Client and Operation group structure stay the same. Client looks exactly regular: has endpoint, has credential.
 
 The rest of the archboard is split into two large chunks. In the first half, Yuchao and Changlong are going to take us through the differences between legacy generated code and DPG generated code, and in the second half I'm going to go over the customization story with Metrics Advisor as my service.
 
@@ -41,8 +40,8 @@ The overall flow of all operation calls are largely the same as before. Users mu
 
 There are two main things I want to talk about with these basic REST calls.
 
-1. You can see here that we've moved all query and header parameters to keyword-only. This really solves all of our potential versioning issues with parameter ordering. Since path parameters are always required, we are comfortable including them as positional arguments, and we are positioning them based off of their location in the url. The body parameter will always be the last positional argument. Finally, all query and header parameters are keyword-only, they're kind of in Python's options bag. Here ordering doesn't matter.
-2. GET requests will also be the main place where we see the differences with us going from models to just returning raw JSON. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
+1. You can see here that we've moved all query and header parameters to keyword-only. This really solves all of our potential versioning issues with parameter ordering. Since path parameters are always required, we are comfortable including them as positional arguments, and we are positioning them based on their location in the url. The body parameter will always be the last positional argument. Finally, all query and header parameters are keyword-only, they're kind of in Python's options bag where ordering doesn't matter.
+2. We are going from returning models to just returning raw JSON, which is mentioned before as `No Models`. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
 
 
 ### Creating POST Request
@@ -52,7 +51,9 @@ POST requests are another area where we're going to see JSON bodies pop up.
 We have invested a lot of effort into good docs even though we are removing models. We have input templates for JSON inputs, like the one here: https://azuresdkdocs.blob.core.windows.net/$web/python/azure-purview-catalog/1.0.0b3/azure.purview.catalog.operations.html#azure.purview.catalog.operations.DiscoveryOperations.browse
 
 Now, it's even easier for users to input their bodies, because they can directly copy the template, fill in the information,
-and pass that to the service. This also removes a lot of the imports and lines they'd have to dedicate to importing and initializing these models before passing them to the server.
+and pass that to the service. This also removes a lot of the imports and lines that they'd have to dedicate to importing and initializing these models before passing them to the server.
+
+(show DPG `# OR` part)
 
 We've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service**. None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan has been wanting to solve for a long time, and now we have a well-typed solution for users.
 
@@ -62,6 +63,8 @@ I also want to be clear that these overloads DO NOT mean C# overloads, these don
 ### Break the Glass
 
 Our DPG clients all come with a `send_request` function on a client. Here, you can create your own request and use our client to send that request to the service through our client pipeline. This way you can use the existing client pipeline set up to send requests that we maybe haven't added to our SDK yet. These requests can be done to relative or full URLs.
+
+(show `User Behavior Diff`)
 
 In the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
 
