@@ -68,15 +68,14 @@ class ListType(BaseType):
             return self.element_type.docstring_type(**kwargs)
         return f"list[{self.element_type.docstring_type(**kwargs)}]"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         if (
             self.code_model.options["version_tolerant"]
             and self.element_type.xml_metadata
         ):
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.docstring_text
-        return f"list of {self.element_type.docstring_text}"
+            return self.element_type.docstring_text(**kwargs)
+        return f"list of {self.element_type.docstring_text(**kwargs)}"
 
     @property
     def validation(self) -> Optional[Dict[str, Union[bool, int, str]]]:

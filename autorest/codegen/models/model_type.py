@@ -83,8 +83,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def description(self, *, is_operation_file: bool = False) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", self.name)
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             return self.name
         return "XML Element" if self.is_xml else "JSON object"

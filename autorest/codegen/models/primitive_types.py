@@ -32,8 +32,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         return self.docstring_type(**kwargs)
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return self.docstring_type()
 
     def get_json_template_representation(
@@ -98,8 +97,7 @@ class BinaryType(PrimitiveType):
     def type_annotation(self, **kwargs: Any) -> str:
         return self.docstring_type(**kwargs)
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "IO"
 
     @property
@@ -129,9 +127,9 @@ class BinaryIteratorType(PrimitiveType):
     def type_annotation(self, **kwargs: Any) -> str:
         return self.docstring_type(**kwargs)
 
-    @property
-    def docstring_text(self) -> str:
-        return "Iterator of the response bytes"
+    def docstring_text(self, **kwargs: Any) -> str:
+        iterator = "Async iterator" if kwargs.pop("async_mode") else "Iterator"
+        return f"{iterator} of the response bytes"
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -365,8 +363,7 @@ class DatetimeType(PrimitiveType):
     def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.datetime"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "datetime"
 
     def get_declaration(self, value: datetime.datetime) -> str:
@@ -400,8 +397,7 @@ class TimeType(PrimitiveType):
     def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.time"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "time"
 
     def get_declaration(self, value: datetime.time) -> str:
@@ -435,8 +431,7 @@ class UnixTimeType(PrimitiveType):
     def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.datetime"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "datetime"
 
     def get_declaration(self, value: datetime.datetime) -> str:
@@ -470,8 +465,7 @@ class DateType(PrimitiveType):
     def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.date"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "date"
 
     def get_declaration(self, value: datetime.date) -> str:
@@ -505,8 +499,7 @@ class DurationType(PrimitiveType):
     def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.timedelta"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "timedelta"
 
     def get_declaration(self, value: datetime.timedelta) -> str:

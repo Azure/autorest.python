@@ -116,11 +116,10 @@ class EnumType(BaseType):
     def get_declaration(self, value: Any) -> str:
         return self.value_type.get_declaration(value)
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             return self.name
-        return self.value_type.type_annotation()
+        return self.value_type.type_annotation(**kwargs)
 
     def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation."""

@@ -129,8 +129,7 @@ class CredentialType(
             "You should not try to get a JSON template representation of a CredentialSchema"
         )
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "credential"
 
     @property

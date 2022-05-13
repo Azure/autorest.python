@@ -72,11 +72,10 @@ class Response(BaseModel):
             return type_annot
         return "None"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         if self.nullable and self.type:
-            return f"{self.type.docstring_text} or None"
-        return self.type.docstring_text if self.type else ""
+            return f"{self.type.docstring_text(**kwargs)} or None"
+        return self.type.docstring_text(**kwargs) if self.type else ""
 
     def docstring_type(self, **kwargs: Any) -> str:
         if self.nullable and self.type:

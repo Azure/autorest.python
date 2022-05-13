@@ -134,9 +134,8 @@ class _ParameterBase(
             return f"Optional[{type_annot}]"
         return type_annot
 
-    @property
-    def docstring_text(self) -> str:
-        return self.type.docstring_text
+    def docstring_text(self, **kwargs: Any) -> str:
+        return self.type.docstring_text(**kwargs)
 
     def docstring_type(self, **kwargs: Any) -> str:
         return self.type.docstring_type(**kwargs)

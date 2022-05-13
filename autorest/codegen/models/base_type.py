@@ -89,9 +89,8 @@ class BaseType(BaseModel, ABC):
         """The description"""
         ...
 
-    @property
     @abstractmethod
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         """The names used in rtype documentation"""
         ...
 
