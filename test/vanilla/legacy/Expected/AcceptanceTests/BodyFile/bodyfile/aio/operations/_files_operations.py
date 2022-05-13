@@ -56,7 +56,7 @@ class FilesOperations:
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Iterator of the response bytes or the result of cls(response)
+        :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -101,7 +101,7 @@ class FilesOperations:
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Iterator of the response bytes or the result of cls(response)
+        :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -146,7 +146,7 @@ class FilesOperations:
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Iterator of the response bytes or the result of cls(response)
+        :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
