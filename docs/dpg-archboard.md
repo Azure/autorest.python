@@ -83,15 +83,9 @@ Streams can be used to transfer large ammounts of data without using too big mem
 
 The way users stream inputs to services stays the same. The only change here is we've opened up streamed inputs to include more cases. This is the scenario that Yuchao talked about, so users with large input bodies aren't forced to read their bodies into memory before passing them to the service. Otherwise, streamed inputs are the same as our current generation.
 
-One thing for Stream special is we don't support retry for stream sendings since the IO handler is in one way reading mode.
-
-- Ask about what other languages are doing for retry streams
-
-> Synced with Java that it don't have retry on streams too.
-
 #### Outputs
 
-With streamed outputs, we have changed end user behavior. Users used to iterate over `.stream_download()` on the response object. We've changed this method to `.iter_bytes()`. This is the syntax that `httpx` uses, which is the HTTP stack that Python is migrating to. So basically we are making our behavior here consistent with the main Python HTTP stack packages.
+With streamed outputs, generation and user behavior stays the same as well.
 
 ### Multiple Content and Body Types
 
