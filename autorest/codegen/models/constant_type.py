@@ -64,8 +64,7 @@ class ConstantType(BaseType):
         """
         return self.value_type.serialization_type
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "constant"
 
     def docstring_type(self, **kwargs: Any) -> str:

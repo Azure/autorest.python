@@ -49,9 +49,8 @@ class DictionaryType(BaseType):
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")
 
-    @property
-    def docstring_text(self) -> str:
-        return f"dict mapping str to {self.element_type.docstring_text}"
+    def docstring_text(self, **kwargs: Any) -> str:
+        return f"dict mapping str to {self.element_type.docstring_text(**kwargs)}"
 
     @property
     def xml_serialization_ctxt(self) -> Optional[str]:

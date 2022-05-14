@@ -8,7 +8,7 @@ from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
 from .base_model import BaseModel
 from .base_type import BaseType
 from .imports import FileImport, ImportType
-from .primitive_types import BinaryType
+from .primitive_types import BinaryType, BinaryIteratorType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -55,7 +55,7 @@ class Response(BaseModel):
     @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
-        return isinstance(self.type, BinaryType)
+        return isinstance(self.type, BinaryIteratorType)
 
     @property
     def serialization_type(self) -> str:
@@ -72,21 +72,20 @@ class Response(BaseModel):
             return type_annot
         return "None"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         if self.nullable and self.type:
-            return f"{self.type.docstring_text} or None"
-        return self.type.docstring_text if self.type else ""
+            return f"{self.type.docstring_text(**kwargs)} or None"
+        return self.type.docstring_text(**kwargs) if self.type else ""
 
     def docstring_type(self, **kwargs: Any) -> str:
         if self.nullable and self.type:
             return f"{self.type.docstring_type(**kwargs)} or None"
         return self.type.docstring_type(**kwargs) if self.type else ""
 
-    def imports(self) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if self.type:
-            file_import.merge(self.type.imports(is_operation_file=True))
+            file_import.merge(self.type.imports(is_operation_file=True, **kwargs))
         if self.nullable:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
@@ -95,6 +94,14 @@ class Response(BaseModel):
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "Response":
+        type = (
+            code_model.lookup_type(id(yaml_data["type"]))
+            if yaml_data.get("type")
+            else None
+        )
+        # use ByteIteratorType if we are returning a binary type
+        if isinstance(type, BinaryType):
+            type = BinaryIteratorType(type.yaml_data, type.code_model)
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
@@ -102,9 +109,7 @@ class Response(BaseModel):
                 ResponseHeader.from_yaml(header, code_model)
                 for header in yaml_data["headers"]
             ],
-            type=code_model.lookup_type(id(yaml_data["type"]))
-            if yaml_data.get("type")
-            else None,
+            type=type,
         )
 
     def __repr__(self) -> str:

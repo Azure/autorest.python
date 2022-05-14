@@ -54,9 +54,8 @@ class CombinedType(BaseType):
             f"Is one of the following types: {', '.join([t.type for t in self.types])}"
         )
 
-    @property
-    def docstring_text(self) -> str:
-        return " or ".join(t.docstring_text for t in self.types)
+    def docstring_text(self, **kwargs: Any) -> str:
+        return " or ".join(t.docstring_text(**kwargs) for t in self.types)
 
     def docstring_type(self, **kwargs: Any) -> str:
         return " or ".join(t.docstring_type(**kwargs) for t in self.types)
