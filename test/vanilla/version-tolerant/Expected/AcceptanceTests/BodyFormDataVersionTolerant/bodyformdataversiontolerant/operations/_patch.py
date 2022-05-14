@@ -6,7 +6,7 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-from typing import Any, Dict, List, IO, cast, Union
+from typing import Any, Dict, List, Iterator, cast, Union
 
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import (
@@ -55,12 +55,12 @@ def _upload_file_deserialize(pipeline_response, **kwargs):
         map_error(status_code=response.status_code, response=response, error_map=error_map)
         raise HttpResponseError(response=response)
 
-    deserialized = response
+    deserialized = response.iter_bytes()
 
     if cls:
-        return cls(pipeline_response, cast(IO, deserialized), {})
+        return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
 
-    return cast(IO, deserialized)
+    return cast(Iterator[bytes], deserialized)
 
 
 def _upload_files_request(files: Dict[str, Any], **kwargs):
@@ -91,12 +91,12 @@ def _upload_files_deserialize(pipeline_response, **kwargs):
         map_error(status_code=response.status_code, response=response, error_map=error_map)
         raise HttpResponseError(response=response)
 
-    deserialized = response
+    deserialized = response.iter_bytes()
 
     if cls:
-        return cls(pipeline_response, cast(IO, deserialized), {})
+        return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
 
-    return cast(IO, deserialized)
+    return cast(Iterator[bytes], deserialized)
 
 
 class FormdataOperations(_FormdataOperations):
@@ -108,14 +108,14 @@ class FormdataOperations(_FormdataOperations):
         )
 
     @distributed_trace
-    def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # type: ignore # pylint: disable=arguments-differ
+    def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> Iterator[bytes]:  # type: ignore # pylint: disable=arguments-differ
         """Upload file.
 
         :param files: Multipart input for files. See the template in our example to find the input
          shape.
         :type files: dict[str, any]
-        :return: IO
-        :rtype: IO
+        :return: Iterator[bytes]
+        :rtype: Iterator[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -132,14 +132,14 @@ class FormdataOperations(_FormdataOperations):
         return _upload_file_deserialize(self._send_request(request, stream=True, **kwargs), **kwargs)
 
     @distributed_trace
-    def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # type: ignore # pylint: disable=arguments-differ
+    def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> Iterator[bytes]:  # type: ignore # pylint: disable=arguments-differ
         """Upload multiple files.
 
         :param files: Multipart input for files. See the template in our example to find the input
          shape.
         :type files: dict[str, any]
-        :return: IO
-        :rtype: IO
+        :return: Iterator[bytes]
+        :rtype: Iterator[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:

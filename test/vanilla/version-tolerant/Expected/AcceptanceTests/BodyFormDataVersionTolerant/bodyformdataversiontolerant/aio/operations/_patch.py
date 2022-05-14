@@ -6,7 +6,7 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-from typing import Any, Dict, List, IO
+from typing import Any, AsyncIterator, Dict, List
 
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.rest import HttpRequest
@@ -28,14 +28,14 @@ class FormdataOperations(_FormdataOperations):
         return await self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace_async
-    async def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # type: ignore # pylint: disable=arguments-differ
+    async def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> AsyncIterator[bytes]:  # type: ignore # pylint: disable=arguments-differ
         """Upload file.
 
         :param files: Multipart input for files. See the template in our example to find the input
          shape.
         :type files: dict[str, any]
-        :return: IO
-        :rtype: IO
+        :return: AsyncIterator[bytes]
+        :rtype: AsyncIterator[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -52,14 +52,14 @@ class FormdataOperations(_FormdataOperations):
         return _upload_file_deserialize(await self._send_request(request, stream=True, **kwargs), **kwargs)
 
     @distributed_trace_async
-    async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # type: ignore # pylint: disable=arguments-differ
+    async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> AsyncIterator[bytes]:  # type: ignore # pylint: disable=arguments-differ
         """Upload multiple files.
 
         :param files: Multipart input for files. See the template in our example to find the input
          shape.
         :type files: dict[str, any]
-        :return: IO
-        :rtype: IO
+        :return: AsyncIterator[bytes]
+        :rtype: AsyncIterator[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
