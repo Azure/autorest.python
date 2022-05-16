@@ -30,9 +30,11 @@ The rest of the archboard is split into two large chunks. In the first half, Yuc
 
 ## Developer Experience
 
+Hello, everyone. I am going to introduce `Developer Expericence of DPG` with some scenario cases and the little difference between legacy and DPG. First, let us start with `Creating a client`
+
 ### Creating A Client
 
-The end-users experience of creating a client is the same as it was before. We are not compromising on any user input here, this behavior is consistent with Python guidelines and existing user behavior.
+As you can see, the end-users experience of creating a client is the same as it was before. We are not compromising on any user input here, this behavior is consistent with Python guidelines and existing user behavior.
 
 ### Simple GET Request
 
@@ -41,7 +43,7 @@ The overall flow of all operation calls are largely the same as before. Users mu
 There are two main things I want to talk about with these basic REST calls.
 
 1. You can see here that we've moved all query and header parameters to keyword-only. This really solves all of our potential versioning issues with parameter ordering. Since path parameters are always required, we are comfortable including them as positional arguments, and we are positioning them based on their location in the url. The body parameter will always be the last positional argument. Finally, all query and header parameters are keyword-only, they're kind of in Python's options bag where ordering doesn't matter.
-2. We are going from returning models to just returning raw JSON, which is mentioned before as `No Models`. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
+2. We are going from returning models to just returning raw JSON, which is mentioned before as `No Models`. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. Please see the `User behavior change part`, **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the JSON inputs and outputs are documented for users. Please see next part.
 
 
 ### Creating POST Request
@@ -53,11 +55,17 @@ We have invested a lot of effort into good docs even though we are removing mode
 Now, it's even easier for users to input their bodies, because they can directly copy the template, fill in the information,
 and pass that to the service. This also removes a lot of the imports and lines that they'd have to dedicate to importing and initializing these models before passing them to the server.
 
-(show DPG `# OR` part)
+(show Generation Diff)
 
-We've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service**. None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan has been wanting to solve for a long time, and now we have a well-typed solution for users.
+You can see that: we've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service**. 
 
-I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity. These are for intellisense purposes only.
+(show User Behavior Diff)
+
+Please see `User Behavior Diff`, it can help us quickly understand the convenience of these overloads function. Compared with using models, users can stream serialized JSON straight to the service. And It is really helpful for large models.
+
+None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan and Python SDK team have been wanting to solve for a long time, and now we have a well-typed solution for users.
+
+I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity and these are for intellisense purposes only.
 
 
 ### Break the Glass
@@ -68,13 +76,17 @@ Our DPG clients all come with a `send_request` function on a client. Here, you c
 
 In the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
 
-In the second example, we are making a request to a whole new URL. Both of these scenarios are possible.
+In the second example, we are making a request to a whole new URL. 
+
+Both of these scenarios are possible.
 
 One file note is the `raise_for_status()`. This method on the response is common across all Python stack libraries, and it raises an `HttpResponseError` if the status code is 400 and up.
 
+That's all my part. Any questions? If no more questions, Changelog will go on for the rest.
 
 --------------------------------- Changlong ---------------------------------
 Thanks YuChao, so let me start with Streams
+
 ### Streams
 
 Streams can be used to transfer large ammounts of data without using big memory. First let's take a look at the stream as Inputs. 
@@ -89,6 +101,7 @@ With streamed outputs, generation and user behavior stays the same as well.
 
 
 OK, the next part is the "Multiple Content and Body Types".
+
 ### Multiple Content and Body Types
 
 We have improved the way we deal with multiple content and body types. We now do some body type sniffing on input bodies, and based off of the inputted body type, we default to a content type.
@@ -125,6 +138,7 @@ OK, that's the talk about the multiple media and content type. Is there question
 
 
 Let's go to LROs
+
 ### LROs
 
 LROs are like what we have right now, with the exception of users dealing with raw JSON instead of models.
@@ -137,6 +151,7 @@ And of course, We also accept overloads here for streamed inputs as well.(in all
 In the user behaviour diff, first the user use JSON as body parameter directly instead of models, secondly, the user access the response properties with JSON style(bracket index) instead of by a model like the legcy part.
 
 Let's go to Paging.
+
 ### Paging
 
 Paging is also the same as right now, with the exception of raw JSON instead of models
