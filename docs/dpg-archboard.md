@@ -43,7 +43,7 @@ The overall flow of all operation calls are largely the same as before. Users mu
 There are two main things I want to talk about with these basic REST calls.
 
 1. You can see here that we've moved all query and header parameters to keyword-only. This really solves all of our potential versioning issues with parameter ordering. Since path parameters are always required, we are comfortable including them as positional arguments, and we are positioning them based on their location in the url. The body parameter will always be the last positional argument. Finally, all query and header parameters are keyword-only, they're kind of in Python's options bag where ordering doesn't matter.
-2. We are going from returning models to just returning raw JSON, which is mentioned before as `No Models`. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. Please see the `User behavior change part`, **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the JSON inputs and outputs are documented for users. Please see next part.
+2. We are going from returning models to just returning raw JSON, which is mentioned before as `No Models`. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. Please see the `User Behavior Diff part`, **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the JSON inputs and outputs are documented for users. Please see next part.
 
 
 ### Creating POST Request
@@ -57,13 +57,11 @@ and pass that to the service. This also removes a lot of the imports and lines t
 
 (show Generation Diff)
 
-You can see that: we've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service**. 
+You can see that: we've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who just want a JSON input instead of reading large models into memory**. With DPG, they are now able to stream serialized JSON straight to the service. 
 
 (show User Behavior Diff)
 
-Please see `User Behavior Diff`, it can help us quickly understand the convenience of these overloads function. Compared with using models, users can stream serialized JSON straight to the service. And It is really helpful for large models.
-
-None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan and Python SDK team have been wanting to solve for a long time, and now we have a well-typed solution for users.
+Please see `User Behavior Diff`, it can help us quickly understand the convenience of these overloads function. Compared with using models, users can stream serialized JSON straight to the service. And It is really helpful for large and complicated models. None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan and Python SDK team have been wanting to solve for a long time, and now we have a well-typed solution for users.
 
 I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity and these are for intellisense purposes only.
 
@@ -74,7 +72,7 @@ Our DPG clients all come with a `send_request` function on a client. Here, you c
 
 (show `User Behavior Diff`)
 
-In the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
+Please see `User Behavior Diff`,  in the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
 
 In the second example, we are making a request to a whole new URL. 
 
@@ -82,7 +80,9 @@ Both of these scenarios are possible.
 
 One file note is the `raise_for_status()`. This method on the response is common across all Python stack libraries, and it raises an `HttpResponseError` if the status code is 400 and up.
 
-That's all my part. Any questions? If no more questions, Changelog will go on for the rest.
+That's all my part. Any questions? ...
+
+If no more questions, Changelog will go on for the rest.
 
 --------------------------------- Changlong ---------------------------------
 Thanks YuChao, so let me start with Streams
