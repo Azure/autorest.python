@@ -71,6 +71,10 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
     for parameter in yaml_data["parameters"]:
         update_parameter(parameter)
 
+def update_paging_response(yaml_data: Dict[str, Any]) -> None:
+    yaml_data["type"] = "paging"
+    yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
+    yaml_data['pagerAsync'] = yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
 
 class Namer(YamlUpdatePlugin):
     """Add Python naming information."""
@@ -105,29 +109,33 @@ class Namer(YamlUpdatePlugin):
                 update_parameter(entry)
         for overload in yaml_data.get("overloads", []):
             self.update_operation(overload)
+        for response in yaml_data.get("responses", []):
+            response["type"] = "operation"
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
-        if not yaml_data.get("pollerSync"):
-            yaml_data["pollerSync"] = "azure.core.polling.LROPoller"
-        if not yaml_data.get("pollerAsync"):
-            yaml_data["pollerAsync"] = "azure.core.polling.AsyncLROPoller"
-        if not yaml_data.get("pollingMethodSync"):
-            yaml_data["pollingMethodSync"] = (
-                "azure.mgmt.core.polling.arm_polling.ARMPolling"
-                if azure_arm
-                else "azure.core.polling.base_polling.LROBasePolling"
-            )
-        if not yaml_data.get("pollingMethodAsync"):
-            yaml_data["pollingMethodAsync"] = (
-                "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
-                if azure_arm
-                else "azure.core.polling.async_base_polling.AsyncLROBasePolling"
-            )
+        for response in yaml_data.get("responses", []):
+            response["type"] = "lro"
+            response["pollerSync"] = response.get("pollerSync") or "azure.core.polling.LROPoller"
+            response["pollerAsync"] = response.get("pollerAsync") or "azure.core.polling.AsyncLROPoller"
+            if not response.get("pollingMethodSync"):
+                response["pollingMethodSync"] = (
+                    "azure.mgmt.core.polling.arm_polling.ARMPolling"
+                    if azure_arm
+                    else "azure.core.polling.base_polling.LROBasePolling"
+                )
+            if not response.get("pollingMethodAsync"):
+                response["pollingMethodAsync"] = (
+                    "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
+                    if azure_arm
+                    else "azure.core.polling.async_base_polling.AsyncLROBasePolling"
+                )
 
     def update_lro_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_lro_operation(yaml_data)
         self.update_paging_operation(yaml_data)
+        for response in yaml_data.get("responses", []):
+            response["type"] = "lropaging"
 
     def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_operation(yaml_data)
@@ -148,6 +156,10 @@ class Namer(YamlUpdatePlugin):
             yaml_data["nextOperation"]["groupName"] = to_snake_case(
                 yaml_data["nextOperation"]["groupName"]
             )
+            for response in yaml_data["nextOperation"].get("responses", []):
+                update_paging_response(response)
+        for response in yaml_data.get("responses", []):
+            update_paging_response(response)
 
     def update_operation_groups(self, yaml_data: Dict[str, Any]) -> None:
         operation_groups_yaml_data = yaml_data["operationGroups"]

@@ -333,14 +333,15 @@ def add_lro_information(operation: Dict[str, Any], yaml_data: Dict[str, Any]) ->
     operation["discriminator"] = "lro"
     extensions = yaml_data["extensions"]
     operation["lroOptions"] = extensions.get("x-ms-long-running-operation-options")
-    operation["pollerSync"] = extensions.get("x-python-custom-poller-sync")
-    operation["pollerAsync"] = extensions.get("x-python-custom-poller-async")
-    operation["pollingMethodSync"] = extensions.get(
-        "x-python-custom-default-polling-method-sync"
-    )
-    operation["pollingMethodAsync"] = extensions.get(
-        "x-python-custom-default-polling-method-async"
-    )
+    for response in operation["responses"]:
+        response["pollerSync"] = extensions.get("x-python-custom-poller-sync")
+        response["pollerAsync"] = extensions.get("x-python-custom-poller-async")
+        response["pollingMethodSync"] = extensions.get(
+            "x-python-custom-default-polling-method-sync"
+        )
+        response["pollingMethodAsync"] = extensions.get(
+            "x-python-custom-default-polling-method-async"
+        )
 
 
 def filter_out_paging_next_operation(
@@ -564,8 +565,9 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 ],
             )
         extensions = yaml_data["extensions"]
-        operation["pagerSync"] = extensions.get("x-python-custom-pager-sync")
-        operation["pagerAsync"] = extensions.get("x-python-custom-pager-async")
+        for response in operation["responses"]:
+            response["pagerSync"] = extensions.get("x-python-custom-pager-sync")
+            response["pagerAsync"] = extensions.get("x-python-custom-pager-async")
 
     def update_paging_operation(
         self, group_name: str, yaml_data: Dict[str, Any]
