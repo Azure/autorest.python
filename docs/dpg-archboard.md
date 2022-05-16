@@ -30,9 +30,11 @@ The rest of the archboard is split into two large chunks. In the first half, Yuc
 
 ## Developer Experience
 
+Hello, everyone. I am going to introduce `Developer Expericence of DPG` with some scenario cases and the little difference between legacy and DPG. First, let us start with `Creating a client`
+
 ### Creating A Client
 
-The end-users experience of creating a client is the same as it was before. We are not compromising on any user input here, this behavior is consistent with Python guidelines and existing user behavior.
+As you can see, the end-users experience of creating a client is the same as it was before. We are not compromising on any user input here, this behavior is consistent with Python guidelines and existing user behavior.
 
 ### Simple GET Request
 
@@ -41,7 +43,7 @@ The overall flow of all operation calls are largely the same as before. Users mu
 There are two main things I want to talk about with these basic REST calls.
 
 1. You can see here that we've moved all query and header parameters to keyword-only. This really solves all of our potential versioning issues with parameter ordering. Since path parameters are always required, we are comfortable including them as positional arguments, and we are positioning them based on their location in the url. The body parameter will always be the last positional argument. Finally, all query and header parameters are keyword-only, they're kind of in Python's options bag where ordering doesn't matter.
-2. We are going from returning models to just returning raw JSON, which is mentioned before as `No Models`. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the model inputs and outputs are documented for users.
+2. We are going from returning models to just returning raw JSON, which is mentioned before as `No Models`. We want to be very clear here: Python believes its DPG story is complete without models and just returning raw JSON. Please see the `User Behavior Diff part`, **Python users are very comfortable with JSON bodies, and in fact we have gotten numerous issues over the years from customers just asking for raw JSON**. Additionally, we have also invested a lot of effort in making sure the structure of the JSON inputs and outputs are documented for users. Please see next part.
 
 
 ### Creating POST Request
@@ -53,11 +55,15 @@ We have invested a lot of effort into good docs even though we are removing mode
 Now, it's even easier for users to input their bodies, because they can directly copy the template, fill in the information,
 and pass that to the service. This also removes a lot of the imports and lines that they'd have to dedicate to importing and initializing these models before passing them to the server.
 
-(show DPG `# OR` part)
+(show Generation Diff)
 
-We've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who don't want to read large models into memory just to pass them as a JSON input. Instead, they are now able to stream serialized JSON straight to the service**. None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan has been wanting to solve for a long time, and now we have a well-typed solution for users.
+You can see that: we've also additionally added overloads for post methods where the input is a JSON type. **These overloads will be helpful to people who just want a JSON input instead of reading large models into memory**. With DPG, they are now able to stream serialized JSON straight to the service. 
 
-I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity. These are for intellisense purposes only.
+(show User Behavior Diff)
+
+Please see `User Behavior Diff`, it can help us quickly understand the convenience of these overloads function. Compared with using models, users can stream serialized JSON straight to the service. And It is really helpful for large and complicated models. None of our SDKs do this yet, and it's not in the Python guidelines, but this is an issue that Johan and Python SDK team have been wanting to solve for a long time, and now we have a well-typed solution for users.
+
+I also want to be clear that these overloads DO NOT mean C# overloads, these don't add time or space complexity and these are for intellisense purposes only.
 
 
 ### Break the Glass
@@ -66,18 +72,24 @@ Our DPG clients all come with a `send_request` function on a client. Here, you c
 
 (show `User Behavior Diff`)
 
-In the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
+Please see `User Behavior Diff`,  in the first example, we are making a request with a relative URL. This url will be formatted relative to the endpoint we initialized the client with.
 
-In the second example, we are making a request to a whole new URL. Both of these scenarios are possible.
+In the second example, we are making a request to a whole new URL. 
+
+Both of these scenarios are possible.
 
 One file note is the `raise_for_status()`. This method on the response is common across all Python stack libraries, and it raises an `HttpResponseError` if the status code is 400 and up.
 
+That's all my part. Any questions? ...
+
+If no more questions, Changelog will go on for the rest.
 
 --------------------------------- Changlong ---------------------------------
+Thanks YuChao, so let me start with Streams
 
 ### Streams
 
-Streams can be used to transfer large ammounts of data without using too big memory.
+Streams can be used to transfer large ammounts of data without using big memory. First let's take a look at the stream as Inputs. 
 
 #### Inputs
 
@@ -87,15 +99,24 @@ The way users stream inputs to services stays the same. The only change here is 
 
 With streamed outputs, generation and user behavior stays the same as well.
 
+
+OK, the next part is the "Multiple Content and Body Types".
+
 ### Multiple Content and Body Types
 
 We have improved the way we deal with multiple content and body types. We now do some body type sniffing on input bodies, and based off of the inputted body type, we default to a content type.
 
-Here, the service accepts either a stream body or a JSON body. They've listed their content types as `"application/octet-stream"` and `"application/json"`. If Python sees `"application/octet-stream"`, we default IO bodies to this behavior. For other possible IO content types, like `"application/pdf"`, we make users be clear and input their content type, `"application/octet-stream"` is the only value we default to if listed in the swagger, because a lot of transports end up defaulting to this content type for streamed inputs. For JSON inputs, we default to `"application/json"` if it is included in the swagger.
+Here in the example generated code: This is not a real service, we have a testcase that the service accepts either a stream body or a JSON body. They've listed their content types as `"application/octet-stream"` and `"application/json"`. Since Python sees `"application/octet-stream"` in consumed media type, we default IO bodies to this behavior(that's octet-stream as the default content_type). For other possible IO content types, like `"application/pdf"`, we require users be clear and input their content type, so `"application/octet-stream"` is the only value we default to if listed in the swagger, because a lot of transports end up defaulting to this content type for streamed inputs. For JSON inputs, we default to `"application/json"` if it is included in the swagger.
+
+So for the generated code, 
+The first overloaded function define typing for an input body parameter of type `JSON`, then the default content_type is `"application/JSON"`; the second overloaded function define typing for an input parameter of type `IO`, for this case the default content_type is `"application/octet-stream"`.
+
+Then in the User behaviour differences: in Legacy user code, though the user don't need to provide content_type when he/she is using model( which is equivalent to to JSON in DPG) as input, the user need to provide the content_type as octet-stream when he/she is handling input as stream IO; Then let's take a look at the DPG user code, the user don't need to provide content_type when handling JSON, and more important the user still don't need to provide content type when handling IO stream, that's because now the Python DPG SDK is smart enough to choose the correct content type for the user.
+
 
 This also is probably one of the more controversial parts of our design, and that's because as a huge edge case, we have a potential for breaking changes in immediate generation, and here's the edge case we're talking about:
 
-Say a service team starts out by just accepting a JSON input to an endpoint. Then our initial generation of this SDK with our DPG code generator will add an overload so users can pass in streamed body with default content type `"application/json"`. Then, if the service team says "now I accept a streamed body and content type `"application/octet-stream"`", the default content type or streamed input bodies will change from `"application/json"` to `"application/octet-stream"`.
+Say a service team starts out by just accepting a JSON input to an endpoint. Then our initial generation of this SDK with our DPG code generator will add an overload so users can pass in streamed body with default content type `"application/json"`. Then, if the service team says "now I accept a streamed body and content type `"application/octet-stream"`", the default content type for streamed input bodies will change from `"application/json"` to `"application/octet-stream"`.
 
 The reasons why we're ok with breaking in this scenario are because
 
@@ -110,14 +131,26 @@ of a technically breaking change we can easily catch and make non-breaking befor
 DPG code: https://github.com/Azure/autorest.python/blob/archboard_docs/test/vanilla/version-tolerant/Expected/AcceptanceTests/MediaTypesVersionTolerant/mediatypesversiontolerant/_operations/_operations.py#L180
 Legacy code: https://github.com/Azure/autorest.python/blob/archboard_docs/test/vanilla/legacy/Expected/AcceptanceTests/MediaTypes/mediatypes/operations/_media_types_client_operations.py#L229
 
+
+OK, that's the talk about the multiple media and content type. Is there questions about this part?
+
+
+
+
+Let's go to LROs
+
 ### LROs
 
-LROs are like what we have right now, with the exception of us dealing with raw JSON instead of models.
+LROs are like what we have right now, with the exception of users dealing with raw JSON instead of models.
 
-Here is another input template we have for users: https://azuresdkdocs.blob.core.windows.net/$web/python/azure-iot-deviceupdate/1.0.0b2/azure.iot.deviceupdate.operations.html#azure.iot.deviceupdate.operations.DeviceUpdateOperations.begin_import_update
+Here is another input template we have for users: https://azuresdkdocs.blob.core.windows.net/$web/python/azure-iot-deviceupdate/1.0.0b2/azure.iot.deviceupdate.operations.html#azure.iot.deviceupdate.operations.DeviceUpdateOperations.begin_import_update, the user can copy input directly as JSON to feed the operation in DPG SDK.
 
-We also accept overloads here for streamed inputs in all cases with JSON model inputs as well.
+In the generated diff, the parameter action is no longer a positional parameter because it's not a path or body parameter, 
+And of course, We also accept overloads here for streamed inputs as well.(in all cases with JSON model inputs, we support IO and JSON overloads)
 
+In the user behaviour diff, first the user use JSON as body parameter directly instead of models, secondly, the user access the response properties with JSON style(bracket index) instead of by a model like the legcy part.
+
+Let's go to Paging.
 
 ### Paging
 
@@ -129,6 +162,9 @@ for page in pages:
     print(page["id"])                       # Be page.id in legacy
 ```
 
+The generation diff and the user behaviour diff are almost in the same pattern with LROs I just talking before. that's to say two differences: first use JSON directly in operation parameter, and secondly use JSON directly in the returned response value.
+
+OK, that's all of my part of introduction, I will deliver back to Isabella if no other questions.
 --------------------------------------------------------------------------
 
 --------------------------------- Isabella ---------------------------------
