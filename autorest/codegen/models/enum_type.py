@@ -100,7 +100,7 @@ class EnumType(BaseType):
         enum_description = f"Known values are: {possible_values_str}."
         return enum_description
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
@@ -108,10 +108,10 @@ class EnumType(BaseType):
         """
         if self.code_model.options["models_mode"]:
             return (
-                f"Union[{self.value_type.type_annotation(is_operation_file=is_operation_file)},"
+                f"Union[{self.value_type.type_annotation(**kwargs)},"
                 f' "_models.{self.name}"]'
             )
-        return self.value_type.type_annotation(is_operation_file=is_operation_file)
+        return self.value_type.type_annotation(**kwargs)
 
     def get_declaration(self, value: Any) -> str:
         return self.value_type.get_declaration(value)
@@ -122,12 +122,11 @@ class EnumType(BaseType):
             return self.name
         return self.value_type.type_annotation()
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation."""
         if self.code_model.options["models_mode"]:
-            return f"{self.value_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
-        return self.value_type.type_annotation()
+            return f"{self.value_type.type_annotation(**kwargs)} or ~{self.code_model.namespace}.models.{self.name}"
+        return self.value_type.type_annotation(**kwargs)
 
     def get_json_template_representation(
         self,
@@ -170,7 +169,8 @@ class EnumType(BaseType):
             ],
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
+        is_operation_file = kwargs.pop("is_operation_file", False)
         file_import = FileImport()
         if self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
@@ -183,5 +183,7 @@ class EnumType(BaseType):
                     typing_section=TypingSection.TYPING,
                     alias="_models",
                 )
-        file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
+        file_import.merge(
+            self.value_type.imports(is_operation_file=is_operation_file, **kwargs)
+        )
         return file_import

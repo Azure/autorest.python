@@ -29,14 +29,12 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
     ) -> str:
         return ""
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
-        return self.docstring_type
+    def type_annotation(self, **kwargs: Any) -> str:
+        return self.docstring_type(**kwargs)
 
     @property
     def docstring_text(self) -> str:
-        return self.docstring_type
+        return self.docstring_type()
 
     def get_json_template_representation(
         self,
@@ -69,7 +67,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
 
     @property
     def default_template_representation_declaration(self) -> str:
-        return self.get_declaration(self.docstring_type)
+        return self.get_declaration(self.docstring_type())
 
 
 class BooleanType(PrimitiveType):
@@ -77,8 +75,7 @@ class BooleanType(PrimitiveType):
     def serialization_type(self) -> str:
         return "bool"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "bool"
 
     @property
@@ -95,14 +92,11 @@ class BinaryType(PrimitiveType):
     def serialization_type(self) -> str:
         return self.type
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return self.type
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
-        return self.docstring_type
+    def type_annotation(self, **kwargs: Any) -> str:
+        return self.docstring_type(**kwargs)
 
     @property
     def docstring_text(self) -> str:
@@ -112,9 +106,7 @@ class BinaryType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(b"bytes")
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
         return file_import
@@ -129,22 +121,17 @@ class AnyType(PrimitiveType):
     def serialization_type(self) -> str:
         return "object"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "any"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "Any"
 
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration({})
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -163,13 +150,10 @@ class AnyObjectType(PrimitiveType):
     def serialization_type(self) -> str:
         return "object"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "JSON"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "JSON"
 
     @property
@@ -180,9 +164,7 @@ class AnyObjectType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, MutableMapping)"
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.define_mutable_mapping_type()
         file_import.add_import("sys", ImportType.STDLIB)
@@ -237,7 +219,7 @@ class NumberType(PrimitiveType):  # pylint: disable=abstract-method
 
     @property
     def default_template_representation_declaration(self) -> str:
-        default_value = 0 if self.docstring_type == "int" else 0.0
+        default_value = 0 if self.docstring_type() == "int" else 0.0
         return self.get_declaration(default_value)
 
 
@@ -246,13 +228,10 @@ class IntegerType(NumberType):
     def serialization_type(self) -> str:
         return "int"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "int"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "int"
 
     @property
@@ -269,13 +248,10 @@ class FloatType(NumberType):
     def serialization_type(self) -> str:
         return "float"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "float"
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "float"
 
     @property
@@ -326,8 +302,7 @@ class StringType(PrimitiveType):
     def serialization_type(self) -> str:
         return "str"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "str"
 
     @property
@@ -352,13 +327,10 @@ class DatetimeType(PrimitiveType):
         }
         return formats_to_attribute_type[self.format]
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.datetime"
 
     @property
@@ -371,9 +343,7 @@ class DatetimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -392,13 +362,10 @@ class TimeType(PrimitiveType):
     def serialization_type(self) -> str:
         return "time"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.time"
 
     @property
@@ -411,9 +378,7 @@ class TimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -432,13 +397,10 @@ class UnixTimeType(PrimitiveType):
     def serialization_type(self) -> str:
         return "unix-time"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.datetime"
 
     @property
@@ -451,9 +413,7 @@ class UnixTimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -472,13 +432,10 @@ class DateType(PrimitiveType):
     def serialization_type(self) -> str:
         return "date"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.date"
 
     @property
@@ -491,9 +448,7 @@ class DateType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -512,13 +467,10 @@ class DurationType(PrimitiveType):
     def serialization_type(self) -> str:
         return "duration"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         return "datetime.timedelta"
 
     @property
@@ -531,9 +483,7 @@ class DurationType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -558,8 +508,7 @@ class ByteArraySchema(PrimitiveType):
             return "base64"
         return "bytearray"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         return "bytes"
 
     def get_declaration(self, value: str) -> str:

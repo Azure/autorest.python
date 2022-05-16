@@ -75,7 +75,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         file_import = FileImport()
         if not self.abstract:
             for parameter in self.parameters.method:
-                file_import.merge(parameter.imports())
+                file_import.merge(parameter.imports(async_mode=False))
 
         file_import.add_submodule_import(
             "azure.core.rest",

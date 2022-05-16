@@ -63,9 +63,10 @@ class Response(BaseModel):
             return self.type.serialization_type
         return "None"
 
-    def type_annotation(self) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         if self.type:
-            type_annot = self.type.type_annotation(is_operation_file=True)
+            kwargs["is_operation_file"] = True
+            type_annot = self.type.type_annotation(**kwargs)
             if self.nullable:
                 return f"Optional[{type_annot}]"
             return type_annot
@@ -77,11 +78,10 @@ class Response(BaseModel):
             return f"{self.type.docstring_text} or None"
         return self.type.docstring_text if self.type else ""
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         if self.nullable and self.type:
-            return f"{self.type.docstring_type} or None"
-        return self.type.docstring_type if self.type else ""
+            return f"{self.type.docstring_type(**kwargs)} or None"
+        return self.type.docstring_type(**kwargs) if self.type else ""
 
     def imports(self) -> FileImport:
         file_import = FileImport()
