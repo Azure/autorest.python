@@ -21,6 +21,7 @@ class ResponseHeader(BaseModel):
         super().__init__(yaml_data, code_model)
         self.rest_api_name: str = yaml_data["restApiName"]
         self.type = type
+        self.discriminator: str = yaml_data["discriminator"]
 
     @property
     def serialization_type(self) -> str:
@@ -114,3 +115,172 @@ class Response(BaseModel):
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.status_codes}>"
+
+class PagingResponse(Response):
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.item_name_class = self.code_model.lookup_type(id(self.yaml_data["itemNameClass"]))
+
+    def get_pager_path(self, async_mode: bool) -> str:
+        return (
+            self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
+        )
+
+    def get_pager(self, async_mode: bool) -> str:
+        return self.get_pager_path(async_mode).split(".")[-1]
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        iterable = "AsyncIterable" if kwargs["async_mode"] else "Iterable"
+        return f"{iterable}[{self.item_name_class.type_annotation(**kwargs)}]"
+
+    def docstring_text(self, **kwargs: Any) -> str:
+        base_description = "An iterator like instance of "
+        if not self.code_model.options["version_tolerant"]:
+            base_description += "either "
+        return base_description + self.item_name_class.docstring_text(**kwargs)
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return f"~{self.get_pager_path(kwargs['async_mode'])}[{self.item_name_class.docstring_type(**kwargs)}]"
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        async_mode = kwargs.pop("async_mode")
+        if async_mode:
+            file_import.add_submodule_import(
+                "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
+            )
+        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
+        pager = self.get_pager(async_mode)
+
+        file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE)
+        return file_import
+
+class LROResponse(Response):
+    def get_poller_path(self, async_mode: bool) -> str:
+        return (
+            self.yaml_data["pollerAsync"]
+            if async_mode
+            else self.yaml_data["pollerSync"]
+        )
+
+    def get_poller(self, async_mode: bool) -> str:
+        """Get the name of the poller. Default is LROPoller / AsyncLROPoller"""
+        return self.get_poller_path(async_mode).split(".")[-1]
+
+    def get_polling_method_path(self, async_mode: bool) -> str:
+        """Get the full name of the poller path. Default are the azure core pollers"""
+        return (
+            self.yaml_data["pollingMethodAsync"]
+            if async_mode
+            else self.yaml_data["pollingMethodSync"]
+        )
+
+    def get_polling_method(self, async_mode: bool) -> str:
+        """Get the default pollint method"""
+        return self.get_polling_method_path(async_mode).split(".")[-1]
+
+    @staticmethod
+    def get_no_polling_method_path(async_mode: bool) -> str:
+        """Get the path of the default of no polling method"""
+        return f"azure.core.polling.{'Async' if async_mode else ''}NoPolling"
+
+    def get_no_polling_method(self, async_mode: bool) -> str:
+        """Get the default no polling method"""
+        return self.get_no_polling_method_path(async_mode).split(".")[-1]
+
+    @staticmethod
+    def get_base_polling_method_path(async_mode: bool) -> str:
+        """Get the base polling method path. Used in docstrings and type annotations."""
+        return f"azure.core.polling.{'Async' if async_mode else ''}PollingMethod"
+
+    def get_base_polling_method(self, async_mode: bool) -> str:
+        """Get the base polling method."""
+        return self.get_base_polling_method_path(async_mode).split(".")[-1]
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        return f"{self.get_poller(kwargs.pop('async_mode'))}[{super().type_annotation(**kwargs)}]"
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{super().docstring_type(**kwargs)}]"
+
+    def docstring_text(self, **kwargs) -> str:
+        super_text = super().docstring_text(**kwargs)
+        base_description = (
+            f"An instance of {self.get_poller(kwargs.pop('async_mode'))} that returns "
+        )
+        if not self.code_model.options["version_tolerant"]:
+            base_description += "either "
+        return base_description + super_text
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        async_mode = kwargs["async_mode"]
+
+        poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
+        poller = self.get_poller(async_mode)
+        file_import.add_submodule_import(
+            poller_import_path, poller, ImportType.AZURECORE
+        )
+
+        default_polling_method_import_path = ".".join(
+            self.get_polling_method_path(async_mode).split(".")[:-1]
+        )
+        default_polling_method = self.get_polling_method(async_mode)
+        file_import.add_submodule_import(
+            default_polling_method_import_path,
+            default_polling_method,
+            ImportType.AZURECORE,
+        )
+        default_no_polling_method_import_path = ".".join(
+            self.get_no_polling_method_path(async_mode).split(".")[:-1]
+        )
+        default_no_polling_method = self.get_no_polling_method(async_mode)
+        file_import.add_submodule_import(
+            default_no_polling_method_import_path,
+            default_no_polling_method,
+            ImportType.AZURECORE,
+        )
+
+        base_polling_method_import_path = ".".join(
+            self.get_base_polling_method_path(async_mode).split(".")[:-1]
+        )
+        base_polling_method = self.get_base_polling_method(async_mode)
+        file_import.add_submodule_import(
+            base_polling_method_import_path, base_polling_method, ImportType.AZURECORE
+        )
+
+        return file_import
+
+class LROPagingResponse(LROResponse, PagingResponse):
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        paging_type_annotation = PagingResponse.type_annotation(self, **kwargs)
+        return f"{self.get_poller(kwargs.pop('async_mode'))}[{paging_type_annotation}]"
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        paging_docstring_type = PagingResponse.docstring_type(self, **kwargs)
+        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{paging_docstring_type}]"
+
+    def docstring_text(self, **kwargs) -> str:
+        base_description = (
+            "An instance of LROPoller that returns an iterator like instance of "
+        )
+        if not self.code_model.options["version_tolerant"]:
+            base_description += "either "
+        return base_description + Response.docstring_text(self)
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = LROResponse.imports(self, **kwargs)
+        file_import.merge(PagingResponse.imports(self, **kwargs))
+        return file_import
+
+
+def get_response(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Response:
+    if yaml_data["discriminator"] == "lropaging":
+        return LROPagingResponse.from_yaml(yaml_data, code_model)
+    if yaml_data["discriminator"] == "lro":
+        return LROResponse.from_yaml(yaml_data, code_model)
+    if yaml_data["discriminator"] == "paging":
+        return PagingResponse.from_yaml(yaml_data, code_model)
+    return Response.from_yaml(yaml_data, code_model)

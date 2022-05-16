@@ -12,15 +12,17 @@ from typing import (
     Optional,
     Union,
     TYPE_CHECKING,
+    Generic,
+    TypeVar
 )
 
-from autorest.codegen.models.request_builder_parameter import RequestBuilderParameter
+from .request_builder_parameter import RequestBuilderParameter
 
 from .utils import OrderedSet
 
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
-from .response import Response
+from .response import Response, PagingResponse, get_response
 from .parameter import (
     BodyParameter,
     MultipartBodyParameter,
@@ -36,8 +38,9 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+ResponseType = TypeVar("ResponseType", bound=Union[Response, PagingResponse])
 
-class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-methods
+class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylint: disable=too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -45,8 +48,8 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         name: str,
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
         parameters: ParameterList,
-        responses: List[Response],
-        exceptions: List[Response],
+        responses: List[ResponseType],
+        exceptions: List[ResponseType],
         *,
         overloads: Optional[List["Operation"]] = None,
         public: bool = True,
@@ -157,7 +160,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         return "'object'"
 
     @property
-    def non_default_errors(self) -> List[Response]:
+    def non_default_errors(self) -> List[ResponseType]:
         return [e for e in self.exceptions if "default" not in e.status_codes]
 
     @property
@@ -356,7 +359,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
 
     def get_response_from_status(
         self, status_code: Optional[Union[str, int]]
-    ) -> Response:
+    ) -> ResponseType:
         try:
             return next(r for r in self.responses if status_code in r.status_codes)
         except StopIteration:
@@ -391,9 +394,9 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         name = yaml_data["name"]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
-        responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
+        responses = [get_response(r, code_model) for r in yaml_data["responses"]]
         exceptions = [
-            Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
+            get_operation(e, code_model) for e in yaml_data["exceptions"]
         ]
         parameter_list = ParameterList.from_yaml(yaml_data, code_model)
         overloads = [
@@ -428,8 +431,10 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             abstract=abstract,
         )
 
+class Operation(OperationBase[Response]):
+    ...
 
-def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Operation:
+def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":
         from .lro_paging_operation import LROPagingOperation as OperationCls
     elif yaml_data["discriminator"] == "lro":

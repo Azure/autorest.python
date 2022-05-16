@@ -72,7 +72,7 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
         update_parameter(parameter)
 
 def update_paging_response(yaml_data: Dict[str, Any]) -> None:
-    yaml_data["type"] = "paging"
+    yaml_data["discriminator"] = "paging"
     yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
     yaml_data['pagerAsync'] = yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
 
@@ -110,12 +110,12 @@ class PreProcessPlugin(YamlUpdatePlugin):
         for overload in yaml_data.get("overloads", []):
             self.update_operation(overload)
         for response in yaml_data.get("responses", []):
-            response["type"] = "operation"
+            response["discriminator"] = "operation"
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
         for response in yaml_data.get("responses", []):
-            response["type"] = "lro"
+            response["discriminator"] = "lro"
             response["pollerSync"] = response.get("pollerSync") or "azure.core.polling.LROPoller"
             response["pollerAsync"] = response.get("pollerAsync") or "azure.core.polling.AsyncLROPoller"
             if not response.get("pollingMethodSync"):
@@ -135,7 +135,7 @@ class PreProcessPlugin(YamlUpdatePlugin):
         self.update_lro_operation(yaml_data)
         self.update_paging_operation(yaml_data)
         for response in yaml_data.get("responses", []):
-            response["type"] = "lropaging"
+            response["discriminator"] = "lropaging"
 
     def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_operation(yaml_data)
@@ -149,6 +149,15 @@ class PreProcessPlugin(YamlUpdatePlugin):
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
             yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
+        returned_response_object = (
+            yaml_data["nextOperation"]["responses"][0]
+            if yaml_data.get("nextOperation")
+            else yaml_data["responses"][0]
+        )
+        item_cls = next(
+            p["type"] for p in returned_response_object["type"]["properties"]
+            if p["restApiName"] == yaml_data["itemName"]
+        )
         if yaml_data.get("nextOperation"):
             yaml_data["nextOperation"]["groupName"] = pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
@@ -158,8 +167,10 @@ class PreProcessPlugin(YamlUpdatePlugin):
             )
             for response in yaml_data["nextOperation"].get("responses", []):
                 update_paging_response(response)
+                response["itemNameClass"] = item_cls
         for response in yaml_data.get("responses", []):
             update_paging_response(response)
+            response["itemNameClass"] = item_cls
 
     def update_operation_groups(self, yaml_data: Dict[str, Any]) -> None:
         operation_groups_yaml_data = yaml_data["operationGroups"]
