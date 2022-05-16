@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-"""The namer autorest plugin.
+"""The preprocessing autorest plugin.
 """
 from typing import Callable, Dict, Any, List, Optional
 from .helpers import to_snake_case, pad_reserved_words
@@ -76,7 +76,7 @@ def update_paging_response(yaml_data: Dict[str, Any]) -> None:
     yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
     yaml_data['pagerAsync'] = yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
 
-class Namer(YamlUpdatePlugin):
+class PreProcessPlugin(YamlUpdatePlugin):
     """Add Python naming information."""
 
     def get_operation_updater(
