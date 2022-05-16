@@ -135,6 +135,14 @@ for page in pages:
 
 ## Customization
 
+One thing I want to touch upon before I get further into my talk about customizations was that Python made the decision to not have renames or generated object removals as part of our customizations story. So if you want to do a rename, the rename should be done in the swagger or through directives. The reason for this is because I think we all agree that renames really should live in the swagger, especially with the coming of naming archboards where we'll focus and unite on naming.
+
+Before DPG, we would have to generate code into a hidden `_generated` folder, and write an entire handwritten SDK layer on top that wrapped the generated code and had to correctly map and expose everything in the generated code to the end users. We really wanted to move away from this, flattening out the `_generated` folder, and just generating directly, then having users customize where needed.
+
+With our DPG, we have customization files throughout our SDK structure and customizations are done there. For example, customizations to operation groups are done in the operations folder etc. So for every subfolder of the sdk, we ask "is this generated object customized?" If so, we expose the customized object, otherwise the generated object. This way, we maintain our flattened structure, and each part of the SDK is customized in its own folder, so references across the SDK are automatically updated to customized code as well
+
+Ok now I'm going to go through some of the main scenarios and customizations we did for Metrics Advisor. Basically we're going to walk through how we generated MA with DPG and added customizations on top to have it have the same API shape as the current GAd MA SDK.
+
 ### What are customizations like right now?
 
 https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md
