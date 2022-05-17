@@ -193,6 +193,7 @@ _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
 _POSTPROCESS_PACKAGES = [
     "DPGTestModels",
     "BodyComplex",
+    "DPGCustomizationCustomized",
 ]
 
 def _get_config(
@@ -327,7 +328,7 @@ def _regenerate(
         cmds.append(command_line)
         if kwargs.get("version_tolerant") and package_name in _POSTPROCESS_PACKAGES:
             config = _get_config(swagger_group, package_name, **kwargs)
-            post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder} --perform-load=false"
+            post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder}"
             if debug:
                 post_process_cmd += " --python.debugger"
             print(Fore.YELLOW + f'Queuing up post process command: {post_process_cmd}')

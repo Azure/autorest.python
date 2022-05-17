@@ -34,7 +34,7 @@ modelerfour:
 allow-no-input: true
 ```
 
-```yaml !$(multiapiscript) && !$(postprocess)
+```yaml !$(multiapiscript)
 pass-thru:
   - model-deduplicator
   - subset-reducer
