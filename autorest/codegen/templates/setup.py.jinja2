@@ -73,6 +73,10 @@ setup(
             {%- endfor %}
         ]
     ),
+    include_package_data=True,
+    package_data={
+        'pytyped': ['py.typed'],
+    },
     {% else %}
     packages=find_packages(),
     include_package_data=True,

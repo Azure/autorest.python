@@ -31,6 +31,10 @@
 - Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
 - Fix typing for stream responses to iterators of bytes.  #1254
 
+**Other Changes**
+
+- Update template files for `--package-mode` # 1248
+
 ### 2022-04-18 - 5.16.0
 
 | Library                                                                 | Min Version |
