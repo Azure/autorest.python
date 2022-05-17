@@ -231,3 +231,13 @@ class ServiceClient(ServiceClientGenerated):
 
 __all__ = ["ServiceClient"]
 ```
+
+## Postprocessing
+
+All of the code, linting, and intellisense between generated and handwritten code should work immediately. In some cases, to get mypy clean, you will need to run our postprocessing step. To run this step, run
+
+```bash
+autorest --postprocess --output-folder=<path-to-root-of-sdk>
+```
+
+This will update the generated SDK to pass mypy.
