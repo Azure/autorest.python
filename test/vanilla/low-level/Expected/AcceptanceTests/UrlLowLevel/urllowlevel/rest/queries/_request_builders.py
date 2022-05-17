@@ -6,16 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Any, List, Optional
 
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, List, Optional
 
 _SERIALIZER = Serializer()
 
@@ -72,8 +68,8 @@ def build_get_boolean_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword bool_query: false boolean value. Default value is False. Note that overriding this
-     default value may result in unsupported behavior.
+    :keyword bool_query: false boolean value. Required. Default value is False. Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype bool_query: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -284,7 +280,7 @@ def build_get_ten_billion_request(
 
     :keyword long_query: '10000000000' 64 bit integer value. Default value is 10000000000. Note
      that overriding this default value may result in unsupported behavior.
-    :paramtype long_query: long
+    :paramtype long_query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -301,7 +297,7 @@ def build_get_ten_billion_request(
     _url = "/queries/long/10000000000"
 
     # Construct parameters
-    _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
+    _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'int')
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -326,7 +322,7 @@ def build_get_negative_ten_billion_request(
 
     :keyword long_query: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
      that overriding this default value may result in unsupported behavior.
-    :paramtype long_query: long
+    :paramtype long_query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -343,7 +339,7 @@ def build_get_negative_ten_billion_request(
     _url = "/queries/long/-10000000000"
 
     # Construct parameters
-    _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
+    _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'int')
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -367,7 +363,7 @@ def build_get_long_null_request(
     into your code flow.
 
     :keyword long_query: null 64 bit integer value. Default value is None.
-    :paramtype long_query: long
+    :paramtype long_query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -385,7 +381,7 @@ def build_get_long_null_request(
 
     # Construct parameters
     if long_query is not None:
-        _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
+        _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'int')
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -745,8 +741,8 @@ def build_string_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword string_query: '' string value. Default value is "". Note that overriding this default
-     value may result in unsupported behavior.
+    :keyword string_query: '' string value. Required. Default value is "". Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -829,7 +825,7 @@ def build_enum_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
+    :keyword enum_query: 'green color' enum value. Known values are: "red color", "green color",
      and "blue color". Default value is None.
     :paramtype enum_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -872,8 +868,8 @@ def build_enum_null_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword enum_query: null string value. Possible values are: "red color", "green color", and
-     "blue color". Default value is None.
+    :keyword enum_query: null string value. Known values are: "red color", "green color", and "blue
+     color". Default value is None.
     :paramtype enum_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -917,7 +913,7 @@ def build_byte_multi_byte_request(
 
     :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
      None.
-    :paramtype byte_query: bytearray
+    :paramtype byte_query: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -927,7 +923,7 @@ def build_byte_multi_byte_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', None))  # type: Optional[bytearray]
+    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', None))  # type: Optional[bytes]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -958,9 +954,9 @@ def build_byte_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword byte_query: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-     that overriding this default value may result in unsupported behavior.
-    :paramtype byte_query: bytearray
+    :keyword byte_query: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype byte_query: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -970,7 +966,7 @@ def build_byte_empty_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', bytearray("", encoding="utf-8")))  # type: bytearray
+    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', bytes("", encoding="utf-8")))  # type: bytes
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1001,7 +997,7 @@ def build_byte_null_request(
     into your code flow.
 
     :keyword byte_query: null as byte array (no query parameters in uri). Default value is None.
-    :paramtype byte_query: bytearray
+    :paramtype byte_query: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1011,7 +1007,7 @@ def build_byte_null_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', None))  # type: Optional[bytearray]
+    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', None))  # type: Optional[bytes]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

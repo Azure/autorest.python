@@ -63,10 +63,10 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly required path parameter.
 
-        :param path_parameter:
+        :param path_parameter: Required.
         :type path_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -90,6 +90,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -108,10 +109,10 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional query parameter.
 
-        :param query_parameter:  Default value is None.
+        :param query_parameter: Default value is None.
         :type query_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -135,6 +136,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -153,10 +155,10 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional header parameter.
 
-        :param query_parameter:  Default value is None.
+        :param query_parameter: Default value is None.
         :type query_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -180,6 +182,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -198,10 +201,10 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional body parameter.
 
-        :param body_parameter:  Default value is None.
+        :param body_parameter: Default value is None.
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -211,19 +214,17 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if body_parameter is not None:
-            _json = self._serialize.body(body_parameter, "str")
+            _content = self._serialize.body(body_parameter, "str")
         else:
-            _json = None
+            _content = None
 
         request = build_put_optional_body_request(
             content_type=content_type,
-            json=_json,
+            content=_content,
             template_url=self.put_optional_body.metadata["url"],
             headers=_headers,
             params=_params,
@@ -234,6 +235,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -252,10 +254,10 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional body parameter.
 
-        :param body_parameter:  Default value is None.
+        :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -265,9 +267,7 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/octet-stream")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = body_parameter
@@ -285,6 +285,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -302,7 +303,7 @@ class ImplicitOperations:
         """Test implicitly required path parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -326,6 +327,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -343,7 +345,7 @@ class ImplicitOperations:
         """Test implicitly required query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -367,6 +369,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -384,7 +387,7 @@ class ImplicitOperations:
         """Test implicitly optional query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -408,6 +411,7 @@ class ImplicitOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

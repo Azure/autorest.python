@@ -53,8 +53,7 @@ def write_message(message: str, stream: BinaryIO = sys.stdout.buffer) -> None:
 
 
 class StdStreamAutorestAPI(AutorestAPI):
-    """The stream API with Autorest
-    """
+    """The stream API with Autorest"""
 
     def __init__(self, session_id: str) -> None:
         super().__init__()
@@ -73,19 +72,25 @@ class StdStreamAutorestAPI(AutorestAPI):
     def read_file(self, filename: Union[str, Path]) -> str:
         _LOGGER.debug("Asking content for file %s", filename)
         filename = os.fspath(filename)
-        request = JSONRPC20Request(method="ReadFile", params=[self.session_id, filename], _id=42)
+        request = JSONRPC20Request(
+            method="ReadFile", params=[self.session_id, filename], _id=42
+        )
         write_message(request.json)
         return json.loads(read_message())["result"]
 
     def list_inputs(self) -> List[str]:
         _LOGGER.debug("Calling list inputs to Autorest")
-        request = JSONRPC20Request(method="ListInputs", params=[self.session_id, None], _id=42)
+        request = JSONRPC20Request(
+            method="ListInputs", params=[self.session_id, None], _id=42
+        )
         write_message(request.json)
         return json.loads(read_message())["result"]
 
     def get_value(self, key: str) -> Any:
         _LOGGER.debug("Calling get value to Autorest: %s", key)
-        request = JSONRPC20Request(method="GetValue", params=[self.session_id, key], _id=42)
+        request = JSONRPC20Request(
+            method="GetValue", params=[self.session_id, key], _id=42
+        )
         write_message(request.json)
         return json.loads(read_message())["result"]
 
@@ -96,5 +101,7 @@ class StdStreamAutorestAPI(AutorestAPI):
             "Channel": channel.value,
             "Text": text,
         }
-        request = JSONRPC20Request(method="Message", params=[self.session_id, message], is_notification=True)
+        request = JSONRPC20Request(
+            method="Message", params=[self.session_id, message], is_notification=True
+        )
         write_message(request.json)

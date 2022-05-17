@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
@@ -15,7 +15,7 @@ from ._version import VERSION
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
 
 class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -25,6 +25,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too
     attributes.
 
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+     Required.
     :type global_string_path: str
     :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str

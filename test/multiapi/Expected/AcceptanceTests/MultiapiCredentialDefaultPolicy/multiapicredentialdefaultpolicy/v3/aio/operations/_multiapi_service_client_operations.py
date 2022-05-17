@@ -81,7 +81,7 @@ class MultiapiServiceClientOperationsMixin:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request,
                 stream=False,
                 **kwargs
@@ -110,14 +110,14 @@ class MultiapiServiceClientOperationsMixin:
     ) -> None:
         """Has added parameters across the API versions.
 
-        :param greeting_in_english: pass in 'hello' to pass test.
+        :param greeting_in_english: pass in 'hello' to pass test. Required.
         :type greeting_in_english: str
         :param greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
         :type greeting_in_french: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -134,10 +134,10 @@ class MultiapiServiceClientOperationsMixin:
 
         
         request = build_test_different_calls_request(
-            api_version=api_version,
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
+            api_version=api_version,
             template_url=self.test_different_calls.metadata['url'],
             headers=_headers,
             params=_params,
@@ -150,6 +150,7 @@ class MultiapiServiceClientOperationsMixin:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

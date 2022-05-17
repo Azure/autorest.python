@@ -50,10 +50,11 @@ class IntOperations:
     async def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum. Default value is None.
+        :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
+         None.
         :type input: int or ~nonstringenums.models.IntEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -63,9 +64,7 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         if input is not None:
@@ -86,6 +85,7 @@ class IntOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -106,7 +106,7 @@ class IntOperations:
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntEnum, or the result of cls(response)
+        :return: IntEnum or the result of cls(response)
         :rtype: int or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -129,6 +129,7 @@ class IntOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

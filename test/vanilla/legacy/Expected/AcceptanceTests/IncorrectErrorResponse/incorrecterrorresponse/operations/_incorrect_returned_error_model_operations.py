@@ -60,7 +60,7 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         swallow the deserialization error and still return an HttpResponseError to the users.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -83,6 +83,7 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

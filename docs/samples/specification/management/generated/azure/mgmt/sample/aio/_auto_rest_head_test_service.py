@@ -28,7 +28,7 @@ class AutoRestHeadTestService:
 
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: azure.mgmt.sample.aio.operations.HttpSuccessOperations
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
@@ -47,7 +47,9 @@ class AutoRestHeadTestService:
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_success = HttpSuccessOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
 
     def _send_request(

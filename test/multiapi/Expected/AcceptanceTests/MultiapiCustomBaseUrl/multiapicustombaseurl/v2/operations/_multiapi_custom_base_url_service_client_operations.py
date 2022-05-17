@@ -72,10 +72,10 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
         version of 2.0.0 to pass.
 
-        :param id: An int parameter. Put in 2 to pass.
+        :param id: An int parameter. Put in 2 to pass. Required.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -92,8 +92,8 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
         
         request = build_test_request(
-            api_version=api_version,
             id=id,
+            api_version=api_version,
             template_url=self.test.metadata['url'],
             headers=_headers,
             params=_params,
@@ -109,6 +109,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

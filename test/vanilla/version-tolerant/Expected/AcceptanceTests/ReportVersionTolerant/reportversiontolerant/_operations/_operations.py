@@ -26,7 +26,6 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import MixinABC
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -110,6 +109,7 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -164,6 +164,7 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

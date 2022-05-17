@@ -748,7 +748,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -771,6 +771,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -797,7 +798,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -820,6 +821,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -846,7 +848,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -869,6 +871,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -895,7 +898,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -918,6 +921,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -944,7 +948,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -967,6 +971,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -993,7 +998,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B, or the result of cls(response)
+        :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1016,6 +1021,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -1044,7 +1050,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B, or the result of cls(response)
+        :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1067,6 +1073,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -1095,7 +1102,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B, or the result of cls(response)
+        :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1118,6 +1125,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -1146,7 +1154,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
+        :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1170,6 +1178,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -1201,7 +1210,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
+        :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1225,6 +1234,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -1256,7 +1266,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
+        :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1280,6 +1290,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -1311,7 +1322,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
+        :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1335,6 +1346,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -1366,7 +1378,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 202 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1389,6 +1401,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -1409,7 +1422,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1432,6 +1445,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -1452,7 +1466,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1475,6 +1489,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -1495,7 +1510,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1518,6 +1533,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -1537,7 +1553,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1560,6 +1576,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -1579,7 +1596,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1602,6 +1619,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -1621,7 +1639,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1644,6 +1662,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -1663,7 +1682,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1686,6 +1705,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1709,7 +1729,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1732,6 +1752,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1755,7 +1776,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1778,6 +1799,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1798,7 +1820,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1821,6 +1843,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1841,7 +1864,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1864,6 +1887,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1883,7 +1907,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1906,6 +1930,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1925,7 +1950,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1948,6 +1973,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1967,7 +1993,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1990,6 +2016,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2010,7 +2037,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         object of thde type for model A.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2033,6 +2060,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2056,7 +2084,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2079,6 +2107,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2102,7 +2131,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2125,6 +2154,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2148,7 +2178,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2171,6 +2201,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2194,7 +2225,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2217,6 +2248,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2240,7 +2272,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2263,6 +2295,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2286,7 +2319,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2309,6 +2342,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

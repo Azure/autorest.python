@@ -161,7 +161,7 @@ def build_get_ten_billion_request(
     # Construct URL
     _url = kwargs.pop("template_url", "/paths/long/10000000000/{longPath}")
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -189,7 +189,7 @@ def build_get_negative_ten_billion_request(
     # Construct URL
     _url = kwargs.pop("template_url", "/paths/long/-10000000000/{longPath}")
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -514,7 +514,7 @@ def build_enum_null_request(
 
 
 def build_byte_multi_byte_request(
-    byte_path,  # type: bytearray
+    byte_path,  # type: bytes
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -547,7 +547,7 @@ def build_byte_empty_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    byte_path = kwargs.pop('byte_path', bytearray("", encoding="utf-8"))  # type: bytearray
+    byte_path = kwargs.pop('byte_path', bytes("", encoding="utf-8"))  # type: bytes
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -570,7 +570,7 @@ def build_byte_empty_request(
 
 
 def build_byte_null_request(
-    byte_path,  # type: bytearray
+    byte_path,  # type: bytes
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -823,7 +823,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -848,6 +848,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -867,11 +868,11 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword bool_path: false boolean value. Required. Default value is False. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -896,6 +897,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -919,7 +921,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -944,6 +946,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -967,7 +970,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          this default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -992,6 +995,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1013,9 +1017,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
          overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1040,6 +1044,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1061,9 +1066,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1088,6 +1093,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1111,7 +1117,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          that overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1136,6 +1142,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1159,7 +1166,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1184,6 +1191,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1207,7 +1215,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1232,6 +1240,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1255,7 +1264,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1280,6 +1289,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1303,7 +1313,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          that overriding this default value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1328,6 +1338,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1352,7 +1363,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1377,6 +1388,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1403,7 +1415,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1428,6 +1440,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1447,11 +1460,11 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get ''.
 
-        :keyword string_path: '' string value. Default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_path: '' string value. Required. Default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1476,6 +1489,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1497,10 +1511,10 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get null (should throw).
 
-        :param string_path: null string value.
+        :param string_path: null string value. Required.
         :type string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1524,6 +1538,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1545,10 +1560,11 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get using uri with 'green color' in path parameter.
 
-        :param enum_path: send the value green.
+        :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
+         color". Required.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1572,6 +1588,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1593,10 +1610,11 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get null (should throw on the client before the request is sent on wire).
 
-        :param enum_path: send null should throw.
+        :param enum_path: send null should throw. Known values are: "red color", "green color", and
+         "blue color". Required.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1620,6 +1638,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1635,16 +1654,16 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
         self,
-        byte_path,  # type: bytearray
+        byte_path,  # type: bytes
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
-        :type byte_path: bytearray
+        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
+        :type byte_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1668,6 +1687,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1687,11 +1707,11 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype byte_path: bytearray
+        :keyword byte_path: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype byte_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1701,7 +1721,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+        byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_byte_empty_request(
@@ -1716,6 +1736,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1731,16 +1752,16 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def byte_null(  # pylint: disable=inconsistent-return-statements
         self,
-        byte_path,  # type: bytearray
+        byte_path,  # type: bytes
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as byte array (should throw).
 
-        :param byte_path: null as byte array (should throw).
-        :type byte_path: bytearray
+        :param byte_path: null as byte array (should throw). Required.
+        :type byte_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1764,6 +1785,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1787,7 +1809,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          this default value may result in unsupported behavior.
         :paramtype date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1812,6 +1834,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1834,10 +1857,10 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
-        :param date_path: null as date (should throw).
+        :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1861,6 +1884,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1885,7 +1909,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
          behavior.
         :paramtype date_time_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1910,6 +1934,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1931,10 +1956,10 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
-        :param date_time_path: null as date-time.
+        :param date_time_path: null as date-time. Required.
         :type date_time_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1958,6 +1983,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1979,10 +2005,10 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
-        :param base64_url_path: base64url encoded value.
+        :param base64_url_path: base64url encoded value. Required.
         :type base64_url_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2006,6 +2032,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2029,10 +2056,10 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
-         using the csv-array format.
+         using the csv-array format. Required.
         :type array_path: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2056,6 +2083,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2077,10 +2105,10 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
-        :param unix_time_url_path: Unix time encoded value.
+        :param unix_time_url_path: Unix time encoded value. Required.
         :type unix_time_url_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2104,6 +2132,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

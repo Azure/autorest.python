@@ -43,8 +43,8 @@ class _SDKClient(object):
         """
         pass
 
-class {{ code_model.service_client.name }}({% if code_model.operation_mixin_group.mixin_operations %}{{ code_model.service_client.name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
-    """{{ code_model.service_client.description }}
+class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_operations %}{{ code_model.client.name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
+    """{{ code_model.client.description }}
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
     (Azure Stack, Azure Government, Azure China, etc.).
@@ -64,13 +64,13 @@ class {{ code_model.service_client.name }}({% if code_model.operation_mixin_grou
     :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
     :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
 {% endfor %}
-    {% if code_model.service_client.has_lro_operations %}
+    {% if code_model.client.has_lro_operations %}
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     {% endif %}
     """
 
     DEFAULT_API_VERSION = '{{ code_model.mod_to_api_version[code_model.default_api_version] }}'
-    _PROFILE_TAG = "{{ code_model.module_name }}.{{ code_model.service_client.name }}"
+    _PROFILE_TAG = "{{ code_model.module_name }}.{{ code_model.client.name }}"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
@@ -82,8 +82,8 @@ class {{ code_model.service_client.name }}({% if code_model.operation_mixin_grou
     )
 
     {{ method_signature()|indent }}
-        {% if not code_model.service_client.host_value %}
-        {% for parameterized_host_template, api_versions in code_model.service_client.parameterized_host_template_to_api_version|dictsort %}
+        {% if not code_model.client.host_value %}
+        {% for parameterized_host_template, api_versions in code_model.client.parameterized_host_template_to_api_version|dictsort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement ~ " api_version == '" ~ api_versions|join("' or api_version == '") ~ "'" }}:
             base_url = {{ parameterized_host_template }}
@@ -91,9 +91,9 @@ class {{ code_model.service_client.name }}({% if code_model.operation_mixin_grou
         else:
             raise ValueError("API version {} is not available".format(api_version))
         {% endif %}
-        self._config = {{ code_model.service_client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}**kwargs)
-        self._client = {{ async_prefix }}{{ code_model.service_client.pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
-        super({{ code_model.service_client.name }}, self).__init__(
+        self._config = {{ code_model.client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}**kwargs)
+        self._client = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
+        super({{ code_model.client.name }}, self).__init__(
             api_version=api_version,
             profile=profile
         )

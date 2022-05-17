@@ -14,9 +14,9 @@ class CustomParameterGroup(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar api_version: Required. Sets the api version to use.
+    :ivar api_version: Sets the api version to use. Required.
     :vartype api_version: str
-    :ivar tenant: Required. Sets the tenant to use.
+    :ivar tenant: Sets the tenant to use. Required.
     :vartype tenant: str
     """
 
@@ -32,9 +32,9 @@ class CustomParameterGroup(msrest.serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword api_version: Required. Sets the api version to use.
+        :keyword api_version: Sets the api version to use. Required.
         :paramtype api_version: str
-        :keyword tenant: Required. Sets the tenant to use.
+        :keyword tenant: Sets the tenant to use. Required.
         :paramtype tenant: str
         """
         super(CustomParameterGroup, self).__init__(**kwargs)
@@ -71,9 +71,8 @@ class OdataProductResult(msrest.serialization.Model):
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :ivar status: The status of the request. Possible values include: "Succeeded", "Failed",
-     "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-     "OK".
+    :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype status: str or ~paging.models.OperationResultStatus
     """
 
@@ -83,9 +82,9 @@ class OperationResult(msrest.serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+        :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-         "OK".
+         and "OK".
         :paramtype status: str or ~paging.models.OperationResultStatus
         """
         super(OperationResult, self).__init__(**kwargs)
@@ -155,7 +154,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
     :vartype maxresults: int
-    :ivar offset: Required. Offset of return value.
+    :ivar offset: Offset of return value. Required.
     :vartype offset: int
     :ivar timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
@@ -176,7 +175,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
-        :keyword offset: Required. Offset of return value.
+        :keyword offset: Offset of return value. Required.
         :paramtype offset: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.

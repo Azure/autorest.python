@@ -65,6 +65,11 @@ class TestAcceptance(object):
             "animalNotFoundError": 1,
             "linkNotFoundError": 1,
             "putEnumReferencedConstant": 1,  # can't do constants on body
+            "StreamUploadFile": 1,  # we don't do formdata bodies anymore
+            "reservedWordsBodyNamedFiles": 1,  # we don't do formdata bodies anymore
+            "reservedWordsBodyNamedData": 1,  # we don't do urlencoded bodies anymore
+            "UpdatePetWithForm": 1,  # we don't do urlencoded bodies anymore
+            "UrlEncodedDataWithPartialConstantBody": 1,  # we don't do urlencoded bodies anymore
         }
 
         print("Coverage:")

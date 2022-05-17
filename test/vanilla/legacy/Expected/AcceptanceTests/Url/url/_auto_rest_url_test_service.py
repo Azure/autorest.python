@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
@@ -19,7 +19,7 @@ from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -34,6 +34,7 @@ class AutoRestUrlTestService(object):
     :ivar path_items: PathItemsOperations operations
     :vartype path_items: url.operations.PathItemsOperations
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+     Required.
     :type global_string_path: str
     :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str

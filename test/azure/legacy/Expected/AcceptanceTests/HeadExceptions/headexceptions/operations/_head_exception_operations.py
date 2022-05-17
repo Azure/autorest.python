@@ -103,7 +103,7 @@ class HeadExceptionOperations(object):
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -126,6 +126,7 @@ class HeadExceptionOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -146,7 +147,7 @@ class HeadExceptionOperations(object):
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -169,6 +170,7 @@ class HeadExceptionOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
@@ -189,7 +191,7 @@ class HeadExceptionOperations(object):
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -212,6 +214,7 @@ class HeadExceptionOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:

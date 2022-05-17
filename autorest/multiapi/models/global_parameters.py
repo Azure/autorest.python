@@ -7,16 +7,18 @@ from typing import Any, Dict, List
 from .global_parameter import GlobalParameter
 from .constant_global_parameter import ConstantGlobalParameter
 
+
 def _convert_global_parameters(sync_metadata, async_metadata):
     global_parameters = [
         GlobalParameter(
             name=parameter_name,
             global_parameter_metadata_sync=gp_sync,
-            global_parameter_metadata_async=async_metadata[parameter_name]
+            global_parameter_metadata_async=async_metadata[parameter_name],
         )
         for parameter_name, gp_sync in sync_metadata.items()
     ]
     return global_parameters
+
 
 class GlobalParameters:
     def __init__(
@@ -31,12 +33,15 @@ class GlobalParameters:
         """Return global params specific to multiapi service client + config
         api_version, endpoint (re-adding it in specific are), and profile
         """
-        service_client_params_sync = self.global_parameters_metadata["service_client_specific"]["sync"]
-        service_client_params_async = self.global_parameters_metadata["service_client_specific"]["async"]
+        service_client_params_sync = self.global_parameters_metadata[
+            "service_client_specific"
+        ]["sync"]
+        service_client_params_async = self.global_parameters_metadata[
+            "service_client_specific"
+        ]["async"]
 
         return _convert_global_parameters(
-            service_client_params_sync,
-            service_client_params_async
+            service_client_params_sync, service_client_params_async
         )
 
     @property
@@ -45,13 +50,14 @@ class GlobalParameters:
         global_parameters_metadata_async = self.global_parameters_metadata["async"]
 
         return _convert_global_parameters(
-            global_parameters_metadata_sync,
-            global_parameters_metadata_async
+            global_parameters_metadata_sync, global_parameters_metadata_async
         )
 
     @property
     def constant_parameters(self) -> List[ConstantGlobalParameter]:
         return [
             ConstantGlobalParameter(constant_name, constant_value)
-            for constant_name, constant_value in self.global_parameters_metadata["constant"].items()
+            for constant_name, constant_value in self.global_parameters_metadata[
+                "constant"
+            ].items()
         ]

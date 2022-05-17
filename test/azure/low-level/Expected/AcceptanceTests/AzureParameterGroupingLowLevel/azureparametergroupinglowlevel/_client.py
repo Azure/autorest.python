@@ -43,7 +43,7 @@ class AutoRestParameterGroupingTestService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from azureparametergroupinglowlevel.rest import parameter_grouping
-        >>> request = parameter_grouping.build_post_required_request(path, json=json, content=content, custom_header=custom_header, query=query, **kwargs)
+        >>> request = parameter_grouping.build_post_required_request(path, json=json, custom_header=custom_header, query=query, **kwargs)
         <HttpRequest [POST], url: '/parameterGrouping/postRequired/{path}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

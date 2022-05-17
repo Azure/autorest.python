@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from msrest import Serializer
 
@@ -388,7 +388,7 @@ class IntOperations(object):
         """Get null Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int or None, or the result of cls(response)
+        :return: int or None or the result of cls(response)
         :rtype: int or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -411,6 +411,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -435,7 +436,7 @@ class IntOperations(object):
         """Get invalid Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -458,6 +459,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -482,7 +484,7 @@ class IntOperations(object):
         """Get overflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -505,6 +507,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -529,7 +532,7 @@ class IntOperations(object):
         """Get underflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -552,6 +555,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -576,8 +580,8 @@ class IntOperations(object):
         """Get overflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long, or the result of cls(response)
-        :rtype: long
+        :return: int or the result of cls(response)
+        :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -599,6 +603,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -606,7 +611,7 @@ class IntOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("long", pipeline_response)
+        deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -623,8 +628,8 @@ class IntOperations(object):
         """Get underflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long, or the result of cls(response)
-        :rtype: long
+        :return: int or the result of cls(response)
+        :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -646,6 +651,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -653,7 +659,7 @@ class IntOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("long", pipeline_response)
+        deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -671,10 +677,10 @@ class IntOperations(object):
         # type: (...) -> None
         """Put max int32 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -684,9 +690,7 @@ class IntOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(int_body, "int")
@@ -704,6 +708,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -725,10 +730,10 @@ class IntOperations(object):
         # type: (...) -> None
         """Put max int64 value.
 
-        :param int_body: int body.
-        :type int_body: long
+        :param int_body: int body. Required.
+        :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -738,12 +743,10 @@ class IntOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(int_body, "long")
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_max64_request(
             content_type=content_type,
@@ -758,6 +761,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -779,10 +783,10 @@ class IntOperations(object):
         # type: (...) -> None
         """Put min int32 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -792,9 +796,7 @@ class IntOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(int_body, "int")
@@ -812,6 +814,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -833,10 +836,10 @@ class IntOperations(object):
         # type: (...) -> None
         """Put min int64 value.
 
-        :param int_body: int body.
-        :type int_body: long
+        :param int_body: int body. Required.
+        :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -846,12 +849,10 @@ class IntOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(int_body, "long")
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_min64_request(
             content_type=content_type,
@@ -866,6 +867,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -886,7 +888,7 @@ class IntOperations(object):
         """Get datetime encoded as Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -909,6 +911,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -934,10 +937,10 @@ class IntOperations(object):
         # type: (...) -> None
         """Put datetime encoded as Unix time.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -947,9 +950,7 @@ class IntOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(int_body, "unix-time")
@@ -967,6 +968,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -987,7 +989,7 @@ class IntOperations(object):
         """Get invalid Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1010,6 +1012,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1034,7 +1037,7 @@ class IntOperations(object):
         """Get null Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or None, or the result of cls(response)
+        :return: datetime or None or the result of cls(response)
         :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1057,6 +1060,7 @@ class IntOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

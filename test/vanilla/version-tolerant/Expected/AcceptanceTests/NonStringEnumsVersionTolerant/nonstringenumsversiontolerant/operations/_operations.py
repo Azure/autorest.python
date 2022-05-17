@@ -24,14 +24,13 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_int_put_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_int_put_request(*, json: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -45,7 +44,7 @@ def build_int_put_request(*, json: JSONType = None, content: Any = None, **kwarg
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_int_get_request(**kwargs: Any) -> HttpRequest:
@@ -62,7 +61,7 @@ def build_int_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_float_put_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_float_put_request(*, json: Optional[float] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -76,7 +75,7 @@ def build_float_put_request(*, json: JSONType = None, content: Any = None, **kwa
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_float_get_request(**kwargs: Any) -> HttpRequest:
@@ -114,8 +113,8 @@ class IntOperations:
     def put(self, input: Optional[int] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum. Possible values are: 200, 403, 405, 406, and 429. Default value
-         is None.
+        :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
+         None.
         :type input: int
         :return: str
         :rtype: str
@@ -127,9 +126,7 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         if input is not None:
@@ -148,6 +145,7 @@ class IntOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -168,15 +166,9 @@ class IntOperations:
     def get(self, **kwargs: Any) -> int:
         """Get an int enum.
 
-        :return: int. Possible values are: 200, 403, 405, 406, and 429.
+        :return: int
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == 0  # Optional.
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -195,6 +187,7 @@ class IntOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -233,7 +226,7 @@ class FloatOperations:
     def put(self, input: Optional[float] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
-        :param input: Input float enum. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
+        :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
          Default value is None.
         :type input: float
         :return: str
@@ -246,9 +239,7 @@ class FloatOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         if input is not None:
@@ -267,6 +258,7 @@ class FloatOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -287,15 +279,9 @@ class FloatOperations:
     def get(self, **kwargs: Any) -> float:
         """Get a float enum.
 
-        :return: float. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == 0.0  # Optional.
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -314,6 +300,7 @@ class FloatOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

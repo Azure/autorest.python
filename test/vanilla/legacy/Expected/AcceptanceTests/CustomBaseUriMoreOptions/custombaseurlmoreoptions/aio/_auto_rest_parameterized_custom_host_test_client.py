@@ -24,7 +24,7 @@ class AutoRestParameterizedCustomHostTestClient:
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurlmoreoptions.aio.operations.PathsOperations
-    :param subscription_id: The subscription id with value 'test12'.
+    :param subscription_id: The subscription id with value 'test12'. Required.
     :type subscription_id: str
     :param dns_suffix: A string value that is used as a global part of the parameterized host.
      Default value 'host'. Default value is "host".
@@ -32,11 +32,11 @@ class AutoRestParameterizedCustomHostTestClient:
     """
 
     def __init__(self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any) -> None:
-        _base_url = "{vault}{secret}{dnsSuffix}"
+        _endpoint = "{vault}{secret}{dnsSuffix}"
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
         )
-        self._client = AsyncPipelineClient(base_url=_base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

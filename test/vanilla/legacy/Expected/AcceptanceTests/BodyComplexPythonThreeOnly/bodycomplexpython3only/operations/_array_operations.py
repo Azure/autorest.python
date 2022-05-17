@@ -27,7 +27,6 @@ from .. import models as _models
 from .._vendor import _convert_request
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -48,7 +47,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -62,7 +61,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_empty_request(**kwargs: Any) -> HttpRequest:
@@ -79,7 +78,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_empty_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -93,7 +92,7 @@ def build_put_empty_request(*, json: JSONType = None, content: Any = None, **kwa
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
@@ -134,7 +133,7 @@ class ArrayOperations:
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper, or the result of cls(response)
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,6 +156,7 @@ class ArrayOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -179,10 +179,10 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property.
 
-        :param array:  Default value is None.
+        :param array: Default value is None.
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -192,9 +192,7 @@ class ArrayOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _complex_body = _models.ArrayWrapper(array=array)
@@ -213,6 +211,7 @@ class ArrayOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -230,7 +229,7 @@ class ArrayOperations:
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper, or the result of cls(response)
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -253,6 +252,7 @@ class ArrayOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -275,10 +275,10 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param array:  Default value is None.
+        :param array: Default value is None.
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -288,9 +288,7 @@ class ArrayOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _complex_body = _models.ArrayWrapper(array=array)
@@ -309,6 +307,7 @@ class ArrayOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -326,7 +325,7 @@ class ArrayOperations:
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper, or the result of cls(response)
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -349,6 +348,7 @@ class ArrayOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

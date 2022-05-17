@@ -139,7 +139,7 @@ class PagingOperations(object):
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -200,7 +200,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -224,7 +224,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[_models.ProductResult]
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -281,7 +281,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response

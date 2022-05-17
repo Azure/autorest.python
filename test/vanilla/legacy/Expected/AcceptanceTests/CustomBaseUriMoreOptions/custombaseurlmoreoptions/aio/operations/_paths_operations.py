@@ -49,20 +49,20 @@ class PathsOperations:
 
     @distributed_trace_async
     async def get_empty(  # pylint: disable=inconsistent-return-statements
-        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, key_version: str = "v1", **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.
 
-        :param vault: The vault name, e.g. https://myvault.
+        :param vault: The vault name, e.g. https://myvault. Required.
         :type vault: str
-        :param secret: Secret value.
+        :param secret: Secret value. Required.
         :type secret: str
-        :param key_name: The key name with value 'key1'.
+        :param key_name: The key name with value 'key1'. Required.
         :type key_name: str
         :param key_version: The key version. Default value 'v1'. Default value is "v1".
         :type key_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -95,6 +95,7 @@ class PathsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

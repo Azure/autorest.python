@@ -38,9 +38,10 @@ allow-no-input: true
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: "https://tinyurl.com/y85ozsj8"
+version: ~3.8.1
 use-extension:
-  "@autorest/modelerfour": "https://tinyurl.com/ybnbz924"
+  "@autorest/modelerfour": ~4.23.1
+
 modelerfour:
   resolve-schema-name-collisons: true
   always-create-content-type-parameter: true
@@ -72,8 +73,11 @@ pipeline:
   python/m2r:
     input: python
 
-  python/namer:
+  python/m4reformatter:
     input: python/m2r
+
+  python/namer:
+    input: python/m4reformatter
 
   python/codegen:
     input: python/namer

@@ -37,7 +37,7 @@ class Input(msrest.serialization.Model):
         :keyword hello: Required.
         :paramtype hello: str
         """
-        super(Input, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.hello = hello
 
 
@@ -46,7 +46,7 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar received: Required. Possible values include: "raw", "model".
+    :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
     """
 
@@ -60,10 +60,10 @@ class Product(msrest.serialization.Model):
 
     def __init__(self, *, received: Union[str, "_models.ProductReceived"], **kwargs):
         """
-        :keyword received: Required. Possible values include: "raw", "model".
+        :keyword received: Required. Known values are: "raw" and "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
         """
-        super(Product, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.received = received
 
 
@@ -72,7 +72,7 @@ class LROProduct(Product):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar received: Required. Possible values include: "raw", "model".
+    :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
     :ivar provisioning_state: Required.
     :vartype provisioning_state: str
@@ -90,12 +90,12 @@ class LROProduct(Product):
 
     def __init__(self, *, received: Union[str, "_models.ProductReceived"], provisioning_state: str, **kwargs):
         """
-        :keyword received: Required. Possible values include: "raw", "model".
+        :keyword received: Required. Known values are: "raw" and "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
         :keyword provisioning_state: Required.
         :paramtype provisioning_state: str
         """
-        super(LROProduct, self).__init__(received=received, **kwargs)
+        super().__init__(received=received, **kwargs)
         self.provisioning_state = provisioning_state
 
 
@@ -120,6 +120,6 @@ class ProductResult(msrest.serialization.Model):
         :keyword next_link:
         :paramtype next_link: str
         """
-        super(ProductResult, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.values = values
         self.next_link = next_link

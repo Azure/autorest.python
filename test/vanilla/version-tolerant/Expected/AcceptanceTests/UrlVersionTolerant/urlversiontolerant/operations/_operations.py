@@ -121,7 +121,7 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/paths/long/10000000000/{longPath}"
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, "long"),
+        "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -141,7 +141,7 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/paths/long/-10000000000/{longPath}"
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, "long"),
+        "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -369,7 +369,7 @@ def build_paths_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
+def build_paths_byte_multi_byte_request(byte_path: bytes, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -391,7 +391,7 @@ def build_paths_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> 
 def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+    byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -408,7 +408,7 @@ def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
+def build_paths_byte_null_request(byte_path: bytes, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -689,7 +689,7 @@ def build_queries_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _url = "/queries/long/10000000000"
 
     # Construct parameters
-    _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -708,7 +708,7 @@ def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest
     _url = "/queries/long/-10000000000"
 
     # Construct parameters
-    _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -727,7 +727,7 @@ def build_queries_get_long_null_request(*, long_query: Optional[int] = None, **k
 
     # Construct parameters
     if long_query is not None:
-        _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+        _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -963,7 +963,7 @@ def build_queries_enum_null_request(*, enum_query: Optional[str] = None, **kwarg
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_byte_multi_byte_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_byte_multi_byte_request(*, byte_query: Optional[bytes] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -986,7 +986,7 @@ def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytearray("", encoding="utf-8")))  # type: bytearray
+    byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))  # type: bytes
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1001,7 +1001,7 @@ def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_byte_null_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_byte_null_request(*, byte_query: Optional[bytes] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -1249,12 +1249,12 @@ def build_queries_array_string_pipes_valid_request(
 
 def build_path_items_get_all_with_values_request(
     path_item_string_path: str,
-    global_string_path: str,
     local_string_path: str,
+    global_string_path: str,
     *,
     path_item_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1288,12 +1288,12 @@ def build_path_items_get_all_with_values_request(
 
 def build_path_items_get_global_query_null_request(
     path_item_string_path: str,
-    global_string_path: str,
     local_string_path: str,
+    global_string_path: str,
     *,
     path_item_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1327,12 +1327,12 @@ def build_path_items_get_global_query_null_request(
 
 def build_path_items_get_global_and_local_query_null_request(
     path_item_string_path: str,
-    global_string_path: str,
     local_string_path: str,
+    global_string_path: str,
     *,
     path_item_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1366,12 +1366,12 @@ def build_path_items_get_global_and_local_query_null_request(
 
 def build_path_items_get_local_path_item_query_null_request(
     path_item_string_path: str,
-    global_string_path: str,
     local_string_path: str,
+    global_string_path: str,
     *,
     path_item_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1450,6 +1450,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1463,8 +1464,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword bool_path: false boolean value. Required. Default value is False. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :return: None
         :rtype: None
@@ -1489,6 +1490,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1528,6 +1530,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1567,6 +1570,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1582,7 +1586,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
          overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1606,6 +1610,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1621,7 +1626,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1645,6 +1650,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1684,6 +1690,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1723,6 +1730,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1762,6 +1770,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1801,6 +1810,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1840,6 +1850,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1880,6 +1891,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1922,6 +1934,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1935,8 +1948,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_path: '' string value. Default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_path: '' string value. Required. Default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_path: str
         :return: None
         :rtype: None
@@ -1961,6 +1974,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1974,7 +1988,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def string_null(self, string_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw).
 
-        :param string_path: null string value.
+        :param string_path: null string value. Required.
         :type string_path: str
         :return: None
         :rtype: None
@@ -1998,6 +2012,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2011,8 +2026,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def enum_valid(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get using uri with 'green color' in path parameter.
 
-        :param enum_path: send the value green. Possible values are: "red color", "green color", and
-         "blue color".
+        :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
+         color". Required.
         :type enum_path: str
         :return: None
         :rtype: None
@@ -2036,6 +2051,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2049,8 +2065,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def enum_null(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw on the client before the request is sent on wire).
 
-        :param enum_path: send null should throw. Possible values are: "red color", "green color", and
-         "blue color".
+        :param enum_path: send null should throw. Known values are: "red color", "green color", and
+         "blue color". Required.
         :type enum_path: str
         :return: None
         :rtype: None
@@ -2074,6 +2090,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2085,12 +2102,12 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, byte_path: bytearray, **kwargs: Any
+        self, byte_path: bytes, **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
-        :type byte_path: bytearray
+        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
+        :type byte_path: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2113,6 +2130,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2126,9 +2144,9 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype byte_path: bytearray
+        :keyword byte_path: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype byte_path: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2139,7 +2157,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+        byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_empty_request(
@@ -2152,6 +2170,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2162,11 +2181,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def byte_null(self, byte_path: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null as byte array (should throw).
 
-        :param byte_path: null as byte array (should throw).
-        :type byte_path: bytearray
+        :param byte_path: null as byte array (should throw). Required.
+        :type byte_path: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2189,6 +2208,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2228,6 +2248,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2244,7 +2265,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
-        :param date_path: null as date (should throw).
+        :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
         :return: None
         :rtype: None
@@ -2268,6 +2289,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2308,6 +2330,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2323,7 +2346,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
-        :param date_time_path: null as date-time.
+        :param date_time_path: null as date-time. Required.
         :type date_time_path: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2347,6 +2370,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2362,7 +2386,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
-        :param base64_url_path: base64url encoded value.
+        :param base64_url_path: base64url encoded value. Required.
         :type base64_url_path: bytes
         :return: None
         :rtype: None
@@ -2386,6 +2410,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2403,7 +2428,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
-         using the csv-array format.
+         using the csv-array format. Required.
         :type array_path: list[str]
         :return: None
         :rtype: None
@@ -2427,6 +2452,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2442,7 +2468,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
-        :param unix_time_url_path: Unix time encoded value.
+        :param unix_time_url_path: Unix time encoded value. Required.
         :type unix_time_url_path: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2466,6 +2492,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2523,6 +2550,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2536,8 +2564,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_query: false boolean value. Default value is False. Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword bool_query: false boolean value. Required. Default value is False. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -2547,7 +2575,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2562,6 +2590,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2601,6 +2630,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2640,6 +2670,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2679,6 +2710,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2718,6 +2750,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2733,7 +2766,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_query: '10000000000' 64 bit integer value. Default value is 10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: long
+        :paramtype long_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2757,6 +2790,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2772,7 +2806,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_query: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: long
+        :paramtype long_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2796,6 +2830,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2812,7 +2847,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get 'null 64 bit integer value (no query param in uri).
 
         :keyword long_query: null 64 bit integer value. Default value is None.
-        :paramtype long_query: long
+        :paramtype long_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2835,6 +2870,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2874,6 +2910,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2913,6 +2950,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2952,6 +2990,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2991,6 +3030,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3030,6 +3070,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3069,6 +3110,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3108,6 +3150,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3150,6 +3193,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3163,8 +3207,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_query: '' string value. Default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_query: '' string value. Required. Default value is "". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -3174,7 +3218,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3189,6 +3233,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3228,6 +3273,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3243,7 +3289,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
-        :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
+        :keyword enum_query: 'green color' enum value. Known values are: "red color", "green color",
          and "blue color". Default value is None.
         :paramtype enum_query: str
         :return: None
@@ -3268,6 +3314,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3283,8 +3330,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (no query parameter in url).
 
-        :keyword enum_query: null string value. Possible values are: "red color", "green color", and
-         "blue color". Default value is None.
+        :keyword enum_query: null string value. Known values are: "red color", "green color", and "blue
+         color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -3308,6 +3355,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3319,13 +3367,13 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
          None.
-        :paramtype byte_query: bytearray
+        :paramtype byte_query: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3348,6 +3396,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3361,9 +3410,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype byte_query: bytearray
+        :keyword byte_query: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype byte_query: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3372,11 +3421,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-        byte_query = kwargs.pop(
-            "byte_query", _params.pop("byteQuery", bytearray("", encoding="utf-8"))
-        )  # type: bytearray
+        byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))  # type: bytes
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_empty_request(
@@ -3389,6 +3436,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3400,12 +3448,12 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def byte_null(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
         :keyword byte_query: null as byte array (no query parameters in uri). Default value is None.
-        :paramtype byte_query: bytearray
+        :paramtype byte_query: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3428,6 +3476,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3467,6 +3516,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3506,6 +3556,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3548,6 +3599,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3587,6 +3639,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3628,6 +3681,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3667,6 +3721,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3707,6 +3762,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3748,6 +3804,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3789,6 +3846,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3830,6 +3888,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3871,6 +3930,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3913,8 +3973,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -3935,11 +3996,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )
@@ -3948,6 +4009,7 @@ class PathItemsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3972,8 +4034,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -3994,11 +4057,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )
@@ -4007,6 +4070,7 @@ class PathItemsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4031,8 +4095,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -4053,11 +4118,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )
@@ -4066,6 +4131,7 @@ class PathItemsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4090,8 +4156,9 @@ class PathItemsOperations:
         pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: should contain value null. Default value is None.
         :paramtype path_item_string_query: str
@@ -4111,11 +4178,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )
@@ -4124,6 +4191,7 @@ class PathItemsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

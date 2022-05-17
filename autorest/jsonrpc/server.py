@@ -18,29 +18,34 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["codegen", "m2r", "namer", "postprocess", "black", "multiapiscript"]
+    return ["codegen", "m2r", "namer", "m4reformatter", "black", "multiapiscript", "postprocess"]
 
 
 @dispatcher.add_method
 def Process(plugin_name: str, session_id: str) -> bool:
     # pylint: disable=import-outside-toplevel
-    """JSON-RPC process call.
-    """
+    """JSON-RPC process call."""
     from .stdstream import StdStreamAutorestAPI
 
     with contextlib.closing(StdStreamAutorestAPI(session_id)) as stdstream_connection:
 
-        _LOGGER.debug("Autorest called process with plugin_name '%s' and session_id: '%s'", plugin_name, session_id)
+        _LOGGER.debug(
+            "Autorest called process with plugin_name '%s' and session_id: '%s'",
+            plugin_name,
+            session_id,
+        )
         if plugin_name == "m2r":
             from ..m2r import M2R as PluginToLoad
         elif plugin_name == "namer":
             from ..namer import Namer as PluginToLoad  # type: ignore
+        elif plugin_name == "m4reformatter":
+            from ..m4reformatter import M4Reformatter as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
             from ..codegen import CodeGenerator as PluginToLoad  # type: ignore
         elif plugin_name == "postprocess":
             from ..postprocess import PostProcessPlugin as PluginToLoad  # type: ignore
         elif plugin_name == "black":
-            from ..black import BlackScriptPlugin  as PluginToLoad  # type: ignore
+            from ..black import BlackScriptPlugin as PluginToLoad  # type: ignore
         elif plugin_name == "multiapiscript":
             from ..multiapi import MultiApiScriptPlugin as PluginToLoad  # type: ignore
         else:
@@ -60,11 +65,15 @@ def Process(plugin_name: str, session_id: str) -> bool:
 def main() -> None:
     # If --python.debugger is specified on the command line, we call the server.py file internally
     # with flag --debug.
-    if '--debug' in sys.argv or os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
+    if "--debug" in sys.argv or os.environ.get(
+        "AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False
+    ):
         try:
             import ptvsd  # pylint: disable=import-outside-toplevel
         except ImportError:
-            raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
+            raise SystemExit(
+                "Please pip install ptvsd in order to use VSCode debugging"
+            )
 
         # 5678 is the default attach port in the VS Code debug configurations
         ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)

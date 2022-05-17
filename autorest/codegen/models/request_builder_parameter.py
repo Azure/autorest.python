@@ -3,102 +3,145 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional
-from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle
+from typing import TYPE_CHECKING, Any, Dict, Union
+from .parameter import (
+    ParameterLocation,
+    ParameterMethodLocation,
+    Parameter,
+    BodyParameter,
+    _MultipartBodyParameter,
+)
+from .base_type import BaseType
+from .primitive_types import BinaryType, StringType
+from .combined_type import CombinedType
 
-def _make_public(name):
-    if name[0] == "_":
-        return name[1:]
-    return name
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
-class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
+
+class RequestBuilderBodyParameter(BodyParameter):
+    """BOdy parmaeter for RequestBuilders"""
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if isinstance(self.type, (BinaryType, StringType)) or any(
+            "xml" in ct for ct in self.content_types
+        ):
+            self.client_name = "content"
+        else:
+            self.client_name = "json"
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        if self.type.is_xml:
+            return "Any"  # xml type technically not in type signature for HttpRequest content param
+        return super().type_annotation(**kwargs)
 
     @property
     def in_method_signature(self) -> bool:
-        return not(
-            # if not inputtable, don't put in signature
-            not self.inputtable_by_user
-            # If i'm not in the method code, no point in being in signature
-            or not self.in_method_code
-            # If I'm a flattened property of a body, don't want me, want the body param
-            or self.target_property_name
-            or not self.in_method_code
+        return super().in_method_signature and not self.is_partial_body
+
+    @property
+    def method_location(self) -> ParameterMethodLocation:
+        return (
+            ParameterMethodLocation.KWARG
+            if (self.constant or isinstance(self.type, CombinedType))
+            else ParameterMethodLocation.KEYWORD_ONLY
         )
-
-    @property
-    def name_in_high_level_operation(self) -> str:
-        template = "{}" if self.code_model.options["version_tolerant"] else "_{}"
-        if self.is_multipart:
-            return template.format("files")
-        if self.is_data_input:
-            return template.format("data")
-        if self.is_body and not self.constant:
-            return f"_{self.serialized_name}"
-        name = self.yaml_data["language"]["python"]["name"]
-        if self.implementation == "Client" and self.in_method_code:
-            # for these, we're passing the client params to the request builder.
-            # Need the self._config prefix
-            name = f"self._config.{name}"
-        return name
-
-    @property
-    def in_method_code(self) -> bool:
-        if self.location == ParameterLocation.Uri:
-            # don't want any base url path formatting arguments
-            return False
-        return super(RequestBuilderParameter, self).in_method_code
-
-    @property
-    def default_value_declaration(self) -> Optional[str]:
-        if self.serialized_name == "content_type":
-            # in request builders we're in a weird scenario
-            # we need to know what the types of content_type are
-            # but we want to serialize content_type with no default.
-            # So, we just return None in default_value_declaration for now
-            return "None"
-        return super().default_value_declaration
-
-    @property
-    def is_keyword_only(self) -> bool:
-        return not self.location == ParameterLocation.Path and not self.is_kwarg
-
-    @is_keyword_only.setter
-    def is_keyword_only(self, val: bool) -> None:
-        self._keyword_only = val
-        self.is_kwarg = False
-
-    @property
-    def full_serialized_name(self) -> str:
-        return self.serialized_name
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], *, code_model, content_types: Optional[List[str]] = None
-    ) -> "RequestBuilderParameter":
-        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
-        name = yaml_data["language"]["python"]["name"]
-        location = ParameterLocation(http_protocol["in"])
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "RequestBuilderBodyParameter":
+        return super().from_yaml(yaml_data, code_model)  # type: ignore
+
+    @property
+    def name_in_high_level_operation(self) -> str:
+        if self.client_name == "json":
+            return "_json"
+        return "_content"
+
+
+class RequestBuilderMultipartBodyParameter(
+    _MultipartBodyParameter[  # pylint: disable=unsubscriptable-object
+        RequestBuilderBodyParameter
+    ]
+):
+    """Multipart body parameter for Request BUilders"""
+
+    @property
+    def name_in_high_level_operation(self) -> str:
+        return f"_{self.client_name}"
+
+    @classmethod
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "RequestBuilderMultipartBodyParameter":
         return cls(
-            code_model=code_model,
             yaml_data=yaml_data,
-            schema=yaml_data.get("schema", None),  # FIXME replace by operation model
-            # See also https://github.com/Azure/autorest.modelerfour/issues/80
-            rest_api_name=yaml_data["language"]["default"].get(
-                "serializedName", yaml_data["language"]["default"]["name"]
-            ),
-            serialized_name=_make_public(name),
-            description=yaml_data["language"]["python"]["description"],
-            implementation=yaml_data["implementation"],
-            required=yaml_data.get("required", False),
-            location=location,
-            skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
-            constraints=[],  # FIXME constraints
-            target_property_name=id(yaml_data["targetProperty"]) if yaml_data.get("targetProperty") else None,
-            style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
-            explode=http_protocol.get("explode", False),
-            grouped_by=yaml_data.get("groupedBy", None),
-            original_parameter=yaml_data.get("originalParameter", None),
-            flattened=yaml_data.get("flattened", False),
-            client_default_value=yaml_data.get("clientDefaultValue"),
-            content_types=content_types,
+            code_model=code_model,
+            type=code_model.lookup_type(id(yaml_data["type"])),
+            entries=[
+                RequestBuilderBodyParameter.from_yaml(entry, code_model)
+                for entry in yaml_data["entries"]
+            ],
         )
+
+
+class RequestBuilderParameter(Parameter):
+    """Basic RequestBuilder Parameter."""
+
+    def __init__(
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType
+    ) -> None:
+        super().__init__(yaml_data, code_model, type)
+        # we don't want any default content type behavior in request builder
+        if self.rest_api_name == "Content-Type":
+            self.client_default_value = None
+        if self.grouped_by and self.client_name[0] == "_":
+            # we don't want hidden parameters for grouped by in request builders
+            self.client_name = self.client_name[1:]
+
+    @property
+    def in_method_signature(self) -> bool:
+        if self.grouped_by and not self.in_flattened_body:
+            return True
+        return super().in_method_signature and not (
+            self.location == ParameterLocation.ENDPOINT_PATH
+            or self.in_flattened_body
+            or self.grouper
+        )
+
+    @property
+    def full_client_name(self) -> str:
+        return self.client_name
+
+    @property
+    def method_location(self) -> ParameterMethodLocation:
+        super_method_location = super().method_location
+        if super_method_location == ParameterMethodLocation.KWARG:
+            return super_method_location
+        if (
+            self.in_overriden
+            and super_method_location == ParameterMethodLocation.KEYWORD_ONLY
+        ):
+            return ParameterMethodLocation.KWARG
+        if self.location != ParameterLocation.PATH:
+            return ParameterMethodLocation.KEYWORD_ONLY
+        return super_method_location
+
+    @property
+    def name_in_high_level_operation(self) -> str:
+        if self.grouped_by:
+            return f"_{self.client_name}"
+        if self.implementation == "Client":
+            return f"self._config.{self.client_name}"
+        return self.client_name
+
+
+def get_request_body_parameter(
+    yaml_data: Dict[str, Any], code_model: "CodeModel"
+) -> Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]:
+    """Get body parameter for a request builder"""
+    if yaml_data.get("entries"):
+        return RequestBuilderMultipartBodyParameter.from_yaml(yaml_data, code_model)
+    return RequestBuilderBodyParameter.from_yaml(yaml_data, code_model)

@@ -1,0 +1,116 @@
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
+
+from .base_model import BaseModel
+from .base_type import BaseType
+from .imports import FileImport, ImportType
+from .primitive_types import BinaryType, BinaryIteratorType
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
+
+
+class ResponseHeader(BaseModel):
+    def __init__(
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType
+    ) -> None:
+        super().__init__(yaml_data, code_model)
+        self.rest_api_name: str = yaml_data["restApiName"]
+        self.type = type
+
+    @property
+    def serialization_type(self) -> str:
+        return self.type.serialization_type
+
+    @classmethod
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "ResponseHeader":
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            type=code_model.lookup_type(id(yaml_data["type"])),
+        )
+
+
+class Response(BaseModel):
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        *,
+        headers: List[ResponseHeader] = [],
+        type: Optional[BaseType] = None,
+    ) -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        self.status_codes: List[Union[int, str]] = yaml_data["statusCodes"]
+        self.headers = headers
+        self.type = type
+        self.nullable = yaml_data.get("nullable")
+
+    @property
+    def is_stream_response(self) -> bool:
+        """Is the response expected to be streamable, like a download."""
+        return isinstance(self.type, BinaryIteratorType)
+
+    @property
+    def serialization_type(self) -> str:
+        if self.type:
+            return self.type.serialization_type
+        return "None"
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        if self.type:
+            kwargs["is_operation_file"] = True
+            type_annot = self.type.type_annotation(**kwargs)
+            if self.nullable:
+                return f"Optional[{type_annot}]"
+            return type_annot
+        return "None"
+
+    def docstring_text(self, **kwargs: Any) -> str:
+        if self.nullable and self.type:
+            return f"{self.type.docstring_text(**kwargs)} or None"
+        return self.type.docstring_text(**kwargs) if self.type else ""
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        if self.nullable and self.type:
+            return f"{self.type.docstring_type(**kwargs)} or None"
+        return self.type.docstring_type(**kwargs) if self.type else ""
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = FileImport()
+        if self.type:
+            file_import.merge(self.type.imports(is_operation_file=True, **kwargs))
+        if self.nullable:
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        return file_import
+
+    @classmethod
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "Response":
+        type = (
+            code_model.lookup_type(id(yaml_data["type"]))
+            if yaml_data.get("type")
+            else None
+        )
+        # use ByteIteratorType if we are returning a binary type
+        if isinstance(type, BinaryType):
+            type = BinaryIteratorType(type.yaml_data, type.code_model)
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            headers=[
+                ResponseHeader.from_yaml(header, code_model)
+                for header in yaml_data["headers"]
+            ],
+            type=type,
+        )
+
+    def __repr__(self) -> str:
+        return f"<{self.__class__.__name__} {self.status_codes}>"

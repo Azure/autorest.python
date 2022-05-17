@@ -58,10 +58,10 @@ class HeaderOperations:
     ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        :param foo_client_request_id: The fooRequestId.
+        :param foo_client_request_id: The fooRequestId. Required.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -85,6 +85,7 @@ class HeaderOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -109,11 +110,11 @@ class HeaderOperations:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
 
-        :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
+        :param header_custom_named_request_id_param_grouping_parameters: Parameter group. Required.
         :type header_custom_named_request_id_param_grouping_parameters:
          ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -141,6 +142,7 @@ class HeaderOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -160,10 +162,10 @@ class HeaderOperations:
     async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs: Any) -> bool:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        :param foo_client_request_id: The fooRequestId.
+        :param foo_client_request_id: The fooRequestId. Required.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -187,6 +189,7 @@ class HeaderOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 404]:

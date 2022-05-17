@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
@@ -19,7 +19,7 @@ from .operations import ExplicitOperations, ImplicitOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -31,9 +31,9 @@ class AutoRestRequiredOptionalTestService(object):
     :vartype implicit: requiredoptional.operations.ImplicitOperations
     :ivar explicit: ExplicitOperations operations
     :vartype explicit: requiredoptional.operations.ExplicitOperations
-    :param required_global_path: number of items to skip.
+    :param required_global_path: number of items to skip. Required.
     :type required_global_path: str
-    :param required_global_query: number of items to skip.
+    :param required_global_query: number of items to skip. Required.
     :type required_global_query: str
     :param optional_global_query: number of items to skip. Default value is None.
     :type optional_global_query: int

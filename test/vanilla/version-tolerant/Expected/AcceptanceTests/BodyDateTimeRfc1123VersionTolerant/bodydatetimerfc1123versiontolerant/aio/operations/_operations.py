@@ -35,7 +35,6 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -81,6 +80,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -122,6 +122,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -163,6 +164,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -204,6 +206,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -226,7 +229,7 @@ class Datetimerfc1123Operations:
     ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
-        :param datetime_body: datetime body.
+        :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
         :return: None
         :rtype: None
@@ -238,9 +241,7 @@ class Datetimerfc1123Operations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -256,6 +257,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -290,6 +292,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -331,6 +334,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -353,7 +357,7 @@ class Datetimerfc1123Operations:
     ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        :param datetime_body: datetime body.
+        :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
         :return: None
         :rtype: None
@@ -365,9 +369,7 @@ class Datetimerfc1123Operations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -383,6 +385,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -417,6 +420,7 @@ class Datetimerfc1123Operations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

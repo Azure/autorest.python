@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from errorwithsecrets.operations._errorwith_secrets_operations import build_create_secret_request
+from errorwithsecrets.operations._error_with_secrets_operations import build_create_secret_request
 from errorwithsecrets.aio import ErrorWithSecrets
 from azure.core.exceptions import HttpResponseError
 

@@ -48,7 +48,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_no_default_reque
 
 
 def build_contants_put_no_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -78,7 +78,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_no_default_reque
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -162,7 +162,7 @@ def build_contants_put_model_as_string_no_required_two_value_no_default_request(
 
 
 def build_contants_put_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -192,7 +192,7 @@ def build_contants_put_model_as_string_no_required_one_value_no_default_request(
 
 
 def build_contants_put_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -311,7 +311,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is None.
+        :keyword input: Known values are: "value1" and "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -335,6 +335,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -346,13 +347,13 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" and "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -376,6 +377,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -393,7 +395,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are "value1" or None. Default value is None.
+        :keyword input: Known values are "value1" and None. Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -417,6 +419,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -428,13 +431,13 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are "value1" or None. Default value is "value1".
+        :keyword input: Known values are "value1" and None. Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -458,6 +461,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -475,7 +479,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" and "value2". Required.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -499,6 +503,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -516,7 +521,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" and "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -540,6 +545,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -557,7 +563,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is "value1". Note that overriding this default value may result
+        :keyword input: Default value is "value1". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype input: str
         :return: None
@@ -583,6 +589,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -600,7 +607,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is "value1". Note that overriding this default value may result
+        :keyword input: Default value is "value1". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype input: str
         :return: None
@@ -626,6 +633,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -643,7 +651,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is None.
+        :keyword input: Known values are: "value1" and "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -667,6 +675,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -678,13 +687,13 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" and "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -708,6 +717,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -749,6 +759,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -760,7 +771,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -790,6 +801,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -807,7 +819,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" and "value2". Required.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -831,6 +843,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -848,7 +861,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" and "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -872,6 +885,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -889,7 +903,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Required.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -913,6 +927,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -954,6 +969,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -992,6 +1008,7 @@ class ContantsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

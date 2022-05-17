@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class Enum0(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Enum0."""
 
     FOO1 = "foo1"
     FOO2 = "foo2"
@@ -18,6 +19,7 @@ class Enum0(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class Enum1(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Enum1."""
 
     FOO1 = "foo1"
     FOO2 = "foo2"
@@ -25,6 +27,7 @@ class Enum1(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class FooEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """FooEnum."""
 
     FOO1 = "foo1"
     FOO2 = "foo2"

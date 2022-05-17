@@ -54,7 +54,7 @@ class UsageOperations:
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: UsageListResult, or the result of cls(response)
+        :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -80,6 +80,7 @@ class UsageOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

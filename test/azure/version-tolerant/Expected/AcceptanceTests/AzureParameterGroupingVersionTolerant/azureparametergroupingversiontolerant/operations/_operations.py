@@ -26,20 +26,13 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 
 
 def build_parameter_grouping_post_required_request(
-    path: str,
-    *,
-    json: JSONType = None,
-    content: Any = None,
-    custom_header: Optional[str] = None,
-    query: Optional[int] = 30,
-    **kwargs: Any
+    path: str, *, json: int, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -66,11 +59,11 @@ def build_parameter_grouping_post_required_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, **kwargs)
 
 
 def build_parameter_grouping_post_optional_request(
-    *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+    *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -118,9 +111,9 @@ def build_parameter_grouping_post_reserved_words_request(
 def build_parameter_grouping_post_multi_param_groups_request(
     *,
     header_one: Optional[str] = None,
-    query_one: Optional[int] = 30,
+    query_one: int = 30,
     header_two: Optional[str] = None,
-    query_two: Optional[int] = 30,
+    query_two: int = 30,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -148,7 +141,7 @@ def build_parameter_grouping_post_multi_param_groups_request(
 
 
 def build_parameter_grouping_post_shared_parameter_group_object_request(
-    *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
+    *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -189,15 +182,15 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_required(  # pylint: disable=inconsistent-return-statements
-        self, path: str, body: int, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+        self, path: str, body: int, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
-        :param path: Path parameter.
+        :param path: Path parameter. Required.
         :type path: str
-        :param body:
+        :param body: Required.
         :type body: int
-        :keyword custom_header:  Default value is None.
+        :keyword custom_header: Default value is None.
         :paramtype custom_header: str
         :keyword query: Query parameter with default. Default value is 30.
         :paramtype query: int
@@ -211,19 +204,17 @@ class ParameterGroupingOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = body
 
         request = build_parameter_grouping_post_required_request(
             path=path,
-            content_type=content_type,
-            json=_json,
             custom_header=custom_header,
             query=query,
+            content_type=content_type,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -232,6 +223,7 @@ class ParameterGroupingOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -243,11 +235,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_optional(  # pylint: disable=inconsistent-return-statements
-        self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+        self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
-        :keyword custom_header:  Default value is None.
+        :keyword custom_header: Default value is None.
         :paramtype custom_header: str
         :keyword query: Query parameter with default. Default value is 30.
         :paramtype query: int
@@ -274,6 +266,7 @@ class ParameterGroupingOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -318,6 +311,7 @@ class ParameterGroupingOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -332,18 +326,18 @@ class ParameterGroupingOperations:
         self,
         *,
         header_one: Optional[str] = None,
-        query_one: Optional[int] = 30,
+        query_one: int = 30,
         header_two: Optional[str] = None,
-        query_two: Optional[int] = 30,
+        query_two: int = 30,
         **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
-        :keyword header_one:  Default value is None.
+        :keyword header_one: Default value is None.
         :paramtype header_one: str
         :keyword query_one: Query parameter with default. Default value is 30.
         :paramtype query_one: int
-        :keyword header_two:  Default value is None.
+        :keyword header_two: Default value is None.
         :paramtype header_two: str
         :keyword query_two: Query parameter with default. Default value is 30.
         :paramtype query_two: int
@@ -372,6 +366,7 @@ class ParameterGroupingOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -383,11 +378,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
-        self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
+        self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 
-        :keyword header_one:  Default value is None.
+        :keyword header_one: Default value is None.
         :paramtype header_one: str
         :keyword query_one: Query parameter with default. Default value is 30.
         :paramtype query_one: int
@@ -414,6 +409,7 @@ class ParameterGroupingOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

@@ -3,120 +3,164 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Union
 from .base_model import BaseModel
 from .code_model import CodeModel
-from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSchema
-from .dictionary_schema import DictionarySchema
-from .list_schema import ListSchema
-from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema, IOSchema
-from .enum_schema import EnumSchema, HiddenModelEnumSchema, get_enum_schema
-from .base_schema import BaseSchema
-from .constant_schema import ConstantSchema
+from .model_type import ModelType
+from .dictionary_type import DictionaryType
+from .list_type import ListType
+from .combined_type import CombinedType
+from .primitive_types import (
+    ByteArraySchema,
+    DateType,
+    DatetimeType,
+    DurationType,
+    IntegerType,
+    FloatType,
+    StringType,
+    TimeType,
+    AnyType,
+    PrimitiveType,
+    BinaryType,
+    BooleanType,
+    AnyObjectType,
+    UnixTimeType,
+)
+from .enum_type import EnumType
+from .base_type import BaseType
+from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterStyle, ParameterLocation
+from .parameter import (
+    Parameter,
+    ParameterMethodLocation,
+    ParameterLocation,
+    BodyParameter,
+    ParameterDelimeter,
+    MultipartBodyParameter,
+    ClientParameter,
+    ConfigParameter,
+)
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
-from .schema_response import SchemaResponse
-from .parameter_list import ParameterList, GlobalParameterList
-from .request_builder import RequestBuilder
+from .response import Response
+from .parameter_list import (
+    ParameterList,
+    ClientGlobalParameterList,
+    ConfigGlobalParameterList,
+)
+from .request_builder import (
+    RequestBuilder,
+    OverloadedRequestBuilder,
+    RequestBuilderBase,
+)
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
-from .request_builder_parameter import RequestBuilderParameter
-from .schema_request import SchemaRequest
+from .request_builder_parameter import (
+    RequestBuilderParameter,
+    RequestBuilderBodyParameter,
+)
+from .credential_types import (
+    TokenCredentialType,
+    AzureKeyCredentialType,
+    ARMChallengeAuthenticationPolicyType,
+    BearerTokenCredentialPolicyType,
+    AzureKeyCredentialPolicyType,
+    CredentialType,
+)
 
 __all__ = [
-    "AzureKeyCredentialSchema",
-    "AnySchema",
+    "AzureKeyCredentialPolicyType",
+    "AnyType",
     "BaseModel",
-    "BaseSchema",
+    "BaseType",
     "CodeModel",
-    "ConstantSchema",
-    "ObjectSchema",
-    "DictionarySchema",
-    "ListSchema",
-    "EnumSchema",
-    "HiddenModelEnumSchema",
+    "ConstantType",
+    "ModelType",
+    "DictionaryType",
+    "ListType",
+    "EnumType",
     "FileImport",
     "ImportType",
     "TypingSection",
-    "PrimitiveSchema",
+    "PrimitiveType",
     "LROOperation",
     "Operation",
     "PagingOperation",
     "Parameter",
     "ParameterList",
-    "ParameterLocation",
     "OperationGroup",
     "Property",
     "RequestBuilder",
-    "SchemaResponse",
-    "TokenCredentialSchema",
+    "Response",
+    "TokenCredentialType",
     "LROPagingOperation",
     "BaseBuilder",
-    "SchemaRequest",
     "RequestBuilderParameter",
-    "HiddenModelObjectSchema",
-    "ParameterStyle",
-    "IOSchema",
-    "GlobalParameterList",
+    "BinaryType",
+    "ClientGlobalParameterList",
+    "ConfigGlobalParameterList",
+    "ParameterMethodLocation",
+    "ParameterLocation",
+    "OverloadedRequestBuilder",
+    "RequestBuilderBase",
+    "BodyParameter",
+    "RequestBuilderBodyParameter",
+    "ParameterDelimeter",
+    "MultipartBodyParameter",
+    "CredentialType",
+    "ClientParameter",
+    "ConfigParameter",
 ]
 
-def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
-    if (
-        yaml_data.get('properties') or
-        yaml_data.get('discriminator') or
-        yaml_data.get('parents') and yaml_data['parents'].get('immediate')
-    ):
-        return True
-    return False
+TYPE_TO_OBJECT = {
+    "integer": IntegerType,
+    "float": FloatType,
+    "string": StringType,
+    "list": ListType,
+    "dict": DictionaryType,
+    "constant": ConstantType,
+    "enum": EnumType,
+    "binary": BinaryType,
+    "any": AnyType,
+    "datetime": DatetimeType,
+    "time": TimeType,
+    "duration": DurationType,
+    "date": DateType,
+    "byte-array": ByteArraySchema,
+    "boolean": BooleanType,
+    "combined": CombinedType,
+    "OAuth2": TokenCredentialType,
+    "Key": AzureKeyCredentialType,
+    "ARMChallengeAuthenticationPolicy": ARMChallengeAuthenticationPolicyType,
+    "BearerTokenCredentialPolicy": BearerTokenCredentialPolicyType,
+    "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
+    "any-object": AnyObjectType,
+    "unixtime": UnixTimeType,
+}
 
 
-def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
-    code_model = kwargs.get("code_model", None)
-    if not code_model:
-        raise ValueError("CodeModel not passed through kwargs")
+def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     yaml_id = id(yaml_data)
-    namespace = code_model.namespace
     try:
-        return code_model.lookup_schema(yaml_id)
+        return code_model.lookup_type(yaml_id)
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
-    schema: BaseSchema
-    schema_type = yaml_data["type"]
-    if schema_type == "constant":
-        schema = ConstantSchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type in ["choice", "sealed-choice"]:
-        schema = get_enum_schema(code_model).from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        code_model.enums[yaml_id] = schema
-
-    elif schema_type == "array":
-        schema = ListSchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type == "dictionary":
-        schema = DictionarySchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type in ["object", "and", "group", "any-object"]:
-        if _generate_as_object_schema(yaml_data):
-            # To avoid infinite loop, create the right instance in memory,
-            # put it in the index, and then parse the object.
-            schema = get_object_schema(code_model)(namespace, yaml_data, "_", "")
-            code_model.schemas[yaml_id] = schema
-            schema.fill_instance_from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        else:
-            schema = AnySchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
-            code_model.primitives[yaml_id] = schema
+    if yaml_data["type"] == "model":
+        # need to special case model to avoid recursion
+        response = ModelType(yaml_data, code_model)
+        code_model.types_map[yaml_id] = response
+        response.fill_instance_from_yaml(yaml_data, code_model)
     else:
-        schema = get_primitive_schema(namespace=namespace, yaml_data=yaml_data)
-        code_model.primitives[yaml_id] = schema
+        response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(yaml_data, code_model)  # type: ignore
+    code_model.types_map[yaml_id] = response
+    return response
 
-    return schema
+
+RequestBuilderType = Union[RequestBuilder, OverloadedRequestBuilder]
+ParameterType = Union[
+    Parameter, RequestBuilderParameter, ClientParameter, ConfigParameter
+]

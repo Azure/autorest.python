@@ -38,8 +38,7 @@ class Plugin(ABC):
 
 
 class YamlUpdatePlugin(Plugin):
-    """A plugin that update the YAML as input.
-    """
+    """A plugin that update the YAML as input."""
 
     def process(self) -> bool:
         # List the input file, should be only one
@@ -62,7 +61,7 @@ class YamlUpdatePlugin(Plugin):
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """The code-model-v4-no-tags yaml model tree.
 
-        :rtype: None
+        :rtype: updated yaml
         :raises Exception: Could raise any exception, stacktrace will be sent to autorest API
         """
         raise NotImplementedError()

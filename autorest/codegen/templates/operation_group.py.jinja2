@@ -1,23 +1,17 @@
 {% set disable = "  # pylint: disable=too-many-public-methods" if operation_group.operations | length > 20 else "" %}
-{% if operation_group.is_empty_operation_group and code_model.need_mixin_abc %}
-    {% set object_base_class = "(MixinABC)" %}
-{% elif not (async_mode or code_model.options["python3_only"]) %}
-    {% set object_base_class = "(object)" %}
-{% else %}
-    {% set object_base_class = "" %}
-{% endif %}
-class {{ operation_group.class_name }}{{ object_base_class }}:{{ disable }}
-{% if not operation_group.is_empty_operation_group %}
+{% set base_class = ("(" + operation_group.base_class(async_mode) + ")") if operation_group.base_class(async_mode) else "" %}
+class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
+{% if not operation_group.is_mixin %}
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`{{ "~" + code_model.namespace + (".aio." if async_mode else ".") + code_model.class_name }}`'s
-        :attr:`{{ operation_group.name }}` attribute.
+        :class:`{{ "~" + code_model.namespace + (".aio." if async_mode else ".") + code_model.client.name }}`'s
+        :attr:`{{ operation_group.property_name }}` attribute.
     """
 
-{% if code_model.schemas and code_model.options["models_mode"] %}
+{% if code_model.model_types and code_model.options["models_mode"] %}
     models = _models
 
 {% endif %}
@@ -33,11 +27,11 @@ class {{ operation_group.class_name }}{{ object_base_class }}:{{ disable }}
 
 {% set request_builder = operation.request_builder %}
 {% set operation_serializer = get_operation_serializer(operation) %}
-    {% if is_lro(operation) and is_paging(operation) %}
+    {% if operation.operation_type == "lropaging" %}
     {%- macro someop() %}{% include "lro_paging_operation.py.jinja2" %}{% endmacro %}
-    {% elif is_lro(operation) %}
+    {% elif operation.operation_type == "lro" %}
     {%- macro someop() %}{% include "lro_operation.py.jinja2" %}{% endmacro %}
-    {% elif is_paging(operation) %}
+    {% elif operation.operation_type == "paging" %}
     {% macro someop() %}{% include "paging_operation.py.jinja2" %}{% endmacro %}
     {% else %}
     {% macro someop() %}{% include "operation.py.jinja2" %}{% endmacro %}

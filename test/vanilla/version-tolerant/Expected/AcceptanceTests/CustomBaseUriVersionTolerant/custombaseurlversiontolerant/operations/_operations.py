@@ -64,7 +64,7 @@ class PathsOperations:
     def get_empty(self, account_name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a 200 to test a valid base uri.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :return: None
         :rtype: None
@@ -91,6 +91,7 @@ class PathsOperations:
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

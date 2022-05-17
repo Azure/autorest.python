@@ -30,6 +30,7 @@ class AccountType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class KeyName(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """KeyName."""
 
     KEY1 = "key1"
     KEY2 = "key2"

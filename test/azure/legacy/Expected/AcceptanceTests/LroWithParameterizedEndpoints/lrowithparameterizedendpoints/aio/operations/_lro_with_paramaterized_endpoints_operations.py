@@ -25,8 +25,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._lro_with_paramaterized_endpoints_operations import (
-    build_poll_with_constant_parameterized_endpoints_request_initial,
-    build_poll_with_parameterized_endpoints_request_initial,
+    build_poll_with_constant_parameterized_endpoints_request,
+    build_poll_with_parameterized_endpoints_request,
 )
 
 T = TypeVar("T")
@@ -43,7 +43,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_parameterized_endpoints_request_initial(
+        request = build_poll_with_parameterized_endpoints_request(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -58,11 +58,13 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         response_headers = {}
@@ -83,7 +85,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
     async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
+        :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -158,7 +160,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_constant_parameterized_endpoints_request_initial(
+        request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,
@@ -174,11 +176,13 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         response_headers = {}
@@ -201,7 +205,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
     ) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
+        :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
         :keyword constant_parameter: Next link for the list operation. Default value is "iAmConstant".
          Note that overriding this default value may result in unsupported behavior.

@@ -26,9 +26,9 @@ if TYPE_CHECKING:
 class MicrosoftAzureTestUrl:
     """Some cool documentation.
 
-    :param subscription_id: Subscription Id.
+    :param subscription_id: Subscription Id. Required.
     :type subscription_id: str
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -61,7 +61,7 @@ class MicrosoftAzureTestUrl:
         Use these helper methods to create the request you pass to this method.
 
         >>> from subscriptionidapiversionlowlevel.rest import group
-        >>> request = group.build_get_sample_resource_group_request(subscription_id, resource_group_name, **kwargs)
+        >>> request = group.build_get_sample_resource_group_request(resource_group_name, subscription_id, **kwargs)
         <HttpRequest [GET], url: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

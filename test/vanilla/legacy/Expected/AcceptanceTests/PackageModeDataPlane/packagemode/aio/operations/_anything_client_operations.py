@@ -42,7 +42,7 @@ class AnythingClientOperationsMixin:
         successfully returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: any, or the result of cls(response)
+        :return: any or the result of cls(response)
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,6 +65,7 @@ class AnythingClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -85,10 +86,10 @@ class AnythingClientOperationsMixin:
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
         else to get an object error.
 
-        :param input: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+        :param input: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
         :type input: any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -98,9 +99,7 @@ class AnythingClientOperationsMixin:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(input, "object")
@@ -118,6 +117,7 @@ class AnythingClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -134,7 +134,7 @@ class AnythingClientOperationsMixin:
         """Basic get that returns an string as anything. Returns string 'foo'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: any, or the result of cls(response)
+        :return: any or the result of cls(response)
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,6 +157,7 @@ class AnythingClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -177,10 +178,10 @@ class AnythingClientOperationsMixin:
         """Basic put that puts an string as anything. Pass in 'anything' to get a 200 and anything else to
         get an object error.
 
-        :param input: Pass in 'anything' for a 200, anything else for an object error.
+        :param input: Pass in 'anything' for a 200, anything else for an object error. Required.
         :type input: any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -190,9 +191,7 @@ class AnythingClientOperationsMixin:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(input, "object")
@@ -210,6 +209,7 @@ class AnythingClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -226,7 +226,7 @@ class AnythingClientOperationsMixin:
         """Basic get that returns an array as anything. Returns string ['foo', 'bar'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: any, or the result of cls(response)
+        :return: any or the result of cls(response)
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -249,6 +249,7 @@ class AnythingClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -269,10 +270,10 @@ class AnythingClientOperationsMixin:
         """Basic put that puts an array as anything. Pass in ['foo', 'bar'] to get a 200 and anything else
         to get an object error.
 
-        :param input: Pass in ['foo', 'bar'] for a 200, anything else for an object error.
+        :param input: Pass in ['foo', 'bar'] for a 200, anything else for an object error. Required.
         :type input: any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -282,9 +283,7 @@ class AnythingClientOperationsMixin:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(input, "object")
@@ -302,6 +301,7 @@ class AnythingClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

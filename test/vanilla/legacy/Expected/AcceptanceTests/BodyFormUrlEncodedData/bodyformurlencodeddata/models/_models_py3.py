@@ -6,9 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional, Union
+from typing import Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
@@ -18,13 +22,13 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar pet_type: Required. Can take a value of dog, or cat, or fish. Possible values include:
-     "dog", "cat", "fish".
+    :ivar pet_type: Can take a value of dog, or cat, or fish. Required. Known values are: "dog",
+     "cat", and "fish".
     :vartype pet_type: str or ~bodyformurlencodeddata.models.PetType
-    :ivar pet_food: Required. Can take a value of meat, or fish, or plant. Possible values include:
-     "meat", "fish", "plant".
+    :ivar pet_food: Can take a value of meat, or fish, or plant. Required. Known values are:
+     "meat", "fish", and "plant".
     :vartype pet_food: str or ~bodyformurlencodeddata.models.PetFood
-    :ivar pet_age: Required. How many years is it old?.
+    :ivar pet_age: How many years is it old?. Required.
     :vartype pet_age: int
     :ivar name: Updated name of the pet.
     :vartype name: str
@@ -57,22 +61,20 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         **kwargs
     ):
         """
-        :keyword pet_type: Required. Can take a value of dog, or cat, or fish. Possible values include:
-         "dog", "cat", "fish".
+        :keyword pet_type: Can take a value of dog, or cat, or fish. Required. Known values are: "dog",
+         "cat", and "fish".
         :paramtype pet_type: str or ~bodyformurlencodeddata.models.PetType
-        :keyword pet_food: Required. Can take a value of meat, or fish, or plant. Possible values
-         include: "meat", "fish", "plant".
+        :keyword pet_food: Can take a value of meat, or fish, or plant. Required. Known values are:
+         "meat", "fish", and "plant".
         :paramtype pet_food: str or ~bodyformurlencodeddata.models.PetFood
-        :keyword pet_age: Required. How many years is it old?.
+        :keyword pet_age: How many years is it old?. Required.
         :paramtype pet_age: int
         :keyword name: Updated name of the pet.
         :paramtype name: str
         :keyword status: Updated status of the pet.
         :paramtype status: str
         """
-        super(
-            Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema, self
-        ).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.pet_type = pet_type
         self.pet_food = pet_food
         self.pet_age = pet_age
@@ -89,12 +91,12 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar grant_type: Constant part of a formdata body. Has constant value: "access_token".
+    :ivar grant_type: Constant part of a formdata body. Required. Default value is "access_token".
     :vartype grant_type: str
-    :ivar service: Required. Indicates the name of your Azure container registry.
+    :ivar service: Indicates the name of your Azure container registry. Required.
     :vartype service: str
-    :ivar aad_access_token: Required. AAD access token, mandatory when grant_type is
-     access_token_refresh_token or access_token.
+    :ivar aad_access_token: AAD access token, mandatory when grant_type is
+     access_token_refresh_token or access_token. Required.
     :vartype aad_access_token: str
     """
 
@@ -114,15 +116,12 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 
     def __init__(self, *, service: str, aad_access_token: str, **kwargs):
         """
-        :keyword service: Required. Indicates the name of your Azure container registry.
+        :keyword service: Indicates the name of your Azure container registry. Required.
         :paramtype service: str
-        :keyword aad_access_token: Required. AAD access token, mandatory when grant_type is
-         access_token_refresh_token or access_token.
+        :keyword aad_access_token: AAD access token, mandatory when grant_type is
+         access_token_refresh_token or access_token. Required.
         :paramtype aad_access_token: str
         """
-        super(
-            PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
-            self,
-        ).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.service = service
         self.aad_access_token = aad_access_token

@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class AutoRestLongRunningOperationTestService:
     """Long-running Operation for AutoRest.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -49,7 +49,7 @@ class AutoRestLongRunningOperationTestService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from lrolowlevel.rest import lros
-        >>> request = lros.build_put200_succeeded_request(json=json, content=content, **kwargs)
+        >>> request = lros.build_put200_succeeded_request(content_type=content_type, json=json, **kwargs)
         <HttpRequest [PUT], url: '/lro/put/200/succeeded'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

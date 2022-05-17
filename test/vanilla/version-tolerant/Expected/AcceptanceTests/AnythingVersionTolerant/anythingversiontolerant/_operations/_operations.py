@@ -26,7 +26,6 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import MixinABC
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -47,7 +46,7 @@ def build_get_object_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_object_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_object_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -58,7 +57,7 @@ def build_put_object_request(*, json: JSONType = None, content: Any = None, **kw
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_get_string_request(**kwargs: Any) -> HttpRequest:
@@ -75,7 +74,7 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_string_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_string_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -86,7 +85,7 @@ def build_put_string_request(*, json: JSONType = None, content: Any = None, **kw
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_get_array_request(**kwargs: Any) -> HttpRequest:
@@ -103,7 +102,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -114,7 +113,7 @@ def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwa
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 class AnythingClientOperationsMixin(MixinABC):
@@ -144,6 +143,7 @@ class AnythingClientOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -165,7 +165,7 @@ class AnythingClientOperationsMixin(MixinABC):
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
         else to get an object error.
 
-        :param input: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+        :param input: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
         :type input: any
         :return: None
         :rtype: None
@@ -177,9 +177,7 @@ class AnythingClientOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = input
@@ -195,6 +193,7 @@ class AnythingClientOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -229,6 +228,7 @@ class AnythingClientOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -250,7 +250,7 @@ class AnythingClientOperationsMixin(MixinABC):
         """Basic put that puts an string as anything. Pass in 'anything' to get a 200 and anything else to
         get an object error.
 
-        :param input: Pass in 'anything' for a 200, anything else for an object error.
+        :param input: Pass in 'anything' for a 200, anything else for an object error. Required.
         :type input: any
         :return: None
         :rtype: None
@@ -262,9 +262,7 @@ class AnythingClientOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = input
@@ -280,6 +278,7 @@ class AnythingClientOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -314,6 +313,7 @@ class AnythingClientOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -335,7 +335,7 @@ class AnythingClientOperationsMixin(MixinABC):
         """Basic put that puts an array as anything. Pass in ['foo', 'bar'] to get a 200 and anything else
         to get an object error.
 
-        :param input: Pass in ['foo', 'bar'] for a 200, anything else for an object error.
+        :param input: Pass in ['foo', 'bar'] for a 200, anything else for an object error. Required.
         :type input: any
         :return: None
         :rtype: None
@@ -347,9 +347,7 @@ class AnythingClientOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = input
@@ -365,6 +363,7 @@ class AnythingClientOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

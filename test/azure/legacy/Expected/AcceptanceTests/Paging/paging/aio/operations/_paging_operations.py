@@ -34,7 +34,7 @@ from ...operations._paging_operations import (
     build_get_multiple_pages_failure_uri_request,
     build_get_multiple_pages_fragment_next_link_request,
     build_get_multiple_pages_fragment_with_grouping_next_link_request,
-    build_get_multiple_pages_lro_request_initial,
+    build_get_multiple_pages_lro_request,
     build_get_multiple_pages_request,
     build_get_multiple_pages_retry_first_request,
     build_get_multiple_pages_retry_second_request,
@@ -124,7 +124,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -189,7 +189,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -254,7 +254,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -320,7 +320,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -344,7 +344,7 @@ class PagingOperations:
     ) -> AsyncIterable[_models.ProductResult]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
@@ -410,7 +410,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -433,7 +433,7 @@ class PagingOperations:
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
         :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
-         test.
+         test. Required.
         :type required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
          nextOperationWithQueryParams. Default value is True. Note that overriding this default value
@@ -457,8 +457,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_get_with_query_params_request(
-                    query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
+                    query_constant=query_constant,
                     template_url=self.get_with_query_params.metadata["url"],
                     headers=_headers,
                     params=_params,
@@ -489,7 +489,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -559,7 +559,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -583,7 +583,7 @@ class PagingOperations:
     ) -> AsyncIterable[_models.OdataProductResult]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_odata_multiple_pages_options:
@@ -650,7 +650,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -674,10 +674,10 @@ class PagingOperations:
     ) -> AsyncIterable[_models.ProductResult]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param paging_get_multiple_pages_with_offset_options: Parameter group.
+        :param paging_get_multiple_pages_with_offset_options: Parameter group. Required.
         :type paging_get_multiple_pages_with_offset_options:
          ~paging.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -747,7 +747,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -813,7 +813,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -879,7 +879,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -944,7 +944,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1009,7 +1009,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1074,7 +1074,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1095,9 +1095,9 @@ class PagingOperations:
     ) -> AsyncIterable[_models.OdataProductResult]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
-        :param api_version: Sets the api version to use.
+        :param api_version: Sets the api version to use. Required.
         :type api_version: str
-        :param tenant: Sets the tenant to use.
+        :param tenant: Sets the tenant to use. Required.
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
@@ -1150,7 +1150,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1171,7 +1171,7 @@ class PagingOperations:
     ) -> AsyncIterable[_models.OdataProductResult]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
-        :param custom_parameter_group: Parameter group.
+        :param custom_parameter_group: Parameter group. Required.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
@@ -1234,7 +1234,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1269,7 +1269,7 @@ class PagingOperations:
             _maxresults = paging_get_multiple_pages_lro_options.maxresults
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
-        request = build_get_multiple_pages_lro_request_initial(
+        request = build_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -1283,6 +1283,7 @@ class PagingOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -1304,10 +1305,10 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncItemPaged[_models.ProductResult]]:
+    ) -> AsyncLROPoller[AsyncIterable[_models.ProductResult]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
@@ -1319,7 +1320,7 @@ class PagingOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns an iterator like instance of either
+        :return: An instance of LROPoller that returns an iterator like instance of either
          ProductResult or the result of cls(response)
         :rtype:
          ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]]
@@ -1342,7 +1343,7 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
-                request = build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -1360,7 +1361,7 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
-                request = build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -1383,7 +1384,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1490,7 +1491,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response

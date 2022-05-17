@@ -27,9 +27,9 @@ class StorageManagementClient:
     """StorageManagementClient.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL. Default value is "https://management.azure.com".
     :paramtype endpoint: str
@@ -62,7 +62,7 @@ class StorageManagementClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from storagelowlevel.rest import storage_accounts
-        >>> request = storage_accounts.build_check_name_availability_request(subscription_id, json=json, content=content, **kwargs)
+        >>> request = storage_accounts.build_check_name_availability_request(subscription_id, json=json, content_type=content_type, **kwargs)
         <HttpRequest [POST], url: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

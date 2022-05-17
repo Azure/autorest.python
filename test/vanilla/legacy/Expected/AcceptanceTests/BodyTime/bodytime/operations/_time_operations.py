@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 
 from msrest import Serializer
 
@@ -112,7 +112,7 @@ class TimeOperations(object):
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: time, or the result of cls(response)
+        :return: time or the result of cls(response)
         :rtype: ~datetime.time
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -135,6 +135,7 @@ class TimeOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -160,10 +161,10 @@ class TimeOperations(object):
         # type: (...) -> str
         """Put time value "08:07:56".
 
-        :param time_body: Put time value "08:07:56" in parameter to pass testserver.
+        :param time_body: Put time value "08:07:56" in parameter to pass testserver. Required.
         :type time_body: ~datetime.time
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -173,9 +174,7 @@ class TimeOperations(object):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = self._serialize.body(time_body, "time")
@@ -193,6 +192,7 @@ class TimeOperations(object):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

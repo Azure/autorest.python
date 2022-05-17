@@ -25,7 +25,6 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import build_time_get_request, build_time_put_request
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -71,6 +70,7 @@ class TimeOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -91,7 +91,7 @@ class TimeOperations:
     async def put(self, time_body: datetime.time, **kwargs: Any) -> str:
         """Put time value "08:07:56".
 
-        :param time_body: Put time value "08:07:56" in parameter to pass testserver.
+        :param time_body: Put time value "08:07:56" in parameter to pass testserver. Required.
         :type time_body: ~datetime.time
         :return: str
         :rtype: str
@@ -103,9 +103,7 @@ class TimeOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = time_body
@@ -121,6 +119,7 @@ class TimeOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

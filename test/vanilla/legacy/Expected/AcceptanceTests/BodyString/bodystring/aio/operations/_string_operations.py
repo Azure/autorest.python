@@ -67,7 +67,7 @@ class StringOperations:
         """Get null string value value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or None, or the result of cls(response)
+        :return: str or None or the result of cls(response)
         :rtype: str or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -90,6 +90,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -115,7 +116,7 @@ class StringOperations:
         :param string_body: string body. Default value is None.
         :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -125,19 +126,17 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if string_body is not None:
-            _json = self._serialize.body(string_body, "str")
+            _content = self._serialize.body(string_body, "str")
         else:
-            _json = None
+            _content = None
 
         request = build_put_null_request(
             content_type=content_type,
-            json=_json,
+            content=_content,
             template_url=self.put_null.metadata["url"],
             headers=_headers,
             params=_params,
@@ -148,6 +147,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -165,7 +165,7 @@ class StringOperations:
         """Get empty string value value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -188,6 +188,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -208,11 +209,11 @@ class StringOperations:
     async def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value empty ''.
 
-        :keyword string_body: string body. Default value is "". Note that overriding this default value
-         may result in unsupported behavior.
+        :keyword string_body: string body. Required. Default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -222,15 +223,15 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         string_body = kwargs.pop("string_body", "")  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        _json = self._serialize.body(string_body, "str")
 
         request = build_put_empty_request(
             content_type=content_type,
-            json=string_body,
+            json=_json,
             template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
@@ -241,6 +242,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -258,7 +260,7 @@ class StringOperations:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -281,6 +283,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -306,7 +309,7 @@ class StringOperations:
          this default value may result in unsupported behavior.
         :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -316,17 +319,17 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = self._serialize.body(string_body, "str")
+
         request = build_put_mbcs_request(
             content_type=content_type,
-            json=string_body,
+            json=_json,
             template_url=self.put_mbcs.metadata["url"],
             headers=_headers,
             params=_params,
@@ -337,6 +340,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -356,7 +360,7 @@ class StringOperations:
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -379,6 +383,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -406,7 +411,7 @@ class StringOperations:
          unsupported behavior.
         :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -416,17 +421,17 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "    Now is the time for all good men to come to the aid of their country    "
         )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        _json = self._serialize.body(string_body, "str")
+
         request = build_put_whitespace_request(
             content_type=content_type,
-            json=string_body,
+            json=_json,
             template_url=self.put_whitespace.metadata["url"],
             headers=_headers,
             params=_params,
@@ -437,6 +442,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -454,7 +460,7 @@ class StringOperations:
         """Get String value when no string value is sent in response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -477,6 +483,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -494,12 +501,12 @@ class StringOperations:
     get_not_provided.metadata = {"url": "/string/notProvided"}  # type: ignore
 
     @distributed_trace_async
-    async def get_base64_encoded(self, **kwargs: Any) -> bytearray:
+    async def get_base64_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
+        :return: bytes or the result of cls(response)
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -508,7 +515,7 @@ class StringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_get_base64_encoded_request(
             template_url=self.get_base64_encoded.metadata["url"],
@@ -521,6 +528,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -542,7 +550,7 @@ class StringOperations:
         """Get value that is base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes, or the result of cls(response)
+        :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -565,6 +573,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -587,10 +596,10 @@ class StringOperations:
     ) -> None:
         """Put value that is base64url encoded.
 
-        :param string_body: string body.
+        :param string_body: string body. Required.
         :type string_body: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -600,9 +609,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(string_body, "base64")
@@ -620,6 +627,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -637,7 +645,7 @@ class StringOperations:
         """Get null value that is expected to be base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes or None, or the result of cls(response)
+        :return: bytes or None or the result of cls(response)
         :rtype: bytes or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -660,6 +668,7 @@ class StringOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

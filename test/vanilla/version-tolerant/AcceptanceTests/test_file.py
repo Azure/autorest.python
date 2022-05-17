@@ -39,22 +39,14 @@ def client(connection_data_block_size):
         connection_data_block_size=connection_data_block_size) as client:
         yield client
 
-@pytest.fixture
-def callback():
-    def _callback(response, data_stream, headers):
-        assert not data_stream._internal_response._content_consumed
-        return data_stream
-    return _callback
-
 @pytest.mark.parametrize('connection_data_block_size', [1000])
 def test_get_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
         stream = client.files.get_file()
-        assert not stream._internal_response._content_consumed
 
-        for data in stream.iter_bytes():
-            assert 0 < len(data) <= stream.block_size
+        for data in stream:
+            assert 0 < len(data) <= 1000
             file_length += len(data)
             file_handle.write(data)
 
@@ -73,9 +65,8 @@ def test_get_empty_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
         stream = client.files.get_empty_file()
-        assert not stream._internal_response._content_consumed
 
-        for data in stream.iter_bytes():
+        for data in stream:
             file_length += len(data)
             file_handle.write(data)
 
@@ -85,39 +76,8 @@ def test_get_empty_file(client):
 def test_files_long_running(client):
     file_length = 0
     stream = client.files.get_file_large()
-    for data in stream.iter_raw():
-        assert 0 < len(data) <= stream.block_size
+    for data in stream:
+        assert 0 < len(data) <= 4096
         file_length += len(data)
 
     assert file_length ==  3000 * 1024 * 1024
-
-@pytest.mark.parametrize('connection_data_block_size', [None])
-def test_get_file_with_callback(client, callback):
-    file_length = 0
-    with io.BytesIO() as file_handle:
-        stream = client.files.get_file(cls=callback)
-        for data in stream.iter_raw():
-            assert 0 < len(data) <= stream.block_size
-            file_length += len(data)
-            file_handle.write(data)
-
-        assert file_length !=  0
-
-        sample_file = realpath(
-            join(cwd, pardir, pardir, pardir, pardir,
-                    "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
-
-        with open(sample_file, 'rb') as data:
-            sample_data = hash(data.read())
-        assert sample_data ==  hash(file_handle.getvalue())
-
-@pytest.mark.parametrize('connection_data_block_size', [None])
-def test_get_empty_file_with_callback(client, callback):
-    file_length = 0
-    with io.BytesIO() as file_handle:
-        stream = client.files.get_empty_file(cls=callback)
-        for data in stream.iter_raw():
-            file_length += len(data)
-            file_handle.write(data)
-
-        assert file_length ==  0

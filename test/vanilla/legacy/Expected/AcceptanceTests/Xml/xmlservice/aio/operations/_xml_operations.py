@@ -88,7 +88,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndNoMeta, or the result of cls(response)
+        :return: RootWithRefAndNoMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -111,6 +111,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -132,10 +133,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
-        :param model:
+        :param model: Required.
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -145,9 +146,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
@@ -165,6 +164,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -181,7 +181,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get a complex type that has a ref to a complex type with XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndMeta, or the result of cls(response)
+        :return: RootWithRefAndMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -204,6 +204,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -225,10 +226,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
-        :param model:
+        :param model: Required.
         :type model: ~xmlservice.models.RootWithRefAndMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -238,9 +239,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
@@ -258,6 +257,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -274,7 +274,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get a simple XML document.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow, or the result of cls(response)
+        :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -297,6 +297,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -319,10 +320,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put a simple XML document.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -332,9 +333,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
@@ -352,6 +351,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -369,7 +369,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get an XML document with multiple wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel, or the result of cls(response)
+        :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -392,6 +392,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -413,10 +414,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
-        :param wrapped_lists:
+        :param wrapped_lists: Required.
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -426,9 +427,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
@@ -446,6 +445,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -463,7 +463,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get strongly-typed response headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -486,6 +486,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -505,7 +506,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get an empty list.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow, or the result of cls(response)
+        :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -528,6 +529,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -549,10 +551,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts an empty list.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -562,9 +564,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
@@ -582,6 +582,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -598,7 +599,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Gets some empty wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel, or the result of cls(response)
+        :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -621,6 +622,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -642,10 +644,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts some empty wrapped lists.
 
-        :param apple_barrel:
+        :param apple_barrel: Required.
         :type apple_barrel: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -655,9 +657,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
@@ -675,6 +675,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -691,7 +692,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Banana, or the result of cls(response)
+        :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -714,6 +715,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -735,10 +737,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -748,9 +750,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
@@ -769,6 +769,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -785,7 +786,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Banana, or the result of cls(response)
+        :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -808,6 +809,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -829,10 +831,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a list with a single item.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -842,9 +844,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
@@ -863,6 +863,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -879,7 +880,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Banana, or the result of cls(response)
+        :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -902,6 +903,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -923,10 +925,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts an empty list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -936,9 +938,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
@@ -957,6 +957,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -973,7 +974,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Gets an XML document with an empty child element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Banana, or the result of cls(response)
+        :return: Banana or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -996,6 +997,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1017,10 +1019,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a value with an empty child element.
 
-        :param banana:
+        :param banana: Required.
         :type banana: ~xmlservice.models.Banana
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1030,9 +1032,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(banana, "Banana", is_xml=True)
@@ -1050,6 +1050,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -1065,11 +1066,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
         """Lists containers in a storage account.
 
-        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+        :keyword comp: Default value is "list". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListContainersResponse, or the result of cls(response)
+        :return: ListContainersResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1094,6 +1095,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1113,14 +1115,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
         """Gets storage service properties.
 
-        :keyword comp:  Default value is "properties". Note that overriding this default value may
+        :keyword comp: Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "service". Note that overriding this default value may
+        :keyword restype: Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageServiceProperties, or the result of cls(response)
+        :return: StorageServiceProperties or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1147,6 +1149,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1168,16 +1171,16 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts storage service properties.
 
-        :param properties:
+        :param properties: Required.
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :keyword comp:  Default value is "properties". Note that overriding this default value may
+        :keyword comp: Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "service". Note that overriding this default value may
+        :keyword restype: Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1189,9 +1192,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
@@ -1211,6 +1212,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -1226,14 +1228,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
         """Gets storage ACLs for a container.
 
-        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+        :keyword comp: Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "container". Note that overriding this default value may
+        :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of SignedIdentifier, or the result of cls(response)
+        :return: list of SignedIdentifier or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1260,6 +1262,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1281,16 +1284,16 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts storage ACLs for a container.
 
-        :param properties:
+        :param properties: Required.
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+        :keyword comp: Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "container". Note that overriding this default value may
+        :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1302,9 +1305,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
@@ -1327,6 +1328,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -1342,14 +1344,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
         """Lists blobs in a storage container.
 
-        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+        :keyword comp: Default value is "list". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
-        :keyword restype:  Default value is "container". Note that overriding this default value may
+        :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListBlobsResponse, or the result of cls(response)
+        :return: ListBlobsResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1376,6 +1378,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1398,10 +1401,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param id:  Default value is None.
+        :param id: Default value is None.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1411,9 +1414,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _properties = _models.JSONInput(id=id)
@@ -1432,6 +1433,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1448,7 +1450,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSONOutput, or the result of cls(response)
+        :return: JSONOutput or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1471,6 +1473,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1492,7 +1495,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ObjectWithXMsTextProperty, or the result of cls(response)
+        :return: ObjectWithXMsTextProperty or the result of cls(response)
         :rtype: ~xmlservice.models.ObjectWithXMsTextProperty
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1515,6 +1518,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1535,7 +1539,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get an XML document with binary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelWithByteProperty, or the result of cls(response)
+        :return: ModelWithByteProperty or the result of cls(response)
         :rtype: ~xmlservice.models.ModelWithByteProperty
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1558,6 +1562,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1576,14 +1581,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_binary(  # pylint: disable=inconsistent-return-statements
-        self, bytes: Optional[bytearray] = None, **kwargs: Any
+        self, bytes: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Put an XML document with binary property.
 
-        :param bytes:  Default value is None.
-        :type bytes: bytearray
+        :param bytes: Default value is None.
+        :type bytes: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1593,9 +1598,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
@@ -1614,6 +1617,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -1631,7 +1635,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get an XML document with uri property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelWithUrlProperty, or the result of cls(response)
+        :return: ModelWithUrlProperty or the result of cls(response)
         :rtype: ~xmlservice.models.ModelWithUrlProperty
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1654,6 +1658,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1676,10 +1681,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put an XML document with uri property.
 
-        :param url:  Default value is None.
+        :param url: Default value is None.
         :type url: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1689,9 +1694,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _model = _models.ModelWithUrlProperty(url=url)
@@ -1710,6 +1713,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:

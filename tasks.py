@@ -624,10 +624,3 @@ def regenerate_samples(c, debug=False):
             cmd += " ".join(flag_strings)
         cmds.append(cmd)
     _run_autorest(cmds, debug)
-
-@task
-def regenerate_security(c, debug=False):
-    regenerate(c, swagger_name='SecurityKeySwaggerCredentialFlag', debug=debug)
-    regenerate(c, swagger_name='SecurityAadSwaggerCredentialFlag', debug=debug)
-    regenerate(c, swagger_name='SecurityAadSwagger', debug=debug)
-    regenerate(c, swagger_name='SecurityKeySwagger', debug=debug)

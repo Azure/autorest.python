@@ -15,20 +15,25 @@ _LOGGER = logging.getLogger(__name__)
 _BLACK_MODE = black.Mode()
 _BLACK_MODE.line_length = 120
 
-class BlackScriptPlugin(Plugin):
 
+class BlackScriptPlugin(Plugin):
     def __init__(self, autorestapi):
-        super(BlackScriptPlugin, self).__init__(autorestapi)
+        super().__init__(autorestapi)
         output_folder_uri = self._autorestapi.get_value("outputFolderUri")
         if output_folder_uri.startswith("file:"):
             output_folder_uri = output_folder_uri[5:]
-        if os.name == 'nt' and output_folder_uri.startswith("///"):
+        if os.name == "nt" and output_folder_uri.startswith("///"):
             output_folder_uri = output_folder_uri[3:]
         self.output_folder = Path(output_folder_uri)
 
     def process(self) -> bool:
         # apply format_file on every file in the output folder
-        list(map(self.format_file, [f for f in self.output_folder.glob('**/*') if f.is_file()]))
+        list(
+            map(
+                self.format_file,
+                [f for f in self.output_folder.glob("**/*") if f.is_file()],
+            )
+        )
         return True
 
     def format_file(self, full_path) -> None:
@@ -38,7 +43,9 @@ class BlackScriptPlugin(Plugin):
             self._autorestapi.write_file(file, file_content)
             return
         try:
-            file_content = black.format_file_contents(file_content, fast=True, mode=_BLACK_MODE)
+            file_content = black.format_file_contents(
+                file_content, fast=True, mode=_BLACK_MODE
+            )
         except black.NothingChanged:
             pass
         self._autorestapi.write_file(file, file_content)

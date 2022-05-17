@@ -29,7 +29,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :vartype operation_group_one: multiapidataplane.v3.aio.operations.OperationGroupOneOperations
     :ivar operation_group_two: OperationGroupTwoOperations operations
     :vartype operation_group_two: multiapidataplane.v3.aio.operations.OperationGroupTwoOperations
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
@@ -51,8 +51,12 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.operation_group_one = OperationGroupOneOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.operation_group_two = OperationGroupTwoOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.operation_group_one = OperationGroupOneOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.operation_group_two = OperationGroupTwoOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
 
     def _send_request(

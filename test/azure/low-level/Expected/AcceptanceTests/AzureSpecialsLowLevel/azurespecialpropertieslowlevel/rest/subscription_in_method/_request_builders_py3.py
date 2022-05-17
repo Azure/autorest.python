@@ -16,8 +16,12 @@ from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
-def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_post_method_local_valid_request(
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """POST method with subscriptionId modeled in the method.  pass in subscription id =
     '1234-5678-9012-3456' to succeed.
 
@@ -25,7 +29,7 @@ def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -
     into your code flow.
 
     :param subscription_id: This should appear as a method parameter, use value
-     '1234-5678-9012-3456'.
+     '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -35,23 +39,31 @@ def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_post_method_local_null_request(
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """POST method with subscriptionId modeled in the method.  pass in subscription id = null,
     client-side validation should prevent you from making this call.
 
@@ -59,7 +71,7 @@ def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) ->
     into your code flow.
 
     :param subscription_id: This should appear as a method parameter, use value null, client-side
-     validation should prvenet the call.
+     validation should prvenet the call. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -69,23 +81,31 @@ def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) ->
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_post_path_local_valid_request(
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """POST method with subscriptionId modeled in the method.  pass in subscription id =
     '1234-5678-9012-3456' to succeed.
 
@@ -93,6 +113,7 @@ def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> 
     into your code flow.
 
     :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
+     Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -102,23 +123,31 @@ def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> 
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_post_swagger_local_valid_request(
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """POST method with subscriptionId modeled in the method.  pass in subscription id =
     '1234-5678-9012-3456' to succeed.
 
@@ -126,7 +155,7 @@ def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) 
     into your code flow.
 
     :param subscription_id: The subscriptionId, which appears in the path, the value is always
-     '1234-5678-9012-3456'.
+     '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -136,17 +165,22 @@ def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) 
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )

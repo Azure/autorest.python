@@ -28,14 +28,13 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import MixinABC, _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_poll_with_parameterized_endpoints_request_initial(**kwargs: Any) -> HttpRequest:
+def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -49,7 +48,7 @@ def build_poll_with_parameterized_endpoints_request_initial(**kwargs: Any) -> Ht
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_poll_with_constant_parameterized_endpoints_request_initial(**kwargs: Any) -> HttpRequest:
+def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
@@ -79,7 +78,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_parameterized_endpoints_request_initial(
+        request = build_poll_with_parameterized_endpoints_request(
             headers=_headers,
             params=_params,
         )
@@ -92,6 +91,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
@@ -118,7 +118,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
     def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
+        :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
@@ -192,7 +192,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_constant_parameterized_endpoints_request_initial(
+        request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             headers=_headers,
             params=_params,
@@ -206,6 +206,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
@@ -232,7 +233,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
     def begin_poll_with_constant_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
+        :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
         :keyword constant_parameter: Next link for the list operation. Default value is "iAmConstant".
          Note that overriding this default value may result in unsupported behavior.

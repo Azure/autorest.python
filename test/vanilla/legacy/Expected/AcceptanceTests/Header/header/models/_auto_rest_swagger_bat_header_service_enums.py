@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class GreyscaleColors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """GreyscaleColors."""
 
     WHITE = "White"
     BLACK = "black"

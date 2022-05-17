@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -38,7 +37,7 @@ class Basic(msrest.serialization.Model):
     :ivar name: Name property with a very long description that does not fit on a single line and a
      line break.
     :vartype name: str
-    :ivar color: Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
+    :ivar color: Known values are: "cyan", "Magenta", "YELLOW", and "blacK".
     :vartype color: str or ~bodycomplex.models.CMYKColors
     """
 
@@ -55,7 +54,7 @@ class Basic(msrest.serialization.Model):
         :keyword name: Name property with a very long description that does not fit on a single line
          and a line break.
         :paramtype name: str
-        :keyword color: Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
+        :keyword color: Known values are: "cyan", "Magenta", "YELLOW", and "blacK".
         :paramtype color: str or ~bodycomplex.models.CMYKColors
         """
         super(Basic, self).__init__(**kwargs)
@@ -94,7 +93,7 @@ class ByteWrapper(msrest.serialization.Model):
     """ByteWrapper.
 
     :ivar field:
-    :vartype field: bytearray
+    :vartype field: bytes
     """
 
     _attribute_map = {
@@ -104,7 +103,7 @@ class ByteWrapper(msrest.serialization.Model):
     def __init__(self, **kwargs):
         """
         :keyword field:
-        :paramtype field: bytearray
+        :paramtype field: bytes
         """
         super(ByteWrapper, self).__init__(**kwargs)
         self.field = kwargs.get("field", None)
@@ -180,7 +179,7 @@ class Fish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -228,7 +227,7 @@ class Shark(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -285,7 +284,7 @@ class Cookiecuttershark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -467,7 +466,7 @@ class DotFish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fish_type: Required. Constant filled by server.
+    :ivar fish_type: Required.
     :vartype fish_type: str
     :ivar species:
     :vartype species: str
@@ -537,7 +536,7 @@ class DotSalmon(DotFish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fish_type: Required. Constant filled by server.
+    :ivar fish_type: Required.
     :vartype fish_type: str
     :ivar species:
     :vartype species: str
@@ -690,7 +689,7 @@ class Goblinshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -704,8 +703,7 @@ class Goblinshark(Shark):
     :vartype birthday: ~datetime.datetime
     :ivar jawsize:
     :vartype jawsize: int
-    :ivar color: Colors possible. Possible values include: "pink", "gray", "brown", "RED", "red".
-     Default value: "gray".
+    :ivar color: Colors possible. Known values are: "pink", "gray", "brown", "RED", and "red".
     :vartype color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
@@ -740,8 +738,7 @@ class Goblinshark(Shark):
         :paramtype birthday: ~datetime.datetime
         :keyword jawsize:
         :paramtype jawsize: int
-        :keyword color: Colors possible. Possible values include: "pink", "gray", "brown", "RED",
-         "red". Default value: "gray".
+        :keyword color: Colors possible. Known values are: "pink", "gray", "brown", "RED", and "red".
         :paramtype color: str or ~bodycomplex.models.GoblinSharkColor
         """
         super(Goblinshark, self).__init__(**kwargs)
@@ -780,22 +777,22 @@ class LongWrapper(msrest.serialization.Model):
     """LongWrapper.
 
     :ivar field1:
-    :vartype field1: long
+    :vartype field1: int
     :ivar field2:
-    :vartype field2: long
+    :vartype field2: int
     """
 
     _attribute_map = {
-        "field1": {"key": "field1", "type": "long"},
-        "field2": {"key": "field2", "type": "long"},
+        "field1": {"key": "field1", "type": "int"},
+        "field2": {"key": "field2", "type": "int"},
     }
 
     def __init__(self, **kwargs):
         """
         :keyword field1:
-        :paramtype field1: long
+        :paramtype field1: int
         :keyword field2:
-        :paramtype field2: long
+        :paramtype field2: int
         """
         super(LongWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get("field1", None)
@@ -810,7 +807,7 @@ class MyBaseType(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: Required. Constant filled by server. Possible values include: "Kind1".
+    :ivar kind: Required. "Kind1"
     :vartype kind: str or ~bodycomplex.models.MyKind
     :ivar prop_b1:
     :vartype prop_b1: str
@@ -848,7 +845,7 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: Required. Constant filled by server. Possible values include: "Kind1".
+    :ivar kind: Required. "Kind1"
     :vartype kind: str or ~bodycomplex.models.MyKind
     :ivar prop_b1:
     :vartype prop_b1: str
@@ -921,7 +918,7 @@ class Salmon(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -975,7 +972,7 @@ class Sawshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str
@@ -988,7 +985,7 @@ class Sawshark(Shark):
     :ivar birthday: Required.
     :vartype birthday: ~datetime.datetime
     :ivar picture:
-    :vartype picture: bytearray
+    :vartype picture: bytes
     """
 
     _validation = {
@@ -1020,7 +1017,7 @@ class Sawshark(Shark):
         :keyword birthday: Required.
         :paramtype birthday: ~datetime.datetime
         :keyword picture:
-        :paramtype picture: bytearray
+        :paramtype picture: bytes
         """
         super(Sawshark, self).__init__(**kwargs)
         self.fishtype = "sawshark"  # type: str
@@ -1072,7 +1069,7 @@ class SmartSalmon(Salmon):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar fishtype: Required. Constant filled by server.
+    :ivar fishtype: Required.
     :vartype fishtype: str
     :ivar species:
     :vartype species: str

@@ -66,8 +66,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -75,7 +76,7 @@ class PathItemsOperations:
         :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -89,11 +90,11 @@ class PathItemsOperations:
 
         request = build_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_all_with_values.metadata["url"],
             headers=_headers,
             params=_params,
@@ -104,6 +105,7 @@ class PathItemsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -130,8 +132,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -139,7 +142,7 @@ class PathItemsOperations:
         :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -153,11 +156,11 @@ class PathItemsOperations:
 
         request = build_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_global_query_null.metadata["url"],
             headers=_headers,
             params=_params,
@@ -168,6 +171,7 @@ class PathItemsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -194,8 +198,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -203,7 +208,7 @@ class PathItemsOperations:
         :param local_string_query: should contain null value. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -217,11 +222,11 @@ class PathItemsOperations:
 
         request = build_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
             headers=_headers,
             params=_params,
@@ -232,6 +237,7 @@ class PathItemsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -258,15 +264,16 @@ class PathItemsOperations:
         pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: should contain value null. Default value is None.
         :type path_item_string_query: str
         :param local_string_query: should contain value null. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -280,11 +287,11 @@ class PathItemsOperations:
 
         request = build_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
             headers=_headers,
             params=_params,
@@ -295,6 +302,7 @@ class PathItemsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

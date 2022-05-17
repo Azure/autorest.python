@@ -42,10 +42,6 @@ def test_json(client):
     result = client.analyze_body(input=json_input)
     assert result == "Nice job with JSON"
 
-def test_incorrect_content_type(client):
-    with pytest.raises(ValueError):
-        client.analyze_body(input=b"PDF", content_type="text/plain")
-
 def test_content_type_with_encoding(client):
     result = client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
     assert result == "Nice job sending content type with encoding"
@@ -59,14 +55,14 @@ def test_json_no_accept_header(client):
 
 def test_binary_body_two_content_types(client):
     json_input = {"hello":"world"}
-    client.binary_body_with_two_content_types(json_input, content_type="application/json")
+    client.binary_body_with_two_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
     client.binary_body_with_two_content_types(content, content_type="application/octet-stream")
 
 def test_binary_body_three_content_types(client):
     json_input = {"hello":"world"}
-    client.binary_body_with_three_content_types(json_input)
+    client.binary_body_with_three_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
     client.binary_body_with_three_content_types(content, content_type="application/octet-stream")

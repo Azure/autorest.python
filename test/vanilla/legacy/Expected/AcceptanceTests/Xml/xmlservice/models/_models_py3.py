@@ -9,7 +9,6 @@
 import datetime
 from typing import Dict, List, Optional, TYPE_CHECKING, Union
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 if TYPE_CHECKING:
@@ -22,11 +21,11 @@ class AccessPolicy(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar start: Required. the date-time the policy is active.
+    :ivar start: the date-time the policy is active. Required.
     :vartype start: ~datetime.datetime
-    :ivar expiry: Required. the date-time the policy expires.
+    :ivar expiry: the date-time the policy expires. Required.
     :vartype expiry: ~datetime.datetime
-    :ivar permission: Required. the permissions for the acl policy.
+    :ivar permission: the permissions for the acl policy. Required.
     :vartype permission: str
     """
 
@@ -44,14 +43,14 @@ class AccessPolicy(msrest.serialization.Model):
 
     def __init__(self, *, start: datetime.datetime, expiry: datetime.datetime, permission: str, **kwargs):
         """
-        :keyword start: Required. the date-time the policy is active.
+        :keyword start: the date-time the policy is active. Required.
         :paramtype start: ~datetime.datetime
-        :keyword expiry: Required. the date-time the policy expires.
+        :keyword expiry: the date-time the policy expires. Required.
         :paramtype expiry: ~datetime.datetime
-        :keyword permission: Required. the permissions for the acl policy.
+        :keyword permission: the permissions for the acl policy. Required.
         :paramtype permission: str
         """
-        super(AccessPolicy, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.start = start
         self.expiry = expiry
         self.permission = permission
@@ -78,7 +77,7 @@ class AppleBarrel(msrest.serialization.Model):
         :keyword bad_apples:
         :paramtype bad_apples: list[str]
         """
-        super(AppleBarrel, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.good_apples = good_apples
         self.bad_apples = bad_apples
 
@@ -117,7 +116,7 @@ class Banana(msrest.serialization.Model):
         :keyword expiration: The time at which you should reconsider eating this banana.
         :paramtype expiration: ~datetime.datetime
         """
-        super(Banana, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.flavor = flavor
         self.expiration = expiration
@@ -134,7 +133,7 @@ class Blob(msrest.serialization.Model):
     :vartype deleted: bool
     :ivar snapshot: Required.
     :vartype snapshot: str
-    :ivar properties: Required. Properties of a blob.
+    :ivar properties: Properties of a blob. Required.
     :vartype properties: ~xmlservice.models.BlobProperties
     :ivar metadata: Dictionary of :code:`<string>`.
     :vartype metadata: dict[str, str]
@@ -173,12 +172,12 @@ class Blob(msrest.serialization.Model):
         :paramtype deleted: bool
         :keyword snapshot: Required.
         :paramtype snapshot: str
-        :keyword properties: Required. Properties of a blob.
+        :keyword properties: Properties of a blob. Required.
         :paramtype properties: ~xmlservice.models.BlobProperties
         :keyword metadata: Dictionary of :code:`<string>`.
         :paramtype metadata: dict[str, str]
         """
-        super(Blob, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.deleted = deleted
         self.snapshot = snapshot
@@ -208,7 +207,7 @@ class BlobPrefix(msrest.serialization.Model):
         :keyword name: Required.
         :paramtype name: str
         """
-        super(BlobPrefix, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
 
 
@@ -222,7 +221,7 @@ class BlobProperties(msrest.serialization.Model):
     :ivar etag: Required.
     :vartype etag: str
     :ivar content_length: Size in bytes.
-    :vartype content_length: long
+    :vartype content_length: int
     :ivar content_type:
     :vartype content_type: str
     :ivar content_encoding:
@@ -237,18 +236,18 @@ class BlobProperties(msrest.serialization.Model):
     :vartype cache_control: str
     :ivar blob_sequence_number:
     :vartype blob_sequence_number: int
-    :ivar blob_type: Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
+    :ivar blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
     :vartype blob_type: str or ~xmlservice.models.BlobType
-    :ivar lease_status: Possible values include: "locked", "unlocked".
+    :ivar lease_status: Known values are: "locked" and "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
-    :ivar lease_state: Possible values include: "available", "leased", "expired", "breaking",
+    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
      "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
-    :ivar lease_duration: Possible values include: "infinite", "fixed".
+    :ivar lease_duration: Known values are: "infinite" and "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
     :ivar copy_id:
     :vartype copy_id: str
-    :ivar copy_status: Possible values include: "pending", "success", "aborted", "failed".
+    :ivar copy_status: Known values are: "pending", "success", "aborted", and "failed".
     :vartype copy_status: str or ~xmlservice.models.CopyStatusType
     :ivar copy_source:
     :vartype copy_source: str
@@ -268,12 +267,12 @@ class BlobProperties(msrest.serialization.Model):
     :vartype deleted_time: ~datetime.datetime
     :ivar remaining_retention_days:
     :vartype remaining_retention_days: int
-    :ivar access_tier: Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
-     "Hot", "Cool", "Archive".
+    :ivar access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
+     "Cool", and "Archive".
     :vartype access_tier: str or ~xmlservice.models.AccessTier
     :ivar access_tier_inferred:
     :vartype access_tier_inferred: bool
-    :ivar archive_status: Possible values include: "rehydrate-pending-to-hot",
+    :ivar archive_status: Known values are: "rehydrate-pending-to-hot" and
      "rehydrate-pending-to-cool".
     :vartype archive_status: str or ~xmlservice.models.ArchiveStatus
     """
@@ -286,7 +285,7 @@ class BlobProperties(msrest.serialization.Model):
     _attribute_map = {
         "last_modified": {"key": "Last-Modified", "type": "rfc-1123"},
         "etag": {"key": "Etag", "type": "str"},
-        "content_length": {"key": "Content-Length", "type": "long"},
+        "content_length": {"key": "Content-Length", "type": "int"},
         "content_type": {"key": "Content-Type", "type": "str"},
         "content_encoding": {"key": "Content-Encoding", "type": "str"},
         "content_language": {"key": "Content-Language", "type": "str"},
@@ -353,7 +352,7 @@ class BlobProperties(msrest.serialization.Model):
         :keyword etag: Required.
         :paramtype etag: str
         :keyword content_length: Size in bytes.
-        :paramtype content_length: long
+        :paramtype content_length: int
         :keyword content_type:
         :paramtype content_type: str
         :keyword content_encoding:
@@ -368,18 +367,18 @@ class BlobProperties(msrest.serialization.Model):
         :paramtype cache_control: str
         :keyword blob_sequence_number:
         :paramtype blob_sequence_number: int
-        :keyword blob_type: Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
+        :keyword blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
         :paramtype blob_type: str or ~xmlservice.models.BlobType
-        :keyword lease_status: Possible values include: "locked", "unlocked".
+        :keyword lease_status: Known values are: "locked" and "unlocked".
         :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
-        :keyword lease_state: Possible values include: "available", "leased", "expired", "breaking",
+        :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", and
          "broken".
         :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
-        :keyword lease_duration: Possible values include: "infinite", "fixed".
+        :keyword lease_duration: Known values are: "infinite" and "fixed".
         :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
         :keyword copy_id:
         :paramtype copy_id: str
-        :keyword copy_status: Possible values include: "pending", "success", "aborted", "failed".
+        :keyword copy_status: Known values are: "pending", "success", "aborted", and "failed".
         :paramtype copy_status: str or ~xmlservice.models.CopyStatusType
         :keyword copy_source:
         :paramtype copy_source: str
@@ -399,16 +398,16 @@ class BlobProperties(msrest.serialization.Model):
         :paramtype deleted_time: ~datetime.datetime
         :keyword remaining_retention_days:
         :paramtype remaining_retention_days: int
-        :keyword access_tier: Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
-         "Hot", "Cool", "Archive".
+        :keyword access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
+         "Cool", and "Archive".
         :paramtype access_tier: str or ~xmlservice.models.AccessTier
         :keyword access_tier_inferred:
         :paramtype access_tier_inferred: bool
-        :keyword archive_status: Possible values include: "rehydrate-pending-to-hot",
+        :keyword archive_status: Known values are: "rehydrate-pending-to-hot" and
          "rehydrate-pending-to-cool".
         :paramtype archive_status: str or ~xmlservice.models.ArchiveStatus
         """
-        super(BlobProperties, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
         self.content_length = content_length
@@ -450,7 +449,7 @@ class Blobs(msrest.serialization.Model):
 
     _attribute_map = {
         "blob_prefix": {"key": "BlobPrefix", "type": "[BlobPrefix]"},
-        "blob": {"key": "Blob", "type": "[Blob]"},
+        "blob": {"key": "Blob", "type": "[Blob]", "xml": {"itemsName": "Blob"}},
     }
 
     def __init__(
@@ -466,7 +465,7 @@ class Blobs(msrest.serialization.Model):
         :keyword blob:
         :paramtype blob: list[~xmlservice.models.Blob]
         """
-        super(Blobs, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.blob_prefix = blob_prefix
         self.blob = blob
 
@@ -487,7 +486,7 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
         :keyword id: The id of the res.
         :paramtype id: str
         """
-        super(ComplexTypeNoMeta, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
 
 
@@ -508,7 +507,7 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
         :keyword id: The id of the res.
         :paramtype id: str
         """
-        super(ComplexTypeWithMeta, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
 
 
@@ -519,7 +518,7 @@ class Container(msrest.serialization.Model):
 
     :ivar name: Required.
     :vartype name: str
-    :ivar properties: Required. Properties of a container.
+    :ivar properties: Properties of a container. Required.
     :vartype properties: ~xmlservice.models.ContainerProperties
     :ivar metadata: Dictionary of :code:`<string>`.
     :vartype metadata: dict[str, str]
@@ -547,12 +546,12 @@ class Container(msrest.serialization.Model):
         """
         :keyword name: Required.
         :paramtype name: str
-        :keyword properties: Required. Properties of a container.
+        :keyword properties: Properties of a container. Required.
         :paramtype properties: ~xmlservice.models.ContainerProperties
         :keyword metadata: Dictionary of :code:`<string>`.
         :paramtype metadata: dict[str, str]
         """
-        super(Container, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.name = name
         self.properties = properties
         self.metadata = metadata
@@ -567,14 +566,14 @@ class ContainerProperties(msrest.serialization.Model):
     :vartype last_modified: ~datetime.datetime
     :ivar etag: Required.
     :vartype etag: str
-    :ivar lease_status: Possible values include: "locked", "unlocked".
+    :ivar lease_status: Known values are: "locked" and "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
-    :ivar lease_state: Possible values include: "available", "leased", "expired", "breaking",
+    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
      "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
-    :ivar lease_duration: Possible values include: "infinite", "fixed".
+    :ivar lease_duration: Known values are: "infinite" and "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :ivar public_access: Possible values include: "container", "blob".
+    :ivar public_access: Known values are: "container" and "blob".
     :vartype public_access: str or ~xmlservice.models.PublicAccessType
     """
 
@@ -608,17 +607,17 @@ class ContainerProperties(msrest.serialization.Model):
         :paramtype last_modified: ~datetime.datetime
         :keyword etag: Required.
         :paramtype etag: str
-        :keyword lease_status: Possible values include: "locked", "unlocked".
+        :keyword lease_status: Known values are: "locked" and "unlocked".
         :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
-        :keyword lease_state: Possible values include: "available", "leased", "expired", "breaking",
+        :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", and
          "broken".
         :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
-        :keyword lease_duration: Possible values include: "infinite", "fixed".
+        :keyword lease_duration: Known values are: "infinite" and "fixed".
         :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
-        :keyword public_access: Possible values include: "container", "blob".
+        :keyword public_access: Known values are: "container" and "blob".
         :paramtype public_access: str or ~xmlservice.models.PublicAccessType
         """
-        super(ContainerProperties, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
         self.lease_status = lease_status
@@ -632,23 +631,23 @@ class CorsRule(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar allowed_origins: Required. The origin domains that are permitted to make a request
-     against the storage service via CORS. The origin domain is the domain from which the request
-     originates. Note that the origin must be an exact case-sensitive match with the origin that the
-     user age sends to the service. You can also use the wildcard character '*' to allow all origin
-     domains to make requests via CORS.
+    :ivar allowed_origins: The origin domains that are permitted to make a request against the
+     storage service via CORS. The origin domain is the domain from which the request originates.
+     Note that the origin must be an exact case-sensitive match with the origin that the user age
+     sends to the service. You can also use the wildcard character '*' to allow all origin domains
+     to make requests via CORS. Required.
     :vartype allowed_origins: str
-    :ivar allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
-     use for a CORS request. (comma separated).
+    :ivar allowed_methods: The methods (HTTP request verbs) that the origin domain may use for a
+     CORS request. (comma separated). Required.
     :vartype allowed_methods: str
-    :ivar allowed_headers: Required. the request headers that the origin domain may specify on the
-     CORS request.
+    :ivar allowed_headers: the request headers that the origin domain may specify on the CORS
+     request. Required.
     :vartype allowed_headers: str
-    :ivar exposed_headers: Required. The response headers that may be sent in the response to the
-     CORS request and exposed by the browser to the request issuer.
+    :ivar exposed_headers: The response headers that may be sent in the response to the CORS
+     request and exposed by the browser to the request issuer. Required.
     :vartype exposed_headers: str
-    :ivar max_age_in_seconds: Required. The maximum amount time that a browser should cache the
-     preflight OPTIONS request.
+    :ivar max_age_in_seconds: The maximum amount time that a browser should cache the preflight
+     OPTIONS request. Required.
     :vartype max_age_in_seconds: int
     """
 
@@ -680,26 +679,26 @@ class CorsRule(msrest.serialization.Model):
         **kwargs
     ):
         """
-        :keyword allowed_origins: Required. The origin domains that are permitted to make a request
-         against the storage service via CORS. The origin domain is the domain from which the request
-         originates. Note that the origin must be an exact case-sensitive match with the origin that the
-         user age sends to the service. You can also use the wildcard character '*' to allow all origin
-         domains to make requests via CORS.
+        :keyword allowed_origins: The origin domains that are permitted to make a request against the
+         storage service via CORS. The origin domain is the domain from which the request originates.
+         Note that the origin must be an exact case-sensitive match with the origin that the user age
+         sends to the service. You can also use the wildcard character '*' to allow all origin domains
+         to make requests via CORS. Required.
         :paramtype allowed_origins: str
-        :keyword allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
-         use for a CORS request. (comma separated).
+        :keyword allowed_methods: The methods (HTTP request verbs) that the origin domain may use for a
+         CORS request. (comma separated). Required.
         :paramtype allowed_methods: str
-        :keyword allowed_headers: Required. the request headers that the origin domain may specify on
-         the CORS request.
+        :keyword allowed_headers: the request headers that the origin domain may specify on the CORS
+         request. Required.
         :paramtype allowed_headers: str
-        :keyword exposed_headers: Required. The response headers that may be sent in the response to
-         the CORS request and exposed by the browser to the request issuer.
+        :keyword exposed_headers: The response headers that may be sent in the response to the CORS
+         request and exposed by the browser to the request issuer. Required.
         :paramtype exposed_headers: str
-        :keyword max_age_in_seconds: Required. The maximum amount time that a browser should cache the
-         preflight OPTIONS request.
+        :keyword max_age_in_seconds: The maximum amount time that a browser should cache the preflight
+         OPTIONS request. Required.
         :paramtype max_age_in_seconds: int
         """
-        super(CorsRule, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.allowed_origins = allowed_origins
         self.allowed_methods = allowed_methods
         self.allowed_headers = allowed_headers
@@ -728,7 +727,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -749,7 +748,7 @@ class JSONInput(msrest.serialization.Model):
         :keyword id:
         :paramtype id: int
         """
-        super(JSONInput, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
 
 
@@ -769,7 +768,7 @@ class JSONOutput(msrest.serialization.Model):
         :keyword id:
         :paramtype id: int
         """
-        super(JSONOutput, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
 
 
@@ -849,7 +848,7 @@ class ListBlobsResponse(msrest.serialization.Model):
         :keyword next_marker: Required.
         :paramtype next_marker: str
         """
-        super(ListBlobsResponse, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.service_endpoint = service_endpoint
         self.container_name = container_name
         self.prefix = prefix
@@ -921,7 +920,7 @@ class ListContainersResponse(msrest.serialization.Model):
         :keyword next_marker: Required.
         :paramtype next_marker: str
         """
-        super(ListContainersResponse, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.service_endpoint = service_endpoint
         self.prefix = prefix
         self.marker = marker
@@ -935,15 +934,15 @@ class Logging(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar version: Required. The version of Storage Analytics to configure.
+    :ivar version: The version of Storage Analytics to configure. Required.
     :vartype version: str
-    :ivar delete: Required. Indicates whether all delete requests should be logged.
+    :ivar delete: Indicates whether all delete requests should be logged. Required.
     :vartype delete: bool
-    :ivar read: Required. Indicates whether all read requests should be logged.
+    :ivar read: Indicates whether all read requests should be logged. Required.
     :vartype read: bool
-    :ivar write: Required. Indicates whether all write requests should be logged.
+    :ivar write: Indicates whether all write requests should be logged. Required.
     :vartype write: bool
-    :ivar retention_policy: Required. the retention policy.
+    :ivar retention_policy: the retention policy. Required.
     :vartype retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
@@ -974,18 +973,18 @@ class Logging(msrest.serialization.Model):
         **kwargs
     ):
         """
-        :keyword version: Required. The version of Storage Analytics to configure.
+        :keyword version: The version of Storage Analytics to configure. Required.
         :paramtype version: str
-        :keyword delete: Required. Indicates whether all delete requests should be logged.
+        :keyword delete: Indicates whether all delete requests should be logged. Required.
         :paramtype delete: bool
-        :keyword read: Required. Indicates whether all read requests should be logged.
+        :keyword read: Indicates whether all read requests should be logged. Required.
         :paramtype read: bool
-        :keyword write: Required. Indicates whether all write requests should be logged.
+        :keyword write: Indicates whether all write requests should be logged. Required.
         :paramtype write: bool
-        :keyword retention_policy: Required. the retention policy.
+        :keyword retention_policy: the retention policy. Required.
         :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
         """
-        super(Logging, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.version = version
         self.delete = delete
         self.read = read
@@ -1000,7 +999,7 @@ class Metrics(msrest.serialization.Model):
 
     :ivar version: The version of Storage Analytics to configure.
     :vartype version: str
-    :ivar enabled: Required. Indicates whether metrics are enabled for the Blob service.
+    :ivar enabled: Indicates whether metrics are enabled for the Blob service. Required.
     :vartype enabled: bool
     :ivar include_apis: Indicates whether metrics should generate summary statistics for called API
      operations.
@@ -1032,7 +1031,7 @@ class Metrics(msrest.serialization.Model):
         """
         :keyword version: The version of Storage Analytics to configure.
         :paramtype version: str
-        :keyword enabled: Required. Indicates whether metrics are enabled for the Blob service.
+        :keyword enabled: Indicates whether metrics are enabled for the Blob service. Required.
         :paramtype enabled: bool
         :keyword include_apis: Indicates whether metrics should generate summary statistics for called
          API operations.
@@ -1040,7 +1039,7 @@ class Metrics(msrest.serialization.Model):
         :keyword retention_policy: the retention policy.
         :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
         """
-        super(Metrics, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.version = version
         self.enabled = enabled
         self.include_apis = include_apis
@@ -1051,19 +1050,19 @@ class ModelWithByteProperty(msrest.serialization.Model):
     """ModelWithByteProperty.
 
     :ivar bytes:
-    :vartype bytes: bytearray
+    :vartype bytes: bytes
     """
 
     _attribute_map = {
         "bytes": {"key": "Bytes", "type": "bytearray"},
     }
 
-    def __init__(self, *, bytes: Optional[bytearray] = None, **kwargs):
+    def __init__(self, *, bytes: Optional[bytes] = None, **kwargs):
         """
         :keyword bytes:
-        :paramtype bytes: bytearray
+        :paramtype bytes: bytes
         """
-        super(ModelWithByteProperty, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.bytes = bytes
 
 
@@ -1083,7 +1082,7 @@ class ModelWithUrlProperty(msrest.serialization.Model):
         :keyword url:
         :paramtype url: str
         """
-        super(ModelWithUrlProperty, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.url = url
 
 
@@ -1109,7 +1108,7 @@ class ObjectWithXMsTextProperty(msrest.serialization.Model):
         :keyword content: Returned value should be 'I am text'.
         :paramtype content: str
         """
-        super(ObjectWithXMsTextProperty, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.language = language
         self.content = content
 
@@ -1119,8 +1118,8 @@ class RetentionPolicy(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar enabled: Required. Indicates whether a retention policy is enabled for the storage
-     service.
+    :ivar enabled: Indicates whether a retention policy is enabled for the storage service.
+     Required.
     :vartype enabled: bool
     :ivar days: Indicates the number of days that metrics or logging or soft-deleted data should be
      retained. All data older than this value will be deleted.
@@ -1139,14 +1138,14 @@ class RetentionPolicy(msrest.serialization.Model):
 
     def __init__(self, *, enabled: bool, days: Optional[int] = None, **kwargs):
         """
-        :keyword enabled: Required. Indicates whether a retention policy is enabled for the storage
-         service.
+        :keyword enabled: Indicates whether a retention policy is enabled for the storage service.
+         Required.
         :paramtype enabled: bool
         :keyword days: Indicates the number of days that metrics or logging or soft-deleted data should
          be retained. All data older than this value will be deleted.
         :paramtype days: int
         """
-        super(RetentionPolicy, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.enabled = enabled
         self.days = days
 
@@ -1174,7 +1173,7 @@ class RootWithRefAndMeta(msrest.serialization.Model):
         :keyword something: Something else (just to avoid flattening).
         :paramtype something: str
         """
-        super(RootWithRefAndMeta, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
 
@@ -1202,7 +1201,7 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
         :keyword something: Something else (just to avoid flattening).
         :paramtype something: str
         """
-        super(RootWithRefAndNoMeta, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
 
@@ -1212,9 +1211,9 @@ class SignedIdentifier(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Required. a unique id.
+    :ivar id: a unique id. Required.
     :vartype id: str
-    :ivar access_policy: Required. The access policy.
+    :ivar access_policy: The access policy. Required.
     :vartype access_policy: ~xmlservice.models.AccessPolicy
     """
 
@@ -1231,12 +1230,12 @@ class SignedIdentifier(msrest.serialization.Model):
 
     def __init__(self, *, id: str, access_policy: "_models.AccessPolicy", **kwargs):
         """
-        :keyword id: Required. a unique id.
+        :keyword id: a unique id. Required.
         :paramtype id: str
-        :keyword access_policy: Required. The access policy.
+        :keyword access_policy: The access policy. Required.
         :paramtype access_policy: ~xmlservice.models.AccessPolicy
         """
-        super(SignedIdentifier, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.access_policy = access_policy
 
@@ -1270,7 +1269,7 @@ class Slide(msrest.serialization.Model):
         :keyword items:
         :paramtype items: list[str]
         """
-        super(Slide, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.type = type
         self.title = title
         self.items = items
@@ -1293,7 +1292,7 @@ class Slideshow(msrest.serialization.Model):
         "title": {"key": "title", "type": "str", "xml": {"attr": True}},
         "date": {"key": "date", "type": "str", "xml": {"attr": True}},
         "author": {"key": "author", "type": "str", "xml": {"attr": True}},
-        "slides": {"key": "slides", "type": "[Slide]"},
+        "slides": {"key": "slides", "type": "[Slide]", "xml": {"itemsName": "slide"}},
     }
     _xml_map = {"name": "slideshow"}
 
@@ -1316,7 +1315,7 @@ class Slideshow(msrest.serialization.Model):
         :keyword slides:
         :paramtype slides: list[~xmlservice.models.Slide]
         """
-        super(Slideshow, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.title = title
         self.date = date
         self.author = author
@@ -1382,7 +1381,7 @@ class StorageServiceProperties(msrest.serialization.Model):
         :keyword delete_retention_policy: The Delete Retention Policy for the service.
         :paramtype delete_retention_policy: ~xmlservice.models.RetentionPolicy
         """
-        super(StorageServiceProperties, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.logging = logging
         self.hour_metrics = hour_metrics
         self.minute_metrics = minute_metrics

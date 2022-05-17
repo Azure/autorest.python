@@ -25,9 +25,9 @@ if TYPE_CHECKING:
 class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param endpoint: Pass in https://localhost:3000.
+    :param endpoint: Pass in https://localhost:3000. Required.
     :type endpoint: str
     :keyword api_version: Api Version. Default value is "2.0.0". Note that overriding this default
      value may result in unsupported behavior.
@@ -40,9 +40,9 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         endpoint: str,
         **kwargs: Any
     ) -> None:
-        _base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
+        _endpoint = '{Endpoint}/multiapiCustomBaseUrl/v2'
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
-        self._client = AsyncPipelineClient(base_url=_base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

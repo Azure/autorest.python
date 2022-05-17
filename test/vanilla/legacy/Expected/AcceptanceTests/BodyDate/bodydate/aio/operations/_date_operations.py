@@ -63,7 +63,7 @@ class DateOperations:
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or None, or the result of cls(response)
+        :return: date or None or the result of cls(response)
         :rtype: ~datetime.date or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -86,6 +86,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -107,7 +108,7 @@ class DateOperations:
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -130,6 +131,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -151,7 +153,7 @@ class DateOperations:
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -174,6 +176,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -195,7 +198,7 @@ class DateOperations:
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -218,6 +221,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -240,10 +244,10 @@ class DateOperations:
     ) -> None:
         """Put max date value 9999-12-31.
 
-        :param date_body: date body.
+        :param date_body: date body. Required.
         :type date_body: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -253,9 +257,7 @@ class DateOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(date_body, "date")
@@ -273,6 +275,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -290,7 +293,7 @@ class DateOperations:
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -313,6 +316,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -335,10 +339,10 @@ class DateOperations:
     ) -> None:
         """Put min date value 0000-01-01.
 
-        :param date_body: date body.
+        :param date_body: date body. Required.
         :type date_body: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -348,9 +352,7 @@ class DateOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(date_body, "date")
@@ -368,6 +370,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -385,7 +388,7 @@ class DateOperations:
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -408,6 +411,7 @@ class DateOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

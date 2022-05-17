@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Any, List, Optional, Union
 import logging
-import logging.config # need to include this extra import so mypy doesn't throw logging module has no config
+import logging.config  # need to include this extra import so mypy doesn't throw logging module has no config
 from pathlib import Path
 
 
@@ -45,13 +45,12 @@ class AutorestHandler(logging.Handler):
         # Initialize this handler with the max loglevel, since
         # autorest is deciding what to show, not us
         # so we want to log everything and let autorest filters.
-        super(AutorestHandler, self).__init__(logging.DEBUG)
+        super().__init__(logging.DEBUG)
         self._autorest_api = autorest_api
 
     @staticmethod
     def _get_log_level(level: int) -> Channel:
-        """Convert Python log levels to Autorest Channel.
-        """
+        """Convert Python log levels to Autorest Channel."""
         return _LEVEL_MAPPING.get(level, Channel.Warning)
 
     def emit(self, record: logging.LogRecord) -> None:
@@ -65,8 +64,7 @@ class AutorestHandler(logging.Handler):
 
 
 class AutorestAPI(ABC):
-    """Defines the base interface of communication to Autorest from the plugin.
-    """
+    """Defines the base interface of communication to Autorest from the plugin."""
 
     def __init__(self) -> None:
         if Path("logging.conf").exists():
@@ -106,18 +104,15 @@ class AutorestAPI(ABC):
 
     @abstractmethod
     def list_inputs(self) -> List[str]:
-        """List possible inputs for this plugin.
-        """
+        """List possible inputs for this plugin."""
 
     @abstractmethod
     def get_value(self, key: str) -> Any:
-        """Get a value from configuration.
-        """
+        """Get a value from configuration."""
 
     @abstractmethod
     def message(self, channel: Channel, text: str) -> None:
-        """Send a log message to autorest.
-        """
+        """Send a log message to autorest."""
 
     def get_boolean_value(self, key: str, default: bool = None) -> Optional[bool]:
         """Check if value is present on the line, and interpret it as bool if it was.

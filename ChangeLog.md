@@ -1,6 +1,56 @@
 # Change Log
 
-### 2022-03-XX - 5.15.0
+### 2022-xx-xx - 5.17.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.1`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**New Features**
+
+- Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
+- Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type.  #1230
+
+**Breaking Changes in Version Tolerant**
+
+- Have stream responses directly return an iterator of bytes, so you don't need to call `.iter_bytes()` on the response object.  #1254
+
+**Breaking Changes in Request Builders**
+
+- Request builders for LRO operations have the `_initial` suffix removed from their name  #1241
+- Request builders from groups with reserved words will now be padded with the word "Operations" instead of "Builders"  #1243
+
+**Bug Fixes**
+
+- Make sure `any-object` schemas from swagger are typed with `MutableMapping`s  #1243
+- Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger  #1244
+- Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
+- Fix typing for stream responses to iterators of bytes.  #1254
+
+### 2022-04-18 - 5.16.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Breaking Changes in Version Tolerant Generation**
+
+- We no longer generate operations for operations with multipart or urlencoded bodies. SDK writers must implement these operations in their customized patch file. See https://aka.ms/azsdk/python/dpcodegen/python/customize for how to customize generated code #1223
+
+**Bug Fixes**
+
+- Drop package dependency on "@azure-tools/extension", switch to "@autorest/system-requirements" #1229
+- Fix `content_type` generation in multiapi SDKs with multiple content types for bodies #1232
+
+### 2022-04-07 - 5.15.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +65,7 @@
 - Add support for security configurations in the swagger. For more information, see https://github.com/Azure/autorest/blob/main/docs/generate/authentication.md #1161
 - Add support for handwritten customizations of generated code. For more information, see https://aka.ms/azsdk/python/dpcodegen/python/customize #1153
 - Allow `header` and `params` as kwargs in operation and request-build function to hand over REST Header and Query parameters case insensitively #1183
+- Typing operation parameters as JSON, Primitives or Any for `--version-tolerant` #1210
 
 **Bug Fixes**
 
@@ -25,7 +76,7 @@
 
 **Breaking Changes in Version Tolerant Generation**
 
-- Change client filenames to `_client.py`  #1206
+- Change client filenames to `_client.py` #1206
 - Change the models filename from `_models_py3.py` to `_models.py` #1204
 - Change the enums filename to `_enums.py` #1204
 
@@ -696,7 +747,7 @@ Modelerfour version: 4.13.351
 **Bug Fixes**
 
 - Corrected ordering of summary and description in generated methods #640
-- Have `IOSchema` call super init to get all of the properties shared in `BaseSchema` #642
+- Have `IOSchema` call super init to get all of the properties shared in `BaseType` #642
 
 ### 2020-05-15 - 5.0.0-preview.7
 
@@ -841,7 +892,7 @@ Modelerfour version: 4.12.276
 
 - Will no longer permit generated enums and models to have the same name #504
 - No longer exposing models from operation groups without importing them #486
-- Now correctly deserializes error's that have an empty object (AnySchema) as a model #516
+- Now correctly deserializes error's that have an empty object (AnyType) as a model #516
 - Added a list of parameter names to reserved parameter words, so there won't be clashes #525
 - If a property's schema is readonly, we will show that property as being readonly (taken from m4 update #234)
 - Remove `"azure-"` prefix from user agent name #523

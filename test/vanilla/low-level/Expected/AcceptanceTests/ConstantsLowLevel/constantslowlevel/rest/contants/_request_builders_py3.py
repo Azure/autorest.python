@@ -17,9 +17,12 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
 def build_put_no_model_as_string_no_required_two_value_no_default_request(
-    *, input: Optional[str] = None, **kwargs: Any
+    *,
+    input: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -28,7 +31,7 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2". Default value is None.
+    :keyword input: Known values are: "value1" and "value2". Default value is None.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -43,13 +46,20 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -58,7 +68,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+    :keyword input: Known values are: "value1" and "value2". Default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -73,13 +83,20 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_no_required_one_value_no_default_request(
-    *, input: Optional[str] = None, **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -88,7 +105,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are "value1" or None. Default value is None.
+    :keyword input: Known values are "value1" and None. Default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -103,13 +120,20 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -118,7 +142,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are "value1" or None. Default value is "value1".
+    :keyword input: Known values are "value1" and None. Default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -133,12 +157,21 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
-def build_put_no_model_as_string_required_two_value_no_default_request(*, input: str, **kwargs: Any) -> HttpRequest:
+def build_put_no_model_as_string_required_two_value_no_default_request(
+    *,
+    input: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -146,7 +179,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(*, input:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2".
+    :keyword input: Known values are: "value1" and "value2". Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -160,13 +193,20 @@ def build_put_no_model_as_string_required_two_value_no_default_request(*, input:
     _url = "/constants/putNoModelAsStringRequiredTwoValueNoDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_required_two_value_default_request(
-    *, input: str = "value1", **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -175,7 +215,7 @@ def build_put_no_model_as_string_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+    :keyword input: Known values are: "value1" and "value2". Default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -189,71 +229,18 @@ def build_put_no_model_as_string_required_two_value_default_request(
     _url = "/constants/putNoModelAsStringRequiredTwoValueDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
-
-
-def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
-    """Puts constants to the testserver.
-
-    Puts constants to the testserver.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword input:  Default value is "value1". Note that overriding this default value may result
-     in unsupported behavior.
-    :paramtype input: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
-    # Construct URL
-    _url = "/constants/putNoModelAsStringRequiredOneValueNoDefault"
-
-    # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
-
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
-def build_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
-    """Puts constants to the testserver.
-
-    Puts constants to the testserver.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword input:  Default value is "value1". Note that overriding this default value may result
-     in unsupported behavior.
-    :paramtype input: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
-    # Construct URL
-    _url = "/constants/putNoModelAsStringRequiredOneValueDefault"
-
-    # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
-
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
-
-
-def build_put_model_as_string_no_required_two_value_no_default_request(
-    *, input: Optional[str] = None, **kwargs: Any
+def build_put_no_model_as_string_required_one_value_no_default_request(
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -262,7 +249,81 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2". Default value is None.
+    :keyword input: Default value is "value1". Note that overriding this default value may result
+     in unsupported behavior.
+    :paramtype input: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
+    # Construct URL
+    _url = "/constants/putNoModelAsStringRequiredOneValueNoDefault"
+
+    # Construct parameters
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_required_one_value_default_request(
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword input: Default value is "value1". Note that overriding this default value may result
+     in unsupported behavior.
+    :paramtype input: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
+    # Construct URL
+    _url = "/constants/putNoModelAsStringRequiredOneValueDefault"
+
+    # Construct parameters
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_no_required_two_value_no_default_request(
+    *,
+    input: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword input: Known values are: "value1" and "value2". Default value is None.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -277,13 +338,20 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -292,7 +360,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+    :keyword input: Known values are: "value1" and "value2". Default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -307,13 +375,20 @@ def build_put_model_as_string_no_required_two_value_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_no_required_one_value_no_default_request(
-    *, input: Optional[str] = None, **kwargs: Any
+    *,
+    input: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -337,13 +412,20 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -367,12 +449,21 @@ def build_put_model_as_string_no_required_one_value_default_request(
 
     # Construct parameters
     if input is not None:
-        _params["input"] = _SERIALIZER.query("input", input, "str")
+        _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
-def build_put_model_as_string_required_two_value_no_default_request(*, input: str, **kwargs: Any) -> HttpRequest:
+def build_put_model_as_string_required_two_value_no_default_request(
+    *,
+    input: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -380,7 +471,7 @@ def build_put_model_as_string_required_two_value_no_default_request(*, input: st
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2".
+    :keyword input: Known values are: "value1" and "value2". Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -394,13 +485,20 @@ def build_put_model_as_string_required_two_value_no_default_request(*, input: st
     _url = "/constants/putModelAsStringRequiredTwoValueNoDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_required_two_value_default_request(
-    *, input: str = "value1", **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -409,7 +507,7 @@ def build_put_model_as_string_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+    :keyword input: Known values are: "value1" and "value2". Default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -423,12 +521,21 @@ def build_put_model_as_string_required_two_value_default_request(
     _url = "/constants/putModelAsStringRequiredTwoValueDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
-def build_put_model_as_string_required_one_value_no_default_request(*, input: str, **kwargs: Any) -> HttpRequest:
+def build_put_model_as_string_required_one_value_no_default_request(
+    *,
+    input: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -436,7 +543,7 @@ def build_put_model_as_string_required_one_value_no_default_request(*, input: st
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: "value1"
+    :keyword input: "value1" Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -450,13 +557,20 @@ def build_put_model_as_string_required_one_value_no_default_request(*, input: st
     _url = "/constants/putModelAsStringRequiredOneValueNoDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_required_one_value_default_request(
-    *, input: str = "value1", **kwargs: Any
+    *,
+    input: str = "value1",
+    **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -479,18 +593,37 @@ def build_put_model_as_string_required_one_value_default_request(
     _url = "/constants/putModelAsStringRequiredOneValueDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    _params['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        **kwargs
+    )
 
 
-def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
+def build_put_client_constants_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Pass constants from the client to this function. Will pass in constant path, query, and header
     parameters.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword header_constant: Constant header property on the client that is a required parameter
+     for operation 'constants_putClientConstants'. Default value is True. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is 100. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is "path". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype path_constant: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -500,21 +633,27 @@ def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_constant = kwargs.pop("header_constant", _headers.pop("header-constant", True))  # type: bool
-    query_constant = kwargs.pop("query_constant", _params.pop("query-constant", 100))  # type: int
-    path_constant = kwargs.pop("path_constant", "path")  # type: str
+    header_constant = kwargs.pop('header_constant', _headers.pop('header-constant', True))  # type: bool
+    query_constant = kwargs.pop('query_constant', _params.pop('query-constant', 100))  # type: int
+    path_constant = kwargs.pop('path_constant', "path")  # type: str
     # Construct URL
     _url = "/constants/clientConstants/{path-constant}"
     path_format_arguments = {
-        "path-constant": _SERIALIZER.url("path_constant", path_constant, "str"),
+        "path-constant": _SERIALIZER.url("path_constant", path_constant, 'str'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _params["query-constant"] = _SERIALIZER.query("query_constant", query_constant, "int")
+    _params['query-constant'] = _SERIALIZER.query("query_constant", query_constant, 'int')
 
     # Construct headers
-    _headers["header-constant"] = _SERIALIZER.header("header_constant", header_constant, "bool")
+    _headers['header-constant'] = _SERIALIZER.header("header_constant", header_constant, 'bool')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )

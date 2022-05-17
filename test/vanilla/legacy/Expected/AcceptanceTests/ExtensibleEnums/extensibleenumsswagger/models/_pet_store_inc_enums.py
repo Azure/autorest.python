@@ -11,7 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class DaysOfWeekExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of Pet"""
+    """Type of Pet."""
 
     MONDAY = "Monday"
     TUESDAY = "Tuesday"
@@ -23,11 +23,12 @@ class DaysOfWeekExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class IntEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """IntEnum."""
 
     #: This is a really long comment to see what wrapping looks like. This comment is really long and
     #: it should wrap for readability. Please wrap. This should wrap.
     ONE = "1"
-    #: two.
+    #: two
     TWO = "2"
-    #: three.
+    #: three
     THREE = "3"

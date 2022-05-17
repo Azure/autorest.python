@@ -43,7 +43,7 @@ class AdditionalPropertiesClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from additionalpropertieslowlevel.rest import pets
-        >>> request = pets.build_create_ap_true_request(json=json, content=content, **kwargs)
+        >>> request = pets.build_create_ap_true_request(json=json, content_type=content_type, **kwargs)
         <HttpRequest [PUT], url: '/additionalProperties/true'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

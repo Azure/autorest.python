@@ -6,9 +6,79 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-from typing import List
+from typing import Any, AsyncIterator, Dict, List
 
-__all__: List[str] = []  # Add all objects you want publicly available to users at this package level
+from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.rest import HttpRequest
+from azure.core.pipeline import PipelineResponse
+
+from ._operations import FormdataOperations as _FormdataOperations
+from ...operations._patch import (
+    _upload_file_request,
+    _upload_file_deserialize,
+    _upload_files_request,
+    _upload_files_deserialize,
+)
+
+
+class FormdataOperations(_FormdataOperations):
+    async def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs) -> PipelineResponse:
+        kwargs.pop("cls", None)
+        request.url = self._client.format_url(request.url)
+        return await self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
+
+    @distributed_trace_async
+    async def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> AsyncIterator[bytes]:  # type: ignore # pylint: disable=arguments-differ
+        """Upload file.
+
+        :param files: Multipart input for files. See the template in our example to find the input
+         shape.
+        :type files: dict[str, any]
+        :return: AsyncIterator[bytes]
+        :rtype: AsyncIterator[bytes]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+                # multipart input template you can fill out and use as your `files` input.
+                files = {
+                    "file_content": b'bytes',  # File to upload.
+                    "file_name": "str"  # File name to upload. Name has to be spelled exactly as
+                      written here.
+                }
+        """
+        request = _upload_file_request(files=files, **kwargs)
+        request.url = self._client.format_url(request.url)
+        return _upload_file_deserialize(await self._send_request(request, stream=True, **kwargs), **kwargs)
+
+    @distributed_trace_async
+    async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> AsyncIterator[bytes]:  # type: ignore # pylint: disable=arguments-differ
+        """Upload multiple files.
+
+        :param files: Multipart input for files. See the template in our example to find the input
+         shape.
+        :type files: dict[str, any]
+        :return: AsyncIterator[bytes]
+        :rtype: AsyncIterator[bytes]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+                # multipart input template you can fill out and use as your `files` input.
+                files = {
+                    "file_content": [
+                        b'bytes'  # Files to upload.
+                    ]
+                }
+        """
+        request = _upload_files_request(files=files, **kwargs)
+        request.url = self._client.format_url(request.url)
+        return _upload_files_deserialize(await self._send_request(request, stream=True, **kwargs), **kwargs)
+
+
+__all__: List[str] = [
+    "FormdataOperations"
+]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

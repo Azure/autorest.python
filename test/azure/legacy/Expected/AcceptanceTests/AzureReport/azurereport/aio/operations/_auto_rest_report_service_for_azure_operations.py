@@ -38,7 +38,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
          distinguish the generated reports. Default value is None.
         :type qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -62,6 +62,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

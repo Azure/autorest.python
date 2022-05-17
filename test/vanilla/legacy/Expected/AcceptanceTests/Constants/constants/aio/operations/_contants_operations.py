@@ -76,10 +76,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:  Default value is None.
+        :param input: Known values are: "value1" and "value2". Default value is None.
         :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -103,6 +103,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -116,18 +117,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, input: Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:  Default value is "value1".
+        :param input: Known values are: "value1" and "value2". Default value is "value1".
         :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -151,6 +150,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -164,16 +164,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[str] = "value1", **kwargs: Any
+        self, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input: Possible values are "value1" or None. Default value is "value1".
+        :param input: Known values are "value1" and None. Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -197,6 +197,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -210,16 +211,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[str] = "value1", **kwargs: Any
+        self, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input: Possible values are "value1" or None. Default value is "value1".
+        :param input: Known values are "value1" and None. Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -243,6 +244,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -262,10 +264,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Known values are: "value1" and "value2". Required.
         :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -289,6 +291,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -308,10 +311,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:  Default value is "value1".
+        :param input: Known values are: "value1" and "value2". Default value is "value1".
         :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -335,6 +338,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -354,11 +358,11 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is "value1". Note that overriding this default value may result
+        :keyword input: Default value is "value1". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -383,6 +387,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -402,11 +407,11 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is "value1". Note that overriding this default value may result
+        :keyword input: Default value is "value1". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -431,6 +436,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -452,10 +458,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:  Default value is None.
+        :param input: Known values are: "value1" and "value2". Default value is None.
         :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -479,6 +485,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -492,18 +499,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, input: Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:  Default value is "value1".
+        :param input: Known values are: "value1" and "value2". Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -527,6 +532,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -548,10 +554,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:  Default value is None.
+        :param input: "value1" Default value is None.
         :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -575,6 +581,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -588,18 +595,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, input: Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:  Default value is "value1".
+        :param input: "value1" Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -623,6 +628,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -642,10 +648,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Known values are: "value1" and "value2". Required.
         :type input: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -669,6 +675,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -688,10 +695,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:  Default value is "value1".
+        :param input: Known values are: "value1" and "value2". Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -715,6 +722,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -734,10 +742,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: "value1" Required.
         :type input: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -761,6 +769,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -780,10 +789,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:  Default value is "value1".
+        :param input: "value1" Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringRequiredOneValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -807,6 +816,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -824,7 +834,7 @@ class ContantsOperations:
         parameters.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -850,6 +860,7 @@ class ContantsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

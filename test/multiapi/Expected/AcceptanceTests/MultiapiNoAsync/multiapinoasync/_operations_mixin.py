@@ -9,13 +9,13 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import TYPE_CHECKING
+from typing import IO, Optional, TYPE_CHECKING, Union
 
 from . import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Iterable, Optional
+    from typing import Any, Iterable
 
     from azure.core.paging import ItemPaged
     from azure.core.polling import LROPoller
@@ -25,14 +25,17 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro(
         self,
-        product=None,  # type: Optional[_models.Product]
+        product=None,  # type: Optional[Union[_models.Product, IO]]
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[_models.Product]
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Default value is None.
-        :type product: ~multiapinoasync.v1.models.Product
+        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :type product: ~multiapinoasync.v1.models.Product or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -64,10 +67,10 @@ class MultiapiServiceClientOperationsMixin(object):
         test_lro_and_paging_options=None,  # type: Optional[_models.TestLroAndPagingOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[ItemPaged[_models.PagingResult]]
+        # type: (...) -> LROPoller[Iterable[_models.PagingResult]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:  Default value is None.
+        :param client_request_id: Default value is None.
         :type client_request_id: str
         :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options: ~multiapinoasync.v1.models.TestLroAndPagingOptions
@@ -108,14 +111,14 @@ class MultiapiServiceClientOperationsMixin(object):
         # type: (...) -> None
         """Has added parameters across the API versions.
 
-        :param greeting_in_english: pass in 'hello' to pass test.
+        :param greeting_in_english: pass in 'hello' to pass test. Required.
         :type greeting_in_english: str
         :param greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
         :type greeting_in_french: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -145,12 +148,12 @@ class MultiapiServiceClientOperationsMixin(object):
         # type: (...) -> None
         """TestOne should be in an FirstVersionOperationsMixin.
 
-        :param id: An int parameter.
+        :param id: An int parameter. Required.
         :type id: int
         :param message: An optional string parameter. Default value is None.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -3,134 +3,188 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, Optional
+import logging
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    TypeVar,
+    TYPE_CHECKING,
+    Union,
+    Optional,
+)
+from abc import abstractmethod
 
-from .base_builder import BaseBuilder, create_parameters
-from .request_builder_parameter import RequestBuilderParameter
-from .request_builder_parameter_list import RequestBuilderParameterList
-from .schema_request import SchemaRequest
-from .schema_response import SchemaResponse
+from .base_builder import BaseBuilder
+from .parameter_list import (
+    RequestBuilderParameterList,
+    OverloadedRequestBuilderParameterList,
+)
 from .imports import FileImport, ImportType, TypingSection
-from .parameter import Parameter
+from .request_builder_parameter import RequestBuilderMultipartBodyParameter
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
+
+_LOGGER = logging.getLogger(__name__)
+ParameterListType = TypeVar(
+    "ParameterListType",
+    bound=Union[RequestBuilderParameterList, OverloadedRequestBuilderParameterList],
+)
 
 
-T = TypeVar('T')
-OrderedSet = Dict[T, None]
-
-class RequestBuilder(BaseBuilder):
+class RequestBuilderBase(BaseBuilder[ParameterListType]):
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
-        url: str,
-        method: str,
-        multipart: bool,
-        schema_requests: List[SchemaRequest],
-        parameters: RequestBuilderParameterList,
-        description: str,
-        summary: str,
-        responses: Optional[List[SchemaResponse]] = None,
-    ):
+        parameters: ParameterListType,
+        *,
+        overloads: Optional[List["RequestBuilder"]] = None,
+        abstract: bool = False,
+    ) -> None:
         super().__init__(
             code_model=code_model,
             yaml_data=yaml_data,
             name=name,
-            description=description,
             parameters=parameters,
-            responses=responses,
-            schema_requests=schema_requests,
-            summary=summary,
+            overloads=overloads,
+            abstract=abstract,
+            want_tracing=False,
         )
-        self.url = url
-        self.method = method
-        self.multipart = multipart
+        self.overloads: List["RequestBuilder"] = overloads or []
+        self.url: str = yaml_data["url"]
+        self.method: str = yaml_data["method"]
 
-    @property
-    def is_stream(self) -> bool:
-        """Is the request we're preparing a stream, like an upload."""
-        return any(request.is_stream_request for request in self.schema_requests)
+    def response_type_annotation(self, **kwargs) -> str:
+        return "HttpRequest"
 
-    @property
-    def body_kwargs_to_get(self) -> List[Parameter]:
-        return self.parameters.body_kwargs_to_get
+    def response_docstring_text(self, **kwargs) -> str:
+        return (
+            "Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
+            + "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to "
+            + "incorporate this response into your code flow."
+        )
 
-    @property
-    def operation_group_name(self) -> str:
-        return self.yaml_data["language"]["python"]["operationGroupName"]
-
-    @property
-    def builder_group_name(self) -> str:
-        return self.yaml_data["language"]["python"]["builderGroupName"]
+    def response_docstring_type(self, **kwargs) -> str:
+        return "~azure.core.rest.HttpRequest"
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        for parameter in self.parameters:
-            if parameter.need_import:
-                file_import.merge(parameter.imports())
+        if not self.abstract:
+            for parameter in self.parameters.method:
+                file_import.merge(parameter.imports(async_mode=False))
 
         file_import.add_submodule_import(
             "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        if self.parameters.path:
-            relative_path = ".."
-            if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
-                relative_path = "..." if self.operation_group_name else ".."
-            file_import.add_submodule_import(
-                f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
-            )
-        if self.parameters.headers or self.parameters.query:
-            file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
+        if not self.abstract:
+            if self.parameters.path:
+                relative_path = ".."
+                if (
+                    not self.code_model.options["builders_visibility"] == "embedded"
+                    and self.group_name
+                ):
+                    relative_path = "..." if self.group_name else ".."
+                file_import.add_submodule_import(
+                    f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
+                )
+            if self.parameters.headers or self.parameters.query:
+                file_import.add_submodule_import(
+                    "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if self.parameters.has_body and (
-            self.code_model.options["builders_visibility"] != "embedded" or
-            self.code_model.options["add_python3_operation_files"]
+        if (
+            self.overloads
+            and self.code_model.options["builders_visibility"] != "embedded"
         ):
-            file_import.define_mypy_type("JSONType", "Any")
+            file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
 
-    @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilder":
+    @staticmethod
+    @abstractmethod
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], ParameterListType
+    ]:
+        ...
 
-        # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
+        # when combine embedded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
         additional_mark = ""
-        if code_model.options["combine_operation_files"] and code_model.options["builders_visibility"] == "embedded":
-            additional_mark = yaml_data["language"]["python"]["builderGroupName"]
+        if (
+            code_model.options["combine_operation_files"]
+            and code_model.options["builders_visibility"] == "embedded"
+        ):
+            additional_mark = yaml_data["groupName"]
         names = [
             "build",
             additional_mark,
-            yaml_data["language"]["python"]["name"],
-            "request"
+            yaml_data["name"],
+            "request",
         ]
         name = "_".join([n for n in names if n])
+        overloads = [
+            RequestBuilder.from_yaml(rb_yaml_data, code_model)
+            for rb_yaml_data in yaml_data.get("overloads", [])
+        ]
+        abstract = False
+        parameter_list = cls.parameter_list_type()(yaml_data, code_model)
+        if (
+            code_model.options["version_tolerant"]
+            and parameter_list.has_body
+            and isinstance(
+                parameter_list.body_parameter, RequestBuilderMultipartBodyParameter
+            )
+        ):
+            _LOGGER.warning(
+                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
+                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
+                'Please write your own custom operation in the "_patch.py" file '
+                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
+                name,
+            )
+            abstract = True
 
-        first_request = yaml_data["requests"][0]
-        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
-        parameters, multiple_content_type_parameters = (
-            create_parameters(yaml_data, code_model, RequestBuilderParameter.from_yaml)
-        )
-        parameter_list = RequestBuilderParameterList(
-            code_model, parameters + multiple_content_type_parameters, schema_requests
-        )
-        request_builder_class = cls(
-            code_model=code_model,
+        return cls(
             yaml_data=yaml_data,
+            code_model=code_model,
             name=name,
-            url=first_request["protocol"]["http"]["path"],
-            method=first_request["protocol"]["http"]["method"].upper(),
-            multipart=first_request["protocol"]["http"].get("multipart", False),
-            schema_requests=schema_requests,
             parameters=parameter_list,
-            description=yaml_data["language"]["python"]["description"],
-            responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
-            summary=yaml_data["language"]["python"].get("summary"),
+            overloads=overloads,
+            abstract=abstract,
         )
-        code_model.request_builder_ids[id(yaml_data)] = request_builder_class
-        parameter_list.add_body_kwargs()
-        return request_builder_class
+
+
+class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
+    @staticmethod
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], RequestBuilderParameterList
+    ]:
+        return RequestBuilderParameterList.from_yaml
+
+
+class OverloadedRequestBuilder(
+    RequestBuilderBase[OverloadedRequestBuilderParameterList]
+):
+    @staticmethod
+    def parameter_list_type() -> Callable[
+        [Dict[str, Any], "CodeModel"], OverloadedRequestBuilderParameterList
+    ]:
+        return OverloadedRequestBuilderParameterList.from_yaml
+
+
+def get_request_builder(
+    yaml_data: Dict[str, Any], code_model: "CodeModel"
+) -> Union[RequestBuilder, OverloadedRequestBuilder]:
+    if yaml_data.get("overloads"):
+        return OverloadedRequestBuilder.from_yaml(yaml_data, code_model)
+    return RequestBuilder.from_yaml(yaml_data, code_model)
