@@ -1,0 +1,6 @@
+include *.md
+include LICENSE
+recursive-include tests *.py
+recursive-include samples *.py *.md
+include azure/__init__.py
+include azure/packagemode/__init__.py
