@@ -70,21 +70,16 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[AsyncIterable[JSON]]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -159,21 +154,16 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[AsyncIterable[JSON]]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

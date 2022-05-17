@@ -9,6 +9,9 @@ from .base_model import BaseModel
 from .base_type import BaseType
 from .imports import FileImport, ImportType
 from .primitive_types import BinaryType, BinaryIteratorType
+from .dictionary_type import DictionaryType
+from .list_type import ListType
+from .model_type import ModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -52,6 +55,13 @@ class Response(BaseModel):
         self.headers = headers
         self.type = type
         self.nullable = yaml_data.get("nullable")
+
+    def get_json_template_representation(self) -> Any:
+        if not self.type:
+            return None
+        if self.type not in (DictionaryType, ListType, ModelType):
+            return None
+        return self.type.get_json_template_representation()
 
     @property
     def is_stream_response(self) -> bool:
@@ -120,7 +130,10 @@ class PagingResponse(Response):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        self.item_name_class = self.code_model.lookup_type(id(self.yaml_data["itemNameClass"]))
+        self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
+
+    def get_json_template_representation(self) -> Any:
+        return self.item_type.get_json_template_representation()
 
     def get_pager_path(self, async_mode: bool) -> str:
         return (
@@ -132,16 +145,16 @@ class PagingResponse(Response):
 
     def type_annotation(self, **kwargs: Any) -> str:
         iterable = "AsyncIterable" if kwargs["async_mode"] else "Iterable"
-        return f"{iterable}[{self.item_name_class.type_annotation(**kwargs)}]"
+        return f"{iterable}[{self.item_type.type_annotation(**kwargs)}]"
 
     def docstring_text(self, **kwargs: Any) -> str:
         base_description = "An iterator like instance of "
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
-        return base_description + self.item_name_class.docstring_text(**kwargs)
+        return base_description + self.item_type.docstring_text(**kwargs)
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.get_pager_path(kwargs['async_mode'])}[{self.item_name_class.docstring_type(**kwargs)}]"
+        return f"~{self.get_pager_path(kwargs['async_mode'])}[{self.item_type.docstring_type(**kwargs)}]"
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)

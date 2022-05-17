@@ -6,7 +6,7 @@
 from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast, TypeVar
 
 from .operation import Operation, OperationBase
-from .response import PagingResponse, LROPagingResponse
+from .response import PagingResponse, LROPagingResponse, Response
 from .request_builder import (
     OverloadedRequestBuilder,
     RequestBuilder,
@@ -30,7 +30,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         request_builder: RequestBuilder,
         parameters: ParameterList,
         responses: List[PagingResponseType],
-        exceptions: List[PagingResponseType],
+        exceptions: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
         public: bool = True,
@@ -74,6 +74,10 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             raise ValueError(
                 f"Can't find a matching property in response for {rest_api_name}"
             )
+
+    @property
+    def paging_response(self) -> PagingResponseType:
+        return self.responses[0]
 
     @property
     def continuation_token_name(self) -> Optional[str]:

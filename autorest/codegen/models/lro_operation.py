@@ -26,7 +26,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
         request_builder: RequestBuilder,
         parameters: ParameterList,
         responses: List[LROResponseType],
-        exceptions: List[LROResponseType],
+        exceptions: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
         public: bool = True,

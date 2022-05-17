@@ -154,8 +154,8 @@ class PreProcessPlugin(YamlUpdatePlugin):
             if yaml_data.get("nextOperation")
             else yaml_data["responses"][0]
         )
-        item_cls = next(
-            p["type"] for p in returned_response_object["type"]["properties"]
+        item_type = next(
+            p["type"]["elementType"] for p in returned_response_object["type"]["properties"]
             if p["restApiName"] == yaml_data["itemName"]
         )
         if yaml_data.get("nextOperation"):
@@ -167,11 +167,10 @@ class PreProcessPlugin(YamlUpdatePlugin):
             )
             for response in yaml_data["nextOperation"].get("responses", []):
                 update_paging_response(response)
-                response["itemNameClass"] = item_cls
+                response["itemType"] = item_type
         for response in yaml_data.get("responses", []):
             update_paging_response(response)
-            response["itemNameClass"] = item_cls
-
+            response["itemType"] = item_type
     def update_operation_groups(self, yaml_data: Dict[str, Any]) -> None:
         operation_groups_yaml_data = yaml_data["operationGroups"]
         for operation_group in operation_groups_yaml_data:

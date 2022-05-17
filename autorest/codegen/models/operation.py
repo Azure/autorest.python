@@ -49,7 +49,7 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
         parameters: ParameterList,
         responses: List[ResponseType],
-        exceptions: List[ResponseType],
+        exceptions: List[Response],
         *,
         overloads: Optional[List["Operation"]] = None,
         public: bool = True,
@@ -160,7 +160,7 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
         return "'object'"
 
     @property
-    def non_default_errors(self) -> List[ResponseType]:
+    def non_default_errors(self) -> List[Response]:
         return [e for e in self.exceptions if "default" not in e.status_codes]
 
     @property
@@ -396,7 +396,7 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [get_response(r, code_model) for r in yaml_data["responses"]]
         exceptions = [
-            get_operation(e, code_model) for e in yaml_data["exceptions"]
+            Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
         ]
         parameter_list = ParameterList.from_yaml(yaml_data, code_model)
         overloads = [
