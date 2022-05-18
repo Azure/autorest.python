@@ -452,7 +452,9 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         if not body_types:
             return overloads
         for body_type in body_types:
-            overload = self.update_overload(group_name, yaml_data, body_type, content_types=content_types)
+            overload = self.update_overload(
+                group_name, yaml_data, body_type, content_types=content_types
+            )
             for parameter in overload["parameters"]:
                 if parameter["restApiName"] == "Content-Type":
                     parameter["clientDefaultValue"] = overload["bodyParameter"][
@@ -593,7 +595,12 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         return base_operation
 
     def update_overload(
-        self, group_name: str, yaml_data: Dict[str, Any], body_type: Dict[str, Any], *, content_types: Optional[List[str]] = None
+        self,
+        group_name: str,
+        yaml_data: Dict[str, Any],
+        body_type: Dict[str, Any],
+        *,
+        content_types: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         body_parameter = self.update_body_parameter_overload(
             yaml_data["requestMediaTypes"], body_type, content_types=content_types
@@ -692,32 +699,35 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         return self._update_body_parameter_helper(yaml_data, body_param, body_type)
 
     def update_body_parameter_overload(
-        self, yaml_data: Dict[str, Any], body_type: Dict[str, Any], *, content_types: Optional[List[str]] = None
+        self,
+        yaml_data: Dict[str, Any],
+        body_type: Dict[str, Any],
+        *,
+        content_types: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         """For overloads we already know what body_type we want to go with"""
         body_param = next(
             p for sr in yaml_data.values() for p in sr["parameters"] if is_body(p)
         )
-        return self._update_body_parameter_helper(yaml_data, body_param, body_type, content_types=content_types)
+        return self._update_body_parameter_helper(
+            yaml_data, body_param, body_type, content_types=content_types
+        )
 
     def update_flattened_parameter(
         self, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]
     ) -> Dict[str, Any]:
         if not body_parameter:
-            raise ValueError(
-                "Has to have a body parameter if it's flattened"
-            )
+            raise ValueError("Has to have a body parameter if it's flattened")
         # this means i'm a property that is part of a flattened model
-        target_property_name = yaml_data["targetProperty"]["language"][
-            "default"
-        ]["name"]
+        target_property_name = yaml_data["targetProperty"]["language"]["default"][
+            "name"
+        ]
         param = self.update_parameter(yaml_data)
         body_parameter.setdefault("propertyToParameterName", {})[
             target_property_name
         ] = param["clientName"]
         param["inFlattenedBody"] = True
         return param
-
 
     def update_content_type_parameter(
         self,
@@ -732,9 +742,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         if not body_parameter:
             return yaml_data
         param = copy.deepcopy(yaml_data)
-        param["schema"] = KNOWN_TYPES[
-            "string"
-        ]  # override to string type
+        param["schema"] = KNOWN_TYPES["string"]  # override to string type
         param["required"] = False
         description = param["language"]["default"]["description"]
         if description and description[-1] != ".":
@@ -747,16 +755,10 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 f"{get_body_type_for_description(body_parameter)} body."
             )
         elif not in_overload:
-            content_types = (
-                "'"
-                + "', '".join(request_media_types)
-                + "'"
-            )
+            content_types = "'" + "', '".join(request_media_types) + "'"
             description += f" Known values are: {content_types}."
         if not in_overload and not in_overriden:
-            param["clientDefaultValue"] = body_parameter[
-                "defaultContentType"
-            ]
+            param["clientDefaultValue"] = body_parameter["defaultContentType"]
         param["language"]["default"]["description"] = description
         return param
 
@@ -775,9 +777,8 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         has_flattened_body = body_parameter and body_parameter.get("flattened")
         for param in parameters:
             serialized_name = param["language"]["default"].get("serializedName")
-            if (
-                param["language"]["default"]["name"] == "$host" or
-                (serialized_name and serialized_name in seen_rest_api_names)
+            if param["language"]["default"]["name"] == "$host" or (
+                serialized_name and serialized_name in seen_rest_api_names
             ):
                 continue
             if param.get("origin") == "modelerfour:synthesized/api-version":
@@ -810,7 +811,6 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             seen_rest_api_names.add(updated_param["restApiName"])
         return retval
 
-
     def update_parameters(
         self,
         yaml_data: Dict[str, Any],
@@ -824,15 +824,17 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         groupers: Dict[str, Dict[str, Any]] = {}
         # first update top level parameters
         request_media_types = yaml_data.get("requestMediaTypes", [])
-        retval.extend(self._update_parameters_helper(
-            yaml_data["parameters"],
-            body_parameter,
-            seen_rest_api_names,
-            groupers,
-            request_media_types,
-            in_overload=in_overload,
-            in_overriden=in_overriden,
-        ))
+        retval.extend(
+            self._update_parameters_helper(
+                yaml_data["parameters"],
+                body_parameter,
+                seen_rest_api_names,
+                groupers,
+                request_media_types,
+                in_overload=in_overload,
+                in_overriden=in_overriden,
+            )
+        )
         # now we handle content type and accept headers.
         # We only care about the content types on the body parameter itself,
         # so ignoring the different content types for now
@@ -841,15 +843,17 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         else:
             sub_requests = yaml_data.get("requests", [])
         for request in sub_requests:  # pylint: disable=too-many-nested-blocks
-            retval.extend(self._update_parameters_helper(
-                request.get("parameters", []),
-                body_parameter,
-                seen_rest_api_names,
-                groupers,
-                request_media_types,
-                in_overload=in_overload,
-                in_overriden=in_overriden,
-            ))
+            retval.extend(
+                self._update_parameters_helper(
+                    request.get("parameters", []),
+                    body_parameter,
+                    seen_rest_api_names,
+                    groupers,
+                    request_media_types,
+                    in_overload=in_overload,
+                    in_overriden=in_overriden,
+                )
+            )
         all_params = (retval + [body_parameter]) if body_parameter else retval
         for grouper_name, grouper in groupers.items():
             grouper["propertyToParameterName"] = {
