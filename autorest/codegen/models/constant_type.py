@@ -64,20 +64,18 @@ class ConstantType(BaseType):
         """
         return self.value_type.serialization_type
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "constant"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return self.value_type.docstring_type
+        return self.value_type.docstring_type(**kwargs)
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        return self.value_type.type_annotation(is_operation_file=is_operation_file)
+    def type_annotation(self, **kwargs: Any) -> str:
+        return self.value_type.type_annotation(**kwargs)
 
     @classmethod
     def from_yaml(
@@ -114,9 +112,9 @@ class ConstantType(BaseType):
             description=description,
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
+        file_import.merge(self.value_type.imports(**kwargs))
         return file_import
 
     @property

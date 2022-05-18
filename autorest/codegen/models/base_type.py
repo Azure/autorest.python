@@ -34,7 +34,7 @@ class BaseType(BaseModel, ABC):
         return cls(yaml_data=yaml_data, code_model=code_model)
 
     def imports(  # pylint: disable=no-self-use
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+        self, **kwargs  # pylint: disable=unused-argument
     ) -> FileImport:
         return FileImport()
 
@@ -89,15 +89,13 @@ class BaseType(BaseModel, ABC):
         """The description"""
         ...
 
-    @property
     @abstractmethod
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         """The names used in rtype documentation"""
         ...
 
-    @property
     @abstractmethod
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input.
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'
@@ -105,7 +103,7 @@ class BaseType(BaseModel, ABC):
         ...
 
     @abstractmethod
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]

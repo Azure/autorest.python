@@ -69,14 +69,13 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return self.name
         return "object"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             retval = f"_models.{self.name}"
-            return retval if is_operation_file else f'"{retval}"'
+            return retval if kwargs.pop("is_operation_file", False) else f'"{retval}"'
         return "ET.Element" if self.is_xml else "JSON"
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             return f"~{self.code_model.namespace}.models.{self.name}"
         return "ET.Element" if self.is_xml else "JSON"
@@ -84,8 +83,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def description(self, *, is_operation_file: bool = False) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", self.name)
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             return self.name
         return "XML Element" if self.is_xml else "JSON object"
@@ -187,9 +185,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return "isinstance({}, msrest.Model)"
         return "isinstance({}, MutableMapping)"
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if self.code_model.options["models_mode"]:
             return file_import

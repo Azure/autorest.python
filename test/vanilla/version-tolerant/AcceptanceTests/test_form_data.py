@@ -69,7 +69,7 @@ def test_file_upload_stream(client):
             "file_name": "UploadFile.txt"
         }
         resp = client.formdata.upload_file(files)
-        for r in resp.iter_bytes():
+        for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  test_string
 
@@ -87,7 +87,7 @@ def test_file_upload_stream_raw(client):
             "file_name": "UploadFile.txt"
         }
         stream = client.formdata.upload_file(files, cls=test_callback)
-        for data in stream.iter_bytes():
+        for data in stream:
             result.write(data)
         assert result.getvalue().decode() ==  test_string
 
@@ -101,7 +101,7 @@ def test_file_upload_file_stream(client, dummy_file):
             "file_name": name
         }
         resp = client.formdata.upload_file(files)
-        for r in resp.iter_bytes():
+        for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  "Test file"
 
@@ -118,7 +118,7 @@ def test_file_upload_file_stream_raw(client, dummy_file):
             "file_name": name
         }
         stream = client.formdata.upload_file(files, cls=test_callback)
-        for data in stream.iter_raw():
+        for data in stream:
             result.write(data)
         assert result.getvalue().decode() ==  "Test file"
 
@@ -130,14 +130,14 @@ def test_file_body_upload(client, dummy_file):
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
         resp = client.formdata.upload_file_via_body(stream_data)
-        for r in resp.iter_bytes():
+        for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  test_string
 
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
         resp = client.formdata.upload_file_via_body(upload_data)
-        for r in resp.iter_bytes():
+        for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  "Test file"
 
@@ -160,7 +160,7 @@ def test_file_body_upload_generator(client, dummy_file):
     with io.BytesIO(test_bytes) as stream_data:
         streamed_upload = stream_upload(stream_data, len(test_string), 2)
         resp = client.formdata.upload_file_via_body(streamed_upload)
-        for r in resp.iter_bytes():
+        for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  test_string
 
@@ -168,6 +168,6 @@ def test_file_body_upload_generator(client, dummy_file):
     with open(dummy_file, 'rb') as upload_data:
         streamed_upload = stream_upload(upload_data, len("Test file"), 2)
         response = client.formdata.upload_file_via_body(streamed_upload)
-        for data in response.iter_bytes():
+        for data in response:
             result.write(data)
         assert result.getvalue().decode() == "Test file"

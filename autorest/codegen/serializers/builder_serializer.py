@@ -204,7 +204,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             method_name=builder.name,
             need_self_param=self._need_self_param,
             method_param_signatures=builder.method_signature(
-                self.async_mode or self.is_python3_file
+                self.async_mode or self.is_python3_file, self.async_mode
             ),
             ignore_inconsistent_return_statements=(
                 builder.response_type_annotation(async_mode=self.async_mode) == "None"
@@ -267,8 +267,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                     "\n"
                 )
             )
+            docstring_type = param.docstring_type(async_mode=self.async_mode)
             description_list.append(
-                f":{param.docstring_type_keyword} { param.client_name }: { param.docstring_type }"
+                f":{param.docstring_type_keyword} {param.client_name}: {docstring_type}"
             )
         return description_list
 
@@ -826,7 +827,7 @@ class _OperationSerializer(
         if response.is_stream_response:
             retval.append(
                 "deserialized = {}".format(
-                    "response"
+                    "response.iter_bytes()"
                     if self.code_model.options["version_tolerant"]
                     else "response.stream_download(self._client._pipeline)"
                 )

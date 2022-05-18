@@ -15,6 +15,10 @@
 - Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
 - Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type.  #1230
 
+**Breaking Changes in Version Tolerant**
+
+- Have stream responses directly return an iterator of bytes, so you don't need to call `.iter_bytes()` on the response object.  #1254
+
 **Breaking Changes in Request Builders**
 
 - Request builders for LRO operations have the `_initial` suffix removed from their name  #1241
@@ -25,6 +29,7 @@
 - Make sure `any-object` schemas from swagger are typed with `MutableMapping`s  #1243
 - Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger  #1244
 - Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
+- Fix typing for stream responses to iterators of bytes.  #1254
 
 ### 2022-04-18 - 5.16.0
 

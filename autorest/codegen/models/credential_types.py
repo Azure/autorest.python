@@ -129,13 +129,12 @@ class CredentialType(
             "You should not try to get a JSON template representation of a CredentialSchema"
         )
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         return "credential"
 
     @property
     def serialization_type(self) -> str:
-        return self.docstring_type
+        return self.docstring_type()
 
     @classmethod
     def from_yaml(
@@ -159,38 +158,19 @@ class TokenCredentialType(
 ):
     """Type of a token credential. Used by BearerAuth and ARMChallenge policies"""
 
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        policy: Union[
-            BearerTokenCredentialPolicyType, ARMChallengeAuthenticationPolicyType
-        ],
-        async_mode: bool = False,
-    ) -> None:
-        super().__init__(yaml_data, code_model, policy)
-        self.async_mode = async_mode
-        self._async_type = "~azure.core.credentials_async.AsyncTokenCredential"
-        self._sync_type = "~azure.core.credentials.TokenCredential"
-
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
-        if self.async_mode:
+    def type_annotation(self, **kwargs: Any) -> str:  # pylint: disable=no-self-use
+        if kwargs.pop("async_mode"):
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
-    @property
-    def docstring_type(self) -> str:
-        if self.async_mode:
-            return self._async_type
-        return self._sync_type
+    def docstring_type(self, **kwargs: Any) -> str:  # pylint: disable=no-self-use
+        if kwargs.pop("async_mode"):
+            return "~azure.core.credentials_async.AsyncTokenCredential"
+        return "~azure.core.credentials.TokenCredential"
 
-    def imports(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=no-self-use
         file_import = FileImport()
-        if self.async_mode:
+        if kwargs.pop("async_mode"):
             file_import.add_submodule_import(
                 "azure.core.credentials_async",
                 "AsyncTokenCredential",
@@ -217,12 +197,13 @@ class AzureKeyCredentialType(
 ):
     """Type for an AzureKeyCredential"""
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(  # pylint: disable=no-self-use
+        self, **kwargs: Any  # pylint: disable=unused-argument
+    ) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
     def type_annotation(  # pylint: disable=no-self-use
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+        self, **kwargs: Any  # pylint: disable=unused-argument
     ) -> str:
         return "AzureKeyCredential"
 
@@ -231,7 +212,7 @@ class AzureKeyCredentialType(
         return "isinstance({}, AzureKeyCredential)"
 
     def imports(  # pylint: disable=no-self-use
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+        self, **kwargs: Any  # pylint: disable=unused-argument
     ) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(

@@ -62,7 +62,7 @@ async def test_file_upload_stream(client):
             "file_name": "UploadFile.txt"
         }
         resp = await client.formdata.upload_file(files)
-        async for r in resp.iter_bytes():
+        async for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  test_string
 
@@ -80,7 +80,7 @@ async def test_file_upload_stream_raw(client):
             "file_name": "UploadFile.txt"
         }
         resp = await client.formdata.upload_file(files, cls=test_callback)
-        async for data in resp.iter_bytes():
+        async for data in resp:
             result.write(data)
         assert result.getvalue().decode() ==  test_string
 
@@ -94,7 +94,7 @@ async def test_file_upload_file_stream(client, dummy_file):
             "file_name": name
         }
         resp = await client.formdata.upload_file(files)
-        async for r in resp.iter_bytes():
+        async for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  "Test file"
 
@@ -112,7 +112,7 @@ async def test_file_upload_file_stream_raw(client, dummy_file):
             "file_name": name
         }
         resp = await client.formdata.upload_file(files, cls=test_callback)
-        async for data in resp.iter_raw():
+        async for data in resp:
             result.write(data)
         assert result.getvalue().decode() ==  "Test file"
 
@@ -124,14 +124,14 @@ async def test_file_body_upload(client, dummy_file):
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
         resp = await client.formdata.upload_file_via_body(stream_data)
-        async for r in resp.iter_bytes():
+        async for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  test_string
 
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
         resp = await client.formdata.upload_file_via_body(upload_data)
-        async for r in resp.iter_bytes():
+        async for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  "Test file"
 
@@ -155,7 +155,7 @@ async def test_file_body_upload_generator(client, dummy_file):
     with io.BytesIO(test_bytes) as stream_data:
         streamed_upload = stream_upload(stream_data, len(test_string), 2)
         resp = await client.formdata.upload_file_via_body(streamed_upload)
-        async for r in resp.iter_bytes():
+        async for r in resp:
             result.write(r)
         assert result.getvalue().decode() ==  test_string
 
@@ -163,6 +163,6 @@ async def test_file_body_upload_generator(client, dummy_file):
     with open(dummy_file, 'rb') as upload_data:
         streamed_upload = stream_upload(upload_data, len("Test file"), 2)
         response = await client.formdata.upload_file_via_body(streamed_upload)
-        async for data in response.iter_bytes():
+        async for data in response:
             result.write(data)
         assert result.getvalue().decode() == "Test file"
