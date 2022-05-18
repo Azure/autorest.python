@@ -18,7 +18,15 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["codegen", "m2r", "namer", "m4reformatter", "black", "multiapiscript", "postprocess"]
+    return [
+        "codegen",
+        "m2r",
+        "namer",
+        "m4reformatter",
+        "black",
+        "multiapiscript",
+        "postprocess",
+    ]
 
 
 @dispatcher.add_method

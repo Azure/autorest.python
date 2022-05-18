@@ -27,16 +27,27 @@ class ExtendedEnvBuilder(venv.EnvBuilder):
         return self.context
 
 
-def create(env_dir, system_site_packages=False, clear=False,
-                    symlinks=False, with_pip=False, prompt=None):
+def create(
+    env_dir,
+    system_site_packages=False,
+    clear=False,
+    symlinks=False,
+    with_pip=False,
+    prompt=None,
+):
     """Create a virtual environment in a directory."""
-    builder = ExtendedEnvBuilder(system_site_packages=system_site_packages,
-                                 clear=clear, symlinks=symlinks, with_pip=with_pip,
-                                 prompt=prompt)
+    builder = ExtendedEnvBuilder(
+        system_site_packages=system_site_packages,
+        clear=clear,
+        symlinks=symlinks,
+        with_pip=with_pip,
+        prompt=prompt,
+    )
     builder.create(env_dir)
     return builder.context
 
-def python_run( # pylint: disable=inconsistent-return-statements
+
+def python_run(  # pylint: disable=inconsistent-return-statements
     venv_context, module, command, directory=_ROOT_DIR, *, error_ok=False
 ) -> Optional[str]:
     try:
@@ -53,7 +64,7 @@ def python_run( # pylint: disable=inconsistent-return-statements
             stdout=False,
         )
         if module == "get_all":
-            with open(f"{command[1]}/.temp_folder/patched.txt", 'r') as f:
+            with open(f"{command[1]}/.temp_folder/patched.txt", "r") as f:
                 return f.read()
     except subprocess.CalledProcessError as err:
         print(err)

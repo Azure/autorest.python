@@ -16,25 +16,28 @@ from .. import Plugin
 _BLACK_MODE = black.Mode()
 _BLACK_MODE.line_length = 120
 
+
 def format_file(file: Path, file_content: str) -> str:
     if not file.suffix == ".py":
         return file_content
     try:
-        file_content = black.format_file_contents(file_content, fast=True, mode=_BLACK_MODE)
+        file_content = black.format_file_contents(
+            file_content, fast=True, mode=_BLACK_MODE
+        )
     except black.NothingChanged:
         pass
     return file_content
 
-class PostProcessPlugin(Plugin):
 
+class PostProcessPlugin(Plugin):
     def __init__(self, autorestapi):
         super().__init__(autorestapi)
         output_folder_uri = self._autorestapi.get_value("outputFolderUri")
         if output_folder_uri.startswith("file:"):
             output_folder_uri = output_folder_uri[5:]
-        if os.name == 'nt' and output_folder_uri.startswith("///"):
+        if os.name == "nt" and output_folder_uri.startswith("///"):
             output_folder_uri = output_folder_uri[3:]
-        self.output_folder = Path(output_folder_uri) # path to where the setup.py is
+        self.output_folder = Path(output_folder_uri)  # path to where the setup.py is
         self.setup_venv()
 
         # set up the venv
@@ -52,14 +55,19 @@ class PostProcessPlugin(Plugin):
             env_builder.create(venv_path)
             self.venv_context = env_builder.context
             python_run(
-                self.venv_context, "pip", ["install", "-e", str(self.output_folder)], directory=self.output_folder
+                self.venv_context,
+                "pip",
+                ["install", "-e", str(self.output_folder)],
+                directory=self.output_folder,
             )
 
     def get_namespace(self, dir: Path, namespace: str) -> Tuple[Path, str]:
         try:
             init_file = next(d for d in dir.iterdir() if d.name == "__init__.py")
             # we don't care about pkgutil inits, we skip over them
-            file_content = self._autorestapi.read_file(init_file.relative_to(self.output_folder))
+            file_content = self._autorestapi.read_file(
+                init_file.relative_to(self.output_folder)
+            )
             if not "pkgutil" in file_content:
                 return dir, namespace
         except StopIteration:
@@ -68,41 +76,42 @@ class PostProcessPlugin(Plugin):
         try:
             # first, see if we can get a folder that has the same name as the current output folder
             start = self.output_folder.stem.split("-")[0]
-            next_dir = next(
-                d for d in dir.iterdir()
-                if d.is_dir() and d.name == start
-            )
+            next_dir = next(d for d in dir.iterdir() if d.is_dir() and d.name == start)
         except StopIteration:
             invalid_start_chars = [".", "_"]
             invalid_dirs = [
-                "swagger", "out", "tests", "samples",
+                "swagger",
+                "out",
+                "tests",
+                "samples",
             ]
 
             next_dir = next(
-                d for d in dir.iterdir()
-                if d.is_dir() and
-                not str(d).endswith("egg-info") and
-                d.name[0] not in invalid_start_chars and
-                d.name not in invalid_dirs
+                d
+                for d in dir.iterdir()
+                if d.is_dir()
+                and not str(d).endswith("egg-info")
+                and d.name[0] not in invalid_start_chars
+                and d.name not in invalid_dirs
             )
 
         namespace = f"{namespace}.{next_dir.name}" if namespace else next_dir.name
         return self.get_namespace(next_dir, namespace)
 
     def process(self) -> bool:
-        folders = [f for f in self.base_folder.glob('**/*') if f.is_dir()]
+        folders = [f for f in self.base_folder.glob("**/*") if f.is_dir()]
         # will always have the root
         self.fix_imports_in_init(
             generated_file_name="_client",
             folder_path=folders[0],
-            namespace=self.namespace
+            namespace=self.namespace,
         )
         try:
             aio_folder = next(f for f in folders if f.stem == "aio")
             self.fix_imports_in_init(
                 generated_file_name="_client",
                 folder_path=aio_folder,
-                namespace=f"{self.namespace}.aio"
+                namespace=f"{self.namespace}.aio",
             )
         except StopIteration:
             pass
@@ -112,24 +121,30 @@ class PostProcessPlugin(Plugin):
             self.fix_imports_in_init(
                 generated_file_name="_models",
                 folder_path=models_folder,
-                namespace=f"{self.namespace}.models"
+                namespace=f"{self.namespace}.models",
             )
         except StopIteration:
             pass
-        operations_folders = [f for f in folders if f.stem in ["operations", "_operations"]]
+        operations_folders = [
+            f for f in folders if f.stem in ["operations", "_operations"]
+        ]
         for operations_folder in operations_folders:
             aio = ".aio" if operations_folder.parent.stem == "aio" else ""
             self.fix_imports_in_init(
                 generated_file_name="_operations",
                 folder_path=operations_folder,
-                namespace=f"{self.namespace}{aio}.{operations_folder.stem}"
+                namespace=f"{self.namespace}{aio}.{operations_folder.stem}",
             )
         shutil.rmtree(f"{str(self.output_folder)}/.temp_folder")
         return True
 
-    def fix_imports_in_init(self, generated_file_name: str, folder_path: Path, namespace: str) -> None:
+    def fix_imports_in_init(
+        self, generated_file_name: str, folder_path: Path, namespace: str
+    ) -> None:
         customized_objects_str = python_run(
-            self.venv_context, command=[namespace, str(self.output_folder)], module="get_all"
+            self.venv_context,
+            command=[namespace, str(self.output_folder)],
+            module="get_all",
         )
 
         if not customized_objects_str:
@@ -142,19 +157,27 @@ class PostProcessPlugin(Plugin):
             if f" import {obj}\n" in file_content:
                 # means we're overriding a generated model
                 file_content = file_content.replace(
-                    f"from .{generated_file_name} import {obj}\n", f"from ._patch import {obj}\n"
+                    f"from .{generated_file_name} import {obj}\n",
+                    f"from ._patch import {obj}\n",
                 )
             else:
                 added_objs.append(obj)
         file_content = file_content.replace(
-            "try:\n    from ._patch import __all__ as _patch_all\n    "\
-            "from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import"\
+            "try:\n    from ._patch import __all__ as _patch_all\n    "
+            "from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import"
             "\nexcept ImportError:\n    _patch_all = []",
-            ""
+            "",
         )
-        file_content = file_content.replace("from ._patch import __all__ as _patch_all", "")
-        file_content = file_content.replace("from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import\n", "")
-        file_content = file_content.replace("__all__.extend([p for p in _patch_all if p not in __all__])", "")
+        file_content = file_content.replace(
+            "from ._patch import __all__ as _patch_all", ""
+        )
+        file_content = file_content.replace(
+            "from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import\n",
+            "",
+        )
+        file_content = file_content.replace(
+            "__all__.extend([p for p in _patch_all if p not in __all__])", ""
+        )
         if added_objs:
             # add import
             patch_sdk_import = "from ._patch import patch_sdk as _patch_sdk"
@@ -165,6 +188,8 @@ class PostProcessPlugin(Plugin):
             file_content = file_content.replace(patch_sdk_import, replacement)
             # add to __all__
             added_objs_all = "\n".join([f'    "{obj}",' for obj in added_objs]) + "\n"
-            file_content = file_content.replace("__all__ = [\n", f'__all__ = [\n{added_objs_all}')
+            file_content = file_content.replace(
+                "__all__ = [\n", f"__all__ = [\n{added_objs_all}"
+            )
         formatted_file = format_file(file, file_content)
         self._autorestapi.write_file(file, formatted_file)
