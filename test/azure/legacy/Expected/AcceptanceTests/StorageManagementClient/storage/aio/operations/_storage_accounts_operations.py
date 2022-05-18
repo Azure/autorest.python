@@ -88,7 +88,7 @@ class StorageAccountsOperations:
 
     @overload
     async def check_name_availability(
-        self, account_name: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, account_name: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.CheckNameAvailabilityResult:
         """Checks that account name is valid and is not in use.
 
@@ -97,7 +97,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
@@ -133,13 +133,13 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.CheckNameAvailabilityResult]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(account_name, (IO, bytes)):
             _content = account_name
         else:
             _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
-            content_type = content_type or "application/json"
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
@@ -190,13 +190,13 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.StorageAccount]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(parameters, (IO, bytes)):
             _content = parameters
         else:
             _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
-            content_type = content_type or "application/json"
 
         request = build_create_request(
             resource_group_name=resource_group_name,
@@ -282,7 +282,7 @@ class StorageAccountsOperations:
         account_name: str,
         parameters: IO,
         *,
-        content_type: Optional[str] = None,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.StorageAccount]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -300,7 +300,7 @@ class StorageAccountsOperations:
         :param parameters: The parameters to provide for the created account. Required.
         :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -559,7 +559,7 @@ class StorageAccountsOperations:
         account_name: str,
         parameters: IO,
         *,
-        content_type: Optional[str] = None,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.StorageAccount:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -581,7 +581,7 @@ class StorageAccountsOperations:
          changed at a time using this API. Required.
         :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
@@ -633,13 +633,13 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageAccount]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(parameters, (IO, bytes)):
             _content = parameters
         else:
             _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
-            content_type = content_type or "application/json"
 
         request = build_update_request(
             resource_group_name=resource_group_name,

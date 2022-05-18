@@ -728,11 +728,9 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         in_overload: bool = False,
         in_overriden: bool = False,
     ) -> Dict[str, Any]:
-        if not body_parameter:
-            raise ValueError(
-                "Has to be a body parameter for content type"
-            )
         # override content type type to string
+        if not body_parameter:
+            return yaml_data
         param = copy.deepcopy(yaml_data)
         param["schema"] = KNOWN_TYPES[
             "string"

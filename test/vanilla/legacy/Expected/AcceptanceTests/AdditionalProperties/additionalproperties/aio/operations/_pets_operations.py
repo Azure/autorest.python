@@ -74,14 +74,14 @@ class PetsOperations:
 
     @overload
     async def create_ap_true(
-        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPTrue:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
@@ -112,13 +112,13 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPTrue]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
             _json = self._serialize.body(create_parameters, "PetAPTrue")
-            content_type = content_type or "application/json"
 
         request = build_create_ap_true_request(
             content_type=content_type,
@@ -170,14 +170,14 @@ class PetsOperations:
 
     @overload
     async def create_cat_ap_true(
-        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.CatAPTrue:
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
@@ -210,13 +210,13 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.CatAPTrue]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
             _json = self._serialize.body(create_parameters, "CatAPTrue")
-            content_type = content_type or "application/json"
 
         request = build_create_cat_ap_true_request(
             content_type=content_type,
@@ -268,14 +268,14 @@ class PetsOperations:
 
     @overload
     async def create_ap_object(
-        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
@@ -308,13 +308,13 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPObject]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
             _json = self._serialize.body(create_parameters, "PetAPObject")
-            content_type = content_type or "application/json"
 
         request = build_create_ap_object_request(
             content_type=content_type,
@@ -366,14 +366,14 @@ class PetsOperations:
 
     @overload
     async def create_ap_string(
-        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPString:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
@@ -406,13 +406,13 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPString]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
             _json = self._serialize.body(create_parameters, "PetAPString")
-            content_type = content_type or "application/json"
 
         request = build_create_ap_string_request(
             content_type=content_type,
@@ -464,14 +464,14 @@ class PetsOperations:
 
     @overload
     async def create_ap_in_properties(
-        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPInProperties:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
@@ -504,13 +504,13 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInProperties]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
             _json = self._serialize.body(create_parameters, "PetAPInProperties")
-            content_type = content_type or "application/json"
 
         request = build_create_ap_in_properties_request(
             content_type=content_type,
@@ -566,14 +566,14 @@ class PetsOperations:
 
     @overload
     async def create_ap_in_properties_with_ap_string(
-        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPInPropertiesWithAPString:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
@@ -606,13 +606,13 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInPropertiesWithAPString]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
             _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
-            content_type = content_type or "application/json"
 
         request = build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,

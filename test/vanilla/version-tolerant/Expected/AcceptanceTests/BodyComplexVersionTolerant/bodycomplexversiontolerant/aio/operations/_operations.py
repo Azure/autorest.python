@@ -190,14 +190,14 @@ class BasicOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -230,13 +230,13 @@ class BasicOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_basic_put_valid_request(
             api_version=api_version,
@@ -573,14 +573,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -611,13 +611,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_int_request(
             content_type=content_type,
@@ -719,14 +719,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -758,13 +758,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_long_request(
             content_type=content_type,
@@ -866,14 +866,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -904,13 +904,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_float_request(
             content_type=content_type,
@@ -1015,7 +1015,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
@@ -1023,7 +1023,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          -0.000000000000000000000000000000000000000000000000000000005. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1056,13 +1056,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_double_request(
             content_type=content_type,
@@ -1164,14 +1164,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1202,13 +1202,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_bool_request(
             content_type=content_type,
@@ -1312,14 +1312,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1351,13 +1351,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_string_request(
             content_type=content_type,
@@ -1459,14 +1459,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1498,13 +1498,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_date_request(
             content_type=content_type,
@@ -1607,7 +1607,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
@@ -1615,7 +1615,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1647,13 +1647,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_date_time_request(
             content_type=content_type,
@@ -1756,7 +1756,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
@@ -1764,7 +1764,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          GMT'. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1796,13 +1796,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_date_time_rfc1123_request(
             content_type=content_type,
@@ -1902,14 +1902,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1941,13 +1941,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_duration_request(
             content_type=content_type,
@@ -2048,7 +2048,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
@@ -2056,7 +2056,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2088,13 +2088,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_primitive_put_byte_request(
             content_type=content_type,
@@ -2217,7 +2217,7 @@ class ArrayOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
@@ -2225,7 +2225,7 @@ class ArrayOperations:
          quick brown fox jumps over the lazy dog". Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2257,13 +2257,13 @@ class ArrayOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_array_put_valid_request(
             content_type=content_type,
@@ -2367,14 +2367,14 @@ class ArrayOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
         :param complex_body: Please put an empty array. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2405,13 +2405,13 @@ class ArrayOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_array_put_empty_request(
             content_type=content_type,
@@ -2586,7 +2586,7 @@ class DictionaryOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
@@ -2594,7 +2594,7 @@ class DictionaryOperations:
          "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2627,13 +2627,13 @@ class DictionaryOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_dictionary_put_valid_request(
             content_type=content_type,
@@ -2737,14 +2737,14 @@ class DictionaryOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2776,13 +2776,13 @@ class DictionaryOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_dictionary_put_empty_request(
             content_type=content_type,
@@ -3026,7 +3026,7 @@ class InheritanceOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -3035,7 +3035,7 @@ class InheritanceOperations:
          the 2nd one named "Tomato" with id=-1 and food="french fries". Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3069,13 +3069,13 @@ class InheritanceOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_inheritance_put_valid_request(
             content_type=content_type,
@@ -3237,7 +3237,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -3276,7 +3276,7 @@ class PolymorphismOperations:
                };. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3339,13 +3339,13 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_polymorphism_put_valid_request(
             content_type=content_type,
@@ -3678,7 +3678,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
@@ -3686,7 +3686,7 @@ class PolymorphismOperations:
         :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3718,13 +3718,13 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_polymorphism_put_complicated_request(
             content_type=content_type,
@@ -3809,14 +3809,14 @@ class PolymorphismOperations:
 
     @overload
     async def put_missing_discriminator(
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -3889,13 +3889,13 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_polymorphism_put_missing_discriminator_request(
             content_type=content_type,
@@ -3986,7 +3986,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -4020,7 +4020,7 @@ class PolymorphismOperations:
          }. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4078,13 +4078,13 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_polymorphism_put_valid_missing_required_request(
             content_type=content_type,
@@ -4266,7 +4266,7 @@ class PolymorphicrecursiveOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -4325,7 +4325,7 @@ class PolymorphicrecursiveOperations:
          }. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4408,13 +4408,13 @@ class PolymorphicrecursiveOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_polymorphicrecursive_put_valid_request(
             content_type=content_type,
@@ -4534,14 +4534,14 @@ class ReadonlypropertyOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
         :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4572,13 +4572,13 @@ class ReadonlypropertyOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
-            content_type = content_type or "application/json"
 
         request = build_readonlyproperty_put_valid_request(
             content_type=content_type,

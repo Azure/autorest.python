@@ -127,7 +127,7 @@ class AutoRestValidationTestOperationsMixin:
         id: int,
         body: Optional[IO] = None,
         *,
-        content_type: Optional[str] = None,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Product:
         """Validates body parameters on the method. See swagger for details.
@@ -140,7 +140,7 @@ class AutoRestValidationTestOperationsMixin:
         :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
@@ -179,6 +179,7 @@ class AutoRestValidationTestOperationsMixin:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IO, bytes)):
@@ -188,7 +189,6 @@ class AutoRestValidationTestOperationsMixin:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -292,14 +292,14 @@ class AutoRestValidationTestOperationsMixin:
 
     @overload
     async def post_with_constant_in_body(
-        self, body: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """post_with_constant_in_body.
 
         :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
@@ -339,6 +339,7 @@ class AutoRestValidationTestOperationsMixin:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IO, bytes)):
@@ -348,7 +349,6 @@ class AutoRestValidationTestOperationsMixin:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,
