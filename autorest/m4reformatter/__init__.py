@@ -423,6 +423,39 @@ def update_client_url(yaml_data: Dict[str, Any]) -> str:
     ]["uri"]
 
 
+def update_content_type_parameter(
+    yaml_data: Dict[str, Any],
+    body_parameter: Optional[Dict[str, Any]],
+    request_media_types: List[str],
+    *,
+    in_overload: bool = False,
+    in_overriden: bool = False,
+) -> Dict[str, Any]:
+    # override content type type to string
+    if not body_parameter:
+        return yaml_data
+    param = copy.deepcopy(yaml_data)
+    param["schema"] = KNOWN_TYPES["string"]  # override to string type
+    param["required"] = False
+    description = param["language"]["default"]["description"]
+    if description and description[-1] != ".":
+        description += "."
+    if not (in_overriden or in_overload):
+        param["inDocstring"] = False
+    elif in_overload:
+        description += (
+            " Content type parameter for "
+            f"{get_body_type_for_description(body_parameter)} body."
+        )
+    elif not in_overload:
+        content_types = "'" + "', '".join(request_media_types) + "'"
+        description += f" Known values are: {content_types}."
+    if not in_overload and not in_overriden:
+        param["clientDefaultValue"] = body_parameter["defaultContentType"]
+    param["language"]["default"]["description"] = description
+    return param
+
+
 class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-methods
     """Add Python naming information."""
 
@@ -729,39 +762,6 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         param["inFlattenedBody"] = True
         return param
 
-    def update_content_type_parameter(
-        self,
-        yaml_data: Dict[str, Any],
-        body_parameter: Optional[Dict[str, Any]],
-        request_media_types: List[str],
-        *,
-        in_overload: bool = False,
-        in_overriden: bool = False,
-    ) -> Dict[str, Any]:
-        # override content type type to string
-        if not body_parameter:
-            return yaml_data
-        param = copy.deepcopy(yaml_data)
-        param["schema"] = KNOWN_TYPES["string"]  # override to string type
-        param["required"] = False
-        description = param["language"]["default"]["description"]
-        if description and description[-1] != ".":
-            description += "."
-        if not (in_overriden or in_overload):
-            param["inDocstring"] = False
-        elif in_overload:
-            description += (
-                " Content type parameter for "
-                f"{get_body_type_for_description(body_parameter)} body."
-            )
-        elif not in_overload:
-            content_types = "'" + "', '".join(request_media_types) + "'"
-            description += f" Known values are: {content_types}."
-        if not in_overload and not in_overriden:
-            param["clientDefaultValue"] = body_parameter["defaultContentType"]
-        param["language"]["default"]["description"] = description
-        return param
-
     def _update_parameters_helper(
         self,
         parameters: List[Dict[str, Any]],
@@ -797,7 +797,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             if is_body(param):
                 continue
             if serialized_name == "Content-Type":
-                param = self.update_content_type_parameter(
+                param = update_content_type_parameter(
                     param,
                     body_parameter,
                     request_media_types,
