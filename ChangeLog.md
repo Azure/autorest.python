@@ -5,7 +5,7 @@
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.8.1`     |
-| `@autorest/modelerfour`                                                 | `4.23.1`    |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
 | `azure-core` dep of generated code                                      | `1.23.0`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
@@ -30,6 +30,10 @@
 - Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger  #1244
 - Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
 - Fix typing for stream responses to iterators of bytes.  #1254
+
+**Other Changes**
+
+- Update template files for `--package-mode` # 1248
 
 ### 2022-04-18 - 5.16.0
 

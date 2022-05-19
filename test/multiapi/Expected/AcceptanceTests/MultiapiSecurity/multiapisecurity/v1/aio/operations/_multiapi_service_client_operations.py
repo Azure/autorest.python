@@ -103,6 +103,7 @@ class MultiapiServiceClientOperationsMixin:
         content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -112,7 +113,6 @@ class MultiapiServiceClientOperationsMixin:
                 _json = self._serialize.body(product, 'Product')
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_test_lro_request(
             content_type=content_type,
@@ -184,7 +184,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         product: Optional[IO] = None,
         *,
-        content_type: Optional[str] = None,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
@@ -192,7 +192,7 @@ class MultiapiServiceClientOperationsMixin:
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

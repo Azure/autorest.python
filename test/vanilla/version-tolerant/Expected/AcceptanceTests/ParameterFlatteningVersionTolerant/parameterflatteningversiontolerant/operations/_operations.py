@@ -107,7 +107,7 @@ class AvailabilitySetsOperations:
 
     @overload
     def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -118,7 +118,7 @@ class AvailabilitySetsOperations:
         :param tags: The tags. Required.
         :type tags: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -153,13 +153,13 @@ class AvailabilitySetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(tags, (IO, bytes)):
             _content = tags
         else:
             _json = tags
-            content_type = content_type or "application/json"
 
         request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,

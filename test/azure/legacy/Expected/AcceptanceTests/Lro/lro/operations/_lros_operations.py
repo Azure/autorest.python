@@ -1123,6 +1123,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Product]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1132,7 +1133,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put200_succeeded_request(
             content_type=content_type,
@@ -1207,7 +1207,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1306,6 +1306,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1315,7 +1316,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_patch200_succeeded_ignore_headers_request(
             content_type=content_type,
@@ -1393,7 +1393,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to patch. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1498,6 +1498,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1507,7 +1508,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_patch201_retry_with_async_header_request(
             content_type=content_type,
@@ -1587,7 +1587,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to patch. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1687,6 +1687,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1696,7 +1697,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_patch202_retry_with_async_and_location_header_request(
             content_type=content_type,
@@ -1779,7 +1779,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to patch. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1878,6 +1878,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1887,7 +1888,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put201_succeeded_request(
             content_type=content_type,
@@ -1960,7 +1960,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2164,6 +2164,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2173,7 +2174,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put200_succeeded_no_state_request(
             content_type=content_type,
@@ -2246,7 +2246,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2345,6 +2345,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2354,7 +2355,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put202_retry200_request(
             content_type=content_type,
@@ -2429,7 +2429,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2529,6 +2529,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2538,7 +2539,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put201_creating_succeeded200_request(
             content_type=content_type,
@@ -2617,7 +2617,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2717,6 +2717,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2726,7 +2727,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put200_updating_succeeded204_request(
             content_type=content_type,
@@ -2801,7 +2801,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2901,6 +2901,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2910,7 +2911,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put201_creating_failed200_request(
             content_type=content_type,
@@ -2989,7 +2989,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3089,6 +3089,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3098,7 +3099,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put200_acceptedcanceled200_request(
             content_type=content_type,
@@ -3173,7 +3173,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3273,6 +3273,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3282,7 +3283,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_no_header_in_retry_request(
             content_type=content_type,
@@ -3358,7 +3358,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3461,6 +3461,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3470,7 +3471,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_retry_succeeded_request(
             content_type=content_type,
@@ -3552,7 +3552,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3660,6 +3660,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3669,7 +3670,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_no_retry_succeeded_request(
             content_type=content_type,
@@ -3750,7 +3750,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3857,6 +3857,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3866,7 +3867,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_retry_failed_request(
             content_type=content_type,
@@ -3948,7 +3948,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -4056,6 +4056,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -4065,7 +4066,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_no_retrycanceled_request(
             content_type=content_type,
@@ -4146,7 +4146,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -4253,6 +4253,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -4262,7 +4263,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_no_header_in_retry_request(
             content_type=content_type,
@@ -4342,7 +4342,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -4448,6 +4448,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Sku]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(sku, (IO, bytes)):
@@ -4457,7 +4458,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(sku, "Sku")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_non_resource_request(
             content_type=content_type,
@@ -4528,7 +4528,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param sku: sku to put. Default value is None.
         :type sku: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -4621,6 +4621,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Sku]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(sku, (IO, bytes)):
@@ -4630,7 +4631,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(sku, "Sku")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_non_resource_request(
             content_type=content_type,
@@ -4701,7 +4701,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param sku: Sku to put. Default value is None.
         :type sku: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -6297,6 +6297,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -6306,7 +6307,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post202_retry200_request(
             content_type=content_type,
@@ -6379,7 +6379,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -6476,6 +6476,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -6485,7 +6486,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post202_no_retry204_request(
             content_type=content_type,
@@ -6562,7 +6562,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -6958,6 +6958,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Product]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -6967,7 +6968,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_retry_succeeded_request(
             content_type=content_type,
@@ -7052,7 +7052,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -7152,6 +7152,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Product]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -7161,7 +7162,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_no_retry_succeeded_request(
             content_type=content_type,
@@ -7246,7 +7246,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -7346,6 +7346,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -7355,7 +7356,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_retry_failed_request(
             content_type=content_type,
@@ -7433,7 +7433,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -7531,6 +7531,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -7540,7 +7541,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_retrycanceled_request(
             content_type=content_type,
@@ -7618,7 +7618,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

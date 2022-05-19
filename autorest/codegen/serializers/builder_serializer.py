@@ -623,6 +623,20 @@ class _OperationSerializer(
 
     def _initialize_overloads(self, builder: OperationType) -> List[str]:
         retval: List[str] = []
+        same_content_type = (
+            len(
+                set(
+                    o.parameters.body_parameter.default_content_type
+                    for o in builder.overloads
+                )
+            )
+            == 1
+        )
+        if same_content_type:
+            default_content_type = builder.overloads[
+                0
+            ].parameters.body_parameter.default_content_type
+            retval.append(f'content_type = content_type or "{default_content_type}"')
         for overload in builder.overloads:
             retval.append(
                 f"_{overload.request_builder.parameters.body_parameter.client_name} = None"
@@ -643,7 +657,7 @@ class _OperationSerializer(
             retval.append(
                 f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:"
             )
-            if binary_body_param.default_content_type:
+            if binary_body_param.default_content_type and not same_content_type:
                 retval.append(
                     f'    content_type = content_type or "{binary_body_param.default_content_type}"'
                 )
@@ -664,7 +678,10 @@ class _OperationSerializer(
             retval.extend(
                 f"    {l}" for l in self._create_body_parameter(other_overload)
             )
-            if other_overload.parameters.body_parameter.default_content_type:
+            if (
+                other_overload.parameters.body_parameter.default_content_type
+                and not same_content_type
+            ):
                 retval.append(
                     "    content_type = content_type or "
                     f'"{other_overload.parameters.body_parameter.default_content_type}"'
@@ -676,7 +693,7 @@ class _OperationSerializer(
                 retval.append(
                     f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
                 )
-                if body_param.default_content_type:
+                if body_param.default_content_type and not same_content_type:
                     retval.append(
                         f'    content_type = content_type or "{body_param.default_content_type}"'
                     )

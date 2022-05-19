@@ -1434,7 +1434,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1471,13 +1471,13 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = self._serialize.body(body_parameter, "Product")
-            content_type = content_type or "application/json"
 
         request = build_post_required_class_parameter_request(
             content_type=content_type,
@@ -1538,7 +1538,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1574,6 +1574,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -1583,7 +1584,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(body_parameter, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_optional_class_parameter_request(
             content_type=content_type,
@@ -1758,7 +1758,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1795,13 +1795,13 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = self._serialize.body(body_parameter, "[str]")
-            content_type = content_type or "application/json"
 
         request = build_post_required_array_parameter_request(
             content_type=content_type,
@@ -1862,7 +1862,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1898,6 +1898,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -1907,7 +1908,6 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(body_parameter, "[str]")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_optional_array_parameter_request(
             content_type=content_type,

@@ -171,6 +171,9 @@ class PreProcessPlugin(YamlUpdatePlugin):
         for response in yaml_data.get("responses", []):
             update_paging_response(response)
             response["itemType"] = item_type
+        for overload in yaml_data.get("overloads", []):
+            self.update_paging_operation(overload)
+
     def update_operation_groups(self, yaml_data: Dict[str, Any]) -> None:
         operation_groups_yaml_data = yaml_data["operationGroups"]
         for operation_group in operation_groups_yaml_data:
