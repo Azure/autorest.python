@@ -114,7 +114,7 @@ class OperationGroupOneOperations(object):
         :param parameter_one: A ModelThree parameter. Default value is None.
         :type parameter_one: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
@@ -155,6 +155,7 @@ class OperationGroupOneOperations(object):
         content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelThree]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(parameter_one, (IO, bytes)):
@@ -164,7 +165,6 @@ class OperationGroupOneOperations(object):
                 _json = self._serialize.body(parameter_one, 'ModelThree')
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_test_two_request(
             api_version=api_version,

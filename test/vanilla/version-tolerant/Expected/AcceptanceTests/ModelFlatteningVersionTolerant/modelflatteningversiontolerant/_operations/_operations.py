@@ -253,14 +253,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -292,6 +292,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
@@ -301,7 +302,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 _json = resource_array
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_array_request(
             content_type=content_type,
@@ -420,7 +420,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -428,7 +428,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -461,6 +461,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
@@ -470,7 +471,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 _json = resource_array
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_wrapped_array_request(
             content_type=content_type,
@@ -595,14 +595,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, resource_dictionary: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -634,6 +634,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_dictionary, (IO, bytes)):
@@ -643,7 +644,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 _json = resource_dictionary
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_dictionary_request(
             content_type=content_type,
@@ -821,7 +821,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, resource_complex_object: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -829,7 +829,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
          is None.
         :type resource_complex_object: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -861,6 +861,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_complex_object, (IO, bytes)):
@@ -870,7 +871,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 _json = resource_complex_object
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_resource_collection_request(
             content_type=content_type,
@@ -1062,14 +1062,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
     @overload
     def put_simple_product(
-        self, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1141,6 +1141,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
@@ -1150,7 +1151,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 _json = simple_body_product
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_simple_product_request(
             content_type=content_type,
@@ -1238,14 +1238,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
     @overload
     def post_flattened_simple_product(
-        self, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1319,6 +1319,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
@@ -1328,7 +1329,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 _json = simple_body_product
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
@@ -1423,7 +1423,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
     @overload
     def put_simple_product_with_grouping(
-        self, name: str, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self,
+        name: str,
+        simple_body_product: Optional[IO] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
@@ -1432,7 +1437,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1508,6 +1513,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
@@ -1517,7 +1523,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 _json = simple_body_product
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_simple_product_with_grouping_request(
             name=name,

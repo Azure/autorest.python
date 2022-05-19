@@ -1151,7 +1151,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
@@ -1159,7 +1159,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1191,13 +1191,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_integer_property_request(
             content_type=content_type,
@@ -1247,14 +1247,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1285,6 +1285,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -1294,7 +1295,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 _json = body_parameter
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_integer_property_request(
             content_type=content_type,
@@ -1518,7 +1518,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
@@ -1526,7 +1526,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1558,13 +1558,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_string_property_request(
             content_type=content_type,
@@ -1614,14 +1614,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1652,6 +1652,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -1661,7 +1662,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 _json = body_parameter
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_string_property_request(
             content_type=content_type,
@@ -1794,7 +1794,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
@@ -1802,7 +1802,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1834,13 +1834,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_class_parameter_request(
             content_type=content_type,
@@ -1891,14 +1891,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1929,6 +1929,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -1938,7 +1939,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 _json = body_parameter
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_class_parameter_request(
             content_type=content_type,
@@ -1992,7 +1992,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
@@ -2000,7 +2000,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2032,13 +2032,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_class_property_request(
             content_type=content_type,
@@ -2091,14 +2091,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2129,6 +2129,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -2138,7 +2139,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 _json = body_parameter
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_class_property_request(
             content_type=content_type,
@@ -2189,7 +2189,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
@@ -2197,7 +2197,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2229,13 +2229,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_array_parameter_request(
             content_type=content_type,
@@ -2285,14 +2285,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2323,6 +2323,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -2332,7 +2333,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 _json = body_parameter
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_array_parameter_request(
             content_type=content_type,
@@ -2385,7 +2385,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
@@ -2393,7 +2393,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :param body_parameter: Required.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2425,13 +2425,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_array_property_request(
             content_type=content_type,
@@ -2483,14 +2483,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2521,6 +2521,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
@@ -2530,7 +2531,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 _json = body_parameter
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_array_property_request(
             content_type=content_type,
