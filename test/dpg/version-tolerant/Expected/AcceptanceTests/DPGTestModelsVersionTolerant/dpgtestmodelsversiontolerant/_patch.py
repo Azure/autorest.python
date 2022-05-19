@@ -12,7 +12,7 @@ from ._client import DPGClient as DPGClientGenerated
 
 class DPGClient(DPGClientGenerated):
     @staticmethod
-    def added_method():
+    def added_method():  # pylint: disable=client-method-should-not-use-static-method
         return super().added_method()
 
 
