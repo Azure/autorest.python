@@ -29,7 +29,6 @@ from ..models import (
     RequestBuilderBodyParameter,
     OverloadedRequestBuilder,
     ConstantType,
-    BaseType,
     MultipartBodyParameter,
     RequestBuilderType,
 )
@@ -52,7 +51,7 @@ BuilderType = TypeVar(
 )
 OperationType = TypeVar(
     "OperationType",
-    bound=Union[Operation, PagingOperation, LROOperation],
+    bound=Union[Operation, PagingOperation, LROOperation, LROPagingOperation],
 )
 
 
@@ -133,22 +132,13 @@ def _serialize_multipart_body(builder: BuilderType) -> List[str]:
 def _get_json_response_template_to_status_codes(
     builder: OperationType,
 ) -> Dict[str, List[str]]:
-    # successful status codes of responses that have bodies
-    responses = [
-        response
-        for response in builder.responses
-        if any(code in builder.success_status_codes for code in response.status_codes)
-        and isinstance(
-            response.type,
-            (DictionaryType, ListType, ModelType),
-        )
-    ]
     retval = defaultdict(list)
-    for response in responses:
+    for response in builder.responses:
+        json_template = response.get_json_template_representation()
+        if not json_template:
+            continue
         status_codes = [str(status_code) for status_code in response.status_codes]
-        response_json = _json_dumps_template(
-            cast(BaseType, response.type).get_json_template_representation()
-        )
+        response_json = _json_dumps_template(json_template)
         retval[response_json].extend(status_codes)
     return retval
 

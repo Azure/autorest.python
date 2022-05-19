@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 
-from autorest.namer.helpers import pad_reserved_words
-from autorest.namer.python_mappings import PadType
+from autorest.preprocess.helpers import pad_reserved_words
+from autorest.preprocess.python_mappings import PadType
 
 def test_escaped_reserved_words():
     expected_conversion_model = {

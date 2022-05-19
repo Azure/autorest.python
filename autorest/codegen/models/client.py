@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
+class _ClientConfigBase(Generic[ParameterListType], BaseModel):
     """The service client base. Shared across our Client and Config type"""
 
     def __init__(

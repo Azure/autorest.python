@@ -12,15 +12,24 @@ from typing import (
     Optional,
     Union,
     TYPE_CHECKING,
+    Generic,
+    TypeVar,
+    cast,
 )
 
-from autorest.codegen.models.request_builder_parameter import RequestBuilderParameter
+from .request_builder_parameter import RequestBuilderParameter
 
 from .utils import OrderedSet
 
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
-from .response import Response
+from .response import (
+    Response,
+    PagingResponse,
+    LROResponse,
+    LROPagingResponse,
+    get_response,
+)
 from .parameter import (
     BodyParameter,
     MultipartBodyParameter,
@@ -36,8 +45,13 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+ResponseType = TypeVar(
+    "ResponseType",
+    bound=Union[Response, PagingResponse, LROResponse, LROPagingResponse],
+)
 
-class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-methods
+
+class OperationBase(Generic[ResponseType], BaseBuilder[ParameterList]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -45,7 +59,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         name: str,
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
         parameters: ParameterList,
-        responses: List[Response],
+        responses: List[ResponseType],
         exceptions: List[Response],
         *,
         overloads: Optional[List["Operation"]] = None,
@@ -89,15 +103,19 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             and self.request_builder.method.lower() == "head"
         ):
             return "bool"
-        response_body_annotations: OrderedSet[str] = {}
-        for response in [r for r in self.responses if r.type]:
-            response_body_annotations[response.type_annotation(**kwargs)] = None
-        response_str = ", ".join(response_body_annotations.keys()) or "None"
-        if len(response_body_annotations) > 1:
+        response_type_annotations: OrderedSet[str] = {
+            response.type_annotation(**kwargs): None
+            for response in self.responses
+            if response.type
+        }
+        response_str = ", ".join(response_type_annotations.keys())
+        if len(response_type_annotations) > 1:
             return f"Union[{response_str}]"
         if self.has_optional_return_type:
             return f"Optional[{response_str}]"
-        return response_str
+        if self.responses:
+            return self.responses[0].type_annotation(**kwargs)
+        return "None"
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         if (
@@ -123,6 +141,8 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             if self.has_optional_return_type:
                 retval += " or None"
             return retval
+        if self.responses:
+            return getattr(self.responses[0], attr_name)(**kwargs)
         return "None"
 
     def response_docstring_text(self, **kwargs) -> str:
@@ -178,9 +198,6 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             for param in self.parameters.method:
                 file_import.merge(param.imports(async_mode))
 
-        for response in self.responses:
-            file_import.merge(response.imports(async_mode=async_mode))
-
         response_types = [
             r.type_annotation(async_mode=async_mode) for r in self.responses if r.type
         ]
@@ -191,18 +208,9 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
-        return self._imports_shared(async_mode)
-
-    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        file_import = self._imports_base(async_mode, is_python3_file)
-        if self.abstract:
-            return file_import
-        if (
-            self.has_response_body
-            and not self.has_optional_return_type
-            and not self.code_model.options["models_mode"]
-        ):
-            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
+        file_import = self._imports_shared(async_mode)
+        for response in self.responses:
+            file_import.merge(response.imports_for_multiapi(async_mode=async_mode))
         return file_import
 
     @staticmethod
@@ -261,8 +269,11 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
             )
         return file_import
 
-    def _imports_base(self, async_mode: bool, is_python3_file: bool) -> FileImport:
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
+
+        for response in self.responses:
+            file_import.merge(response.imports(async_mode=async_mode))
 
         # Exceptions
         if self.abstract:
@@ -340,10 +351,10 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if self.code_model.options["tracing"] and self.want_tracing:
+        if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
             file_import.add_submodule_import(
-                f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
-                f"distributed_trace{'_async' if async_mode else ''}",
+                f"azure.core.tracing.decorator",
+                f"distributed_trace",
                 ImportType.AZURECORE,
             )
         if not self.abstract:
@@ -356,7 +367,7 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
 
     def get_response_from_status(
         self, status_code: Optional[Union[str, int]]
-    ) -> Response:
+    ) -> ResponseType:
         try:
             return next(r for r in self.responses if status_code in r.status_codes)
         except StopIteration:
@@ -391,7 +402,10 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         name = yaml_data["name"]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
-        responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
+        responses = [
+            cast(ResponseType, get_response(r, code_model))
+            for r in yaml_data["responses"]
+        ]
         exceptions = [
             Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
         ]
@@ -429,7 +443,28 @@ class Operation(BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-
         )
 
 
-def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Operation:
+class Operation(OperationBase[Response]):
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
+        file_import = super().imports(async_mode, is_python3_file)
+        if async_mode:
+            file_import.add_submodule_import(
+                f"azure.core.tracing.decorator_async",
+                f"distributed_trace_async",
+                ImportType.AZURECORE,
+            )
+        if self.abstract:
+            return file_import
+        if (
+            self.has_response_body
+            and not self.has_optional_return_type
+            and not self.code_model.options["models_mode"]
+        ):
+            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
+
+        return file_import
+
+
+def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":
         from .lro_paging_operation import LROPagingOperation as OperationCls
     elif yaml_data["discriminator"] == "lro":

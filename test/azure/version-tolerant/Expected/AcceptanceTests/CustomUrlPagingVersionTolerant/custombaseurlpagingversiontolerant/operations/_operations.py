@@ -119,15 +119,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -208,15 +203,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

@@ -237,7 +237,7 @@ EntryBodyParameterType = TypeVar(
 )
 
 
-class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
+class _MultipartBodyParameter(Generic[EntryBodyParameterType], BodyParameter):
     """Base class for MultipartBodyParameter and RequestBuilderMultipartBodyParameter"""
 
     def __init__(

@@ -100,7 +100,7 @@ CredentialPolicyType = TypeVar(
 
 
 class CredentialType(
-    BaseType, Generic[CredentialPolicyType]
+    Generic[CredentialPolicyType], BaseType
 ):  # pylint:disable=abstract-method
     """Store info about the type of the credential. Can be either an AzureKeyCredential or a TokenCredential"""
 

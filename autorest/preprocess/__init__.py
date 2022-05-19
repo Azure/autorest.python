@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-"""The namer autorest plugin.
+"""The preprocessing autorest plugin.
 """
 from typing import Callable, Dict, Any, List, Optional
 from .helpers import to_snake_case, pad_reserved_words
@@ -72,7 +72,15 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
         update_parameter(parameter)
 
 
-class Namer(YamlUpdatePlugin):
+def update_paging_response(yaml_data: Dict[str, Any]) -> None:
+    yaml_data["discriminator"] = "paging"
+    yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
+    yaml_data["pagerAsync"] = (
+        yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
+    )
+
+
+class PreProcessPlugin(YamlUpdatePlugin):
     """Add Python naming information."""
 
     def get_operation_updater(
@@ -105,29 +113,37 @@ class Namer(YamlUpdatePlugin):
                 update_parameter(entry)
         for overload in yaml_data.get("overloads", []):
             self.update_operation(overload)
+        for response in yaml_data.get("responses", []):
+            response["discriminator"] = "operation"
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
-        if not yaml_data.get("pollerSync"):
-            yaml_data["pollerSync"] = "azure.core.polling.LROPoller"
-        if not yaml_data.get("pollerAsync"):
-            yaml_data["pollerAsync"] = "azure.core.polling.AsyncLROPoller"
-        if not yaml_data.get("pollingMethodSync"):
-            yaml_data["pollingMethodSync"] = (
-                "azure.mgmt.core.polling.arm_polling.ARMPolling"
-                if azure_arm
-                else "azure.core.polling.base_polling.LROBasePolling"
+        for response in yaml_data.get("responses", []):
+            response["discriminator"] = "lro"
+            response["pollerSync"] = (
+                response.get("pollerSync") or "azure.core.polling.LROPoller"
             )
-        if not yaml_data.get("pollingMethodAsync"):
-            yaml_data["pollingMethodAsync"] = (
-                "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
-                if azure_arm
-                else "azure.core.polling.async_base_polling.AsyncLROBasePolling"
+            response["pollerAsync"] = (
+                response.get("pollerAsync") or "azure.core.polling.AsyncLROPoller"
             )
+            if not response.get("pollingMethodSync"):
+                response["pollingMethodSync"] = (
+                    "azure.mgmt.core.polling.arm_polling.ARMPolling"
+                    if azure_arm
+                    else "azure.core.polling.base_polling.LROBasePolling"
+                )
+            if not response.get("pollingMethodAsync"):
+                response["pollingMethodAsync"] = (
+                    "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
+                    if azure_arm
+                    else "azure.core.polling.async_base_polling.AsyncLROBasePolling"
+                )
 
     def update_lro_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_lro_operation(yaml_data)
         self.update_paging_operation(yaml_data)
+        for response in yaml_data.get("responses", []):
+            response["discriminator"] = "lropaging"
 
     def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_operation(yaml_data)
@@ -141,6 +157,16 @@ class Namer(YamlUpdatePlugin):
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
             yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
+        returned_response_object = (
+            yaml_data["nextOperation"]["responses"][0]
+            if yaml_data.get("nextOperation")
+            else yaml_data["responses"][0]
+        )
+        item_type = next(
+            p["type"]["elementType"]
+            for p in returned_response_object["type"]["properties"]
+            if p["restApiName"] == yaml_data["itemName"]
+        )
         if yaml_data.get("nextOperation"):
             yaml_data["nextOperation"]["groupName"] = pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
@@ -148,6 +174,12 @@ class Namer(YamlUpdatePlugin):
             yaml_data["nextOperation"]["groupName"] = to_snake_case(
                 yaml_data["nextOperation"]["groupName"]
             )
+            for response in yaml_data["nextOperation"].get("responses", []):
+                update_paging_response(response)
+                response["itemType"] = item_type
+        for response in yaml_data.get("responses", []):
+            update_paging_response(response)
+            response["itemType"] = item_type
         for overload in yaml_data.get("overloads", []):
             self.update_paging_operation(overload)
 
