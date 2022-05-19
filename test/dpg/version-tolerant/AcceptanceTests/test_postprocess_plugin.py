@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from dpgtestpostprocesspluginversiontolerant import models
+from dpgtestmodelsversiontolerant import models
 
 def test_added_property():
     product = models.Product(received="model")
