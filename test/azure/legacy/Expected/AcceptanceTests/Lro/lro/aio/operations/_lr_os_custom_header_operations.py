@@ -68,6 +68,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -77,7 +78,6 @@ class LROsCustomHeaderOperations:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_retry_succeeded_request(
             content_type=content_type,
@@ -146,7 +146,7 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
@@ -156,7 +156,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -261,6 +261,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -270,7 +271,6 @@ class LROsCustomHeaderOperations:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put201_creating_succeeded200_request(
             content_type=content_type,
@@ -336,7 +336,7 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
@@ -346,7 +346,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -443,6 +443,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -452,7 +453,6 @@ class LROsCustomHeaderOperations:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post202_retry200_request(
             content_type=content_type,
@@ -512,7 +512,7 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_post202_retry200(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
@@ -521,7 +521,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -613,6 +613,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -622,7 +623,6 @@ class LROsCustomHeaderOperations:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_retry_succeeded_request(
             content_type=content_type,
@@ -686,7 +686,7 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
@@ -696,7 +696,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

@@ -1189,14 +1189,14 @@ class EnumOperations:
 
     @overload
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, enum_string_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body. Required.
         :type enum_string_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1227,13 +1227,13 @@ class EnumOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(enum_string_body, (IO, bytes)):
             _content = enum_string_body
         else:
             _json = enum_string_body
-            content_type = content_type or "application/json"
 
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,

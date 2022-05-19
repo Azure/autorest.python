@@ -269,13 +269,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """
 
     @overload
-    def put_horse(self, horse: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def put_horse(self, horse: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
         :type horse: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -305,13 +305,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(horse, (IO, bytes)):
             _content = horse
         else:
             _json = horse
-            content_type = content_type or "application/json"
 
         request = build_put_horse_request(
             content_type=content_type,
@@ -415,13 +415,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """
 
     @overload
-    def put_pet(self, pet: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def put_pet(self, pet: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'. Required.
         :type pet: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -450,13 +450,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(pet, (IO, bytes)):
             _content = pet
         else:
             _json = pet
-            content_type = content_type or "application/json"
 
         request = build_put_pet_request(
             content_type=content_type,
@@ -562,13 +562,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """
 
     @overload
-    def put_feline(self, feline: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def put_feline(self, feline: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
         :type feline: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -598,13 +598,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(feline, (IO, bytes)):
             _content = feline
         else:
             _json = feline
-            content_type = content_type or "application/json"
 
         request = build_put_feline_request(
             content_type=content_type,
@@ -715,14 +715,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """
 
     @overload
-    def put_cat(self, cat: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def put_cat(self, cat: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
          Required.
         :type cat: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -752,13 +752,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(cat, (IO, bytes)):
             _content = cat
         else:
             _json = cat
-            content_type = content_type or "application/json"
 
         request = build_put_cat_request(
             content_type=content_type,
@@ -873,7 +873,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """
 
     @overload
-    def put_kitten(self, kitten: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def put_kitten(self, kitten: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
@@ -881,7 +881,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
          eatsMiceYet is true. Required.
         :type kitten: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -912,13 +912,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(kitten, (IO, bytes)):
             _content = kitten
         else:
             _json = kitten
-            content_type = content_type or "application/json"
 
         request = build_put_kitten_request(
             content_type=content_type,

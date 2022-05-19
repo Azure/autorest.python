@@ -2410,7 +2410,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, properties: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
@@ -2418,7 +2418,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :param properties: Required.
         :type properties: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2450,13 +2450,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(properties, (IO, bytes)):
             _content = properties
         else:
             _json = properties
-            content_type = content_type or "application/json"
 
         request = build_xml_json_input_request(
             content_type=content_type,
