@@ -280,12 +280,12 @@ class PollingPagingExampleOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A simple paging operation.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~my.library.CustomPager[~azure.directives.sample.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~my.library.CustomPager[~azure.directives.sample.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}

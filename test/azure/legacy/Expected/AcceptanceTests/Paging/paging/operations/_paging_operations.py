@@ -640,12 +640,12 @@ class PagingOperations(object):
     def get_no_item_name_pages(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResultValue]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValue]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -708,12 +708,12 @@ class PagingOperations(object):
     def get_null_next_link_name_pages(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -776,12 +776,12 @@ class PagingOperations(object):
     def get_single_pages(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -844,13 +844,13 @@ class PagingOperations(object):
     def first_response_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResultValue]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValue]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -916,7 +916,7 @@ class PagingOperations(object):
         paging_get_multiple_pages_options=None,  # type: Optional[_models.PagingGetMultiplePagesOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -924,8 +924,8 @@ class PagingOperations(object):
         :param paging_get_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1006,7 +1006,7 @@ class PagingOperations(object):
         required_query_parameter,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -1018,8 +1018,8 @@ class PagingOperations(object):
          may result in unsupported behavior.
         :paramtype query_constant: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1088,7 +1088,7 @@ class PagingOperations(object):
         filter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
@@ -1096,8 +1096,8 @@ class PagingOperations(object):
         :param filter: OData filter options. Pass in 'foo'. Default value is None.
         :type filter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1164,7 +1164,7 @@ class PagingOperations(object):
         paging_get_odata_multiple_pages_options=None,  # type: Optional[_models.PagingGetOdataMultiplePagesOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.OdataProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -1173,8 +1173,8 @@ class PagingOperations(object):
         :type paging_get_odata_multiple_pages_options:
          ~paging.models.PagingGetOdataMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1256,7 +1256,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group. Required.
@@ -1265,8 +1265,8 @@ class PagingOperations(object):
         :param client_request_id: Default value is None.
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1351,13 +1351,13 @@ class PagingOperations(object):
     def get_multiple_pages_retry_first(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1420,13 +1420,13 @@ class PagingOperations(object):
     def get_multiple_pages_retry_second(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1489,12 +1489,12 @@ class PagingOperations(object):
     def get_single_pages_failure(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1557,12 +1557,12 @@ class PagingOperations(object):
     def get_multiple_pages_failure(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1625,12 +1625,12 @@ class PagingOperations(object):
     def get_multiple_pages_failure_uri(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1696,7 +1696,7 @@ class PagingOperations(object):
         tenant,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.OdataProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use. Required.
@@ -1704,8 +1704,8 @@ class PagingOperations(object):
         :param tenant: Sets the tenant to use. Required.
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1775,14 +1775,14 @@ class PagingOperations(object):
         custom_parameter_group,  # type: _models.CustomParameterGroup
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.OdataProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param custom_parameter_group: Parameter group. Required.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1914,7 +1914,7 @@ class PagingOperations(object):
         paging_get_multiple_pages_lro_options=None,  # type: Optional[_models.PagingGetMultiplePagesLroOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[Iterable[_models.ProductResult]]
+        # type: (...) -> LROPoller[Iterable["_models.Product"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -1931,8 +1931,7 @@ class PagingOperations(object):
          Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of either
          ProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~paging.models.ProductResult]]
+        :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~paging.models.Product]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
@@ -2047,14 +2046,13 @@ class PagingOperations(object):
     def get_paging_model_with_item_name_with_xms_client_name(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResultValueWithXMSClientName]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result
-         of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValueWithXMSClientName]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}

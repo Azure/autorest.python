@@ -473,7 +473,7 @@ class MultiapiServiceClientOperationsMixin(object):
         test_lro_and_paging_options=None,  # type: Optional[_models.TestLroAndPagingOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[Iterable[_models.PagingResult]]
+        # type: (...) -> LROPoller[Iterable["_models.Product"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -491,7 +491,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
-         ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapi.v1.models.PagingResult]]
+         ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapi.v1.models.Product]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 

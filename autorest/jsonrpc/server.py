@@ -21,7 +21,7 @@ def GetPluginNames():
     return [
         "codegen",
         "m2r",
-        "namer",
+        "preprocess",
         "m4reformatter",
         "black",
         "multiapiscript",
@@ -44,8 +44,8 @@ def Process(plugin_name: str, session_id: str) -> bool:
         )
         if plugin_name == "m2r":
             from ..m2r import M2R as PluginToLoad
-        elif plugin_name == "namer":
-            from ..namer import Namer as PluginToLoad  # type: ignore
+        elif plugin_name == "preprocess":
+            from ..preprocess import PreProcessPlugin as PluginToLoad  # type: ignore
         elif plugin_name == "m4reformatter":
             from ..m4reformatter import M4Reformatter as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
