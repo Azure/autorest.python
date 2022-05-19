@@ -92,15 +92,18 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
             and self.request_builder.method.lower() == "head"
         ):
             return "bool"
-        response_body_annotations: OrderedSet[str] = {}
-        for response in [r for r in self.responses if r.type]:
-            response_body_annotations[response.type_annotation(**kwargs)] = None
-        response_str = ", ".join(response_body_annotations.keys()) or "None"
-        if len(response_body_annotations) > 1:
+        response_type_annotations: OrderedSet[str] = {
+            response.type_annotation(**kwargs): None
+            for response in self.responses if response.type
+        }
+        response_str = ", ".join(response_type_annotations.keys())
+        if len(response_type_annotations) > 1:
             return f"Union[{response_str}]"
         if self.has_optional_return_type:
             return f"Optional[{response_str}]"
-        return response_str
+        if self.responses:
+            return self.responses[0].type_annotation(**kwargs)
+        return "None"
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         if (
@@ -126,6 +129,8 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
             if self.has_optional_return_type:
                 retval += " or None"
             return retval
+        if self.responses:
+            return getattr(self.responses[0], attr_name)(**kwargs)
         return "None"
 
     def response_docstring_text(self, **kwargs) -> str:
@@ -181,9 +186,6 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
             for param in self.parameters.method:
                 file_import.merge(param.imports(async_mode))
 
-        for response in self.responses:
-            file_import.merge(response.imports(async_mode=async_mode))
-
         response_types = [
             r.type_annotation(async_mode=async_mode) for r in self.responses if r.type
         ]
@@ -194,18 +196,9 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
-        return self._imports_shared(async_mode)
-
-    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        file_import = self._imports_base(async_mode, is_python3_file)
-        if self.abstract:
-            return file_import
-        if (
-            self.has_response_body
-            and not self.has_optional_return_type
-            and not self.code_model.options["models_mode"]
-        ):
-            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
+        file_import = self._imports_shared(async_mode)
+        for response in self.responses:
+            file_import.merge(response.imports_for_multiapi(async_mode=async_mode))
         return file_import
 
     @staticmethod
@@ -264,8 +257,11 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
             )
         return file_import
 
-    def _imports_base(self, async_mode: bool, is_python3_file: bool) -> FileImport:
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
+
+        for response in self.responses:
+            file_import.merge(response.imports(async_mode=async_mode))
 
         # Exceptions
         if self.abstract:
@@ -343,10 +339,10 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if self.code_model.options["tracing"] and self.want_tracing:
+        if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
             file_import.add_submodule_import(
-                f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
-                f"distributed_trace{'_async' if async_mode else ''}",
+                f"azure.core.tracing.decorator",
+                f"distributed_trace",
                 ImportType.AZURECORE,
             )
         if not self.abstract:
@@ -432,7 +428,25 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
         )
 
 class Operation(OperationBase[Response]):
-    ...
+
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
+        file_import = super().imports(async_mode, is_python3_file)
+        if async_mode:
+            file_import.add_submodule_import(
+                f"azure.core.tracing.decorator_async",
+                f"distributed_trace_async",
+                ImportType.AZURECORE,
+            )
+        if self.abstract:
+            return file_import
+        if (
+            self.has_response_body
+            and not self.has_optional_return_type
+            and not self.code_model.options["models_mode"]
+        ):
+            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
+
+        return file_import
 
 def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":

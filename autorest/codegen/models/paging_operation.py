@@ -75,9 +75,8 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
                 f"Can't find a matching property in response for {rest_api_name}"
             )
 
-    @property
-    def paging_response(self) -> PagingResponseType:
-        return self.responses[0]
+    def get_pager(self, async_mode: bool) -> str:
+        return self.responses[0].get_pager(async_mode)
 
     @property
     def continuation_token_name(self) -> Optional[str]:
@@ -101,7 +100,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         return "paging"
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
-        return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
+        return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = super()._imports_shared(async_mode)
@@ -125,21 +124,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def has_optional_return_type(self) -> bool:
         return False
 
-    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
-        file_import = super().imports_for_multiapi(async_mode)
-        for response in self.responses:
-            file_import.merge(response.imports(async_mode=async_mode))
-        return file_import
-
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        file_import = self._imports_base(async_mode, is_python3_file)
-        # operation adds an import for distributed_trace_async, we don't want it
-        file_import.imports = [
-            i
-            for i in file_import.imports
-            if not i.submodule_name == "distributed_trace_async"
-        ]
-
+        file_import = self._imports_shared(async_mode)
+        file_import.merge(super().imports(async_mode, is_python3_file))
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",

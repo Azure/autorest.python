@@ -30,13 +30,13 @@ class MultiapiServiceClientOperationsMixin:
     def test_paging(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[_models.PagingResult]:
+    ) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either PagingResult or the result of cls(response)
+        :return: An iterator like instance of either ModelThree or the result of cls(response)
         :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]
+         ~azure.core.async_paging.AsyncItemPaged[~multiapiwithsubmodule.submodule.v3.models.ModelThree]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}

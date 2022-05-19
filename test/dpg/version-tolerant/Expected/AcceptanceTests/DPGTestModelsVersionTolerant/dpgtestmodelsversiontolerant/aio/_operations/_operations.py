@@ -189,7 +189,7 @@ class DPGClientOperationsMixin(MixinABC):
         return deserialized
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable[_models.ProductResult]:
+    def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 
@@ -197,9 +197,8 @@ class DPGClientOperationsMixin(MixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :return: An iterator like instance of ProductResult
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~dpgtestmodelsversiontolerant.models.ProductResult]
+        :return: An iterator like instance of Product
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dpgtestmodelsversiontolerant.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}

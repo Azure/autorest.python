@@ -7,7 +7,7 @@ from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
 
 from .base_model import BaseModel
 from .base_type import BaseType
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .primitive_types import BinaryType, BinaryIteratorType
 from .dictionary_type import DictionaryType
 from .list_type import ListType
@@ -24,7 +24,6 @@ class ResponseHeader(BaseModel):
         super().__init__(yaml_data, code_model)
         self.rest_api_name: str = yaml_data["restApiName"]
         self.type = type
-        self.discriminator: str = yaml_data["discriminator"]
 
     @property
     def serialization_type(self) -> str:
@@ -59,7 +58,7 @@ class Response(BaseModel):
     def get_json_template_representation(self) -> Any:
         if not self.type:
             return None
-        if self.type not in (DictionaryType, ListType, ModelType):
+        if not isinstance(self.type, (DictionaryType, ListType, ModelType)):
             return None
         return self.type.get_json_template_representation()
 
@@ -86,20 +85,26 @@ class Response(BaseModel):
     def docstring_text(self, **kwargs: Any) -> str:
         if self.nullable and self.type:
             return f"{self.type.docstring_text(**kwargs)} or None"
-        return self.type.docstring_text(**kwargs) if self.type else ""
+        return self.type.docstring_text(**kwargs) if self.type else "None"
 
     def docstring_type(self, **kwargs: Any) -> str:
         if self.nullable and self.type:
             return f"{self.type.docstring_type(**kwargs)} or None"
-        return self.type.docstring_type(**kwargs) if self.type else ""
+        return self.type.docstring_type(**kwargs) if self.type else "None"
 
-    def imports(self, **kwargs: Any) -> FileImport:
+    def _imports_shared(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if self.type:
             file_import.merge(self.type.imports(is_operation_file=True, **kwargs))
         if self.nullable:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        return self._imports_shared(**kwargs)
+
+    def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
+        return self._imports_shared(**kwargs)
 
     @classmethod
     def from_yaml(
@@ -156,20 +161,30 @@ class PagingResponse(Response):
     def docstring_type(self, **kwargs: Any) -> str:
         return f"~{self.get_pager_path(kwargs['async_mode'])}[{self.item_type.docstring_type(**kwargs)}]"
 
-    def imports(self, **kwargs: Any) -> FileImport:
-        file_import = super().imports(**kwargs)
+    def _imports_shared(self, **kwargs: Any) -> FileImport:
+        file_import = super()._imports_shared(**kwargs)
         async_mode = kwargs.pop("async_mode")
-        if async_mode:
-            file_import.add_submodule_import(
-                "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
-            )
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
         file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE)
         return file_import
 
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = self._imports_shared(**kwargs)
+        async_mode = kwargs.pop("async_mode")
+        if async_mode:
+            file_import.add_submodule_import(
+                "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
+            )
+
+        return file_import
+
+    def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
+        return self._imports_shared(**kwargs)
+
 class LROResponse(Response):
+
     def get_poller_path(self, async_mode: bool) -> str:
         return (
             self.yaml_data["pollerAsync"]
@@ -226,15 +241,19 @@ class LROResponse(Response):
             base_description += "either "
         return base_description + super_text
 
-    def imports(self, **kwargs: Any) -> FileImport:
-        file_import = super().imports(**kwargs)
+    def _imports_shared(self, **kwargs: Any) -> FileImport:
+        file_import = super()._imports_shared(**kwargs)
         async_mode = kwargs["async_mode"]
-
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
         file_import.add_submodule_import(
             poller_import_path, poller, ImportType.AZURECORE
         )
+        return file_import
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = self._imports_shared(**kwargs)
+        async_mode = kwargs["async_mode"]
 
         default_polling_method_import_path = ".".join(
             self.get_polling_method_path(async_mode).split(".")[:-1]
@@ -262,8 +281,10 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             base_polling_method_import_path, base_polling_method, ImportType.AZURECORE
         )
-
         return file_import
+
+    def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
+        return self._imports_shared(**kwargs)
 
 class LROPagingResponse(LROResponse, PagingResponse):
 
@@ -282,6 +303,11 @@ class LROPagingResponse(LROResponse, PagingResponse):
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + Response.docstring_text(self)
+
+    def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
+        file_import = LROResponse.imports_for_multiapi(self, **kwargs)
+        file_import.merge(PagingResponse.imports_for_multiapi(self, **kwargs))
+        return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = LROResponse.imports(self, **kwargs)

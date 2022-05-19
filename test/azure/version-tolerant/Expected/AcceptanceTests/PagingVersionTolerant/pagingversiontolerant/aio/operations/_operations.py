@@ -89,15 +89,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "value": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -163,15 +158,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -237,15 +227,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -312,15 +297,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "value": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -401,15 +381,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -489,15 +464,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -571,15 +541,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -661,15 +626,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "odata.nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -759,15 +719,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -842,15 +797,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -917,15 +867,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -991,15 +936,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1065,15 +1005,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1139,15 +1074,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1219,15 +1149,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "odata.nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1304,15 +1229,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "odata.nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1444,6 +1364,17 @@ class PagingOperations:
         :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[JSON]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
         """
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -1554,15 +1485,10 @@ class PagingOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

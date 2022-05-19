@@ -730,14 +730,13 @@ class StorageAccountsOperations:
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable[_models.StorageAccountListResult]:
+    def list(self, **kwargs: Any) -> AsyncIterable["_models.StorageAccount"]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either StorageAccountListResult or the result of
-         cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
+        :return: An iterator like instance of either StorageAccount or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -803,7 +802,7 @@ class StorageAccountsOperations:
     @distributed_trace
     def list_by_resource_group(
         self, resource_group_name: str, **kwargs: Any
-    ) -> AsyncIterable[_models.StorageAccountListResult]:
+    ) -> AsyncIterable["_models.StorageAccount"]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -811,9 +810,8 @@ class StorageAccountsOperations:
          Required.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either StorageAccountListResult or the result of
-         cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
+        :return: An iterator like instance of either StorageAccount or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}

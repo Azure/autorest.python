@@ -53,15 +53,15 @@ class PagingOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[_models.ProductResult]:
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
         :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -134,14 +134,14 @@ class PagingOperations:
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[_models.ProductResult]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}

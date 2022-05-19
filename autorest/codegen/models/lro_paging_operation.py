@@ -7,7 +7,7 @@ from .imports import FileImport
 from .lro_operation import LROOperationBase
 from .paging_operation import PagingOperationBase
 from .operation import OperationBase
-from .response import LROPagingResponse
+from .response import LROPagingResponse, Response
 
 
 class LROPagingOperation(LROOperationBase[LROPagingResponse], PagingOperationBase[LROPagingResponse]):
@@ -21,7 +21,7 @@ class LROPagingOperation(LROOperationBase[LROPagingResponse], PagingOperationBas
         return "lropaging"
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
-        return f"ClsType[{OperationBase.response_type_annotation(self, async_mode=async_mode)}]"
+        return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         lro_imports = LROOperationBase.imports(self, async_mode, is_python3_file)

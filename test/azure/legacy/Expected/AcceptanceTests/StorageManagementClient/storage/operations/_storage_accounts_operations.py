@@ -1085,14 +1085,13 @@ class StorageAccountsOperations(object):
     def list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.StorageAccountListResult]
+        # type: (...) -> Iterable["_models.StorageAccount"]
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either StorageAccountListResult or the result of
-         cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
+        :return: An iterator like instance of either StorageAccount or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1161,7 +1160,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.StorageAccountListResult]
+        # type: (...) -> Iterable["_models.StorageAccount"]
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -1169,9 +1168,8 @@ class StorageAccountsOperations(object):
          Required.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either StorageAccountListResult or the result of
-         cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
+        :return: An iterator like instance of either StorageAccount or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         _headers = kwargs.pop("headers", {}) or {}

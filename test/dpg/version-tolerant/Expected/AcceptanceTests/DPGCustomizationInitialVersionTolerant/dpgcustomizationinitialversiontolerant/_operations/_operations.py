@@ -327,13 +327,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "received": "str"  # Required. Known values are: "raw" and
-                              "model".
-                        }
-                    ]
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

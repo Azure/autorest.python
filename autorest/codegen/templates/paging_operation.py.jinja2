@@ -12,7 +12,7 @@
         {% endif %}
     {{ op_tools.serialize(operation_serializer.set_up_params_for_pager(operation)) | indent }}
 
-    return {{ operation.paging_response.get_pager(async_mode) }}(
+    return {{ operation.get_pager(async_mode) }}(
         get_next, extract_data
     )
     {% endif %}

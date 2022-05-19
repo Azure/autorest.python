@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, List, TYPE_CHECKING, cast, TypeVar, Union
+from typing import Any, Dict, Optional, List, TYPE_CHECKING, TypeVar, Union
 from .imports import FileImport
 from .operation import OperationBase, Operation
 from .response import LROPagingResponse, LROResponse, Response
@@ -59,8 +59,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
 
     @property
     def lro_response(self) -> Optional[LROResponseType]:
-        if not self.responses:
-            return None
         responses_with_bodies = [r for r in self.responses if r.type]
         num_response_schemas = {
             id(r.type.yaml_data) for r in responses_with_bodies if r.type
@@ -82,15 +80,9 @@ class LROOperationBase(OperationBase[LROResponseType]):
             response = responses_with_bodies[0]
         return response
 
-    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
-        file_import = super().imports_for_multiapi(async_mode)
-        for response in self.responses:
-            file_import.merge(response.imports(async_mode=async_mode))
-        return file_import
-
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
-        return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
+        return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
     @property
     def initial_operation(self) -> Operation:
@@ -102,22 +94,39 @@ class LROOperationBase(OperationBase[LROResponseType]):
             name=self.name[5:] + "_initial",
             overloads=self.overloads,
             parameters=self.parameters,
-            responses=[cast(Response, r) for r in self.responses],
-            exceptions=[cast(Response, e) for e in self.exceptions],
+            responses=[Response(r.yaml_data, self.code_model, headers=r.headers, type=r.type) for r in self.responses],
+            exceptions=[e for e in self.exceptions],
             public=False,
             want_tracing=False,
         )
 
+    def get_poller(self, async_mode: bool) -> str:
+        return self.responses[0].get_poller(async_mode)
+
+    def get_polling_method(self, async_mode: bool) -> str:
+        return self.responses[0].get_polling_method(async_mode)
+
+    def get_base_polling_method(self, async_mode: bool) -> str:
+        return self.responses[0].get_base_polling_method(async_mode)
+
+    def get_base_polling_method_path(self, async_mode: bool) -> str:
+        return self.responses[0].get_base_polling_method_path(async_mode)
+
+    def get_no_polling_method(self, async_mode: bool) -> str:
+        return self.responses[0].get_no_polling_method(async_mode)
+
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        file_import = self._imports_base(async_mode, is_python3_file)
+        file_import = super().imports(async_mode, is_python3_file)
+        if async_mode:
+            file_import.add_submodule_import(
+                f"azure.core.tracing.decorator_async",
+                f"distributed_trace_async",
+                ImportType.AZURECORE,
+            )
         file_import.add_submodule_import(
             "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
-        if async_mode:
-            file_import.add_submodule_import(
-                "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
         return file_import
 
 class LROOperation(LROOperationBase[LROResponse]):
