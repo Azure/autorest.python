@@ -19,7 +19,10 @@ from .model_type import ModelType
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-PagingResponseType = TypeVar("PagingResponseType", bound=Union[PagingResponse, LROPagingResponse])
+PagingResponseType = TypeVar(
+    "PagingResponseType", bound=Union[PagingResponse, LROPagingResponse]
+)
+
 
 class PagingOperationBase(OperationBase[PagingResponseType]):
     def __init__(
@@ -139,6 +142,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             )
 
         return file_import
+
 
 class PagingOperation(PagingOperationBase[PagingResponse]):
     ...

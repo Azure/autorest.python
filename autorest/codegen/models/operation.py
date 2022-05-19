@@ -13,7 +13,8 @@ from typing import (
     Union,
     TYPE_CHECKING,
     Generic,
-    TypeVar
+    TypeVar,
+    cast,
 )
 
 from .request_builder_parameter import RequestBuilderParameter
@@ -22,7 +23,13 @@ from .utils import OrderedSet
 
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
-from .response import Response, PagingResponse, get_response
+from .response import (
+    Response,
+    PagingResponse,
+    LROResponse,
+    LROPagingResponse,
+    get_response,
+)
 from .parameter import (
     BodyParameter,
     MultipartBodyParameter,
@@ -38,9 +45,13 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-ResponseType = TypeVar("ResponseType", bound=Union[Response, PagingResponse])
+ResponseType = TypeVar(
+    "ResponseType",
+    bound=Union[Response, PagingResponse, LROResponse, LROPagingResponse],
+)
 
-class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylint: disable=too-many-public-methods
+
+class OperationBase(Generic[ResponseType], BaseBuilder[ParameterList]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -94,7 +105,8 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
             return "bool"
         response_type_annotations: OrderedSet[str] = {
             response.type_annotation(**kwargs): None
-            for response in self.responses if response.type
+            for response in self.responses
+            if response.type
         }
         response_str = ", ".join(response_type_annotations.keys())
         if len(response_type_annotations) > 1:
@@ -390,7 +402,10 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         name = yaml_data["name"]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
-        responses = [get_response(r, code_model) for r in yaml_data["responses"]]
+        responses = [
+            cast(ResponseType, get_response(r, code_model))
+            for r in yaml_data["responses"]
+        ]
         exceptions = [
             Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
         ]
@@ -427,8 +442,8 @@ class OperationBase(BaseBuilder[ParameterList], Generic[ResponseType]):  # pylin
             abstract=abstract,
         )
 
-class Operation(OperationBase[Response]):
 
+class Operation(OperationBase[Response]):
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = super().imports(async_mode, is_python3_file)
         if async_mode:
@@ -447,6 +462,7 @@ class Operation(OperationBase[Response]):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
 
         return file_import
+
 
 def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":

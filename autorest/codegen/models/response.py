@@ -7,7 +7,7 @@ from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
 
 from .base_model import BaseModel
 from .base_type import BaseType
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 from .primitive_types import BinaryType, BinaryIteratorType
 from .dictionary_type import DictionaryType
 from .list_type import ListType
@@ -131,8 +131,8 @@ class Response(BaseModel):
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.status_codes}>"
 
-class PagingResponse(Response):
 
+class PagingResponse(Response):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
@@ -183,8 +183,8 @@ class PagingResponse(Response):
     def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
         return self._imports_shared(**kwargs)
 
-class LROResponse(Response):
 
+class LROResponse(Response):
     def get_poller_path(self, async_mode: bool) -> str:
         return (
             self.yaml_data["pollerAsync"]
@@ -286,8 +286,8 @@ class LROResponse(Response):
     def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
         return self._imports_shared(**kwargs)
 
-class LROPagingResponse(LROResponse, PagingResponse):
 
+class LROPagingResponse(LROResponse, PagingResponse):
     def type_annotation(self, **kwargs: Any) -> str:
         paging_type_annotation = PagingResponse.type_annotation(self, **kwargs)
         return f"{self.get_poller(kwargs.pop('async_mode'))}[{paging_type_annotation}]"

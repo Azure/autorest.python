@@ -51,7 +51,7 @@ BuilderType = TypeVar(
 )
 OperationType = TypeVar(
     "OperationType",
-    bound=Union[Operation, PagingOperation, LROOperation],
+    bound=Union[Operation, PagingOperation, LROOperation, LROPagingOperation],
 )
 
 

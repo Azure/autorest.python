@@ -14,7 +14,9 @@ from .parameter_list import ParameterList
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-LROResponseType = TypeVar("LROResponseType", bound=Union[LROResponse, LROPagingResponse])
+LROResponseType = TypeVar(
+    "LROResponseType", bound=Union[LROResponse, LROPagingResponse]
+)
 
 
 class LROOperationBase(OperationBase[LROResponseType]):
@@ -94,8 +96,11 @@ class LROOperationBase(OperationBase[LROResponseType]):
             name=self.name[5:] + "_initial",
             overloads=self.overloads,
             parameters=self.parameters,
-            responses=[Response(r.yaml_data, self.code_model, headers=r.headers, type=r.type) for r in self.responses],
-            exceptions=[e for e in self.exceptions],
+            responses=[
+                Response(r.yaml_data, self.code_model, headers=r.headers, type=r.type)
+                for r in self.responses
+            ],
+            exceptions=self.exceptions,
             public=False,
             want_tracing=False,
         )
@@ -128,6 +133,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
         )
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
+
 
 class LROOperation(LROOperationBase[LROResponse]):
     ...

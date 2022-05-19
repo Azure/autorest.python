@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from .request_builder import RequestBuilder
 
 
-class BaseBuilder(BaseModel, Generic[ParameterListType]):
+class BaseBuilder(Generic[ParameterListType], BaseModel):
     """Base class for Operations and Request Builders"""
 
     def __init__(

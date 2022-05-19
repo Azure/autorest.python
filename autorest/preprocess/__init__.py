@@ -71,10 +71,14 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
     for parameter in yaml_data["parameters"]:
         update_parameter(parameter)
 
+
 def update_paging_response(yaml_data: Dict[str, Any]) -> None:
     yaml_data["discriminator"] = "paging"
     yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
-    yaml_data['pagerAsync'] = yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
+    yaml_data["pagerAsync"] = (
+        yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
+    )
+
 
 class PreProcessPlugin(YamlUpdatePlugin):
     """Add Python naming information."""
@@ -116,8 +120,12 @@ class PreProcessPlugin(YamlUpdatePlugin):
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lro"
-            response["pollerSync"] = response.get("pollerSync") or "azure.core.polling.LROPoller"
-            response["pollerAsync"] = response.get("pollerAsync") or "azure.core.polling.AsyncLROPoller"
+            response["pollerSync"] = (
+                response.get("pollerSync") or "azure.core.polling.LROPoller"
+            )
+            response["pollerAsync"] = (
+                response.get("pollerAsync") or "azure.core.polling.AsyncLROPoller"
+            )
             if not response.get("pollingMethodSync"):
                 response["pollingMethodSync"] = (
                     "azure.mgmt.core.polling.arm_polling.ARMPolling"
@@ -155,7 +163,8 @@ class PreProcessPlugin(YamlUpdatePlugin):
             else yaml_data["responses"][0]
         )
         item_type = next(
-            p["type"]["elementType"] for p in returned_response_object["type"]["properties"]
+            p["type"]["elementType"]
+            for p in returned_response_object["type"]["properties"]
             if p["restApiName"] == yaml_data["itemName"]
         )
         if yaml_data.get("nextOperation"):
