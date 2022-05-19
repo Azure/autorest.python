@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "packagemode"
-PACKAGE_PPRINT_NAME = "Azure Package Mode"
+PACKAGE_NAME = "azure-packagemode-dataplane"
+PACKAGE_PPRINT_NAME = "Azure Package Mode Data Plane"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -29,7 +29,7 @@ if not version:
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="Microsoft Azure Package Mode Client Library for Python",
+    description="Microsoft Azure Package Mode Data Plane Client Library for Python",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
@@ -38,7 +38,7 @@ setup(
     url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
     keywords="azure, azure sdk",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3",
@@ -53,6 +53,9 @@ setup(
     packages=find_packages(
         exclude=[
             "tests",
+            # Exclude packages that will be covered by PEP420 or nspkg
+            "azure",
+            "azure.packagemode",
         ]
     ),
     include_package_data=True,
@@ -61,7 +64,7 @@ setup(
     },
     install_requires=[
         "msrest>=0.6.21",
-        "azure-core<2.0.0,>=1.23.0",
+        "azure-mgmt-core<2.0.0,>=1.3.0",
     ],
     python_requires=">=3.6",
 )
