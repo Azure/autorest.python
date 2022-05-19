@@ -114,14 +114,14 @@ class PetOperations:
 
     @overload
     async def add_pet(
-        self, pet_param: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Pet:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
         :type pet_param: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
@@ -152,6 +152,7 @@ class PetOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(pet_param, (IO, bytes)):
@@ -161,7 +162,6 @@ class PetOperations:
                 _json = self._serialize.body(pet_param, "Pet")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_add_pet_request(
             content_type=content_type,

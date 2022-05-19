@@ -40,7 +40,7 @@ pass-thru:
   - subset-reducer
 version: ~3.8.1
 use-extension:
-  "@autorest/modelerfour": ~4.23.1
+  "@autorest/modelerfour": ~4.23.5
 
 modelerfour:
   resolve-schema-name-collisons: true

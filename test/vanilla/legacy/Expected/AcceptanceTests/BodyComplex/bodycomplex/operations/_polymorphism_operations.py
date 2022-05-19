@@ -409,7 +409,7 @@ class PolymorphismOperations(object):
                };. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -477,13 +477,13 @@ class PolymorphismOperations(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "Fish")
-            content_type = content_type or "application/json"
 
         request = build_put_valid_request(
             content_type=content_type,
@@ -743,7 +743,7 @@ class PolymorphismOperations(object):
         :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -780,13 +780,13 @@ class PolymorphismOperations(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "Salmon")
-            content_type = content_type or "application/json"
 
         request = build_put_complicated_request(
             content_type=content_type,
@@ -847,7 +847,7 @@ class PolymorphismOperations(object):
         :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
@@ -883,13 +883,13 @@ class PolymorphismOperations(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Salmon]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "Salmon")
-            content_type = content_type or "application/json"
 
         request = build_put_missing_discriminator_request(
             content_type=content_type,
@@ -1008,7 +1008,7 @@ class PolymorphismOperations(object):
          }. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1071,13 +1071,13 @@ class PolymorphismOperations(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "Fish")
-            content_type = content_type or "application/json"
 
         request = build_put_valid_missing_required_request(
             content_type=content_type,

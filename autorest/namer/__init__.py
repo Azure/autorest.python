@@ -148,6 +148,8 @@ class Namer(YamlUpdatePlugin):
             yaml_data["nextOperation"]["groupName"] = to_snake_case(
                 yaml_data["nextOperation"]["groupName"]
             )
+        for overload in yaml_data.get("overloads", []):
+            self.update_paging_operation(overload)
 
     def update_operation_groups(self, yaml_data: Dict[str, Any]) -> None:
         operation_groups_yaml_data = yaml_data["operationGroups"]

@@ -569,6 +569,7 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
     azure_packages = [
         'test/azure/legacy/specification/packagemodemgmtplane/README.md',
         'test/azure/legacy/specification/packagemodecustomize/README.md',
+        'test/azure/legacy/specification/packagemodedataplane/README.md',
     ]
     vanilla_packages = [
         'test/vanilla/legacy/specification/packagemodedataplane/README.md',

@@ -90,6 +90,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -99,7 +100,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_non_retry400_request(
             content_type=content_type,
@@ -162,14 +162,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_retry400(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -263,6 +263,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -272,7 +273,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_non_retry201_creating400_request(
             content_type=content_type,
@@ -336,7 +336,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_retry201_creating400(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
@@ -344,7 +344,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -439,6 +439,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -448,7 +449,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_non_retry201_creating400_invalid_json_request(
             content_type=content_type,
@@ -512,7 +512,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_retry201_creating400_invalid_json(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
@@ -520,7 +520,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -615,6 +615,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -624,7 +625,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_relative_retry400_request(
             content_type=content_type,
@@ -691,7 +691,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry400(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -699,7 +699,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1070,6 +1070,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1079,7 +1080,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_non_retry400_request(
             content_type=content_type,
@@ -1137,14 +1137,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_non_retry400(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1234,6 +1234,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1243,7 +1244,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post202_non_retry400_request(
             content_type=content_type,
@@ -1301,14 +1301,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_non_retry400(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1398,6 +1398,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1407,7 +1408,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_relative_retry400_request(
             content_type=content_type,
@@ -1469,7 +1469,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry400(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
@@ -1477,7 +1477,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1568,6 +1568,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1577,7 +1578,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_error201_no_provisioning_state_payload_request(
             content_type=content_type,
@@ -1640,14 +1640,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_error201_no_provisioning_state_payload(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1741,6 +1741,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1750,7 +1751,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_relative_retry_no_status_request(
             content_type=content_type,
@@ -1818,7 +1818,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_no_status(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1827,7 +1827,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1931,6 +1931,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -1940,7 +1941,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_relative_retry_no_status_payload_request(
             content_type=content_type,
@@ -2008,7 +2008,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_no_status_payload(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -2017,7 +2017,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2297,6 +2297,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2306,7 +2307,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post202_no_location_request(
             content_type=content_type,
@@ -2365,7 +2365,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_no_location(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
@@ -2373,7 +2373,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2464,6 +2464,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2473,7 +2474,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_relative_retry_no_payload_request(
             content_type=content_type,
@@ -2536,7 +2536,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry_no_payload(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -2545,7 +2545,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2637,6 +2637,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Product]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2646,7 +2647,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put200_invalid_json_request(
             content_type=content_type,
@@ -2708,7 +2708,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_invalid_json(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
@@ -2716,7 +2716,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2811,6 +2811,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -2820,7 +2821,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_relative_retry_invalid_header_request(
             content_type=content_type,
@@ -2888,7 +2888,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_invalid_header(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
@@ -2897,7 +2897,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3001,6 +3001,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3010,7 +3011,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
@@ -3078,7 +3078,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_invalid_json_polling(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -3087,7 +3087,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3464,6 +3464,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3473,7 +3474,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post202_retry_invalid_header_request(
             content_type=content_type,
@@ -3532,7 +3532,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_retry_invalid_header(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
@@ -3540,7 +3540,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3631,6 +3631,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3640,7 +3641,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_relative_retry_invalid_header_request(
             content_type=content_type,
@@ -3703,7 +3703,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry_invalid_header(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
@@ -3712,7 +3712,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3804,6 +3804,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -3813,7 +3814,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
@@ -3876,7 +3876,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry_invalid_json_polling(
-        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -3885,7 +3885,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

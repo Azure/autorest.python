@@ -183,7 +183,9 @@ class DPGClientOperationsMixin(MixinABC):
         """
 
     @overload
-    def post_model(self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> _models.Product:
+    def post_model(
+        self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -194,7 +196,7 @@ class DPGClientOperationsMixin(MixinABC):
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
@@ -228,13 +230,13 @@ class DPGClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
             _json = self._serialize.body(input, "Input")
-            content_type = content_type or "application/json"
 
         request = build_post_model_request(
             mode=mode,
