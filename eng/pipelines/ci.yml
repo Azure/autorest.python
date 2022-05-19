@@ -86,7 +86,7 @@ jobs:
           pytest test/unittests
         displayName: 'Unit tests'
       - script: |
-          autorest --use=. --clear-output-folder=True --output-folder=test/vanilla/legacy/Expected/AcceptanceTests/MediaTypes --license-header=MICROSOFT_MIT_NO_VERSION --enable-xml=True --basic-setup-py=True --package-version=0.1.0 --output-artifact=code-model-v4-no-tags --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/media_types.json --add-credential=False --vanilla=True --azure-arm=False --keep-version-file=True --namespace=mediatypes --client-side-validation=False --black=True --payload-flattening-threshold=1 --reformat-next-link=False
+          inv regenerate
         displayName: 'Regenerate Code'
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on regeneration diff
