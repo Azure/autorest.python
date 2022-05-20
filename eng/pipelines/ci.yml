@@ -86,9 +86,7 @@ jobs:
           pytest test/unittests
         displayName: 'Unit tests'
       - script: |
-          inv regenerate --dpg
-          python --version
-          cat test/dpg/version-tolerant/Expected/AcceptanceTests/DPGTestModelsVersionTolerant/dpgtestmodelsversiontolerant/_operations/__init__.py
+          inv regenerate
         displayName: 'Regenerate Code'
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on regeneration diff
