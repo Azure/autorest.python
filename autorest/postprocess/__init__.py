@@ -182,14 +182,15 @@ class PostProcessPlugin(Plugin):
             # add import
             patch_sdk_import = "from ._patch import patch_sdk as _patch_sdk"
             imports = "\n".join([f"from ._patch import {obj}" for obj in added_objs])
-            replacement = ""
             if imports:
                 replacement = f"{imports}\n{patch_sdk_import}"
+            else:
+                replacement = patch_sdk_import
             file_content = file_content.replace(patch_sdk_import, replacement)
             # add to __all__
             added_objs_all = "\n".join([f'    "{obj}",' for obj in added_objs]) + "\n"
             file_content = file_content.replace(
-                "__all__ = [\n", f"__all__ = [\n{added_objs_all}"
+                "__all__ = [\n", f"__all__ = [\n{added_objs_all}", 1
             )
         formatted_file = format_file(file, file_content)
         self._autorestapi.write_file(file, formatted_file)
