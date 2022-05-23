@@ -28,6 +28,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._vendor import MixinABC, _format_url_section
+from ..models._models import ProductResult
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -281,7 +282,7 @@ class DPGClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

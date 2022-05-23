@@ -9,7 +9,6 @@
 from ._models import Input
 from ._models import LROProduct
 from ._models import Product
-from ._models import ProductResult
 
 
 from ._enums import (
@@ -23,7 +22,6 @@ __all__ = [
     "Input",
     "LROProduct",
     "Product",
-    "ProductResult",
     "ProductReceived",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])

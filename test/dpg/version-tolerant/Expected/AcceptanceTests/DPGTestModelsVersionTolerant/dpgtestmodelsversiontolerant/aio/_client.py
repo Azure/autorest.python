@@ -14,7 +14,7 @@ from msrest import Deserializer, Serializer
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .. import models
+from ..models import _models as models
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin
 

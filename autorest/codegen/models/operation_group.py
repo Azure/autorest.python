@@ -48,24 +48,31 @@ class OperationGroup(BaseModel):
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
-            file_import.merge(operation.imports_for_multiapi(async_mode))
-        file_import.add_submodule_import(
-            ".." if async_mode else ".", "models", ImportType.LOCAL, alias="_models"
-        )
+            file_import.merge(
+                operation.imports_for_multiapi(
+                    async_mode, relative_path=".." if async_mode else "."
+                )
+            )
         return file_import
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = FileImport()
 
+        relative_path = "..." if async_mode else ".."
         for operation in self.operations:
-            file_import.merge(operation.imports(async_mode, is_python3_file))
-        local_path = "..." if async_mode else ".."
-        if (
-            self.code_model.model_types or self.code_model.enums
-        ) and self.code_model.options["models_mode"]:
-            file_import.add_submodule_import(
-                local_path, "models", ImportType.LOCAL, alias="_models"
+            file_import.merge(
+                operation.imports(
+                    async_mode, is_python3_file, relative_path=relative_path
+                )
             )
+        # for multiapi
+        if not self.code_model.options["version_tolerant"]:
+            if (
+                self.code_model.model_types or self.code_model.enums
+            ) and self.code_model.options["models_mode"]:
+                file_import.add_submodule_import(
+                    relative_path, "models", ImportType.LOCAL, alias="_models"
+                )
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(".._vendor", "MixinABC", ImportType.LOCAL)
         file_import.add_submodule_import(
