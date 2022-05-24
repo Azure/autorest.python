@@ -105,8 +105,8 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
-    def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = super()._imports_shared(async_mode)
+    def _imports_shared(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super()._imports_shared(async_mode, **kwargs)
         if async_mode:
             file_import.add_submodule_import(
                 "typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -127,9 +127,11 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def has_optional_return_type(self) -> bool:
         return False
 
-    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        file_import = self._imports_shared(async_mode)
-        file_import.merge(super().imports(async_mode, is_python3_file))
+    def imports(
+        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
+    ) -> FileImport:
+        file_import = self._imports_shared(async_mode, **kwargs)
+        file_import.merge(super().imports(async_mode, is_python3_file, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",

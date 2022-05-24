@@ -124,6 +124,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self._model_types = val
 
     @property
+    def public_model_types(self) -> List[ModelType]:
+        return [m for m in self.model_types if m.is_public]
+
+    @property
     def enums(self) -> List[EnumType]:
         """All of the enums"""
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
