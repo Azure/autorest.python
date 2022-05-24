@@ -18,6 +18,7 @@
 **Breaking Changes in Version Tolerant**
 
 - Have stream responses directly return an iterator of bytes, so you don't need to call `.iter_bytes()` on the response object.  #1254
+- If generating with `--models-mode=msrest` in version tolerant, we hide paging models  #1259
 
 **Breaking Changes in Request Builders**
 
