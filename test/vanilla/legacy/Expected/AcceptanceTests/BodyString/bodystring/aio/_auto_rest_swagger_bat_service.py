@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from .operations import EnumOperations, StringOperations
 
 
-class AutoRestSwaggerBATService:
+class AutoRestSwaggerBATService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar string: StringOperations operations

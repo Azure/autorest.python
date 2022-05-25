@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class StorageManagementClient:
+class StorageManagementClient:  # pylint: disable=client-accepts-api-version-keyword
     """StorageManagementClient.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure

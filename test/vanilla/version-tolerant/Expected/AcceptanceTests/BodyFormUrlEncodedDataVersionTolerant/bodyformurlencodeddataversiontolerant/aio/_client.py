@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class BodyFormsDataURLEncoded:
+class BodyFormsDataURLEncoded:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdataurlencoded: FormdataurlencodedOperations operations
@@ -39,7 +39,7 @@ class BodyFormsDataURLEncoded:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.formdataurlencoded = FormdataurlencodedOperations(  # type: ignore # pylint: disable=abstract-class-instantiated
+        self.formdataurlencoded = FormdataurlencodedOperations(  # pylint: disable=abstract-class-instantiated
             self._client, self._config, self._serialize, self._deserialize
         )
 

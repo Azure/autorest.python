@@ -24,7 +24,9 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class SecurityKeySwaggerCredentialFlag(SecurityKeySwaggerCredentialFlagOperationsMixin):
+class SecurityKeySwaggerCredentialFlag(
+    SecurityKeySwaggerCredentialFlagOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Key REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

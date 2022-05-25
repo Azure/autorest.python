@@ -4,6 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
+
+from autorest.codegen.models.utils import add_to_pylint_disable
 from .base_type import BaseType
 from .property import Property
 from .imports import FileImport, ImportType, TypingSection
@@ -188,6 +190,20 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         if self.code_model.options["models_mode"]:
             return "isinstance({}, msrest.Model)"
         return "isinstance({}, MutableMapping)"
+
+    @property
+    def pylint_disable(self) -> str:
+        retval: str = ""
+        if len(self.properties) > 10:
+            retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
+        return retval
+
+    @property
+    def init_pylint_disable(self) -> str:
+        retval: str = ""
+        if len(self.properties) > 23:
+            retval = add_to_pylint_disable(retval, "too-many-locals")
+        return retval
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()

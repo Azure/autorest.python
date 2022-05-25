@@ -19,7 +19,7 @@ from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
 
 
-class AutoRestPagingTestService:
+class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

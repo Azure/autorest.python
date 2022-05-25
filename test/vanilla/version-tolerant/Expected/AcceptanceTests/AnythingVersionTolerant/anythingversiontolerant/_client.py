@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AnythingClient(AnythingClientOperationsMixin):
+class AnythingClient(AnythingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing basic anything types. Those schemas without types can be anything:
     primitive, object, array.
 

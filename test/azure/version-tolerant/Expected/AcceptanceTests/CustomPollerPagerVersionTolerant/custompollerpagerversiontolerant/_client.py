@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestPagingTestService:
+class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

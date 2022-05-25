@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestPagingTestService(object):
+class AutoRestPagingTestService(object):  # pylint: disable=client-accepts-api-version-keyword
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

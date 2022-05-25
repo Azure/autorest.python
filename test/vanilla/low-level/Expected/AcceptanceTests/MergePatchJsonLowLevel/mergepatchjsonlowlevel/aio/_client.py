@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class MergePatchJsonClient:
+class MergePatchJsonClient:  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing merge patch json.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

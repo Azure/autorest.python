@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestRequiredOptionalTestService:
+class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :param required_global_path: number of items to skip. Required.

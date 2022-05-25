@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class NonStringEnumsClient(object):
+class NonStringEnumsClient(object):  # pylint: disable=client-accepts-api-version-keyword
     """Testing non-string enums.
 
     :ivar int: IntOperations operations

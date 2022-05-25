@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestHttpInfrastructureTestService:  # pylint: disable=too-many-instance-attributes
+class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class ObjectTypeClient(ObjectTypeClientOperationsMixin):
+class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing basic type: object swaggers.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

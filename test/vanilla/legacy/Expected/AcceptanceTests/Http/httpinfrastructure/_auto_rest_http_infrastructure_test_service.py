@@ -32,7 +32,9 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestHttpInfrastructureTestService(object):  # pylint: disable=too-many-instance-attributes
+class AutoRestHttpInfrastructureTestService(
+    object
+):  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations

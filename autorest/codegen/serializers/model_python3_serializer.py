@@ -23,7 +23,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
         ]
         init_line_parameters.sort(key=lambda x: x.optional)
         if init_line_parameters:
-            init_properties_declaration.append("*")
+            init_properties_declaration.append("*,")
         for param in init_line_parameters:
             init_properties_declaration.append(self.initialize_standard_property(param))
 
@@ -46,10 +46,10 @@ class ModelPython3Serializer(ModelBaseSerializer):
         return ", ".join(properties_to_pass_to_super)
 
     def required_property_no_default_init(self, prop: Property) -> str:
-        return f"{prop.client_name}: {prop.type_annotation()}"
+        return f"{prop.client_name}: {prop.type_annotation()},{prop.pylint_disable}"
 
     def optional_property_init(self, prop: Property) -> str:
-        return f"{prop.client_name}: {prop.type_annotation()} = {prop.client_default_value_declaration}"
+        return f"{prop.client_name}: {prop.type_annotation()} = {prop.client_default_value_declaration},{prop.pylint_disable}"
 
     def initialize_standard_arg(self, prop: Property) -> str:
         return f"self.{prop.client_name} = {prop.client_name}"

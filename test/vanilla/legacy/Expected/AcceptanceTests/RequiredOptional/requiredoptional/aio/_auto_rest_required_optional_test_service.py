@@ -19,7 +19,7 @@ from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ExplicitOperations, ImplicitOperations
 
 
-class AutoRestRequiredOptionalTestService:
+class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar implicit: ImplicitOperations operations

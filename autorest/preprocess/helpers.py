@@ -3,8 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Dict
 import re
-from .python_mappings import PadType, RESERVED_WORDS
+from .python_mappings import PadType, RESERVED_WORDS, REDEFINED_BUILTINS
 
 
 def to_snake_case(name: str) -> str:
@@ -46,3 +47,8 @@ def pad_reserved_words(name: str, pad_type: PadType):
     if name.lower() in RESERVED_WORDS[pad_type]:
         return name_prefix + name + pad_type
     return name_prefix + name
+
+
+def add_redefined_builtin_info(name: str, yaml_data: Dict[str, Any]) -> None:
+    if name in REDEFINED_BUILTINS:
+        yaml_data["pylintDisable"] = "redefined-builtin"

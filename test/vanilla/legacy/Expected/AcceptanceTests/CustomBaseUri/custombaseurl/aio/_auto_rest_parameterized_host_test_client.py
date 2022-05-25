@@ -19,7 +19,7 @@ from ._configuration import AutoRestParameterizedHostTestClientConfiguration
 from .operations import PathsOperations
 
 
-class AutoRestParameterizedHostTestClient:
+class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations

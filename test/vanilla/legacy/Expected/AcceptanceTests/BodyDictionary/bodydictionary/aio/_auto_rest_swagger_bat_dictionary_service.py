@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATDictionaryServiceConfiguration
 from .operations import DictionaryOperations
 
 
-class AutoRestSwaggerBATDictionaryService:
+class AutoRestSwaggerBATDictionaryService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar dictionary: DictionaryOperations operations

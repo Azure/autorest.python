@@ -64,6 +64,10 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
             return None
         return self._summary
 
+    @property
+    def pylint_disable(self) -> str:
+        return ""
+
     @abstractmethod
     def response_type_annotation(self, **kwargs) -> str:
         ...
