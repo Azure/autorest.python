@@ -1422,7 +1422,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1483,7 +1483,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1525,7 +1525,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1669,7 +1669,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1730,7 +1730,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1774,7 +1774,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1929,7 +1929,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1989,7 +1989,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2032,7 +2032,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2186,7 +2186,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2247,7 +2247,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2291,7 +2291,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2428,7 +2428,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2489,7 +2489,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2531,7 +2531,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2655,7 +2655,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns list of JSON object
         :rtype: ~azure.core.polling.LROPoller[list[JSON]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2788,7 +2788,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2849,7 +2849,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2893,7 +2893,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3031,7 +3031,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3093,7 +3093,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3136,7 +3136,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3281,7 +3281,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3343,7 +3343,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3388,7 +3388,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3526,7 +3526,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3588,7 +3588,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3633,7 +3633,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3778,7 +3778,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3840,7 +3840,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3885,7 +3885,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4023,7 +4023,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4085,7 +4085,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4130,7 +4130,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4270,7 +4270,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4331,7 +4331,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4373,7 +4373,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4521,7 +4521,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4583,7 +4583,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4628,7 +4628,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4779,7 +4779,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4841,7 +4841,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4886,7 +4886,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5037,7 +5037,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5099,7 +5099,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5142,7 +5142,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5293,7 +5293,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5355,7 +5355,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5400,7 +5400,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5549,7 +5549,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5611,7 +5611,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5656,7 +5656,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5797,7 +5797,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5835,7 +5835,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5865,7 +5865,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5985,7 +5985,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6023,7 +6023,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6053,7 +6053,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6173,7 +6173,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6221,7 +6221,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6256,7 +6256,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6386,7 +6386,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6434,7 +6434,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6469,7 +6469,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6590,7 +6590,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6711,7 +6711,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6832,7 +6832,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -6933,7 +6933,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -7023,7 +7023,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -7139,7 +7139,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -7247,7 +7247,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -7329,7 +7329,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -7414,7 +7414,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -7499,7 +7499,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -7584,7 +7584,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -7669,7 +7669,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -7759,7 +7759,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -7878,7 +7878,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -7922,7 +7922,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -7944,7 +7944,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -8059,7 +8059,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8120,7 +8120,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8162,7 +8162,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8282,7 +8282,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8394,7 +8394,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8506,7 +8506,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8650,7 +8650,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8712,7 +8712,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8757,7 +8757,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8907,7 +8907,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -8969,7 +8969,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9014,7 +9014,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9154,7 +9154,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9199,7 +9199,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -9224,7 +9224,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -9338,7 +9338,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9383,7 +9383,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -9408,7 +9408,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -9545,7 +9545,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9607,7 +9607,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9652,7 +9652,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9799,7 +9799,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9861,7 +9861,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -9906,7 +9906,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -10040,7 +10040,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -10146,7 +10146,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -10231,7 +10231,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -10335,7 +10335,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -10379,7 +10379,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -10401,7 +10401,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -10515,7 +10515,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -10560,7 +10560,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -10585,7 +10585,7 @@ class LRORetrysOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -10720,7 +10720,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -10780,7 +10780,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -10821,7 +10821,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -10965,7 +10965,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11026,7 +11026,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11070,7 +11070,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11216,7 +11216,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11277,7 +11277,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11321,7 +11321,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11465,7 +11465,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11526,7 +11526,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11570,7 +11570,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11688,7 +11688,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -11767,7 +11767,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -11852,7 +11852,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -11955,7 +11955,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -11998,7 +11998,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -12019,7 +12019,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -12128,7 +12128,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -12171,7 +12171,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -12192,7 +12192,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -12305,7 +12305,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -12349,7 +12349,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -12373,7 +12373,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -12492,7 +12492,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -12552,7 +12552,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -12595,7 +12595,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -12742,7 +12742,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -12804,7 +12804,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -12849,7 +12849,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13003,7 +13003,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13065,7 +13065,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13110,7 +13110,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13224,7 +13224,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -13309,7 +13309,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -13413,7 +13413,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13457,7 +13457,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -13479,7 +13479,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -13593,7 +13593,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13638,7 +13638,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -13663,7 +13663,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -13776,7 +13776,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13837,7 +13837,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -13879,7 +13879,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14026,7 +14026,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14088,7 +14088,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14133,7 +14133,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14287,7 +14287,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14349,7 +14349,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14394,7 +14394,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14515,7 +14515,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -14600,7 +14600,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -14685,7 +14685,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -14789,7 +14789,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -14833,7 +14833,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -14857,7 +14857,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -14971,7 +14971,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15016,7 +15016,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -15041,7 +15041,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -15155,7 +15155,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15200,7 +15200,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -15225,7 +15225,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -15363,7 +15363,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15426,7 +15426,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15472,7 +15472,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15625,7 +15625,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15688,7 +15688,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15734,7 +15734,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15871,7 +15871,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -15916,7 +15916,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -15939,7 +15939,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -16054,7 +16054,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -16100,7 +16100,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -16126,7 +16126,7 @@ class LROsCustomHeaderOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

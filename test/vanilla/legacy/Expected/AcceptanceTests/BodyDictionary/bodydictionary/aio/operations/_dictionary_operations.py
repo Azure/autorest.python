@@ -122,7 +122,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -167,7 +167,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -219,7 +219,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -236,7 +236,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -253,7 +253,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -306,7 +306,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -351,7 +351,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -396,7 +396,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -441,7 +441,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -486,7 +486,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bool or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -538,7 +538,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -555,7 +555,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -572,7 +572,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -625,7 +625,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bool or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -670,7 +670,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bool or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -715,7 +715,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -767,7 +767,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -784,7 +784,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -801,7 +801,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -854,7 +854,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -899,7 +899,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -944,7 +944,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -996,7 +996,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1013,7 +1013,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1030,7 +1030,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1083,7 +1083,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1128,7 +1128,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1173,7 +1173,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1225,7 +1225,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1242,7 +1242,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1259,7 +1259,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1312,7 +1312,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1357,7 +1357,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1402,7 +1402,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1454,7 +1454,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1471,7 +1471,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1488,7 +1488,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1541,7 +1541,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1586,7 +1586,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to float or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1631,7 +1631,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1683,7 +1683,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1700,7 +1700,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1717,7 +1717,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1770,7 +1770,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1815,7 +1815,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to str or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1860,7 +1860,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to date or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1912,7 +1912,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1929,7 +1929,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1946,7 +1946,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1999,7 +1999,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to date or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2044,7 +2044,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to date or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2090,7 +2090,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2143,7 +2143,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2161,7 +2161,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2179,7 +2179,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2232,7 +2232,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2277,7 +2277,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2323,7 +2323,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2376,7 +2376,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2394,7 +2394,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2412,7 +2412,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2465,7 +2465,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to timedelta or the result of cls(response)
         :rtype: dict[str, ~datetime.timedelta]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2517,7 +2517,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2534,7 +2534,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2551,7 +2551,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2605,7 +2605,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bytes or the result of cls(response)
         :rtype: dict[str, bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2658,7 +2658,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2676,7 +2676,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2694,7 +2694,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2748,7 +2748,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bytes or the result of cls(response)
         :rtype: dict[str, bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2794,7 +2794,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bytes or the result of cls(response)
         :rtype: dict[str, bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2839,7 +2839,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget or None or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget] or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2884,7 +2884,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2930,7 +2930,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2976,7 +2976,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3022,7 +3022,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3075,7 +3075,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -3093,7 +3093,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3111,7 +3111,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3164,7 +3164,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to list of str or None or the result of cls(response)
         :rtype: dict[str, list[str]] or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3209,7 +3209,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3254,7 +3254,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3299,7 +3299,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3345,7 +3345,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3398,7 +3398,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -3416,7 +3416,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3434,7 +3434,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3487,7 +3487,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3532,7 +3532,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3578,7 +3578,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3624,7 +3624,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3671,7 +3671,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3725,7 +3725,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -3744,7 +3744,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3763,7 +3763,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

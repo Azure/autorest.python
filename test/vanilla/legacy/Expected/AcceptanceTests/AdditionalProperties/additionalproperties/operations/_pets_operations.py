@@ -223,7 +223,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -243,7 +243,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -263,7 +263,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -330,7 +330,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -350,7 +350,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -370,7 +370,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -437,7 +437,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -457,7 +457,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -477,7 +477,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -544,7 +544,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -564,7 +564,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -584,7 +584,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -651,7 +651,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -671,7 +671,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -691,7 +691,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -758,7 +758,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -778,7 +778,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -798,7 +798,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

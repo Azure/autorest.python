@@ -1080,7 +1080,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1130,7 +1130,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1180,7 +1180,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1237,7 +1237,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1261,7 +1261,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -1277,7 +1277,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1324,7 +1324,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of bool
         :rtype: list[bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1381,7 +1381,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1405,7 +1405,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -1421,7 +1421,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1468,7 +1468,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of bool
         :rtype: list[bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1518,7 +1518,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of bool
         :rtype: list[bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1568,7 +1568,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1625,7 +1625,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1649,7 +1649,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -1665,7 +1665,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1712,7 +1712,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1762,7 +1762,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1812,7 +1812,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1869,7 +1869,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1893,7 +1893,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -1909,7 +1909,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1956,7 +1956,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2006,7 +2006,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of int
         :rtype: list[int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2056,7 +2056,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of float
         :rtype: list[float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2113,7 +2113,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2137,7 +2137,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -2153,7 +2153,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2200,7 +2200,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of float
         :rtype: list[float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2250,7 +2250,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of float
         :rtype: list[float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2300,7 +2300,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of float
         :rtype: list[float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2357,7 +2357,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2381,7 +2381,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -2397,7 +2397,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2444,7 +2444,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of float
         :rtype: list[float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2494,7 +2494,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of float
         :rtype: list[float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2544,7 +2544,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of str
         :rtype: list[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2601,7 +2601,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2625,7 +2625,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -2641,7 +2641,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2688,7 +2688,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of str
         :rtype: list[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2745,7 +2745,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2769,7 +2769,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -2785,7 +2785,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2832,7 +2832,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of str
         :rtype: list[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2889,7 +2889,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2913,7 +2913,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -2929,7 +2929,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2976,7 +2976,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of str
         :rtype: list[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3026,7 +3026,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of str
         :rtype: list[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3077,7 +3077,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of str
         :rtype: list[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3135,7 +3135,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3160,7 +3160,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -3177,7 +3177,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3224,7 +3224,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of str
         :rtype: list[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3274,7 +3274,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of date
         :rtype: list[~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3331,7 +3331,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3355,7 +3355,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -3371,7 +3371,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3418,7 +3418,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of date
         :rtype: list[~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3468,7 +3468,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of date
         :rtype: list[~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3519,7 +3519,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of datetime
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3577,7 +3577,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3602,7 +3602,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -3619,7 +3619,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3666,7 +3666,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of datetime
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3716,7 +3716,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of datetime
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3767,7 +3767,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of datetime
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3825,7 +3825,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3850,7 +3850,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -3867,7 +3867,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3914,7 +3914,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3971,7 +3971,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3995,7 +3995,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -4011,7 +4011,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4059,7 +4059,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of bytes
         :rtype: list[bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4117,7 +4117,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4142,7 +4142,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -4159,7 +4159,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4206,7 +4206,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of bytes
         :rtype: list[bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4257,7 +4257,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of bytes
         :rtype: list[bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4307,7 +4307,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of JSON object
         :rtype: list[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4360,7 +4360,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of JSON object
         :rtype: list[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4414,7 +4414,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of JSON object
         :rtype: list[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4468,7 +4468,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of JSON object
         :rtype: list[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4522,7 +4522,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of JSON object
         :rtype: list[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4583,7 +4583,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4611,7 +4611,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -4628,7 +4628,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4675,7 +4675,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of list of str
         :rtype: list[list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4727,7 +4727,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of list of str
         :rtype: list[list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4779,7 +4779,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of list of str
         :rtype: list[list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4831,7 +4831,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of list of str
         :rtype: list[list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4883,7 +4883,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of list of str
         :rtype: list[list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4942,7 +4942,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4968,7 +4968,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -4984,7 +4984,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -5031,7 +5031,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of dict mapping str to str
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5083,7 +5083,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of dict mapping str to str
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5136,7 +5136,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of dict mapping str to str
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5189,7 +5189,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of dict mapping str to str
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5242,7 +5242,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :return: list of dict mapping str to str
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5302,7 +5302,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -5329,7 +5329,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace
@@ -5346,7 +5346,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

@@ -123,7 +123,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -173,7 +173,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -230,7 +230,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -254,7 +254,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -270,7 +270,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -317,7 +317,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to str
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -367,7 +367,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to str
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -417,7 +417,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to str
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -467,7 +467,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to str
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -517,7 +517,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to bool
         :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -574,7 +574,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -598,7 +598,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -614,7 +614,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -661,7 +661,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to bool
         :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -711,7 +711,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to bool
         :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -761,7 +761,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -818,7 +818,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -842,7 +842,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -858,7 +858,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -905,7 +905,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -955,7 +955,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1005,7 +1005,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1062,7 +1062,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1086,7 +1086,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1102,7 +1102,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1149,7 +1149,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1199,7 +1199,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1249,7 +1249,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to float
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1306,7 +1306,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1330,7 +1330,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1346,7 +1346,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1393,7 +1393,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to float
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1443,7 +1443,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to float
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1493,7 +1493,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to float
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1550,7 +1550,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1574,7 +1574,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1590,7 +1590,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1637,7 +1637,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to float
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1687,7 +1687,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to float
         :rtype: dict[str, float]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1737,7 +1737,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to str
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1794,7 +1794,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1818,7 +1818,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1834,7 +1834,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1881,7 +1881,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to str
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1931,7 +1931,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to str
         :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -1981,7 +1981,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to date
         :rtype: dict[str, ~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2038,7 +2038,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2062,7 +2062,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2078,7 +2078,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2125,7 +2125,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to date
         :rtype: dict[str, ~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2175,7 +2175,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to date
         :rtype: dict[str, ~datetime.date]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2226,7 +2226,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2284,7 +2284,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2309,7 +2309,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2326,7 +2326,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2373,7 +2373,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2423,7 +2423,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2474,7 +2474,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2532,7 +2532,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2557,7 +2557,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2574,7 +2574,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2621,7 +2621,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to timedelta
         :rtype: dict[str, ~datetime.timedelta]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2678,7 +2678,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2702,7 +2702,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2718,7 +2718,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2766,7 +2766,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to bytes
         :rtype: dict[str, bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2824,7 +2824,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2849,7 +2849,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2866,7 +2866,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2914,7 +2914,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to bytes
         :rtype: dict[str, bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -2965,7 +2965,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to bytes
         :rtype: dict[str, bytes]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3015,7 +3015,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to JSON object or None
         :rtype: dict[str, JSON] or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3068,7 +3068,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3122,7 +3122,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3176,7 +3176,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3230,7 +3230,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3291,7 +3291,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3319,7 +3319,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3336,7 +3336,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3383,7 +3383,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to list of str or None
         :rtype: dict[str, list[str]] or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3435,7 +3435,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3487,7 +3487,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3539,7 +3539,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3592,7 +3592,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3652,7 +3652,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3679,7 +3679,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3696,7 +3696,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3743,7 +3743,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3795,7 +3795,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3848,7 +3848,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3901,7 +3901,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -3955,7 +3955,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4016,7 +4016,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -4044,7 +4044,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -4062,7 +4062,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

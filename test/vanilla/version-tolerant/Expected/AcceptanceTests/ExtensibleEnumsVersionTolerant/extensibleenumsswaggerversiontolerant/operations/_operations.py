@@ -99,7 +99,7 @@ class PetOperations:
         :type pet_id: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -161,7 +161,7 @@ class PetOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -196,7 +196,7 @@ class PetOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -222,7 +222,7 @@ class PetOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python

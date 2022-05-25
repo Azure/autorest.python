@@ -120,7 +120,7 @@ class PetOperations:
         :type pet_id: str
         :return: JSON object or None
         :rtype: JSON or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -182,7 +182,7 @@ class PetOperations:
         :type what_action: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
 
         Example:
             .. code-block:: python
@@ -244,7 +244,7 @@ class PetOperations:
         :paramtype models: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {
             401: ClientAuthenticationError,

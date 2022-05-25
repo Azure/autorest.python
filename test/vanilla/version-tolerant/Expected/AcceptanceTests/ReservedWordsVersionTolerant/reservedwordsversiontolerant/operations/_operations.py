@@ -159,7 +159,7 @@ class ImportOperations:
         :paramtype parameter1: str
         :return: JSON
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -206,7 +206,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         :type content: IO
         :return: JSON
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -255,7 +255,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         :type json: any
         :return: JSON
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -329,7 +329,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         :paramtype query_parameters: list[str]
         :return: JSON
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

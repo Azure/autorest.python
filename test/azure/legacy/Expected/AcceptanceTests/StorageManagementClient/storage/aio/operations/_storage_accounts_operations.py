@@ -83,7 +83,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -102,7 +102,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -121,7 +121,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -272,7 +272,7 @@ class StorageAccountsOperations:
         :return: An instance of AsyncLROPoller that returns either StorageAccount or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -313,7 +313,7 @@ class StorageAccountsOperations:
         :return: An instance of AsyncLROPoller that returns either StorageAccount or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -353,7 +353,7 @@ class StorageAccountsOperations:
         :return: An instance of AsyncLROPoller that returns either StorageAccount or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -417,7 +417,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -473,7 +473,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -549,7 +549,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -586,7 +586,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -621,7 +621,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -687,7 +687,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -737,7 +737,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccount or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccount]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -812,7 +812,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccount or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccount]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -901,7 +901,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

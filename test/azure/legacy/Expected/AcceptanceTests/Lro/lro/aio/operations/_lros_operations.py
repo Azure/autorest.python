@@ -174,7 +174,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -200,7 +200,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -226,7 +226,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -351,7 +351,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -377,7 +377,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -403,7 +403,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -537,7 +537,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -562,7 +562,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -587,7 +587,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -720,7 +720,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -746,7 +746,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -772,7 +772,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -892,7 +892,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -918,7 +918,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -944,7 +944,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1049,7 +1049,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either list of Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[list[~lro.models.Product]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1163,7 +1163,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1189,7 +1189,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1215,7 +1215,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1336,7 +1336,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1363,7 +1363,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1390,7 +1390,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1515,7 +1515,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1542,7 +1542,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1569,7 +1569,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1690,7 +1690,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1717,7 +1717,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1744,7 +1744,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1869,7 +1869,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -1896,7 +1896,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -1923,7 +1923,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2044,7 +2044,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2071,7 +2071,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2098,7 +2098,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2221,7 +2221,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2247,7 +2247,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2273,7 +2273,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2405,7 +2405,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2432,7 +2432,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2459,7 +2459,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2594,7 +2594,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2621,7 +2621,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2648,7 +2648,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2783,7 +2783,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2810,7 +2810,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -2837,7 +2837,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2972,7 +2972,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -2999,7 +2999,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3026,7 +3026,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3159,7 +3159,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -3186,7 +3186,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3213,7 +3213,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3337,7 +3337,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -3361,7 +3361,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3385,7 +3385,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3498,7 +3498,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -3522,7 +3522,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -3546,7 +3546,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3651,7 +3651,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either SubProduct or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.SubProduct]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3761,7 +3761,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either SubProduct or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.SubProduct]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3868,7 +3868,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3967,7 +3967,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4066,7 +4066,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4152,7 +4152,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4247,7 +4247,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4344,7 +4344,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4435,7 +4435,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4524,7 +4524,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4616,7 +4616,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4708,7 +4708,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4800,7 +4800,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4892,7 +4892,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4983,7 +4983,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -5096,7 +5096,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -5121,7 +5121,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -5146,7 +5146,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -5268,7 +5268,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -5294,7 +5294,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -5320,7 +5320,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -5422,7 +5422,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -5515,7 +5515,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -5611,7 +5611,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -5736,7 +5736,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -5763,7 +5763,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -5790,7 +5790,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -5921,7 +5921,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -5948,7 +5948,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -5975,7 +5975,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -6098,7 +6098,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -6124,7 +6124,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -6150,7 +6150,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -6271,7 +6271,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -6297,7 +6297,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @distributed_trace_async
@@ -6323,7 +6323,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

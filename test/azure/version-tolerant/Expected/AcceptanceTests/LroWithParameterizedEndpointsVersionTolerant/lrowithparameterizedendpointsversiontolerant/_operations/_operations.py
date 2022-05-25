@@ -129,7 +129,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
          Retry-After header is present.
         :return: An instance of LROPoller that returns str
         :rtype: ~azure.core.polling.LROPoller[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -247,7 +247,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
          Retry-After header is present.
         :return: An instance of LROPoller that returns str
         :rtype: ~azure.core.polling.LROPoller[str]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

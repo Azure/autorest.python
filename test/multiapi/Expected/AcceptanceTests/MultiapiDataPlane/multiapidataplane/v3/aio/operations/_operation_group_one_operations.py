@@ -59,7 +59,7 @@ class OperationGroupOneOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapidataplane.v3.models.ModelThree
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
     @overload
@@ -80,7 +80,7 @@ class OperationGroupOneOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapidataplane.v3.models.ModelThree
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
 
 
@@ -101,7 +101,7 @@ class OperationGroupOneOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapidataplane.v3.models.ModelThree
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

@@ -567,7 +567,7 @@ class _OperationSerializer(
         return [
             response_str,
             rtype_str,
-            ":raises: ~azure.core.exceptions.HttpResponseError",
+            ":raises ~azure.core.exceptions.HttpResponseError: If there is error in response",
         ]
 
     def _serialize_body_parameter(self, builder: OperationType) -> List[str]:
