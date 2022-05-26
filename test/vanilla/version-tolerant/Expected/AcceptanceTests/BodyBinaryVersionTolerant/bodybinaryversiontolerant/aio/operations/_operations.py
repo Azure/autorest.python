@@ -52,7 +52,7 @@ class UploadOperations:
         :type file_param: IO
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -94,7 +94,7 @@ class UploadOperations:
         :type file_param: IO
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

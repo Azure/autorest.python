@@ -38,7 +38,7 @@ class AutoRestReportServiceForAzureOperationsMixin(MixinABC):
         :paramtype qualifier: str
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python

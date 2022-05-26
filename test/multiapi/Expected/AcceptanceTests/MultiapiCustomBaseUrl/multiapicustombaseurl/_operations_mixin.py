@@ -34,7 +34,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('test')
         if api_version == '1.0.0':

@@ -172,7 +172,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -304,7 +304,7 @@ class MultiapiServiceClientOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -331,7 +331,7 @@ class MultiapiServiceClientOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
 
@@ -359,7 +359,7 @@ class MultiapiServiceClientOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -493,7 +493,7 @@ class MultiapiServiceClientOperationsMixin(object):
          or the result of cls(response)
         :rtype:
          ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapicredentialdefaultpolicy.v1.models.Product]]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -630,7 +630,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

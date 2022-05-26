@@ -1429,7 +1429,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype bool_path: bool
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1469,7 +1469,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype bool_path: bool
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1509,7 +1509,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype int_path: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1549,7 +1549,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype int_path: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1589,7 +1589,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype long_path: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1629,7 +1629,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype long_path: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1669,7 +1669,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype float_path: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1709,7 +1709,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype float_path: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1749,7 +1749,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype double_path: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1789,7 +1789,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype double_path: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1829,7 +1829,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_path: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1870,7 +1870,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_path: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1913,7 +1913,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_path: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1953,7 +1953,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_path: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1992,7 +1992,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type string_path: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2031,7 +2031,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type enum_path: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2070,7 +2070,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type enum_path: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2110,7 +2110,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type byte_path: bytes
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2149,7 +2149,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype byte_path: bytes
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2188,7 +2188,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type byte_path: bytes
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2227,7 +2227,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype date_path: ~datetime.date
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2269,7 +2269,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type date_path: ~datetime.date
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2309,7 +2309,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :paramtype date_time_path: ~datetime.datetime
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2350,7 +2350,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type date_time_path: ~datetime.datetime
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2390,7 +2390,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type base64_url_path: bytes
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2432,7 +2432,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type array_path: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2472,7 +2472,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :type unix_time_url_path: ~datetime.datetime
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2529,7 +2529,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype bool_query: bool
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2569,7 +2569,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype bool_query: bool
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2610,7 +2610,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype bool_query: bool
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2649,7 +2649,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype int_query: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2689,7 +2689,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype int_query: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2730,7 +2730,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype int_query: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2769,7 +2769,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype long_query: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2809,7 +2809,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype long_query: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2850,7 +2850,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype long_query: int
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2889,7 +2889,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype float_query: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2929,7 +2929,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype float_query: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2970,7 +2970,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype float_query: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3009,7 +3009,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype double_query: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3049,7 +3049,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype double_query: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3090,7 +3090,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype double_query: float
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3129,7 +3129,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3170,7 +3170,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3212,7 +3212,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3253,7 +3253,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3294,7 +3294,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype enum_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3335,7 +3335,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype enum_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3376,7 +3376,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype byte_query: bytes
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3415,7 +3415,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype byte_query: bytes
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3456,7 +3456,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype byte_query: bytes
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3495,7 +3495,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3536,7 +3536,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3576,7 +3576,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3619,7 +3619,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3661,7 +3661,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3701,7 +3701,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3742,7 +3742,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3784,7 +3784,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3826,7 +3826,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3868,7 +3868,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3910,7 +3910,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3984,7 +3984,7 @@ class PathItemsOperations:
         :paramtype local_string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4045,7 +4045,7 @@ class PathItemsOperations:
         :paramtype local_string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4106,7 +4106,7 @@ class PathItemsOperations:
         :paramtype local_string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4166,7 +4166,7 @@ class PathItemsOperations:
         :paramtype local_string_query: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

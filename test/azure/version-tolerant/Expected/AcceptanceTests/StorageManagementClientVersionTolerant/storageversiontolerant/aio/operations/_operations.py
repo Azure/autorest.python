@@ -81,7 +81,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -121,7 +121,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -152,7 +152,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -310,7 +310,7 @@ class StorageAccountsOperations:
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -435,7 +435,7 @@ class StorageAccountsOperations:
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -539,7 +539,7 @@ class StorageAccountsOperations:
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -674,7 +674,7 @@ class StorageAccountsOperations:
         :type account_name: str
         :return: None
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -723,7 +723,7 @@ class StorageAccountsOperations:
         :type account_name: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -867,7 +867,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -998,7 +998,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1098,7 +1098,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1232,7 +1232,7 @@ class StorageAccountsOperations:
         :type account_name: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1289,7 +1289,7 @@ class StorageAccountsOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1425,7 +1425,7 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1579,7 +1579,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1622,7 +1622,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1655,7 +1655,7 @@ class StorageAccountsOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1741,7 +1741,7 @@ class UsageOperations:
 
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python

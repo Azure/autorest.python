@@ -62,7 +62,7 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -142,7 +142,7 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

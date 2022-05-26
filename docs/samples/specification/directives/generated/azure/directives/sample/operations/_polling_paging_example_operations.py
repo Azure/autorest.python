@@ -169,7 +169,7 @@ class PollingPagingExampleOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of CustomPoller that returns either Product or the result of cls(response)
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -196,7 +196,7 @@ class PollingPagingExampleOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of CustomPoller that returns either Product or the result of cls(response)
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
 
@@ -224,7 +224,7 @@ class PollingPagingExampleOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of CustomPoller that returns either Product or the result of cls(response)
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -286,7 +286,7 @@ class PollingPagingExampleOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~my.library.CustomPager[~azure.directives.sample.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

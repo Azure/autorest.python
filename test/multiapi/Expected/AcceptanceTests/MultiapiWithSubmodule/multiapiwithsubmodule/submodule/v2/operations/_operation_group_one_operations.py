@@ -127,7 +127,7 @@ class OperationGroupOneOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -147,7 +147,7 @@ class OperationGroupOneOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
 
@@ -169,7 +169,7 @@ class OperationGroupOneOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -240,7 +240,7 @@ class OperationGroupOneOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

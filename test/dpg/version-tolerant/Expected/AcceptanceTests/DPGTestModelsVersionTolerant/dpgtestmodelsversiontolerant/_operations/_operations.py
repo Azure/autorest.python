@@ -128,7 +128,7 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -180,7 +180,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -201,7 +201,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -220,7 +220,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -277,7 +277,7 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: An iterator like instance of Product
         :rtype: ~azure.core.paging.ItemPaged[~dpgtestmodelsversiontolerant.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -382,7 +382,7 @@ class DPGClientOperationsMixin(MixinABC):
          Retry-After header is present.
         :return: An instance of LROPoller that returns LROProduct
         :rtype: ~azure.core.polling.LROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

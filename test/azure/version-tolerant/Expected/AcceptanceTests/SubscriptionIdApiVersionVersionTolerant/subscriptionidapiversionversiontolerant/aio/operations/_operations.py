@@ -59,7 +59,7 @@ class GroupOperations:
         :type resource_group_name: str
         :return: JSON object
         :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError: If there is error in response
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
