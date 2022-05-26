@@ -16,3 +16,9 @@ def add_to_description(description: str, entry: str) -> str:
     if description:
         return f"{description} {entry}"
     return entry
+
+
+def add_to_pylint_disable(curr_str: str, entry: str) -> str:
+    if curr_str:
+        return f"{curr_str},{entry}"
+    return f"  # pylint: disable={entry}"

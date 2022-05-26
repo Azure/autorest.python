@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutorestSecurityAad:
+class AutorestSecurityAad:  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Aad REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

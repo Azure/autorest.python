@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -188,7 +189,7 @@ class BlobPrefix(msrest.serialization.Model):
         self.name = kwargs["name"]
 
 
-class BlobProperties(msrest.serialization.Model):
+class BlobProperties(msrest.serialization.Model):  # pylint: disable=too-many-instance-attributes
     """Properties of a blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -290,7 +291,7 @@ class BlobProperties(msrest.serialization.Model):
         "archive_status": {"key": "ArchiveStatus", "type": "str"},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs):  # pylint: disable=too-many-locals
         """
         :keyword last_modified: Required.
         :paramtype last_modified: ~datetime.datetime

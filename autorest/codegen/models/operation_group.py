@@ -10,6 +10,7 @@ from autorest.codegen.models.utils import OrderedSet
 from .base_model import BaseModel
 from .operation import OperationBase, get_operation
 from .imports import FileImport, ImportType, TypingSection
+from .utils import add_to_pylint_disable
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -54,6 +55,19 @@ class OperationGroup(BaseModel):
                 )
             )
         return file_import
+
+    @property
+    def pylint_disable(self) -> str:
+        retval: str = ""
+        if self.has_abstract_operations:
+            retval = add_to_pylint_disable(retval, "abstract-class-instantiated")
+        return retval
+
+    @property
+    def mypy_ignore(self) -> str:
+        if self.has_abstract_operations:
+            return "  # type: ignore"
+        return ""
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = FileImport()

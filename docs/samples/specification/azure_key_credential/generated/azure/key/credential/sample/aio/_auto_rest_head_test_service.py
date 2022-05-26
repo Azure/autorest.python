@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-class AutoRestHeadTestService:
+class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations

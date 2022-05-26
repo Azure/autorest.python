@@ -76,7 +76,7 @@ class ModelBaseSerializer:
         basename = "msrest.serialization.Model"
         if model.parents:
             basename = ", ".join([cast(ModelType, m).name for m in model.parents])
-        return f"class {model.name}({basename}):"
+        return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:
@@ -122,6 +122,13 @@ class ModelBaseSerializer:
         if not (prop.optional or prop.client_default_value is not None):
             return self.required_property_no_default_init(prop)
         return self.optional_property_init(prop)
+
+    @staticmethod
+    def discriminator_docstring(model: ModelType) -> str:
+        return (
+            "You probably want to use the sub-classes and not this class directly. "
+            f"Known sub-classes are: {', '.join(model.discriminated_subtypes.values())}"
+        )
 
     @abstractmethod
     def init_line(self, model: ModelType) -> List[str]:

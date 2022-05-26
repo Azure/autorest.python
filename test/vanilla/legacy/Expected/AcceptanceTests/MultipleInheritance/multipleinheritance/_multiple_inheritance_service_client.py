@@ -24,7 +24,9 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperationsMixin):
+class MultipleInheritanceServiceClient(
+    MultipleInheritanceServiceClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiinheritance client testing.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

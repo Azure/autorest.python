@@ -52,12 +52,10 @@ class ClientSerializer:
             base_class = f"{class_name}OperationsMixin"
         elif not (async_mode or self.is_python3_file):
             base_class = "object"
-        disable = ""
-        if len(self.code_model.operation_groups) > 6:
-            disable = "    # pylint: disable=too-many-instance-attributes"
+        pylint_disable = self.code_model.client.pylint_disable
         if base_class:
-            return f"class {class_name}({base_class}):{disable}"
-        return f"class {class_name}:{disable}"
+            return f"class {class_name}({base_class}):{pylint_disable}"
+        return f"class {class_name}:{pylint_disable}"
 
     def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []
@@ -131,14 +129,9 @@ class ClientSerializer:
             og for og in self.code_model.operation_groups if not og.is_mixin
         ]
         for og in operation_groups:
-            disable_check = (
-                "  # type: ignore # pylint: disable=abstract-class-instantiated"
-                if og.has_abstract_operations
-                else ""
-            )
             retval.extend(
                 [
-                    f"self.{og.property_name} = {og.class_name}({disable_check}",
+                    f"self.{og.property_name} = {og.class_name}({og.mypy_ignore}{og.pylint_disable}",
                     "    self._client, self._config, self._serialize, self._deserialize",
                     ")",
                 ]

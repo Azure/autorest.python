@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42,7 +43,12 @@ class PetAPTrue(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, id: int, additional_properties: Optional[Dict[str, Any]] = None, name: Optional[str] = None, **kwargs
+        self,
+        *,
+        id: int,  # pylint: disable=redefined-builtin
+        additional_properties: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        **kwargs
     ):
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
@@ -96,7 +102,7 @@ class CatAPTrue(PetAPTrue):
     def __init__(
         self,
         *,
-        id: int,
+        id: int,  # pylint: disable=redefined-builtin
         additional_properties: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         friendly: Optional[bool] = None,
@@ -173,7 +179,12 @@ class PetAPInProperties(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, id: int, name: Optional[str] = None, additional_properties: Optional[Dict[str, float]] = None, **kwargs
+        self,
+        *,
+        id: int,  # pylint: disable=redefined-builtin
+        name: Optional[str] = None,
+        additional_properties: Optional[Dict[str, float]] = None,
+        **kwargs
     ):
         """
         :keyword id: Required.
@@ -230,7 +241,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: int,
+        id: int,  # pylint: disable=redefined-builtin
         odata_location: str,
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
@@ -290,7 +301,12 @@ class PetAPObject(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, id: int, additional_properties: Optional[Dict[str, Any]] = None, name: Optional[str] = None, **kwargs
+        self,
+        *,
+        id: int,  # pylint: disable=redefined-builtin
+        additional_properties: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        **kwargs
     ):
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
@@ -339,7 +355,12 @@ class PetAPString(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, id: int, additional_properties: Optional[Dict[str, str]] = None, name: Optional[str] = None, **kwargs
+        self,
+        *,
+        id: int,  # pylint: disable=redefined-builtin
+        additional_properties: Optional[Dict[str, str]] = None,
+        name: Optional[str] = None,
+        **kwargs
     ):
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this

@@ -19,7 +19,7 @@ from typing import (
 
 from .request_builder_parameter import RequestBuilderParameter
 
-from .utils import OrderedSet
+from .utils import OrderedSet, add_to_pylint_disable
 
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
@@ -51,7 +51,9 @@ ResponseType = TypeVar(
 )
 
 
-class OperationBase(Generic[ResponseType], BaseBuilder[ParameterList]):
+class OperationBase(  # pylint: disable=too-many-public-methods
+    Generic[ResponseType], BaseBuilder[ParameterList]
+):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -116,6 +118,14 @@ class OperationBase(Generic[ResponseType], BaseBuilder[ParameterList]):
         if self.responses:
             return self.responses[0].type_annotation(**kwargs)
         return "None"
+
+    @property
+    def pylint_disable(self) -> str:
+        retval: str = ""
+        if self.response_type_annotation(async_mode=False) == "None":
+            # doesn't matter if it's async or not
+            retval = add_to_pylint_disable(retval, "inconsistent-return-statements")
+        return retval
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         if (

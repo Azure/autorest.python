@@ -19,7 +19,7 @@ from ._configuration import AutoRestIntegerTestServiceConfiguration
 from .operations import IntOperations
 
 
-class AutoRestIntegerTestService:
+class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar int: IntOperations operations

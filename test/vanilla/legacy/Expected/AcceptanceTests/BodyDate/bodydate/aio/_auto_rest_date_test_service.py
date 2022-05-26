@@ -19,7 +19,7 @@ from ._configuration import AutoRestDateTestServiceConfiguration
 from .operations import DateOperations
 
 
-class AutoRestDateTestService:
+class AutoRestDateTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar date: DateOperations operations

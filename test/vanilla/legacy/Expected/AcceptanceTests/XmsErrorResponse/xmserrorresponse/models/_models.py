@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -52,8 +53,8 @@ class BaseError(msrest.serialization.Model):
 class NotFoundErrorBase(BaseError):
     """NotFoundErrorBase.
 
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: AnimalNotFound, LinkNotFound.
+    You probably want to use the sub-classes and not this class directly. Known sub-classes are:
+    AnimalNotFound, LinkNotFound
 
     All required parameters must be populated in order to send to Azure.
 
@@ -221,8 +222,8 @@ class PetAction(msrest.serialization.Model):
 class PetActionError(PetAction):
     """PetActionError.
 
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: PetSadError.
+    You probably want to use the sub-classes and not this class directly. Known sub-classes are:
+    PetSadError
 
     All required parameters must be populated in order to send to Azure.
 
@@ -261,8 +262,8 @@ class PetActionError(PetAction):
 class PetSadError(PetActionError):
     """PetSadError.
 
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: PetHungryOrThirstyError.
+    You probably want to use the sub-classes and not this class directly. Known sub-classes are:
+    PetHungryOrThirstyError
 
     All required parameters must be populated in order to send to Azure.
 

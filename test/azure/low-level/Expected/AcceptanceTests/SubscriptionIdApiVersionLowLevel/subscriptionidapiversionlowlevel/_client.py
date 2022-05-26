@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class MicrosoftAzureTestUrl:
+class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keyword
     """Some cool documentation.
 
     :param subscription_id: Subscription Id. Required.

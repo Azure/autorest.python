@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
-class MultiapiServiceClient:
+class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations

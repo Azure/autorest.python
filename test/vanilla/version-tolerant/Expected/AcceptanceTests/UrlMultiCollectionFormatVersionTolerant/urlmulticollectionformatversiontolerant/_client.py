@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestUrlMutliCollectionFormatTestService:
+class AutoRestUrlMutliCollectionFormatTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar queries: QueriesOperations operations

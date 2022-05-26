@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestAzureSpecialParametersTestClient:
+class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in

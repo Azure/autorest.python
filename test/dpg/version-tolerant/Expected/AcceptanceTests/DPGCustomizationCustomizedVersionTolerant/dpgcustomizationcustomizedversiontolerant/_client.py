@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class DPGClient(DPGClientOperationsMixin):
+class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """DPG Swagger that tests our ability to grow up.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

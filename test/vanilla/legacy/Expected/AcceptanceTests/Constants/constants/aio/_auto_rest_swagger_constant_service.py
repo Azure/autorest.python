@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerConstantServiceConfiguration
 from .operations import ContantsOperations
 
 
-class AutoRestSwaggerConstantService:
+class AutoRestSwaggerConstantService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger Constant.
 
     :ivar contants: ContantsOperations operations

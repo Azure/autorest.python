@@ -19,7 +19,7 @@ from ._configuration import ClassNameConfiguration
 from .operations import ByteOperations
 
 
-class ClassName:
+class ClassName:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar byte: ByteOperations operations

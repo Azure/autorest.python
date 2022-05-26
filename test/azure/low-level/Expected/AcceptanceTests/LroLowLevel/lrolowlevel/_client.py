@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestLongRunningOperationTestService:
+class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Long-running Operation for AutoRest.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

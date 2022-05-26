@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):
+class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Tests whether loggers/tracers redact secrets and PII within error responses.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".
