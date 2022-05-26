@@ -162,6 +162,9 @@ class PreProcessPlugin(YamlUpdatePlugin):
             if yaml_data.get("nextOperation")
             else yaml_data["responses"][0]
         )
+        # if we're in version tolerant, hide the paging model
+        if self._autorestapi.get_boolean_value("version-tolerant"):
+            returned_response_object["type"]["isPublic"] = False
         item_type = next(
             p["type"]["elementType"]
             for p in returned_response_object["type"]["properties"]

@@ -32,6 +32,7 @@ from ..._operations._operations import (
     build_lro_request,
     build_post_model_request,
 )
+from ...models._models import ProductResult
 from .._vendor import MixinABC
 
 T = TypeVar("T")
@@ -50,7 +51,7 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -102,7 +103,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -123,7 +124,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
@@ -142,7 +143,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -199,12 +200,12 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: An iterator like instance of Product
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~dpgtestmodelsversiontolerant.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -304,7 +305,7 @@ class DPGClientOperationsMixin(MixinABC):
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns LROProduct
         :rtype: ~azure.core.polling.AsyncLROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

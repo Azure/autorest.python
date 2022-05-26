@@ -144,10 +144,10 @@ class _ParameterBase(
     def serialization_type(self) -> str:
         return self.type.serialization_type
 
-    def imports(self, async_mode: bool) -> FileImport:
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.merge(
-            self.type.imports(is_operation_file=True, async_mode=async_mode)
+            self.type.imports(is_operation_file=True, async_mode=async_mode, **kwargs)
         )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)

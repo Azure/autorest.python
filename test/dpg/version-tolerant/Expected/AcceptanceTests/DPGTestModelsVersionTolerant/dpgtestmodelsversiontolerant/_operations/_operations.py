@@ -28,6 +28,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._vendor import MixinABC, _format_url_section
+from ..models._models import ProductResult
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -127,7 +128,7 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -179,7 +180,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -200,7 +201,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -219,7 +220,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -276,12 +277,12 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: An iterator like instance of Product
         :rtype: ~azure.core.paging.ItemPaged[~dpgtestmodelsversiontolerant.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -381,7 +382,7 @@ class DPGClientOperationsMixin(MixinABC):
          Retry-After header is present.
         :return: An instance of LROPoller that returns LROProduct
         :rtype: ~azure.core.polling.LROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -116,7 +116,7 @@ class PollingPagingExampleOperationsMixin:
         :return: An instance of AsyncCustomPoller that returns either Product or the result of
          cls(response)
         :rtype: ~my.library.aio.AsyncCustomPoller[~azure.directives.sample.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -145,7 +145,7 @@ class PollingPagingExampleOperationsMixin:
         :return: An instance of AsyncCustomPoller that returns either Product or the result of
          cls(response)
         :rtype: ~my.library.aio.AsyncCustomPoller[~azure.directives.sample.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
 
@@ -173,7 +173,7 @@ class PollingPagingExampleOperationsMixin:
         :return: An instance of AsyncCustomPoller that returns either Product or the result of
          cls(response)
         :rtype: ~my.library.aio.AsyncCustomPoller[~azure.directives.sample.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -234,7 +234,7 @@ class PollingPagingExampleOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~my.library.aio.AsyncCustomPager[~azure.directives.sample.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

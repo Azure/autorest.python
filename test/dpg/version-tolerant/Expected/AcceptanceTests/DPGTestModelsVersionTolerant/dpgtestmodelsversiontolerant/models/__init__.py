@@ -24,7 +24,6 @@ __all__ = [
     "Input",
     "LROProduct",
     "Product",
-    "ProductResult",
     "ProductReceived",
 ]
 

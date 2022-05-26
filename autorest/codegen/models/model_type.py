@@ -58,6 +58,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             "discriminatorValue"
         )
         self._created_json_template_representation = False
+        self.is_public: bool = self.yaml_data.get("isPublic", True)
 
     @property
     def is_xml(self) -> bool:
@@ -71,8 +72,11 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
 
     def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
-            retval = f"_models.{self.name}"
-            return retval if kwargs.pop("is_operation_file", False) else f'"{retval}"'
+            is_operation_file = kwargs.pop("is_operation_file", False)
+            if self.is_public:
+                retval = f"_models.{self.name}"
+                return retval if is_operation_file else f'"{retval}"'
+            return self.name if is_operation_file else f'"{self.name}"'
         return "ET.Element" if self.is_xml else "JSON"
 
     def docstring_type(self, **kwargs: Any) -> str:
@@ -187,6 +191,24 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
+        relative_path = kwargs.pop("relative_path", None)
+        if self.code_model.options["models_mode"] and relative_path:
+            # add import for models in operations file
+            if self.is_public:
+                file_import.add_submodule_import(
+                    relative_path, "models", ImportType.LOCAL, alias="_models"
+                )
+            else:
+                # a little hacky, but we only do this for version tolerant
+                # models files, which are all python3 only
+                models_filename = self.code_model.get_models_filename(
+                    is_python3_file=True
+                )
+                file_import.add_submodule_import(
+                    f"{relative_path}models.{models_filename}",
+                    self.name,
+                    ImportType.LOCAL,
+                )
         if self.code_model.options["models_mode"]:
             return file_import
         file_import.add_submodule_import(

@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any
 from .imports import FileImport
 from .lro_operation import LROOperationBase
 from .paging_operation import PagingOperationBase
@@ -24,9 +25,15 @@ class LROPagingOperation(
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"  # pylint: disable=no-member
 
-    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        lro_imports = LROOperationBase.imports(self, async_mode, is_python3_file)
-        paging_imports = PagingOperationBase.imports(self, async_mode, is_python3_file)
+    def imports(
+        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
+    ) -> FileImport:
+        lro_imports = LROOperationBase.imports(
+            self, async_mode, is_python3_file, **kwargs
+        )
+        paging_imports = PagingOperationBase.imports(
+            self, async_mode, is_python3_file, **kwargs
+        )
 
         file_import = lro_imports
         file_import.merge(paging_imports)
