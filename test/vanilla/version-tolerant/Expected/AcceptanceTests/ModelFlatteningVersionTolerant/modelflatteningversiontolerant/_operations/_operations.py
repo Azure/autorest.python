@@ -232,7 +232,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -264,7 +264,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -281,7 +281,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -331,7 +331,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         :return: list of JSON object
         :rtype: list[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -405,7 +405,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -432,7 +432,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -450,7 +450,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -501,7 +501,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         :return: list of JSON object
         :rtype: list[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -566,7 +566,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -606,7 +606,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -623,7 +623,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -673,7 +673,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -747,7 +747,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -833,7 +833,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -850,7 +850,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -900,7 +900,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1018,7 +1018,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1073,7 +1073,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1109,7 +1109,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1194,7 +1194,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1249,7 +1249,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1287,7 +1287,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1379,7 +1379,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1441,7 +1441,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1481,7 +1481,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
