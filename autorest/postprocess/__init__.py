@@ -99,11 +99,11 @@ class PostProcessPlugin(Plugin):
         return self.get_namespace(next_dir, namespace)
 
     def process(self) -> bool:
-        folders = [f for f in self.base_folder.glob("**/*") if f.is_dir()]
+        folders = [f for f in self.base_folder.glob("**/*") if f.is_dir() and not f.stem.startswith("__")]
         # will always have the root
         self.fix_imports_in_init(
             generated_file_name="_client",
-            folder_path=folders[0],
+            folder_path=self.base_folder,
             namespace=self.namespace,
         )
         try:
@@ -190,7 +190,7 @@ class PostProcessPlugin(Plugin):
             # add to __all__
             added_objs_all = "\n".join([f'    "{obj}",' for obj in added_objs]) + "\n"
             file_content = file_content.replace(
-                "__all__ = [\n", f"__all__ = [\n{added_objs_all}", 1
+                "__all__ = [", f"__all__ = [\n{added_objs_all}", 1
             )
         formatted_file = format_file(file, file_content)
         self._autorestapi.write_file(file, formatted_file)
