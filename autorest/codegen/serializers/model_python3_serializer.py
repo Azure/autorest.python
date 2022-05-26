@@ -49,7 +49,10 @@ class ModelPython3Serializer(ModelBaseSerializer):
         return f"{prop.client_name}: {prop.type_annotation()},{prop.pylint_disable}"
 
     def optional_property_init(self, prop: Property) -> str:
-        return f"{prop.client_name}: {prop.type_annotation()} = {prop.client_default_value_declaration},{prop.pylint_disable}"
+        return (
+            f"{prop.client_name}: {prop.type_annotation()} = "
+            f"{prop.client_default_value_declaration},{prop.pylint_disable}"
+        )
 
     def initialize_standard_arg(self, prop: Property) -> str:
         return f"self.{prop.client_name} = {prop.client_name}"

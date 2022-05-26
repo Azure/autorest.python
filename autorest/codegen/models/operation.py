@@ -51,7 +51,9 @@ ResponseType = TypeVar(
 )
 
 
-class OperationBase(Generic[ResponseType], BaseBuilder[ParameterList]):  # pylint: disable=too-many-public-methods
+class OperationBase(  # pylint: disable=too-many-public-methods
+    Generic[ResponseType], BaseBuilder[ParameterList]
+):
     def __init__(
         self,
         yaml_data: Dict[str, Any],

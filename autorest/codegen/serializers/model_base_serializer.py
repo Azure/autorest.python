@@ -123,7 +123,8 @@ class ModelBaseSerializer:
             return self.required_property_no_default_init(prop)
         return self.optional_property_init(prop)
 
-    def discriminator_docstring(self, model: ModelType) -> str:
+    @staticmethod
+    def discriminator_docstring(model: ModelType) -> str:
         return (
             "You probably want to use the sub-classes and not this class directly. "
             f"Known sub-classes are: {', '.join(model.discriminated_subtypes.values())}"
