@@ -40,14 +40,14 @@ def update_parameter(yaml_data: Dict[str, Any]) -> None:
         and yaml_data["clientName"] in ("content_type", "accept")
     ):
         yaml_data["clientName"] = pad_reserved_words(
-            yaml_data["clientName"], PadType.PARAMETER
+            yaml_data["clientName"].lower(), PadType.PARAMETER
         )
     if yaml_data.get("propertyToParameterName"):
         # need to create a new one with padded keys and values
         yaml_data["propertyToParameterName"] = {
-            pad_reserved_words(prop, PadType.PROPERTY): pad_reserved_words(
+            pad_reserved_words(prop, PadType.PROPERTY).lower(): pad_reserved_words(
                 param_name, PadType.PARAMETER
-            )
+            ).lower()
             for prop, param_name in yaml_data["propertyToParameterName"].items()
         }
 
