@@ -43,14 +43,12 @@ except (SyntaxError, ImportError):
     from ._models import UsageListResult  # type: ignore
     from ._models import UsageName  # type: ignore
 
-from ._storage_management_client_enums import (
-    AccountStatus,
-    AccountType,
-    KeyName,
-    ProvisioningState,
-    Reason,
-    UsageUnit,
-)
+from ._storage_management_client_enums import AccountStatus
+from ._storage_management_client_enums import AccountType
+from ._storage_management_client_enums import KeyName
+from ._storage_management_client_enums import ProvisioningState
+from ._storage_management_client_enums import Reason
+from ._storage_management_client_enums import UsageUnit
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
