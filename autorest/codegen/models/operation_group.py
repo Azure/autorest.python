@@ -63,6 +63,12 @@ class OperationGroup(BaseModel):
             retval = add_to_pylint_disable(retval, "abstract-class-instantiated")
         return retval
 
+    @property
+    def mypy_ignore(self) -> str:
+        if self.has_abstract_operations:
+            return "  # type: ignore"
+        return ""
+
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = FileImport()
 
