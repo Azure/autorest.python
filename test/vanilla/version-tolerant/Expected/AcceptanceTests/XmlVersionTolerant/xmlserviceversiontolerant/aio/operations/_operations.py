@@ -92,7 +92,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -149,7 +149,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type model: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -200,7 +200,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -257,7 +257,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type model: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -308,7 +308,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -373,7 +373,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type slideshow: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -432,7 +432,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -491,7 +491,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type wrapped_lists: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -544,7 +544,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -582,7 +582,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -647,7 +647,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type slideshow: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -706,7 +706,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -765,7 +765,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type apple_barrel: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -818,7 +818,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -877,7 +877,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type bananas: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -930,7 +930,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -989,7 +989,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type bananas: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1042,7 +1042,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1101,7 +1101,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type bananas: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1154,7 +1154,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1211,7 +1211,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type banana: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1265,7 +1265,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype comp: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1348,7 +1348,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1488,7 +1488,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1622,7 +1622,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1696,7 +1696,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1764,7 +1764,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1910,7 +1910,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1935,7 +1935,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
@@ -1952,7 +1952,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1999,7 +1999,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -2050,7 +2050,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -2101,7 +2101,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -2155,7 +2155,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type slideshow: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -2203,7 +2203,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -2255,7 +2255,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type model: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python

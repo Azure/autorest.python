@@ -401,7 +401,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IntWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.IntWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -453,7 +453,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -470,7 +470,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -487,7 +487,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -540,7 +540,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: LongWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.LongWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -592,7 +592,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -609,7 +609,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -627,7 +627,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -680,7 +680,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: FloatWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.FloatWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -732,7 +732,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -749,7 +749,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -766,7 +766,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -819,7 +819,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DoubleWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DoubleWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -872,7 +872,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -890,7 +890,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -909,7 +909,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -962,7 +962,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: BooleanWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.BooleanWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1014,7 +1014,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -1031,7 +1031,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -1048,7 +1048,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1101,7 +1101,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StringWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.StringWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1153,7 +1153,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -1170,7 +1170,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -1188,7 +1188,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1241,7 +1241,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DateWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DateWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1293,7 +1293,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -1310,7 +1310,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -1328,7 +1328,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1381,7 +1381,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DatetimeWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DatetimeWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1434,7 +1434,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -1452,7 +1452,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -1470,7 +1470,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1523,7 +1523,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Datetimerfc1123Wrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Datetimerfc1123Wrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1576,7 +1576,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -1594,7 +1594,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -1612,7 +1612,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1665,7 +1665,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DurationWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DurationWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1714,7 +1714,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1761,7 +1761,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ByteWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.ByteWrapper
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1810,7 +1810,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

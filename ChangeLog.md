@@ -32,6 +32,7 @@
 - Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
 - Fix typing for stream responses to iterators of bytes.  #1254
 - Additional linting support  #1265
+- Fix Sphinx documentation for raised exception #1264
 
 **Other Changes**
 
