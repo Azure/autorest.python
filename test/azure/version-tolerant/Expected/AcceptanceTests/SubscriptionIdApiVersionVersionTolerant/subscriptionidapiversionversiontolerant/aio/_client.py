@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class MicrosoftAzureTestUrl:
+class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keyword
     """Some cool documentation.
 
     :ivar group: GroupOperations operations

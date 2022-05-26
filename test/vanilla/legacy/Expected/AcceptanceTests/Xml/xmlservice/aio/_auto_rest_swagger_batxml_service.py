@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
 from .operations import XmlOperations
 
 
-class AutoRestSwaggerBATXMLService:
+class AutoRestSwaggerBATXMLService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar xml: XmlOperations operations

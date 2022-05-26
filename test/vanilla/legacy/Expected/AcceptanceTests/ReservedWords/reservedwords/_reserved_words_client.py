@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class ReservedWordsClient(ReservedWordsClientOperationsMixin):
+class ReservedWordsClient(ReservedWordsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Swagger that has operation groups etc. with reserved words.
 
     :ivar import_operations: ImportOperations operations

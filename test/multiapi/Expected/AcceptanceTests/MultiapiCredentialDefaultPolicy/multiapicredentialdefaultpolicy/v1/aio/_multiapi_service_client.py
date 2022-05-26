@@ -19,7 +19,7 @@ from .. import models
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations

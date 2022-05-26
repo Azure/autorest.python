@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import AzureKeyCredential
     from azure.core.rest import HttpRequest, HttpResponse
 
-class AutoRestHeadTestService(object):
+class AutoRestHeadTestService(object):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations

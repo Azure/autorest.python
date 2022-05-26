@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class XMSErrorResponseExtensions:
+class XMSErrorResponseExtensions:  # pylint: disable=client-accepts-api-version-keyword
     """XMS Error Response Extensions.
 
     :ivar pet: PetOperations operations

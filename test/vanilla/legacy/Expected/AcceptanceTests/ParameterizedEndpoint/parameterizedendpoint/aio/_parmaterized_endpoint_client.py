@@ -22,7 +22,9 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
+class ParmaterizedEndpointClient(
+    ParmaterizedEndpointClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing parameterized hosts with the name 'endpoint'.
 
     :param endpoint: The parameterized host. Pass in 'http://localhost:3000' to pass. Required.

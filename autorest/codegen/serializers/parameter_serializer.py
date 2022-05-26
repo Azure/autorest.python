@@ -158,12 +158,10 @@ class ParameterSerializer:
         method_name: str,
         need_self_param: bool,
         method_param_signatures: List[str],
-        ignore_inconsistent_return_statements: bool = False,
+        pylint_disable: str = "",
     ):
         lines: List[str] = []
-        first_line = f"{function_def} {method_name}("
-        if ignore_inconsistent_return_statements:
-            first_line += "  # pylint: disable=inconsistent-return-statements"
+        first_line = f"{function_def} {method_name}({pylint_disable}"
         lines.append(first_line)
         if need_self_param:
             lines.append("    self,")

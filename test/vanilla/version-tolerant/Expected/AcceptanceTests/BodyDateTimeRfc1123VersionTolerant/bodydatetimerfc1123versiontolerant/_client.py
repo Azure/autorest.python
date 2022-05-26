@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestRFC1123DateTimeTestService:
+class AutoRestRFC1123DateTimeTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar datetimerfc1123: Datetimerfc1123Operations operations

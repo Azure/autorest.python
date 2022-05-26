@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestLongRunningOperationTestService:
+class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Long-running Operation for AutoRest.
 
     :ivar lros: LROsOperations operations

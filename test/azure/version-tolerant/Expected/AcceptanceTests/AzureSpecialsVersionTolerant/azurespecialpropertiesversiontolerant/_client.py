@@ -33,7 +33,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-instance-attributes
+class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations

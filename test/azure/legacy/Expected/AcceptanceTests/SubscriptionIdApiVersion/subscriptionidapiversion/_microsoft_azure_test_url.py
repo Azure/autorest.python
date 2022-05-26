@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class MicrosoftAzureTestUrl(object):
+class MicrosoftAzureTestUrl(object):  # pylint: disable=client-accepts-api-version-keyword
     """Some cool documentation.
 
     :ivar group: GroupOperations operations

@@ -19,7 +19,7 @@ from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
 
-class AutoRestUrlTestService:
+class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations

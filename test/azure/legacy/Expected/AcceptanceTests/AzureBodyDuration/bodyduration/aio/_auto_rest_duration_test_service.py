@@ -19,7 +19,7 @@ from ._configuration import AutoRestDurationTestServiceConfiguration
 from .operations import DurationOperations
 
 
-class AutoRestDurationTestService:
+class AutoRestDurationTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar duration: DurationOperations operations

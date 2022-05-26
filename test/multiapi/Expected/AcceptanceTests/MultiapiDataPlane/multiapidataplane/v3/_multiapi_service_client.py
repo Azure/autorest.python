@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations

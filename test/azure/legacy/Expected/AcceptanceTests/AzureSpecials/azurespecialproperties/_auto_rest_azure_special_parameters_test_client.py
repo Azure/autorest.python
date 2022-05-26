@@ -34,7 +34,9 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestAzureSpecialParametersTestClient(object):  # pylint: disable=too-many-instance-attributes
+class AutoRestAzureSpecialParametersTestClient(
+    object
+):  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations

@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestHeadExceptionTestService(object):
+class AutoRestHeadExceptionTestService(object):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar head_exception: HeadExceptionOperations operations

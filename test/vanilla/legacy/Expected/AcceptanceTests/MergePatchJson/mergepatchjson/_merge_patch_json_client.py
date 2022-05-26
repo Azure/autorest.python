@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):
+class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing merge patch json.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

@@ -27,7 +27,7 @@ from .operations import (
 )
 
 
-class AutoRestHttpInfrastructureTestService:  # pylint: disable=too-many-instance-attributes
+class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations

@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class MultipleInheritanceServiceClient:
+class MultipleInheritanceServiceClient:  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiinheritance client testing.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

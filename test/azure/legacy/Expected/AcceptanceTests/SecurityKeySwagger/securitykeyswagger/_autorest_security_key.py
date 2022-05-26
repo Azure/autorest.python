@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):
+class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Key REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

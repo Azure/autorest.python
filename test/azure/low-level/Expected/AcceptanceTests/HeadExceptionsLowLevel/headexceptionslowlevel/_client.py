@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestHeadExceptionTestService:
+class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

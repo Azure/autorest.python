@@ -19,7 +19,7 @@ from ._configuration import ReservedWordsClientConfiguration
 from .operations import ImportOperations, ReservedWordsClientOperationsMixin
 
 
-class ReservedWordsClient(ReservedWordsClientOperationsMixin):
+class ReservedWordsClient(ReservedWordsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Swagger that has operation groups etc. with reserved words.
 
     :ivar import_operations: ImportOperations operations

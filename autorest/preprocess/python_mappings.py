@@ -167,3 +167,10 @@ RESERVED_WORDS = {
     PadType.ENUM: ["mro", *_always_reserved],
     PadType.OPERATION_GROUP: [*_always_reserved],
 }
+
+REDEFINED_BUILTINS = [  # we don't pad, but we need to do lint ignores
+    "id",
+    "min",
+    "max",
+    "filter",
+]

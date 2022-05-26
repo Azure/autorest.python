@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,7 +14,7 @@ import msrest.serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    import __init__ as _models
+    from .. import models as _models
 
 
 class AccessPolicy(msrest.serialization.Model):
@@ -211,7 +212,7 @@ class BlobPrefix(msrest.serialization.Model):
         self.name = name
 
 
-class BlobProperties(msrest.serialization.Model):
+class BlobProperties(msrest.serialization.Model):  # pylint: disable=too-many-instance-attributes
     """Properties of a blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -313,7 +314,7 @@ class BlobProperties(msrest.serialization.Model):
         "archive_status": {"key": "ArchiveStatus", "type": "str"},
     }
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-locals
         self,
         *,
         last_modified: datetime.datetime,
@@ -481,7 +482,7 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
         "id": {"key": "ID", "type": "str"},
     }
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs):
+    def __init__(self, *, id: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id: The id of the res.
         :paramtype id: str
@@ -502,7 +503,7 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
     }
     _xml_map = {"name": "XMLComplexTypeWithMeta"}
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs):
+    def __init__(self, *, id: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id: The id of the res.
         :paramtype id: str
@@ -743,7 +744,7 @@ class JSONInput(msrest.serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs):
+    def __init__(self, *, id: Optional[int] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -763,7 +764,7 @@ class JSONOutput(msrest.serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs):
+    def __init__(self, *, id: Optional[int] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -1228,7 +1229,9 @@ class SignedIdentifier(msrest.serialization.Model):
     }
     _xml_map = {"name": "SignedIdentifier"}
 
-    def __init__(self, *, id: str, access_policy: "_models.AccessPolicy", **kwargs):
+    def __init__(
+        self, *, id: str, access_policy: "_models.AccessPolicy", **kwargs  # pylint: disable=redefined-builtin
+    ):
         """
         :keyword id: a unique id. Required.
         :paramtype id: str

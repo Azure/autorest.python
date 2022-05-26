@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestParameterFlattening:
+class AutoRestParameterFlattening:  # pylint: disable=client-accepts-api-version-keyword
     """Resource Flattening for AutoRest.
 
     :ivar availability_sets: AvailabilitySetsOperations operations

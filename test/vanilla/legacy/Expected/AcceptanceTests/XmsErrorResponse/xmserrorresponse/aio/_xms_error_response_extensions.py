@@ -19,7 +19,7 @@ from ._configuration import XMSErrorResponseExtensionsConfiguration
 from .operations import PetOperations
 
 
-class XMSErrorResponseExtensions:
+class XMSErrorResponseExtensions:  # pylint: disable=client-accepts-api-version-keyword
     """XMS Error Response Extensions.
 
     :ivar pet: PetOperations operations

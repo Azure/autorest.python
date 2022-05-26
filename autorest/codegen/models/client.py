@@ -8,6 +8,7 @@ from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union
 from .base_model import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
+from .utils import add_to_pylint_disable
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -67,6 +68,13 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def has_parameterized_host(self) -> bool:
         """Whether the base url is parameterized or not"""
         return not any(p for p in self.parameters if p.is_host)
+
+    @property
+    def pylint_disable(self) -> str:
+        retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
+        if len(self.code_model.operation_groups) > 6:
+            retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
+        return retval
 
     @property
     def filename(self) -> str:

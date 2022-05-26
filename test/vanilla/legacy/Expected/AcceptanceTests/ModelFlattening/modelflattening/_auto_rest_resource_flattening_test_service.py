@@ -24,7 +24,9 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin):
+class AutoRestResourceFlatteningTestService(
+    AutoRestResourceFlatteningTestServiceOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Resource Flattening for AutoRest.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

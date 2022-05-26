@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -12,7 +13,7 @@ import msrest.serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    import __init__ as _models
+    from .. import models as _models
 
 
 class OperationResult(msrest.serialization.Model):
@@ -196,7 +197,9 @@ class Sku(msrest.serialization.Model):
         "id": {"key": "id", "type": "str"},
     }
 
-    def __init__(self, *, name: Optional[str] = None, id: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, name: Optional[str] = None, id: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
+    ):
         """
         :keyword name:
         :paramtype name: str

@@ -6,7 +6,7 @@
 """The preprocessing autorest plugin.
 """
 from typing import Callable, Dict, Any, List, Optional
-from .helpers import to_snake_case, pad_reserved_words
+from .helpers import to_snake_case, pad_reserved_words, add_redefined_builtin_info
 from .python_mappings import PadType
 
 from .. import YamlUpdatePlugin
@@ -59,6 +59,7 @@ def update_types(yaml_data: List[Dict[str, Any]]) -> None:
             property["clientName"] = pad_reserved_words(
                 property["clientName"].lower(), PadType.PROPERTY
             )
+            add_redefined_builtin_info(property["clientName"], property)
         if type.get("name"):
             type["description"] = update_description(type["description"], type["name"])
 

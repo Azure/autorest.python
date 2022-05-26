@@ -19,7 +19,7 @@ from ._configuration import AdditionalPropertiesClientConfiguration
 from .operations import PetsOperations
 
 
-class AdditionalPropertiesClient:
+class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar pets: PetsOperations operations

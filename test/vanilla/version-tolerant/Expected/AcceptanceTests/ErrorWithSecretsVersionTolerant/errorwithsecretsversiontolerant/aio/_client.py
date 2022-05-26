@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):
+class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Tests whether loggers/tracers redact secrets and PII within error responses.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

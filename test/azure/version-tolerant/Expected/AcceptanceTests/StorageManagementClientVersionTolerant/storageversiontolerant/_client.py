@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class StorageManagementClient:
+class StorageManagementClient:  # pylint: disable=client-accepts-api-version-keyword
     """StorageManagementClient.
 
     :ivar storage_accounts: StorageAccountsOperations operations

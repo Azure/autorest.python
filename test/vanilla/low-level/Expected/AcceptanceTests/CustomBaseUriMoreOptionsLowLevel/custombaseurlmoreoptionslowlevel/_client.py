@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestParameterizedCustomHostTestClient:
+class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :param subscription_id: The subscription id with value 'test12'. Required.

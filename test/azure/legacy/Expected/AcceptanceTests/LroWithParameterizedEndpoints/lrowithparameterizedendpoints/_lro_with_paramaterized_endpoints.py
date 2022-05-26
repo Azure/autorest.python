@@ -24,7 +24,9 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin):
+class LROWithParamaterizedEndpoints(
+    LROWithParamaterizedEndpointsOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :param host: A string value that is used as a global part of the parameterized host. Pass in

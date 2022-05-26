@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATFileServiceConfiguration
 from .operations import FilesOperations
 
 
-class AutoRestSwaggerBATFileService:
+class AutoRestSwaggerBATFileService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar files: FilesOperations operations
