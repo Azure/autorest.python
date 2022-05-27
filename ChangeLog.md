@@ -5,7 +5,7 @@
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.8.1`     |
-| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `@autorest/modelerfour`                                                 | `4.23.6`    |
 | `azure-core` dep of generated code                                      | `1.23.0`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
@@ -33,6 +33,7 @@
 - Fix typing for stream responses to iterators of bytes.  #1254
 - Additional linting support  #1265
 - Fix Sphinx documentation for raised exception #1264
+- Use `api_version` in `_config` as default value for operation function  #1268
 
 **Other Changes**
 
