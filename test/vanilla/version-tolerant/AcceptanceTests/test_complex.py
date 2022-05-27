@@ -545,4 +545,4 @@ def test_client_api_version():
         client.basic.put_valid(basic_result)
     
     # it shall pass since we override wrong api_version
-    client.basic.put_valid(basic_result, api_version="2016_02-29")
+    client.basic.put_valid(basic_result, api_version="2016-02-29")

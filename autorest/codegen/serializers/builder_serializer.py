@@ -546,6 +546,7 @@ class _OperationSerializer(
                 kwargs_to_pop, ParameterLocation.QUERY
             )
             else PopKwargType.SIMPLE,
+            in_operation=True,
         )
         kwargs.append(
             f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"

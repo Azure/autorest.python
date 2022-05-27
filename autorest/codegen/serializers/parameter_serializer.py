@@ -110,6 +110,7 @@ class ParameterSerializer:
         check_kwarg_dict: bool,
         pop_headers_kwarg: PopKwargType,
         pop_params_kwarg: PopKwargType,
+        in_operation: bool = False,
     ) -> List[str]:
         retval = []
 
@@ -125,9 +126,13 @@ class ParameterSerializer:
         append_pop_kwarg("params", pop_params_kwarg)
         if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
             retval.append("")
+        config_kwarg = {p.client_name for p in parameters[0].code_model.config.parameters.method} if in_operation and parameters else set()
         for kwarg in parameters:
             if kwarg.client_default_value is not None or kwarg.optional:
-                default_value = kwarg.client_default_value_declaration
+                if kwarg.client_name in config_kwarg:
+                    default_value = f"self._config.{kwarg.client_name}"
+                else:
+                    default_value = kwarg.client_default_value_declaration
                 if check_kwarg_dict and (
                     kwarg.location
                     in [ParameterLocation.HEADER, ParameterLocation.QUERY]
