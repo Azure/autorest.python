@@ -566,3 +566,18 @@ async def test_pass_in_api_version(client):
     assert client._config.api_version == "2016-02-29"
     async with AutoRestComplexTestService(api_version="2021-10-01") as client:
         assert client._config.api_version == "2021-10-01"
+
+@pytest.mark.asyncio
+async def test_client_api_version():
+    async with AutoRestComplexTestService(api_version="2021-10-01") as client:
+        basic_result = {
+            "id": 2,
+            "name": "abc",
+            "color": "Magenta",
+        }
+        # it shall fail since we pass in wrong api_version
+        with pytest.raises(HttpResponseError):
+            await client.basic.put_valid(basic_result)
+        
+        # it shall pass since we override wrong api_version
+        await client.basic.put_valid(basic_result, api_version="2016_02-29")

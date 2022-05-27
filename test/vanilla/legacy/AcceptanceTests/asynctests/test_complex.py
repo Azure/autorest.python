@@ -36,6 +36,7 @@ import os
 from os.path import dirname, pardir, join, realpath
 
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
+from azure.core.exceptions import HttpResponseError
 
 from bodycomplex.aio import AutoRestComplexTestService
 from bodycomplex.models import *
@@ -502,3 +503,15 @@ class TestComplex(object):
         assert client._config.api_version == "2016-02-29"
         async with AutoRestComplexTestService(base_url="http://localhost:3000", api_version="2021-10-01") as client:
             assert client._config.api_version == "2021-10-01"
+
+    @pytest.mark.asyncio
+    async def test_client_api_version(self):
+        async with AutoRestComplexTestService(api_version="2021-10-01") as client:
+            # PUT basic/valid
+            basic_result = Basic(id=2, name='abc', color="Magenta")
+            # it shall fail since we pass in wrong api_version
+            with pytest.raises(HttpResponseError):
+                await client.basic.put_valid(basic_result)
+            
+            # it shall pass since we override wrong api_version
+            await client.basic.put_valid(basic_result, api_version="2016_02-29")
