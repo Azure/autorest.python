@@ -1291,7 +1291,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_method_local_valid_request(
@@ -1372,7 +1372,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_path_local_valid_request(
@@ -1413,7 +1413,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_swagger_local_valid_request(
