@@ -547,7 +547,7 @@ class _OperationSerializer(
             )
             else PopKwargType.SIMPLE,
             # maily for api_version of operation to use value set in _config(it does not apply for multiapi).
-            enable_config=kwargs_to_pop and not self.code_model.options["multiapi"],
+            enable_config=bool(kwargs_to_pop) and not self.code_model.options["multiapi"],
         )
         kwargs.append(
             f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"
