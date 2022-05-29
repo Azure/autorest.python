@@ -16,7 +16,6 @@ from ..models import (
     ClientParameter,
     ConfigParameter,
     ParameterType,
-    ConstantType,
 )
 from ..models.parameter import _ParameterBase
 
