@@ -110,7 +110,7 @@ class ParameterSerializer:
         check_kwarg_dict: bool,
         pop_headers_kwarg: PopKwargType,
         pop_params_kwarg: PopKwargType,
-        in_operation: bool = False,
+        enable_config: bool = False,
     ) -> List[str]:
         retval = []
 
@@ -126,12 +126,13 @@ class ParameterSerializer:
         append_pop_kwarg("params", pop_params_kwarg)
         if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
             retval.append("")
+        # maily for api_version of operation to use value set in _config(it does not apply for multiapi).
         config_kwarg = (
             {
                 p.client_name: p
                 for p in parameters[0].code_model.config.parameters.method
             }
-            if in_operation and parameters
+            if enable_config
             else {}
         )
         for kwarg in parameters:
