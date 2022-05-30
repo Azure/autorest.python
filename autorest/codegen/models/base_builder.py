@@ -53,6 +53,11 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
         # for operations where we don't know what to do, we mark them as abstract so users implement
         # in patch.py
         self.abstract = abstract
+        if code_model.options[
+            "version_tolerant"
+        ] and parameters.has_several_content_types([o.parameters for o in overloads]):
+            self.overloads = []
+            self.abstract = True
         self.want_tracing = want_tracing
         self.group_name: str = yaml_data["groupName"]
         self.is_overload: bool = yaml_data["isOverload"]

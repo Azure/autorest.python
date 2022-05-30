@@ -320,6 +320,16 @@ class _ParameterListBase(
             body_parameter=body_parameter,
         )
 
+    def has_several_content_types(self, overloads_parameters: List) -> bool:
+        content_types = set()
+        all_parameters = [self, *overloads_parameters]
+        for p in all_parameters:
+            try:
+                content_types.update(p.body_parameter.content_types)
+            except ValueError:
+                pass  # ignore if there is no body_parameter
+        return len(content_types) > 2
+
 
 class _ParameterList(
     _ParameterListBase[  # pylint: disable=unsubscriptable-object
