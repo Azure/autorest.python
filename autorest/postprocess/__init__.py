@@ -99,7 +99,11 @@ class PostProcessPlugin(Plugin):
         return self.get_namespace(next_dir, namespace)
 
     def process(self) -> bool:
-        folders = [f for f in self.base_folder.glob("**/*") if f.is_dir() and not f.stem.startswith("__")]
+        folders = [
+            f
+            for f in self.base_folder.glob("**/*")
+            if f.is_dir() and not f.stem.startswith("__")
+        ]
         # will always have the root
         self.fix_imports_in_init(
             generated_file_name="_client",
@@ -150,9 +154,7 @@ class PostProcessPlugin(Plugin):
         if not customized_objects_str:
             return
         customized_objects = {
-            k: None
-            for k in
-            customized_objects_str.split(",")
+            k: None for k in customized_objects_str.split(",")
         }.keys()  # filter out duplicates
         file = (folder_path / "__init__.py").relative_to(self.output_folder)
         file_content = self._autorestapi.read_file(file)
