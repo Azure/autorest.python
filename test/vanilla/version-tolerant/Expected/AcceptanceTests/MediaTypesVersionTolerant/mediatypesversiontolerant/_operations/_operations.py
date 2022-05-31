@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, cast
 
 from msrest import Serializer
 
@@ -106,75 +106,10 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
 
 
 class MediaTypesClientOperationsMixin(MixinABC, abc.ABC):
-    @overload
-    def analyze_body(
-        self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> str:
-        """Analyze body, that could be different media types.
-
-        :param input: Input parameter. Default value is None.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: str
-        :rtype: str
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "source": "str"  # Optional. File source path.
-                }
-        """
-
-    @overload
-    @abc.abstractmethod
-    def analyze_body(self, *args, **kwargs) -> str:
-        """You need to write a custom operation for "analyze_body". Please refer to
-        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
-
-        """
-
     @distributed_trace
     @abc.abstractmethod
     def analyze_body(self, *args, **kwargs) -> str:
         """You need to write a custom operation for "analyze_body". Please refer to
-        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
-
-        """
-
-    @overload
-    def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
-        type.
-
-        :param input: Input parameter. Default value is None.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "source": "str"  # Optional. File source path.
-                }
-        """
-
-    @overload
-    @abc.abstractmethod
-    def analyze_body_no_accept_header(self, *args, **kwargs) -> None:  # pylint: disable=inconsistent-return-statements
-        """You need to write a custom operation for "analyze_body_no_accept_header". Please refer to
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """

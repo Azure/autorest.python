@@ -453,6 +453,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 name,
             )
             abstract = True
+        if code_model.options[
+            "version_tolerant"
+        ] and parameter_list.has_several_content_types(
+            [o.parameters for o in overloads]
+        ):
+            overloads = []
+            abstract = True
 
         return cls(
             yaml_data=yaml_data,
