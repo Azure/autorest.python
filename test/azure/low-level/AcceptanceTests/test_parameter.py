@@ -211,3 +211,7 @@ def test_skip_url_encoding(send_request, unencoded_path, unencoded_query):
 def test_azure_odata(send_request):
     request = odata.build_get_with_filter_request(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
     send_request(request)
+
+def test_with_constant(send_request):
+    request = parameter_grouping.build_group_with_constant_request(grouped_constant="foo", grouped_parameter="bar")
+    send_request(request)

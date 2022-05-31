@@ -126,7 +126,7 @@ def update_property(
         "isDiscriminator": yaml_data.get("isDiscriminator"),
         "readonly": yaml_data.get("readOnly", False),
         "groupedParameterNames": [
-            op["language"]["default"]["name"]
+            op["language"]["default"]["name"].lstrip("_")  # TODO: patching m4
             for op in yaml_data.get("originalParameter", [])
         ],
     }
@@ -282,24 +282,30 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def update_parameter_base(
-    yaml_data: Dict[str, Any], *, client_name: Optional[str] = None
+    yaml_data: Dict[str, Any], *, override_client_name: Optional[str] = None
 ) -> Dict[str, Any]:
     location = yaml_data["protocol"].get("http", {}).get("in")
     if not location:
         location = "other"
     if location == "uri":
         location = "endpointPath"
-
+    grouped_by = (
+        yaml_data["groupedBy"]["language"]["default"]["name"]
+        if yaml_data.get("groupedBy")
+        else None
+    )
+    client_name: str = override_client_name or yaml_data["language"]["default"]["name"]
+    if grouped_by and client_name[0] != "_":
+        # this is an m4 bug, doesn't hide constant grouped params, patching m4 for now
+        client_name = "_" + client_name
     return {
         "optional": not yaml_data.get("required", False),
         "description": yaml_data["language"]["default"]["description"],
-        "clientName": client_name or yaml_data["language"]["default"]["name"],
+        "clientName": client_name,
         "restApiName": yaml_data["language"]["default"].get("serializedName"),
         "clientDefaultValue": yaml_data.get("clientDefaultValue"),
         "location": location,
-        "groupedBy": yaml_data["groupedBy"]["language"]["default"]["name"]
-        if yaml_data.get("groupedBy")
-        else None,
+        "groupedBy": grouped_by,
     }
 
 
@@ -862,7 +868,8 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 next(
                     prop
                     for prop in grouper["type"]["properties"]
-                    if p["clientName"] in prop["groupedParameterNames"]
+                    if p["clientName"].lstrip("_")
+                    in prop["groupedParameterNames"]  # TODO: patching m4
                 )["clientName"]: p["clientName"]
                 for p in all_params
                 if p.get("groupedBy") == grouper_name
@@ -873,11 +880,13 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         self,
         yaml_data: Dict[str, Any],
         *,
-        client_name: Optional[str] = None,
+        override_client_name: Optional[str] = None,
         in_overload: bool = False,
         in_overriden: bool = False,
     ) -> Dict[str, Any]:
-        param_base = update_parameter_base(yaml_data, client_name=client_name)
+        param_base = update_parameter_base(
+            yaml_data, override_client_name=override_client_name
+        )
         type = get_type(yaml_data["schema"])
         if type["type"] == "constant":
             if not param_base["optional"] or (
@@ -921,7 +930,9 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 )
                 global_parameter["language"]["default"]["description"] = "Service URL."
             global_params.append(
-                self.update_parameter(global_parameter, client_name=client_name)
+                self.update_parameter(
+                    global_parameter, override_client_name=client_name
+                )
             )
         return global_params
 
