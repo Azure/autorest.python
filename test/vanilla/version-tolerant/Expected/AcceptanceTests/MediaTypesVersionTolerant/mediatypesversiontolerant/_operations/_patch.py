@@ -22,6 +22,7 @@ from azure.core.utils import case_insensitive_dict
 from ._operations import (
     _SERIALIZER,
     MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinGenerated,
+    ClsType,
 )
 
 if sys.version_info >= (3, 9):
@@ -80,8 +81,8 @@ def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs:
 
 
 class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
-    @overload
-    def analyze_body(
+    @overload  # type: ignore
+    def analyze_body(  # pylint: disable=arguments-differ
         self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
@@ -105,7 +106,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @overload
-    def analyze_body(self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def analyze_body(self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> str:  # pylint: disable=arguments-differ
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Default value is None.
@@ -119,7 +120,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @distributed_trace
-    def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:
+    def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:  # type: ignore # pylint: disable=arguments-differ
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Is either a model type or a IO type. Default value is None.
@@ -184,8 +185,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
 
         return cast(str, deserialized)
 
-    @overload
-    def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    @overload  # type: ignore
+    def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements,arguments-differ
         self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -210,7 +211,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @overload
-    def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements, arguments-differ
         self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -227,7 +228,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @distributed_trace
-    def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    def analyze_body_no_accept_header(  # type: ignore  # pylint: disable=inconsistent-return-statements, disable=arguments-differ
         self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -289,7 +290,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
+    def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:  # type: ignore  # pylint: disable=arguments-differ
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.

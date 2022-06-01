@@ -23,7 +23,7 @@ from ..._operations import (
     build_analyze_body_request,
     build_binary_body_with_three_content_types_request,
 )
-from ._operations import MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinGenerated
+from ._operations import ClsType, MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinGenerated
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -33,8 +33,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
-    @overload
-    async def analyze_body(
+    @overload  # type: ignore
+    async def analyze_body(  # pylint: disable=arguments-differ
         self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
@@ -58,7 +58,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @overload
-    async def analyze_body(
+    async def analyze_body(  # pylint: disable=arguments-differ
         self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
@@ -74,7 +74,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:
+    async def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:  # type: ignore  # pylint: disable=arguments-differ
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Is either a model type or a IO type. Default value is None.
@@ -135,8 +135,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
 
         return cast(str, deserialized)
 
-    @overload
-    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    @overload  # type: ignore
+    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements, arguments-differ
         self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -161,7 +161,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @overload
-    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements, disable=arguments-differ
         self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -178,7 +178,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
         """
 
     @distributed_trace_async
-    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    async def analyze_body_no_accept_header(  # type: ignore # pylint: disable=inconsistent-return-statements, arguments-differ
         self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -236,7 +236,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientOperationsMixinGenerated):
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
+    async def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:  # type: ignore  # pylint: disable=arguments-differ
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
