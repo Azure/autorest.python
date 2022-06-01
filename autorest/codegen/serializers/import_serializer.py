@@ -131,7 +131,9 @@ class FileImportSerializer:
                             )
                         )
                         if i > 0:
-                            ret[-1] += "  # type: ignore"
+                            ret[
+                                -1
+                            ] += "  # type: ignore  # pylint: disable=ungrouped-imports"
             ret.append("{}{} = {}".format(spacing, type_name, definition_value))
             return ret
 

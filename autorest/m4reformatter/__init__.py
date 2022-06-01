@@ -306,6 +306,7 @@ def update_parameter_base(
         "clientDefaultValue": yaml_data.get("clientDefaultValue"),
         "location": location,
         "groupedBy": grouped_by,
+        "checkClientInput": yaml_data.get("checkClientInput", False),
     }
 
 
@@ -792,6 +793,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             if param.get("origin") == "modelerfour:synthesized/api-version":
                 param["inDocstring"] = False
                 param["implementation"] = "Method"
+                param["checkClientInput"] = True
             if has_flattened_body and param.get("targetProperty"):
                 retval.append(self.update_flattened_parameter(param, body_parameter))
                 continue
