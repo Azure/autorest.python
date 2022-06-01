@@ -278,3 +278,49 @@ def build_post_shared_parameter_group_object_request(
         headers=_headers,
         **kwargs
     )
+
+
+def build_group_with_constant_request(
+    *,
+    grouped_constant: str = "foo",
+    grouped_parameter: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
+    groupedParameter.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword grouped_constant: A grouped parameter that is a constant. Known values are "foo" and
+     None. Default value is "foo".
+    :paramtype grouped_constant: str
+    :keyword grouped_parameter: Optional parameter part of a parameter grouping. Default value is
+     None.
+    :paramtype grouped_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/json")
+
+    # Construct URL
+    _url = "/parameterGrouping/groupWithConstant"
+
+    # Construct headers
+    if grouped_constant is not None:
+        _headers['groupedConstant'] = _SERIALIZER.header("grouped_constant", grouped_constant, 'str')
+    if grouped_parameter is not None:
+        _headers['groupedParameter'] = _SERIALIZER.header("grouped_parameter", grouped_parameter, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
