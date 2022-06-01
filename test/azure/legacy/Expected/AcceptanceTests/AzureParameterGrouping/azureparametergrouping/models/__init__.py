@@ -9,6 +9,7 @@
 try:
     from ._models_py3 import Error
     from ._models_py3 import FirstParameterGroup
+    from ._models_py3 import Grouper
     from ._models_py3 import ParameterGroupingPostMultiParamGroupsSecondParamGroup
     from ._models_py3 import ParameterGroupingPostOptionalParameters
     from ._models_py3 import ParameterGroupingPostRequiredParameters
@@ -16,6 +17,7 @@ try:
 except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
     from ._models import FirstParameterGroup  # type: ignore
+    from ._models import Grouper  # type: ignore
     from ._models import ParameterGroupingPostMultiParamGroupsSecondParamGroup  # type: ignore
     from ._models import ParameterGroupingPostOptionalParameters  # type: ignore
     from ._models import ParameterGroupingPostRequiredParameters  # type: ignore
@@ -27,6 +29,7 @@ from ._patch import patch_sdk as _patch_sdk
 __all__ = [
     "Error",
     "FirstParameterGroup",
+    "Grouper",
     "ParameterGroupingPostMultiParamGroupsSecondParamGroup",
     "ParameterGroupingPostOptionalParameters",
     "ParameterGroupingPostRequiredParameters",

@@ -203,3 +203,8 @@ class TestParameter(object):
     @pytest.mark.asyncio
     async def test_azure_odata(self, azure_client):
         await azure_client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
+
+    @pytest.mark.asyncio
+    async def test_group_with_constant(self, client):
+        from azureparametergrouping.models import Grouper
+        await client.parameter_grouping.group_with_constant(Grouper(grouped_constant="foo", grouped_parameter="bar"))
