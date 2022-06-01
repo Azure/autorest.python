@@ -126,22 +126,9 @@ class ParameterSerializer:
         append_pop_kwarg("params", pop_params_kwarg)
         if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
             retval.append("")
-        # maily for api_version of operation to use value set in _config(it does not apply for multiapi).
-        config_kwarg = (
-            {
-                p.client_name: p
-                for p in parameters[0].code_model.config.parameters.method
-            }
-            if enable_config
-            else {}
-        )
         for kwarg in parameters:
             if kwarg.client_default_value is not None or kwarg.optional:
-                if (
-                    kwarg.client_name in config_kwarg
-                    and kwarg.client_default_value_declaration
-                    == config_kwarg[kwarg.client_name].client_default_value_declaration
-                ):
+                if enable_config and kwarg.is_defined_globally:
                     default_value = f"self._config.{kwarg.client_name}"
                 else:
                     default_value = kwarg.client_default_value_declaration

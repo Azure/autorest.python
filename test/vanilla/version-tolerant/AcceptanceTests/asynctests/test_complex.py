@@ -30,6 +30,8 @@ from msrest import Serializer, Deserializer
 from msrest.exceptions import DeserializationError
 from base64 import b64decode, b64encode
 from azure.core.exceptions import HttpResponseError
+from azure.core.pipeline.policies import CustomHookPolicy
+
 
 from bodycomplexversiontolerant.aio import AutoRestComplexTestService
 
@@ -569,15 +571,21 @@ async def test_pass_in_api_version(client):
 
 @pytest.mark.asyncio
 async def test_client_api_version():
-    async with AutoRestComplexTestService(api_version="2021-10-01") as client:
+    api_version = "2021-10-01"
+    def check_api_version(pipeline_request):
+        assert pipeline_request.http_request.query["api-version"] == api_version
+
+    async with AutoRestComplexTestService(
+        api_version=api_version,
+        policies=[CustomHookPolicy(raw_request_hook=check_api_version)]
+    ) as client:
         basic_result = {
             "id": 2,
             "name": "abc",
             "color": "Magenta",
         }
-        # it shall fail since we pass in wrong api_version
-        with pytest.raises(HttpResponseError):
-            await client.basic.put_valid(basic_result)
+        await client.basic.put_valid(basic_result)
         
-        # it shall pass since we override wrong api_version
-        await client.basic.put_valid(basic_result, api_version="2016-02-29")
+        # it shall raise exception since we override api_version
+        with pytest.raises(AssertionError):
+            await client.basic.put_valid(basic_result, api_version="2016-02-29")

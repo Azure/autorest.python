@@ -81,6 +81,21 @@ class _ParameterBase(
         self.flattened: bool = self.yaml_data.get("flattened", False)
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
+        self._is_defined_globally: Optional[bool] = None
+
+    @property
+    def is_defined_globally(self) -> bool:
+        if self._is_defined_globally is None:
+            for param in self.code_model.config.parameters.method:
+                if (
+                    param.client_name == self.client_name
+                    and param.client_default_value_declaration
+                    == self.client_default_value_declaration
+                ):
+                    self._is_defined_globally = True
+                    return self._is_defined_globally
+            self._is_defined_globally = False
+        return self._is_defined_globally
 
     @property
     def constant(self) -> bool:

@@ -36,6 +36,7 @@ from os.path import dirname, pardir, join, realpath
 
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 from azure.core.exceptions import HttpResponseError
+from azure.core.pipeline.policies import CustomHookPolicy
 
 from bodycomplex import AutoRestComplexTestService
 from bodycomplex.models import *
@@ -483,13 +484,18 @@ class TestComplex(object):
             assert client._config.api_version == "2021-10-01"
 
     def test_client_api_version(self):
-        client = AutoRestComplexTestService(api_version="2021-10-01")
+        api_version = "2021-10-01"
+        def check_api_version(pipeline_request):
+            assert pipeline_request.http_request.query["api-version"] == api_version
+        client = AutoRestComplexTestService(
+            api_version=api_version,
+            policies=[CustomHookPolicy(raw_request_hook=check_api_version)]
+        )
 
         # PUT basic/valid
         basic_result = Basic(id=2, name='abc', color="Magenta")
-        # it shall fail since we pass in wrong api_version
-        with pytest.raises(HttpResponseError):
-            client.basic.put_valid(basic_result)
+        client.basic.put_valid(basic_result)
         
-        # it shall pass since we override wrong api_version
-        client.basic.put_valid(basic_result, api_version="2016-02-29")
+        # it shall raise exception since we override api_version
+        with pytest.raises(AssertionError):
+            client.basic.put_valid(basic_result, api_version="2016-02-29")
