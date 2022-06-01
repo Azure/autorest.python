@@ -71,25 +71,6 @@ jobs:
           npm install -g autorest
           npm install
         displayName: 'Prepare Environment for Generation'
-      - script: |
-          pylint autorest
-        displayName: 'Pylint'
-      - script: |
-          mypy autorest
-        displayName: 'Mypy'
-      - script: |
-          black autorest
-        displayName: 'Black autorest repo'
-      - script: node ./eng/scripts/check-for-changed-files.js
-        displayName: Fail on black autorest diff
-      - script: |
-          pytest test/unittests
-        displayName: 'Unit tests'
-      - script: |
-          inv regenerate
-        displayName: 'Regenerate Code'
-      - script: node ./eng/scripts/check-for-changed-files.js
-        displayName: Fail on regeneration diff
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
