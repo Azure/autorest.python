@@ -186,6 +186,11 @@ class TestParameter(object):
     def test_azure_odata(self, azure_client):
         azure_client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
 
+    def test_group_with_constant(self, client):
+        from azureparametergrouping.models import Grouper
+        client.parameter_grouping.group_with_constant(Grouper(grouped_constant="foo", grouped_parameter="bar"))
+
+
     def test_models(self):
         from azureparametergrouping.models import Error
 

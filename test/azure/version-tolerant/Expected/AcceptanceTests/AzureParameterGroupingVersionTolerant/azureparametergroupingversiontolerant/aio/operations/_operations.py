@@ -22,6 +22,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
+    build_parameter_grouping_group_with_constant_request,
     build_parameter_grouping_post_multi_param_groups_request,
     build_parameter_grouping_post_optional_request,
     build_parameter_grouping_post_required_request,
@@ -271,6 +272,52 @@ class ParameterGroupingOperations:
         request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def group_with_constant(  # pylint: disable=inconsistent-return-statements
+        self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
+        groupedParameter.
+
+        :keyword grouped_constant: A grouped parameter that is a constant. Known values are "foo" and
+         None. Default value is None.
+        :paramtype grouped_constant: str
+        :keyword grouped_parameter: Optional parameter part of a parameter grouping. Default value is
+         None.
+        :paramtype grouped_parameter: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        request = build_parameter_grouping_group_with_constant_request(
+            grouped_constant=grouped_constant,
+            grouped_parameter=grouped_parameter,
             headers=_headers,
             params=_params,
         )
