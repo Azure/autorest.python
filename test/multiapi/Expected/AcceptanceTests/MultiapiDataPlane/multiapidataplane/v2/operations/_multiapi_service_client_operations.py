@@ -125,7 +125,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
+        api_version = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelTwo]
 
         
@@ -190,7 +190,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
+        api_version = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
