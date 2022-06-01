@@ -110,7 +110,7 @@ class ParameterSerializer:
         check_kwarg_dict: bool,
         pop_headers_kwarg: PopKwargType,
         pop_params_kwarg: PopKwargType,
-        implementation: str = "Client",
+        check_client_input: bool = False,
     ) -> List[str]:
         retval = []
 
@@ -128,7 +128,7 @@ class ParameterSerializer:
             retval.append("")
         for kwarg in parameters:
             if kwarg.client_default_value is not None or kwarg.optional:
-                if implementation == "Method" and kwarg.check_client_input:
+                if check_client_input and kwarg.check_client_input:
                     default_value = f"self._config.{kwarg.client_name}"
                 else:
                     default_value = kwarg.client_default_value_declaration

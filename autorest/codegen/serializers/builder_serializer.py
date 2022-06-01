@@ -546,7 +546,7 @@ class _OperationSerializer(
                 kwargs_to_pop, ParameterLocation.QUERY
             )
             else PopKwargType.SIMPLE,
-            implementation="Method",
+            check_client_input=not self.code_model.options["multiapi"],
         )
         kwargs.append(
             f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"
