@@ -33,6 +33,7 @@
 - Fix typing for stream responses to iterators of bytes.  #1254
 - Additional linting support  #1265
 - Fix Sphinx documentation for raised exception #1264
+- Use `api_version` in `_config` as default value for operation function  #1268
 
 **Other Changes**
 
