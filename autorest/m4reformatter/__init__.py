@@ -134,7 +134,7 @@ def update_property(
 
 def update_discriminated_subtypes(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        obj["discriminatorValue"]: obj["language"]["default"]["name"]
+        obj["discriminatorValue"]: update_type(obj)
         for obj in yaml_data.get("discriminator", {}).get("immediate", {}).values()
     }
 
