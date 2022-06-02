@@ -14,6 +14,7 @@ def method_signature_and_response_type_annotation_template(
     return f"{method_signature}:\n    # type: (...) -> {response_type_annotation}"
 
 
+# pylint: disable=line-too-long
 SAMPLE_AAD_ANNOTATION = """
     Please set the values of the client ID, tenant ID and client secret of the AAD application as environment variables:
     AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.

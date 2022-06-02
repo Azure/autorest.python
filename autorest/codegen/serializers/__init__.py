@@ -4,10 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-import black
 import logging
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
+import black
+from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 
 from autorest.codegen.models.credential_types import (
     AzureKeyCredentialType,
@@ -15,12 +16,6 @@ from autorest.codegen.models.credential_types import (
 )
 from autorest.codegen.models.imports import FileImport, ImportType
 from autorest.codegen.models.operation import OperationBase
-from autorest.codegen.serializers.utils import (
-    SAMPLE_AAD_ANNOTATION,
-    SAMPLE_KEY_ANNOTATION,
-)
-from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
-from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.models.request_builder import OverloadedRequestBuilder
 
 from ...jsonrpc import AutorestAPI
@@ -38,6 +33,7 @@ from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from ..models import BodyParameter
+from .utils import SAMPLE_AAD_ANNOTATION, SAMPLE_KEY_ANNOTATION
 
 _LOGGER = logging.getLogger(__name__)
 _BLACK_MODE = black.Mode()
@@ -69,12 +65,6 @@ class JinjaSerializer:
             self.code_model.request_builders
         )
 
-    def _generate_operation_file(self) -> bool:
-        return bool(
-            self.code_model.options["show_operations"]
-            and self.code_model.operation_groups
-        )
-
     def serialize(self) -> None:
         env = Environment(
             loader=PackageLoader("autorest.codegen", "templates"),
@@ -101,7 +91,10 @@ class JinjaSerializer:
             self._keep_patch_file(
                 namespace_path / Path("models") / Path("_patch.py"), env
             )
-        if self._generate_operation_file:
+        if (
+            self.code_model.options["show_operations"]
+            and self.code_model.operation_groups
+        ):
             self._keep_patch_file(
                 namespace_path
                 / Path(self.code_model.operations_folder_name)
@@ -132,7 +125,10 @@ class JinjaSerializer:
                     namespace_path=namespace_path,
                 )
 
-        if self._generate_operation_file:
+        if (
+            self.code_model.options["show_operations"]
+            and self.code_model.operation_groups
+        ):
             self._serialize_and_write_operations_folder(
                 env=env, namespace_path=namespace_path
             )
@@ -158,7 +154,11 @@ class JinjaSerializer:
         if self.code_model.options["package_mode"]:
             self._serialize_and_write_package_files(namespace_path)
 
-        if self._generate_operation_file and self.code_model.options["generate_sample"]:
+        if (
+            self.code_model.options["show_operations"]
+            and self.code_model.operation_groups
+            and self.code_model.options["generate_sample"]
+        ):
             self._serialize_and_write_sample_folder(
                 env=env, namespace_path=namespace_path
             )
@@ -609,9 +609,9 @@ class JinjaSerializer:
         paging = "\n    response = [item for item in response]"
         if operation.operation_type == "paging":
             return "\n    response = [item for item in response]"
-        elif operation.operation_type == "lro":
+        if operation.operation_type == "lro":
             return ".result()"
-        elif operation.operation_type == "lropaging":
+        if operation.operation_type == "lropaging":
             return lro + paging
         return ""
 
@@ -633,7 +633,8 @@ class JinjaSerializer:
         out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
         sample_params = self._prepare_sample_render_param()
         cls = lambda x: f'"{x}"' if isinstance(x, str) else str(x)
-        failure_info = '"fail to find required param named {} in example file {}"'
+        failure_info = '"fail to find required param named {%s} in example file {%s}"'
+        # pylint: disable=too-many-nested-blocks
         for operation_group in self.code_model.operation_groups:
             if self.code_model.options["multiapi"]:
                 api_version_folder = f"{operation_group.api_versions[0]}/"
@@ -675,7 +676,7 @@ class JinjaSerializer:
                         if param_value or not param.optional:
                             if not param_value:
                                 # if can't find required param, need to log it
-                                _LOGGER.warning(failure_info.format(name, key))
+                                _LOGGER.warning(failure_info, name, key)
                                 param_value = fake_value
                             operation_params[param.client_name] = cls(param_value)
 
@@ -693,17 +694,14 @@ class JinjaSerializer:
                             operation_result=operation_result,
                             origin_file=value.get("x-ms-original-file"),
                         ).serialize()
-                        format_str = black.format_file_contents(
-                            file_str, fast=True, mode=_BLACK_MODE
-                        )
                         self._autorestapi.write_file(
                             out_path / f"{api_version_folder}{file_name}",
                             black.format_file_contents(
                                 file_str, fast=True, mode=_BLACK_MODE
                             ),
                         )
-                    except Exception as e:
+                    except Exception as e:  # pylint: disable=broad-except
                         # sample generation shall not block code generation, so just log error
                         _LOGGER.error(
-                            f"error happens when generating sample with {key}: {e}"
+                            "error happens when generate sample with {%s}: {%s}", key, e
                         )

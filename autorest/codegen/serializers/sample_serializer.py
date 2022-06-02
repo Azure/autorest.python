@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Optional, Dict, Any
-from autorest.codegen.serializers.import_serializer import FileImportSerializer
 from jinja2 import Environment
+from autorest.codegen.serializers.import_serializer import FileImportSerializer
 from ..models import CodeModel
 
 
