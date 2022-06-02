@@ -472,10 +472,18 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         return bool(self._autorestapi.get_boolean_value("azure-arm"))
 
     @property
+    def version_tolerant(self) -> bool:
+        return bool(self._autorestapi.get_boolean_value("version-tolerant"))
+
+    @property
+    def low_level_client(self) -> bool:
+        return bool(self._autorestapi.get_boolean_value("low-level-client"))
+
+    @property
     def default_optional_constants_to_none(self) -> bool:
         return bool(
             self._autorestapi.get_boolean_value("default-optional-constants-to-none")
-            or self._autorestapi.get_boolean_value("version-tolerant")
+            or self.version_tolerant
         )
 
     def update_overloads(
@@ -792,8 +800,9 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 continue
             if param.get("origin") == "modelerfour:synthesized/api-version":
                 param["inDocstring"] = False
-                param["implementation"] = "Method"
-                param["checkClientInput"] = True
+                if not (self.version_tolerant or self.low_level_client):
+                    param["implementation"] = "Method"
+                    param["checkClientInput"] = True
             if has_flattened_body and param.get("targetProperty"):
                 retval.append(self.update_flattened_parameter(param, body_parameter))
                 continue
@@ -921,14 +930,11 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             name = global_parameter["language"]["default"]["name"]
             if name == "$host":
                 # I am the non-parameterized endpoint. Modify name based off of flag
-                version_tolerant = self._autorestapi.get_boolean_value(
-                    "version-tolerant", False
-                )
-                low_level_client = self._autorestapi.get_boolean_value(
-                    "low-level-client", False
-                )
+
                 client_name = (
-                    "endpoint" if (version_tolerant or low_level_client) else "base_url"
+                    "endpoint"
+                    if (self.version_tolerant or self.low_level_client)
+                    else "base_url"
                 )
                 global_parameter["language"]["default"]["description"] = "Service URL."
             global_params.append(
