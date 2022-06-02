@@ -1,0 +1,41 @@
+# coding=utf-8
+{{ code_model.options['license_header'] }}
+
+{{ imports }}
+"""
+The sample just shows how to use the method and may not run successfully.
+# PREREQUISITES
+{% if "credential" in client_params %}
+    pip install azure-identity
+{% endif %}
+    pip install {{ code_model.options["package_name"] or code_model.client.name }}
+# USAGE
+    python {{ file_name }}
+"""
+{% if origin_file %}
+# x-ms-original-file: {{ origin_file }}
+{% endif %}
+def main():
+    """
+    {{- annotation }}
+    """
+    client = {{ code_model.client.name }}(
+        {% for key, value in client_params.items() %}
+        {{ key }}={{ value }},
+        {% endfor %}
+    )
+
+    {% if operation_params %}
+    response = client.{{ operation_group_name }}.{{ operation_name }}(
+        {% for key, value in operation_params.items() %}
+        {{ key }}={{ value|indent(8) }},
+        {% endfor %}
+    ){{ operation_result }}
+    {% else %}
+    response = client.{{ operation_group_name }}.{{ operation_name }}(){{ operation_result }}
+    {% endif %}
+    print(response)
+
+
+if __name__ == "__main__":
+    main()

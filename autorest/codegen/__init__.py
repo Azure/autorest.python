@@ -258,6 +258,9 @@ class CodeGenerator(Plugin):
             "reformat_next_link": self._autorestapi.get_boolean_value(
                 "reformat-next-link", not version_tolerant
             ),
+            "generate_sample": self._autorestapi.get_boolean_value(
+                "generate-sample", False
+            ),
         }
 
         if options["builders_visibility"] is None:

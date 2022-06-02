@@ -588,6 +588,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         operation["overloads"] = self.update_overloads(
             group_name, yaml_data, body_parameter, content_types=content_types
         )
+        operation["samples"] = yaml_data.get("extensions", {}).get("x-ms-examples", {})
         return operation
 
     def add_paging_information(
