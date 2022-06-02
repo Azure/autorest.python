@@ -62,6 +62,7 @@ def update_types(yaml_data: List[Dict[str, Any]]) -> None:
             add_redefined_builtin_info(property["clientName"], property)
         if type.get("name"):
             type["description"] = update_description(type["description"], type["name"])
+            type["snakeCaseName"] = to_snake_case(type["name"])
 
 
 def update_client(yaml_data: Dict[str, Any]) -> None:
