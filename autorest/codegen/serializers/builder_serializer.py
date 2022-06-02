@@ -335,8 +335,15 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                 "# The input is polymorphic. The following are possible polymorphic "
                 f'inputs based off discriminator "{discriminator_name}":'
             )
-            for idx in range(min(self.code_model.options["polymorphic_examples"], len(polymorphic_subtypes))):
-                template.extend(_get_polymorphic_subtype_template(polymorphic_subtypes[idx]))
+            for idx in range(
+                min(
+                    self.code_model.options["polymorphic_examples"],
+                    len(polymorphic_subtypes),
+                )
+            ):
+                template.extend(
+                    _get_polymorphic_subtype_template(polymorphic_subtypes[idx])
+                )
             template.append("")
         template.append(
             "# JSON input template you can fill out and use as your body input."
@@ -541,7 +548,12 @@ class _OperationSerializer(
                     "# The response is polymorphic. The following are possible polymorphic "
                     f'responses based off discriminator "{discriminator_name}":'
                 )
-                for idx in range(min(self.code_model.options["polymorphic_examples"], len(polymorphic_subtypes))):
+                for idx in range(
+                    min(
+                        self.code_model.options["polymorphic_examples"],
+                        len(polymorphic_subtypes),
+                    )
+                ):
                     retval.extend(
                         _get_polymorphic_subtype_template(polymorphic_subtypes[idx])
                     )
