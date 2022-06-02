@@ -18,7 +18,15 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["codegen", "m2r", "preprocess", "m4reformatter", "black", "multiapiscript"]
+    return [
+        "codegen",
+        "m2r",
+        "preprocess",
+        "m4reformatter",
+        "black",
+        "multiapiscript",
+        "postprocess",
+    ]
 
 
 @dispatcher.add_method
@@ -42,6 +50,8 @@ def Process(plugin_name: str, session_id: str) -> bool:
             from ..m4reformatter import M4Reformatter as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
             from ..codegen import CodeGenerator as PluginToLoad  # type: ignore
+        elif plugin_name == "postprocess":
+            from ..postprocess import PostProcessPlugin as PluginToLoad  # type: ignore
         elif plugin_name == "black":
             from ..black import BlackScriptPlugin as PluginToLoad  # type: ignore
         elif plugin_name == "multiapiscript":

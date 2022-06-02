@@ -11,12 +11,10 @@ try:
 except (SyntaxError, ImportError):
     from ._models import SourcePath  # type: ignore
 
-from ._media_types_client_enums import (
-    ContentType,
-    ContentType1,
-    ContentType2,
-    ContentType3,
-)
+from ._media_types_client_enums import ContentType
+from ._media_types_client_enums import ContentType1
+from ._media_types_client_enums import ContentType2
+from ._media_types_client_enums import ContentType3
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

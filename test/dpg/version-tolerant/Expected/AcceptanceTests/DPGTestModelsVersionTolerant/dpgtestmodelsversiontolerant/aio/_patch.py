@@ -7,8 +7,16 @@
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
 from typing import List
+from ._client import DPGClient as DPGClientGenerated
 
-__all__: List[str] = []  # Add all objects you want publicly available to users at this package level
+
+class DPGClient(DPGClientGenerated):
+    @staticmethod
+    def added_method() -> str:  # pylint: disable=client-method-should-not-use-static-method
+        return super().added_method()  # type: ignore
+
+
+__all__: List[str] = ["DPGClient"]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

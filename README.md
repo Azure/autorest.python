@@ -30,6 +30,10 @@ modelerfour:
   flatten-payloads: true
 ```
 
+```yaml $(postprocess)
+allow-no-input: true
+```
+
 ```yaml !$(multiapiscript)
 pass-thru:
   - model-deduplicator
@@ -123,6 +127,25 @@ pipeline:
     scope: scope-black/emitter
 
 scope-black/emitter:
+  input-artifact: python-files
+  output-uri-expr: $key
+
+output-artifact: python-files
+```
+
+# Post-process customized code for mypy pipeline
+
+```yaml $(postprocess)
+pipeline:
+  python/postprocess:
+    scope: postprocess
+    output-artifact: python-files
+
+  python/postprocess/emitter:
+    input: postprocess
+    scope: scope-postprocess/emitter
+
+scope-postprocess/emitter:
   input-artifact: python-files
   output-uri-expr: $key
 

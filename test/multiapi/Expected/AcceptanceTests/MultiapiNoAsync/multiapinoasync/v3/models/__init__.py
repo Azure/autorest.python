@@ -17,9 +17,7 @@ except (SyntaxError, ImportError):
     from ._models import PagingResult  # type: ignore
     from ._models import SourcePath  # type: ignore
 
-from ._multiapi_service_client_enums import (
-    ContentType,
-)
+from ._multiapi_service_client_enums import ContentType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

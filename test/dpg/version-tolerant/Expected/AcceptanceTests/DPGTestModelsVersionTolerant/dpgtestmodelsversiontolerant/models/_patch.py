@@ -7,8 +7,25 @@
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
 from typing import List
+from ._models import Product as ProductGenerated
 
-__all__: List[str] = []  # Add all objects you want publicly available to users at this package level
+
+class Product(ProductGenerated):
+    @property
+    def added_in_customization(self):
+        return "bonjour!"
+
+
+class AddedModel:
+    @property
+    def added_model_property(self):
+        return "Added!"
+
+
+__all__: List[str] = [
+    "Product",
+    "AddedModel",
+]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

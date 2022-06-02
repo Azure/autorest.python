@@ -21,11 +21,9 @@ except (SyntaxError, ImportError):
 {% endif %}
 {% if enums %}
 
-from .{{ code_model.enums_filename }} import (
-    {% for enum in enums %}
-    {{ enum }},
-    {% endfor %}
-)
+{% for enum in enums %}
+from .{{ code_model.enums_filename }} import {{ enum }}
+{% endfor %}
 {% endif %}
 {{ keywords.patch_imports() }}
 __all__ = [

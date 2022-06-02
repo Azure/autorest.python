@@ -67,16 +67,14 @@ except (SyntaxError, ImportError):
     from ._models import Slideshow  # type: ignore
     from ._models import StorageServiceProperties  # type: ignore
 
-from ._auto_rest_swagger_batxml_service_enums import (
-    AccessTier,
-    ArchiveStatus,
-    BlobType,
-    CopyStatusType,
-    LeaseDurationType,
-    LeaseStateType,
-    LeaseStatusType,
-    PublicAccessType,
-)
+from ._auto_rest_swagger_batxml_service_enums import AccessTier
+from ._auto_rest_swagger_batxml_service_enums import ArchiveStatus
+from ._auto_rest_swagger_batxml_service_enums import BlobType
+from ._auto_rest_swagger_batxml_service_enums import CopyStatusType
+from ._auto_rest_swagger_batxml_service_enums import LeaseDurationType
+from ._auto_rest_swagger_batxml_service_enums import LeaseStateType
+from ._auto_rest_swagger_batxml_service_enums import LeaseStatusType
+from ._auto_rest_swagger_batxml_service_enums import PublicAccessType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

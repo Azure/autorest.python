@@ -11,10 +11,8 @@ try:
 except (SyntaxError, ImportError):
     from ._models import Pet  # type: ignore
 
-from ._pet_store_inc_enums import (
-    DaysOfWeekExtensibleEnum,
-    IntEnum,
-)
+from ._pet_store_inc_enums import DaysOfWeekExtensibleEnum
+from ._pet_store_inc_enums import IntEnum
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

@@ -13,11 +13,9 @@ except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
     from ._models import Product  # type: ignore
 
-from ._auto_rest_swagger_bat_array_service_enums import (
-    Enum0,
-    Enum1,
-    FooEnum,
-)
+from ._auto_rest_swagger_bat_array_service_enums import Enum0
+from ._auto_rest_swagger_bat_array_service_enums import Enum1
+from ._auto_rest_swagger_bat_array_service_enums import FooEnum
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
