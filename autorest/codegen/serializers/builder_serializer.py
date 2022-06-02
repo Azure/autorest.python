@@ -268,6 +268,11 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             return []
         return self.param_description(builder) + self.response_docstring(builder)
 
+    @property
+    @abstractmethod
+    def _json_response_template_name(self) -> str:
+        ...
+
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template: List[str] = []
         if self.code_model.options["models_mode"]:
@@ -350,6 +355,10 @@ class RequestBuilderSerializer(
     @property
     def serializer_name(self) -> str:
         return "_SERIALIZER"
+
+    @property
+    def _json_response_template_name(self) -> str:
+        return "response.json()"
 
     @staticmethod
     def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
@@ -473,6 +482,10 @@ class _OperationSerializer(
             retval.append("")
         return retval
 
+    @property
+    def _json_response_template_name(self) -> str:
+        return "response"
+
     def example_template(self, builder: OperationType) -> List[str]:
         retval = super().example_template(builder)
         if self.code_model.options["models_mode"]:
@@ -488,7 +501,9 @@ class _OperationSerializer(
                         ", ".join(status_codes)
                     )
                 )
-                retval.extend(f"response.json() == {response_body}".splitlines())
+                retval.extend(
+                    f"{self._json_response_template_name} == {response_body}".splitlines()
+                )
         return retval
 
     def make_pipeline_call(self, builder: OperationType) -> List[str]:

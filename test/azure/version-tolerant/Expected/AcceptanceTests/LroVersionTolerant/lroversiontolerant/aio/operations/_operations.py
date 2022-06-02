@@ -233,7 +233,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -277,7 +277,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -321,7 +321,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -482,7 +482,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -526,7 +526,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -570,7 +570,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -742,7 +742,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -785,7 +785,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -828,7 +828,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1000,7 +1000,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1044,7 +1044,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1088,7 +1088,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1242,7 +1242,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1286,7 +1286,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1330,7 +1330,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1454,7 +1454,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "id": "str",  # Optional. Resource Id.
                         "location": "str",  # Optional. Resource Location.
@@ -1606,7 +1606,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1650,7 +1650,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1694,7 +1694,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1849,7 +1849,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1894,7 +1894,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -1939,7 +1939,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2103,7 +2103,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2148,7 +2148,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2193,7 +2193,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2350,7 +2350,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2395,7 +2395,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2440,7 +2440,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2604,7 +2604,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2649,7 +2649,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2694,7 +2694,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2851,7 +2851,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2896,7 +2896,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -2941,7 +2941,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3098,7 +3098,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3142,7 +3142,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3186,7 +3186,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3353,7 +3353,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3398,7 +3398,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3443,7 +3443,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3613,7 +3613,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3658,7 +3658,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3703,7 +3703,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3871,7 +3871,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3916,7 +3916,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -3961,7 +3961,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -4131,7 +4131,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -4176,7 +4176,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -4221,7 +4221,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -4389,7 +4389,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -4434,7 +4434,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -4479,7 +4479,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -4626,7 +4626,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -4658,7 +4658,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -4690,7 +4690,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -4816,7 +4816,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -4848,7 +4848,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -4880,7 +4880,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -5011,7 +5011,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
@@ -5048,7 +5048,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
@@ -5085,7 +5085,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
@@ -5226,7 +5226,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
@@ -5263,7 +5263,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
@@ -5300,7 +5300,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
@@ -5421,7 +5421,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -5542,7 +5542,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -5663,7 +5663,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -5856,7 +5856,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -5972,7 +5972,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -6592,7 +6592,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -6911,7 +6911,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -6955,7 +6955,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -6999,7 +6999,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7119,7 +7119,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7231,7 +7231,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7344,7 +7344,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7505,7 +7505,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7550,7 +7550,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7595,7 +7595,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7762,7 +7762,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7807,7 +7807,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -7852,7 +7852,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -8402,7 +8402,7 @@ class LRORetrysOperations:
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -8447,7 +8447,7 @@ class LRORetrysOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -8492,7 +8492,7 @@ class LRORetrysOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -8656,7 +8656,7 @@ class LRORetrysOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -8701,7 +8701,7 @@ class LRORetrysOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -8746,7 +8746,7 @@ class LRORetrysOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -8880,7 +8880,7 @@ class LRORetrysOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200, 202
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -9581,7 +9581,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -9624,7 +9624,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -9667,7 +9667,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -9830,7 +9830,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -9874,7 +9874,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -9918,7 +9918,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -10081,7 +10081,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -10125,7 +10125,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -10169,7 +10169,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -10332,7 +10332,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -10376,7 +10376,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -10420,7 +10420,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11367,7 +11367,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11410,7 +11410,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11453,7 +11453,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11617,7 +11617,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11662,7 +11662,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11707,7 +11707,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11878,7 +11878,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11923,7 +11923,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -11968,7 +11968,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -12657,7 +12657,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -12701,7 +12701,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -12745,7 +12745,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -12909,7 +12909,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -12954,7 +12954,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -12999,7 +12999,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -13170,7 +13170,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -13215,7 +13215,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -13260,7 +13260,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -14248,7 +14248,7 @@ class LROsCustomHeaderOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -14294,7 +14294,7 @@ class LROsCustomHeaderOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -14340,7 +14340,7 @@ class LROsCustomHeaderOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -14512,7 +14512,7 @@ class LROsCustomHeaderOperations:
                 }
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -14558,7 +14558,7 @@ class LROsCustomHeaderOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
@@ -14604,7 +14604,7 @@ class LROsCustomHeaderOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200, 201
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.

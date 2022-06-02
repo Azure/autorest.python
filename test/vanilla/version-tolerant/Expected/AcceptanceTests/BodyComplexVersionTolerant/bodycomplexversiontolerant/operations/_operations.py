@@ -908,7 +908,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -1063,7 +1063,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -1117,7 +1117,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -1171,7 +1171,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -1225,7 +1225,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -1297,7 +1297,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0,  # Optional.
                     "field2": 0  # Optional.
                 }
@@ -1443,7 +1443,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0,  # Optional.
                     "field2": 0  # Optional.
                 }
@@ -1590,7 +1590,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0.0,  # Optional.
                     "field2": 0.0  # Optional.
                 }
@@ -1736,7 +1736,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0.0,  # Optional.
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
                       0.0  # Optional.
@@ -1888,7 +1888,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field_false": bool,  # Optional.
                     "field_true": bool  # Optional.
                 }
@@ -2034,7 +2034,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "empty": "str",  # Optional.
                     "field": "str",  # Optional.
                     "null": "str"  # Optional.
@@ -2183,7 +2183,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "2020-02-20",  # Optional.
                     "leap": "2020-02-20"  # Optional.
                 }
@@ -2330,7 +2330,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "2020-02-20 00:00:00",  # Optional.
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
@@ -2479,7 +2479,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "2020-02-20 00:00:00",  # Optional.
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
@@ -2628,7 +2628,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "1 day, 0:00:00"  # Optional.
                 }
         """
@@ -2773,7 +2773,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
@@ -2938,7 +2938,7 @@ class ArrayOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "array": [
                         "str"  # Optional.
                     ]
@@ -3089,7 +3089,7 @@ class ArrayOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "array": [
                         "str"  # Optional.
                     ]
@@ -3237,7 +3237,7 @@ class ArrayOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "array": [
                         "str"  # Optional.
                     ]
@@ -3307,7 +3307,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -3459,7 +3459,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -3608,7 +3608,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -3660,7 +3660,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -3730,7 +3730,7 @@ class InheritanceOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "breed": "str",  # Optional.
                     "color": "str",  # Optional.
                     "hates": [
@@ -3919,7 +3919,7 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "length": 0.0,  # Required.
                     "siblings": [
                         ...
@@ -4171,7 +4171,7 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "species": "str",  # Optional.
                     fish.type: fish.type
                 }
@@ -4224,7 +4224,7 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "fishes": [
                         {
                             "species": "str",  # Optional.
@@ -4299,7 +4299,7 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "fishes": [
                         {
                             "species": "str",  # Optional.
@@ -4373,7 +4373,7 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
@@ -4578,7 +4578,7 @@ class PolymorphismOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
@@ -4616,7 +4616,7 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
@@ -4652,7 +4652,7 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
@@ -4928,7 +4928,7 @@ class PolymorphicrecursiveOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "length": 0.0,  # Required.
                     "siblings": [
                         ...
@@ -5258,7 +5258,7 @@ class ReadonlypropertyOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "size": 0  # Optional.
                 }
@@ -5422,7 +5422,7 @@ class FlattencomplexOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "helper": {
                         "propBH1": "str"  # Optional.
                     },

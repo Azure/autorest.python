@@ -206,7 +206,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "isAShowHorse": bool,  # Optional.
                     "name": "str"  # Required.
                 }
@@ -354,7 +354,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "name": "str"  # Required.
                 }
         """
@@ -499,7 +499,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "hisses": bool,  # Optional.
                     "meows": bool  # Optional.
                 }
@@ -647,7 +647,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
@@ -802,7 +802,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "eatsMiceYet": bool,  # Optional.
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
