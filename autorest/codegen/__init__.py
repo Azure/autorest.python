@@ -10,7 +10,7 @@ from pathlib import Path
 import yaml
 
 
-from .. import Plugin
+from .. import Plugin, PluginAutorest
 from .models.client import Client, Config
 from .models.code_model import CodeModel
 from .models import build_type
@@ -170,8 +170,8 @@ class CodeGenerator(Plugin):
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
-        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
-        license_header = self._autorestapi.get_value("header-text")
+        azure_arm = self.options.get("azure-arm", False)
+        license_header = self.options["header-text"]
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
             license_header = (
@@ -181,37 +181,24 @@ class CodeGenerator(Plugin):
             license_header += "\n# --------------------------------------------------------------------------"
 
         low_level_client = cast(
-            bool, self._autorestapi.get_boolean_value("low-level-client", False)
+            bool, self.options.get("low-level-client", False)
         )
         version_tolerant = cast(
-            bool, self._autorestapi.get_boolean_value("version-tolerant", False)
+            bool, self.options.get("version-tolerant", True)
         )
-        show_operations = self._autorestapi.get_boolean_value(
-            "show-operations", not low_level_client
-        )
+        show_operations = self.options.get("show-operations", not low_level_client)
         models_mode_default = (
             "none" if low_level_client or version_tolerant else "msrest"
         )
-        python3_only = cast(
-            bool,
-            self._autorestapi.get_boolean_value(
-                "python3-only", low_level_client or version_tolerant
-            ),
-        )
+        python3_only: bool = self.options.get("python3-only", bool(low_level_client or version_tolerant))
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
-            "head_as_boolean": self._autorestapi.get_boolean_value(
-                "head-as-boolean", False
-            ),
+            "head_as_boolean": self.options.get("head-as-boolean", True),
             "license_header": license_header,
-            "keep_version_file": self._autorestapi.get_boolean_value(
-                "keep-version-file", False
-            ),
-            "no_async": self._autorestapi.get_boolean_value("no-async", False),
-            "no_namespace_folders": self._autorestapi.get_boolean_value(
-                "no-namespace-folders", False
-            ),
+            "keep_version_file": self.options.get("keep-version-file", False),
+            "no_async": self.options.get("no-async", False),
+            "no_namespace_folders": self.options.get("no-namespace-folders", False),
             "basic_setup_py": self._autorestapi.get_boolean_value(
                 "basic-setup-py", False
             ),
@@ -310,6 +297,30 @@ class CodeGenerator(Plugin):
         serializer.serialize()
 
         return True
+
+class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
+
+    def get_options(self) -> Dict[str, Any]:
+        options = {
+            "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
+            "header-text": self._autorestapi.get_value("header-text"),
+            "low-level-client": self._autorestapi.get_boolean_value("low-level-client", False),
+            "version-tolerant": self._autorestapi.get_boolean_value("version-tolerant", False),
+            "show-operations": self._autorestapi.get_boolean_value("show-operations"),
+            "python3-only": self._autorestapi.get_boolean_value("python3-only"),
+            "head-as-boolean": self._autorestapi.get_boolean_value(
+                "head-as-boolean", False
+            ),
+            "keep-version-file": self._autorestapi.get_boolean_value(
+                "keep-version-file"
+            ),
+            "no-async": self._autorestapi.get_boolean_value("no-async"),
+            "no-namespace-folders": self._autorestapi.get_boolean_value(
+                "no-namespace-folders"            ),
+        }
+        return {
+            k: v for k, v in options.items() if v is not None
+        }
 
 
 def main(yaml_model_file: str) -> None:
