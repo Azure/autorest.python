@@ -11,13 +11,7 @@ from typing import IO, Optional, TYPE_CHECKING, Union, overload
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -30,8 +24,7 @@ from .._vendor import _convert_request
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -1629,9 +1622,11 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace
     def get_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get null array value.
@@ -1641,16 +1636,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+            template_url=self.get_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1658,7 +1656,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1668,18 +1668,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_null.metadata = {"url": "/array/null"}  # type: ignore
+    get_null.metadata = {'url': "/array/null"}  # type: ignore
+
 
     @distributed_trace
     def get_invalid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get invalid array [1, 2, 3.
@@ -1689,16 +1691,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
+            template_url=self.get_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1706,7 +1711,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1716,18 +1723,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_invalid.metadata = {"url": "/array/invalid"}  # type: ignore
+    get_invalid.metadata = {'url': "/array/invalid"}  # type: ignore
+
 
     @distributed_trace
     def get_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get empty array value [].
@@ -1737,16 +1746,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+            template_url=self.get_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1754,7 +1766,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1764,14 +1778,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_empty.metadata = {"url": "/array/empty"}  # type: ignore
+    get_empty.metadata = {'url': "/array/empty"}  # type: ignore
+
 
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -1813,6 +1828,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1832,14 +1848,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1847,13 +1865,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[str]")
+            _json = self._serialize.body(array_body, '[str]')
 
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_empty.metadata["url"],
+            template_url=self.put_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1861,7 +1879,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1874,11 +1894,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/array/empty"}  # type: ignore
+    put_empty.metadata = {'url': "/array/empty"}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_tfft(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[bool]
         """Get boolean array value [true, false, false, true].
@@ -1888,16 +1910,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
 
+        
         request = build_get_boolean_tfft_request(
-            template_url=self.get_boolean_tfft.metadata["url"],
+            template_url=self.get_boolean_tfft.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1905,7 +1930,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1915,14 +1942,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[bool]", pipeline_response)
+        deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
+    get_boolean_tfft.metadata = {'url': "/array/prim/boolean/tfft"}  # type: ignore
+
 
     @overload
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
@@ -1964,6 +1992,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1983,14 +2012,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1998,13 +2029,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[bool]")
+            _json = self._serialize.body(array_body, '[bool]')
 
         request = build_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_boolean_tfft.metadata["url"],
+            template_url=self.put_boolean_tfft.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2012,7 +2043,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2025,11 +2058,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
+    put_boolean_tfft.metadata = {'url': "/array/prim/boolean/tfft"}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[bool]
         """Get boolean array value [true, null, false].
@@ -2039,16 +2074,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
 
+        
         request = build_get_boolean_invalid_null_request(
-            template_url=self.get_boolean_invalid_null.metadata["url"],
+            template_url=self.get_boolean_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2056,7 +2094,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2066,18 +2106,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[bool]", pipeline_response)
+        deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_boolean_invalid_null.metadata = {"url": "/array/prim/boolean/true.null.false"}  # type: ignore
+    get_boolean_invalid_null.metadata = {'url': "/array/prim/boolean/true.null.false"}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[bool]
         """Get boolean array value [true, 'boolean', false].
@@ -2087,16 +2129,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
 
+        
         request = build_get_boolean_invalid_string_request(
-            template_url=self.get_boolean_invalid_string.metadata["url"],
+            template_url=self.get_boolean_invalid_string.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2104,7 +2149,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2114,18 +2161,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[bool]", pipeline_response)
+        deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_boolean_invalid_string.metadata = {"url": "/array/prim/boolean/true.boolean.false"}  # type: ignore
+    get_boolean_invalid_string.metadata = {'url': "/array/prim/boolean/true.boolean.false"}  # type: ignore
+
 
     @distributed_trace
     def get_integer_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, -1, 3, 300].
@@ -2135,16 +2184,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_integer_valid_request(
-            template_url=self.get_integer_valid.metadata["url"],
+            template_url=self.get_integer_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2152,7 +2204,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2162,14 +2216,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
+    get_integer_valid.metadata = {'url': "/array/prim/integer/1.-1.3.300"}  # type: ignore
+
 
     @overload
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
@@ -2211,6 +2266,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -2230,14 +2286,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -2245,13 +2303,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[int]")
+            _json = self._serialize.body(array_body, '[int]')
 
         request = build_put_integer_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_integer_valid.metadata["url"],
+            template_url=self.put_integer_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2259,7 +2317,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2272,11 +2332,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
+    put_integer_valid.metadata = {'url': "/array/prim/integer/1.-1.3.300"}  # type: ignore
+
 
     @distributed_trace
     def get_int_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, null, 0].
@@ -2286,16 +2348,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_int_invalid_null_request(
-            template_url=self.get_int_invalid_null.metadata["url"],
+            template_url=self.get_int_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2303,7 +2368,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2313,18 +2380,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_int_invalid_null.metadata = {"url": "/array/prim/integer/1.null.zero"}  # type: ignore
+    get_int_invalid_null.metadata = {'url': "/array/prim/integer/1.null.zero"}  # type: ignore
+
 
     @distributed_trace
     def get_int_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, 'integer', 0].
@@ -2334,16 +2403,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_int_invalid_string_request(
-            template_url=self.get_int_invalid_string.metadata["url"],
+            template_url=self.get_int_invalid_string.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2351,7 +2423,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2361,18 +2435,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_int_invalid_string.metadata = {"url": "/array/prim/integer/1.integer.0"}  # type: ignore
+    get_int_invalid_string.metadata = {'url': "/array/prim/integer/1.integer.0"}  # type: ignore
+
 
     @distributed_trace
     def get_long_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, -1, 3, 300].
@@ -2382,16 +2458,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_long_valid_request(
-            template_url=self.get_long_valid.metadata["url"],
+            template_url=self.get_long_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2399,7 +2478,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2409,14 +2490,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
+    get_long_valid.metadata = {'url': "/array/prim/long/1.-1.3.300"}  # type: ignore
+
 
     @overload
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
@@ -2458,6 +2540,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -2477,14 +2560,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -2492,13 +2577,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[int]")
+            _json = self._serialize.body(array_body, '[int]')
 
         request = build_put_long_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_long_valid.metadata["url"],
+            template_url=self.put_long_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2506,7 +2591,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2519,11 +2606,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
+    put_long_valid.metadata = {'url': "/array/prim/long/1.-1.3.300"}  # type: ignore
+
 
     @distributed_trace
     def get_long_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get long array value [1, null, 0].
@@ -2533,16 +2622,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_long_invalid_null_request(
-            template_url=self.get_long_invalid_null.metadata["url"],
+            template_url=self.get_long_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2550,7 +2642,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2560,18 +2654,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_long_invalid_null.metadata = {"url": "/array/prim/long/1.null.zero"}  # type: ignore
+    get_long_invalid_null.metadata = {'url': "/array/prim/long/1.null.zero"}  # type: ignore
+
 
     @distributed_trace
     def get_long_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get long array value [1, 'integer', 0].
@@ -2581,16 +2677,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
 
+        
         request = build_get_long_invalid_string_request(
-            template_url=self.get_long_invalid_string.metadata["url"],
+            template_url=self.get_long_invalid_string.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2598,7 +2697,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2608,18 +2709,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[int]", pipeline_response)
+        deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_long_invalid_string.metadata = {"url": "/array/prim/long/1.integer.0"}  # type: ignore
+    get_long_invalid_string.metadata = {'url': "/array/prim/long/1.integer.0"}  # type: ignore
+
 
     @distributed_trace
     def get_float_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0, -0.01, 1.2e20].
@@ -2629,16 +2732,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
 
+        
         request = build_get_float_valid_request(
-            template_url=self.get_float_valid.metadata["url"],
+            template_url=self.get_float_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2646,7 +2752,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2656,14 +2764,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[float]", pipeline_response)
+        deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
+    get_float_valid.metadata = {'url': "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
+
 
     @overload
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
@@ -2705,6 +2814,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -2724,14 +2834,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -2739,13 +2851,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[float]")
+            _json = self._serialize.body(array_body, '[float]')
 
         request = build_put_float_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_float_valid.metadata["url"],
+            template_url=self.put_float_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2753,7 +2865,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2766,11 +2880,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
+    put_float_valid.metadata = {'url': "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
+
 
     @distributed_trace
     def get_float_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0.0, null, -1.2e20].
@@ -2780,16 +2896,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
 
+        
         request = build_get_float_invalid_null_request(
-            template_url=self.get_float_invalid_null.metadata["url"],
+            template_url=self.get_float_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2797,7 +2916,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2807,18 +2928,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[float]", pipeline_response)
+        deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_float_invalid_null.metadata = {"url": "/array/prim/float/0.0-null-1.2e20"}  # type: ignore
+    get_float_invalid_null.metadata = {'url': "/array/prim/float/0.0-null-1.2e20"}  # type: ignore
+
 
     @distributed_trace
     def get_float_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get boolean array value [1.0, 'number', 0.0].
@@ -2828,16 +2951,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
 
+        
         request = build_get_float_invalid_string_request(
-            template_url=self.get_float_invalid_string.metadata["url"],
+            template_url=self.get_float_invalid_string.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2845,7 +2971,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2855,18 +2983,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[float]", pipeline_response)
+        deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_float_invalid_string.metadata = {"url": "/array/prim/float/1.number.0"}  # type: ignore
+    get_float_invalid_string.metadata = {'url': "/array/prim/float/1.number.0"}  # type: ignore
+
 
     @distributed_trace
     def get_double_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0, -0.01, 1.2e20].
@@ -2876,16 +3006,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
 
+        
         request = build_get_double_valid_request(
-            template_url=self.get_double_valid.metadata["url"],
+            template_url=self.get_double_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2893,7 +3026,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2903,14 +3038,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[float]", pipeline_response)
+        deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
+    get_double_valid.metadata = {'url': "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
+
 
     @overload
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
@@ -2952,6 +3088,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -2971,14 +3108,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -2986,13 +3125,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[float]")
+            _json = self._serialize.body(array_body, '[float]')
 
         request = build_put_double_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_double_valid.metadata["url"],
+            template_url=self.put_double_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3000,7 +3139,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3013,11 +3154,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
+    put_double_valid.metadata = {'url': "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
+
 
     @distributed_trace
     def get_double_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0.0, null, -1.2e20].
@@ -3027,16 +3170,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
 
+        
         request = build_get_double_invalid_null_request(
-            template_url=self.get_double_invalid_null.metadata["url"],
+            template_url=self.get_double_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3044,7 +3190,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3054,18 +3202,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[float]", pipeline_response)
+        deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_double_invalid_null.metadata = {"url": "/array/prim/double/0.0-null-1.2e20"}  # type: ignore
+    get_double_invalid_null.metadata = {'url': "/array/prim/double/0.0-null-1.2e20"}  # type: ignore
+
 
     @distributed_trace
     def get_double_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get boolean array value [1.0, 'number', 0.0].
@@ -3075,16 +3225,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
 
+        
         request = build_get_double_invalid_string_request(
-            template_url=self.get_double_invalid_string.metadata["url"],
+            template_url=self.get_double_invalid_string.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3092,7 +3245,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3102,18 +3257,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[float]", pipeline_response)
+        deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_double_invalid_string.metadata = {"url": "/array/prim/double/1.number.0"}  # type: ignore
+    get_double_invalid_string.metadata = {'url': "/array/prim/double/1.number.0"}  # type: ignore
+
 
     @distributed_trace
     def get_string_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get string array value ['foo1', 'foo2', 'foo3'].
@@ -3123,16 +3280,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
 
+        
         request = build_get_string_valid_request(
-            template_url=self.get_string_valid.metadata["url"],
+            template_url=self.get_string_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3140,7 +3300,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3150,14 +3312,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+        deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
+    get_string_valid.metadata = {'url': "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
+
 
     @overload
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
@@ -3199,6 +3362,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -3218,14 +3382,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -3233,13 +3399,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[str]")
+            _json = self._serialize.body(array_body, '[str]')
 
         request = build_put_string_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_string_valid.metadata["url"],
+            template_url=self.put_string_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3247,7 +3413,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3260,11 +3428,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
+    put_string_valid.metadata = {'url': "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace
     def get_enum_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[Union[str, "_models.FooEnum"]]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
@@ -3274,16 +3444,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, "_models.FooEnum"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "_models.FooEnum"]]]
 
+        
         request = build_get_enum_valid_request(
-            template_url=self.get_enum_valid.metadata["url"],
+            template_url=self.get_enum_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3291,7 +3464,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3301,14 +3476,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+        deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
+    get_enum_valid.metadata = {'url': "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @overload
     def put_enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -3350,6 +3526,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_enum_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -3369,14 +3546,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -3384,13 +3563,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[str]")
+            _json = self._serialize.body(array_body, '[str]')
 
         request = build_put_enum_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_enum_valid.metadata["url"],
+            template_url=self.put_enum_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3398,7 +3577,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3411,11 +3592,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
+    put_enum_valid.metadata = {'url': "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace
     def get_string_enum_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[Union[str, "_models.Enum0"]]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
@@ -3425,16 +3608,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, "_models.Enum0"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "_models.Enum0"]]]
 
+        
         request = build_get_string_enum_valid_request(
-            template_url=self.get_string_enum_valid.metadata["url"],
+            template_url=self.get_string_enum_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3442,7 +3628,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3452,14 +3640,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+        deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
+    get_string_enum_valid.metadata = {'url': "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @overload
     def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -3501,6 +3690,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -3520,14 +3710,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -3535,13 +3727,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[str]")
+            _json = self._serialize.body(array_body, '[str]')
 
         request = build_put_string_enum_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_string_enum_valid.metadata["url"],
+            template_url=self.put_string_enum_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3549,7 +3741,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3562,11 +3756,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
+    put_string_enum_valid.metadata = {'url': "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace
     def get_string_with_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get string array value ['foo', null, 'foo2'].
@@ -3576,16 +3772,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
 
+        
         request = build_get_string_with_null_request(
-            template_url=self.get_string_with_null.metadata["url"],
+            template_url=self.get_string_with_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3593,7 +3792,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3603,18 +3804,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+        deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string_with_null.metadata = {"url": "/array/prim/string/foo.null.foo2"}  # type: ignore
+    get_string_with_null.metadata = {'url': "/array/prim/string/foo.null.foo2"}  # type: ignore
+
 
     @distributed_trace
     def get_string_with_invalid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get string array value ['foo', 123, 'foo2'].
@@ -3624,16 +3827,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
 
+        
         request = build_get_string_with_invalid_request(
-            template_url=self.get_string_with_invalid.metadata["url"],
+            template_url=self.get_string_with_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3641,7 +3847,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3651,18 +3859,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+        deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string_with_invalid.metadata = {"url": "/array/prim/string/foo.123.foo2"}  # type: ignore
+    get_string_with_invalid.metadata = {'url': "/array/prim/string/foo.123.foo2"}  # type: ignore
+
 
     @distributed_trace
     def get_uuid_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
@@ -3673,16 +3883,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
 
+        
         request = build_get_uuid_valid_request(
-            template_url=self.get_uuid_valid.metadata["url"],
+            template_url=self.get_uuid_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3690,7 +3903,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3700,14 +3915,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+        deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
+    get_uuid_valid.metadata = {'url': "/array/prim/uuid/valid"}  # type: ignore
+
 
     @overload
     def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
@@ -3751,6 +3967,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -3771,14 +3988,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -3786,13 +4005,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[str]")
+            _json = self._serialize.body(array_body, '[str]')
 
         request = build_put_uuid_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_uuid_valid.metadata["url"],
+            template_url=self.put_uuid_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3800,7 +4019,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3813,11 +4034,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
+    put_uuid_valid.metadata = {'url': "/array/prim/uuid/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_uuid_invalid_chars(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
@@ -3827,16 +4050,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
 
+        
         request = build_get_uuid_invalid_chars_request(
-            template_url=self.get_uuid_invalid_chars.metadata["url"],
+            template_url=self.get_uuid_invalid_chars.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3844,7 +4070,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3854,18 +4082,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+        deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_uuid_invalid_chars.metadata = {"url": "/array/prim/uuid/invalidchars"}  # type: ignore
+    get_uuid_invalid_chars.metadata = {'url': "/array/prim/uuid/invalidchars"}  # type: ignore
+
 
     @distributed_trace
     def get_date_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.date]
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
@@ -3875,16 +4105,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
 
+        
         request = build_get_date_valid_request(
-            template_url=self.get_date_valid.metadata["url"],
+            template_url=self.get_date_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3892,7 +4125,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3902,14 +4137,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[date]", pipeline_response)
+        deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
+    get_date_valid.metadata = {'url': "/array/prim/date/valid"}  # type: ignore
+
 
     @overload
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
@@ -3951,6 +4187,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -3970,14 +4207,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -3985,13 +4224,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[date]")
+            _json = self._serialize.body(array_body, '[date]')
 
         request = build_put_date_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date_valid.metadata["url"],
+            template_url=self.put_date_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -3999,7 +4238,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4012,11 +4253,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
+    put_date_valid.metadata = {'url': "/array/prim/date/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_date_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.date]
         """Get date array value ['2012-01-01', null, '1776-07-04'].
@@ -4026,16 +4269,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
 
+        
         request = build_get_date_invalid_null_request(
-            template_url=self.get_date_invalid_null.metadata["url"],
+            template_url=self.get_date_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4043,7 +4289,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4053,18 +4301,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[date]", pipeline_response)
+        deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_invalid_null.metadata = {"url": "/array/prim/date/invalidnull"}  # type: ignore
+    get_date_invalid_null.metadata = {'url': "/array/prim/date/invalidnull"}  # type: ignore
+
 
     @distributed_trace
     def get_date_invalid_chars(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.date]
         """Get date array value ['2011-03-22', 'date'].
@@ -4074,16 +4324,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
 
+        
         request = build_get_date_invalid_chars_request(
-            template_url=self.get_date_invalid_chars.metadata["url"],
+            template_url=self.get_date_invalid_chars.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4091,7 +4344,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4101,18 +4356,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[date]", pipeline_response)
+        deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_invalid_chars.metadata = {"url": "/array/prim/date/invalidchars"}  # type: ignore
+    get_date_invalid_chars.metadata = {'url': "/array/prim/date/invalidchars"}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
@@ -4123,16 +4380,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
 
+        
         request = build_get_date_time_valid_request(
-            template_url=self.get_date_time_valid.metadata["url"],
+            template_url=self.get_date_time_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4140,7 +4400,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4150,14 +4412,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[iso-8601]", pipeline_response)
+        deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
+    get_date_time_valid.metadata = {'url': "/array/prim/date-time/valid"}  # type: ignore
+
 
     @overload
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
@@ -4201,6 +4464,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -4221,14 +4485,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -4236,13 +4502,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[iso-8601]")
+            _json = self._serialize.body(array_body, '[iso-8601]')
 
         request = build_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date_time_valid.metadata["url"],
+            template_url=self.put_date_time_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4250,7 +4516,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4263,11 +4531,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
+    put_date_time_valid.metadata = {'url': "/array/prim/date-time/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date array value ['2000-12-01t00:00:01z', null].
@@ -4277,16 +4547,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
 
+        
         request = build_get_date_time_invalid_null_request(
-            template_url=self.get_date_time_invalid_null.metadata["url"],
+            template_url=self.get_date_time_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4294,7 +4567,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4304,18 +4579,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[iso-8601]", pipeline_response)
+        deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_invalid_null.metadata = {"url": "/array/prim/date-time/invalidnull"}  # type: ignore
+    get_date_time_invalid_null.metadata = {'url': "/array/prim/date-time/invalidnull"}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_invalid_chars(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
@@ -4325,16 +4602,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
 
+        
         request = build_get_date_time_invalid_chars_request(
-            template_url=self.get_date_time_invalid_chars.metadata["url"],
+            template_url=self.get_date_time_invalid_chars.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4342,7 +4622,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4352,18 +4634,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[iso-8601]", pipeline_response)
+        deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_invalid_chars.metadata = {"url": "/array/prim/date-time/invalidchars"}  # type: ignore
+    get_date_time_invalid_chars.metadata = {'url': "/array/prim/date-time/invalidchars"}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_rfc1123_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
@@ -4374,16 +4658,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
 
+        
         request = build_get_date_time_rfc1123_valid_request(
-            template_url=self.get_date_time_rfc1123_valid.metadata["url"],
+            template_url=self.get_date_time_rfc1123_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4391,7 +4678,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4401,14 +4690,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[rfc-1123]", pipeline_response)
+        deserialized = self._deserialize('[rfc-1123]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
+    get_date_time_rfc1123_valid.metadata = {'url': "/array/prim/date-time-rfc1123/valid"}  # type: ignore
+
 
     @overload
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
@@ -4452,6 +4742,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -4472,14 +4763,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -4487,13 +4780,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[rfc-1123]")
+            _json = self._serialize.body(array_body, '[rfc-1123]')
 
         request = build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date_time_rfc1123_valid.metadata["url"],
+            template_url=self.put_date_time_rfc1123_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4501,7 +4794,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4514,11 +4809,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
+    put_date_time_rfc1123_valid.metadata = {'url': "/array/prim/date-time-rfc1123/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_duration_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.timedelta]
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
@@ -4528,16 +4825,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.timedelta]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.timedelta]]
 
+        
         request = build_get_duration_valid_request(
-            template_url=self.get_duration_valid.metadata["url"],
+            template_url=self.get_duration_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4545,7 +4845,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4555,14 +4857,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[duration]", pipeline_response)
+        deserialized = self._deserialize('[duration]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
+    get_duration_valid.metadata = {'url': "/array/prim/duration/valid"}  # type: ignore
+
 
     @overload
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
@@ -4604,6 +4907,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -4623,14 +4927,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -4638,13 +4944,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[duration]")
+            _json = self._serialize.body(array_body, '[duration]')
 
         request = build_put_duration_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_duration_valid.metadata["url"],
+            template_url=self.put_duration_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4652,7 +4958,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4665,11 +4973,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
+    put_duration_valid.metadata = {'url': "/array/prim/duration/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_byte_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[bytes]
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
@@ -4680,16 +4990,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes]]
 
+        
         request = build_get_byte_valid_request(
-            template_url=self.get_byte_valid.metadata["url"],
+            template_url=self.get_byte_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4697,7 +5010,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4707,14 +5022,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[bytearray]", pipeline_response)
+        deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
+    get_byte_valid.metadata = {'url': "/array/prim/byte/valid"}  # type: ignore
+
 
     @overload
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
@@ -4758,6 +5074,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -4778,14 +5095,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -4793,13 +5112,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[bytearray]")
+            _json = self._serialize.body(array_body, '[bytearray]')
 
         request = build_put_byte_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_byte_valid.metadata["url"],
+            template_url=self.put_byte_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4807,7 +5126,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4820,11 +5141,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
+    put_byte_valid.metadata = {'url': "/array/prim/byte/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_byte_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[bytes]
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
@@ -4834,16 +5157,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes]]
 
+        
         request = build_get_byte_invalid_null_request(
-            template_url=self.get_byte_invalid_null.metadata["url"],
+            template_url=self.get_byte_invalid_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4851,7 +5177,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4861,18 +5189,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[bytearray]", pipeline_response)
+        deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_byte_invalid_null.metadata = {"url": "/array/prim/byte/invalidnull"}  # type: ignore
+    get_byte_invalid_null.metadata = {'url': "/array/prim/byte/invalidnull"}  # type: ignore
+
 
     @distributed_trace
     def get_base64_url(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[bytes]
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
@@ -4883,16 +5213,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes]]
 
+        
         request = build_get_base64_url_request(
-            template_url=self.get_base64_url.metadata["url"],
+            template_url=self.get_base64_url.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4900,7 +5233,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4910,18 +5245,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[base64]", pipeline_response)
+        deserialized = self._deserialize('[base64]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
+    get_base64_url.metadata = {'url': "/array/prim/base64url/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_complex_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[_models.Product]
         """Get array of complex type null value.
@@ -4931,16 +5268,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~bodyarray.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[_models.Product]]
 
+        
         request = build_get_complex_null_request(
-            template_url=self.get_complex_null.metadata["url"],
+            template_url=self.get_complex_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4948,7 +5288,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4958,18 +5300,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
+    get_complex_null.metadata = {'url': "/array/complex/null"}  # type: ignore
+
 
     @distributed_trace
     def get_complex_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[_models.Product]
         """Get empty array of complex type [].
@@ -4979,16 +5323,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~bodyarray.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[_models.Product]]
 
+        
         request = build_get_complex_empty_request(
-            template_url=self.get_complex_empty.metadata["url"],
+            template_url=self.get_complex_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -4996,7 +5343,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5006,18 +5355,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
+    get_complex_empty.metadata = {'url': "/array/complex/empty"}  # type: ignore
+
 
     @distributed_trace
     def get_complex_item_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[_models.Product]
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
@@ -5028,16 +5379,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~bodyarray.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[_models.Product]]
 
+        
         request = build_get_complex_item_null_request(
-            template_url=self.get_complex_item_null.metadata["url"],
+            template_url=self.get_complex_item_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5045,7 +5399,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5055,18 +5411,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
+    get_complex_item_null.metadata = {'url': "/array/complex/itemnull"}  # type: ignore
+
 
     @distributed_trace
     def get_complex_item_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[_models.Product]
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
@@ -5077,16 +5435,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~bodyarray.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[_models.Product]]
 
+        
         request = build_get_complex_item_empty_request(
-            template_url=self.get_complex_item_empty.metadata["url"],
+            template_url=self.get_complex_item_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5094,7 +5455,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5104,18 +5467,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
+    get_complex_item_empty.metadata = {'url': "/array/complex/itemempty"}  # type: ignore
+
 
     @distributed_trace
     def get_complex_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[_models.Product]
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
@@ -5126,16 +5491,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[~bodyarray.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[_models.Product]]
 
+        
         request = build_get_complex_valid_request(
-            template_url=self.get_complex_valid.metadata["url"],
+            template_url=self.get_complex_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5143,7 +5511,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5153,14 +5523,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
+    get_complex_valid.metadata = {'url': "/array/complex/valid"}  # type: ignore
+
 
     @overload
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
@@ -5204,6 +5575,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -5224,14 +5596,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -5239,13 +5613,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[Product]")
+            _json = self._serialize.body(array_body, '[Product]')
 
         request = build_put_complex_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_complex_valid.metadata["url"],
+            template_url=self.put_complex_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5253,7 +5627,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5266,11 +5642,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
+    put_complex_valid.metadata = {'url': "/array/complex/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_array_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get a null array.
@@ -5280,16 +5658,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
 
+        
         request = build_get_array_null_request(
-            template_url=self.get_array_null.metadata["url"],
+            template_url=self.get_array_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5297,7 +5678,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5307,18 +5690,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[[str]]", pipeline_response)
+        deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_null.metadata = {"url": "/array/array/null"}  # type: ignore
+    get_array_null.metadata = {'url': "/array/array/null"}  # type: ignore
+
 
     @distributed_trace
     def get_array_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an empty array [].
@@ -5328,16 +5713,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
 
+        
         request = build_get_array_empty_request(
-            template_url=self.get_array_empty.metadata["url"],
+            template_url=self.get_array_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5345,7 +5733,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5355,18 +5745,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[[str]]", pipeline_response)
+        deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_empty.metadata = {"url": "/array/array/empty"}  # type: ignore
+    get_array_empty.metadata = {'url': "/array/array/empty"}  # type: ignore
+
 
     @distributed_trace
     def get_array_item_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
@@ -5376,16 +5768,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
 
+        
         request = build_get_array_item_null_request(
-            template_url=self.get_array_item_null.metadata["url"],
+            template_url=self.get_array_item_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5393,7 +5788,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5403,18 +5800,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[[str]]", pipeline_response)
+        deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_item_null.metadata = {"url": "/array/array/itemnull"}  # type: ignore
+    get_array_item_null.metadata = {'url': "/array/array/itemnull"}  # type: ignore
+
 
     @distributed_trace
     def get_array_item_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
@@ -5424,16 +5823,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
 
+        
         request = build_get_array_item_empty_request(
-            template_url=self.get_array_item_empty.metadata["url"],
+            template_url=self.get_array_item_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5441,7 +5843,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5451,18 +5855,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[[str]]", pipeline_response)
+        deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_item_empty.metadata = {"url": "/array/array/itemempty"}  # type: ignore
+    get_array_item_empty.metadata = {'url': "/array/array/itemempty"}  # type: ignore
+
 
     @distributed_trace
     def get_array_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
@@ -5472,16 +5878,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
 
+        
         request = build_get_array_valid_request(
-            template_url=self.get_array_valid.metadata["url"],
+            template_url=self.get_array_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5489,7 +5898,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5499,14 +5910,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[[str]]", pipeline_response)
+        deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
+    get_array_valid.metadata = {'url': "/array/array/valid"}  # type: ignore
+
 
     @overload
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
@@ -5548,6 +5960,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -5567,14 +5980,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -5582,13 +5997,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[[str]]")
+            _json = self._serialize.body(array_body, '[[str]]')
 
         request = build_put_array_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_array_valid.metadata["url"],
+            template_url=self.put_array_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5596,7 +6011,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5609,11 +6026,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
+    put_array_valid.metadata = {'url': "/array/array/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries with value null.
@@ -5623,16 +6042,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
 
+        
         request = build_get_dictionary_null_request(
-            template_url=self.get_dictionary_null.metadata["url"],
+            template_url=self.get_dictionary_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5640,7 +6062,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5650,18 +6074,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[{str}]", pipeline_response)
+        deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_null.metadata = {"url": "/array/dictionary/null"}  # type: ignore
+    get_dictionary_null.metadata = {'url': "/array/dictionary/null"}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [].
@@ -5671,16 +6097,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
 
+        
         request = build_get_dictionary_empty_request(
-            template_url=self.get_dictionary_empty.metadata["url"],
+            template_url=self.get_dictionary_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5688,7 +6117,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5698,18 +6129,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[{str}]", pipeline_response)
+        deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_empty.metadata = {"url": "/array/dictionary/empty"}  # type: ignore
+    get_dictionary_empty.metadata = {'url': "/array/dictionary/empty"}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_item_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -5720,16 +6153,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
 
+        
         request = build_get_dictionary_item_null_request(
-            template_url=self.get_dictionary_item_null.metadata["url"],
+            template_url=self.get_dictionary_item_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5737,7 +6173,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5747,18 +6185,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[{str}]", pipeline_response)
+        deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_item_null.metadata = {"url": "/array/dictionary/itemnull"}  # type: ignore
+    get_dictionary_item_null.metadata = {'url': "/array/dictionary/itemnull"}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_item_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -5769,16 +6209,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
 
+        
         request = build_get_dictionary_item_empty_request(
-            template_url=self.get_dictionary_item_empty.metadata["url"],
+            template_url=self.get_dictionary_item_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5786,7 +6229,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5796,18 +6241,20 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[{str}]", pipeline_response)
+        deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_item_empty.metadata = {"url": "/array/dictionary/itemempty"}  # type: ignore
+    get_dictionary_item_empty.metadata = {'url': "/array/dictionary/itemempty"}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -5818,16 +6265,19 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
 
+        
         request = build_get_dictionary_valid_request(
-            template_url=self.get_dictionary_valid.metadata["url"],
+            template_url=self.get_dictionary_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5835,7 +6285,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5845,14 +6297,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[{str}]", pipeline_response)
+        deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
+    get_dictionary_valid.metadata = {'url': "/array/dictionary/valid"}  # type: ignore
+
 
     @overload
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
@@ -5896,6 +6349,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
         self,
@@ -5916,14 +6370,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -5931,13 +6387,13 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
-            _json = self._serialize.body(array_body, "[{str}]")
+            _json = self._serialize.body(array_body, '[{str}]')
 
         request = build_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_dictionary_valid.metadata["url"],
+            template_url=self.put_dictionary_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -5945,7 +6401,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5958,4 +6416,5 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
+    put_dictionary_valid.metadata = {'url': "/array/dictionary/valid"}  # type: ignore
+

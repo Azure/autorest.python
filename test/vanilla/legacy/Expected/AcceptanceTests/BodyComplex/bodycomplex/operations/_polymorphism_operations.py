@@ -10,13 +10,7 @@ from typing import IO, Optional, TYPE_CHECKING, Union, overload
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -29,8 +23,7 @@ from .._vendor import _convert_request
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -265,9 +258,11 @@ class PolymorphismOperations(object):
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace
     def get_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.Fish
         """Get complex types that are polymorphic.
@@ -277,16 +272,19 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Fish]
 
+        
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
+            template_url=self.get_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -294,7 +292,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -304,14 +304,15 @@ class PolymorphismOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Fish", pipeline_response)
+        deserialized = self._deserialize('Fish', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
+    get_valid.metadata = {'url': "/complex/polymorphism/valid"}  # type: ignore
+
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -416,6 +417,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
+
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -468,14 +470,16 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -483,13 +487,13 @@ class PolymorphismOperations(object):
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "Fish")
+            _json = self._serialize.body(complex_body, 'Fish')
 
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata["url"],
+            template_url=self.put_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -497,7 +501,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -510,11 +516,13 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
+    put_valid.metadata = {'url': "/complex/polymorphism/valid"}  # type: ignore
+
 
     @distributed_trace
     def get_dot_syntax(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.DotFish
         """Get complex types that are polymorphic, JSON key contains a dot.
@@ -524,16 +532,19 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFish
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFish]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DotFish]
 
+        
         request = build_get_dot_syntax_request(
-            template_url=self.get_dot_syntax.metadata["url"],
+            template_url=self.get_dot_syntax.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -541,7 +552,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -551,18 +564,20 @@ class PolymorphismOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DotFish", pipeline_response)
+        deserialized = self._deserialize('DotFish', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}  # type: ignore
+    get_dot_syntax.metadata = {'url': "/complex/polymorphism/dotsyntax"}  # type: ignore
+
 
     @distributed_trace
     def get_composed_with_discriminator(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.DotFishMarket
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -574,16 +589,19 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFishMarket]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DotFishMarket]
 
+        
         request = build_get_composed_with_discriminator_request(
-            template_url=self.get_composed_with_discriminator.metadata["url"],
+            template_url=self.get_composed_with_discriminator.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -591,7 +609,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -601,18 +621,20 @@ class PolymorphismOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DotFishMarket", pipeline_response)
+        deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
+    get_composed_with_discriminator.metadata = {'url': "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
+
 
     @distributed_trace
     def get_composed_without_discriminator(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.DotFishMarket
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -624,16 +646,19 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFishMarket]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DotFishMarket]
 
+        
         request = build_get_composed_without_discriminator_request(
-            template_url=self.get_composed_without_discriminator.metadata["url"],
+            template_url=self.get_composed_without_discriminator.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -641,7 +666,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -651,18 +678,20 @@ class PolymorphismOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DotFishMarket", pipeline_response)
+        deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
+    get_composed_without_discriminator.metadata = {'url': "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
+
 
     @distributed_trace
     def get_complicated(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.Salmon
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -673,16 +702,19 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Salmon]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Salmon]
 
+        
         request = build_get_complicated_request(
-            template_url=self.get_complicated.metadata["url"],
+            template_url=self.get_complicated.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -690,7 +722,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -700,14 +734,15 @@ class PolymorphismOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Salmon", pipeline_response)
+        deserialized = self._deserialize('Salmon', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
+    get_complicated.metadata = {'url': "/complex/polymorphism/complicated"}  # type: ignore
+
 
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -751,6 +786,7 @@ class PolymorphismOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
         self,
@@ -771,14 +807,16 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -786,13 +824,13 @@ class PolymorphismOperations(object):
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "Salmon")
+            _json = self._serialize.body(complex_body, 'Salmon')
 
         request = build_put_complicated_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_complicated.metadata["url"],
+            template_url=self.put_complicated.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -800,7 +838,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -813,7 +853,8 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
+    put_complicated.metadata = {'url': "/complex/polymorphism/complicated"}  # type: ignore
+
 
     @overload
     def put_missing_discriminator(
@@ -855,6 +896,7 @@ class PolymorphismOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_missing_discriminator(
         self,
@@ -874,14 +916,16 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Salmon]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Salmon]
 
         content_type = content_type or "application/json"
         _json = None
@@ -889,13 +933,13 @@ class PolymorphismOperations(object):
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "Salmon")
+            _json = self._serialize.body(complex_body, 'Salmon')
 
         request = build_put_missing_discriminator_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_missing_discriminator.metadata["url"],
+            template_url=self.put_missing_discriminator.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -903,7 +947,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -913,14 +959,15 @@ class PolymorphismOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Salmon", pipeline_response)
+        deserialized = self._deserialize('Salmon', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
+    put_missing_discriminator.metadata = {'url': "/complex/polymorphism/missingdiscriminator"}  # type: ignore
+
 
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
@@ -1016,6 +1063,7 @@ class PolymorphismOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1062,14 +1110,16 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1077,13 +1127,13 @@ class PolymorphismOperations(object):
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "Fish")
+            _json = self._serialize.body(complex_body, 'Fish')
 
         request = build_put_valid_missing_required_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid_missing_required.metadata["url"],
+            template_url=self.put_valid_missing_required.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1091,7 +1141,9 @@ class PolymorphismOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1104,4 +1156,5 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid_missing_required.metadata = {"url": "/complex/polymorphism/missingrequired/invalid"}  # type: ignore
+    put_valid_missing_required.metadata = {'url': "/complex/polymorphism/missingrequired/invalid"}  # type: ignore
+

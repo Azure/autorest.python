@@ -265,6 +265,7 @@ def _build_flags(
         "namespace": namespace,
         "client-side-validation": client_side_validation,
         "black": True,
+        "generate-sample": True,
     }
     if override_flags:
         flags.update(override_flags)

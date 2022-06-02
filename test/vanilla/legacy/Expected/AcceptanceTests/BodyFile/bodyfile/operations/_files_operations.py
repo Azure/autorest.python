@@ -10,13 +10,7 @@ from typing import Iterator, TYPE_CHECKING
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -29,8 +23,7 @@ from .._vendor import _convert_request
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -122,9 +115,11 @@ class FilesOperations(object):
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace
     def get_file(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Iterator[bytes]
         """Get file.
@@ -134,16 +129,19 @@ class FilesOperations(object):
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Iterator[bytes]]
 
+        
         request = build_get_file_request(
-            template_url=self.get_file.metadata["url"],
+            template_url=self.get_file.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -151,7 +149,9 @@ class FilesOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=True, **kwargs
+            request,
+            stream=True,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -168,11 +168,13 @@ class FilesOperations(object):
 
         return deserialized
 
-    get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
+    get_file.metadata = {'url': "/files/stream/nonempty"}  # type: ignore
+
 
     @distributed_trace
     def get_file_large(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Iterator[bytes]
         """Get a large file.
@@ -182,16 +184,19 @@ class FilesOperations(object):
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Iterator[bytes]]
 
+        
         request = build_get_file_large_request(
-            template_url=self.get_file_large.metadata["url"],
+            template_url=self.get_file_large.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -199,7 +204,9 @@ class FilesOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=True, **kwargs
+            request,
+            stream=True,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -216,11 +223,13 @@ class FilesOperations(object):
 
         return deserialized
 
-    get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
+    get_file_large.metadata = {'url': "/files/stream/verylarge"}  # type: ignore
+
 
     @distributed_trace
     def get_empty_file(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Iterator[bytes]
         """Get empty file.
@@ -230,16 +239,19 @@ class FilesOperations(object):
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Iterator[bytes]]
 
+        
         request = build_get_empty_file_request(
-            template_url=self.get_empty_file.metadata["url"],
+            template_url=self.get_empty_file.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -247,7 +259,9 @@ class FilesOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=True, **kwargs
+            request,
+            stream=True,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -264,4 +278,5 @@ class FilesOperations(object):
 
         return deserialized
 
-    get_empty_file.metadata = {"url": "/files/stream/empty"}  # type: ignore
+    get_empty_file.metadata = {'url': "/files/stream/empty"}  # type: ignore
+

@@ -24,7 +24,10 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -32,8 +35,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get("status", None)
-        self.message = kwargs.get("message", None)
+        self.status = kwargs.get('status', None)
+        self.message = kwargs.get('message', None)
 
 
 class Product(msrest.serialization.Model):
@@ -50,7 +53,10 @@ class Product(msrest.serialization.Model):
         "string": {"key": "string", "type": "str"},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword integer:
         :paramtype integer: int
@@ -58,5 +64,5 @@ class Product(msrest.serialization.Model):
         :paramtype string: str
         """
         super(Product, self).__init__(**kwargs)
-        self.integer = kwargs.get("integer", None)
-        self.string = kwargs.get("string", None)
+        self.integer = kwargs.get('integer', None)
+        self.string = kwargs.get('string', None)

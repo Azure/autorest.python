@@ -8,13 +8,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar, Union
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -23,14 +17,9 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._formdataurlencoded_operations import (
-    build_partial_constant_body_request,
-    build_update_pet_with_form_request,
-)
-
-T = TypeVar("T")
+from ...operations._formdataurlencoded_operations import build_partial_constant_body_request, build_update_pet_with_form_request
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class FormdataurlencodedOperations:
     """
@@ -50,6 +39,7 @@ class FormdataurlencodedOperations:
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
 
     @distributed_trace_async
     async def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
@@ -85,16 +75,16 @@ class FormdataurlencodedOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/x-www-form-urlencoded"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         # Construct form data
         _data = {
@@ -109,7 +99,7 @@ class FormdataurlencodedOperations:
             pet_id=pet_id,
             content_type=content_type,
             data=_data,
-            template_url=self.update_pet_with_form.metadata["url"],
+            template_url=self.update_pet_with_form.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -117,7 +107,9 @@ class FormdataurlencodedOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -129,11 +121,15 @@ class FormdataurlencodedOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
+    update_pet_with_form.metadata = {'url': "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
+
 
     @distributed_trace_async
     async def partial_constant_body(  # pylint: disable=inconsistent-return-statements
-        self, service: str, access_token: str, **kwargs: Any
+        self,
+        service: str,
+        access_token: str,
+        **kwargs: Any
     ) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
@@ -151,17 +147,17 @@ class FormdataurlencodedOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: str
-        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/x-www-form-urlencoded"))  # type: str
+        grant_type = kwargs.pop('grant_type', "access_token")  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         # Construct form data
         _data = {
@@ -173,7 +169,7 @@ class FormdataurlencodedOperations:
         request = build_partial_constant_body_request(
             content_type=content_type,
             data=_data,
-            template_url=self.partial_constant_body.metadata["url"],
+            template_url=self.partial_constant_body.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -181,7 +177,9 @@ class FormdataurlencodedOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -193,4 +191,5 @@ class FormdataurlencodedOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}  # type: ignore
+    partial_constant_body.metadata = {'url': "/formsdataurlencoded/partialConstantBody"}  # type: ignore
+

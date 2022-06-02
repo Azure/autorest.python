@@ -23,7 +23,6 @@ if TYPE_CHECKING:
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-
 class BodyFormsDataURLEncoded(object):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
@@ -49,6 +48,7 @@ class BodyFormsDataURLEncoded(object):  # pylint: disable=client-accepts-api-ver
         self.formdataurlencoded = FormdataurlencodedOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+
 
     def _send_request(
         self,

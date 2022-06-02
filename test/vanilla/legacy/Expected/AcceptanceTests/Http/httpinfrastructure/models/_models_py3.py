@@ -23,7 +23,12 @@ class MyException(msrest.serialization.Model):
         "status_code": {"key": "statusCode", "type": "str"},
     }
 
-    def __init__(self, *, status_code: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status_code: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status_code:
         :paramtype status_code: str
@@ -46,7 +51,13 @@ class B(MyException):
         "text_status_code": {"key": "textStatusCode", "type": "str"},
     }
 
-    def __init__(self, *, status_code: Optional[str] = None, text_status_code: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status_code: Optional[str] = None,
+        text_status_code: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status_code:
         :paramtype status_code: str
@@ -68,7 +79,12 @@ class C(msrest.serialization.Model):
         "http_code": {"key": "httpCode", "type": "str"},
     }
 
-    def __init__(self, *, http_code: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        http_code: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword http_code:
         :paramtype http_code: str
@@ -88,7 +104,12 @@ class D(msrest.serialization.Model):
         "http_status_code": {"key": "httpStatusCode", "type": "str"},
     }
 
-    def __init__(self, *, http_status_code: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        http_status_code: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword http_status_code:
         :paramtype http_status_code: str
@@ -111,7 +132,13 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int

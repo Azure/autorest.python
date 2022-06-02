@@ -23,7 +23,6 @@ if TYPE_CHECKING:
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-
 class AutoRestSwaggerBATFileService(object):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
@@ -46,7 +45,10 @@ class AutoRestSwaggerBATFileService(object):  # pylint: disable=client-accepts-a
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.files = FilesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.files = FilesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+
 
     def _send_request(
         self,

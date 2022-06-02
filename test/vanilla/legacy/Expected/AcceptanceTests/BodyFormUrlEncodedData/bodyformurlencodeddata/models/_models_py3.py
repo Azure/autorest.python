@@ -16,9 +16,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    msrest.serialization.Model
-):
+class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(msrest.serialization.Model):
     """Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     All required parameters must be populated in order to send to Azure.
@@ -38,9 +36,9 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
     """
 
     _validation = {
-        "pet_type": {"required": True},
-        "pet_food": {"required": True},
-        "pet_age": {"required": True},
+        'pet_type': {'required': True},
+        'pet_food': {'required': True},
+        'pet_age': {'required': True},
     }
 
     _attribute_map = {
@@ -83,9 +81,7 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         self.status = status
 
 
-class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    msrest.serialization.Model
-):
+class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(msrest.serialization.Model):
     """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -102,9 +98,9 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
     """
 
     _validation = {
-        "grant_type": {"required": True, "constant": True},
-        "service": {"required": True},
-        "aad_access_token": {"required": True},
+        'grant_type': {'required': True, 'constant': True},
+        'service': {'required': True},
+        'aad_access_token': {'required': True},
     }
 
     _attribute_map = {
@@ -115,7 +111,13 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 
     grant_type = "access_token"
 
-    def __init__(self, *, service: str, aad_access_token: str, **kwargs):
+    def __init__(
+        self,
+        *,
+        service: str,
+        aad_access_token: str,
+        **kwargs
+    ):
         """
         :keyword service: Indicates the name of your Azure container registry. Required.
         :paramtype service: str

@@ -18,7 +18,6 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from .operations import EnumOperations, StringOperations
 
-
 class AutoRestSwaggerBATService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
@@ -30,7 +29,11 @@ class AutoRestSwaggerBATService:  # pylint: disable=client-accepts-api-version-k
     :type base_url: str
     """
 
-    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestSwaggerBATServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -38,10 +41,19 @@ class AutoRestSwaggerBATService:  # pylint: disable=client-accepts-api-version-k
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.string = StringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.enum = EnumOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

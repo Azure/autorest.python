@@ -11,13 +11,7 @@ from typing import IO, Optional, TYPE_CHECKING, Union, overload
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -30,8 +24,7 @@ from .._vendor import _convert_request
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -573,9 +566,11 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace
     def get_int(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.IntWrapper
         """Get complex types with integer properties.
@@ -585,16 +580,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.IntWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.IntWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.IntWrapper]
 
+        
         request = build_get_int_request(
-            template_url=self.get_int.metadata["url"],
+            template_url=self.get_int.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -602,7 +600,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -612,14 +612,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("IntWrapper", pipeline_response)
+        deserialized = self._deserialize('IntWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
+    get_int.metadata = {'url': "/complex/primitive/integer"}  # type: ignore
+
 
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
@@ -661,6 +662,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_int(  # pylint: disable=inconsistent-return-statements
         self,
@@ -680,14 +682,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -695,13 +699,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "IntWrapper")
+            _json = self._serialize.body(complex_body, 'IntWrapper')
 
         request = build_put_int_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_int.metadata["url"],
+            template_url=self.put_int.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -709,7 +713,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -722,11 +728,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
+    put_int.metadata = {'url': "/complex/primitive/integer"}  # type: ignore
+
 
     @distributed_trace
     def get_long(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.LongWrapper
         """Get complex types with long properties.
@@ -736,16 +744,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.LongWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.LongWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.LongWrapper]
 
+        
         request = build_get_long_request(
-            template_url=self.get_long.metadata["url"],
+            template_url=self.get_long.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -753,7 +764,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -763,14 +776,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("LongWrapper", pipeline_response)
+        deserialized = self._deserialize('LongWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
+    get_long.metadata = {'url': "/complex/primitive/long"}  # type: ignore
+
 
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
@@ -812,6 +826,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_long(  # pylint: disable=inconsistent-return-statements
         self,
@@ -832,14 +847,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -847,13 +864,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "LongWrapper")
+            _json = self._serialize.body(complex_body, 'LongWrapper')
 
         request = build_put_long_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_long.metadata["url"],
+            template_url=self.put_long.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -861,7 +878,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -874,11 +893,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
+    put_long.metadata = {'url': "/complex/primitive/long"}  # type: ignore
+
 
     @distributed_trace
     def get_float(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.FloatWrapper
         """Get complex types with float properties.
@@ -888,16 +909,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.FloatWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.FloatWrapper]
 
+        
         request = build_get_float_request(
-            template_url=self.get_float.metadata["url"],
+            template_url=self.get_float.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -905,7 +929,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -915,14 +941,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("FloatWrapper", pipeline_response)
+        deserialized = self._deserialize('FloatWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
+    get_float.metadata = {'url': "/complex/primitive/float"}  # type: ignore
+
 
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
@@ -964,6 +991,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_float(  # pylint: disable=inconsistent-return-statements
         self,
@@ -983,14 +1011,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -998,13 +1028,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "FloatWrapper")
+            _json = self._serialize.body(complex_body, 'FloatWrapper')
 
         request = build_put_float_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_float.metadata["url"],
+            template_url=self.put_float.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1012,7 +1042,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1025,11 +1057,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
+    put_float.metadata = {'url': "/complex/primitive/float"}  # type: ignore
+
 
     @distributed_trace
     def get_double(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.DoubleWrapper
         """Get complex types with double properties.
@@ -1039,16 +1073,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DoubleWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DoubleWrapper]
 
+        
         request = build_get_double_request(
-            template_url=self.get_double.metadata["url"],
+            template_url=self.get_double.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1056,7 +1093,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1066,14 +1105,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DoubleWrapper", pipeline_response)
+        deserialized = self._deserialize('DoubleWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
+    get_double.metadata = {'url': "/complex/primitive/double"}  # type: ignore
+
 
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
@@ -1117,6 +1157,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_double(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1138,14 +1179,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1153,13 +1196,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "DoubleWrapper")
+            _json = self._serialize.body(complex_body, 'DoubleWrapper')
 
         request = build_put_double_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_double.metadata["url"],
+            template_url=self.put_double.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1167,7 +1210,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1180,11 +1225,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
+    put_double.metadata = {'url': "/complex/primitive/double"}  # type: ignore
+
 
     @distributed_trace
     def get_bool(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.BooleanWrapper
         """Get complex types with bool properties.
@@ -1194,16 +1241,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.BooleanWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.BooleanWrapper]
 
+        
         request = build_get_bool_request(
-            template_url=self.get_bool.metadata["url"],
+            template_url=self.get_bool.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1211,7 +1261,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1221,14 +1273,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("BooleanWrapper", pipeline_response)
+        deserialized = self._deserialize('BooleanWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
+    get_bool.metadata = {'url': "/complex/primitive/bool"}  # type: ignore
+
 
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
@@ -1270,6 +1323,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_bool(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1289,14 +1343,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1304,13 +1360,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "BooleanWrapper")
+            _json = self._serialize.body(complex_body, 'BooleanWrapper')
 
         request = build_put_bool_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_bool.metadata["url"],
+            template_url=self.put_bool.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1318,7 +1374,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1331,11 +1389,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
+    put_bool.metadata = {'url': "/complex/primitive/bool"}  # type: ignore
+
 
     @distributed_trace
     def get_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.StringWrapper
         """Get complex types with string properties.
@@ -1345,16 +1405,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.StringWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StringWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.StringWrapper]
 
+        
         request = build_get_string_request(
-            template_url=self.get_string.metadata["url"],
+            template_url=self.get_string.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1362,7 +1425,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1372,14 +1437,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("StringWrapper", pipeline_response)
+        deserialized = self._deserialize('StringWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
+    get_string.metadata = {'url': "/complex/primitive/string"}  # type: ignore
+
 
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
@@ -1421,6 +1487,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_string(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1441,14 +1508,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1456,13 +1525,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "StringWrapper")
+            _json = self._serialize.body(complex_body, 'StringWrapper')
 
         request = build_put_string_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_string.metadata["url"],
+            template_url=self.put_string.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1470,7 +1539,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1483,11 +1554,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
+    put_string.metadata = {'url': "/complex/primitive/string"}  # type: ignore
+
 
     @distributed_trace
     def get_date(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.DateWrapper
         """Get complex types with date properties.
@@ -1497,16 +1570,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.DateWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DateWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DateWrapper]
 
+        
         request = build_get_date_request(
-            template_url=self.get_date.metadata["url"],
+            template_url=self.get_date.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1514,7 +1590,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1524,14 +1602,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DateWrapper", pipeline_response)
+        deserialized = self._deserialize('DateWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
+    get_date.metadata = {'url': "/complex/primitive/date"}  # type: ignore
+
 
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
@@ -1573,6 +1652,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_date(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1593,14 +1673,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1608,13 +1690,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "DateWrapper")
+            _json = self._serialize.body(complex_body, 'DateWrapper')
 
         request = build_put_date_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date.metadata["url"],
+            template_url=self.put_date.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1622,7 +1704,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1635,11 +1719,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
+    put_date.metadata = {'url': "/complex/primitive/date"}  # type: ignore
+
 
     @distributed_trace
     def get_date_time(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.DatetimeWrapper
         """Get complex types with datetime properties.
@@ -1649,16 +1735,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DatetimeWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DatetimeWrapper]
 
+        
         request = build_get_date_time_request(
-            template_url=self.get_date_time.metadata["url"],
+            template_url=self.get_date_time.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1666,7 +1755,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1676,14 +1767,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DatetimeWrapper", pipeline_response)
+        deserialized = self._deserialize('DatetimeWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
+    get_date_time.metadata = {'url': "/complex/primitive/datetime"}  # type: ignore
+
 
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1727,6 +1819,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_date_time(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1747,14 +1840,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1762,13 +1857,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "DatetimeWrapper")
+            _json = self._serialize.body(complex_body, 'DatetimeWrapper')
 
         request = build_put_date_time_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date_time.metadata["url"],
+            template_url=self.put_date_time.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1776,7 +1871,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1789,11 +1886,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
+    put_date_time.metadata = {'url': "/complex/primitive/datetime"}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_rfc1123(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.Datetimerfc1123Wrapper
         """Get complex types with datetimeRfc1123 properties.
@@ -1803,16 +1902,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Datetimerfc1123Wrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Datetimerfc1123Wrapper]
 
+        
         request = build_get_date_time_rfc1123_request(
-            template_url=self.get_date_time_rfc1123.metadata["url"],
+            template_url=self.get_date_time_rfc1123.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1820,7 +1922,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1830,14 +1934,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Datetimerfc1123Wrapper", pipeline_response)
+        deserialized = self._deserialize('Datetimerfc1123Wrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
+    get_date_time_rfc1123.metadata = {'url': "/complex/primitive/datetimerfc1123"}  # type: ignore
+
 
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1881,6 +1986,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
         self,
@@ -1901,14 +2007,16 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -1916,13 +2024,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
+            _json = self._serialize.body(complex_body, 'Datetimerfc1123Wrapper')
 
         request = build_put_date_time_rfc1123_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date_time_rfc1123.metadata["url"],
+            template_url=self.put_date_time_rfc1123.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1930,7 +2038,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1943,11 +2053,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
+    put_date_time_rfc1123.metadata = {'url': "/complex/primitive/datetimerfc1123"}  # type: ignore
+
 
     @distributed_trace
     def get_duration(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.DurationWrapper
         """Get complex types with duration properties.
@@ -1957,16 +2069,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DurationWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DurationWrapper]
 
+        
         request = build_get_duration_request(
-            template_url=self.get_duration.metadata["url"],
+            template_url=self.get_duration.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1974,7 +2089,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1984,14 +2101,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DurationWrapper", pipeline_response)
+        deserialized = self._deserialize('DurationWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
+    get_duration.metadata = {'url': "/complex/primitive/duration"}  # type: ignore
+
 
     @distributed_trace
     def put_duration(  # pylint: disable=inconsistent-return-statements
@@ -2009,22 +2127,24 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         _complex_body = _models.DurationWrapper(field=field)
-        _json = self._serialize.body(_complex_body, "DurationWrapper")
+        _json = self._serialize.body(_complex_body, 'DurationWrapper')
 
         request = build_put_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_duration.metadata["url"],
+            template_url=self.put_duration.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2032,7 +2152,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2045,11 +2167,13 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
+    put_duration.metadata = {'url': "/complex/primitive/duration"}  # type: ignore
+
 
     @distributed_trace
     def get_byte(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.ByteWrapper
         """Get complex types with byte properties.
@@ -2059,16 +2183,19 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ByteWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ByteWrapper]
 
+        
         request = build_get_byte_request(
-            template_url=self.get_byte.metadata["url"],
+            template_url=self.get_byte.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2076,7 +2203,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2086,14 +2215,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("ByteWrapper", pipeline_response)
+        deserialized = self._deserialize('ByteWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
+    get_byte.metadata = {'url': "/complex/primitive/byte"}  # type: ignore
+
 
     @distributed_trace
     def put_byte(  # pylint: disable=inconsistent-return-statements
@@ -2111,22 +2241,24 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         _complex_body = _models.ByteWrapper(field=field)
-        _json = self._serialize.body(_complex_body, "ByteWrapper")
+        _json = self._serialize.body(_complex_body, 'ByteWrapper')
 
         request = build_put_byte_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_byte.metadata["url"],
+            template_url=self.put_byte.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -2134,7 +2266,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2147,4 +2281,5 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
+    put_byte.metadata = {'url': "/complex/primitive/byte"}  # type: ignore
+

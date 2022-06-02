@@ -8,13 +8,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar, Union
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -23,18 +17,9 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._enum_operations import (
-    build_get_not_expandable_request,
-    build_get_referenced_constant_request,
-    build_get_referenced_request,
-    build_put_not_expandable_request,
-    build_put_referenced_constant_request,
-    build_put_referenced_request,
-)
-
-T = TypeVar("T")
+from ...operations._enum_operations import build_get_not_expandable_request, build_get_referenced_constant_request, build_get_referenced_request, build_put_not_expandable_request, build_put_referenced_constant_request, build_put_referenced_request
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class EnumOperations:
     """
@@ -55,8 +40,12 @@ class EnumOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace_async
-    async def get_not_expandable(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_not_expandable(
+        self,
+        **kwargs: Any
+    ) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -64,16 +53,19 @@ class EnumOperations:
         :rtype: str or ~bodystring.models.Colors
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "_models.Colors"]]
 
+        
         request = build_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"],
+            template_url=self.get_not_expandable.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -81,7 +73,9 @@ class EnumOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -91,18 +85,21 @@ class EnumOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
+    get_not_expandable.metadata = {'url': "/string/enum/notExpandable"}  # type: ignore
+
 
     @distributed_trace_async
     async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
-        self, string_body: Union[str, "_models.Colors"], **kwargs: Any
+        self,
+        string_body: Union[str, "_models.Colors"],
+        **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -114,21 +111,23 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
-        _json = self._serialize.body(string_body, "str")
+        _json = self._serialize.body(string_body, 'str')
 
         request = build_put_not_expandable_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_not_expandable.metadata["url"],
+            template_url=self.put_not_expandable.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -136,7 +135,9 @@ class EnumOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -149,10 +150,14 @@ class EnumOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
+    put_not_expandable.metadata = {'url': "/string/enum/notExpandable"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_referenced(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_referenced(
+        self,
+        **kwargs: Any
+    ) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -160,16 +165,19 @@ class EnumOperations:
         :rtype: str or ~bodystring.models.Colors
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "_models.Colors"]]
 
+        
         request = build_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"],
+            template_url=self.get_referenced.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -177,7 +185,9 @@ class EnumOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -187,18 +197,21 @@ class EnumOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
+    get_referenced.metadata = {'url': "/string/enum/Referenced"}  # type: ignore
+
 
     @distributed_trace_async
     async def put_referenced(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: Union[str, "_models.Colors"], **kwargs: Any
+        self,
+        enum_string_body: Union[str, "_models.Colors"],
+        **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -210,21 +223,23 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
-        _json = self._serialize.body(enum_string_body, "str")
+        _json = self._serialize.body(enum_string_body, 'str')
 
         request = build_put_referenced_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced.metadata["url"],
+            template_url=self.put_referenced.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -232,7 +247,9 @@ class EnumOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -245,10 +262,14 @@ class EnumOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
+    put_referenced.metadata = {'url': "/string/enum/Referenced"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_referenced_constant(self, **kwargs: Any) -> _models.RefColorConstant:
+    async def get_referenced_constant(
+        self,
+        **kwargs: Any
+    ) -> _models.RefColorConstant:
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -256,16 +277,19 @@ class EnumOperations:
         :rtype: ~bodystring.models.RefColorConstant
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RefColorConstant]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.RefColorConstant]
 
+        
         request = build_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"],
+            template_url=self.get_referenced_constant.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -273,7 +297,9 @@ class EnumOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -283,18 +309,21 @@ class EnumOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("RefColorConstant", pipeline_response)
+        deserialized = self._deserialize('RefColorConstant', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
+    get_referenced_constant.metadata = {'url': "/string/enum/ReferencedConstant"}  # type: ignore
+
 
     @distributed_trace_async
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, field1: Optional[str] = None, **kwargs: Any
+        self,
+        field1: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
@@ -308,23 +337,25 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        color_constant = kwargs.pop("color_constant", "green-color")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        color_constant = kwargs.pop('color_constant', "green-color")  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
-        _json = self._serialize.body(_enum_string_body, "RefColorConstant")
+        _json = self._serialize.body(_enum_string_body, 'RefColorConstant')
 
         request = build_put_referenced_constant_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced_constant.metadata["url"],
+            template_url=self.put_referenced_constant.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -332,7 +363,9 @@ class EnumOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -345,4 +378,5 @@ class EnumOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
+    put_referenced_constant.metadata = {'url': "/string/enum/ReferencedConstant"}  # type: ignore
+

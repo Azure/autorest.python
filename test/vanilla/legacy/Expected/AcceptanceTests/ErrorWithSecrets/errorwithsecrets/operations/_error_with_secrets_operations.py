@@ -10,13 +10,7 @@ from typing import TYPE_CHECKING
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -29,8 +23,7 @@ from .._vendor import _convert_request
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -82,9 +75,11 @@ def build_get_error_with_secrets_request(
 
 # fmt: on
 class ErrorWithSecretsOperationsMixin(object):
+
     @distributed_trace
     def create_secret(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> _models.SecretResponse
         """Creates a secret.
@@ -94,16 +89,19 @@ class ErrorWithSecretsOperationsMixin(object):
         :rtype: ~errorwithsecrets.models.SecretResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SecretResponse]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.SecretResponse]
 
+        
         request = build_create_secret_request(
-            template_url=self.create_secret.metadata["url"],
+            template_url=self.create_secret.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -111,7 +109,9 @@ class ErrorWithSecretsOperationsMixin(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -121,18 +121,20 @@ class ErrorWithSecretsOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("SecretResponse", pipeline_response)
+        deserialized = self._deserialize('SecretResponse', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    create_secret.metadata = {"url": "/secrets/:create"}  # type: ignore
+    create_secret.metadata = {'url': "/secrets/:create"}  # type: ignore
+
 
     @distributed_trace
     def get_error_with_secrets(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Gets an error response containing secrets and PII.
@@ -142,16 +144,19 @@ class ErrorWithSecretsOperationsMixin(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get_error_with_secrets_request(
-            template_url=self.get_error_with_secrets.metadata["url"],
+            template_url=self.get_error_with_secrets.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -159,7 +164,9 @@ class ErrorWithSecretsOperationsMixin(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -172,4 +179,5 @@ class ErrorWithSecretsOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_error_with_secrets.metadata = {"url": "/secrets/error"}  # type: ignore
+    get_error_with_secrets.metadata = {'url': "/secrets/error"}  # type: ignore
+

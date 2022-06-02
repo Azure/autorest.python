@@ -10,13 +10,7 @@ from typing import Optional, TYPE_CHECKING
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -29,8 +23,7 @@ from .._vendor import _convert_request
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -272,9 +265,11 @@ class HttpRetryOperations(object):
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace
     def head408(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 408 status code, then 200 after retry.
@@ -284,16 +279,19 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_head408_request(
-            template_url=self.head408.metadata["url"],
+            template_url=self.head408.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -301,7 +299,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -314,7 +314,8 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    head408.metadata = {"url": "/http/retry/408"}  # type: ignore
+    head408.metadata = {'url': "/http/retry/408"}  # type: ignore
+
 
     @distributed_trace
     def put500(  # pylint: disable=inconsistent-return-statements
@@ -333,24 +334,26 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, 'bool')
         else:
             _json = None
 
         request = build_put500_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put500.metadata["url"],
+            template_url=self.put500.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -358,7 +361,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -371,7 +376,8 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put500.metadata = {"url": "/http/retry/500"}  # type: ignore
+    put500.metadata = {'url': "/http/retry/500"}  # type: ignore
+
 
     @distributed_trace
     def patch500(  # pylint: disable=inconsistent-return-statements
@@ -390,24 +396,26 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, 'bool')
         else:
             _json = None
 
         request = build_patch500_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch500.metadata["url"],
+            template_url=self.patch500.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -415,7 +423,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -428,11 +438,13 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
+    patch500.metadata = {'url': "/http/retry/500"}  # type: ignore
+
 
     @distributed_trace
     def get502(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 502 status code, then 200 after retry.
@@ -442,16 +454,19 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get502_request(
-            template_url=self.get502.metadata["url"],
+            template_url=self.get502.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -459,7 +474,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -472,11 +489,13 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get502.metadata = {"url": "/http/retry/502"}  # type: ignore
+    get502.metadata = {'url': "/http/retry/502"}  # type: ignore
+
 
     @distributed_trace
     def options502(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Return 502 status code, then 200 after retry.
@@ -486,16 +505,19 @@ class HttpRetryOperations(object):
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
 
+        
         request = build_options502_request(
-            template_url=self.options502.metadata["url"],
+            template_url=self.options502.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -503,7 +525,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -513,14 +537,15 @@ class HttpRetryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("bool", pipeline_response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    options502.metadata = {"url": "/http/retry/502"}  # type: ignore
+    options502.metadata = {'url': "/http/retry/502"}  # type: ignore
+
 
     @distributed_trace
     def post503(  # pylint: disable=inconsistent-return-statements
@@ -539,24 +564,26 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, 'bool')
         else:
             _json = None
 
         request = build_post503_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post503.metadata["url"],
+            template_url=self.post503.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -564,7 +591,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -577,7 +606,8 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post503.metadata = {"url": "/http/retry/503"}  # type: ignore
+    post503.metadata = {'url': "/http/retry/503"}  # type: ignore
+
 
     @distributed_trace
     def delete503(  # pylint: disable=inconsistent-return-statements
@@ -596,24 +626,26 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, 'bool')
         else:
             _json = None
 
         request = build_delete503_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete503.metadata["url"],
+            template_url=self.delete503.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -621,7 +653,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -634,7 +668,8 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
+    delete503.metadata = {'url': "/http/retry/503"}  # type: ignore
+
 
     @distributed_trace
     def put504(  # pylint: disable=inconsistent-return-statements
@@ -653,24 +688,26 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, 'bool')
         else:
             _json = None
 
         request = build_put504_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put504.metadata["url"],
+            template_url=self.put504.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -678,7 +715,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -691,7 +730,8 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put504.metadata = {"url": "/http/retry/504"}  # type: ignore
+    put504.metadata = {'url': "/http/retry/504"}  # type: ignore
+
 
     @distributed_trace
     def patch504(  # pylint: disable=inconsistent-return-statements
@@ -710,24 +750,26 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, 'bool')
         else:
             _json = None
 
         request = build_patch504_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch504.metadata["url"],
+            template_url=self.patch504.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -735,7 +777,9 @@ class HttpRetryOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -748,4 +792,5 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch504.metadata = {"url": "/http/retry/504"}  # type: ignore
+    patch504.metadata = {'url': "/http/retry/504"}  # type: ignore
+

@@ -8,13 +8,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar, Union
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -24,10 +18,8 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._float_operations import build_get_request, build_put_request
-
-T = TypeVar("T")
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class FloatOperations:
     """
@@ -46,8 +38,13 @@ class FloatOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace_async
-    async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs: Any) -> str:
+    async def put(
+        self,
+        input: Optional[Union[float, "_models.FloatEnum"]] = None,
+        **kwargs: Any
+    ) -> str:
         """Put a float enum.
 
         :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
@@ -58,24 +55,26 @@ class FloatOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
 
         if input is not None:
-            _json = self._serialize.body(input, "float")
+            _json = self._serialize.body(input, 'float')
         else:
             _json = None
 
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
+            template_url=self.put.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -83,7 +82,9 @@ class FloatOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -92,17 +93,21 @@ class FloatOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
+    put.metadata = {'url': "/nonStringEnums/float/put"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Union[float, "_models.FloatEnum"]:
+    async def get(
+        self,
+        **kwargs: Any
+    ) -> Union[float, "_models.FloatEnum"]:
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -110,16 +115,19 @@ class FloatOperations:
         :rtype: float or ~nonstringenums.models.FloatEnum
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
 
+        
         request = build_get_request(
-            template_url=self.get.metadata["url"],
+            template_url=self.get.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -127,7 +135,9 @@ class FloatOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -136,11 +146,12 @@ class FloatOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get.metadata = {"url": "/nonStringEnums/float/get"}  # type: ignore
+    get.metadata = {'url': "/nonStringEnums/float/get"}  # type: ignore
+

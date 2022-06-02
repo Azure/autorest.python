@@ -7,12 +7,8 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import (
-        Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
-    )
-    from ._models_py3 import (
-        PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
-    )
+    from ._models_py3 import Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema
+    from ._models_py3 import PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema
 except (SyntaxError, ImportError):
     from ._models import Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema  # type: ignore
     from ._models import PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema  # type: ignore
@@ -22,12 +18,11 @@ from ._body_forms_data_url_encoded_enums import PetType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
-
 __all__ = [
-    "Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    "PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    "PetFood",
-    "PetType",
+    'Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema',
+    'PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema',
+    'PetFood',
+    'PetType',
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

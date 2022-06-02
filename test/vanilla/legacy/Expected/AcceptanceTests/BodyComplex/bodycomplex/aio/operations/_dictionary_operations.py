@@ -8,13 +8,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -23,18 +17,9 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._dictionary_operations import (
-    build_get_empty_request,
-    build_get_not_provided_request,
-    build_get_null_request,
-    build_get_valid_request,
-    build_put_empty_request,
-    build_put_valid_request,
-)
-
-T = TypeVar("T")
+from ...operations._dictionary_operations import build_get_empty_request, build_get_not_provided_request, build_get_null_request, build_get_valid_request, build_put_empty_request, build_put_valid_request
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class DictionaryOperations:
     """
@@ -55,8 +40,12 @@ class DictionaryOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> _models.DictionaryWrapper:
+    async def get_valid(
+        self,
+        **kwargs: Any
+    ) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -64,16 +53,19 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DictionaryWrapper]
 
+        
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
+            template_url=self.get_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -81,7 +73,9 @@ class DictionaryOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -91,18 +85,21 @@ class DictionaryOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
+    get_valid.metadata = {'url': "/complex/dictionary/typed/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any
+        self,
+        default_program: Optional[Dict[str, str]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
@@ -113,22 +110,24 @@ class DictionaryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
-        _json = self._serialize.body(_complex_body, "DictionaryWrapper")
+        _json = self._serialize.body(_complex_body, 'DictionaryWrapper')
 
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
+            template_url=self.put_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -136,7 +135,9 @@ class DictionaryOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -149,10 +150,14 @@ class DictionaryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
+    put_valid.metadata = {'url': "/complex/dictionary/typed/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> _models.DictionaryWrapper:
+    async def get_empty(
+        self,
+        **kwargs: Any
+    ) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -160,16 +165,19 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DictionaryWrapper]
 
+        
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+            template_url=self.get_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -177,7 +185,9 @@ class DictionaryOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -187,18 +197,21 @@ class DictionaryOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
+    get_empty.metadata = {'url': "/complex/dictionary/typed/empty"}  # type: ignore
+
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any
+        self,
+        default_program: Optional[Dict[str, str]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
@@ -209,22 +222,24 @@ class DictionaryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
-        _json = self._serialize.body(_complex_body, "DictionaryWrapper")
+        _json = self._serialize.body(_complex_body, 'DictionaryWrapper')
 
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
+            template_url=self.put_empty.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -232,7 +247,9 @@ class DictionaryOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -245,10 +262,14 @@ class DictionaryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
+    put_empty.metadata = {'url': "/complex/dictionary/typed/empty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> _models.DictionaryWrapper:
+    async def get_null(
+        self,
+        **kwargs: Any
+    ) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -256,16 +277,19 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DictionaryWrapper]
 
+        
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+            template_url=self.get_null.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -273,7 +297,9 @@ class DictionaryOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -283,17 +309,21 @@ class DictionaryOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_null.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
+    get_null.metadata = {'url': "/complex/dictionary/typed/null"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> _models.DictionaryWrapper:
+    async def get_not_provided(
+        self,
+        **kwargs: Any
+    ) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -301,16 +331,19 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.DictionaryWrapper]
 
+        
         request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
+            template_url=self.get_not_provided.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -318,7 +351,9 @@ class DictionaryOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -328,11 +363,12 @@ class DictionaryOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_not_provided.metadata = {"url": "/complex/dictionary/typed/notprovided"}  # type: ignore
+    get_not_provided.metadata = {'url': "/complex/dictionary/typed/notprovided"}  # type: ignore
+

@@ -8,13 +8,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -24,10 +18,8 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._pet_operations import build_add_pet_request, build_get_by_pet_id_request
-
-T = TypeVar("T")
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class PetOperations:
     """
@@ -48,8 +40,13 @@ class PetOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> _models.Pet:
+    async def get_by_pet_id(
+        self,
+        pet_id: str,
+        **kwargs: Any
+    ) -> _models.Pet:
         """get pet by id.
 
         :param pet_id: Pet id. Required.
@@ -59,17 +56,20 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Pet]
 
+        
         request = build_get_by_pet_id_request(
             pet_id=pet_id,
-            template_url=self.get_by_pet_id.metadata["url"],
+            template_url=self.get_by_pet_id.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -77,7 +77,9 @@ class PetOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -86,18 +88,23 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Pet", pipeline_response)
+        deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
+    get_by_pet_id.metadata = {'url': "/extensibleenums/pet/{petId}"}  # type: ignore
+
 
     @overload
     async def add_pet(
-        self, pet_param: Optional[_models.Pet] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        pet_param: Optional[_models.Pet] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Pet:
         """add pet.
 
@@ -114,7 +121,11 @@ class PetOperations:
 
     @overload
     async def add_pet(
-        self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        pet_param: Optional[IO] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Pet:
         """add pet.
 
@@ -129,8 +140,13 @@ class PetOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional[Union[_models.Pet, IO]] = None, **kwargs: Any) -> _models.Pet:
+    async def add_pet(
+        self,
+        pet_param: Optional[Union[_models.Pet, IO]] = None,
+        **kwargs: Any
+    ) -> _models.Pet:
         """add pet.
 
         :param pet_param: pet param. Is either a model type or a IO type. Default value is None.
@@ -143,14 +159,16 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Pet]
 
         content_type = content_type or "application/json"
         _json = None
@@ -159,7 +177,7 @@ class PetOperations:
             _content = pet_param
         else:
             if pet_param is not None:
-                _json = self._serialize.body(pet_param, "Pet")
+                _json = self._serialize.body(pet_param, 'Pet')
             else:
                 _json = None
 
@@ -167,7 +185,7 @@ class PetOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.add_pet.metadata["url"],
+            template_url=self.add_pet.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -175,7 +193,9 @@ class PetOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -184,11 +204,12 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Pet", pipeline_response)
+        deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore
+    add_pet.metadata = {'url': "/extensibleenums/pet/addPet"}  # type: ignore
+

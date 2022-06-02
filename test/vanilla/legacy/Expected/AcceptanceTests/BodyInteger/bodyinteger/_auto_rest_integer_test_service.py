@@ -23,7 +23,6 @@ if TYPE_CHECKING:
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-
 class AutoRestIntegerTestService(object):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
@@ -46,7 +45,10 @@ class AutoRestIntegerTestService(object):  # pylint: disable=client-accepts-api-
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int = IntOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+
 
     def _send_request(
         self,

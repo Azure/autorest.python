@@ -26,7 +26,13 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -52,7 +58,13 @@ class Product(msrest.serialization.Model):
         "string": {"key": "string", "type": "str"},
     }
 
-    def __init__(self, *, integer: Optional[int] = None, string: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        integer: Optional[int] = None,
+        string: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword integer:
         :paramtype integer: int

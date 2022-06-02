@@ -8,13 +8,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar, Union
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -22,46 +16,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._multiple_responses_operations import (
-    build_get200_model201_model_default_error200_valid_request,
-    build_get200_model201_model_default_error201_valid_request,
-    build_get200_model201_model_default_error400_valid_request,
-    build_get200_model204_no_model_default_error200_valid_request,
-    build_get200_model204_no_model_default_error201_invalid_request,
-    build_get200_model204_no_model_default_error202_none_request,
-    build_get200_model204_no_model_default_error204_valid_request,
-    build_get200_model204_no_model_default_error400_valid_request,
-    build_get200_model_a200_invalid_request,
-    build_get200_model_a200_none_request,
-    build_get200_model_a200_valid_request,
-    build_get200_model_a201_model_c404_model_d_default_error200_valid_request,
-    build_get200_model_a201_model_c404_model_d_default_error201_valid_request,
-    build_get200_model_a201_model_c404_model_d_default_error400_valid_request,
-    build_get200_model_a201_model_c404_model_d_default_error404_valid_request,
-    build_get200_model_a202_valid_request,
-    build_get200_model_a400_invalid_request,
-    build_get200_model_a400_none_request,
-    build_get200_model_a400_valid_request,
-    build_get202_none204_none_default_error202_none_request,
-    build_get202_none204_none_default_error204_none_request,
-    build_get202_none204_none_default_error400_valid_request,
-    build_get202_none204_none_default_none202_invalid_request,
-    build_get202_none204_none_default_none204_none_request,
-    build_get202_none204_none_default_none400_invalid_request,
-    build_get202_none204_none_default_none400_none_request,
-    build_get_default_model_a200_none_request,
-    build_get_default_model_a200_valid_request,
-    build_get_default_model_a400_none_request,
-    build_get_default_model_a400_valid_request,
-    build_get_default_none200_invalid_request,
-    build_get_default_none200_none_request,
-    build_get_default_none400_invalid_request,
-    build_get_default_none400_none_request,
-)
-
-T = TypeVar("T")
+from ...operations._multiple_responses_operations import build_get200_model201_model_default_error200_valid_request, build_get200_model201_model_default_error201_valid_request, build_get200_model201_model_default_error400_valid_request, build_get200_model204_no_model_default_error200_valid_request, build_get200_model204_no_model_default_error201_invalid_request, build_get200_model204_no_model_default_error202_none_request, build_get200_model204_no_model_default_error204_valid_request, build_get200_model204_no_model_default_error400_valid_request, build_get200_model_a200_invalid_request, build_get200_model_a200_none_request, build_get200_model_a200_valid_request, build_get200_model_a201_model_c404_model_d_default_error200_valid_request, build_get200_model_a201_model_c404_model_d_default_error201_valid_request, build_get200_model_a201_model_c404_model_d_default_error400_valid_request, build_get200_model_a201_model_c404_model_d_default_error404_valid_request, build_get200_model_a202_valid_request, build_get200_model_a400_invalid_request, build_get200_model_a400_none_request, build_get200_model_a400_valid_request, build_get202_none204_none_default_error202_none_request, build_get202_none204_none_default_error204_none_request, build_get202_none204_none_default_error400_valid_request, build_get202_none204_none_default_none202_invalid_request, build_get202_none204_none_default_none204_none_request, build_get202_none204_none_default_none400_invalid_request, build_get202_none204_none_default_none400_none_request, build_get_default_model_a200_none_request, build_get_default_model_a200_valid_request, build_get_default_model_a400_none_request, build_get_default_model_a400_valid_request, build_get_default_none200_invalid_request, build_get_default_none200_none_request, build_get_default_none400_invalid_request, build_get_default_none400_none_request
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     """
@@ -82,8 +39,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace_async
-    async def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error200_valid(
+        self,
+        **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -91,16 +52,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.MyException]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.MyException]]
 
+        
         request = build_get200_model204_no_model_default_error200_valid_request(
-            template_url=self.get200_model204_no_model_default_error200_valid.metadata["url"],
+            template_url=self.get200_model204_no_model_default_error200_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -108,7 +72,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -120,17 +86,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model204_no_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
+    get200_model204_no_model_default_error200_valid.metadata = {'url': "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error204_valid(
+        self,
+        **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -138,16 +108,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.MyException]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.MyException]]
 
+        
         request = build_get200_model204_no_model_default_error204_valid_request(
-            template_url=self.get200_model204_no_model_default_error204_valid.metadata["url"],
+            template_url=self.get200_model204_no_model_default_error204_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -155,7 +128,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -167,17 +142,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model204_no_model_default_error204_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
+    get200_model204_no_model_default_error204_valid.metadata = {'url': "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error201_invalid(
+        self,
+        **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -185,16 +164,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.MyException]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.MyException]]
 
+        
         request = build_get200_model204_no_model_default_error201_invalid_request(
-            template_url=self.get200_model204_no_model_default_error201_invalid.metadata["url"],
+            template_url=self.get200_model204_no_model_default_error201_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -202,7 +184,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -214,17 +198,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model204_no_model_default_error201_invalid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
+    get200_model204_no_model_default_error201_invalid.metadata = {'url': "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error202_none(
+        self,
+        **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -232,16 +220,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.MyException]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.MyException]]
 
+        
         request = build_get200_model204_no_model_default_error202_none_request(
-            template_url=self.get200_model204_no_model_default_error202_none.metadata["url"],
+            template_url=self.get200_model204_no_model_default_error202_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -249,7 +240,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -261,17 +254,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model204_no_model_default_error202_none.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
+    get200_model204_no_model_default_error202_none.metadata = {'url': "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error400_valid(
+        self,
+        **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -279,16 +276,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.MyException]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.MyException]]
 
+        
         request = build_get200_model204_no_model_default_error400_valid_request(
-            template_url=self.get200_model204_no_model_default_error400_valid.metadata["url"],
+            template_url=self.get200_model204_no_model_default_error400_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -296,7 +296,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -308,18 +310,20 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model204_no_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
+    get200_model204_no_model_default_error400_valid.metadata = {'url': "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get200_model201_model_default_error200_valid(
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> Union[_models.MyException, _models.B]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
@@ -328,16 +332,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[_models.MyException, _models.B]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[_models.MyException, _models.B]]
 
+        
         request = build_get200_model201_model_default_error200_valid_request(
-            template_url=self.get200_model201_model_default_error200_valid.metadata["url"],
+            template_url=self.get200_model201_model_default_error200_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -345,7 +352,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -356,21 +365,23 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model201_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
+    get200_model201_model_default_error200_valid.metadata = {'url': "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get200_model201_model_default_error201_valid(
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> Union[_models.MyException, _models.B]:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
@@ -379,16 +390,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[_models.MyException, _models.B]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[_models.MyException, _models.B]]
 
+        
         request = build_get200_model201_model_default_error201_valid_request(
-            template_url=self.get200_model201_model_default_error201_valid.metadata["url"],
+            template_url=self.get200_model201_model_default_error201_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -396,7 +410,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -407,21 +423,23 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model201_model_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
+    get200_model201_model_default_error201_valid.metadata = {'url': "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get200_model201_model_default_error400_valid(
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> Union[_models.MyException, _models.B]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
@@ -430,16 +448,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[_models.MyException, _models.B]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[_models.MyException, _models.B]]
 
+        
         request = build_get200_model201_model_default_error400_valid_request(
-            template_url=self.get200_model201_model_default_error400_valid.metadata["url"],
+            template_url=self.get200_model201_model_default_error400_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -447,7 +468,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -458,21 +481,23 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model201_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/400/valid"}  # type: ignore
+    get200_model201_model_default_error400_valid.metadata = {'url': "/http/payloads/200/A/201/B/default/Error/response/400/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error200_valid(
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
@@ -482,16 +507,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
 
+        
         request = build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata["url"],
+            template_url=self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -499,7 +527,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -510,24 +540,26 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"}  # type: ignore
+    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {'url': "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error201_valid(
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
@@ -537,16 +569,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
 
+        
         request = build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata["url"],
+            template_url=self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -554,7 +589,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -565,24 +602,26 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"}  # type: ignore
+    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {'url': "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error404_valid(
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
@@ -592,16 +631,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
 
+        
         request = build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata["url"],
+            template_url=self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -609,7 +651,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -620,24 +664,26 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"}  # type: ignore
+    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {'url': "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error400_valid(
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
@@ -647,16 +693,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[_models.MyException, _models.C, _models.D]]
 
+        
         request = build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata["url"],
+            template_url=self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -664,7 +713,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -675,24 +726,26 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
+    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {'url': "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 202 response with no payload.
 
@@ -701,16 +754,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get202_none204_none_default_error202_none_request(
-            template_url=self.get202_none204_none_default_error202_none.metadata["url"],
+            template_url=self.get202_none204_none_default_error202_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -718,7 +774,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -731,11 +789,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
+    get202_none204_none_default_error202_none.metadata = {'url': "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
+
 
     @distributed_trace_async
     async def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 204 response with no payload.
 
@@ -744,16 +804,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get202_none204_none_default_error204_none_request(
-            template_url=self.get202_none204_none_default_error204_none.metadata["url"],
+            template_url=self.get202_none204_none_default_error204_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -761,7 +824,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -774,11 +839,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
+    get202_none204_none_default_error204_none.metadata = {'url': "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
+
 
     @distributed_trace_async
     async def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
@@ -787,16 +854,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get202_none204_none_default_error400_valid_request(
-            template_url=self.get202_none204_none_default_error400_valid.metadata["url"],
+            template_url=self.get202_none204_none_default_error400_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -804,7 +874,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -817,11 +889,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
+    get202_none204_none_default_error400_valid.metadata = {'url': "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
@@ -830,16 +904,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get202_none204_none_default_none202_invalid_request(
-            template_url=self.get202_none204_none_default_none202_invalid.metadata["url"],
+            template_url=self.get202_none204_none_default_none202_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -847,7 +924,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -859,11 +938,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
+    get202_none204_none_default_none202_invalid.metadata = {'url': "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get202_none204_none_default_none204_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 204 response with no payload.
 
@@ -872,16 +953,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get202_none204_none_default_none204_none_request(
-            template_url=self.get202_none204_none_default_none204_none.metadata["url"],
+            template_url=self.get202_none204_none_default_none204_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -889,7 +973,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -901,11 +987,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
+    get202_none204_none_default_none204_none.metadata = {'url': "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
+
 
     @distributed_trace_async
     async def get202_none204_none_default_none400_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 400 response with no payload.
 
@@ -914,16 +1002,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get202_none204_none_default_none400_none_request(
-            template_url=self.get202_none204_none_default_none400_none.metadata["url"],
+            template_url=self.get202_none204_none_default_none400_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -931,7 +1022,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -943,11 +1036,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
+    get202_none204_none_default_none400_none.metadata = {'url': "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
+
 
     @distributed_trace_async
     async def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
@@ -956,16 +1051,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get202_none204_none_default_none400_invalid_request(
-            template_url=self.get202_none204_none_default_none400_invalid.metadata["url"],
+            template_url=self.get202_none204_none_default_none400_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -973,7 +1071,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -985,10 +1085,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none400_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
+    get202_none204_none_default_none400_invalid.metadata = {'url': "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_default_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
+    async def get_default_model_a200_valid(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -996,16 +1100,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get_default_model_a200_valid_request(
-            template_url=self.get_default_model_a200_valid.metadata["url"],
+            template_url=self.get_default_model_a200_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1013,7 +1120,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1022,17 +1131,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}  # type: ignore
+    get_default_model_a200_valid.metadata = {'url': "/http/payloads/default/A/response/200/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_default_model_a200_none(self, **kwargs: Any) -> _models.MyException:
+    async def get_default_model_a200_none(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1040,16 +1153,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get_default_model_a200_none_request(
-            template_url=self.get_default_model_a200_none.metadata["url"],
+            template_url=self.get_default_model_a200_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1057,7 +1173,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1066,18 +1184,20 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
+    get_default_model_a200_none.metadata = {'url': "/http/payloads/default/A/response/200/none"}  # type: ignore
+
 
     @distributed_trace_async
     async def get_default_model_a400_valid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
@@ -1086,16 +1206,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get_default_model_a400_valid_request(
-            template_url=self.get_default_model_a400_valid.metadata["url"],
+            template_url=self.get_default_model_a400_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1103,7 +1226,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1116,11 +1241,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
+    get_default_model_a400_valid.metadata = {'url': "/http/payloads/default/A/response/400/valid"}  # type: ignore
+
 
     @distributed_trace_async
     async def get_default_model_a400_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 400 response with no payload.
 
@@ -1129,16 +1256,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get_default_model_a400_none_request(
-            template_url=self.get_default_model_a400_none.metadata["url"],
+            template_url=self.get_default_model_a400_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1146,7 +1276,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1159,11 +1291,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
+    get_default_model_a400_none.metadata = {'url': "/http/payloads/default/A/response/400/none"}  # type: ignore
+
 
     @distributed_trace_async
     async def get_default_none200_invalid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
@@ -1172,16 +1306,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get_default_none200_invalid_request(
-            template_url=self.get_default_none200_invalid.metadata["url"],
+            template_url=self.get_default_none200_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1189,7 +1326,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1201,10 +1340,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
+    get_default_none200_invalid.metadata = {'url': "/http/payloads/default/none/response/200/invalid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_default_none200_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_default_none200_none(  # pylint: disable=inconsistent-return-statements
+        self,
+        **kwargs: Any
+    ) -> None:
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1212,16 +1355,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get_default_none200_none_request(
-            template_url=self.get_default_none200_none.metadata["url"],
+            template_url=self.get_default_none200_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1229,7 +1375,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1241,11 +1389,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
+    get_default_none200_none.metadata = {'url': "/http/payloads/default/none/response/200/none"}  # type: ignore
+
 
     @distributed_trace_async
     async def get_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
+        self,
+        **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
@@ -1254,16 +1404,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get_default_none400_invalid_request(
-            template_url=self.get_default_none400_invalid.metadata["url"],
+            template_url=self.get_default_none400_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1271,7 +1424,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1283,10 +1438,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
+    get_default_none400_invalid.metadata = {'url': "/http/payloads/default/none/response/400/invalid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_default_none400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_default_none400_none(  # pylint: disable=inconsistent-return-statements
+        self,
+        **kwargs: Any
+    ) -> None:
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1294,16 +1453,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_get_default_none400_none_request(
-            template_url=self.get_default_none400_none.metadata["url"],
+            template_url=self.get_default_none400_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1311,7 +1473,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1323,10 +1487,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}  # type: ignore
+    get_default_none400_none.metadata = {'url': "/http/payloads/default/none/response/400/none"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model_a200_none(self, **kwargs: Any) -> _models.MyException:
+    async def get200_model_a200_none(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
@@ -1335,16 +1503,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get200_model_a200_none_request(
-            template_url=self.get200_model_a200_none.metadata["url"],
+            template_url=self.get200_model_a200_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1352,7 +1523,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1361,17 +1534,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}  # type: ignore
+    get200_model_a200_none.metadata = {'url': "/http/payloads/200/A/response/200/none"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
+    async def get200_model_a200_valid(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1379,16 +1556,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get200_model_a200_valid_request(
-            template_url=self.get200_model_a200_valid.metadata["url"],
+            template_url=self.get200_model_a200_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1396,7 +1576,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1405,17 +1587,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}  # type: ignore
+    get200_model_a200_valid.metadata = {'url': "/http/payloads/200/A/response/200/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model_a200_invalid(self, **kwargs: Any) -> _models.MyException:
+    async def get200_model_a200_invalid(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1423,16 +1609,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get200_model_a200_invalid_request(
-            template_url=self.get200_model_a200_invalid.metadata["url"],
+            template_url=self.get200_model_a200_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1440,7 +1629,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1449,17 +1640,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}  # type: ignore
+    get200_model_a200_invalid.metadata = {'url': "/http/payloads/200/A/response/200/invalid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model_a400_none(self, **kwargs: Any) -> _models.MyException:
+    async def get200_model_a400_none(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1467,16 +1662,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get200_model_a400_none_request(
-            template_url=self.get200_model_a400_none.metadata["url"],
+            template_url=self.get200_model_a400_none.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1484,7 +1682,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1493,17 +1693,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}  # type: ignore
+    get200_model_a400_none.metadata = {'url': "/http/payloads/200/A/response/400/none"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model_a400_valid(self, **kwargs: Any) -> _models.MyException:
+    async def get200_model_a400_valid(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1511,16 +1715,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get200_model_a400_valid_request(
-            template_url=self.get200_model_a400_valid.metadata["url"],
+            template_url=self.get200_model_a400_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1528,7 +1735,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1537,17 +1746,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}  # type: ignore
+    get200_model_a400_valid.metadata = {'url': "/http/payloads/200/A/response/400/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model_a400_invalid(self, **kwargs: Any) -> _models.MyException:
+    async def get200_model_a400_invalid(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1555,16 +1768,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get200_model_a400_invalid_request(
-            template_url=self.get200_model_a400_invalid.metadata["url"],
+            template_url=self.get200_model_a400_invalid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1572,7 +1788,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1581,17 +1799,21 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}  # type: ignore
+    get200_model_a400_invalid.metadata = {'url': "/http/payloads/200/A/response/400/invalid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get200_model_a202_valid(self, **kwargs: Any) -> _models.MyException:
+    async def get200_model_a202_valid(
+        self,
+        **kwargs: Any
+    ) -> _models.MyException:
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1599,16 +1821,19 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyException]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyException]
 
+        
         request = build_get200_model_a202_valid_request(
-            template_url=self.get200_model_a202_valid.metadata["url"],
+            template_url=self.get200_model_a202_valid.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -1616,7 +1841,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1625,11 +1852,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200_model_a202_valid.metadata = {"url": "/http/payloads/200/A/response/202/valid"}  # type: ignore
+    get200_model_a202_valid.metadata = {'url': "/http/payloads/200/A/response/202/valid"}  # type: ignore
+

@@ -667,7 +667,7 @@ class JinjaSerializer:
                     for param in params_positional:
                         if isinstance(param, BodyParameter):
                             name = self._to_lower_camel_case(param.client_name)
-                            fake_value = failure_info.format(param.client_name, key)
+                            fake_value = '"can not find valie value"'
                         else:
                             name = param.rest_api_name
                             fake_value = param.client_name.upper()

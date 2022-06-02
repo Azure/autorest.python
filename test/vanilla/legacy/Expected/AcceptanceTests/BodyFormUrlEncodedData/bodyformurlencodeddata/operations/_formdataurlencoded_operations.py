@@ -10,13 +10,7 @@ from typing import Optional, TYPE_CHECKING
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -29,8 +23,7 @@ from .._vendor import _convert_request, _format_url_section
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar, Union
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -106,6 +99,7 @@ class FormdataurlencodedOperations(object):
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace
     def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
         self,
@@ -141,16 +135,16 @@ class FormdataurlencodedOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/x-www-form-urlencoded"))  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         # Construct form data
         _data = {
@@ -165,7 +159,7 @@ class FormdataurlencodedOperations(object):
             pet_id=pet_id,
             content_type=content_type,
             data=_data,
-            template_url=self.update_pet_with_form.metadata["url"],
+            template_url=self.update_pet_with_form.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -173,7 +167,9 @@ class FormdataurlencodedOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -185,7 +181,8 @@ class FormdataurlencodedOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
+    update_pet_with_form.metadata = {'url': "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
+
 
     @distributed_trace
     def partial_constant_body(  # pylint: disable=inconsistent-return-statements
@@ -211,17 +208,17 @@ class FormdataurlencodedOperations(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: str
-        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/x-www-form-urlencoded"))  # type: str
+        grant_type = kwargs.pop('grant_type', "access_token")  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         # Construct form data
         _data = {
@@ -233,7 +230,7 @@ class FormdataurlencodedOperations(object):
         request = build_partial_constant_body_request(
             content_type=content_type,
             data=_data,
-            template_url=self.partial_constant_body.metadata["url"],
+            template_url=self.partial_constant_body.metadata['url'],
             headers=_headers,
             params=_params,
         )
@@ -241,7 +238,9 @@ class FormdataurlencodedOperations(object):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -253,4 +252,5 @@ class FormdataurlencodedOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}  # type: ignore
+    partial_constant_body.metadata = {'url': "/formsdataurlencoded/partialConstantBody"}  # type: ignore
+

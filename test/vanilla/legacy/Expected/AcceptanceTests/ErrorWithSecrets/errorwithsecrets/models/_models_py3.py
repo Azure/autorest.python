@@ -39,8 +39,8 @@ class Error(msrest.serialization.Model):
     """
 
     _validation = {
-        "code": {"required": True},
-        "message": {"required": True},
+        'code': {'required': True},
+        'message': {'required': True},
     }
 
     _attribute_map = {
@@ -102,7 +102,7 @@ class ErrorResponse(msrest.serialization.Model):
     """
 
     _validation = {
-        "error": {"required": True},
+        'error': {'required': True},
     }
 
     _attribute_map = {
@@ -110,7 +110,13 @@ class ErrorResponse(msrest.serialization.Model):
         "error": {"key": "error", "type": "Error"},
     }
 
-    def __init__(self, *, error: "_models.Error", additional_properties: Optional[Dict[str, Any]] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        error: "_models.Error",
+        additional_properties: Optional[Dict[str, Any]] = None,
+        **kwargs
+    ):
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -142,8 +148,8 @@ class InnerError(msrest.serialization.Model):
     """
 
     _validation = {
-        "code": {"required": True},
-        "message": {"required": True},
+        'code': {'required': True},
+        'message': {'required': True},
     }
 
     _attribute_map = {
@@ -194,8 +200,8 @@ class SecretResponse(msrest.serialization.Model):
     """
 
     _validation = {
-        "key": {"required": True},
-        "value": {"required": True},
+        'key': {'required': True},
+        'value': {'required': True},
     }
 
     _attribute_map = {
@@ -203,7 +209,13 @@ class SecretResponse(msrest.serialization.Model):
         "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(self, *, key: str, value: str, **kwargs):
+    def __init__(
+        self,
+        *,
+        key: str,
+        value: str,
+        **kwargs
+    ):
         """
         :keyword key: The secret key. Required.
         :paramtype key: str
