@@ -94,7 +94,7 @@ class StorageAccountsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "message": "str",  # Optional. Gets an error message explaining the Reason
                       value in more detail.
                     "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
@@ -127,7 +127,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "message": "str",  # Optional. Gets an error message explaining the Reason
                       value in more detail.
                     "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
@@ -158,7 +158,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "message": "str",  # Optional. Gets an error message explaining the Reason
                       value in more detail.
                     "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
@@ -332,7 +332,7 @@ class StorageAccountsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -441,7 +441,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -545,7 +545,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -729,7 +729,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -898,7 +898,7 @@ class StorageAccountsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -1004,7 +1004,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -1104,7 +1104,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -1238,7 +1238,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "key1": "str",  # Optional. Gets the value of key 1.
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
@@ -1295,7 +1295,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -1431,7 +1431,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
                     "name": "str",  # Optional. Resource name.
@@ -1590,7 +1590,7 @@ class StorageAccountsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "key1": "str",  # Optional. Gets the value of key 1.
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
@@ -1628,7 +1628,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "key1": "str",  # Optional. Gets the value of key 1.
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
@@ -1661,7 +1661,7 @@ class StorageAccountsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "key1": "str",  # Optional. Gets the value of key 1.
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
@@ -1747,7 +1747,7 @@ class UsageOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "value": [
                         {
                             "currentValue": 0,  # Optional. Gets the current count of the

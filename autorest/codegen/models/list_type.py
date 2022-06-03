@@ -3,12 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, Union, TYPE_CHECKING
+from typing import Any, Dict, Optional, Union, TYPE_CHECKING, List
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .model_type import ModelType
 
 
 class ListType(BaseType):
@@ -103,6 +104,20 @@ class ListType(BaseType):
                 description=description,
             )
         ]
+
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        from .model_type import ModelType
+
+        if isinstance(self.element_type, ModelType):
+            is_polymorphic_subtype = (
+                self.element_type.discriminator_value
+                and not self.element_type.discriminated_subtypes
+            )
+            if (
+                self.element_type.name not in (m.name for m in polymorphic_subtypes)
+                and is_polymorphic_subtype
+            ):
+                polymorphic_subtypes.append(self.element_type)
 
     @property
     def instance_check_template(self) -> str:

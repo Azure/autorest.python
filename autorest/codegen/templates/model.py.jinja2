@@ -45,7 +45,7 @@
     {% if model.discriminated_subtypes %}
 
     _subtype_map = {
-        '{{ model.discriminator.client_name }}': {{ str(model.discriminated_subtypes) }}
+        '{{ model.discriminator.client_name }}': {{ str(model.discriminated_subtypes_name_mapping) }}
     }
     {% endif %}
     {% if model.xml_map_content %}

@@ -118,7 +118,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -273,7 +273,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -327,7 +327,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -381,7 +381,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -435,7 +435,7 @@ class BasicOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
                       and "blacK".
                     "id": 0,  # Optional. Basic Id.
@@ -507,7 +507,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0,  # Optional.
                     "field2": 0  # Optional.
                 }
@@ -653,7 +653,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0,  # Optional.
                     "field2": 0  # Optional.
                 }
@@ -800,7 +800,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0.0,  # Optional.
                     "field2": 0.0  # Optional.
                 }
@@ -946,7 +946,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field1": 0.0,  # Optional.
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
                       0.0  # Optional.
@@ -1098,7 +1098,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field_false": bool,  # Optional.
                     "field_true": bool  # Optional.
                 }
@@ -1244,7 +1244,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "empty": "str",  # Optional.
                     "field": "str",  # Optional.
                     "null": "str"  # Optional.
@@ -1393,7 +1393,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "2020-02-20",  # Optional.
                     "leap": "2020-02-20"  # Optional.
                 }
@@ -1540,7 +1540,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "2020-02-20 00:00:00",  # Optional.
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
@@ -1689,7 +1689,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "2020-02-20 00:00:00",  # Optional.
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
@@ -1838,7 +1838,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": "1 day, 0:00:00"  # Optional.
                 }
         """
@@ -1983,7 +1983,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "field": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
@@ -2148,7 +2148,7 @@ class ArrayOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "array": [
                         "str"  # Optional.
                     ]
@@ -2299,7 +2299,7 @@ class ArrayOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "array": [
                         "str"  # Optional.
                     ]
@@ -2447,7 +2447,7 @@ class ArrayOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "array": [
                         "str"  # Optional.
                     ]
@@ -2517,7 +2517,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -2669,7 +2669,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -2818,7 +2818,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -2870,7 +2870,7 @@ class DictionaryOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "defaultProgram": {
                         "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
@@ -2940,7 +2940,7 @@ class InheritanceOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "breed": "str",  # Optional.
                     "color": "str",  # Optional.
                     "hates": [
@@ -3127,16 +3127,64 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fishtype":
 
-                # response body for status code(s): 200
-                response.json() == {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,  # Required.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
                     "siblings": [
-                        ...
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: fishtype
+                    "species": "str"  # Optional.
                 }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "fishtype": "goblin",
+                    "jawsize": 0,  # Optional.
+                    "length": 0.0,  # Required.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # response body for status code(s): 200
+                response == fish
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3222,17 +3270,64 @@ class PolymorphismOperations:
         Example:
             .. code-block:: python
 
-                fishtype = 'salmon' or 'shark'
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
 
-                # JSON input template you can fill out and use as your body input.
-                complex_body = {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,  # Required.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
                     "siblings": [
-                        ...
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: fishtype
+                    "species": "str"  # Optional.
                 }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "fishtype": "goblin",
+                    "jawsize": 0,  # Optional.
+                    "length": 0.0,  # Required.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
 
     @overload
@@ -3379,12 +3474,19 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fish.type":
+
+                # JSON input template for discriminator value "DotSalmon":
+                dot_fish = {
+                    "fish.type": "DotSalmon",
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "species": "str"  # Optional.
+                }
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "species": "str",  # Optional.
-                    fish.type: fish.type
-                }
+                response == dot_fish
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3432,32 +3534,36 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fish.type":
+
+                # JSON input template for discriminator value "DotSalmon":
+                dot_fish = {
+                    "fish.type": "DotSalmon",
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "species": "str"  # Optional.
+                }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "fishes": [
-                        {
-                            "species": "str",  # Optional.
-                            fish.type: fish.type
-                        }
+                        dot_fish
                     ],
                     "salmons": [
                         {
+                            "fish.type": "DotSalmon",
                             "iswild": bool,  # Optional.
                             "location": "str",  # Optional.
-                            "species": "str",  # Optional.
-                            fish.type: DotSalmon
+                            "species": "str"  # Optional.
                         }
                     ],
-                    "sampleFish": {
-                        "species": "str",  # Optional.
-                        fish.type: fish.type
-                    },
+                    "sampleFish": dot_fish,
                     "sampleSalmon": {
+                        "fish.type": "DotSalmon",
                         "iswild": bool,  # Optional.
                         "location": "str",  # Optional.
-                        "species": "str",  # Optional.
-                        fish.type: DotSalmon
+                        "species": "str"  # Optional.
                     }
                 }
         """
@@ -3507,32 +3613,36 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fish.type":
+
+                # JSON input template for discriminator value "DotSalmon":
+                dot_fish = {
+                    "fish.type": "DotSalmon",
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "species": "str"  # Optional.
+                }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "fishes": [
-                        {
-                            "species": "str",  # Optional.
-                            fish.type: fish.type
-                        }
+                        dot_fish
                     ],
                     "salmons": [
                         {
+                            "fish.type": "DotSalmon",
                             "iswild": bool,  # Optional.
                             "location": "str",  # Optional.
-                            "species": "str",  # Optional.
-                            fish.type: DotSalmon
+                            "species": "str"  # Optional.
                         }
                     ],
-                    "sampleFish": {
-                        "species": "str",  # Optional.
-                        fish.type: fish.type
-                    },
+                    "sampleFish": dot_fish,
                     "sampleSalmon": {
+                        "fish.type": "DotSalmon",
                         "iswild": bool,  # Optional.
                         "location": "str",  # Optional.
-                        "species": "str",  # Optional.
-                        fish.type: DotSalmon
+                        "species": "str"  # Optional.
                     }
                 }
         """
@@ -3581,25 +3691,24 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fishtype":
 
-                # response body for status code(s): 200
-                response.json() == {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
-                        {
-                            "length": 0.0,  # Required.
-                            "siblings": [
-                                ...
-                            ],
-                            "species": "str",  # Optional.
-                            fishtype: fishtype
-                        }
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: salmon
+                    "species": "str"  # Optional.
                 }
+
+                # response body for status code(s): 200
+                response == salmon
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3654,26 +3763,24 @@ class PolymorphismOperations:
         Example:
             .. code-block:: python
 
-                fishtype = 'smart_salmon'
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
 
-                # JSON input template you can fill out and use as your body input.
-                complex_body = {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
-                        {
-                            "length": 0.0,  # Required.
-                            "siblings": [
-                                ...
-                            ],
-                            "species": "str",  # Optional.
-                            fishtype: fishtype
-                        }
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: salmon
+                    "species": "str"  # Optional.
                 }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = salmon
         """
 
     @overload
@@ -3766,45 +3873,42 @@ class PolymorphismOperations:
         Example:
             .. code-block:: python
 
-                fishtype = 'smart_salmon'
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
 
-                # JSON input template you can fill out and use as your body input.
-                complex_body = {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
-                        {
-                            "length": 0.0,  # Required.
-                            "siblings": [
-                                ...
-                            ],
-                            "species": "str",  # Optional.
-                            fishtype: fishtype
-                        }
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: salmon
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = salmon
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,  # Required.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "iswild": bool,  # Optional.
-                    "length": 0.0,  # Required.
-                    "location": "str",  # Optional.
-                    "siblings": [
-                        {
-                            "length": 0.0,  # Required.
-                            "siblings": [
-                                ...
-                            ],
-                            "species": "str",  # Optional.
-                            fishtype: fishtype
-                        }
-                    ],
-                    "species": "str",  # Optional.
-                    fishtype: salmon
-                }
+                response == salmon
         """
 
     @overload
@@ -3824,25 +3928,24 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fishtype":
 
-                # response body for status code(s): 200
-                response.json() == {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
-                        {
-                            "length": 0.0,  # Required.
-                            "siblings": [
-                                ...
-                            ],
-                            "species": "str",  # Optional.
-                            fishtype: fishtype
-                        }
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: salmon
+                    "species": "str"  # Optional.
                 }
+
+                # response body for status code(s): 200
+                response == salmon
         """
 
     @distributed_trace_async
@@ -3860,25 +3963,24 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fishtype":
 
-                # response body for status code(s): 200
-                response.json() == {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
                     "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
-                        {
-                            "length": 0.0,  # Required.
-                            "siblings": [
-                                ...
-                            ],
-                            "species": "str",  # Optional.
-                            fishtype: fishtype
-                        }
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: salmon
+                    "species": "str"  # Optional.
                 }
+
+                # response body for status code(s): 200
+                response == salmon
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -3971,17 +4073,64 @@ class PolymorphismOperations:
         Example:
             .. code-block:: python
 
-                fishtype = 'salmon' or 'shark'
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
 
-                # JSON input template you can fill out and use as your body input.
-                complex_body = {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,  # Required.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
                     "siblings": [
-                        ...
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: fishtype
+                    "species": "str"  # Optional.
                 }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "fishtype": "goblin",
+                    "jawsize": 0,  # Optional.
+                    "length": 0.0,  # Required.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
 
     @overload
@@ -4136,16 +4285,64 @@ class PolymorphicrecursiveOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fishtype":
 
-                # response body for status code(s): 200
-                response.json() == {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,  # Required.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
                     "siblings": [
-                        ...
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: fishtype
+                    "species": "str"  # Optional.
                 }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "fishtype": "goblin",
+                    "jawsize": 0,  # Optional.
+                    "length": 0.0,  # Required.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # response body for status code(s): 200
+                response == fish
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4251,17 +4448,64 @@ class PolymorphicrecursiveOperations:
         Example:
             .. code-block:: python
 
-                fishtype = 'salmon' or 'shark'
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
 
-                # JSON input template you can fill out and use as your body input.
-                complex_body = {
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "college_degree": "str",  # Optional.
+                    "fishtype": "smart_salmon",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,  # Required.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
                     "siblings": [
-                        ...
+                        fish
                     ],
-                    "species": "str",  # Optional.
-                    fishtype: fishtype
+                    "species": "str"  # Optional.
                 }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "fishtype": "goblin",
+                    "jawsize": 0,  # Optional.
+                    "length": 0.0,  # Required.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "age": 0,  # Optional.
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
 
     @overload
@@ -4468,7 +4712,7 @@ class ReadonlypropertyOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": "str",  # Optional.
                     "size": 0  # Optional.
                 }
@@ -4630,15 +4874,21 @@ class FlattencomplexOperations:
 
         Example:
             .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
 
-                # response body for status code(s): 200
-                response.json() == {
+                # JSON input template for discriminator value "Kind1":
+                my_base_type = {
                     "helper": {
                         "propBH1": "str"  # Optional.
                     },
+                    "kind": "Kind1",
                     "propB1": "str",  # Optional.
-                    kind: kind
+                    "propD1": "str"  # Optional.
                 }
+
+                # response body for status code(s): 200
+                response == my_base_type
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

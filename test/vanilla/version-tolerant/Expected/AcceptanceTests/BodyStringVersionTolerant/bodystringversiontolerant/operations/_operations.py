@@ -1121,7 +1121,7 @@ class EnumOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "ColorConstant": "green-color",  # Default value is "green-color". Referenced
                       Color Constant Description. Required.
                     "field1": "str"  # Optional. Sample string.

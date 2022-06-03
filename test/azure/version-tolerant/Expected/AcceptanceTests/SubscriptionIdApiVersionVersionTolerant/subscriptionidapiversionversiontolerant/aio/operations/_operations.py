@@ -65,7 +65,7 @@ class GroupOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "location": "str",  # Optional. resource group location 'West US'.
                     "name": "str"  # Optional. resource group name 'testgroup101'.
                 }

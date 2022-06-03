@@ -1236,7 +1236,7 @@ class HttpRedirectsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 300
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -3646,7 +3646,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -3698,7 +3698,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -3750,7 +3750,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -3802,7 +3802,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -3854,7 +3854,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -3906,11 +3906,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "statusCode": "str",  # Optional.
                     "textStatusCode": "str"  # Optional.
                 }
@@ -3968,11 +3968,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "statusCode": "str",  # Optional.
                     "textStatusCode": "str"  # Optional.
                 }
@@ -4030,11 +4030,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "statusCode": "str",  # Optional.
                     "textStatusCode": "str"  # Optional.
                 }
@@ -4092,15 +4092,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
-                response.json() == {
+                response == {
                     "httpStatusCode": "str"  # Optional.
                 }
         """
@@ -4163,15 +4163,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
-                response.json() == {
+                response == {
                     "httpStatusCode": "str"  # Optional.
                 }
         """
@@ -4234,15 +4234,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
-                response.json() == {
+                response == {
                     "httpStatusCode": "str"  # Optional.
                 }
         """
@@ -4305,15 +4305,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
-                response.json() == {
+                response == {
                     "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
-                response.json() == {
+                response == {
                     "httpStatusCode": "str"  # Optional.
                 }
         """
@@ -4635,7 +4635,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -4685,7 +4685,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -4954,7 +4954,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -5004,7 +5004,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -5054,7 +5054,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -5104,7 +5104,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -5154,7 +5154,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -5204,7 +5204,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """
@@ -5254,7 +5254,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "statusCode": "str"  # Optional.
                 }
         """

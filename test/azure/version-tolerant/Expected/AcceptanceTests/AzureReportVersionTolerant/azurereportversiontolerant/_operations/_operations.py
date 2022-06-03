@@ -68,7 +68,7 @@ class AutoRestReportServiceForAzureOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """

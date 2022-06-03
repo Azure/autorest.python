@@ -337,7 +337,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "id": "str",  # Optional. Resource Id.
                         "location": "str",  # Optional. Resource Location.
@@ -507,7 +507,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "property": {
                             "value": "str"  # Optional. the product value.
@@ -679,7 +679,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "id": "str",  # Optional. Resource Id.
                         "location": "str",  # Optional. Resource Location.
@@ -906,7 +906,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "arrayofresources": [
                         {
                             "id": "str",  # Optional. Resource Id.
@@ -1042,7 +1042,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1079,7 +1079,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1115,7 +1115,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1218,7 +1218,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1255,7 +1255,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1293,7 +1293,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1403,7 +1403,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1447,7 +1447,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
@@ -1487,7 +1487,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco

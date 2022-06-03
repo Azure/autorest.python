@@ -129,7 +129,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -179,7 +179,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -323,7 +323,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "str"  # Optional.
                 }
         """
@@ -373,7 +373,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "str"  # Optional.
                 }
         """
@@ -423,7 +423,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "str"  # Optional.
                 }
         """
@@ -473,7 +473,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "str"  # Optional.
                 }
         """
@@ -523,7 +523,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": bool  # Optional.
                 }
         """
@@ -667,7 +667,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": bool  # Optional.
                 }
         """
@@ -717,7 +717,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": bool  # Optional.
                 }
         """
@@ -767,7 +767,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -911,7 +911,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -961,7 +961,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -1011,7 +1011,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -1155,7 +1155,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -1205,7 +1205,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -1255,7 +1255,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0.0  # Optional.
                 }
         """
@@ -1399,7 +1399,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0.0  # Optional.
                 }
         """
@@ -1449,7 +1449,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0.0  # Optional.
                 }
         """
@@ -1499,7 +1499,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0.0  # Optional.
                 }
         """
@@ -1643,7 +1643,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0.0  # Optional.
                 }
         """
@@ -1693,7 +1693,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0.0  # Optional.
                 }
         """
@@ -1743,7 +1743,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "str"  # Optional.
                 }
         """
@@ -1887,7 +1887,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "str"  # Optional.
                 }
         """
@@ -1937,7 +1937,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "str"  # Optional.
                 }
         """
@@ -1987,7 +1987,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "2020-02-20"  # Optional.
                 }
         """
@@ -2131,7 +2131,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "2020-02-20"  # Optional.
                 }
         """
@@ -2181,7 +2181,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "2020-02-20"  # Optional.
                 }
         """
@@ -2232,7 +2232,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
@@ -2379,7 +2379,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
@@ -2429,7 +2429,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
@@ -2480,7 +2480,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
@@ -2627,7 +2627,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": "1 day, 0:00:00"  # Optional.
                 }
         """
@@ -2772,7 +2772,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
@@ -2920,7 +2920,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
@@ -2971,7 +2971,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
@@ -3021,7 +3021,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3074,7 +3074,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3128,7 +3128,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3182,7 +3182,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3236,7 +3236,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3389,7 +3389,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": [
                         "str"  # Optional.
                     ]
@@ -3441,7 +3441,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": [
                         "str"  # Optional.
                     ]
@@ -3493,7 +3493,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": [
                         "str"  # Optional.
                     ]
@@ -3545,7 +3545,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": [
                         "str"  # Optional.
                     ]
@@ -3598,7 +3598,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": [
                         "str"  # Optional.
                     ]
@@ -3749,7 +3749,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "str": "str"  # Optional.
                     }
@@ -3801,7 +3801,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "str": "str"  # Optional.
                     }
@@ -3854,7 +3854,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "str": "str"  # Optional.
                     }
@@ -3907,7 +3907,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "str": "str"  # Optional.
                     }
@@ -3961,7 +3961,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": {
                         "str": "str"  # Optional.
                     }
