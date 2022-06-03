@@ -28,11 +28,11 @@ def build_get_valid_request(
 ) -> HttpRequest:
     """Get complex types with dictionary property.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -64,8 +64,8 @@ def build_put_valid_request(
 ) -> HttpRequest:
     """Put complex types with dictionary property.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
      "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Required.
@@ -74,7 +74,7 @@ def build_put_valid_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -99,8 +99,8 @@ def build_put_valid_request(
 ) -> HttpRequest:
     """Put complex types with dictionary property.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
      "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Required.
@@ -109,7 +109,7 @@ def build_put_valid_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -120,8 +120,8 @@ def build_put_valid_request(
 ) -> HttpRequest:
     """Put complex types with dictionary property.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
      "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a model type or a IO type.
@@ -131,7 +131,7 @@ def build_put_valid_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -162,11 +162,11 @@ def build_get_empty_request(
 ) -> HttpRequest:
     """Get complex types with dictionary property which is empty.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -198,8 +198,8 @@ def build_put_empty_request(
 ) -> HttpRequest:
     """Put complex types with dictionary property which is empty.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put an empty dictionary. Required.
     :paramtype json: JSON
@@ -207,7 +207,7 @@ def build_put_empty_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -232,8 +232,8 @@ def build_put_empty_request(
 ) -> HttpRequest:
     """Put complex types with dictionary property which is empty.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put an empty dictionary. Required.
     :paramtype content: IO
@@ -241,7 +241,7 @@ def build_put_empty_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -252,8 +252,8 @@ def build_put_empty_request(
 ) -> HttpRequest:
     """Put complex types with dictionary property which is empty.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put an empty dictionary. Is either a model type or a IO type. Required.
     :paramtype json: JSON or IO
@@ -261,7 +261,7 @@ def build_put_empty_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -292,11 +292,11 @@ def build_get_null_request(
 ) -> HttpRequest:
     """Get complex types with dictionary property which is null.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -324,11 +324,11 @@ def build_get_not_provided_request(
 ) -> HttpRequest:
     """Get complex types with dictionary property while server doesn't provide a response payload.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

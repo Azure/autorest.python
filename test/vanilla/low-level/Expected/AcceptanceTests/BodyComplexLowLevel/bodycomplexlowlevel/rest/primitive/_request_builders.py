@@ -29,11 +29,11 @@ def build_get_int_request(
     # type: (...) -> HttpRequest
     """Get complex types with integer properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -63,8 +63,8 @@ def build_put_int_request(
     # type: (...) -> HttpRequest
     """Put complex types with integer properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put -1 and 2. Required.
     :paramtype json: JSON
@@ -72,7 +72,7 @@ def build_put_int_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -94,8 +94,8 @@ def build_put_int_request(
     # type: (...) -> HttpRequest
     """Put complex types with integer properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put -1 and 2. Required.
     :paramtype content: IO
@@ -103,7 +103,7 @@ def build_put_int_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -115,8 +115,8 @@ def build_put_int_request(
     # type: (...) -> HttpRequest
     """Put complex types with integer properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put -1 and 2. Is either a model type or a IO type. Required.
     :paramtype json: JSON or IO
@@ -124,7 +124,7 @@ def build_put_int_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -156,11 +156,11 @@ def build_get_long_request(
     # type: (...) -> HttpRequest
     """Get complex types with long properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -190,8 +190,8 @@ def build_put_long_request(
     # type: (...) -> HttpRequest
     """Put complex types with long properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 1099511627775 and -999511627788. Required.
     :paramtype json: JSON
@@ -199,7 +199,7 @@ def build_put_long_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -221,8 +221,8 @@ def build_put_long_request(
     # type: (...) -> HttpRequest
     """Put complex types with long properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put 1099511627775 and -999511627788. Required.
     :paramtype content: IO
@@ -230,7 +230,7 @@ def build_put_long_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -242,8 +242,8 @@ def build_put_long_request(
     # type: (...) -> HttpRequest
     """Put complex types with long properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 1099511627775 and -999511627788. Is either a model type or a IO type.
      Required.
@@ -252,7 +252,7 @@ def build_put_long_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -284,11 +284,11 @@ def build_get_float_request(
     # type: (...) -> HttpRequest
     """Get complex types with float properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -318,8 +318,8 @@ def build_put_float_request(
     # type: (...) -> HttpRequest
     """Put complex types with float properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 1.05 and -0.003. Required.
     :paramtype json: JSON
@@ -327,7 +327,7 @@ def build_put_float_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -349,8 +349,8 @@ def build_put_float_request(
     # type: (...) -> HttpRequest
     """Put complex types with float properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put 1.05 and -0.003. Required.
     :paramtype content: IO
@@ -358,7 +358,7 @@ def build_put_float_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -370,8 +370,8 @@ def build_put_float_request(
     # type: (...) -> HttpRequest
     """Put complex types with float properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 1.05 and -0.003. Is either a model type or a IO type. Required.
     :paramtype json: JSON or IO
@@ -379,7 +379,7 @@ def build_put_float_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -411,11 +411,11 @@ def build_get_double_request(
     # type: (...) -> HttpRequest
     """Get complex types with double properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -445,8 +445,8 @@ def build_put_double_request(
     # type: (...) -> HttpRequest
     """Put complex types with double properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 3e-100 and
      -0.000000000000000000000000000000000000000000000000000000005. Required.
@@ -455,7 +455,7 @@ def build_put_double_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -478,8 +478,8 @@ def build_put_double_request(
     # type: (...) -> HttpRequest
     """Put complex types with double properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put 3e-100 and
      -0.000000000000000000000000000000000000000000000000000000005. Required.
@@ -488,7 +488,7 @@ def build_put_double_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -500,8 +500,8 @@ def build_put_double_request(
     # type: (...) -> HttpRequest
     """Put complex types with double properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 3e-100 and
      -0.000000000000000000000000000000000000000000000000000000005. Is either a model type or a IO
@@ -511,7 +511,7 @@ def build_put_double_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -543,11 +543,11 @@ def build_get_bool_request(
     # type: (...) -> HttpRequest
     """Get complex types with bool properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -577,8 +577,8 @@ def build_put_bool_request(
     # type: (...) -> HttpRequest
     """Put complex types with bool properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put true and false. Required.
     :paramtype json: JSON
@@ -586,7 +586,7 @@ def build_put_bool_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -608,8 +608,8 @@ def build_put_bool_request(
     # type: (...) -> HttpRequest
     """Put complex types with bool properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put true and false. Required.
     :paramtype content: IO
@@ -617,7 +617,7 @@ def build_put_bool_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -629,8 +629,8 @@ def build_put_bool_request(
     # type: (...) -> HttpRequest
     """Put complex types with bool properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put true and false. Is either a model type or a IO type. Required.
     :paramtype json: JSON or IO
@@ -638,7 +638,7 @@ def build_put_bool_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -670,11 +670,11 @@ def build_get_string_request(
     # type: (...) -> HttpRequest
     """Get complex types with string properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -704,8 +704,8 @@ def build_put_string_request(
     # type: (...) -> HttpRequest
     """Put complex types with string properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 'goodrequest', '', and null. Required.
     :paramtype json: JSON
@@ -713,7 +713,7 @@ def build_put_string_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -736,8 +736,8 @@ def build_put_string_request(
     # type: (...) -> HttpRequest
     """Put complex types with string properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put 'goodrequest', '', and null. Required.
     :paramtype content: IO
@@ -745,7 +745,7 @@ def build_put_string_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -757,8 +757,8 @@ def build_put_string_request(
     # type: (...) -> HttpRequest
     """Put complex types with string properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 'goodrequest', '', and null. Is either a model type or a IO type.
      Required.
@@ -767,7 +767,7 @@ def build_put_string_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -799,11 +799,11 @@ def build_get_date_request(
     # type: (...) -> HttpRequest
     """Get complex types with date properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -833,8 +833,8 @@ def build_put_date_request(
     # type: (...) -> HttpRequest
     """Put complex types with date properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put '0001-01-01' and '2016-02-29'. Required.
     :paramtype json: JSON
@@ -842,7 +842,7 @@ def build_put_date_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -864,8 +864,8 @@ def build_put_date_request(
     # type: (...) -> HttpRequest
     """Put complex types with date properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put '0001-01-01' and '2016-02-29'. Required.
     :paramtype content: IO
@@ -873,7 +873,7 @@ def build_put_date_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -885,8 +885,8 @@ def build_put_date_request(
     # type: (...) -> HttpRequest
     """Put complex types with date properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put '0001-01-01' and '2016-02-29'. Is either a model type or a IO type.
      Required.
@@ -895,7 +895,7 @@ def build_put_date_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -927,11 +927,11 @@ def build_get_date_time_request(
     # type: (...) -> HttpRequest
     """Get complex types with datetime properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -961,8 +961,8 @@ def build_put_date_time_request(
     # type: (...) -> HttpRequest
     """Put complex types with datetime properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
      Required.
@@ -971,7 +971,7 @@ def build_put_date_time_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -993,8 +993,8 @@ def build_put_date_time_request(
     # type: (...) -> HttpRequest
     """Put complex types with datetime properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
      Required.
@@ -1003,7 +1003,7 @@ def build_put_date_time_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1015,8 +1015,8 @@ def build_put_date_time_request(
     # type: (...) -> HttpRequest
     """Put complex types with datetime properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
      either a model type or a IO type. Required.
@@ -1025,7 +1025,7 @@ def build_put_date_time_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1057,11 +1057,11 @@ def build_get_date_time_rfc1123_request(
     # type: (...) -> HttpRequest
     """Get complex types with datetimeRfc1123 properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1091,8 +1091,8 @@ def build_put_date_time_rfc1123_request(
     # type: (...) -> HttpRequest
     """Put complex types with datetimeRfc1123 properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'.
      Required.
@@ -1101,7 +1101,7 @@ def build_put_date_time_rfc1123_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -1123,8 +1123,8 @@ def build_put_date_time_rfc1123_request(
     # type: (...) -> HttpRequest
     """Put complex types with datetimeRfc1123 properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
      GMT'. Required.
@@ -1133,7 +1133,7 @@ def build_put_date_time_rfc1123_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1145,8 +1145,8 @@ def build_put_date_time_rfc1123_request(
     # type: (...) -> HttpRequest
     """Put complex types with datetimeRfc1123 properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'.
      Is either a model type or a IO type. Required.
@@ -1155,7 +1155,7 @@ def build_put_date_time_rfc1123_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1187,11 +1187,11 @@ def build_get_duration_request(
     # type: (...) -> HttpRequest
     """Get complex types with duration properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1221,8 +1221,8 @@ def build_put_duration_request(
     # type: (...) -> HttpRequest
     """Put complex types with duration properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 'P123DT22H14M12.011S'. Required.
     :paramtype json: JSON
@@ -1230,7 +1230,7 @@ def build_put_duration_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -1251,8 +1251,8 @@ def build_put_duration_request(
     # type: (...) -> HttpRequest
     """Put complex types with duration properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put 'P123DT22H14M12.011S'. Required.
     :paramtype content: IO
@@ -1260,7 +1260,7 @@ def build_put_duration_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1272,8 +1272,8 @@ def build_put_duration_request(
     # type: (...) -> HttpRequest
     """Put complex types with duration properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put 'P123DT22H14M12.011S'. Is either a model type or a IO type. Required.
     :paramtype json: JSON or IO
@@ -1281,7 +1281,7 @@ def build_put_duration_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1313,11 +1313,11 @@ def build_get_byte_request(
     # type: (...) -> HttpRequest
     """Get complex types with byte properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1347,8 +1347,8 @@ def build_put_byte_request(
     # type: (...) -> HttpRequest
     """Put complex types with byte properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Required.
     :paramtype json: JSON
@@ -1356,7 +1356,7 @@ def build_put_byte_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -1377,8 +1377,8 @@ def build_put_byte_request(
     # type: (...) -> HttpRequest
     """Put complex types with byte properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
      Required.
@@ -1387,7 +1387,7 @@ def build_put_byte_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -1399,8 +1399,8 @@ def build_put_byte_request(
     # type: (...) -> HttpRequest
     """Put complex types with byte properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is either a
      model type or a IO type. Required.
@@ -1409,7 +1409,7 @@ def build_put_byte_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

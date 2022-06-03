@@ -22,8 +22,8 @@ def build_get_with_filter_request(
     # type: (...) -> HttpRequest
     """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''. Default
      value is None.
@@ -33,7 +33,7 @@ def build_get_with_filter_request(
     :keyword orderby: The orderby parameter with value id. Default value is None.
     :paramtype orderby: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

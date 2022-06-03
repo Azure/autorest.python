@@ -386,7 +386,7 @@ class RequestBuilderSerializer(
     def description_and_summary(self, builder: RequestBuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
-            "See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this "
+            "See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this "
             "request builder into your code flow.",
             "",
         ]
@@ -434,7 +434,7 @@ class RequestBuilderSerializer(
     def response_docstring(self, builder: RequestBuilderType) -> List[str]:
         response_str = (
             f":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
-            + "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to "
+            + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
         rtype_str = f":rtype: ~azure.core.rest.HttpRequest"

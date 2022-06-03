@@ -27,13 +27,13 @@ def build_update_pet_with_form_request(
 
     Updates a pet in the store with form data.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param pet_id: ID of pet that needs to be updated. Required.
     :type pet_id: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -75,11 +75,11 @@ def build_partial_constant_body_request(
     """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
     'foo', service: 'bar' } to pass the test.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 

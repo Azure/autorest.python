@@ -23,11 +23,11 @@ def build_head300_request(
     # type: (...) -> HttpRequest
     """Return 300 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -56,11 +56,11 @@ def build_get300_request(
     # type: (...) -> HttpRequest
     """Return 300 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -89,11 +89,11 @@ def build_head301_request(
     # type: (...) -> HttpRequest
     """Return 301 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -122,11 +122,11 @@ def build_get301_request(
     # type: (...) -> HttpRequest
     """Return 301 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -156,14 +156,14 @@ def build_put301_request(
     """Put true Boolean value in request returns 301.  This request should not be automatically
     redirected, but should return the received 301 to the caller for evaluation.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Simple boolean value true. Known values are True and None. Default value is
      True.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -195,11 +195,11 @@ def build_head302_request(
     # type: (...) -> HttpRequest
     """Return 302 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -228,11 +228,11 @@ def build_get302_request(
     # type: (...) -> HttpRequest
     """Return 302 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -262,14 +262,14 @@ def build_patch302_request(
     """Patch true Boolean value in request returns 302.  This request should not be automatically
     redirected, but should return the received 302 to the caller for evaluation.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Simple boolean value true. Known values are True and None. Default value is
      True.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -302,14 +302,14 @@ def build_post303_request(
     """Post true Boolean value in request returns 303.  This request should be automatically
     redirected usign a get, ultimately returning a 200 status code.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Simple boolean value true. Known values are True and None. Default value is
      True.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -341,11 +341,11 @@ def build_head307_request(
     # type: (...) -> HttpRequest
     """Redirect with 307, resulting in a 200 success.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -374,11 +374,11 @@ def build_get307_request(
     # type: (...) -> HttpRequest
     """Redirect get with 307, resulting in a 200 success.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -407,11 +407,11 @@ def build_options307_request(
     # type: (...) -> HttpRequest
     """options redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -440,14 +440,14 @@ def build_put307_request(
     # type: (...) -> HttpRequest
     """Put redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Simple boolean value true. Known values are True and None. Default value is
      True.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -479,14 +479,14 @@ def build_patch307_request(
     # type: (...) -> HttpRequest
     """Patch redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Simple boolean value true. Known values are True and None. Default value is
      True.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -518,14 +518,14 @@ def build_post307_request(
     # type: (...) -> HttpRequest
     """Post redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Simple boolean value true. Known values are True and None. Default value is
      True.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -557,14 +557,14 @@ def build_delete307_request(
     # type: (...) -> HttpRequest
     """Delete redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Simple boolean value true. Known values are True and None. Default value is
      True.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
