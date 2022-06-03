@@ -105,7 +105,7 @@ class PetOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
@@ -176,7 +176,7 @@ class PetOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
@@ -202,7 +202,7 @@ class PetOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
@@ -228,7 +228,7 @@ class PetOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".

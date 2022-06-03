@@ -138,7 +138,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -204,7 +204,7 @@ class DPGClientOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -231,7 +231,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -258,7 +258,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -326,7 +326,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -442,7 +442,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "provisioningState": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }

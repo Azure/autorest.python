@@ -57,7 +57,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -176,7 +176,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -232,7 +232,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -282,7 +282,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -448,7 +448,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -496,7 +496,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -542,7 +542,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant

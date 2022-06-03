@@ -11,6 +11,7 @@ from .imports import FileImport
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .model_type import ModelType
 
 
 class BaseType(BaseModel, ABC):
@@ -142,6 +143,11 @@ class BaseType(BaseModel, ABC):
     ) -> Any:
         """Template of what this schema would look like as JSON input"""
         ...
+
+    def get_polymorphic_subtypes(  # pylint: disable=no-self-use
+        self, polymorphic_subtypes: List["ModelType"]  # pylint: disable=unused-argument
+    ) -> None:
+        return None
 
     @property
     @abstractmethod

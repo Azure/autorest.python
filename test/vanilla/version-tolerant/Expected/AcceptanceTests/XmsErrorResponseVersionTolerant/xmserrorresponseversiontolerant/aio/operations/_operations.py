@@ -67,7 +67,7 @@ class PetOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "aniType": "str",  # Optional.
                     "name": "str"  # Optional. Gets the Pet by id.
                 }
@@ -129,7 +129,7 @@ class PetOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "actionResponse": "str"  # Optional. action feedback.
                 }
         """

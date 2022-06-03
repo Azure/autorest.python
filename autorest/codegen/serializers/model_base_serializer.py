@@ -127,7 +127,7 @@ class ModelBaseSerializer:
     def discriminator_docstring(model: ModelType) -> str:
         return (
             "You probably want to use the sub-classes and not this class directly. "
-            f"Known sub-classes are: {', '.join(model.discriminated_subtypes.values())}"
+            f"Known sub-classes are: {', '.join(v.name for v in model.discriminated_subtypes.values())}"
         )
 
     @abstractmethod

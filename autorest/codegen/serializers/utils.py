@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+
+
 def method_signature_and_response_type_annotation_template(
     *,
     is_python3_file: bool,

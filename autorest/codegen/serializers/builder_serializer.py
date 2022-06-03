@@ -30,6 +30,7 @@ from ..models import (
     OverloadedRequestBuilder,
     ConstantType,
     MultipartBodyParameter,
+    Property,
     RequestBuilderType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
@@ -81,6 +82,37 @@ def _json_dumps_template(template_representation: Any) -> Any:
     return _improve_json_string(
         json.dumps(template_representation, sort_keys=True, indent=4)
     )
+
+
+def _get_polymorphic_subtype_template(polymorphic_subtype: ModelType) -> List[str]:
+    retval: List[str] = []
+    retval.append("")
+    retval.append(
+        f'# JSON input template for discriminator value "{polymorphic_subtype.discriminator_value}":'
+    )
+    subtype_template = _json_dumps_template(
+        polymorphic_subtype.get_json_template_representation(),
+    )
+
+    def _get_polymorphic_parent(
+        polymorphic_subtype: Optional[ModelType],
+    ) -> Optional[ModelType]:
+        if not polymorphic_subtype:
+            return None
+        try:
+            return next(
+                p for p in polymorphic_subtype.parents if p.discriminated_subtypes
+            )
+        except StopIteration:
+            return None
+
+    polymorphic_parent = _get_polymorphic_parent(polymorphic_subtype)
+    while _get_polymorphic_parent(polymorphic_parent):
+        polymorphic_parent = _get_polymorphic_parent(polymorphic_parent)
+    retval.extend(
+        f"{cast(ModelType, polymorphic_parent).snake_case_name} = {subtype_template}".splitlines()
+    )
+    return retval
 
 
 def _serialize_grouped_body(builder: BuilderType) -> List[str]:
@@ -268,6 +300,11 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             return []
         return self.param_description(builder) + self.response_docstring(builder)
 
+    @property
+    @abstractmethod
+    def _json_response_template_name(self) -> str:
+        ...
+
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template: List[str] = []
         if self.code_model.options["models_mode"]:
@@ -287,14 +324,26 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         if not isinstance(body_param.type, (ListType, DictionaryType, ModelType)):
             return template
 
-        if isinstance(body_param.type, ModelType) and body_param.type.discriminator:
-            discriminator_name = body_param.type.discriminator.client_name
-            discriminator_values = body_param.type.discriminated_subtypes.keys()
+        polymorphic_subtypes: List[ModelType] = []
+        body_param.type.get_polymorphic_subtypes(polymorphic_subtypes)
+        if polymorphic_subtypes:
+            # we just assume one kind of polymorphic body for input
+            discriminator_name = cast(
+                Property, polymorphic_subtypes[0].discriminator
+            ).rest_api_name
             template.append(
-                "{} = '{}'".format(
-                    discriminator_name, "' or '".join(discriminator_values)
-                )
+                "# The input is polymorphic. The following are possible polymorphic "
+                f'inputs based off discriminator "{discriminator_name}":'
             )
+            for idx in range(
+                min(
+                    self.code_model.options["polymorphic_examples"],
+                    len(polymorphic_subtypes),
+                )
+            ):
+                template.extend(
+                    _get_polymorphic_subtype_template(polymorphic_subtypes[idx])
+                )
             template.append("")
         template.append(
             "# JSON input template you can fill out and use as your body input."
@@ -350,6 +399,10 @@ class RequestBuilderSerializer(
     @property
     def serializer_name(self) -> str:
         return "_SERIALIZER"
+
+    @property
+    def _json_response_template_name(self) -> str:
+        return "response.json()"
 
     @staticmethod
     def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
@@ -473,10 +526,38 @@ class _OperationSerializer(
             retval.append("")
         return retval
 
+    @property
+    def _json_response_template_name(self) -> str:
+        return "response"
+
     def example_template(self, builder: OperationType) -> List[str]:
         retval = super().example_template(builder)
         if self.code_model.options["models_mode"]:
             return retval
+        for response in builder.responses:
+            polymorphic_subtypes: List[ModelType] = []
+            if not response.type:
+                continue
+            response.type.get_polymorphic_subtypes(polymorphic_subtypes)
+            if polymorphic_subtypes:
+                # we just assume one kind of polymorphic body for input
+                discriminator_name = cast(
+                    Property, polymorphic_subtypes[0].discriminator
+                ).rest_api_name
+                retval.append(
+                    "# The response is polymorphic. The following are possible polymorphic "
+                    f'responses based off discriminator "{discriminator_name}":'
+                )
+                for idx in range(
+                    min(
+                        self.code_model.options["polymorphic_examples"],
+                        len(polymorphic_subtypes),
+                    )
+                ):
+                    retval.extend(
+                        _get_polymorphic_subtype_template(polymorphic_subtypes[idx])
+                    )
+
         if _get_json_response_template_to_status_codes(builder):
             retval.append("")
             for (
@@ -488,7 +569,9 @@ class _OperationSerializer(
                         ", ".join(status_codes)
                     )
                 )
-                retval.extend(f"response.json() == {response_body}".splitlines())
+                retval.extend(
+                    f"{self._json_response_template_name} == {response_body}".splitlines()
+                )
         return retval
 
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
