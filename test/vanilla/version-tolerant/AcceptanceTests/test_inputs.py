@@ -94,13 +94,14 @@ def test_query_input():
 
 def test_query_input_override():
     def get_query(pipeline_request):
-        assert urlparse(pipeline_request.http_request.url).query == "api-version=2021-10-01"
+        assert urlparse(pipeline_request.http_request.url).query == "new-api-version=2021-10-01&api-version=2016-02-29"
         raise ValueError("Passed!")
 
     client = get_client(callback=get_query)
     with pytest.raises(ValueError) as ex:
         # the default value is "2016-02-29"
-        client.basic.put_valid(None, params={"api-version": "2021-10-01"})
+        # in version tolerant, we don't accept users overriding api version on the method level
+        client.basic.put_valid(None, params={"new-api-version": "2021-10-01"})
 
     assert str(ex.value) == "Passed!"
 
@@ -122,12 +123,13 @@ def test_query_case_insensitive():
 
 def test_query_kwarg_and_header():
     def get_query(pipeline_request):
-        assert urlparse(pipeline_request.http_request.url).query == "api-version=2021-10-01"
+        assert urlparse(pipeline_request.http_request.url).query == "api-version=2016-02-29"
         raise ValueError("Passed!")
 
     client = get_client(callback=get_query)
     with pytest.raises(ValueError) as ex:
         # the default value is "2016-02-29"
+        # we don't allow users to override api version in DPG, so this should still be the old value
         client.basic.put_valid(None, params={"api-version": "shouldn't-be-me"}, api_version="2021-10-01")
 
     assert str(ex.value) == "Passed!"

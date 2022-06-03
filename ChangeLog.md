@@ -1,4 +1,18 @@
-# Change Log
+# Change
+
+### 2022-xx-xx - 5.18.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Breaking Changes in Version Tolerant**
+
+- No longer allow users to specify `api_version` on the method level  #1281
 
 ### 2022-xx-xx - 5.17.1
 
