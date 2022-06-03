@@ -536,7 +536,8 @@ def test_pass_in_api_version(client):
 def test_client_api_version():
     api_version = "2021-10-01"
     def check_api_version(pipeline_request):
-        assert pipeline_request.http_request.query["api-version"] == api_version
+        assert pipeline_request.http_request.query["api-version"] == "2021-10-01"
+        raise ValueError("Succeeded")
     client = AutoRestComplexTestService(
         api_version=api_version,
         policies=[CustomHookPolicy(raw_request_hook=check_api_version)]
@@ -548,8 +549,7 @@ def test_client_api_version():
         "name": "abc",
         "color": "Magenta",
     }
-    client.basic.put_valid(basic_result)
-    
-    # it shall raise exception since we override api_version
-    with pytest.raises(AssertionError):
+    # Even though we override the client api version on the method level
+    # DPG doesn't allow that, so should be the api version we passed to the client
+    with pytest.raises(ValueError):
         client.basic.put_valid(basic_result, api_version="2016-02-29")

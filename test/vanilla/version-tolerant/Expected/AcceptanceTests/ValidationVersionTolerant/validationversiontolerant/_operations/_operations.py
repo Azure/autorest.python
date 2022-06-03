@@ -73,8 +73,8 @@ def build_validation_of_body_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -183,16 +183,15 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
-            api_version=api_version,
+            api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
@@ -409,9 +408,8 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
@@ -430,8 +428,8 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
-            api_version=api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             json=_json,
             content=_content,
             headers=_headers,
