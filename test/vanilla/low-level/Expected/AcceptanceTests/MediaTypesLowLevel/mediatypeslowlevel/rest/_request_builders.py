@@ -31,8 +31,8 @@ def build_analyze_body_request(
     # type: (...) -> HttpRequest
     """Analyze body, that could be different media types.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -40,7 +40,7 @@ def build_analyze_body_request(
     :keyword json: Input parameter. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -61,8 +61,8 @@ def build_analyze_body_request(
     # type: (...) -> HttpRequest
     """Analyze body, that could be different media types.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -70,7 +70,7 @@ def build_analyze_body_request(
     :keyword content: Input parameter. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -82,8 +82,8 @@ def build_analyze_body_request(
     # type: (...) -> HttpRequest
     """Analyze body, that could be different media types.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
      'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -91,7 +91,7 @@ def build_analyze_body_request(
     :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -125,8 +125,8 @@ def build_analyze_body_no_accept_header_request(
     """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
     type.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -134,7 +134,7 @@ def build_analyze_body_no_accept_header_request(
     :keyword json: Input parameter. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -156,8 +156,8 @@ def build_analyze_body_no_accept_header_request(
     """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
     type.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -165,7 +165,7 @@ def build_analyze_body_no_accept_header_request(
     :keyword content: Input parameter. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -178,8 +178,8 @@ def build_analyze_body_no_accept_header_request(
     """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
     type.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
      'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -187,7 +187,7 @@ def build_analyze_body_no_accept_header_request(
     :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -216,13 +216,13 @@ def build_content_type_with_encoding_request(
     # type: (...) -> HttpRequest
     """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Input parameter. Default value is None.
     :paramtype content: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -255,13 +255,13 @@ def build_binary_body_with_two_content_types_request(
     """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
     content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: The payload body. Required.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -295,13 +295,13 @@ def build_binary_body_with_three_content_types_request(
     'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
     'application/octet-stream'.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: The payload body. Required.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -333,13 +333,13 @@ def build_put_text_and_json_body_request(
     # type: (...) -> HttpRequest
     """Body that's either text/plain or application/json.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: The payload body. Required.
     :paramtype content: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

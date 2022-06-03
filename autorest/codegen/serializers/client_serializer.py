@@ -224,7 +224,7 @@ class ClientSerializer:
             retval.extend(self._rest_request_example(async_mode))
         retval.append("")
         retval.append(
-            "For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart"
+            "For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request"
         )
         retval.append(f"")
         retval.append(":param request: The network request you want to make. Required.")

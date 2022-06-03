@@ -28,8 +28,8 @@ def build_post_required_request(
 ) -> HttpRequest:
     """Post a bunch of required parameters grouped.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param path: Path parameter. Required.
     :type path: str
@@ -40,7 +40,7 @@ def build_post_required_request(
     :keyword query: Query parameter with default. Default value is 30.
     :paramtype query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -88,15 +88,15 @@ def build_post_optional_request(
 ) -> HttpRequest:
     """Post a bunch of optional parameters grouped.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword custom_header: Default value is None.
     :paramtype custom_header: str
     :keyword query: Query parameter with default. Default value is 30.
     :paramtype query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -135,8 +135,8 @@ def build_post_reserved_words_request(
 ) -> HttpRequest:
     """Post a grouped parameters with reserved words.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass. Default value is
      None.
@@ -145,7 +145,7 @@ def build_post_reserved_words_request(
      None.
     :paramtype accept_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -186,8 +186,8 @@ def build_post_multi_param_groups_request(
 ) -> HttpRequest:
     """Post parameters from multiple different parameter groups.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword header_one: Default value is None.
     :paramtype header_one: str
@@ -198,7 +198,7 @@ def build_post_multi_param_groups_request(
     :keyword query_two: Query parameter with default. Default value is 30.
     :paramtype query_two: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -241,15 +241,15 @@ def build_post_shared_parameter_group_object_request(
 ) -> HttpRequest:
     """Post parameters with a shared parameter group object.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword header_one: Default value is None.
     :paramtype header_one: str
     :keyword query_one: Query parameter with default. Default value is 30.
     :paramtype query_one: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -289,8 +289,8 @@ def build_group_with_constant_request(
     """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
     groupedParameter.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword grouped_constant: A grouped parameter that is a constant. Known values are "foo" and
      None. Default value is "foo".
@@ -299,7 +299,7 @@ def build_group_with_constant_request(
      None.
     :paramtype grouped_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
