@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, Awaitable, Optional
 
-from msrest import Deserializer, Serializer
-
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models
+from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ExplicitOperations, ImplicitOperations
 
@@ -55,6 +54,7 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
+        self._serialize.client_side_validation = False
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 

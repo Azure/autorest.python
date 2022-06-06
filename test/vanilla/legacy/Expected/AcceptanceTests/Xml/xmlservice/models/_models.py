@@ -189,7 +189,7 @@ class BlobPrefix(_serialization.Model):
         self.name = kwargs["name"]
 
 
-class BlobProperties(_serialization.Model):
+class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance-attributes
     """Properties of a blob.
 
     All required parameters must be populated in order to send to Azure.

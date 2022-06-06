@@ -7,10 +7,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -49,7 +49,7 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get("message", None)
 
 
-class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):
+class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -75,7 +75,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
         self.foo_client_request_id = kwargs["foo_client_request_id"]
 
 
-class OdataFilter(msrest.serialization.Model):
+class OdataFilter(_serialization.Model):
     """OdataFilter.
 
     :ivar id:

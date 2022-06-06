@@ -7,10 +7,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class ChildProduct(msrest.serialization.Model):
+class ChildProduct(_serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -43,7 +43,7 @@ class ChildProduct(msrest.serialization.Model):
         self.count = kwargs.get("count", None)
 
 
-class ConstantProduct(msrest.serialization.Model):
+class ConstantProduct(_serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -74,7 +74,7 @@ class ConstantProduct(msrest.serialization.Model):
         super(ConstantProduct, self).__init__(**kwargs)
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar code:
@@ -106,7 +106,7 @@ class Error(msrest.serialization.Model):
         self.fields = kwargs.get("fields", None)
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.

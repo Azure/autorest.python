@@ -9,14 +9,14 @@
 
 from typing import List, Optional, TYPE_CHECKING
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class ChildProduct(msrest.serialization.Model):
+class ChildProduct(_serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -49,7 +49,7 @@ class ChildProduct(msrest.serialization.Model):
         self.count = count
 
 
-class ConstantProduct(msrest.serialization.Model):
+class ConstantProduct(_serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -80,7 +80,7 @@ class ConstantProduct(msrest.serialization.Model):
         super().__init__(**kwargs)
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar code:
@@ -114,7 +114,7 @@ class Error(msrest.serialization.Model):
         self.fields = fields
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.

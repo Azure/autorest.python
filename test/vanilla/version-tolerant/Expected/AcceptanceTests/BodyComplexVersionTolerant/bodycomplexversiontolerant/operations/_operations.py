@@ -9,6 +9,8 @@
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from msrest import Serializer
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,8 +24,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
@@ -33,7 +33,6 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
 
 
 def build_basic_get_valid_request(**kwargs: Any) -> HttpRequest:

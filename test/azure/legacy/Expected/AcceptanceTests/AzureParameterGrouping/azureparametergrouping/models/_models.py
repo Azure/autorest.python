@@ -7,10 +7,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -36,7 +36,7 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get("message", None)
 
 
-class FirstParameterGroup(msrest.serialization.Model):
+class FirstParameterGroup(_serialization.Model):
     """Parameter group.
 
     :ivar header_one:
@@ -62,7 +62,7 @@ class FirstParameterGroup(msrest.serialization.Model):
         self.query_one = kwargs.get("query_one", 30)
 
 
-class Grouper(msrest.serialization.Model):
+class Grouper(_serialization.Model):
     """Parameter group.
 
     :ivar grouped_constant: A grouped parameter that is a constant. Default value is "foo".
@@ -88,7 +88,7 @@ class Grouper(msrest.serialization.Model):
         self.grouped_parameter = kwargs.get("grouped_parameter", None)
 
 
-class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
+class ParameterGroupingPostMultiParamGroupsSecondParamGroup(_serialization.Model):
     """Parameter group.
 
     :ivar header_two:
@@ -114,7 +114,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
         self.query_two = kwargs.get("query_two", 30)
 
 
-class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
+class ParameterGroupingPostOptionalParameters(_serialization.Model):
     """Parameter group.
 
     :ivar custom_header:
@@ -140,7 +140,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
         self.query = kwargs.get("query", 30)
 
 
-class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
+class ParameterGroupingPostRequiredParameters(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -185,7 +185,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         self.body = kwargs["body"]
 
 
-class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
+class ParameterGroupingPostReservedWordsParameters(_serialization.Model):
     """Parameter group.
 
     :ivar from_property: 'from' is a reserved word. Pass in 'bob' to pass.

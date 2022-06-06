@@ -7,10 +7,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class ArrayOptionalWrapper(msrest.serialization.Model):
+class ArrayOptionalWrapper(_serialization.Model):
     """ArrayOptionalWrapper.
 
     :ivar value:
@@ -30,7 +30,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
         self.value = kwargs.get("value", None)
 
 
-class ArrayWrapper(msrest.serialization.Model):
+class ArrayWrapper(_serialization.Model):
     """ArrayWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -56,7 +56,7 @@ class ArrayWrapper(msrest.serialization.Model):
         self.value = kwargs["value"]
 
 
-class ClassOptionalWrapper(msrest.serialization.Model):
+class ClassOptionalWrapper(_serialization.Model):
     """ClassOptionalWrapper.
 
     :ivar value:
@@ -76,7 +76,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
         self.value = kwargs.get("value", None)
 
 
-class ClassWrapper(msrest.serialization.Model):
+class ClassWrapper(_serialization.Model):
     """ClassWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -102,7 +102,7 @@ class ClassWrapper(msrest.serialization.Model):
         self.value = kwargs["value"]
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -128,7 +128,7 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get("message", None)
 
 
-class IntOptionalWrapper(msrest.serialization.Model):
+class IntOptionalWrapper(_serialization.Model):
     """IntOptionalWrapper.
 
     :ivar value:
@@ -148,7 +148,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
         self.value = kwargs.get("value", None)
 
 
-class IntWrapper(msrest.serialization.Model):
+class IntWrapper(_serialization.Model):
     """IntWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -174,7 +174,7 @@ class IntWrapper(msrest.serialization.Model):
         self.value = kwargs["value"]
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     All required parameters must be populated in order to send to Azure.
@@ -206,7 +206,7 @@ class Product(msrest.serialization.Model):
         self.name = kwargs.get("name", None)
 
 
-class StringOptionalWrapper(msrest.serialization.Model):
+class StringOptionalWrapper(_serialization.Model):
     """StringOptionalWrapper.
 
     :ivar value:
@@ -226,7 +226,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
         self.value = kwargs.get("value", None)
 
 
-class StringWrapper(msrest.serialization.Model):
+class StringWrapper(_serialization.Model):
     """StringWrapper.
 
     All required parameters must be populated in order to send to Azure.

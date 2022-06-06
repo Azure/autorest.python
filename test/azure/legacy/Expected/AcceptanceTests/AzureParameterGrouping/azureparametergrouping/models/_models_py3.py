@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -38,7 +38,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class FirstParameterGroup(msrest.serialization.Model):
+class FirstParameterGroup(_serialization.Model):
     """Parameter group.
 
     :ivar header_one:
@@ -64,7 +64,7 @@ class FirstParameterGroup(msrest.serialization.Model):
         self.query_one = query_one
 
 
-class Grouper(msrest.serialization.Model):
+class Grouper(_serialization.Model):
     """Parameter group.
 
     :ivar grouped_constant: A grouped parameter that is a constant. Default value is "foo".
@@ -90,7 +90,7 @@ class Grouper(msrest.serialization.Model):
         self.grouped_parameter = grouped_parameter
 
 
-class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
+class ParameterGroupingPostMultiParamGroupsSecondParamGroup(_serialization.Model):
     """Parameter group.
 
     :ivar header_two:
@@ -116,7 +116,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
         self.query_two = query_two
 
 
-class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
+class ParameterGroupingPostOptionalParameters(_serialization.Model):
     """Parameter group.
 
     :ivar custom_header:
@@ -142,7 +142,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
         self.query = query
 
 
-class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
+class ParameterGroupingPostRequiredParameters(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -187,7 +187,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         self.body = body
 
 
-class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
+class ParameterGroupingPostReservedWordsParameters(_serialization.Model):
     """Parameter group.
 
     :ivar from_property: 'from' is a reserved word. Pass in 'bob' to pass.

@@ -10,14 +10,14 @@
 import datetime
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class ArrayWrapper(msrest.serialization.Model):
+class ArrayWrapper(_serialization.Model):
     """ArrayWrapper.
 
     :ivar array:
@@ -37,7 +37,7 @@ class ArrayWrapper(msrest.serialization.Model):
         self.array = array
 
 
-class Basic(msrest.serialization.Model):
+class Basic(_serialization.Model):
     """Basic.
 
     :ivar id: Basic Id.
@@ -78,7 +78,7 @@ class Basic(msrest.serialization.Model):
         self.color = color
 
 
-class BooleanWrapper(msrest.serialization.Model):
+class BooleanWrapper(_serialization.Model):
     """BooleanWrapper.
 
     :ivar field_true:
@@ -104,7 +104,7 @@ class BooleanWrapper(msrest.serialization.Model):
         self.field_false = field_false
 
 
-class ByteWrapper(msrest.serialization.Model):
+class ByteWrapper(_serialization.Model):
     """ByteWrapper.
 
     :ivar field:
@@ -124,7 +124,7 @@ class ByteWrapper(msrest.serialization.Model):
         self.field = field
 
 
-class Pet(msrest.serialization.Model):
+class Pet(_serialization.Model):
     """Pet.
 
     :ivar id:
@@ -196,7 +196,7 @@ class Cat(Pet):
         self.hates = hates
 
 
-class Fish(msrest.serialization.Model):
+class Fish(_serialization.Model):
     """Fish.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -375,7 +375,7 @@ class Cookiecuttershark(Shark):
         self.fishtype = "cookiecuttershark"  # type: str
 
 
-class Datetimerfc1123Wrapper(msrest.serialization.Model):
+class Datetimerfc1123Wrapper(_serialization.Model):
     """Datetimerfc1123Wrapper.
 
     :ivar field:
@@ -401,7 +401,7 @@ class Datetimerfc1123Wrapper(msrest.serialization.Model):
         self.now = now
 
 
-class DatetimeWrapper(msrest.serialization.Model):
+class DatetimeWrapper(_serialization.Model):
     """DatetimeWrapper.
 
     :ivar field:
@@ -427,7 +427,7 @@ class DatetimeWrapper(msrest.serialization.Model):
         self.now = now
 
 
-class DateWrapper(msrest.serialization.Model):
+class DateWrapper(_serialization.Model):
     """DateWrapper.
 
     :ivar field:
@@ -453,7 +453,7 @@ class DateWrapper(msrest.serialization.Model):
         self.leap = leap
 
 
-class DictionaryWrapper(msrest.serialization.Model):
+class DictionaryWrapper(_serialization.Model):
     """DictionaryWrapper.
 
     :ivar default_program: Dictionary of :code:`<string>`.
@@ -510,7 +510,7 @@ class Dog(Pet):
         self.food = food
 
 
-class DotFish(msrest.serialization.Model):
+class DotFish(_serialization.Model):
     """DotFish.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -545,7 +545,7 @@ class DotFish(msrest.serialization.Model):
         self.species = species
 
 
-class DotFishMarket(msrest.serialization.Model):
+class DotFishMarket(_serialization.Model):
     """DotFishMarket.
 
     :ivar sample_salmon:
@@ -634,7 +634,7 @@ class DotSalmon(DotFish):
         self.iswild = iswild
 
 
-class DoubleWrapper(msrest.serialization.Model):
+class DoubleWrapper(_serialization.Model):
     """DoubleWrapper.
 
     :ivar field1:
@@ -679,7 +679,7 @@ class DoubleWrapper(msrest.serialization.Model):
         )
 
 
-class DurationWrapper(msrest.serialization.Model):
+class DurationWrapper(_serialization.Model):
     """DurationWrapper.
 
     :ivar field:
@@ -699,7 +699,7 @@ class DurationWrapper(msrest.serialization.Model):
         self.field = field
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -725,7 +725,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class FloatWrapper(msrest.serialization.Model):
+class FloatWrapper(_serialization.Model):
     """FloatWrapper.
 
     :ivar field1:
@@ -825,7 +825,7 @@ class Goblinshark(Shark):
         self.color = color
 
 
-class IntWrapper(msrest.serialization.Model):
+class IntWrapper(_serialization.Model):
     """IntWrapper.
 
     :ivar field1:
@@ -851,7 +851,7 @@ class IntWrapper(msrest.serialization.Model):
         self.field2 = field2
 
 
-class LongWrapper(msrest.serialization.Model):
+class LongWrapper(_serialization.Model):
     """LongWrapper.
 
     :ivar field1:
@@ -877,7 +877,7 @@ class LongWrapper(msrest.serialization.Model):
         self.field2 = field2
 
 
-class MyBaseType(msrest.serialization.Model):
+class MyBaseType(_serialization.Model):
     """MyBaseType.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -960,7 +960,7 @@ class MyDerivedType(MyBaseType):
         self.prop_d1 = prop_d1
 
 
-class ReadonlyObj(msrest.serialization.Model):
+class ReadonlyObj(_serialization.Model):
     """ReadonlyObj.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -1247,7 +1247,7 @@ class SmartSalmon(Salmon):
         self.college_degree = college_degree
 
 
-class StringWrapper(msrest.serialization.Model):
+class StringWrapper(_serialization.Model):
     """StringWrapper.
 
     :ivar field:

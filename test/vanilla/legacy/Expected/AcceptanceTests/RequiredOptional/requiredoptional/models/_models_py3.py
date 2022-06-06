@@ -9,14 +9,14 @@
 
 from typing import List, Optional, TYPE_CHECKING
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class ArrayOptionalWrapper(msrest.serialization.Model):
+class ArrayOptionalWrapper(_serialization.Model):
     """ArrayOptionalWrapper.
 
     :ivar value:
@@ -36,7 +36,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class ArrayWrapper(msrest.serialization.Model):
+class ArrayWrapper(_serialization.Model):
     """ArrayWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -62,7 +62,7 @@ class ArrayWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class ClassOptionalWrapper(msrest.serialization.Model):
+class ClassOptionalWrapper(_serialization.Model):
     """ClassOptionalWrapper.
 
     :ivar value:
@@ -82,7 +82,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class ClassWrapper(msrest.serialization.Model):
+class ClassWrapper(_serialization.Model):
     """ClassWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -108,7 +108,7 @@ class ClassWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -134,7 +134,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class IntOptionalWrapper(msrest.serialization.Model):
+class IntOptionalWrapper(_serialization.Model):
     """IntOptionalWrapper.
 
     :ivar value:
@@ -154,7 +154,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class IntWrapper(msrest.serialization.Model):
+class IntWrapper(_serialization.Model):
     """IntWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -180,7 +180,7 @@ class IntWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     All required parameters must be populated in order to send to Azure.
@@ -212,7 +212,7 @@ class Product(msrest.serialization.Model):
         self.name = name
 
 
-class StringOptionalWrapper(msrest.serialization.Model):
+class StringOptionalWrapper(_serialization.Model):
     """StringOptionalWrapper.
 
     :ivar value:
@@ -232,7 +232,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class StringWrapper(msrest.serialization.Model):
+class StringWrapper(_serialization.Model):
     """StringWrapper.
 
     All required parameters must be populated in order to send to Azure.
