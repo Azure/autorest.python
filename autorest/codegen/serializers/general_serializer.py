@@ -76,7 +76,7 @@ class GeneralSerializer:
             )
             file_import.add_msrest_import(
                 self.code_model,
-                ".",
+                ".." if self.async_mode else ".",
                 MsrestImportType.SerializerDeserializer,
                 TypingSection.TYPING,
             )
