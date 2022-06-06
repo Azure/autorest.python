@@ -9,10 +9,11 @@ from .base_model import BaseModel
 from .constant_type import ConstantType
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .utils import add_to_description
+from .utils import add_to_description, add_to_pylint_disable
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .model_type import ModelType
 
 
 class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
@@ -33,6 +34,13 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
+
+    @property
+    def pylint_disable(self) -> str:
+        retval: str = ""
+        if self.yaml_data.get("pylintDisable"):
+            retval = add_to_pylint_disable(retval, self.yaml_data["pylintDisable"])
+        return retval
 
     def description(self, *, is_operation_file: bool) -> str:
         from .model_type import ModelType
@@ -98,6 +106,19 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             description=description,
         )
 
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        from .model_type import ModelType
+
+        if isinstance(self.type, ModelType):
+            is_polymorphic_subtype = (
+                self.type.discriminator_value and not self.type.discriminated_subtypes
+            )
+            if (
+                self.type.name not in (m.name for m in polymorphic_subtypes)
+                and is_polymorphic_subtype
+            ):
+                polymorphic_subtypes.append(self.type)
+
     @property
     def validation(self) -> Optional[Dict[str, Any]]:
         retval: Dict[str, Any] = {}
@@ -131,10 +152,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if isinstance(self.type, ModelType):
-            file_import.add_import(
-                "__init__",
+            file_import.add_submodule_import(
+                "..",
+                "models",
                 ImportType.LOCAL,
-                typing_section=TypingSection.TYPING,
+                TypingSection.TYPING,
                 alias="_models",
             )
         return file_import

@@ -181,3 +181,7 @@ async def test_skip_url_encoding(azure_client, unencoded_path, unencoded_query):
 @pytest.mark.asyncio
 async def test_azure_odata(azure_client):
     await azure_client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
+
+@pytest.mark.asyncio
+async def test_group_with_constant(client):
+    await client.parameter_grouping.group_with_constant(grouped_constant="foo", grouped_parameter="bar")

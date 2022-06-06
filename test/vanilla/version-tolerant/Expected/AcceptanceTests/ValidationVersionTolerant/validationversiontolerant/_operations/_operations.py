@@ -28,7 +28,7 @@ from .._vendor import MixinABC, _format_url_section
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -73,8 +73,8 @@ def build_validation_of_body_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -148,13 +148,13 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :type id: int
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -183,16 +183,15 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
-            api_version=api_version,
+            api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
@@ -242,7 +241,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -274,7 +273,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -307,7 +306,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         id: int,
         body: Optional[IO] = None,
         *,
-        content_type: Optional[str] = None,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
@@ -320,17 +319,17 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -374,13 +373,13 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -409,12 +408,12 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IO, bytes)):
@@ -424,14 +423,13 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 _json = body
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
-            api_version=api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             json=_json,
             content=_content,
             headers=_headers,
@@ -468,7 +466,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :paramtype constant_param: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -515,7 +513,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :paramtype constant_param: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -547,7 +545,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -575,27 +573,27 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
     @overload
     def post_with_constant_in_body(
-        self, body: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """post_with_constant_in_body.
 
         :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -635,13 +633,13 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
@@ -676,6 +674,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IO, bytes)):
@@ -685,7 +684,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                 _json = body
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,

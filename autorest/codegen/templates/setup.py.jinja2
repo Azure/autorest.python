@@ -65,12 +65,18 @@ setup(
     packages=find_packages(
         exclude=[
             "tests",
+            {% if pkgutil_names %}
             # Exclude packages that will be covered by PEP420 or nspkg
+            {% endif %}
             {%- for pkgutil_name in pkgutil_names %}
             "{{ pkgutil_name }}",
             {%- endfor %}
         ]
     ),
+    include_package_data=True,
+    package_data={
+        'pytyped': ['py.typed'],
+    },
     {% else %}
     packages=find_packages(),
     include_package_data=True,

@@ -7,7 +7,7 @@ import copy
 import itertools
 from multiprocessing import Pool
 import os
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, NamedTuple, Optional, Union
 from enum import Enum, auto
 from colorama import init, Fore
 from invoke import task, run
@@ -26,6 +26,11 @@ class _Generator(Enum):
     VERSION_TOLERANT = "version_tolerant"
     LOW_LEVEL_CLIENT = "low_level_client"
 
+class Config(NamedTuple):
+    generator: _Generator
+    output_folder: str
+
+AUTOREST_DIR = os.path.dirname(__file__)
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
     'Anything': 'any-type.json',
@@ -185,6 +190,37 @@ _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
     'AzureSpecials'
 ]
 
+_POSTPROCESS_PACKAGES = [
+    "DPGTestModels",
+    "BodyComplex",
+    "DPGCustomizationCustomized",
+]
+
+def _get_config(
+    swagger_group: _SwaggerGroup, package_name: str, **kwargs
+) -> Config:
+    if swagger_group == _SwaggerGroup.VANILLA:
+        generation_section = "vanilla"
+    elif swagger_group == _SwaggerGroup.DPG:
+        generation_section = "dpg"
+    else:
+        generation_section = "azure"
+
+    low_level_client = kwargs.pop("low_level_client", False)
+    version_tolerant = kwargs.pop("version_tolerant", False)
+    if low_level_client:
+        package_name += "LowLevel"
+        generation_section += "/low-level"
+        generator = _Generator.LOW_LEVEL_CLIENT
+    elif version_tolerant:
+        package_name += "VersionTolerant"
+        generation_section += "/version-tolerant"
+        generator = _Generator.VERSION_TOLERANT
+    else:
+        generation_section += "/legacy"
+        generator = _Generator.LEGACY
+    return Config(generator, f"test/{generation_section}/Expected/AcceptanceTests/{package_name}")
+
 def _build_flags(
     package_name: str,
     swagger_name: str,
@@ -193,39 +229,30 @@ def _build_flags(
     override_flags: Optional[Dict[str, Any]] = None,
     **kwargs
 ) -> Dict[str, Any]:
-    autorest_dir = os.path.dirname(__file__)
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
     override_flags = override_flags or {}
     override_flags.update(_PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
-    if swagger_group == _SwaggerGroup.VANILLA:
-        generation_section = "vanilla"
-    elif swagger_group == _SwaggerGroup.DPG:
-        generation_section = "dpg"
-    else:
-        generation_section = "azure"
-    namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
     low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
     client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not (low_level_client or version_tolerant)
-    if low_level_client:
-        package_name += "LowLevel"
-        generation_section += "/low-level"
+    namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
+
+    generator, output_folder = _get_config(swagger_group, package_name, **kwargs)
+
+    if generator == _Generator.LOW_LEVEL_CLIENT:
         override_flags["low-level-client"] = True
         namespace += "lowlevel"
-    elif version_tolerant:
-        package_name += "VersionTolerant"
-        generation_section += "/version-tolerant"
+    elif generator == _Generator.VERSION_TOLERANT:
         override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
     else:
-        generation_section += "/legacy"
         override_flags["payload-flattening-threshold"] = 1
         override_flags["reformat-next-link"] = False
 
     flags = {
-        "use": autorest_dir,
+        "use": AUTOREST_DIR,
         "clear-output-folder": True,
-        "output-folder": f"test/{generation_section}/Expected/AcceptanceTests/{package_name}",
+        "output-folder": output_folder,
         "license-header": "MICROSOFT_MIT_NO_VERSION",
         "enable-xml": True,
         "basic-setup-py": True,
@@ -294,12 +321,21 @@ def _regenerate(
     **kwargs
 ) -> None:
     cmds = []
+    post_process_cmds = []
     for package_name, swagger_name in mapping.items():
         command_line = _build_command_line(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
 
         print(Fore.YELLOW + f'Queuing up: {command_line}')
         cmds.append(command_line)
+        if kwargs.get("version_tolerant") and package_name in _POSTPROCESS_PACKAGES:
+            config = _get_config(swagger_group, package_name, **kwargs)
+            post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder}"
+            if debug:
+                post_process_cmd += " --python.debugger"
+            print(Fore.YELLOW + f'Queuing up post process command: {post_process_cmd}')
+            post_process_cmds.append(post_process_cmd)
     _run_autorest(cmds, debug=debug)
+    _run_autorest(post_process_cmds, debug=debug)
 
 def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None, debug=False, **kwargs):
     if kwargs.get("low_level_client", False):
@@ -534,6 +570,7 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
     azure_packages = [
         'test/azure/legacy/specification/packagemodemgmtplane/README.md',
         'test/azure/legacy/specification/packagemodecustomize/README.md',
+        'test/azure/legacy/specification/packagemodedataplane/README.md',
     ]
     vanilla_packages = [
         'test/vanilla/legacy/specification/packagemodedataplane/README.md',

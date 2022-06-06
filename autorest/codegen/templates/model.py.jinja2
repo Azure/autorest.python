@@ -5,8 +5,7 @@
     """{{ model.description(is_operation_file=False) }}
     {% if model.discriminated_subtypes %}
 
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: {{ model.discriminated_subtypes.values()|join(', ') }}.
+    {{ serializer.discriminator_docstring(model) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}
     {% endif %}
     {% if model.has_readonly_or_constant_property %}
 
@@ -46,7 +45,7 @@
     {% if model.discriminated_subtypes %}
 
     _subtype_map = {
-        '{{ model.discriminator.client_name }}': {{ str(model.discriminated_subtypes) }}
+        '{{ model.discriminator.client_name }}': {{ str(model.discriminated_subtypes_name_mapping) }}
     }
     {% endif %}
     {% if model.xml_map_content %}
@@ -61,10 +60,10 @@
         {% endfor %}
     {% endif %}
 
-    def __init__(
+    def __init__({{ model.init_pylint_disable }}
         self,
         {% for param_signature in serializer.init_line(model) %}
-        {{ param_signature }},
+        {{ param_signature }}
         {% endfor %}
         **kwargs
     ):

@@ -64,7 +64,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
     def response_docstring_text(self, **kwargs) -> str:
         return (
             "Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
-            + "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to "
+            + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
 
@@ -75,7 +75,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         file_import = FileImport()
         if not self.abstract:
             for parameter in self.parameters.method:
-                file_import.merge(parameter.imports())
+                file_import.merge(parameter.imports(async_mode=False))
 
         file_import.add_submodule_import(
             "azure.core.rest",

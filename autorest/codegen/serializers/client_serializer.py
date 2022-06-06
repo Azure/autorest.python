@@ -22,7 +22,7 @@ class ClientSerializer:
             method_name="__init__",
             need_self_param=True,
             method_param_signatures=self.code_model.client.parameters.method_signature(
-                async_mode or self.is_python3_file
+                async_mode or self.is_python3_file, async_mode
             ),
         )
 
@@ -52,12 +52,10 @@ class ClientSerializer:
             base_class = f"{class_name}OperationsMixin"
         elif not (async_mode or self.is_python3_file):
             base_class = "object"
-        disable = ""
-        if len(self.code_model.operation_groups) > 6:
-            disable = "    # pylint: disable=too-many-instance-attributes"
+        pylint_disable = self.code_model.client.pylint_disable
         if base_class:
-            return f"class {class_name}({base_class}):{disable}"
-        return f"class {class_name}:{disable}"
+            return f"class {class_name}({base_class}):{pylint_disable}"
+        return f"class {class_name}:{pylint_disable}"
 
     def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []
@@ -72,7 +70,7 @@ class ClientSerializer:
                 f":{param.description_keyword} {param.client_name}: {param.description}"
             )
             retval.append(
-                f":{param.docstring_type_keyword} {param.client_name}: {param.docstring_type}"
+                f":{param.docstring_type_keyword} {param.client_name}: {param.docstring_type(async_mode=async_mode)}"
             )
         if self.code_model.has_lro_operations:
             retval.append(
@@ -131,14 +129,9 @@ class ClientSerializer:
             og for og in self.code_model.operation_groups if not og.is_mixin
         ]
         for og in operation_groups:
-            disable_check = (
-                "  # type: ignore # pylint: disable=abstract-class-instantiated"
-                if og.has_abstract_operations
-                else ""
-            )
             retval.extend(
                 [
-                    f"self.{og.property_name} = {og.class_name}({disable_check}",
+                    f"self.{og.property_name} = {og.class_name}({og.mypy_ignore}{og.pylint_disable}",
                     "    self._client, self._config, self._serialize, self._deserialize",
                     ")",
                 ]
@@ -231,7 +224,7 @@ class ClientSerializer:
             retval.extend(self._rest_request_example(async_mode))
         retval.append("")
         retval.append(
-            "For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart"
+            "For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request"
         )
         retval.append(f"")
         retval.append(":param request: The network request you want to make. Required.")
@@ -265,7 +258,7 @@ class ConfigSerializer:
             method_name="__init__",
             need_self_param=True,
             method_param_signatures=self.code_model.config.parameters.method_signature(
-                async_mode or self.is_python3_file
+                async_mode or self.is_python3_file, async_mode
             ),
         )
 
@@ -302,12 +295,12 @@ class ConfigSerializer:
             if not (p.optional or p.constant)
         ]
 
-    def property_descriptions(self) -> List[str]:
+    def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []
         for p in self.code_model.config.parameters.method:
             retval.append(f":{p.description_keyword} {p.client_name}: {p.description}")
             retval.append(
-                f":{p.docstring_type_keyword} {p.client_name}: {p.docstring_type}"
+                f":{p.docstring_type_keyword} {p.client_name}: {p.docstring_type(async_mode=async_mode)}"
             )
         retval.append('"""')
         return retval

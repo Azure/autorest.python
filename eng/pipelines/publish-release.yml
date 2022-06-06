@@ -17,9 +17,9 @@ steps:
       versionSpec: '$(NodeVersion)'
 
   - task: UsePythonVersion@0
-    displayName: 'Use Python 3.6'
+    displayName: 'Use Python 3.7'
     inputs:
-      versionSpec: 3.6
+      versionSpec: 3.7
 
   - script: |
       cd $(Build.SourcesDirectory)

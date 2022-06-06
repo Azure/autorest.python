@@ -97,6 +97,7 @@ class PollingPagingExampleOperationsMixin(object):
         content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -106,7 +107,6 @@ class PollingPagingExampleOperationsMixin(object):
                 _json = self._serialize.body(product, 'Product')
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_basic_polling_request(
             content_type=content_type,
@@ -168,7 +168,7 @@ class PollingPagingExampleOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of CustomPoller that returns either Product or the result of cls(response)
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -183,7 +183,7 @@ class PollingPagingExampleOperationsMixin(object):
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -195,7 +195,7 @@ class PollingPagingExampleOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of CustomPoller that returns either Product or the result of cls(response)
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
 
@@ -223,7 +223,7 @@ class PollingPagingExampleOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of CustomPoller that returns either Product or the result of cls(response)
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -279,13 +279,13 @@ class PollingPagingExampleOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A simple paging operation.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~my.library.CustomPager[~azure.directives.sample.models.ProductResult]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~my.library.CustomPager[~azure.directives.sample.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

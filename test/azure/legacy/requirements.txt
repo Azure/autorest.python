@@ -23,6 +23,7 @@ msrest==0.6.21
 -e ./Expected/AcceptanceTests/CustomPollerPager
 -e ./Expected/AcceptanceTests/CustomPollerPagerDefinitions
 -e ./Expected/AcceptanceTests/PackageModeMgmtPlane
+-e ./Expected/AcceptanceTests/PackageModeDataPlane
 -e ./Expected/AcceptanceTests/PackageModeCustomize
 -e ./Expected/AcceptanceTests/SecurityAadSwagger
 -e ./Expected/AcceptanceTests/SecurityKeySwagger

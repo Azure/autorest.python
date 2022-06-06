@@ -21,7 +21,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        "azure-core<2.0.0,>=1.24.0",
+        "msrest>=0.6.21",
+        "azure-core<2.0.0,>=1.23.0",
     ],
     long_description="""\
     DPG Swagger, this is the initial swagger a service could do.

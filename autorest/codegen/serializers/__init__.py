@@ -11,6 +11,7 @@ from autorest.codegen.models.request_builder import OverloadedRequestBuilder
 
 from ...jsonrpc import AutorestAPI
 from ..models import CodeModel, OperationGroup, RequestBuilder
+from ..models import TokenCredentialType
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .model_generic_serializer import ModelGenericSerializer
@@ -152,15 +153,10 @@ class JinjaSerializer:
                     self._autorestapi.write_file(output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
-            package_parts = self.code_model.options["package_name"].split("-")[:-1]
-            try:
-                # token_cred = isinstance(
-                #     self.code_model.credential_model.credential_schema_policy.credential,
-                #     TokenCredentialSchema,
-                # )
-                token_cred = False
-            except ValueError:
-                token_cred = False
+            package_parts = package_name.split("-")[:-1]
+            token_cred = isinstance(
+                getattr(self.code_model.credential, "type", None), TokenCredentialType
+            )
             version = self.code_model.options["package_version"]
             if any(x in version for x in ["a", "b", "rc"]) or version[0] == "0":
                 dev_status = "4 - Beta"
@@ -177,13 +173,18 @@ class JinjaSerializer:
                 ],
                 "dev_status": dev_status,
                 "client_name": self.code_model.client.name,
+                "namespace": self.code_model.namespace,
                 "code_model": self.code_model,
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
             return params
 
-        count = self.code_model.options["package_name"].count("-") + 1
+        package_name = (
+            self.code_model.options["package_name"]
+            or self.code_model.client.name.lower()
+        )
+        count = package_name.count("-") + 1
         for _ in range(count):
             out_path = out_path / Path("..")
 

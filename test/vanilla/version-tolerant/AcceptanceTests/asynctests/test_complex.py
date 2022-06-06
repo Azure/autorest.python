@@ -30,6 +30,8 @@ from bodycomplexversiontolerant._serialization import Serializer, Deserializer
 from azure.core.exceptions import DeserializationError
 from base64 import b64decode, b64encode
 from azure.core.exceptions import HttpResponseError
+from azure.core.pipeline.policies import CustomHookPolicy
+
 
 from bodycomplexversiontolerant.aio import AutoRestComplexTestService
 
@@ -566,3 +568,25 @@ async def test_pass_in_api_version(client):
     assert client._config.api_version == "2016-02-29"
     async with AutoRestComplexTestService(api_version="2021-10-01") as client:
         assert client._config.api_version == "2021-10-01"
+
+@pytest.mark.asyncio
+async def test_client_api_version():
+    api_version = "2021-10-01"
+    def check_api_version(pipeline_request):
+        assert pipeline_request.http_request.query["api-version"] == "2021-10-01"
+        raise ValueError("succeeded!")
+
+    async with AutoRestComplexTestService(
+        api_version=api_version,
+        policies=[CustomHookPolicy(raw_request_hook=check_api_version)]
+    ) as client:
+        basic_result = {
+            "id": 2,
+            "name": "abc",
+            "color": "Magenta",
+        }
+
+        # Even though we override the client api version on the method level
+        # DPG doesn't allow that, so should be the api version we passed to the client
+        with pytest.raises(ValueError):
+            await client.basic.put_valid(basic_result, api_version="2016-02-29")

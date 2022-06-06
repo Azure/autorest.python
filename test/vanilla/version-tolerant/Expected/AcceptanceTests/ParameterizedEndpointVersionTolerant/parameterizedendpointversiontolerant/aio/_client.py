@@ -21,7 +21,9 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
+class ParmaterizedEndpointClient(
+    ParmaterizedEndpointClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing parameterized hosts with the name 'endpoint'.
 
     :param endpoint: The parameterized host. Pass in 'http://localhost:3000' to pass. Required.
@@ -46,7 +48,7 @@ class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

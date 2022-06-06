@@ -18,7 +18,7 @@ from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
 from .operations import HeaderOperations
 
 
-class AutoRestSwaggerBATHeaderService:
+class AutoRestSwaggerBATHeaderService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar header: HeaderOperations operations
@@ -46,7 +46,7 @@ class AutoRestSwaggerBATHeaderService:
         >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

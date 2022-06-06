@@ -21,7 +21,9 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
+class AutoRestReportServiceForAzure(
+    AutoRestReportServiceForAzureOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
@@ -46,7 +48,7 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

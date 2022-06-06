@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class PetStoreInc:
+class PetStoreInc:  # pylint: disable=client-accepts-api-version-keyword
     """PetStore.
 
     :ivar pet: PetOperations operations
@@ -48,7 +48,7 @@ class PetStoreInc:
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

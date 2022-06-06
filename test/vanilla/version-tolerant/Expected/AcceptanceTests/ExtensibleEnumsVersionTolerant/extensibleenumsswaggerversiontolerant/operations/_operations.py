@@ -28,7 +28,7 @@ from .._vendor import _format_url_section
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -98,13 +98,13 @@ class PetOperations:
         :type pet_id: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
@@ -160,7 +160,7 @@ class PetOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -175,7 +175,7 @@ class PetOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
@@ -185,23 +185,23 @@ class PetOperations:
         """
 
     @overload
-    def add_pet(self, pet_param: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+    def add_pet(self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
         :type pet_param: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
@@ -221,13 +221,13 @@ class PetOperations:
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
@@ -244,6 +244,7 @@ class PetOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(pet_param, (IO, bytes)):
@@ -253,7 +254,6 @@ class PetOperations:
                 _json = pet_param
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_pet_add_pet_request(
             content_type=content_type,

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class StorageManagementClient:
+class StorageManagementClient:  # pylint: disable=client-accepts-api-version-keyword
     """StorageManagementClient.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
@@ -67,7 +67,7 @@ class StorageManagementClient:
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

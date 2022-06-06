@@ -95,13 +95,13 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.PagingResult]
+        # type: (...) -> Iterable["_models.ModelThree"]
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~multiapidataplane.v3.models.PagingResult]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :return: An iterator like instance of either ModelThree or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~multiapidataplane.v3.models.ModelThree]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -184,7 +184,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

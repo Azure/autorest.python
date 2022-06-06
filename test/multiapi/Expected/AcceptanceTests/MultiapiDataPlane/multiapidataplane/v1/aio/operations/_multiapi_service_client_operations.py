@@ -43,7 +43,7 @@ class MultiapiServiceClientOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -103,6 +103,7 @@ class MultiapiServiceClientOperationsMixin:
         content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
@@ -112,7 +113,6 @@ class MultiapiServiceClientOperationsMixin:
                 _json = self._serialize.body(product, 'Product')
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_test_lro_request(
             content_type=content_type,
@@ -176,7 +176,7 @@ class MultiapiServiceClientOperationsMixin:
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapidataplane.v1.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -184,7 +184,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         product: Optional[IO] = None,
         *,
-        content_type: Optional[str] = None,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
@@ -192,7 +192,7 @@ class MultiapiServiceClientOperationsMixin:
         :param product: Product to put. Default value is None.
         :type product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -205,7 +205,7 @@ class MultiapiServiceClientOperationsMixin:
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapidataplane.v1.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
 
@@ -233,7 +233,7 @@ class MultiapiServiceClientOperationsMixin:
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapidataplane.v1.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -345,7 +345,7 @@ class MultiapiServiceClientOperationsMixin:
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncIterable[_models.PagingResult]]:
+    ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -363,8 +363,8 @@ class MultiapiServiceClientOperationsMixin:
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapidataplane.v1.models.PagingResult]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+         ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapidataplane.v1.models.Product]]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -500,7 +500,7 @@ class MultiapiServiceClientOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

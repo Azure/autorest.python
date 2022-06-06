@@ -27,7 +27,7 @@ from ...operations._operations import build_availability_sets_update_request
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +67,7 @@ class AvailabilitySetsOperations:
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -82,7 +82,7 @@ class AvailabilitySetsOperations:
 
     @overload
     async def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -93,11 +93,11 @@ class AvailabilitySetsOperations:
         :param tags: The tags. Required.
         :type tags: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
@@ -117,7 +117,7 @@ class AvailabilitySetsOperations:
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -128,13 +128,13 @@ class AvailabilitySetsOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(tags, (IO, bytes)):
             _content = tags
         else:
             _json = tags
-            content_type = content_type or "application/json"
 
         request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,

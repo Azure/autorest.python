@@ -31,7 +31,7 @@ from .._vendor import _format_url_section
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -459,22 +459,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "value": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -533,22 +528,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -607,22 +597,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -682,22 +667,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "value": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -771,22 +751,17 @@ class PagingOperations:
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -859,22 +834,17 @@ class PagingOperations:
         :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -941,22 +911,17 @@ class PagingOperations:
         :paramtype filter: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1031,22 +996,17 @@ class PagingOperations:
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "odata.nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1129,22 +1089,17 @@ class PagingOperations:
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1212,22 +1167,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1287,22 +1237,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1361,22 +1306,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1435,22 +1375,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1509,22 +1444,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1587,22 +1517,17 @@ class PagingOperations:
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "odata.nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1672,22 +1597,17 @@ class PagingOperations:
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "odata.nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1818,7 +1738,18 @@ class PagingOperations:
          Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[JSON]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
         """
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -1920,22 +1851,17 @@ class PagingOperations:
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

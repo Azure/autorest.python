@@ -17,7 +17,7 @@ from .._vendor import _format_url_section
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
@@ -33,8 +33,8 @@ def build_validation_of_method_parameters_request(
 ) -> HttpRequest:
     """Validates input parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
      Required.
@@ -44,7 +44,7 @@ def build_validation_of_method_parameters_request(
     :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -92,8 +92,8 @@ def build_validation_of_body_request(
 ) -> HttpRequest:
     """Validates body parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
      Required.
@@ -108,7 +108,7 @@ def build_validation_of_body_request(
     :keyword json: Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -155,8 +155,8 @@ def build_validation_of_body_request(
 ) -> HttpRequest:
     """Validates body parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
      Required.
@@ -171,7 +171,7 @@ def build_validation_of_body_request(
     :keyword content: Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -185,8 +185,8 @@ def build_validation_of_body_request(
 ) -> HttpRequest:
     """Validates body parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
      Required.
@@ -201,7 +201,7 @@ def build_validation_of_body_request(
     :keyword json: Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -209,8 +209,8 @@ def build_validation_of_body_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop('api_version', _params.pop('apiVersion', "1.0.0"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    api_version = kwargs.pop('api_version', _params.pop('apiVersion', "1.0.0"))  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -245,14 +245,14 @@ def build_get_with_constant_in_path_request(
 ) -> HttpRequest:
     """get_with_constant_in_path.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword constant_param: Default value is "constant". Note that overriding this default value
      may result in unsupported behavior.
     :paramtype constant_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -282,8 +282,8 @@ def build_post_with_constant_in_body_request(
 ) -> HttpRequest:
     """post_with_constant_in_body.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -294,7 +294,7 @@ def build_post_with_constant_in_body_request(
      may result in unsupported behavior.
     :paramtype constant_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -338,8 +338,8 @@ def build_post_with_constant_in_body_request(
 ) -> HttpRequest:
     """post_with_constant_in_body.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -350,7 +350,7 @@ def build_post_with_constant_in_body_request(
      may result in unsupported behavior.
     :paramtype constant_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -361,8 +361,8 @@ def build_post_with_constant_in_body_request(
 ) -> HttpRequest:
     """post_with_constant_in_body.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword constant_param: Default value is "constant". Note that overriding this default value
      may result in unsupported behavior.
@@ -373,7 +373,7 @@ def build_post_with_constant_in_body_request(
     :keyword json: Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

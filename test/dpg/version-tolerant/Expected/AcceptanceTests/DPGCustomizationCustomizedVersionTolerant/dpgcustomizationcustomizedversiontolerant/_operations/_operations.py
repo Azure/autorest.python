@@ -9,6 +9,8 @@
 import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
+from msrest import Serializer
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,13 +27,12 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
 from .._vendor import MixinABC, _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -131,13 +132,13 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -192,7 +193,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -203,13 +204,13 @@ class DPGClientOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
 
     @overload
-    def post_model(self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+    def post_model(self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -220,17 +221,17 @@ class DPGClientOperationsMixin(MixinABC):
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -251,13 +252,13 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -270,13 +271,13 @@ class DPGClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
             _json = input
-            content_type = content_type or "application/json"
 
         request = build_post_model_request(
             mode=mode,
@@ -319,20 +320,14 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "received": "str"  # Required. Known values are: "raw" and
-                              "model".
-                        }
-                    ]
+                response == {
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -441,13 +436,13 @@ class DPGClientOperationsMixin(MixinABC):
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
         :rtype: ~azure.core.polling.LROPoller[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "provisioningState": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }

@@ -3,13 +3,16 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any
 from .imports import FileImport
-from .lro_operation import LROOperation
-from .paging_operation import PagingOperation
-from .operation import Operation
+from .lro_operation import LROOperationBase
+from .paging_operation import PagingOperationBase
+from .response import LROPagingResponse, Response
 
 
-class LROPagingOperation(LROOperation, PagingOperation):
+class LROPagingOperation(
+    LROOperationBase[LROPagingResponse], PagingOperationBase[LROPagingResponse]
+):
     @property
     def success_status_codes(self):
         """The list of all successfull status code."""
@@ -19,30 +22,18 @@ class LROPagingOperation(LROOperation, PagingOperation):
     def operation_type(self) -> str:
         return "lropaging"
 
-    def response_type_annotation(self, **kwargs) -> str:
-        paging_type_annotation = PagingOperation.response_type_annotation(
-            self, **kwargs
-        )
-        return f"{self.get_poller(kwargs.pop('async_mode'))}[{paging_type_annotation}]"
-
-    def response_docstring_type(self, **kwargs) -> str:
-        paging_docstring_type = PagingOperation.response_docstring_type(self, **kwargs)
-        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{paging_docstring_type}]"
-
-    def response_docstring_text(self, **kwargs) -> str:
-        base_description = (
-            "An instance of LROPoller that returns an iterator like instance of "
-        )
-        if not self.code_model.options["version_tolerant"]:
-            base_description += "either "
-        return base_description + Operation.response_docstring_text(self)
-
     def cls_type_annotation(self, *, async_mode: bool) -> str:
-        return f"ClsType[{Operation.response_type_annotation(self, async_mode=async_mode)}]"
+        return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"  # pylint: disable=no-member
 
-    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        lro_imports = LROOperation.imports(self, async_mode, is_python3_file)
-        paging_imports = PagingOperation.imports(self, async_mode, is_python3_file)
+    def imports(
+        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
+    ) -> FileImport:
+        lro_imports = LROOperationBase.imports(
+            self, async_mode, is_python3_file, **kwargs
+        )
+        paging_imports = PagingOperationBase.imports(
+            self, async_mode, is_python3_file, **kwargs
+        )
 
         file_import = lro_imports
         file_import.merge(paging_imports)

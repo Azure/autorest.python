@@ -49,7 +49,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -57,7 +57,7 @@ class AutoRestValidationTestOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         request = build_validation_of_method_parameters_request(
@@ -117,7 +117,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -127,7 +127,7 @@ class AutoRestValidationTestOperationsMixin:
         id: int,
         body: Optional[IO] = None,
         *,
-        content_type: Optional[str] = None,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Product:
         """Validates body parameters on the method. See swagger for details.
@@ -140,12 +140,12 @@ class AutoRestValidationTestOperationsMixin:
         :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
@@ -167,7 +167,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -175,10 +175,11 @@ class AutoRestValidationTestOperationsMixin:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IO, bytes)):
@@ -188,7 +189,6 @@ class AutoRestValidationTestOperationsMixin:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -235,7 +235,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -287,19 +287,19 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
     async def post_with_constant_in_body(
-        self, body: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """post_with_constant_in_body.
 
         :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
@@ -307,7 +307,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
@@ -327,7 +327,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -339,6 +339,7 @@ class AutoRestValidationTestOperationsMixin:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IO, bytes)):
@@ -348,7 +349,6 @@ class AutoRestValidationTestOperationsMixin:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,

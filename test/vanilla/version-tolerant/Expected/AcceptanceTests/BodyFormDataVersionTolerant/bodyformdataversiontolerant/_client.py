@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestSwaggerBATFormDataService:
+class AutoRestSwaggerBATFormDataService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdata: FormdataOperations operations
@@ -38,7 +38,7 @@ class AutoRestSwaggerBATFormDataService:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.formdata = FormdataOperations(  # type: ignore # pylint: disable=abstract-class-instantiated
+        self.formdata = FormdataOperations(  # type: ignore  # pylint: disable=abstract-class-instantiated
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -51,7 +51,7 @@ class AutoRestSwaggerBATFormDataService:
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

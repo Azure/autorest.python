@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,7 +14,7 @@ from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    import __init__ as _models
+    from .. import models as _models
 
 
 class Bar(_serialization.Model):
@@ -233,7 +234,7 @@ class Resource(_serialization.Model):
         self.tags = tags
 
 
-class StorageAccount(Resource):
+class StorageAccount(Resource):  # pylint: disable=too-many-instance-attributes
     """The storage account.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -638,7 +639,7 @@ class SubResource(_serialization.Model):
         "id": {"key": "id", "type": "str"},
     }
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs):
+    def __init__(self, *, id: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id: Resource Id.
         :paramtype id: str

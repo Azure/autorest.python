@@ -134,16 +134,16 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
         :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -220,15 +220,15 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.ProductResult]
+        # type: (...) -> Iterable["_models.Product"]
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

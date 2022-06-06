@@ -19,7 +19,9 @@ from ._configuration import AutoRestValidationTestConfiguration
 from .operations import AutoRestValidationTestOperationsMixin
 
 
-class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
+class AutoRestValidationTest(
+    AutoRestValidationTestOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
     :param subscription_id: Subscription ID. Required.
@@ -48,7 +50,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

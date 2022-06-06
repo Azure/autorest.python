@@ -18,7 +18,9 @@ from ._configuration import MultipleInheritanceServiceClientConfiguration
 from .operations import MultipleInheritanceServiceClientOperationsMixin
 
 
-class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperationsMixin):
+class MultipleInheritanceServiceClient(
+    MultipleInheritanceServiceClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiinheritance client testing.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".
@@ -43,7 +45,7 @@ class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperation
         >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

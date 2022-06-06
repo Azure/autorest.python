@@ -8,8 +8,9 @@ from typing import Dict, List, Any, TYPE_CHECKING
 from autorest.codegen.models.utils import OrderedSet
 
 from .base_model import BaseModel
-from .operation import Operation, get_operation
+from .operation import OperationBase, get_operation
 from .imports import FileImport, ImportType, TypingSection
+from .utils import add_to_pylint_disable
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -22,7 +23,7 @@ class OperationGroup(BaseModel):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        operations: List[Operation],
+        operations: List[OperationBase],
         api_versions: List[str],
     ) -> None:
         super().__init__(yaml_data, code_model)
@@ -48,24 +49,44 @@ class OperationGroup(BaseModel):
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
-            file_import.merge(operation.imports_for_multiapi(async_mode))
-        file_import.add_submodule_import(
-            ".." if async_mode else ".", "models", ImportType.LOCAL, alias="_models"
-        )
+            file_import.merge(
+                operation.imports_for_multiapi(
+                    async_mode, relative_path=".." if async_mode else "."
+                )
+            )
         return file_import
+
+    @property
+    def pylint_disable(self) -> str:
+        retval: str = ""
+        if self.has_abstract_operations:
+            retval = add_to_pylint_disable(retval, "abstract-class-instantiated")
+        return retval
+
+    @property
+    def mypy_ignore(self) -> str:
+        if self.has_abstract_operations:
+            return "  # type: ignore"
+        return ""
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = FileImport()
 
+        relative_path = "..." if async_mode else ".."
         for operation in self.operations:
-            file_import.merge(operation.imports(async_mode, is_python3_file))
-        local_path = "..." if async_mode else ".."
-        if (
-            self.code_model.model_types or self.code_model.enums
-        ) and self.code_model.options["models_mode"]:
-            file_import.add_submodule_import(
-                local_path, "models", ImportType.LOCAL, alias="_models"
+            file_import.merge(
+                operation.imports(
+                    async_mode, is_python3_file, relative_path=relative_path
+                )
             )
+        # for multiapi
+        if not self.code_model.options["version_tolerant"]:
+            if (
+                self.code_model.model_types or self.code_model.enums
+            ) and self.code_model.options["models_mode"]:
+                file_import.add_submodule_import(
+                    relative_path, "models", ImportType.LOCAL, alias="_models"
+                )
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(".._vendor", "MixinABC", ImportType.LOCAL)
         file_import.add_submodule_import(

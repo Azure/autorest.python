@@ -11,14 +11,14 @@
 from ._serialization import Serializer, Deserializer
 from typing import IO, Optional, TYPE_CHECKING, Union
 
+from azure.core.paging import ItemPaged
+from azure.core.polling import LROPoller
+
 from . import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Iterable
-
-    from azure.core.paging import ItemPaged
-    from azure.core.polling import LROPoller
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -46,7 +46,7 @@ class MultiapiServiceClientOperationsMixin(object):
          Retry-After header is present.
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapiwithsubmodule.submodule.v1.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
@@ -67,7 +67,7 @@ class MultiapiServiceClientOperationsMixin(object):
         test_lro_and_paging_options=None,  # type: Optional[_models.TestLroAndPagingOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[Iterable[_models.PagingResult]]
+        # type: (...) -> LROPoller[Iterable["_models.Product"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -86,8 +86,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
-         ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v1.models.PagingResult]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+         ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v1.models.Product]]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro_and_paging')
         if api_version == '1.0.0':
@@ -121,7 +121,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('test_different_calls')
         if api_version == '1.0.0':
@@ -156,7 +156,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
@@ -177,13 +177,13 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[_models.PagingResult]
+        # type: (...) -> Iterable["_models.ModelThree"]
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :return: An iterator like instance of either ModelThree or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.ModelThree]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('test_paging')
         if api_version == '3.0.0':

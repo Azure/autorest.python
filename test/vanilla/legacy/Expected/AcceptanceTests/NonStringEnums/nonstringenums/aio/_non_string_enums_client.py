@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class NonStringEnumsClient:
+class NonStringEnumsClient:  # pylint: disable=client-accepts-api-version-keyword
     """Testing non-string enums.
 
     :ivar int: IntOperations operations
@@ -52,7 +52,7 @@ class NonStringEnumsClient:
         >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

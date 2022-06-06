@@ -8,6 +8,7 @@ from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union
 from .base_model import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
+from .utils import add_to_pylint_disable
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -18,7 +19,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
+class _ClientConfigBase(Generic[ParameterListType], BaseModel):
     """The service client base. Shared across our Client and Config type"""
 
     def __init__(
@@ -69,6 +70,13 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return not any(p for p in self.parameters if p.is_host)
 
     @property
+    def pylint_disable(self) -> str:
+        retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
+        if len(self.code_model.operation_groups) > 6:
+            retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
+        return retval
+
+    @property
     def filename(self) -> str:
         """Name of the file for the client"""
         if (
@@ -94,7 +102,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
 
         for gp in self.parameters:
-            file_import.merge(gp.imports())
+            file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
             "._configuration",
             f"{self.code_model.client.name}Configuration",
@@ -142,7 +150,23 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
         if self.code_model.model_types and self.code_model.options["models_mode"]:
             path_to_models = ".." if async_mode else "."
-            file_import.add_submodule_import(path_to_models, "models", ImportType.LOCAL)
+            if len(self.code_model.model_types) != len(
+                self.code_model.public_model_types
+            ):
+                # this means we have hidden models. In that case, we import directly from the models
+                # file, not the module, bc we don't expose the hidden models in the models module
+
+                # Also in this case, we're in version tolerant, so python3 only is true
+                file_import.add_submodule_import(
+                    f"{path_to_models}models",
+                    f"{self.code_model.get_models_filename(is_python3_file=True)}",
+                    ImportType.LOCAL,
+                    alias="models",
+                )
+            else:
+                file_import.add_submodule_import(
+                    path_to_models, "models", ImportType.LOCAL
+                )
         else:
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
@@ -154,6 +178,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
+        file_import.add_submodule_import(
+            "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         try:
             mixin_operation = next(
                 og for og in self.code_model.operation_groups if og.is_mixin
@@ -163,6 +190,17 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         except StopIteration:
             pass
+        file_import.add_submodule_import(
+            "azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.profiles.multiapiclient",
+            "MultiApiClientMixin",
+            import_type=ImportType.AZURECORE,
+        )
         return file_import
 
     @classmethod
@@ -204,7 +242,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
             )
         for gp in self.parameters:
-            file_import.merge(gp.imports())
+            file_import.merge(gp.imports(async_mode=async_mode))
         if self.code_model.options["azure_arm"]:
             policy = (
                 "AsyncARMChallengeAuthenticationPolicy"

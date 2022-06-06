@@ -80,13 +80,13 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
         :paramtype qualifier: str
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """
@@ -135,13 +135,13 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
         :paramtype qualifier: str
         :return: dict mapping str to int
         :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "str": 0  # Optional.
                 }
         """

@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -61,6 +62,32 @@ class FirstParameterGroup(msrest.serialization.Model):
         super().__init__(**kwargs)
         self.header_one = header_one
         self.query_one = query_one
+
+
+class Grouper(msrest.serialization.Model):
+    """Parameter group.
+
+    :ivar grouped_constant: A grouped parameter that is a constant. Default value is "foo".
+    :vartype grouped_constant: str
+    :ivar grouped_parameter: Optional parameter part of a parameter grouping.
+    :vartype grouped_parameter: str
+    """
+
+    _attribute_map = {
+        "grouped_constant": {"key": "groupedConstant", "type": "str"},
+        "grouped_parameter": {"key": "groupedParameter", "type": "str"},
+    }
+
+    def __init__(self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs):
+        """
+        :keyword grouped_constant: A grouped parameter that is a constant. Default value is "foo".
+        :paramtype grouped_constant: str
+        :keyword grouped_parameter: Optional parameter part of a parameter grouping.
+        :paramtype grouped_parameter: str
+        """
+        super().__init__(**kwargs)
+        self.grouped_constant = grouped_constant
+        self.grouped_parameter = grouped_parameter
 
 
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):

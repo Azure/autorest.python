@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from .request_builder import RequestBuilder
 
 
-class BaseBuilder(BaseModel, Generic[ParameterListType]):
+class BaseBuilder(Generic[ParameterListType], BaseModel):
     """Base class for Operations and Request Builders"""
 
     def __init__(
@@ -64,6 +64,10 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
             return None
         return self._summary
 
+    @property
+    def pylint_disable(self) -> str:
+        return ""
+
     @abstractmethod
     def response_type_annotation(self, **kwargs) -> str:
         ...
@@ -85,7 +89,7 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
             )
         return self._description or self.name
 
-    def method_signature(self, is_python3_file: bool) -> List[str]:
+    def method_signature(self, is_python3_file: bool, async_mode: bool) -> List[str]:
         if self.abstract:
             return ["*args,", "**kwargs"]
-        return self.parameters.method_signature(is_python3_file)
+        return self.parameters.method_signature(is_python3_file, async_mode)

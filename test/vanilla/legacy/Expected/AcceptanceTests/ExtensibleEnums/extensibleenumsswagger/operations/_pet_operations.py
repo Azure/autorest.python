@@ -122,7 +122,7 @@ class PetOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -177,7 +177,7 @@ class PetOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -192,12 +192,12 @@ class PetOperations(object):
         :param pet_param: pet param. Default value is None.
         :type pet_param: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -217,7 +217,7 @@ class PetOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -228,6 +228,7 @@ class PetOperations(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(pet_param, (IO, bytes)):
@@ -237,7 +238,6 @@ class PetOperations(object):
                 _json = self._serialize.body(pet_param, "Pet")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_add_pet_request(
             content_type=content_type,

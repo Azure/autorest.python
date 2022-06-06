@@ -63,7 +63,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -92,13 +92,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "RefToModel": {
                         "ID": "str"  # Optional. The id of the res.
                     },
@@ -149,7 +149,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type model: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -200,13 +200,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "RefToModel": {
                         "ID": "str"  # Optional. The id of the res.
                     },
@@ -257,7 +257,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type model: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -308,13 +308,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "author": "str",  # Optional.
                     "date": "str",  # Optional.
                     "slides": [
@@ -373,7 +373,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type slideshow: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -432,13 +432,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "BadApples": [
                         "str"  # Optional.
                     ],
@@ -491,7 +491,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type wrapped_lists: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -544,7 +544,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -582,13 +582,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "author": "str",  # Optional.
                     "date": "str",  # Optional.
                     "slides": [
@@ -647,7 +647,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type slideshow: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -706,13 +706,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "BadApples": [
                         "str"  # Optional.
                     ],
@@ -765,7 +765,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type apple_barrel: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -818,13 +818,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                           you should reconsider eating this banana.
@@ -877,7 +877,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type bananas: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -930,13 +930,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                           you should reconsider eating this banana.
@@ -989,7 +989,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type bananas: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1042,13 +1042,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                           you should reconsider eating this banana.
@@ -1101,7 +1101,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type bananas: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1154,13 +1154,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you
                       should reconsider eating this banana.
                     "flavor": "str",  # Optional.
@@ -1211,7 +1211,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type banana: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1265,13 +1265,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype comp: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Containers": [
                         {
                             "Metadata": {
@@ -1348,13 +1348,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Cors": [
                         {
                             "AllowedHeaders": "str",  # the request headers that the
@@ -1488,7 +1488,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1622,13 +1622,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "AccessPolicy": {
                             "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
@@ -1696,7 +1696,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1764,13 +1764,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype restype: str
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Blobs": {
                         "Blob": [
                             {
@@ -1910,7 +1910,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -1923,7 +1923,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: IO, *, content_type: Optional[str] = None, **kwargs: Any
+        self, properties: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
@@ -1931,11 +1931,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :param properties: Required.
         :type properties: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
@@ -1952,7 +1952,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :paramtype content_type: str
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1963,13 +1963,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(properties, (IO, bytes)):
             _content = properties
         else:
             _json = properties
-            content_type = content_type or "application/json"
 
         request = build_xml_json_input_request(
             content_type=content_type,
@@ -1999,13 +1999,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: JSON object
         :rtype: JSON
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0  # Optional.
                 }
         """
@@ -2050,13 +2050,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "content": "str",  # Optional. Returned value should be 'I am text'.
                     "language": "str"  # Optional. Returned value should be 'english'.
                 }
@@ -2101,13 +2101,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Bytes": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
@@ -2155,7 +2155,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type slideshow: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
@@ -2203,13 +2203,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :return: XML Element
         :rtype: ET.Element
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Url": "str"  # Optional.
                 }
         """
@@ -2255,7 +2255,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :type model: ET.Element
         :return: None
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python

@@ -18,7 +18,7 @@ from ._configuration import MediaTypesClientConfiguration
 from .operations import MediaTypesClientOperationsMixin
 
 
-class MediaTypesClient(MediaTypesClientOperationsMixin):
+class MediaTypesClient(MediaTypesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Play with produces/consumes and media-types in general.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".
@@ -43,7 +43,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
         >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

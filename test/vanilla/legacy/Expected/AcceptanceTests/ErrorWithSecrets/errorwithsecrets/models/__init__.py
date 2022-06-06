@@ -17,10 +17,8 @@ except (SyntaxError, ImportError):
     from ._models import InnerError  # type: ignore
     from ._models import SecretResponse  # type: ignore
 
-from ._error_with_secrets_enums import (
-    ErrorCode,
-    InnerErrorCode,
-)
+from ._error_with_secrets_enums import ErrorCode
+from ._error_with_secrets_enums import InnerErrorCode
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

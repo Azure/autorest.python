@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):
+class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Aad REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
@@ -61,7 +61,7 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

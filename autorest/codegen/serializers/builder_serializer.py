@@ -29,8 +29,8 @@ from ..models import (
     RequestBuilderBodyParameter,
     OverloadedRequestBuilder,
     ConstantType,
-    BaseType,
     MultipartBodyParameter,
+    Property,
     RequestBuilderType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
@@ -52,7 +52,7 @@ BuilderType = TypeVar(
 )
 OperationType = TypeVar(
     "OperationType",
-    bound=Union[Operation, PagingOperation, LROOperation],
+    bound=Union[Operation, PagingOperation, LROOperation, LROPagingOperation],
 )
 
 
@@ -82,6 +82,37 @@ def _json_dumps_template(template_representation: Any) -> Any:
     return _improve_json_string(
         json.dumps(template_representation, sort_keys=True, indent=4)
     )
+
+
+def _get_polymorphic_subtype_template(polymorphic_subtype: ModelType) -> List[str]:
+    retval: List[str] = []
+    retval.append("")
+    retval.append(
+        f'# JSON input template for discriminator value "{polymorphic_subtype.discriminator_value}":'
+    )
+    subtype_template = _json_dumps_template(
+        polymorphic_subtype.get_json_template_representation(),
+    )
+
+    def _get_polymorphic_parent(
+        polymorphic_subtype: Optional[ModelType],
+    ) -> Optional[ModelType]:
+        if not polymorphic_subtype:
+            return None
+        try:
+            return next(
+                p for p in polymorphic_subtype.parents if p.discriminated_subtypes
+            )
+        except StopIteration:
+            return None
+
+    polymorphic_parent = _get_polymorphic_parent(polymorphic_subtype)
+    while _get_polymorphic_parent(polymorphic_parent):
+        polymorphic_parent = _get_polymorphic_parent(polymorphic_parent)
+    retval.extend(
+        f"{cast(ModelType, polymorphic_parent).snake_case_name} = {subtype_template}".splitlines()
+    )
+    return retval
 
 
 def _serialize_grouped_body(builder: BuilderType) -> List[str]:
@@ -133,22 +164,13 @@ def _serialize_multipart_body(builder: BuilderType) -> List[str]:
 def _get_json_response_template_to_status_codes(
     builder: OperationType,
 ) -> Dict[str, List[str]]:
-    # successful status codes of responses that have bodies
-    responses = [
-        response
-        for response in builder.responses
-        if any(code in builder.success_status_codes for code in response.status_codes)
-        and isinstance(
-            response.type,
-            (DictionaryType, ListType, ModelType),
-        )
-    ]
     retval = defaultdict(list)
-    for response in responses:
+    for response in builder.responses:
+        json_template = response.get_json_template_representation()
+        if not json_template:
+            continue
         status_codes = [str(status_code) for status_code in response.status_codes]
-        response_json = _json_dumps_template(
-            cast(BaseType, response.type).get_json_template_representation()
-        )
+        response_json = _json_dumps_template(json_template)
         retval[response_json].extend(status_codes)
     return retval
 
@@ -204,11 +226,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             method_name=builder.name,
             need_self_param=self._need_self_param,
             method_param_signatures=builder.method_signature(
-                self.async_mode or self.is_python3_file
+                self.async_mode or self.is_python3_file, self.async_mode
             ),
-            ignore_inconsistent_return_statements=(
-                builder.response_type_annotation(async_mode=self.async_mode) == "None"
-            ),
+            pylint_disable=builder.pylint_disable,
         )
 
     def method_signature_and_response_type_annotation(
@@ -267,8 +287,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                     "\n"
                 )
             )
+            docstring_type = param.docstring_type(async_mode=self.async_mode)
             description_list.append(
-                f":{param.docstring_type_keyword} { param.client_name }: { param.docstring_type }"
+                f":{param.docstring_type_keyword} {param.client_name}: {docstring_type}"
             )
         return description_list
 
@@ -278,6 +299,11 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         if builder.abstract:
             return []
         return self.param_description(builder) + self.response_docstring(builder)
+
+    @property
+    @abstractmethod
+    def _json_response_template_name(self) -> str:
+        ...
 
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template: List[str] = []
@@ -298,14 +324,26 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         if not isinstance(body_param.type, (ListType, DictionaryType, ModelType)):
             return template
 
-        if isinstance(body_param.type, ModelType) and body_param.type.discriminator:
-            discriminator_name = body_param.type.discriminator.client_name
-            discriminator_values = body_param.type.discriminated_subtypes.keys()
+        polymorphic_subtypes: List[ModelType] = []
+        body_param.type.get_polymorphic_subtypes(polymorphic_subtypes)
+        if polymorphic_subtypes:
+            # we just assume one kind of polymorphic body for input
+            discriminator_name = cast(
+                Property, polymorphic_subtypes[0].discriminator
+            ).rest_api_name
             template.append(
-                "{} = '{}'".format(
-                    discriminator_name, "' or '".join(discriminator_values)
-                )
+                "# The input is polymorphic. The following are possible polymorphic "
+                f'inputs based off discriminator "{discriminator_name}":'
             )
+            for idx in range(
+                min(
+                    self.code_model.options["polymorphic_examples"],
+                    len(polymorphic_subtypes),
+                )
+            ):
+                template.extend(
+                    _get_polymorphic_subtype_template(polymorphic_subtypes[idx])
+                )
             template.append("")
         template.append(
             "# JSON input template you can fill out and use as your body input."
@@ -348,7 +386,7 @@ class RequestBuilderSerializer(
     def description_and_summary(self, builder: RequestBuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
-            "See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this "
+            "See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this "
             "request builder into your code flow.",
             "",
         ]
@@ -361,6 +399,10 @@ class RequestBuilderSerializer(
     @property
     def serializer_name(self) -> str:
         return "_SERIALIZER"
+
+    @property
+    def _json_response_template_name(self) -> str:
+        return "response.json()"
 
     @staticmethod
     def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
@@ -392,7 +434,7 @@ class RequestBuilderSerializer(
     def response_docstring(self, builder: RequestBuilderType) -> List[str]:
         response_str = (
             f":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
-            + "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to "
+            + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
         rtype_str = f":rtype: ~azure.core.rest.HttpRequest"
@@ -484,10 +526,38 @@ class _OperationSerializer(
             retval.append("")
         return retval
 
+    @property
+    def _json_response_template_name(self) -> str:
+        return "response"
+
     def example_template(self, builder: OperationType) -> List[str]:
         retval = super().example_template(builder)
         if self.code_model.options["models_mode"]:
             return retval
+        for response in builder.responses:
+            polymorphic_subtypes: List[ModelType] = []
+            if not response.type:
+                continue
+            response.type.get_polymorphic_subtypes(polymorphic_subtypes)
+            if polymorphic_subtypes:
+                # we just assume one kind of polymorphic body for input
+                discriminator_name = cast(
+                    Property, polymorphic_subtypes[0].discriminator
+                ).rest_api_name
+                retval.append(
+                    "# The response is polymorphic. The following are possible polymorphic "
+                    f'responses based off discriminator "{discriminator_name}":'
+                )
+                for idx in range(
+                    min(
+                        self.code_model.options["polymorphic_examples"],
+                        len(polymorphic_subtypes),
+                    )
+                ):
+                    retval.extend(
+                        _get_polymorphic_subtype_template(polymorphic_subtypes[idx])
+                    )
+
         if _get_json_response_template_to_status_codes(builder):
             retval.append("")
             for (
@@ -499,7 +569,9 @@ class _OperationSerializer(
                         ", ".join(status_codes)
                     )
                 )
-                retval.extend(f"response.json() == {response_body}".splitlines())
+                retval.extend(
+                    f"{self._json_response_template_name} == {response_body}".splitlines()
+                )
         return retval
 
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
@@ -557,6 +629,7 @@ class _OperationSerializer(
                 kwargs_to_pop, ParameterLocation.QUERY
             )
             else PopKwargType.SIMPLE,
+            check_client_input=not self.code_model.options["multiapi"],
         )
         kwargs.append(
             f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"
@@ -576,7 +649,7 @@ class _OperationSerializer(
         return [
             response_str,
             rtype_str,
-            ":raises: ~azure.core.exceptions.HttpResponseError",
+            ":raises ~azure.core.exceptions.HttpResponseError:",
         ]
 
     def _serialize_body_parameter(self, builder: OperationType) -> List[str]:
@@ -632,6 +705,20 @@ class _OperationSerializer(
 
     def _initialize_overloads(self, builder: OperationType) -> List[str]:
         retval: List[str] = []
+        same_content_type = (
+            len(
+                set(
+                    o.parameters.body_parameter.default_content_type
+                    for o in builder.overloads
+                )
+            )
+            == 1
+        )
+        if same_content_type:
+            default_content_type = builder.overloads[
+                0
+            ].parameters.body_parameter.default_content_type
+            retval.append(f'content_type = content_type or "{default_content_type}"')
         for overload in builder.overloads:
             retval.append(
                 f"_{overload.request_builder.parameters.body_parameter.client_name} = None"
@@ -652,7 +739,7 @@ class _OperationSerializer(
             retval.append(
                 f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:"
             )
-            if binary_body_param.default_content_type:
+            if binary_body_param.default_content_type and not same_content_type:
                 retval.append(
                     f'    content_type = content_type or "{binary_body_param.default_content_type}"'
                 )
@@ -673,7 +760,10 @@ class _OperationSerializer(
             retval.extend(
                 f"    {l}" for l in self._create_body_parameter(other_overload)
             )
-            if other_overload.parameters.body_parameter.default_content_type:
+            if (
+                other_overload.parameters.body_parameter.default_content_type
+                and not same_content_type
+            ):
                 retval.append(
                     "    content_type = content_type or "
                     f'"{other_overload.parameters.body_parameter.default_content_type}"'
@@ -685,7 +775,7 @@ class _OperationSerializer(
                 retval.append(
                     f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
                 )
-                if body_param.default_content_type:
+                if body_param.default_content_type and not same_content_type:
                     retval.append(
                         f'    content_type = content_type or "{body_param.default_content_type}"'
                     )
@@ -826,7 +916,7 @@ class _OperationSerializer(
         if response.is_stream_response:
             retval.append(
                 "deserialized = {}".format(
-                    "response"
+                    "response.iter_bytes()"
                     if self.code_model.options["version_tolerant"]
                     else "response.stream_download(self._client._pipeline)"
                 )

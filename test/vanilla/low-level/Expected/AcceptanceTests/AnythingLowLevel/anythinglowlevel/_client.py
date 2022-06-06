@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AnythingClient:
+class AnythingClient:  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing basic anything types. Those schemas without types can be anything:
     primitive, object, array.
 
@@ -49,7 +49,7 @@ class AnythingClient:
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

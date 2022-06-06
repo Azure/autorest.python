@@ -749,7 +749,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -799,7 +799,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -849,7 +849,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -899,7 +899,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -949,7 +949,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or None or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -999,7 +999,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1051,7 +1051,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1103,7 +1103,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1156,7 +1156,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1212,7 +1212,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1268,7 +1268,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1324,7 +1324,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
          ~httpinfrastructure.models.D
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1379,7 +1379,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1423,7 +1423,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1467,7 +1467,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1511,7 +1511,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1554,7 +1554,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1597,7 +1597,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1640,7 +1640,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1683,7 +1683,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1730,7 +1730,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1777,7 +1777,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1821,7 +1821,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1865,7 +1865,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1908,7 +1908,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1951,7 +1951,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1994,7 +1994,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2038,7 +2038,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2085,7 +2085,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2132,7 +2132,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2179,7 +2179,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2226,7 +2226,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2273,7 +2273,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2320,7 +2320,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

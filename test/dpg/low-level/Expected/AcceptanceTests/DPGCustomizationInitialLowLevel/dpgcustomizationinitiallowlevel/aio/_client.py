@@ -9,10 +9,11 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .._serialization import Deserializer, Serializer
 from ._configuration import DPGClientConfiguration
 
 if TYPE_CHECKING:
@@ -20,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class DPGClient:
+class DPGClient:  # pylint: disable=client-accepts-api-version-keyword
     """DPG Swagger that tests our ability to grow up.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
@@ -47,7 +48,7 @@ class DPGClient:
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

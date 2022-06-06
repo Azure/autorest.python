@@ -22,7 +22,7 @@ def _documentation_string(
         else sphinx_prefix
     )
     retval.append(
-        f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type}"
+        f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type()}"
     )
     return retval
 
@@ -81,7 +81,7 @@ class ModelBaseSerializer:
         )
         if model.parents:
             basename = ", ".join([cast(ModelType, m).name for m in model.parents])
-        return f"class {model.name}({basename}):"
+        return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:
@@ -127,6 +127,13 @@ class ModelBaseSerializer:
         if not (prop.optional or prop.client_default_value is not None):
             return self.required_property_no_default_init(prop)
         return self.optional_property_init(prop)
+
+    @staticmethod
+    def discriminator_docstring(model: ModelType) -> str:
+        return (
+            "You probably want to use the sub-classes and not this class directly. "
+            f"Known sub-classes are: {', '.join(v.name for v in model.discriminated_subtypes.values())}"
+        )
 
     @abstractmethod
     def init_line(self, model: ModelType) -> List[str]:

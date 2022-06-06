@@ -323,7 +323,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -338,12 +338,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -364,7 +364,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -375,6 +375,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
@@ -384,7 +385,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                 _json = self._serialize.body(resource_array, "[Resource]")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_array_request(
             content_type=content_type,
@@ -423,7 +423,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of FlattenedProduct or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -479,7 +479,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -495,12 +495,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -522,7 +522,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -533,6 +533,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
@@ -542,7 +543,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                 _json = self._serialize.body(resource_array, "[WrappedProduct]")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_wrapped_array_request(
             content_type=content_type,
@@ -582,7 +582,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of ProductWrapper or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -637,7 +637,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -652,12 +652,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -678,7 +678,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -689,6 +689,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_dictionary, (IO, bytes)):
@@ -698,7 +699,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                 _json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_dictionary_request(
             content_type=content_type,
@@ -737,7 +737,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to FlattenedProduct or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -793,7 +793,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -809,12 +809,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
          is None.
         :type resource_complex_object: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -835,7 +835,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -846,6 +846,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_complex_object, (IO, bytes)):
@@ -855,7 +856,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                 _json = self._serialize.body(resource_complex_object, "ResourceCollection")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_resource_collection_request(
             content_type=content_type,
@@ -894,7 +894,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -949,7 +949,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -964,12 +964,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -990,7 +990,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1001,6 +1001,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
@@ -1010,7 +1011,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                 _json = self._serialize.body(simple_body_product, "SimpleProduct")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_simple_product_request(
             content_type=content_type,
@@ -1075,7 +1075,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1143,7 +1143,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1158,12 +1158,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         _product_id = None
         _description = None
         _max_product_display_name = None
-        capacity = None
+        _capacity = None
         _generic_value = None
         _odata_value = None
         _simple_body_product = None
         if flatten_parameter_group is not None:
-            capacity = flatten_parameter_group.capacity
+            _capacity = flatten_parameter_group.capacity
             _description = flatten_parameter_group.description
             _generic_value = flatten_parameter_group.generic_value
             _max_product_display_name = flatten_parameter_group.max_product_display_name
@@ -1172,7 +1172,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             _product_id = flatten_parameter_group.product_id
             _simple_body_product = flatten_parameter_group.simple_body_product
         _simple_body_product = _models.SimpleProduct(
-            capacity=capacity,
+            capacity=_capacity,
             description=_description,
             generic_value=_generic_value,
             max_product_display_name=_max_product_display_name,

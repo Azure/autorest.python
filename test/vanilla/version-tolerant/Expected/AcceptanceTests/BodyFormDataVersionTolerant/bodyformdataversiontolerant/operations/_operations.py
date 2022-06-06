@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Iterator, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -81,21 +81,21 @@ class FormdataOperations(abc.ABC):
 
     @distributed_trace
     @abc.abstractmethod
-    def upload_file(self, *args, **kwargs) -> IO:
+    def upload_file(self, *args, **kwargs) -> Iterator[bytes]:
         """You need to write a custom operation for "upload_file". Please refer to
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
 
     @distributed_trace
-    def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
+    def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> Iterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
         :type file_content: IO
-        :return: IO
-        :rtype: IO
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :return: Iterator of the response bytes
+        :rtype: Iterator[bytes]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -104,7 +104,7 @@ class FormdataOperations(abc.ABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
 
         _content = file_content
 
@@ -126,16 +126,16 @@ class FormdataOperations(abc.ABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response
+        deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(IO, deserialized), {})
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
 
-        return cast(IO, deserialized)
+        return cast(Iterator[bytes], deserialized)
 
     @distributed_trace
     @abc.abstractmethod
-    def upload_files(self, *args, **kwargs) -> IO:
+    def upload_files(self, *args, **kwargs) -> Iterator[bytes]:
         """You need to write a custom operation for "upload_files". Please refer to
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 

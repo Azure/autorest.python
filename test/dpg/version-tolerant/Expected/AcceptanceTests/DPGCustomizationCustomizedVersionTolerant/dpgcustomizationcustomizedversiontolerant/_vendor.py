@@ -12,9 +12,9 @@ from ._configuration import DPGClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from azure.core import PipelineClient
+    from msrest import Deserializer, Serializer
 
-    from ._serialization import Deserializer, Serializer
+    from azure.core import PipelineClient
 
 
 def _format_url_section(template, **kwargs):

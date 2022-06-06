@@ -3,12 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, Union, TYPE_CHECKING
+from typing import Any, Dict, Optional, Union, TYPE_CHECKING, List
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .model_type import ModelType
 
 
 class ListType(BaseType):
@@ -28,13 +29,11 @@ class ListType(BaseType):
     def serialization_type(self) -> str:
         return f"[{self.element_type.serialization_type}]"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["version_tolerant"] and self.element_type.is_xml:
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.type_annotation(
-                is_operation_file=is_operation_file
-            )
-        return f"List[{self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
+            return self.element_type.type_annotation(**kwargs)
+        return f"List[{self.element_type.type_annotation(**kwargs)}]"
 
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")
@@ -61,25 +60,23 @@ class ListType(BaseType):
 
         return ", ".join(attrs_list)
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         if (
             self.code_model.options["version_tolerant"]
             and self.element_type.xml_metadata
         ):
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.docstring_type
-        return f"list[{self.element_type.docstring_type}]"
+            return self.element_type.docstring_type(**kwargs)
+        return f"list[{self.element_type.docstring_type(**kwargs)}]"
 
-    @property
-    def docstring_text(self) -> str:
+    def docstring_text(self, **kwargs: Any) -> str:
         if (
             self.code_model.options["version_tolerant"]
             and self.element_type.xml_metadata
         ):
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.docstring_text
-        return f"list of {self.element_type.docstring_text}"
+            return self.element_type.docstring_text(**kwargs)
+        return f"list of {self.element_type.docstring_text(**kwargs)}"
 
     @property
     def validation(self) -> Optional[Dict[str, Union[bool, int, str]]]:
@@ -108,6 +105,20 @@ class ListType(BaseType):
             )
         ]
 
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        from .model_type import ModelType
+
+        if isinstance(self.element_type, ModelType):
+            is_polymorphic_subtype = (
+                self.element_type.discriminator_value
+                and not self.element_type.discriminated_subtypes
+            )
+            if (
+                self.element_type.name not in (m.name for m in polymorphic_subtypes)
+                and is_polymorphic_subtype
+            ):
+                polymorphic_subtypes.append(self.element_type)
+
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, list)"
@@ -126,7 +137,7 @@ class ListType(BaseType):
             ),
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if not (
             self.code_model.options["version_tolerant"] and self.element_type.is_xml
@@ -134,7 +145,5 @@ class ListType(BaseType):
             file_import.add_submodule_import(
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-        file_import.merge(
-            self.element_type.imports(is_operation_file=is_operation_file)
-        )
+        file_import.merge(self.element_type.imports(**kwargs))
         return file_import

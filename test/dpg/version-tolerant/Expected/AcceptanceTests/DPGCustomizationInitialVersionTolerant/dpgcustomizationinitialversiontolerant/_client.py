@@ -9,19 +9,20 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin
-from ._serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
 
-class DPGClient(DPGClientOperationsMixin):
+class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """DPG Swagger that tests our ability to grow up.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
@@ -48,7 +49,7 @@ class DPGClient(DPGClientOperationsMixin):
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

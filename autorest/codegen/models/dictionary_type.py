@@ -3,12 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, TYPE_CHECKING
+from typing import Any, Dict, Optional, TYPE_CHECKING, List
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .model_type import ModelType
 
 
 class DictionaryType(BaseType):
@@ -38,33 +39,31 @@ class DictionaryType(BaseType):
         """
         return f"{{{self.element_type.serialization_type}}}"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f"Dict[str, {self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
+        return f"Dict[str, {self.element_type.type_annotation(**kwargs)}]"
 
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")
 
-    @property
-    def docstring_text(self) -> str:
-        return f"dict mapping str to {self.element_type.docstring_text}"
+    def docstring_text(self, **kwargs: Any) -> str:
+        return f"dict mapping str to {self.element_type.docstring_text(**kwargs)}"
 
     @property
     def xml_serialization_ctxt(self) -> Optional[str]:
         """No serialization ctxt for dictionaries"""
         return None
 
-    @property
-    def docstring_type(self) -> str:
+    def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return f"dict[str, {self.element_type.docstring_type}]"
+        return f"dict[str, {self.element_type.docstring_type(**kwargs)}]"
 
     def get_json_template_representation(
         self,
@@ -80,6 +79,20 @@ class DictionaryType(BaseType):
                 description=description,
             )
         }
+
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        from .model_type import ModelType
+
+        if isinstance(self.element_type, ModelType):
+            is_polymorphic_subtype = (
+                self.element_type.discriminator_value
+                and not self.element_type.discriminated_subtypes
+            )
+            if (
+                self.element_type.name not in (m.name for m in polymorphic_subtypes)
+                and is_polymorphic_subtype
+            ):
+                polymorphic_subtypes.append(self.element_type)
 
     @classmethod
     def from_yaml(
@@ -105,14 +118,12 @@ class DictionaryType(BaseType):
             element_type=element_type,
         )
 
-    def imports(self, *, is_operation_file: bool) -> FileImport:
+    def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        file_import.merge(
-            self.element_type.imports(is_operation_file=is_operation_file)
-        )
+        file_import.merge(self.element_type.imports(**kwargs))
         return file_import
 
     @property

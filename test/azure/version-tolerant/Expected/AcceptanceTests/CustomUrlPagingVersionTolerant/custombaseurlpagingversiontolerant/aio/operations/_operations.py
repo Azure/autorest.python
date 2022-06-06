@@ -31,7 +31,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -63,22 +63,17 @@ class PagingOperations:
         :type account_name: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -152,22 +147,17 @@ class PagingOperations:
         :type account_name: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

@@ -3,10 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast, TypeVar
 
-from .operation import Operation
-from .response import Response
+from .operation import Operation, OperationBase
+from .response import PagingResponse, LROPagingResponse, Response
 from .request_builder import (
     OverloadedRequestBuilder,
     RequestBuilder,
@@ -19,8 +19,12 @@ from .model_type import ModelType
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+PagingResponseType = TypeVar(
+    "PagingResponseType", bound=Union[PagingResponse, LROPagingResponse]
+)
 
-class PagingOperation(Operation):
+
+class PagingOperationBase(OperationBase[PagingResponseType]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -28,7 +32,7 @@ class PagingOperation(Operation):
         name: str,
         request_builder: RequestBuilder,
         parameters: ParameterList,
-        responses: List[Response],
+        responses: List[PagingResponseType],
         exceptions: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
@@ -74,6 +78,9 @@ class PagingOperation(Operation):
                 f"Can't find a matching property in response for {rest_api_name}"
             )
 
+    def get_pager(self, async_mode: bool) -> str:
+        return self.responses[0].get_pager(async_mode)
+
     @property
     def continuation_token_name(self) -> Optional[str]:
         rest_api_name = self.yaml_data["continuationTokenName"]
@@ -95,19 +102,11 @@ class PagingOperation(Operation):
     def operation_type(self) -> str:
         return "paging"
 
-    def get_pager_path(self, async_mode: bool) -> str:
-        return (
-            self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
-        )
-
-    def get_pager(self, async_mode: bool) -> str:
-        return self.get_pager_path(async_mode).split(".")[-1]
-
     def cls_type_annotation(self, *, async_mode: bool) -> str:
-        return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
+        return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
-    def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = super()._imports_shared(async_mode)
+    def _imports_shared(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super()._imports_shared(async_mode, **kwargs)
         if async_mode:
             file_import.add_submodule_import(
                 "typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -128,52 +127,11 @@ class PagingOperation(Operation):
     def has_optional_return_type(self) -> bool:
         return False
 
-    def response_type_annotation(self, **kwargs) -> str:
-        async_mode = kwargs.pop("async_mode")
-        iterable = "AsyncIterable" if async_mode else "Iterable"
-        return f"{iterable}[{super().response_type_annotation(async_mode=async_mode)}]"
-
-    def response_docstring_type(self, **kwargs) -> str:
-        async_mode = kwargs.pop("async_mode")
-        return f"~{self.get_pager_path(async_mode)}[{super().response_docstring_type(async_mode=async_mode)}]"
-
-    def response_docstring_text(self, **kwargs) -> str:
-        super_text = super().response_docstring_text(**kwargs)
-        base_description = "An iterator like instance of "
-        if not self.code_model.options["version_tolerant"]:
-            base_description += "either "
-        return base_description + super_text
-
-    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
-        file_import = super().imports_for_multiapi(async_mode)
-        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
-        pager = self.get_pager(async_mode)
-
-        file_import.add_submodule_import(
-            pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL
-        )
-
-        return file_import
-
-    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
-        file_import = self._imports_base(async_mode, is_python3_file)
-        # operation adds an import for distributed_trace_async, we don't want it
-        file_import.imports = [
-            i
-            for i in file_import.imports
-            if not i.submodule_name == "distributed_trace_async"
-        ]
-
-        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
-        pager = self.get_pager(async_mode)
-
-        file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE)
-
-        if async_mode:
-            file_import.add_submodule_import(
-                "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
-            )
-
+    def imports(
+        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
+    ) -> FileImport:
+        file_import = self._imports_shared(async_mode, **kwargs)
+        file_import.merge(super().imports(async_mode, is_python3_file, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",
@@ -186,3 +144,7 @@ class PagingOperation(Operation):
             )
 
         return file_import
+
+
+class PagingOperation(PagingOperationBase[PagingResponse]):
+    ...

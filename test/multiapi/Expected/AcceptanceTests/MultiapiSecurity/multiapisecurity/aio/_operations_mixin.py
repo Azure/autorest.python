@@ -42,7 +42,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapisecurity.v1.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
@@ -62,7 +62,7 @@ class MultiapiServiceClientOperationsMixin(object):
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncIterable[_models.PagingResult]]:
+    ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -80,8 +80,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapisecurity.v1.models.PagingResult]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+         ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapisecurity.v1.models.Product]]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro_and_paging')
         if api_version == '1.0.0':
@@ -108,7 +108,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('test_different_calls')
         if api_version == '1.0.0':
@@ -138,7 +138,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':

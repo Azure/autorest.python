@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class NonStringEnumsClient:
+class NonStringEnumsClient:  # pylint: disable=client-accepts-api-version-keyword
     """Testing non-string enums.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
@@ -48,7 +48,7 @@ class NonStringEnumsClient:
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

@@ -30,13 +30,17 @@ modelerfour:
   flatten-payloads: true
 ```
 
+```yaml $(postprocess)
+allow-no-input: true
+```
+
 ```yaml !$(multiapiscript)
 pass-thru:
   - model-deduplicator
   - subset-reducer
 version: ~3.8.1
 use-extension:
-  "@autorest/modelerfour": ~4.23.1
+  "@autorest/modelerfour": ~4.23.5
 
 modelerfour:
   resolve-schema-name-collisons: true
@@ -72,11 +76,11 @@ pipeline:
   python/m4reformatter:
     input: python/m2r
 
-  python/namer:
+  python/preprocess:
     input: python/m4reformatter
 
   python/codegen:
-    input: python/namer
+    input: python/preprocess
     output-artifact: python-files
 
   python/codegen/emitter:
@@ -123,6 +127,25 @@ pipeline:
     scope: scope-black/emitter
 
 scope-black/emitter:
+  input-artifact: python-files
+  output-uri-expr: $key
+
+output-artifact: python-files
+```
+
+# Post-process customized code for mypy pipeline
+
+```yaml $(postprocess)
+pipeline:
+  python/postprocess:
+    scope: postprocess
+    output-artifact: python-files
+
+  python/postprocess/emitter:
+    input: postprocess
+    scope: scope-postprocess/emitter
+
+scope-postprocess/emitter:
   input-artifact: python-files
   output-uri-expr: $key
 

@@ -16,7 +16,7 @@ from ..._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
@@ -34,8 +34,8 @@ def build_put_async_retry_succeeded_request(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -43,7 +43,7 @@ def build_put_async_retry_succeeded_request(
     :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -79,8 +79,8 @@ def build_put_async_retry_succeeded_request(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -88,7 +88,7 @@ def build_put_async_retry_succeeded_request(
     :keyword content: Product to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -103,8 +103,8 @@ def build_put_async_retry_succeeded_request(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -112,7 +112,7 @@ def build_put_async_retry_succeeded_request(
     :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -148,8 +148,8 @@ def build_put201_creating_succeeded200_request(
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -157,7 +157,7 @@ def build_put201_creating_succeeded200_request(
     :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -193,8 +193,8 @@ def build_put201_creating_succeeded200_request(
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -202,7 +202,7 @@ def build_put201_creating_succeeded200_request(
     :keyword content: Product to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -217,8 +217,8 @@ def build_put201_creating_succeeded200_request(
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -226,7 +226,7 @@ def build_put201_creating_succeeded200_request(
     :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -261,8 +261,8 @@ def build_post202_retry200_request(
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -270,7 +270,7 @@ def build_post202_retry200_request(
     :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -305,8 +305,8 @@ def build_post202_retry200_request(
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -314,7 +314,7 @@ def build_post202_retry200_request(
     :keyword content: Product to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -328,8 +328,8 @@ def build_post202_retry200_request(
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -337,7 +337,7 @@ def build_post202_retry200_request(
     :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -373,8 +373,8 @@ def build_post_async_retry_succeeded_request(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -382,7 +382,7 @@ def build_post_async_retry_succeeded_request(
     :keyword json: Product to put. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -418,8 +418,8 @@ def build_post_async_retry_succeeded_request(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -427,7 +427,7 @@ def build_post_async_retry_succeeded_request(
     :keyword content: Product to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -442,8 +442,8 @@ def build_post_async_retry_succeeded_request(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -451,7 +451,7 @@ def build_post_async_retry_succeeded_request(
     :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

@@ -17,7 +17,7 @@ from .._vendor import _format_url_section
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
@@ -32,8 +32,8 @@ def build_put_array_request(
     # type: (...) -> HttpRequest
     """Put External Resource as an Array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -41,7 +41,7 @@ def build_put_array_request(
     :keyword json: External Resource as an Array to put. Default value is None.
     :paramtype json: list[JSON]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -70,8 +70,8 @@ def build_put_array_request(
     # type: (...) -> HttpRequest
     """Put External Resource as an Array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -79,7 +79,7 @@ def build_put_array_request(
     :keyword content: External Resource as an Array to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -91,8 +91,8 @@ def build_put_array_request(
     # type: (...) -> HttpRequest
     """Put External Resource as an Array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -101,7 +101,7 @@ def build_put_array_request(
      Default value is None.
     :paramtype json: list[JSON] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -133,11 +133,11 @@ def build_get_array_request(
     # type: (...) -> HttpRequest
     """Get External Resource as an Array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -168,8 +168,8 @@ def build_put_wrapped_array_request(
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -177,7 +177,7 @@ def build_put_wrapped_array_request(
     :keyword json: External Resource as an Array to put. Default value is None.
     :paramtype json: list[JSON]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -201,8 +201,8 @@ def build_put_wrapped_array_request(
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -210,7 +210,7 @@ def build_put_wrapped_array_request(
     :keyword content: External Resource as an Array to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -223,8 +223,8 @@ def build_put_wrapped_array_request(
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -233,7 +233,7 @@ def build_put_wrapped_array_request(
      Default value is None.
     :paramtype json: list[JSON] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -266,11 +266,11 @@ def build_get_wrapped_array_request(
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -300,8 +300,8 @@ def build_put_dictionary_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a Dictionary.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -309,7 +309,7 @@ def build_put_dictionary_request(
     :keyword json: External Resource as a Dictionary to put. Default value is None.
     :paramtype json: dict[str, JSON]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -346,8 +346,8 @@ def build_put_dictionary_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a Dictionary.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -355,7 +355,7 @@ def build_put_dictionary_request(
     :keyword content: External Resource as a Dictionary to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -367,8 +367,8 @@ def build_put_dictionary_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a Dictionary.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -377,7 +377,7 @@ def build_put_dictionary_request(
      Default value is None.
     :paramtype json: dict[str, JSON] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -409,11 +409,11 @@ def build_get_dictionary_request(
     # type: (...) -> HttpRequest
     """Get External Resource as a Dictionary.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -443,8 +443,8 @@ def build_put_resource_collection_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a ResourceCollection.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -452,7 +452,7 @@ def build_put_resource_collection_request(
     :keyword json: External Resource as a ResourceCollection to put. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -534,8 +534,8 @@ def build_put_resource_collection_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a ResourceCollection.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -543,7 +543,7 @@ def build_put_resource_collection_request(
     :keyword content: External Resource as a ResourceCollection to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -555,8 +555,8 @@ def build_put_resource_collection_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a ResourceCollection.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -565,7 +565,7 @@ def build_put_resource_collection_request(
      type. Default value is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -597,11 +597,11 @@ def build_get_resource_collection_request(
     # type: (...) -> HttpRequest
     """Get External Resource as a ResourceCollection.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -631,8 +631,8 @@ def build_put_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -640,7 +640,7 @@ def build_put_simple_product_request(
     :keyword json: Simple body product to put. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -674,8 +674,8 @@ def build_put_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -683,7 +683,7 @@ def build_put_simple_product_request(
     :keyword content: Simple body product to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -695,8 +695,8 @@ def build_put_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -705,7 +705,7 @@ def build_put_simple_product_request(
      is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -738,8 +738,8 @@ def build_post_flattened_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Flattened Simple Product with client flattening true on the parameter.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
@@ -747,7 +747,7 @@ def build_post_flattened_simple_product_request(
     :keyword json: Simple body product to post. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -781,8 +781,8 @@ def build_post_flattened_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Flattened Simple Product with client flattening true on the parameter.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
      Default value is None.
@@ -790,7 +790,7 @@ def build_post_flattened_simple_product_request(
     :keyword content: Simple body product to post. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -802,8 +802,8 @@ def build_post_flattened_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Flattened Simple Product with client flattening true on the parameter.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
@@ -812,7 +812,7 @@ def build_post_flattened_simple_product_request(
      is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -846,8 +846,8 @@ def build_put_simple_product_with_grouping_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param name: Product name with value 'groupproduct'. Required.
     :type name: str
@@ -857,7 +857,7 @@ def build_put_simple_product_with_grouping_request(
     :keyword json: Simple body product to put. Default value is None.
     :paramtype json: JSON
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -892,8 +892,8 @@ def build_put_simple_product_with_grouping_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param name: Product name with value 'groupproduct'. Required.
     :type name: str
@@ -903,7 +903,7 @@ def build_put_simple_product_with_grouping_request(
     :keyword content: Simple body product to put. Default value is None.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -916,8 +916,8 @@ def build_put_simple_product_with_grouping_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param name: Product name with value 'groupproduct'. Required.
     :type name: str
@@ -928,7 +928,7 @@ def build_put_simple_product_with_grouping_request(
      is None.
     :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

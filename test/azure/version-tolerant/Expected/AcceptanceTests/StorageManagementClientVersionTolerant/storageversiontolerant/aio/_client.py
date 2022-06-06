@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class StorageManagementClient:
+class StorageManagementClient:  # pylint: disable=client-accepts-api-version-keyword
     """StorageManagementClient.
 
     :ivar storage_accounts: StorageAccountsOperations operations
@@ -74,7 +74,7 @@ class StorageManagementClient:
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):
+class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Key REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
@@ -50,7 +50,7 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

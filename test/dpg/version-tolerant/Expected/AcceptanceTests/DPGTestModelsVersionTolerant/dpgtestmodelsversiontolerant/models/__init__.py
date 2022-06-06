@@ -8,23 +8,24 @@
 
 from ._models import Input
 from ._models import LROProduct
-from ._models import Product
-from ._models import ProductResult
+from ._patch import Product
 
 
-from ._enums import (
-    ProductReceived,
-)
-from ._patch import __all__ as _patch_all
-from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
+from ._enums import ProductReceived
+
+from ._patch import AddedModel
+from ._patch import Product
+from ._patch import AddedModel
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "Product",
+    "AddedModel",
+    "AddedModel",
     "Input",
     "LROProduct",
     "Product",
-    "ProductResult",
     "ProductReceived",
 ]
-__all__.extend([p for p in _patch_all if p not in __all__])
+
 _patch_sdk()

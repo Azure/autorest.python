@@ -8,6 +8,8 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
+from msrest import Serializer
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,8 +27,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._serialization import Serializer
 from .._vendor import MixinABC, _format_url_section
+from ..models._models import ProductResult
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -126,7 +128,7 @@ class DPGClientOperationsMixin(MixinABC):
         :type mode: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -178,11 +180,13 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def post_model(self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> _models.Product:
+    def post_model(
+        self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -193,11 +197,11 @@ class DPGClientOperationsMixin(MixinABC):
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
@@ -216,7 +220,7 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -227,13 +231,13 @@ class DPGClientOperationsMixin(MixinABC):
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
             _json = self._serialize.body(input, "Input")
-            content_type = content_type or "application/json"
 
         request = build_post_model_request(
             mode=mode,
@@ -263,7 +267,7 @@ class DPGClientOperationsMixin(MixinABC):
         return deserialized
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> Iterable[_models.ProductResult]:
+    def get_pages(self, mode: str, **kwargs: Any) -> Iterable["_models.Product"]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 
@@ -271,14 +275,14 @@ class DPGClientOperationsMixin(MixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :return: An iterator like instance of ProductResult
-        :rtype: ~azure.core.paging.ItemPaged[~dpgtestmodelsversiontolerant.models.ProductResult]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :return: An iterator like instance of Product
+        :rtype: ~azure.core.paging.ItemPaged[~dpgtestmodelsversiontolerant.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -378,7 +382,7 @@ class DPGClientOperationsMixin(MixinABC):
          Retry-After header is present.
         :return: An instance of LROPoller that returns LROProduct
         :rtype: ~azure.core.polling.LROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

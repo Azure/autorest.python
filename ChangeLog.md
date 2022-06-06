@@ -1,12 +1,43 @@
-# Change Log
+# Change
 
-### 2022-xx-xx - 5.17.0
+### 2022-xx-xx - 5.18.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.8.1`     |
-| `@autorest/modelerfour`                                                 | `4.23.1`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Breaking Changes in Version Tolerant**
+
+- No longer allow users to specify `api_version` on the method level  #1281
+
+**New Features**
+- Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
+
+### 2022-xx-xx - 5.17.1
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Bug Fixes**
+
+- Improve docstring templates, specifically for polymorphic bodies  #1279
+
+### 2022-06-02 - 5.17.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
@@ -14,7 +45,12 @@
 
 - Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
 - Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type.  #1230
-- Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
+- Add flag `--postprocess`. Run this after doing customizations for full mypy support
+
+**Breaking Changes in Version Tolerant**
+
+- Have stream responses directly return an iterator of bytes, so you don't need to call `.iter_bytes()` on the response object.  #1254
+- If generating with `--models-mode=msrest` in version tolerant, we hide paging models  #1259
 
 **Breaking Changes in Request Builders**
 
@@ -26,6 +62,14 @@
 - Make sure `any-object` schemas from swagger are typed with `MutableMapping`s  #1243
 - Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger  #1244
 - Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
+- Fix typing for stream responses to iterators of bytes.  #1254
+- Additional linting support  #1265
+- Fix Sphinx documentation for raised exception #1264
+- Use `api_version` in `_config` as default value for operation function  #1268
+
+**Other Changes**
+
+- Update template files for `--package-mode` # 1248
 
 ### 2022-04-18 - 5.16.0
 

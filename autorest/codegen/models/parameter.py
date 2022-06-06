@@ -81,6 +81,7 @@ class _ParameterBase(
         self.flattened: bool = self.yaml_data.get("flattened", False)
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
+        self.check_client_input: bool = self.yaml_data.get("checkClientInput", False)
 
     @property
     def constant(self) -> bool:
@@ -127,27 +128,28 @@ class _ParameterBase(
             return None
         return self.type.get_declaration(self.client_default_value)
 
-    def type_annotation(self) -> str:
-        type_annot = self.type.type_annotation(is_operation_file=True)
+    def type_annotation(self, **kwargs: Any) -> str:
+        kwargs["is_operation_file"] = True
+        type_annot = self.type.type_annotation(**kwargs)
         if self.optional and self.client_default_value is None:
             return f"Optional[{type_annot}]"
         return type_annot
 
-    @property
-    def docstring_text(self) -> str:
-        return self.type.docstring_text
+    def docstring_text(self, **kwargs: Any) -> str:
+        return self.type.docstring_text(**kwargs)
 
-    @property
-    def docstring_type(self) -> str:
-        return self.type.docstring_type
+    def docstring_type(self, **kwargs: Any) -> str:
+        return self.type.docstring_type(**kwargs)
 
     @property
     def serialization_type(self) -> str:
         return self.type.serialization_type
 
-    def imports(self) -> FileImport:
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        file_import.merge(self.type.imports(is_operation_file=True))
+        file_import.merge(
+            self.type.imports(is_operation_file=True, async_mode=async_mode, **kwargs)
+        )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
@@ -177,8 +179,8 @@ class _ParameterBase(
     def in_method_signature(self) -> bool:
         ...
 
-    def method_signature(self, is_python3_file: bool) -> str:
-        type_annot = self.type_annotation()
+    def method_signature(self, is_python3_file: bool, async_mode: bool) -> str:
+        type_annot = self.type_annotation(async_mode=async_mode)
         if is_python3_file:
             if self.client_default_value is not None or self.optional:
                 return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
@@ -236,7 +238,7 @@ EntryBodyParameterType = TypeVar(
 )
 
 
-class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
+class _MultipartBodyParameter(Generic[EntryBodyParameterType], BodyParameter):
     """Base class for MultipartBodyParameter and RequestBuilderMultipartBodyParameter"""
 
     def __init__(
