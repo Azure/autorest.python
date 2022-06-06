@@ -14,13 +14,9 @@ from ._patch import Product
 from ._enums import ProductReceived
 
 from ._patch import AddedModel
-from ._patch import Product
-from ._patch import AddedModel
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "Product",
-    "AddedModel",
     "AddedModel",
     "Input",
     "LROProduct",

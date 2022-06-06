@@ -9,11 +9,9 @@
 from ._patch import DPGClientOperationsMixin
 
 
-from ._patch import DPGClientOperationsMixin
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "DPGClientOperationsMixin",
     "DPGClientOperationsMixin",
 ]
 

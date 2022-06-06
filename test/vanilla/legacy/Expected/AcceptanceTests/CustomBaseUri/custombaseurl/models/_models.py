@@ -7,10 +7,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from .. import _serialization
+import msrest.serialization
 
 
-class Error(_serialization.Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :ivar status:

@@ -9,11 +9,12 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 
 from . import models
 from ._configuration import AutoRestComplexTestServiceConfiguration
-from ._serialization import Deserializer, Serializer
 from .operations import (
     ArrayOperations,
     BasicOperations,
@@ -75,7 +76,6 @@ class AutoRestComplexTestService(
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self._serialize.client_side_validation = False
         self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
         self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
         self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)

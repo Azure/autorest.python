@@ -9,11 +9,12 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 
 from . import models
 from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
-from ._serialization import Deserializer, Serializer
 from .operations import ParameterGroupingOperations
 
 if TYPE_CHECKING:
@@ -44,7 +45,6 @@ class AutoRestParameterGroupingTestService(object):  # pylint: disable=client-ac
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self._serialize.client_side_validation = False
         self.parameter_grouping = ParameterGroupingOperations(
             self._client, self._config, self._serialize, self._deserialize
         )

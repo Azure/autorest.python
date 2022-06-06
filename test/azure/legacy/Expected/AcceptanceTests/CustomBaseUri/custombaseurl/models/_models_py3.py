@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-from .. import _serialization
+import msrest.serialization
 
 
-class Error(_serialization.Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :ivar status:
