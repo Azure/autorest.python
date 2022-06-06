@@ -13,6 +13,7 @@
 **Breaking Changes in Version Tolerant**
 
 - No longer allow users to specify `api_version` on the method level  #1281
+- Add flag `--generate-sample` to generate samples #1275
 
 ### 2022-xx-xx - 5.17.1
 
