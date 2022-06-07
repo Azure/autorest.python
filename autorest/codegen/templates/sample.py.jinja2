@@ -12,13 +12,12 @@ The sample just shows how to use the method and may not run successfully.
 # USAGE
     python {{ file_name }}
 """
-{% if origin_file %}
-# x-ms-original-file: {{ origin_file }}
-{% endif %}
 def main():
+    {% if annotation %}
     """
     {{- annotation }}
     """
+    {% endif %}
     client = {{ code_model.client.name }}(
         {% for key, value in client_params.items() %}
         {{ key }}={{ value }},
@@ -36,6 +35,8 @@ def main():
     {% endif %}
     print(response)
 
-
+{% if origin_file %}
+# x-ms-original-file: {{ origin_file }}
+{% endif %}
 if __name__ == "__main__":
     main()
