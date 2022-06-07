@@ -301,9 +301,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(self.parameters.body_parameter.type.imports(**kwargs))
 
         # Exceptions
-        if self.abstract:
-            file_import.add_import("abc", ImportType.STDLIB)
-        else:
+        if not self.abstract:
             file_import.add_submodule_import(
                 "azure.core.exceptions", "map_error", ImportType.AZURECORE
             )

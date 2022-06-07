@@ -23,7 +23,7 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
 {% endif %}
-{% for operation in operation_group.operations %}
+{% for operation in operation_group.operations if not operation.abstract %}
 
 {% set request_builder = operation.request_builder %}
 {% set operation_serializer = get_operation_serializer(operation) %}

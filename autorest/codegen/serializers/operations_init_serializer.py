@@ -57,9 +57,17 @@ class OperationsInitSerializer:
             "operations_folder_init.py.jinja2"
         )
 
+        abstract_methods = [
+            {"cls": og.class_name, "fn": op.name}
+            for og in self.code_model.operation_groups
+            for op in og.operations
+            if op.abstract
+        ]
+
         return operation_group_init_template.render(
             code_model=self.code_model,
             operation_groups=self.code_model.operation_groups,
             async_mode=self.async_mode,
             operation_group_imports=self.operation_group_imports,
+            abstract_methods=abstract_methods,
         )

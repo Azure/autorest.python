@@ -13,6 +13,24 @@ from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
+
+def raise_not_implemented(target):
+    _all_abstract_methods = [
+        "ReservedWordsClientOperationsMixin.operation_with_data_param",
+        "ReservedWordsClientOperationsMixin.operation_with_files_param",
+    ]
+    raise NotImplementedError(
+        f"{target} Not Implemented! "
+        f"We won't initialize if any of these methods not Implemented by customization: {_all_abstract_methods} "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
+
+
+if not callable(getattr(ReservedWordsClientOperationsMixin, "operation_with_data_param", None)):
+    raise_not_implemented("ReservedWordsClientOperationsMixin.operation_with_data_param")
+if not callable(getattr(ReservedWordsClientOperationsMixin, "operation_with_files_param", None)):
+    raise_not_implemented("ReservedWordsClientOperationsMixin.operation_with_files_param")
+
 __all__ = [
     "ImportOperations",
     "ReservedWordsClientOperationsMixin",

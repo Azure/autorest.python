@@ -42,8 +42,6 @@ class OperationGroup(BaseModel):
             base_classes.append("MixinABC")
         if not (async_mode or self.code_model.options["python3_only"]):
             base_classes.append("object")
-        if self.has_abstract_operations:
-            base_classes.append("abc.ABC")
         return ", ".join(base_classes)
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:

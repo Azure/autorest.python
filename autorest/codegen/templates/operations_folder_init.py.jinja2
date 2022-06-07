@@ -6,6 +6,25 @@
 
 {{ op_tools.serialize(operation_group_imports()) }}
 {{ keywords.patch_imports() }}
+{% if abstract_methods %}
+
+def raise_not_implemented(target):
+    _all_abstract_methods = [
+{% for method in abstract_methods %}
+    "{{method["cls"]}}.{{method["fn"]}}",
+{% endfor %}
+    ]
+    raise NotImplementedError(f"{target} Not Implemented! "
+        f"We won't initialize if any of these methods not Implemented by customization: {_all_abstract_methods} "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
+
+{% for method in abstract_methods %}
+if not callable(getattr({{method["cls"]}}, "{{method["fn"]}}", None)):
+    raise_not_implemented("{{method["cls"]}}.{{method["fn"]}}")
+{% endfor %}
+
+{% endif %}
 {% if operation_groups %}
 __all__ = [
     {% for operation_group in operation_groups %}
