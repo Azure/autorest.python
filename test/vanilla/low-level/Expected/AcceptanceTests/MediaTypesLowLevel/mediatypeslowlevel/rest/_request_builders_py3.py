@@ -59,7 +59,7 @@ def build_analyze_body_request(
 @overload
 def build_analyze_body_request(
     *,
-    content_type: Optional[str] = None,
+    content_type: str,
     content: Optional[IO] = None,
     **kwargs: Any
 ) -> HttpRequest:
@@ -69,7 +69,7 @@ def build_analyze_body_request(
     builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Required.
     :paramtype content_type: str
     :keyword content: Input parameter. Default value is None.
     :paramtype content: IO
@@ -156,7 +156,7 @@ def build_analyze_body_no_accept_header_request(
 @overload
 def build_analyze_body_no_accept_header_request(
     *,
-    content_type: Optional[str] = None,
+    content_type: str,
     content: Optional[IO] = None,
     **kwargs: Any
 ) -> HttpRequest:
@@ -167,7 +167,7 @@ def build_analyze_body_no_accept_header_request(
     builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Required.
     :paramtype content_type: str
     :keyword content: Input parameter. Default value is None.
     :paramtype content: IO
