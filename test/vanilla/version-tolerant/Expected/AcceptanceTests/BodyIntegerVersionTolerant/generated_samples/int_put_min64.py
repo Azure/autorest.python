@@ -18,7 +18,6 @@ The sample just shows how to use the method and may not run successfully.
 
 
 def main():
-    """ """
     client = AutoRestIntegerTestService()
 
     response = client.int.put_min64(

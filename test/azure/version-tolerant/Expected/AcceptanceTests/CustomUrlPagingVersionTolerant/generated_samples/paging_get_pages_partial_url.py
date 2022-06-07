@@ -18,7 +18,6 @@ The sample just shows how to use the method and may not run successfully.
 
 
 def main():
-    """ """
     client = AutoRestParameterizedHostTestPagingClient()
 
     response = client.paging.get_pages_partial_url(
