@@ -444,7 +444,10 @@ def update_content_type_parameter(
         return yaml_data
     param = copy.deepcopy(yaml_data)
     param["schema"] = KNOWN_TYPES["string"]  # override to string type
-    param["required"] = False
+    if body_parameter["type"]["type"] == "binary" and not body_parameter["defaultContentType"]:
+        param["required"] = True
+    else:
+        param["required"] = False
     description = param["language"]["default"]["description"]
     if description and description[-1] != ".":
         description += "."
