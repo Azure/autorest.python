@@ -65,7 +65,7 @@ def build_analyze_body_request(
     builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Required.
     :paramtype content_type: str
     :keyword content: Input parameter. Default value is None.
     :paramtype content: IO
@@ -160,7 +160,7 @@ def build_analyze_body_no_accept_header_request(
     builder into your code flow.
 
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Required.
     :paramtype content_type: str
     :keyword content: Input parameter. Default value is None.
     :paramtype content: IO
