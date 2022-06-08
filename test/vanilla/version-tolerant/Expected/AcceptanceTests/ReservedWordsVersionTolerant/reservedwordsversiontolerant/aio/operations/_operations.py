@@ -103,6 +103,24 @@ class ImportOperations:
 
 
 class ReservedWordsClientOperationsMixin(MixinABC):
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~reservedwordsversiontolerant.aio.ReservedWordsClient`'s
+        :attr:`` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        raise_if_not_implemented(
+            self.__class__,
+            [
+                "operation_with_data_param",
+                "operation_with_files_param",
+            ],
+        )
+
     @distributed_trace_async
     async def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
