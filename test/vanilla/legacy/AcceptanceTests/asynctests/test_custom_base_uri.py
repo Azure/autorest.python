@@ -33,9 +33,8 @@ import os
 from datetime import date, datetime, timedelta
 from os.path import dirname, pardir, join, realpath
 
-from msrest import DeserializationError, SerializationError
 from azure.core.exceptions import ServiceRequestError
-from msrest.exceptions import ValidationError
+from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
 from custombaseurl.aio import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error
