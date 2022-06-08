@@ -1240,7 +1240,6 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         key_name=None,  # type: Optional[Union[str, "_models.KeyName"]]
-        key_name=None,  # type: Optional[Union[str, "_models.KeyName"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.StorageAccountKeys
@@ -1253,8 +1252,6 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: str
-        :param key_name: Known values are: "key1" and "key2". Default value is None.
-        :type key_name: str or ~storage.models.KeyName
         :param key_name: Known values are: "key1" and "key2". Default value is None.
         :type key_name: str or ~storage.models.KeyName
         :keyword callable cls: A custom type or function that will be passed the direct response
