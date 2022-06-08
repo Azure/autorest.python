@@ -6,8 +6,8 @@
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.8.1`     |
 | `@autorest/modelerfour`                                                 | `4.23.5`    |
-| `azure-core` dep of generated code                                      | `1.24.1`    |
-| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `msrest` dep of generated code                                          | `0.7.0`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Breaking Changes in Version Tolerant**
