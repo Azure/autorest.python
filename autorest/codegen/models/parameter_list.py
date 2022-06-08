@@ -428,6 +428,7 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
             if parameter.location != ParameterLocation.BODY
         ]
 
+
 class _ClientGlobalParameterList(
     # pylint: disable=unsubscriptable-object
     _ParameterListBase[ParameterType, BodyParameter]
