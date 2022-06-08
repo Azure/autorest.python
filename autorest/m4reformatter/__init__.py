@@ -461,8 +461,9 @@ def update_content_type_parameter(
             " Content type parameter for "
             f"{get_body_type_for_description(body_parameter)} body."
         )
-    content_types = "'" + "', '".join(request_media_types) + "'"
-    description += f" Known values are: {content_types}."
+    if not in_overload or body_parameter["type"]["type"] == "binary":
+        content_types = "'" + "', '".join(request_media_types) + "'"
+        description += f" Known values are: {content_types}."
     if not in_overload and not in_overriden:
         param["clientDefaultValue"] = body_parameter["defaultContentType"]
     param["language"]["default"]["description"] = description
