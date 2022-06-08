@@ -699,6 +699,20 @@ class _OperationSerializer(
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         if isinstance(body_param.type, BinaryType):
             retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
+            if (
+                not body_param.default_content_type
+                and not next(
+                    p for p in builder.parameters if p.rest_api_name == "Content-Type"
+                ).optional
+            ):
+                content_types = "'" + "', '".join(body_param.content_types) + "'"
+                retval.extend(
+                    [
+                        "if not content_type:",
+                        f'    raise TypeError("Missing required keyword-only argument: content_type. '
+                        f'Known values are:" + "{content_types}")',
+                    ]
+                )
         else:
             retval.extend(self._serialize_body_parameter(builder))
         return retval
