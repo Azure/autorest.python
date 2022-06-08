@@ -461,7 +461,9 @@ def update_content_type_parameter(
             " Content type parameter for "
             f"{get_body_type_for_description(body_parameter)} body."
         )
-    if not in_overload or body_parameter["type"]["type"] == "binary":
+    if not in_overload or (
+        body_parameter["type"]["type"] == "binary" and len(request_media_types) > 1
+    ):
         content_types = "'" + "', '".join(request_media_types) + "'"
         description += f" Known values are: {content_types}."
     if not in_overload and not in_overriden:
