@@ -24,6 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from ..._vendor import _convert_request
 from ...operations._object_type_client_operations import build_get_request, build_put_request
+from .._vendor import MixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -34,7 +35,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ObjectTypeClientOperationsMixin:
+class ObjectTypeClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> JSON:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully

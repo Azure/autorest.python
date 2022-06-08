@@ -6,10 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import SourcePath
-except (SyntaxError, ImportError):
-    from ._models import SourcePath  # type: ignore
+from ._models_py3 import SourcePath
+
 
 from ._media_types_client_enums import ContentType
 from ._media_types_client_enums import ContentType1

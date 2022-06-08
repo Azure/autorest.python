@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
@@ -18,13 +19,12 @@ from .operations import HeadExceptionOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
+    from typing import Dict
 
     from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestHeadExceptionTestService(object):  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar head_exception: HeadExceptionOperations operations
@@ -35,13 +35,7 @@ class AutoRestHeadExceptionTestService(object):  # pylint: disable=client-accept
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        credential,  # type: "TokenCredential"
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -51,12 +45,7 @@ class AutoRestHeadExceptionTestService(object):  # pylint: disable=client-accept
         self._serialize.client_side_validation = False
         self.head_exception = HeadExceptionOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

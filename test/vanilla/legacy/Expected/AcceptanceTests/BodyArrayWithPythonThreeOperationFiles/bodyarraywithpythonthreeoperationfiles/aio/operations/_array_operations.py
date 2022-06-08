@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._array_operations_py3 import (
+from ...operations._array_operations import (
     build_get_array_empty_request,
     build_get_array_item_empty_request,
     build_get_array_item_null_request,

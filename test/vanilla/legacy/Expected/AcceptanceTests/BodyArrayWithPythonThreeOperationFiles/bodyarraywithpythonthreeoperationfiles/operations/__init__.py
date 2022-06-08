@@ -6,10 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._array_operations_py3 import ArrayOperations
-except (SyntaxError, ImportError):
-    from ._array_operations import ArrayOperations
+from ._array_operations import ArrayOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import

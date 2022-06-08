@@ -36,12 +36,13 @@ from ...operations._auto_rest_resource_flattening_test_service_operations import
     build_put_simple_product_with_grouping_request,
     build_put_wrapped_array_request,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin:
+class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     @overload
     async def put_array(  # pylint: disable=inconsistent-return-statements
         self,

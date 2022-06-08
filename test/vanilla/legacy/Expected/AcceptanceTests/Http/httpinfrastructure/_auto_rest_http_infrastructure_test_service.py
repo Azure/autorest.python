@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
@@ -25,16 +26,8 @@ from .operations import (
     MultipleResponsesOperations,
 )
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class AutoRestHttpInfrastructureTestService(
-    object
-):  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations
@@ -55,12 +48,7 @@ class AutoRestHttpInfrastructureTestService(
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHttpInfrastructureTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -82,12 +70,7 @@ class AutoRestHttpInfrastructureTestService(
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
