@@ -55,13 +55,15 @@ class MediaTypesClientOperationsMixin:
         """
 
     @overload
-    async def analyze_body(self, input: Optional[IO] = None, *, content_type: str, **kwargs: Any) -> str:
+    async def analyze_body(
+        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Required.
+         Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
@@ -96,11 +98,6 @@ class MediaTypesClientOperationsMixin:
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:"
-                    + "'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-                )
         else:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
@@ -158,7 +155,7 @@ class MediaTypesClientOperationsMixin:
 
     @overload
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[IO] = None, *, content_type: str, **kwargs: Any
+        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
@@ -166,7 +163,7 @@ class MediaTypesClientOperationsMixin:
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Required.
+         Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -204,11 +201,6 @@ class MediaTypesClientOperationsMixin:
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:"
-                    + "'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-                )
         else:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")

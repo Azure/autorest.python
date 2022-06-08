@@ -13,7 +13,6 @@
 **Breaking Changes in Version Tolerant**
 
 - No longer allow users to specify `api_version` on the method level  #1281
-- Make `content_type` param required with no default if streaming with no `application/octet-stream`  #1269
 
 ### 2022-xx-xx - 5.17.1
 

@@ -68,7 +68,7 @@ class OperationGroupTwoOperations:
         self,
         input: Optional[IO] = None,
         *,
-        content_type: str,
+        content_type: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
@@ -76,7 +76,7 @@ class OperationGroupTwoOperations:
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Required.
+         Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -119,8 +119,6 @@ class OperationGroupTwoOperations:
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            if not content_type:
-                raise TypeError("Missing required keyword-only argument: content_type. Known values are:" + "'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'")
         else:
             if input is not None:
                 _json = self._serialize.body(input, 'SourcePath')

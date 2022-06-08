@@ -237,14 +237,14 @@ class ParamsOperations:
         """
 
     @overload
-    async def post_parameters(self, parameter: IO, *, content_type: str, **kwargs: Any) -> JSON:
+    async def post_parameters(self, parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Required.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON
         :rtype: JSON
@@ -278,10 +278,6 @@ class ParamsOperations:
         _content = None
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:" + "'image/jpeg'"
-                )
         else:
             _json = parameter
             content_type = content_type or "application/json"
