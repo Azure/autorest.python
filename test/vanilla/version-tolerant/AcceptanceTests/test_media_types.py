@@ -36,6 +36,8 @@ def client():
 def test_pdf(client):
     result = client.analyze_body(input=b"PDF", content_type="application/pdf")
     assert result == "Nice job with PDF"
+    with pytest.raises(TypeError):
+        client.analyze_body(input=b"PDF")
 
 def test_json(client):
     json_input = json.loads('{"source":"foo"}')
