@@ -444,7 +444,13 @@ def update_content_type_parameter(
         return yaml_data
     param = copy.deepcopy(yaml_data)
     param["schema"] = KNOWN_TYPES["string"]  # override to string type
-    param["required"] = False
+    if (
+        body_parameter["type"]["type"] == "binary"
+        and not body_parameter["defaultContentType"]
+    ):
+        param["required"] = True
+    else:
+        param["required"] = False
     description = param["language"]["default"]["description"]
     if description and description[-1] != ".":
         description += "."
@@ -455,9 +461,8 @@ def update_content_type_parameter(
             " Content type parameter for "
             f"{get_body_type_for_description(body_parameter)} body."
         )
-    elif not in_overload:
-        content_types = "'" + "', '".join(request_media_types) + "'"
-        description += f" Known values are: {content_types}."
+    content_types = "'" + "', '".join(request_media_types) + "'"
+    description += f" Known values are: {content_types}."
     if not in_overload and not in_overriden:
         param["clientDefaultValue"] = body_parameter["defaultContentType"]
     param["language"]["default"]["description"] = description
@@ -697,6 +702,9 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         body_param["defaultContentType"] = _get_default_content_type(
             body_param["contentTypes"]
         )
+        # python supports IO input with all kinds of content_types
+        if body_type["type"] == "binary":
+            body_param["contentTypes"] = content_types or list(yaml_data.keys())
         if body_param["type"]["type"] == "constant":
             if not body_param["optional"] or (
                 body_param["optional"] and not self.default_optional_constants_to_none
