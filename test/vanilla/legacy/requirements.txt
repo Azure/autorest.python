@@ -13,7 +13,6 @@ azure-core==1.23.0
 -e ./Expected/AcceptanceTests/BodyBoolean
 -e ./Expected/AcceptanceTests/BodyByte
 -e ./Expected/AcceptanceTests/BodyComplex
--e ./Expected/AcceptanceTests/BodyComplexPythonThreeOnly
 -e ./Expected/AcceptanceTests/BodyDate
 -e ./Expected/AcceptanceTests/BodyDateTime
 -e ./Expected/AcceptanceTests/BodyDateTimeRfc1123
