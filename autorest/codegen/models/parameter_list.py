@@ -416,11 +416,17 @@ class RequestBuilderParameterList(_RequestBuilderParameterList):
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for OverloadedRequestBuilder"""
 
-    def method_signature(self, is_python3_file: bool, async_mode: bool) -> List[str]:
-        return self.method_signature_positional(
-            is_python3_file, async_mode
-        ) + self.method_signature_kwargs(is_python3_file)
-
+    def method_signature_keyword_only(
+        self, is_python3_file: bool, async_mode: bool
+    ) -> List[str]:
+        """Signature for keyword only parameters"""
+        if not (self.keyword_only and is_python3_file):
+            return []
+        return ["*,"] + [
+            parameter.method_signature(is_python3_file, async_mode)
+            for parameter in self.keyword_only
+            if parameter.location != ParameterLocation.BODY
+        ]
 
 class _ClientGlobalParameterList(
     # pylint: disable=unsubscriptable-object
