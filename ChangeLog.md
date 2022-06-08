@@ -15,6 +15,11 @@
 - No longer allow users to specify `api_version` on the method level  #1281
 - Make `content_type` param required with no default if streaming with no `application/octet-stream`  #1288
 
+**Bug Fixes**
+
+- Fix duplicate params in signature with `--payload-flattening-threshold`  #1289
+- Fix overloaded request builder signatures  #1289
+
 ### 2022-xx-xx - 5.17.1
 
 | Library                                                                 | Min Version |
