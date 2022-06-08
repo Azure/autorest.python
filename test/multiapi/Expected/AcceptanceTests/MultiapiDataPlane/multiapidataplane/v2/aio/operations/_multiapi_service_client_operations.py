@@ -18,10 +18,11 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_one_request
+from .._vendor import MixinABC
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-class MultiapiServiceClientOperationsMixin:
+class MultiapiServiceClientOperationsMixin(MixinABC):
 
     @distributed_trace_async
     async def test_one(
