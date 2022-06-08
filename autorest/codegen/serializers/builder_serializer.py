@@ -701,7 +701,9 @@ class _OperationSerializer(
             retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
             if (
                 not body_param.default_content_type
-                and builder.code_model.options["version_tolerant"]
+                and not next(
+                    p for p in builder.parameters if p.rest_api_name == "Content-Type"
+                ).optional
             ):
                 content_types = "'" + "', '".join(body_param.content_types) + "'"
                 retval.extend(

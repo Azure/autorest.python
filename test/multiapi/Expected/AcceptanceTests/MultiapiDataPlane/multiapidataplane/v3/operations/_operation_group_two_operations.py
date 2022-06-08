@@ -142,7 +142,7 @@ class OperationGroupTwoOperations(object):
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
-         'image/tiff'. Required.
+         'image/tiff'. Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
