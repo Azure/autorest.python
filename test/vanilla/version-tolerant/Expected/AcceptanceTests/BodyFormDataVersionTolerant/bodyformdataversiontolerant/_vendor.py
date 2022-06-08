@@ -5,26 +5,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from abc import ABC
-from typing import TYPE_CHECKING
-
-from ._configuration import ReservedWordsClientConfiguration
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from msrest import Deserializer, Serializer
-
-    from azure.core import AsyncPipelineClient
-
-
-class MixinABC(ABC):
-    """DO NOT use this class. It is for internal typing use only."""
-
-    _client: "AsyncPipelineClient"
-    _config: ReservedWordsClientConfiguration
-    _serialize: "Serializer"
-    _deserialize: "Deserializer"
-
 
 def raise_if_not_implemented(cls, abstract_methods):
     not_implemented = [f for f in abstract_methods if not callable(getattr(cls, f, None))]

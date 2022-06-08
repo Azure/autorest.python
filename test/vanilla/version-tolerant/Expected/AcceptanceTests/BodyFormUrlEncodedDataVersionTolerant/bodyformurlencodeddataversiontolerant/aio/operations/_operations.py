@@ -11,7 +11,8 @@ from typing import Any, Callable, Dict, Optional, TypeVar
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator_async import distributed_trace_async
+
+from .._vendor import raise_if_not_implemented
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -33,3 +34,10 @@ class FormdataurlencodedOperations:
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        raise_if_not_implemented(
+            self.__class__,
+            [
+                "update_pet_with_form",
+                "partial_constant_body",
+            ],
+        )

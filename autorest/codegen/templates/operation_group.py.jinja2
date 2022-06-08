@@ -21,6 +21,13 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        {% if operation_group.has_abstract_operations %}
+        raise_if_not_implemented(self.__class__, [
+        {% for operation in operation_group.operations if operation.abstract %}
+            '{{operation.name}}',
+        {% endfor %}
+        ])
+        {% endif %}
 
 {% endif %}
 {% for operation in operation_group.operations if not operation.abstract %}

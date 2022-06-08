@@ -87,6 +87,10 @@ class OperationGroup(BaseModel):
                 )
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(".._vendor", "MixinABC", ImportType.LOCAL)
+        if self.has_abstract_operations:
+            file_import.add_submodule_import(
+                ".._vendor", "raise_if_not_implemented", ImportType.LOCAL
+            )
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )

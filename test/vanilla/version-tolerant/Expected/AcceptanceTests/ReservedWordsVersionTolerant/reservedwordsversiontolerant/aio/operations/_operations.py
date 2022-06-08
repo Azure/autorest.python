@@ -28,7 +28,7 @@ from ...operations._operations import (
     build_operation_with_json_param_request,
     build_operation_with_url_request,
 )
-from .._vendor import MixinABC
+from .._vendor import MixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

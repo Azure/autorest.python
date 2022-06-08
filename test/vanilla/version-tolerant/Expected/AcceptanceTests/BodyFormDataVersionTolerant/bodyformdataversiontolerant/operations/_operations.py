@@ -23,6 +23,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .._vendor import raise_if_not_implemented
+
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -77,6 +79,13 @@ class FormdataOperations:
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        raise_if_not_implemented(
+            self.__class__,
+            [
+                "upload_file",
+                "upload_files",
+            ],
+        )
 
     @distributed_trace
     def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> Iterator[bytes]:
