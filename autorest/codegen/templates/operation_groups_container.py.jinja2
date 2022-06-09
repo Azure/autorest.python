@@ -12,7 +12,7 @@
 # fmt: off
 {% endif %}
 {% for operation_group in operation_groups %}
-    {% for request_builder in code_model.request_builders | selectattr("group_name", "equalto", operation_group.property_name) | rejectattr("is_overload") %}
+    {% for request_builder in code_model.request_builders | selectattr("abstract", "ne", True) | selectattr("group_name", "equalto", operation_group.property_name) | rejectattr("is_overload") %}
 
         {% include "request_builder.py.jinja2" %}
     {% endfor %}
