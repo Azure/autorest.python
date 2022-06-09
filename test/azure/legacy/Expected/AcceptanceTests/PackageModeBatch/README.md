@@ -31,19 +31,19 @@ Set the values of the client ID, tenant ID, and client secret of the AAD applica
 Use the returned token credential to authenticate the client:
 
 ```python
->>> from azure.packagemode.batch.v0 import AutoRestHeadTestService
+>>> from azure.packagemode.batch.v0 import BatchV0Client
 >>> from azure.identity import DefaultAzureCredential
->>> client = AutoRestHeadTestService(endpoint='<endpoint>', credential=DefaultAzureCredential())
+>>> client = BatchV0Client(endpoint='<endpoint>', credential=DefaultAzureCredential())
 ```
 
 ## Examples
 
 ```python
->>> from azure.packagemode.batch.v0 import AutoRestHeadTestService
+>>> from azure.packagemode.batch.v0 import BatchV0Client
 >>> from azure.identity import DefaultAzureCredential
 >>> from azure.core.exceptions import HttpResponseError
 
->>> client = AutoRestHeadTestService(endpoint='<endpoint>', credential=DefaultAzureCredential())
+>>> client = BatchV0Client(endpoint='<endpoint>', credential=DefaultAzureCredential())
 >>> try:
         <!-- write test code here -->
     except HttpResponseError as e:

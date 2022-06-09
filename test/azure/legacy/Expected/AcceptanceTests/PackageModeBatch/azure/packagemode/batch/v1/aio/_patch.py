@@ -14,7 +14,6 @@ if TYPE_CHECKING:
 
 __all__ = []  # type: List[str]  # Add all objects you want publicly available to users at this package level
 
-
 def patch_sdk():
     """Do not remove from this file.
 
