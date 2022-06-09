@@ -117,7 +117,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+         Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -422,7 +422,7 @@ class StorageAccountsOperations:
         :param parameters: The parameters to provide for the created account. Required.
         :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+         Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -988,7 +988,7 @@ class StorageAccountsOperations:
          changed at a time using this API. Required.
         :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+         Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1608,7 +1608,7 @@ class StorageAccountsOperations:
         :param regenerate_key: Specifies name of the key which should be regenerated. Required.
         :type regenerate_key: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+         Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON

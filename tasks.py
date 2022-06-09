@@ -90,7 +90,6 @@ _DPG_SWAGGER_MAPPINGS = {
 _GENERATOR_SPECIFIC_TESTS = {
     _Generator.LEGACY: {
         _SwaggerGroup.VANILLA: {
-            "BodyComplexPythonThreeOnly": "body-complex.json",
             'BodyArrayWithNamespaceFolders': 'body-array.json',
             'BodyByteWithPackageName': 'body-byte.json',
             'BodyArrayWithPythonThreeOperationFiles': 'body-array.json',
@@ -113,11 +112,6 @@ _GENERATOR_SPECIFIC_TESTS = {
 _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
     'DPGTestModels': {
         "models-mode": "msrest",
-    },
-    'BodyComplexPythonThreeOnly': {
-        "python3-only": True,
-        "namespace": "bodycomplexpython3only",
-        "package-name": "bodycomplexpython3only",
     },
     'BodyArrayWithNamespaceFolders': {
         "namespace": "vanilla.body.array"
@@ -249,6 +243,7 @@ def _build_flags(
     else:
         override_flags["payload-flattening-threshold"] = 1
         override_flags["reformat-next-link"] = False
+        override_flags["python3-only"] = True  # others default to python3 only
 
     flags = {
         "use": AUTOREST_DIR,

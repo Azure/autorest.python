@@ -7,23 +7,18 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import PagingOperations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class AutoRestPagingTestService(object):  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations
@@ -34,12 +29,7 @@ class AutoRestPagingTestService(object):  # pylint: disable=client-accepts-api-v
      Retry-After header is present.
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -49,12 +39,7 @@ class AutoRestPagingTestService(object):  # pylint: disable=client-accepts-api-v
         self._serialize.client_side_validation = False
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

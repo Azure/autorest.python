@@ -28,6 +28,7 @@ license-header: MICROSOFT_MIT_NO_VERSION
 azure-arm: true
 add-credentials: true
 no-namespace-folders: true
+python3-only: true
 ```
 
 ``` yaml $(multiapi)

@@ -7,23 +7,18 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import XMSErrorResponseExtensionsConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import PetOperations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class XMSErrorResponseExtensions(object):  # pylint: disable=client-accepts-api-version-keyword
+class XMSErrorResponseExtensions:  # pylint: disable=client-accepts-api-version-keyword
     """XMS Error Response Extensions.
 
     :ivar pet: PetOperations operations
@@ -32,12 +27,7 @@ class XMSErrorResponseExtensions(object):  # pylint: disable=client-accepts-api-
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -47,12 +37,7 @@ class XMSErrorResponseExtensions(object):  # pylint: disable=client-accepts-api-
         self._serialize.client_side_validation = False
         self.pet = PetOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

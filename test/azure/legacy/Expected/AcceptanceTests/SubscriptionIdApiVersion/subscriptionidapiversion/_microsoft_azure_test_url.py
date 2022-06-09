@@ -7,24 +7,23 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from . import models
 from ._configuration import MicrosoftAzureTestUrlConfiguration
-from ._serialization import Deserializer, Serializer
 from .operations import GroupOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
     from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest, HttpResponse
 
 
-class MicrosoftAzureTestUrl(object):  # pylint: disable=client-accepts-api-version-keyword
+class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keyword
     """Some cool documentation.
 
     :ivar group: GroupOperations operations
@@ -42,12 +41,11 @@ class MicrosoftAzureTestUrl(object):  # pylint: disable=client-accepts-api-versi
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
-        subscription_id,  # type: str
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        credential: "TokenCredential",
+        subscription_id: str,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = MicrosoftAzureTestUrlConfiguration(
             credential=credential, subscription_id=subscription_id, **kwargs
         )
@@ -59,12 +57,7 @@ class MicrosoftAzureTestUrl(object):  # pylint: disable=client-accepts-api-versi
         self._serialize.client_side_validation = False
         self.group = GroupOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

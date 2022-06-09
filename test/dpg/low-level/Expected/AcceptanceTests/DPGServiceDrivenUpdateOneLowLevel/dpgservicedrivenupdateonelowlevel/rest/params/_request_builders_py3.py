@@ -203,8 +203,8 @@ def build_post_parameters_request(
 @overload
 def build_post_parameters_request(
     *,
+    content_type: str,
     content: IO,
-    content_type: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     """POST a JSON or a JPEG.
@@ -212,12 +212,12 @@ def build_post_parameters_request(
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
     builder into your code flow.
 
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Known values are: 'application/json', 'image/jpeg'. Required.
+    :paramtype content_type: str
     :keyword content: I am a body parameter with a new content type. My only valid JSON entry is {
      url: "http://example.org/myimage.jpeg" }. Required.
     :paramtype content: IO
-    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
-    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.

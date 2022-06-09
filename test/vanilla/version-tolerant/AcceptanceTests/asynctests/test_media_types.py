@@ -40,6 +40,8 @@ async def client():
 async def test_pdf(client):
     result = await client.analyze_body(input=b"PDF", content_type="application/pdf")
     assert result == "Nice job with PDF"
+    with pytest.raises(TypeError):
+        await client.analyze_body(input=b"PDF")
 
 @pytest.mark.asyncio
 async def test_json(client):

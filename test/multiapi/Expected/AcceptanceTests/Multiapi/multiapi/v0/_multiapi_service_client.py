@@ -7,23 +7,22 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from . import models
-from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import OperationGroupOneOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
     from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest, HttpResponse
 
-class MultiapiServiceClient(object):  # pylint: disable=client-accepts-api-version-keyword
+class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations
@@ -39,11 +38,10 @@ class MultiapiServiceClient(object):  # pylint: disable=client-accepts-api-versi
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        credential: "TokenCredential",
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -58,10 +56,9 @@ class MultiapiServiceClient(object):  # pylint: disable=client-accepts-api-versi
 
     def _send_request(
         self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

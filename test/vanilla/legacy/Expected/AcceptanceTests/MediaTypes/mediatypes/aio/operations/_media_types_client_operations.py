@@ -31,12 +31,13 @@ from ...operations._media_types_client_operations import (
     build_content_type_with_encoding_request,
     build_put_text_and_json_body_request,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin:
+class MediaTypesClientOperationsMixin(MixinABC):
     @overload
     async def analyze_body(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any
@@ -63,7 +64,8 @@ class MediaTypesClientOperationsMixin:
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
+         'image/tiff'. Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
@@ -163,7 +165,8 @@ class MediaTypesClientOperationsMixin:
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
+         'image/tiff'. Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

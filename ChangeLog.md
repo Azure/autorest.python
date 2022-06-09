@@ -13,6 +13,12 @@
 **Breaking Changes in Version Tolerant**
 
 - No longer allow users to specify `api_version` on the method level  #1281
+- Make `content_type` param required with no default if streaming with no `application/octet-stream`  #1288
+
+**Bug Fixes**
+
+- Fix duplicate params in signature with `--payload-flattening-threshold`  #1289
+- Fix overloaded request builder signatures  #1289
 
 **New Features**
 - Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236

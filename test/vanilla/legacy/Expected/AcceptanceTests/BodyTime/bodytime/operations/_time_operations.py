@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Optional, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -26,65 +26,45 @@ from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/time/get")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_request(*, json: datetime.time, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/time/put")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
-# fmt: on
-class TimeOperations(object):
+
+class TimeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -104,10 +84,7 @@ class TimeOperations(object):
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.time
+    def get(self, **kwargs: Any) -> datetime.time:
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,12 +129,7 @@ class TimeOperations(object):
     get.metadata = {"url": "/time/get"}  # type: ignore
 
     @distributed_trace
-    def put(
-        self,
-        time_body,  # type: datetime.time
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put(self, time_body: datetime.time, **kwargs: Any) -> str:
         """Put time value "08:07:56".
 
         :param time_body: Put time value "08:07:56" in parameter to pass testserver. Required.

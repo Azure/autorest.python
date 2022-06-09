@@ -86,7 +86,7 @@ def build_check_name_availability_request(
      letters only. Required.
     :paramtype content: IO
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Known values are: 'application/json', 'text/json'. Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
@@ -242,7 +242,7 @@ def build_create_request(
     :keyword content: The parameters to provide for the created account. Required.
     :paramtype content: IO
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Known values are: 'application/json', 'text/json'. Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
@@ -539,7 +539,7 @@ def build_update_request(
      changed at a time using this API. Required.
     :paramtype content: IO
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Known values are: 'application/json', 'text/json'. Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
@@ -851,7 +851,7 @@ def build_regenerate_key_request(
     :keyword content: Specifies name of the key which should be regenerated. Required.
     :paramtype content: IO
     :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-     Default value is None.
+     Known values are: 'application/json', 'text/json'. Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to

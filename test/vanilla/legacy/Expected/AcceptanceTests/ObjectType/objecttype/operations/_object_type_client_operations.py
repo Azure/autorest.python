@@ -7,7 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional, TypeVar
+
+from msrest import Serializer
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -22,78 +24,54 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import _convert_request
+from .._vendor import MixinABC, _convert_request
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
-    T = TypeVar("T")
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/objectType/get")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/objectType/put")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
-# fmt: on
-class ObjectTypeClientOperationsMixin(object):
+
+class ObjectTypeClientOperationsMixin(MixinABC):
     @distributed_trace
-    def get(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSON
+    def get(self, **kwargs: Any) -> JSON:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
@@ -139,12 +117,7 @@ class ObjectTypeClientOperationsMixin(object):
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        put_object,  # type: JSON
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put(self, put_object: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 

@@ -23,12 +23,13 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ..._vendor import _convert_request
 from ...operations._autorest_security_aad_operations import build_head_request
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutorestSecurityAadOperationsMixin:
+class AutorestSecurityAadOperationsMixin(MixinABC):
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> bool:
         """Operation.
