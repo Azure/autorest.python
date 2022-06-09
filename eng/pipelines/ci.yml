@@ -85,9 +85,6 @@ jobs:
       - script: |
           pytest test/unittests
         displayName: 'Unit tests'
-      - script: |
-          inv regenerate
-        displayName: 'Regenerate Code'
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on regeneration diff
       - task: UsePythonVersion@0
