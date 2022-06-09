@@ -7,24 +7,19 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Optional, TYPE_CHECKING
+from typing import Any, Optional
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class AutoRestUrlTestService(object):  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations
@@ -44,12 +39,11 @@ class AutoRestUrlTestService(object):  # pylint: disable=client-accepts-api-vers
 
     def __init__(
         self,
-        global_string_path,  # type: str
-        global_string_query=None,  # type: Optional[str]
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        global_string_path: str,
+        global_string_query: Optional[str] = None,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestUrlTestServiceConfiguration(
             global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
         )
@@ -62,12 +56,7 @@ class AutoRestUrlTestService(object):  # pylint: disable=client-accepts-api-vers
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

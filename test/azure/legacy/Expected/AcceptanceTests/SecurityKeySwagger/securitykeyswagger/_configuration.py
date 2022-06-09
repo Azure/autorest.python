@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
@@ -16,8 +16,6 @@ from ._version import VERSION
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
     from azure.core.credentials import TokenCredential
 
 
@@ -31,12 +29,7 @@ class AutorestSecurityKeyConfiguration(Configuration):  # pylint: disable=too-ma
     :type credential: ~azure.core.credentials.TokenCredential
     """
 
-    def __init__(
-        self,
-        credential,  # type: "TokenCredential"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
         super(AutorestSecurityKeyConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

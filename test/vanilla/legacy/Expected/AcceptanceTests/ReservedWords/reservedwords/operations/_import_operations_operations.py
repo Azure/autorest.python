@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from msrest import Serializer
 
@@ -25,53 +25,39 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request
+from .._vendor import MixinABC, _convert_request
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
-    T = TypeVar("T")
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_operation_one_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    parameter1 = kwargs.pop('parameter1')  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operationGroup/import")
 
     # Construct parameters
-    _params['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
+    _params["parameter1"] = _SERIALIZER.query("parameter1", parameter1, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
-# fmt: on
-class ImportOperations(object):
+
+class ImportOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -91,12 +77,7 @@ class ImportOperations(object):
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def operation_one(
-        self,
-        parameter1,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSON
+    def operation_one(self, parameter1: str, **kwargs: Any) -> JSON:
         """Operation in operation group import, a reserved word.
 
         :param parameter1: Pass in 'foo' to pass this test. Required.

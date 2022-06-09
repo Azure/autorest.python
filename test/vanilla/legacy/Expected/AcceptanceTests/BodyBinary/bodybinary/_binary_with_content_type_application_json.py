@@ -7,23 +7,22 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BinaryWithContentTypeApplicationJsonConfiguration
 from .operations import UploadOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class BinaryWithContentTypeApplicationJson(object):  # pylint: disable=client-accepts-api-version-keyword
+class BinaryWithContentTypeApplicationJson:  # pylint: disable=client-accepts-api-version-keyword
     """Sample for file with json and binary content type.
 
     :ivar upload: UploadOperations operations
@@ -32,12 +31,7 @@ class BinaryWithContentTypeApplicationJson(object):  # pylint: disable=client-ac
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = BinaryWithContentTypeApplicationJsonConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -47,12 +41,7 @@ class BinaryWithContentTypeApplicationJson(object):  # pylint: disable=client-ac
         self._serialize.client_side_validation = False
         self.upload = UploadOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

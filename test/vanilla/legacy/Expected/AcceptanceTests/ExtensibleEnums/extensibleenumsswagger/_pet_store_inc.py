@@ -7,24 +7,19 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import PetStoreIncConfiguration
 from .operations import PetOperations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class PetStoreInc(object):  # pylint: disable=client-accepts-api-version-keyword
+class PetStoreInc:  # pylint: disable=client-accepts-api-version-keyword
     """PetStore.
 
     :ivar pet: PetOperations operations
@@ -33,12 +28,7 @@ class PetStoreInc(object):  # pylint: disable=client-accepts-api-version-keyword
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = PetStoreIncConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -48,12 +38,7 @@ class PetStoreInc(object):  # pylint: disable=client-accepts-api-version-keyword
         self._serialize.client_side_validation = False
         self.pet = PetOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
