@@ -175,6 +175,8 @@ class JinjaSerializer:
                 "client_name": self.code_model.client.name,
                 "namespace": self.code_model.namespace,
                 "code_model": self.code_model,
+                "glob_version": package_name.count("-")
+                < self.code_model.namespace.count("."),
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
