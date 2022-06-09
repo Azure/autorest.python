@@ -20,6 +20,10 @@
 - Fix duplicate params in signature with `--payload-flattening-threshold`  #1289
 - Fix overloaded request builder signatures  #1289
 
+**Other Changes**
+
+- Optimize `--package-mode` to be compatible with more kinds of autorest configuration # 1291
+
 ### 2022-xx-xx - 5.17.1
 
 | Library                                                                 | Min Version |
