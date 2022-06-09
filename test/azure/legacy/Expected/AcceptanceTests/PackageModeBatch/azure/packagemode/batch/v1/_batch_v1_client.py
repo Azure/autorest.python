@@ -7,39 +7,43 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
-from azure.core.rest import AsyncHttpResponse, HttpRequest
-from azure.mgmt.core import AsyncARMPipelineClient
+from azure.mgmt.core import ARMPipelineClient
 
-from ._configuration import AutoRestHeadTestServiceConfiguration
+from ._configuration import BatchV1ClientConfiguration
 from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
+    from typing import Any, Dict
 
-    from azure.core.credentials_async import AsyncTokenCredential
+    from azure.core.credentials import TokenCredential
+    from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
+class BatchV1Client(object):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: azure.packagemode.batch.v1.aio.operations.HttpSuccessOperations
+    :vartype http_success: azure.packagemode.batch.v1.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
-    ) -> None:
-        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
-        self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self,
+        credential,  # type: "TokenCredential"
+        base_url="http://localhost:3000",  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        self._config = BatchV1ClientConfiguration(credential=credential, **kwargs)
+        self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
@@ -47,14 +51,19 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
         >>> request = HttpRequest("GET", "https://www.example.org/")
         <HttpRequest [GET], url: 'https://www.example.org/'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
+        >>> response = client._send_request(request)
+        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
@@ -62,19 +71,22 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
         :type request: ~azure.core.rest.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.rest.AsyncHttpResponse
+        :rtype: ~azure.core.rest.HttpResponse
         """
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
-    async def close(self) -> None:
-        await self._client.close()
+    def close(self):
+        # type: () -> None
+        self._client.close()
 
-    async def __aenter__(self) -> "AutoRestHeadTestService":
-        await self._client.__aenter__()
+    def __enter__(self):
+        # type: () -> BatchV1Client
+        self._client.__enter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
-        await self._client.__aexit__(*exc_details)
+    def __exit__(self, *exc_details):
+        # type: (Any) -> None
+        self._client.__exit__(*exc_details)

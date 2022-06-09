@@ -14,7 +14,7 @@ from msrest import Deserializer, Serializer
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 
-from ._configuration import AutoRestHeadTestServiceConfiguration
+from ._configuration import BatchV1ClientConfiguration
 from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
+class BatchV1Client:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations
@@ -38,7 +38,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     def __init__(
         self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
+        self._config = BatchV1ClientConfiguration(credential=credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
@@ -72,7 +72,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestHeadTestService":
+    async def __aenter__(self) -> "BatchV1Client":
         await self._client.__aenter__()
         return self
 

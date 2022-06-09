@@ -21,8 +21,8 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for AutoRestHeadTestService.
+class BatchV0ClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for BatchV0Client.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -37,7 +37,7 @@ class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=to
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
+        super(BatchV0ClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

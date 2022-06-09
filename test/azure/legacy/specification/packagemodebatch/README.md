@@ -27,14 +27,14 @@ batch:
 ```
 
 ``` yaml $(tag) == 'v0'
-tile: BatchV0Client
+title: BatchV0Client
 input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
 namespace: azure.packagemode.batch.v0
 output-folder: $(base-folder)/azure/packagemode/batch/v0
 ```
 
 ``` yaml $(tag) == 'v1'
-tile: BatchV1Client
+title: BatchV1Client
 input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
 namespace: azure.packagemode.batch.v1
 output-folder: $(base-folder)/azure/packagemode/batch/v1

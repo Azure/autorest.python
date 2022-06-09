@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_head_test_service import AutoRestHeadTestService
+from ._batch_v0_client import BatchV0Client
 from ._version import VERSION
 
 __version__ = VERSION
@@ -18,7 +18,7 @@ except ImportError:
     _patch_all = []
 from ._patch import patch_sdk as _patch_sdk
 
-__all__ = ["AutoRestHeadTestService"]
+__all__ = ["BatchV0Client"]
 __all__.extend([p for p in _patch_all if p not in __all__])
 
 _patch_sdk()

@@ -84,7 +84,7 @@ class HttpSuccessOperations(object):
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.packagemode.batch.v0.AutoRestHeadTestService`'s
+        :class:`~azure.packagemode.batch.v0.BatchV0Client`'s
         :attr:`http_success` attribute.
     """
 
