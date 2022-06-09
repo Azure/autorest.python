@@ -374,7 +374,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
+        if self.code_model.options["tracing"] and self.want_tracing and not async_mode and not self.abstract:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator",
                 f"distributed_trace",

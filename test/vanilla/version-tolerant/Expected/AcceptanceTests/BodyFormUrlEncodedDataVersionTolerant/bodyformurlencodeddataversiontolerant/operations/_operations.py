@@ -13,7 +13,6 @@ from msrest import Serializer
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
 
 from .._vendor import raise_if_not_implemented
 
