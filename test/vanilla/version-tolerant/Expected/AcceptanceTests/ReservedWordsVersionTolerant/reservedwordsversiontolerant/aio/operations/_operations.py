@@ -103,16 +103,7 @@ class ImportOperations:
 
 
 class ReservedWordsClientOperationsMixin(MixinABC):
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~reservedwordsversiontolerant.aio.ReservedWordsClient`'s
-        :attr:`` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self) -> None:
         raise_if_not_implemented(
             self.__class__,
             [
