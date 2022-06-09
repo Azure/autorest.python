@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
+import black
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.models.request_builder import OverloadedRequestBuilder
@@ -22,6 +23,8 @@ from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
+
+_BLACK_MODE = black.Mode()
 
 __all__ = [
     "JinjaSerializer",
@@ -164,6 +167,11 @@ class JinjaSerializer:
                 ):
                     template = env.get_template(template_name)
                     render_result = template.render(**kwargs)
+                    # make sure some files will be formatted(setup.py, etc)
+                    if ".py" in file:
+                        render_result = black.format_file_contents(
+                            render_result, fast=True, mode=_BLACK_MODE
+                        )
                     self._autorestapi.write_file(output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
@@ -460,7 +468,6 @@ class JinjaSerializer:
             namespace_path / Path("__init__.py"),
             general_serializer.serialize_init_file(),
         )
-
         p = namespace_path.parent
         while p != Path("."):
             # write pkgutil init file
