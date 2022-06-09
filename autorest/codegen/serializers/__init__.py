@@ -94,9 +94,12 @@ class JinjaSerializer:
                     / Path("_patch.py"),
                     env,
                 )
-
+        general_serializer = GeneralSerializer(
+            code_model=self.code_model, env=env, async_mode=False
+        )
         self._serialize_and_write_top_level_folder(
-            env=env, namespace_path=namespace_path
+            namespace_path=namespace_path,
+            general_serializer=general_serializer,
         )
 
         if self.code_model.request_builders:
@@ -138,6 +141,17 @@ class JinjaSerializer:
 
         if self.code_model.options["package_mode"]:
             self._serialize_and_write_package_files(out_path=namespace_path)
+            # make sure there is pkgtutil "__init__.py"
+            if self.code_model.options["no_namespace_folders"]:
+                count = self.code_model.namespace.count(".")
+                out_folder = Path("..")
+                while count > 0:
+                    self._autorestapi.write_file(
+                        out_folder / Path("__init__.py"),
+                        general_serializer.serialize_pkgutil_init_file(),
+                    )
+                    out_folder = out_folder / Path("..")
+                    count -= 1
 
     def _serialize_and_write_package_files(self, out_path: Path) -> None:
         def _serialize_and_write_package_files_proc(**kwargs: Any):
@@ -438,16 +452,15 @@ class JinjaSerializer:
             )
 
     def _serialize_and_write_top_level_folder(
-        self, env: Environment, namespace_path: Path
+        self,
+        namespace_path: Path,
+        general_serializer: GeneralSerializer,
     ) -> None:
-        general_serializer = GeneralSerializer(
-            code_model=self.code_model, env=env, async_mode=False
-        )
-
         self._autorestapi.write_file(
             namespace_path / Path("__init__.py"),
             general_serializer.serialize_init_file(),
         )
+
         p = namespace_path.parent
         while p != Path("."):
             # write pkgutil init file
