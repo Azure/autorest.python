@@ -90,20 +90,6 @@ def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> Http
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_operation_with_data_param_request(*args, **kwargs) -> HttpRequest:
-    raise NotImplementedError(
-        "You need to write a custom operation for 'build_operation_with_data_param_request'. "
-        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
-    )
-
-
-def build_operation_with_files_param_request(*args, **kwargs) -> HttpRequest:
-    raise NotImplementedError(
-        "You need to write a custom operation for 'build_operation_with_files_param_request'. "
-        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
-    )
-
-
 def build_operation_with_url_request(
     url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:

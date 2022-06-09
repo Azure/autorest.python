@@ -32,13 +32,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_formdata_upload_file_request(*args, **kwargs) -> HttpRequest:
-    raise NotImplementedError(
-        "You need to write a custom operation for 'build_formdata_upload_file_request'. "
-        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
-    )
-
-
 def build_formdata_upload_file_via_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -54,13 +47,6 @@ def build_formdata_upload_file_via_body_request(*, content: IO, **kwargs: Any) -
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
-
-
-def build_formdata_upload_files_request(*args, **kwargs) -> HttpRequest:
-    raise NotImplementedError(
-        "You need to write a custom operation for 'build_formdata_upload_files_request'. "
-        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
-    )
 
 
 class FormdataOperations:

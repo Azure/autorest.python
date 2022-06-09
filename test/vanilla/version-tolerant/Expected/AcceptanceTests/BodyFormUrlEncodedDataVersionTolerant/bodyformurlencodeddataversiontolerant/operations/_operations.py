@@ -23,20 +23,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_formdataurlencoded_update_pet_with_form_request(*args, **kwargs) -> HttpRequest:
-    raise NotImplementedError(
-        "You need to write a custom operation for 'build_formdataurlencoded_update_pet_with_form_request'. "
-        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
-    )
-
-
-def build_formdataurlencoded_partial_constant_body_request(*args, **kwargs) -> HttpRequest:
-    raise NotImplementedError(
-        "You need to write a custom operation for 'build_formdataurlencoded_partial_constant_body_request'. "
-        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
-    )
-
-
 class FormdataurlencodedOperations:
     """
     .. warning::
