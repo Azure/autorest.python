@@ -301,9 +301,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(self.parameters.body_parameter.type.imports(**kwargs))
 
         # Exceptions
-        if self.abstract:
-            file_import.add_import("abc", ImportType.STDLIB)
-        else:
+        if not self.abstract:
             file_import.add_submodule_import(
                 "azure.core.exceptions", "map_error", ImportType.AZURECORE
             )
@@ -376,7 +374,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
+        if (
+            self.code_model.options["tracing"]
+            and self.want_tracing
+            and not async_mode
+            and not self.abstract
+        ):
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator",
                 f"distributed_trace",
@@ -473,7 +476,7 @@ class Operation(OperationBase[Response]):
         self, async_mode: bool, is_python3_file: bool, **kwargs: Any
     ) -> FileImport:
         file_import = super().imports(async_mode, is_python3_file, **kwargs)
-        if async_mode:
+        if async_mode and not self.abstract:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator_async",
                 f"distributed_trace_async",
