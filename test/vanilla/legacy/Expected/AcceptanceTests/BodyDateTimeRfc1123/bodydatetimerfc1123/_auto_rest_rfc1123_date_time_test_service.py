@@ -7,24 +7,19 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 from .operations import Datetimerfc1123Operations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class AutoRestRFC1123DateTimeTestService(object):  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestRFC1123DateTimeTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
@@ -33,12 +28,7 @@ class AutoRestRFC1123DateTimeTestService(object):  # pylint: disable=client-acce
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestRFC1123DateTimeTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -48,12 +38,7 @@ class AutoRestRFC1123DateTimeTestService(object):  # pylint: disable=client-acce
         self._serialize.client_side_validation = False
         self.datetimerfc1123 = Datetimerfc1123Operations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

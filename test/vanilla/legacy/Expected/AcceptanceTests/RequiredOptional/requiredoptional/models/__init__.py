@@ -6,28 +6,17 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import ArrayOptionalWrapper
-    from ._models_py3 import ArrayWrapper
-    from ._models_py3 import ClassOptionalWrapper
-    from ._models_py3 import ClassWrapper
-    from ._models_py3 import Error
-    from ._models_py3 import IntOptionalWrapper
-    from ._models_py3 import IntWrapper
-    from ._models_py3 import Product
-    from ._models_py3 import StringOptionalWrapper
-    from ._models_py3 import StringWrapper
-except (SyntaxError, ImportError):
-    from ._models import ArrayOptionalWrapper  # type: ignore
-    from ._models import ArrayWrapper  # type: ignore
-    from ._models import ClassOptionalWrapper  # type: ignore
-    from ._models import ClassWrapper  # type: ignore
-    from ._models import Error  # type: ignore
-    from ._models import IntOptionalWrapper  # type: ignore
-    from ._models import IntWrapper  # type: ignore
-    from ._models import Product  # type: ignore
-    from ._models import StringOptionalWrapper  # type: ignore
-    from ._models import StringWrapper  # type: ignore
+from ._models_py3 import ArrayOptionalWrapper
+from ._models_py3 import ArrayWrapper
+from ._models_py3 import ClassOptionalWrapper
+from ._models_py3 import ClassWrapper
+from ._models_py3 import Error
+from ._models_py3 import IntOptionalWrapper
+from ._models_py3 import IntWrapper
+from ._models_py3 import Product
+from ._models_py3 import StringOptionalWrapper
+from ._models_py3 import StringWrapper
+
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

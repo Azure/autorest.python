@@ -7,21 +7,16 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestValidationTestConfiguration
 from .operations import AutoRestValidationTestOperationsMixin
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.rest import HttpRequest, HttpResponse
 
 
 class AutoRestValidationTest(
@@ -38,13 +33,7 @@ class AutoRestValidationTest(
     :paramtype api_version: str
     """
 
-    def __init__(
-        self,
-        subscription_id,  # type: str
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, subscription_id: str, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestValidationTestConfiguration(subscription_id=subscription_id, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -52,12 +41,7 @@ class AutoRestValidationTest(
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

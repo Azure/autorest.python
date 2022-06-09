@@ -6,16 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
+from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
 
 class AutoRestParameterizedHostTestClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -29,12 +25,7 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):  # pylint
     :type host: str
     """
 
-    def __init__(
-        self,
-        host="host",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, host: str = "host", **kwargs: Any) -> None:
         super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")

@@ -146,13 +146,10 @@ def build_post_reserved_words_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     from_parameter = kwargs.pop('from_parameter', _params.pop('from', None))  # type: Optional[str]
     accept_parameter = kwargs.pop('accept_parameter', _params.pop('accept', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
-
     # Construct URL
     _url = "/parameterGrouping/postReservedWords"
 
@@ -162,14 +159,10 @@ def build_post_reserved_words_request(
     if accept_parameter is not None:
         _params['accept'] = _SERIALIZER.query("accept_parameter", accept_parameter, 'str')
 
-    # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-
     return HttpRequest(
         method="POST",
         url=_url,
         params=_params,
-        headers=_headers,
         **kwargs
     )
 

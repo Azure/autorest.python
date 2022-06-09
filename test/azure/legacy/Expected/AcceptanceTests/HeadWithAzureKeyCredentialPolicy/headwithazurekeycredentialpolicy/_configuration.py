@@ -6,19 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
+from typing import Any
 
 from azure.core.configuration import Configuration
+from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
 from ._version import VERSION
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.credentials import AzureKeyCredential
 
 
 class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -31,12 +26,7 @@ class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=to
     :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
-    def __init__(
-        self,
-        credential,  # type: AzureKeyCredential
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

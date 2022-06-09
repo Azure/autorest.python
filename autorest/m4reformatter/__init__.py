@@ -799,7 +799,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         self,
         parameters: List[Dict[str, Any]],
         body_parameter: Optional[Dict[str, Any]],
-        seen_rest_api_names: Set[str],
+        seen_client_names: Set[str],
         groupers: Dict[str, Dict[str, Any]],
         request_media_types: List[str],
         *,
@@ -809,11 +809,12 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         retval: List[Dict[str, Any]] = []
         has_flattened_body = body_parameter and body_parameter.get("flattened")
         for param in parameters:
-            serialized_name = param["language"]["default"].get("serializedName")
+            client_name = param["language"]["default"]["name"]
             if param["language"]["default"]["name"] == "$host" or (
-                serialized_name and serialized_name in seen_rest_api_names
+                client_name in seen_client_names
             ):
                 continue
+            seen_client_names.add(client_name)
             if param.get("origin") == "modelerfour:synthesized/api-version":
                 param["inDocstring"] = False
                 if self.legacy:
@@ -831,7 +832,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 continue
             if is_body(param):
                 continue
-            if serialized_name == "Content-Type":
+            if param["language"]["default"].get("serializedName") == "Content-Type":
                 param = self._update_content_type_parameter(
                     param,
                     body_parameter,
@@ -843,7 +844,6 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 param, in_overload=in_overload, in_overriden=in_overriden
             )
             retval.append(updated_param)
-            seen_rest_api_names.add(updated_param["restApiName"])
         return retval
 
     def update_parameters(
@@ -855,7 +855,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
         in_overriden: bool = False,
     ) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
-        seen_rest_api_names: Set[str] = set()
+        seen_client_names: Set[str] = set()
         groupers: Dict[str, Dict[str, Any]] = {}
         # first update top level parameters
         request_media_types = yaml_data.get("requestMediaTypes", [])
@@ -863,7 +863,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             self._update_parameters_helper(
                 yaml_data["parameters"],
                 body_parameter,
-                seen_rest_api_names,
+                seen_client_names,
                 groupers,
                 request_media_types,
                 in_overload=in_overload,
@@ -882,7 +882,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
                 self._update_parameters_helper(
                     request.get("parameters", []),
                     body_parameter,
-                    seen_rest_api_names,
+                    seen_client_names,
                     groupers,
                     request_media_types,
                     in_overload=in_overload,
