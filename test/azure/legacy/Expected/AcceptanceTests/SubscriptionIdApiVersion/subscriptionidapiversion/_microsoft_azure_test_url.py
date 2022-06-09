@@ -9,13 +9,12 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from . import models
 from ._configuration import MicrosoftAzureTestUrlConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import GroupOperations
 
 if TYPE_CHECKING:
