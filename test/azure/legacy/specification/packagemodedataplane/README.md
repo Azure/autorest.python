@@ -4,7 +4,8 @@
 
 ``` yaml
 input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
-output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeDataPlane
+output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeDataPlane/azure/packagemode/dataplane
+no-namespace-folders: true
 namespace: azure.packagemode.dataplane
 package-name: azure-packagemode-dataplane
 package-pprint-name: Azure Package Mode Data Plane
