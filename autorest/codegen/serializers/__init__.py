@@ -186,7 +186,8 @@ class JinjaSerializer:
             self.code_model.options["package_name"]
             or self.code_model.client.name.lower()
         )
-        count = package_name.count("-") + 1
+        # namespace may be deeper than package name (like azure-purview-administration)
+        count = max(package_name.count("-"), self.code_model.namespace.count(".")) + 1
         for _ in range(count):
             out_path = out_path / Path("..")
 
