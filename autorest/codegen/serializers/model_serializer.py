@@ -116,7 +116,8 @@ class ModelSerializer:
                 init_args.append(f"self.{prop.client_name} = {prop.client_name}")
         return init_args
 
-    def initialize_standard_property(self, prop: Property):
+    @staticmethod
+    def initialize_standard_property(prop: Property):
         if not (prop.optional or prop.client_default_value is not None):
             return f"{prop.client_name}: {prop.type_annotation()},{prop.pylint_disable}"
         return (
@@ -146,7 +147,8 @@ class ModelSerializer:
 
         return init_properties_declaration
 
-    def properties_to_pass_to_super(self, model: ModelType) -> str:
+    @staticmethod
+    def properties_to_pass_to_super(model: ModelType) -> str:
         properties_to_pass_to_super = []
         for parent in model.parents:
             for prop in model.properties:

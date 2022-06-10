@@ -32,7 +32,7 @@ class ClientSerializer:
             response_type_annotation="None",
         )
 
-    def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
+    def pop_kwargs_from_signature(self) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
             self.code_model.client.parameters.kwargs_to_pop,
             check_kwarg_dict=False,
@@ -40,7 +40,8 @@ class ClientSerializer:
             pop_params_kwarg=PopKwargType.NO,
         )
 
-    def class_definition(self, async_mode) -> str:
+    @property
+    def class_definition(self) -> str:
         class_name = self.code_model.client.name
         has_mixin_og = any(og for og in self.code_model.operation_groups if og.is_mixin)
         base_class = ""
@@ -140,7 +141,7 @@ class ClientSerializer:
             )
         return retval
 
-    def _send_request_signature(self, async_mode: bool) -> str:
+    def _send_request_signature(self) -> str:
         send_request_signature = [
             "request: HttpRequest,"
         ] + self.code_model.client.parameters.method_signature_kwargs
@@ -262,7 +263,7 @@ class ConfigSerializer:
             response_type_annotation="None",
         )
 
-    def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
+    def pop_kwargs_from_signature(self) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
             self.code_model.config.parameters.kwargs_to_pop,
             check_kwarg_dict=False,
