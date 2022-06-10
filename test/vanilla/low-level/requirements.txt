@@ -4,8 +4,8 @@ pytest
 pytest-cov
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 async_generator;python_full_version>="3.5.2"
-msrest==0.6.21
-azure-core==1.23.0
+msrest==0.7.0
+azure-core==1.24.0
 -e ./Expected/AcceptanceTests/AdditionalPropertiesLowLevel
 -e ./Expected/AcceptanceTests/AnythingLowLevel
 -e ./Expected/AcceptanceTests/BodyArrayLowLevel

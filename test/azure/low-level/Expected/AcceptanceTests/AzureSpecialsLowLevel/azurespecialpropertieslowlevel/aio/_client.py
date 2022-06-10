@@ -9,11 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 
+from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 
 if TYPE_CHECKING:
@@ -53,6 +52,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

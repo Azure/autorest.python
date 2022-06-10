@@ -8,10 +8,10 @@
 import datetime
 from typing import Any, Optional
 
-from msrest import Serializer
-
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
+
+from ..._serialization import Serializer
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

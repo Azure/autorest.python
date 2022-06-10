@@ -24,7 +24,6 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from msrest import Serializer, Deserializer
 
 @pytest.fixture()
 def base_send_request():
@@ -49,11 +48,3 @@ def base_make_stream_request():
         response.raise_for_status()
         return response.stream_download()
     return make_stream_request
-
-@pytest.fixture
-def msrest_serializer():
-    return Serializer()
-
-@pytest.fixture
-def msrest_deserializer():
-    return Deserializer

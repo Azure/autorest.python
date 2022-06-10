@@ -35,7 +35,7 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError, ValidationError
+from msrest.exceptions import ValidationError
 
 from validation.aio import AutoRestValidationTest
 from validation.models import (

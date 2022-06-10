@@ -7,10 +7,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from ... import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -39,7 +39,7 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get('message', None)
 
 
-class ModelTwo(msrest.serialization.Model):
+class ModelTwo(_serialization.Model):
     """Only exists in api version 2.0.0.
 
     All required parameters must be populated in order to send to Azure.

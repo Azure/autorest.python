@@ -11,12 +11,11 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import AsyncPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
 
+from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 from ._operations_mixin import MultiapiCustomBaseUrlServiceClientOperationsMixin
 

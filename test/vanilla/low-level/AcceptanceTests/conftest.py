@@ -31,7 +31,6 @@ import os
 import signal
 from os.path import dirname, realpath
 from unittest import TestLoader, TextTestRunner
-from msrest import Serializer, Deserializer
 
 from os.path import dirname, pardir, join, realpath
 
@@ -80,14 +79,6 @@ def base_send_request_json_response():
         response.raise_for_status()
         return response.json()
     return send_request_json_response
-
-@pytest.fixture()
-def msrest_serializer():
-    return Serializer()
-
-@pytest.fixture()
-def msrest_deserializer():
-    return Deserializer()
 
 class CookiePolicy(SansIOHTTPPolicy):
     def __init__(self, *args, **kwargs):

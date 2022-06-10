@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
 if TYPE_CHECKING:
@@ -56,6 +55,7 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)

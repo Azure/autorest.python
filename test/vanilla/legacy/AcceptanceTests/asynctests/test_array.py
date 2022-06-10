@@ -35,9 +35,7 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError
-
-from azure.core.exceptions import DecodeError
+from azure.core.exceptions import DecodeError, DeserializationError
 
 from bodyarray.aio import AutoRestSwaggerBATArrayService
 from bodyarray.models import Product

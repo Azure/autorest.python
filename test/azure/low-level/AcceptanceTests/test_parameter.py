@@ -24,7 +24,6 @@
 #
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import ValidationError
 from azurespecialpropertieslowlevel import AutoRestAzureSpecialParametersTestClient
 from azurespecialpropertieslowlevel.rest import (
     skip_url_encoding,
@@ -167,7 +166,7 @@ def test_subscription_in_method(send_request, valid_subscription):
     send_request(request)
     request = subscription_in_method.build_post_swagger_local_valid_request(valid_subscription)
     send_request(request)
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = subscription_in_method.build_post_method_local_null_request(None)
 
 def test_api_version_default(send_request):

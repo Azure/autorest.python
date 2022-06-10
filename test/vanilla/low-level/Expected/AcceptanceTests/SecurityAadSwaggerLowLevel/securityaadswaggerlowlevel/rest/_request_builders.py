@@ -7,9 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any
 
-from msrest import Serializer
-
 from azure.core.rest import HttpRequest
+
+from .._serialization import Serializer
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

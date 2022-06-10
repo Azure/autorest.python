@@ -26,7 +26,8 @@
 import pytest
 import isodate
 from datetime import datetime, timedelta, tzinfo
-from msrest import Serializer, Deserializer
+from bodycomplexversiontolerant._serialization import Serializer, Deserializer
+from azure.core.exceptions import DeserializationError
 from base64 import b64decode, b64encode
 from azure.core.exceptions import HttpResponseError
 

@@ -227,7 +227,9 @@ def _build_flags(
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
     override_flags = override_flags or {}
     override_flags.update(_PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
-    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
+    low_level_client = kwargs.get("low_level_client", False)
+    version_tolerant = kwargs.get("version_tolerant", False)
+    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not (low_level_client or version_tolerant)
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
 
     generator, output_folder = _get_config(swagger_group, package_name, **kwargs)

@@ -254,9 +254,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     def get_models_filename(self, is_python3_file: bool) -> str:
         """Get the names of the model file(s)"""
-        if (
-            self.options["version_tolerant"] or self.options["low_level_client"]
-        ) and self.options["python3_only"]:
+        if not self.is_legacy and self.options["python3_only"]:
             return "_models"
         if is_python3_file:
             return "_models_py3"
@@ -265,9 +263,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     @property
     def enums_filename(self) -> str:
         """The name of the enums file"""
-        if self.options["version_tolerant"] or self.options["low_level_client"]:
+        if not self.is_legacy:
             return "_enums"
         return f"_{self.module_name}_enums"
+
+    @property
+    def is_legacy(self) -> bool:
+        return not (
+            self.options["version_tolerant"] or self.options["low_level_client"]
+        )
 
     @property
     def rest_layer_name(self) -> str:

@@ -21,7 +21,7 @@ from .parameter_list import (
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
 )
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .request_builder_parameter import RequestBuilderMultipartBodyParameter
 
 if TYPE_CHECKING:
@@ -101,7 +101,17 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
+        file_import.add_msrest_import(
+            self.code_model,
+            "..."
+            if (
+                not self.code_model.options["builders_visibility"] == "embedded"
+                and self.group_name
+            )
+            else "..",
+            MsrestImportType.Serializer,
+            TypingSection.REGULAR,
+        )
         if (
             self.overloads
             and self.code_model.options["builders_visibility"] != "embedded"

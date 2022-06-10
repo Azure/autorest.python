@@ -9,11 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 
+from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations import (
     ApiVersionDefaultOperations,
@@ -85,6 +84,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.xms_client_request_id = XMsClientRequestIdOperations(
             self._client, self._config, self._serialize, self._deserialize
         )

@@ -477,6 +477,15 @@ class JinjaSerializer:
             namespace_path / Path("py.typed"), "# Marker file for PEP 561."
         )
 
+        if (
+            not self.code_model.options["client_side_validation"]
+            and not self.code_model.options["multiapi"]
+        ):
+            self._autorestapi.write_file(
+                namespace_path / Path("_serialization.py"),
+                general_serializer.serialize_serialization_file(),
+            )
+
         # Write the config file
         if self.code_model.request_builders:
             self._autorestapi.write_file(

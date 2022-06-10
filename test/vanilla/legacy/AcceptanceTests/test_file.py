@@ -34,8 +34,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError
-
 from bodyfile import AutoRestSwaggerBATFileService
 
 import pytest
