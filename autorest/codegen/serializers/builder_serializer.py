@@ -815,7 +815,6 @@ class _OperationSerializer(
                 is_next_request
                 and builder.operation_type == "paging"
                 and not bool(builder.next_request_builder)  # type: ignore
-                and not self.code_model.options["reformat_next_link"]
                 and parameter.location == ParameterLocation.QUERY
             ):
                 # if we don't want to reformat query parameters for next link calls

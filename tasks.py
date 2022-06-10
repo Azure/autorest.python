@@ -242,8 +242,6 @@ def _build_flags(
         namespace += "versiontolerant"
     else:
         override_flags["payload-flattening-threshold"] = 1
-        override_flags["reformat-next-link"] = False
-        override_flags["python3-only"] = True  # others default to python3 only
 
     flags = {
         "use": AUTOREST_DIR,
