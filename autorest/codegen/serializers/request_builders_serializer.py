@@ -46,7 +46,7 @@ class RequestBuildersSerializer:
 
         return template.render(
             code_model=self.code_model,
-            request_builders=self.request_builders,
+            request_builders=[rb for rb in self.request_builders if not rb.abstract],
             imports=FileImportSerializer(
                 self.imports,
                 is_python3_file=True,
