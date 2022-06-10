@@ -12,9 +12,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 
-from .._vendor import raise_if_not_implemented
-
 from .._serialization import Serializer
+from .._vendor import raise_if_not_implemented
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
