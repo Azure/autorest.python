@@ -598,8 +598,6 @@ class _OperationSerializer(
     def decorators(self, builder: OperationType) -> List[str]:
         """Decorators for the method"""
         super_decorators = super().decorators(builder)
-        if builder.abstract:
-            super_decorators.append("@abc.abstractmethod")
         return super_decorators
 
     def param_description(
@@ -1126,8 +1124,6 @@ class _PagingOperationSerializer(
         retval: List[str] = []
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append("@distributed_trace")
-        if builder.abstract:
-            retval.append("@abc.abstractmethod")
         return retval
 
     def call_next_link_request_builder(self, builder: PagingOperationType) -> List[str]:

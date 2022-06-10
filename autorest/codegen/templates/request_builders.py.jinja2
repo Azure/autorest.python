@@ -3,11 +3,11 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
-{{ op_tools.declare_serializer(code_model) }}
+{{ op_tools.declare_serializer(code_model, request_builders) }}
 {% if not is_python3_file %}
 # fmt: off
 {% endif %}
-{% for request_builder in request_builders | selectattr("abstract", "ne", True) %}
+{% for request_builder in request_builders %}
 
 {% include "request_builder.py.jinja2" %}
 {% endfor %}

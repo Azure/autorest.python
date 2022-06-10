@@ -204,9 +204,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if not self.abstract:
-            for param in self.parameters.method:
-                file_import.merge(param.imports(async_mode, **kwargs))
+        for param in self.parameters.method:
+            file_import.merge(param.imports(async_mode, **kwargs))
 
         response_types = [
             r.type_annotation(async_mode=async_mode) for r in self.responses if r.type
@@ -218,6 +217,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        if self.abstract:
+            return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
         for response in self.responses:
             file_import.merge(
@@ -289,6 +290,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def imports(
         self, async_mode: bool, is_python3_file: bool, **kwargs: Any
     ) -> FileImport:
+        if self.abstract:
+            return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
 
         for response in self.responses:
@@ -301,46 +304,45 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(self.parameters.body_parameter.type.imports(**kwargs))
 
         # Exceptions
-        if not self.abstract:
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "map_error", ImportType.AZURECORE
+        )
+        if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.core.exceptions", "map_error", ImportType.AZURECORE
+                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
             )
-            if self.code_model.options["azure_arm"]:
-                file_import.add_submodule_import(
-                    "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
-                )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions",
-                "ClientAuthenticationError",
-                ImportType.AZURECORE,
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
-            )
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.core.exceptions",
+            "ClientAuthenticationError",
+            ImportType.AZURECORE,
+        )
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
+        )
 
-            kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
-            if self.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.HEADER
-            ) or self.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.QUERY
-            ):
-                file_import.add_submodule_import(
-                    "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
-                )
-            if self.deprecated:
-                file_import.add_import("warnings", ImportType.STDLIB)
+        kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
+        if self.has_kwargs_to_pop_with_default(
+            kwargs_to_pop, ParameterLocation.HEADER
+        ) or self.has_kwargs_to_pop_with_default(
+            kwargs_to_pop, ParameterLocation.QUERY
+        ):
+            file_import.add_submodule_import(
+                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+            )
+        if self.deprecated:
+            file_import.add_import("warnings", ImportType.STDLIB)
 
-            if self.code_model.need_request_converter:
-                relative_path = "..." if async_mode else ".."
-                file_import.add_submodule_import(
-                    f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
-                )
+        if self.code_model.need_request_converter:
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
+            )
         if async_mode:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
@@ -374,21 +376,15 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if (
-            self.code_model.options["tracing"]
-            and self.want_tracing
-            and not async_mode
-            and not self.abstract
-        ):
+        if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator",
                 f"distributed_trace",
                 ImportType.AZURECORE,
             )
-        if not self.abstract:
-            file_import.merge(
-                self.get_request_builder_import(self.request_builder, async_mode)
-            )
+        file_import.merge(
+            self.get_request_builder_import(self.request_builder, async_mode)
+        )
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
@@ -476,14 +472,14 @@ class Operation(OperationBase[Response]):
         self, async_mode: bool, is_python3_file: bool, **kwargs: Any
     ) -> FileImport:
         file_import = super().imports(async_mode, is_python3_file, **kwargs)
-        if async_mode and not self.abstract:
+        if self.abstract:
+            return file_import
+        if async_mode:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator_async",
                 f"distributed_trace_async",
                 ImportType.AZURECORE,
             )
-        if self.abstract:
-            return file_import
         if (
             self.has_response_body
             and not self.has_optional_return_type

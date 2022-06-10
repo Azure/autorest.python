@@ -55,7 +55,6 @@ class Helpers:
         if response.status_code not in [200, 405]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
-
         if cls:
             return cls(pipeline_response, None, {})
 
@@ -71,7 +70,6 @@ class Helpers:
         # Construct headers
         if content_type is not None:
             _headers["Content-Type"] = content_type
-
         return HttpRequest(method="POST", url=_url, headers=_headers, data=data, params=_params)
 
     @staticmethod
@@ -88,7 +86,6 @@ class Helpers:
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
-
         if cls:
             return cls(pipeline_response, None, {})
 
@@ -98,9 +95,9 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace
-    def update_pet_with_form(  # type: ignore # pylint: disable=inconsistent-return-statements,arguments-differ
+    def update_pet_with_form(
         self, pet_id: int, data: Dict[str, Any], **kwargs: Any
-    ) -> None:
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Updates a pet in the store with form data.
 
         Updates a pet in the store with form data.
@@ -132,9 +129,9 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         return self._update_pet_with_form_deserialize(self._send_request(request, **kwargs))
 
     @distributed_trace
-    def partial_constant_body(  # type: ignore # pylint: disable=inconsistent-return-statements,arguments-differ
+    def partial_constant_body(
         self, data: Dict[str, Any], **kwargs: Any
-    ) -> None:
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 
