@@ -91,24 +91,21 @@ class OperationGroup(BaseModel):
             file_import.add_submodule_import(
                 ".._vendor", "raise_if_not_implemented", ImportType.LOCAL
             )
-        if self.has_nonabstract_operation:
-            file_import.add_submodule_import(
-                "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
-            file_import.define_mypy_type("T", "TypeVar('T')")
-            type_value = "Optional[Callable[[PipelineResponse[HttpRequest, {}HttpResponse], T, Dict[str, Any]], Any]]"
-            file_import.define_mypy_type(
-                "ClsType", type_value.format(""), type_value.format("Async")
-            )
+        if all(o.abstract for o in self.operations):
+            return file_import
+        file_import.add_submodule_import(
+            "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        file_import.define_mypy_type("T", "TypeVar('T')")
+        type_value = "Optional[Callable[[PipelineResponse[HttpRequest, {}HttpResponse], T, Dict[str, Any]], Any]]"
+        file_import.define_mypy_type(
+            "ClsType", type_value.format(""), type_value.format("Async")
+        )
         return file_import
 
     @property
     def filename(self) -> str:
         return self.operations[0].filename
-
-    @property
-    def has_nonabstract_operation(self) -> bool:
-        return any(not o.abstract for o in self.operations)
 
     @property
     def is_mixin(self) -> bool:
