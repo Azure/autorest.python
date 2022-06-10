@@ -27,10 +27,11 @@
 import isodate
 from async_generator import yield_, async_generator
 
-from msrest.exceptions import DeserializationError, SerializationError
+from azure.core.exceptions import DeserializationError, SerializationError
 
 from bodydatetimelowlevel.aio import AutoRestDateTimeTestService
 from bodydatetimelowlevel.rest import datetime
+from bodydatetimelowlevel._serialization import Serializer, Deserializer
 
 import pytest
 
@@ -52,15 +53,23 @@ def send_request_json_response(client, base_send_request_json_response):
     return _send_request
 
 @pytest.fixture
-def get_deserialized_iso(send_request_json_response, msrest_deserializer):
+def serializer():
+    return Serializer()
+
+@pytest.fixture
+def deserializer():
+    return Deserializer
+
+@pytest.fixture
+def get_deserialized_iso(send_request_json_response, deserializer):
     async def _get_deserialized_iso(request):
-        return msrest_deserializer.deserialize_iso(await send_request_json_response(request))
+        return deserializer.deserialize_iso(await send_request_json_response(request))
     return _get_deserialized_iso
 
 @pytest.fixture
-def get_serialized_iso(msrest_serializer):
+def get_serialized_iso(serializer):
     def _get_serialized_iso(date):
-        return msrest_serializer.serialize_iso(date)
+        return serializer.serialize_iso(date)
     return _get_serialized_iso
 
 @pytest.mark.asyncio

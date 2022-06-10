@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar code:
@@ -38,7 +38,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class SampleResourceGroup(msrest.serialization.Model):
+class SampleResourceGroup(_serialization.Model):
     """SampleResourceGroup.
 
     :ivar name: resource group name 'testgroup101'.

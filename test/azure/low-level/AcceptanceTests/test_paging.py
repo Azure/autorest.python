@@ -29,6 +29,7 @@ from azure.core.rest import HttpRequest
 from azure.core.paging import ItemPaged
 from paginglowlevel import AutoRestPagingTestService
 from paginglowlevel.rest import paging
+from paginglowlevel._serialization import Serializer, Deserializer
 from azure.core.exceptions import HttpResponseError
 
 
@@ -99,6 +100,15 @@ def get_pager(get_next_fixture, extract_data_fixture):
 
         return ItemPaged(get_next, extract_data)
     return _callback
+
+@pytest.fixture()
+def serializer():
+    return Serializer()
+
+@pytest.fixture()
+def deserializer():
+    return Deserializer()
+
 
 def test_get_no_item_name_pages(get_pager):
     pages = get_pager(initial_request=paging.build_get_no_item_name_pages_request)

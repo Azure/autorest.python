@@ -11,13 +11,12 @@
 
 from typing import Any, Optional
 
-from msrest import Deserializer, Serializer
-
 from azure.core.credentials import AzureKeyCredential
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
 
+from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
 

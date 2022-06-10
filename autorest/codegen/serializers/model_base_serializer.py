@@ -7,7 +7,7 @@ from abc import abstractmethod
 from typing import cast, List
 from jinja2 import Environment
 from ..models import ModelType, CodeModel, Property
-from ..models.imports import FileImport, ImportType
+from ..models.imports import FileImport, TypingSection, MsrestImportType
 from .import_serializer import FileImportSerializer
 
 
@@ -49,7 +49,9 @@ class ModelBaseSerializer:
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_import("msrest.serialization", ImportType.AZURECORE)
+        file_import.add_msrest_import(
+            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+        )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
         return file_import
@@ -71,9 +73,12 @@ class ModelBaseSerializer:
             properties_to_initialize = model.properties
         return properties_to_initialize
 
-    @staticmethod
-    def declare_model(model: ModelType) -> str:
-        basename = "msrest.serialization.Model"
+    def declare_model(self, model: ModelType) -> str:
+        basename = (
+            "msrest.serialization.Model"
+            if self.code_model.options["client_side_validation"]
+            else "_serialization.Model"
+        )
         if model.parents:
             basename = ", ".join([cast(ModelType, m).name for m in model.parents])
         return f"class {model.name}({basename}):{model.pylint_disable}"

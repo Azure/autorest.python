@@ -9,14 +9,14 @@
 
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """The error object.
 
     All required parameters must be populated in order to send to Azure.
@@ -89,7 +89,7 @@ class Error(msrest.serialization.Model):
         self.innererror = innererror
 
 
-class ErrorResponse(msrest.serialization.Model):
+class ErrorResponse(_serialization.Model):
     """Error response.
 
     All required parameters must be populated in order to send to Azure.
@@ -123,7 +123,7 @@ class ErrorResponse(msrest.serialization.Model):
         self.error = error
 
 
-class InnerError(msrest.serialization.Model):
+class InnerError(_serialization.Model):
     """An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.
 
     All required parameters must be populated in order to send to Azure.
@@ -182,7 +182,7 @@ class InnerError(msrest.serialization.Model):
         self.innererror = innererror
 
 
-class SecretResponse(msrest.serialization.Model):
+class SecretResponse(_serialization.Model):
     """A secret.
 
     All required parameters must be populated in order to send to Azure.

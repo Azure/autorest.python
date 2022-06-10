@@ -35,7 +35,7 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError, SerializationError
+from azure.core.exceptions import DeserializationError, SerializationError
 
 from bodydatetime.aio import AutoRestDateTimeTestService
 

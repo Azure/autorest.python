@@ -8,12 +8,11 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from msrest import Serializer
-
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 
+from .._serialization import Serializer
 from .._vendor import raise_if_not_implemented
 
 T = TypeVar("T")

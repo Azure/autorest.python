@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestComplexTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import (
     ArrayOperations,
     BasicOperations,
@@ -68,6 +67,7 @@ class AutoRestComplexTestService:  # pylint: disable=client-accepts-api-version-
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
         self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
         self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)

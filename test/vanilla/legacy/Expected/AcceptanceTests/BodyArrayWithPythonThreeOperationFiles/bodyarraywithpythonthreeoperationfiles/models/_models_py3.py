@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -38,7 +38,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar integer:

@@ -29,7 +29,6 @@ import os
 import signal
 from os.path import dirname, realpath
 from azure.core.pipeline.policies import SansIOHTTPPolicy
-from msrest import Serializer, Deserializer
 import pytest
 
 
@@ -106,11 +105,3 @@ def credential():
 @pytest.fixture()
 def authentication_policy():
     return SansIOHTTPPolicy()
-
-@pytest.fixture()
-def serializer():
-    return Serializer()
-
-@pytest.fixture()
-def deserializer():
-    return Deserializer()

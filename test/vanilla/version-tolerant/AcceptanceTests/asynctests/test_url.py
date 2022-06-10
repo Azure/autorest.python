@@ -25,7 +25,6 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from datetime import datetime
-from msrest.exceptions import ValidationError
 
 from urlversiontolerant.aio import AutoRestUrlTestService
 from urlmulticollectionformatversiontolerant.aio import AutoRestUrlMutliCollectionFormatTestService
@@ -52,7 +51,7 @@ def test_array_query():
 async def test_byte_empty_and_null(client):
     await client.paths.byte_empty()
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         await client.paths.byte_null(None)
 
 @pytest.mark.asyncio
@@ -62,12 +61,12 @@ async def test_byte_multi_byte(client):
 
 @pytest.mark.asyncio
 async def test_date_null(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         await client.paths.date_null(None)
 
 @pytest.mark.asyncio
 async def test_date_time_null(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         await client.paths.date_time_null(None)
 
 @pytest.mark.asyncio
@@ -111,7 +110,7 @@ async def test_get_long(client):
 async def test_string_empty_and_null(client):
     await client.paths.string_empty()
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         await client.paths.string_null(None)
 
 @pytest.mark.asyncio
@@ -137,7 +136,7 @@ async def test_enum_valid(client):
 
 @pytest.mark.asyncio
 async def test_enum_null(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         await client.paths.enum_null(None)
 
 @pytest.mark.asyncio

@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,6 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import MixinABC, _convert_request
 
 T = TypeVar("T")

@@ -9,13 +9,12 @@
 from copy import deepcopy
 from typing import Any
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin
+from ._serialization import Deserializer, Serializer
 from .models import _models as models
 
 
