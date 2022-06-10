@@ -44,9 +44,7 @@ class Helpers:
         )
 
     @staticmethod
-    def _update_pet_with_form_deserialize(  # pylint: disable=inconsistent-return-statements
-        pipeline_response: PipelineResponse, **kwargs: Any
-    ) -> None:
+    def _update_pet_with_form_deserialize(pipeline_response: PipelineResponse, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -75,9 +73,7 @@ class Helpers:
         return HttpRequest(method="POST", url=_url, headers=_headers, data=data, params=_params)
 
     @staticmethod
-    def _partial_constant_body_deserialize(  # pylint: disable=inconsistent-return-statements
-        pipeline_response: PipelineResponse, **kwargs: Any
-    ) -> None:
+    def _partial_constant_body_deserialize(pipeline_response: PipelineResponse, **kwargs: Any) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -98,9 +94,7 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace
-    def update_pet_with_form(  # type: ignore # pylint: disable=inconsistent-return-statements,arguments-differ
-        self, pet_id: int, data: Dict[str, Any], **kwargs: Any
-    ) -> None:
+    def update_pet_with_form(self, pet_id: int, data: Dict[str, Any], **kwargs: Any) -> None:
         """Updates a pet in the store with form data.
 
         Updates a pet in the store with form data.
@@ -132,9 +126,7 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         return self._update_pet_with_form_deserialize(self._send_request(request, **kwargs))
 
     @distributed_trace
-    def partial_constant_body(  # type: ignore # pylint: disable=inconsistent-return-statements,arguments-differ
-        self, data: Dict[str, Any], **kwargs: Any
-    ) -> None:
+    def partial_constant_body(self, data: Dict[str, Any], **kwargs: Any) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 
