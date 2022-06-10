@@ -200,8 +200,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             name = f"_{name}"
         return name
 
+    @property
+    def has_abstract_operations(self) -> bool:
+        """Whether there is abstract operation in any operation group."""
+        return any(og.has_abstract_operations for og in self.operation_groups)
+
     def need_vendored_code(self, async_mode: bool) -> bool:
         """Whether we need to vendor code in the _vendor.py file for this SDK"""
+        if self.has_abstract_operations:
+            return True
         if async_mode:
             return self.need_mixin_abc
         return (

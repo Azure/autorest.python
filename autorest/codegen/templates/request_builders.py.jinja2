@@ -7,7 +7,7 @@
 {% if not is_python3_file %}
 # fmt: off
 {% endif %}
-{% for request_builder in request_builders %}
+{% for request_builder in request_builders | selectattr("abstract", "ne", True) %}
 
 {% include "request_builder.py.jinja2" %}
 {% endfor %}
