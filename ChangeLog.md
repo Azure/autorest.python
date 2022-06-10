@@ -1,5 +1,12 @@
 # Change
 
+### 2022-xx-xx - 6.0.0
+
+**Breaking Changes**
+
+- Only generate Python3 SDKs  #1297
+- Don't automatically reformat initial query parameters into the next link  #1297
+
 ### 2022-07-09 - 5.18.0
 
 | Library                                                                 | Min Version |
