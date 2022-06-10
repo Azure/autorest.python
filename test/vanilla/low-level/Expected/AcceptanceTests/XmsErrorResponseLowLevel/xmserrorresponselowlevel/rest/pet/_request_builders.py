@@ -16,13 +16,8 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_pet_by_id_request(
-    pet_id,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     """Gets pets by id.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -38,32 +33,23 @@ def build_get_pet_by_id_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/{petId}/GetPet"
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_do_something_request(
-    what_action,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
     """Asks pet to do something.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -79,31 +65,23 @@ def build_do_something_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/doSomething/{whatAction}"
     path_format_arguments = {
-        "whatAction": _SERIALIZER.url("what_action", what_action, 'str'),
+        "whatAction": _SERIALIZER.url("what_action", what_action, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_has_models_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_has_models_param_request(*, models: str = "value1", **kwargs: Any) -> HttpRequest:
     """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
     conflict with the input param name 'models'.
 
@@ -122,23 +100,16 @@ def build_has_models_param_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    models = kwargs.pop('models', _params.pop('models', "value1"))  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/hasModelsParam"
 
     # Construct parameters
     if models is not None:
-        _params['models'] = _SERIALIZER.query("models", models, 'str')
+        _params["models"] = _SERIALIZER.query("models", models, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)

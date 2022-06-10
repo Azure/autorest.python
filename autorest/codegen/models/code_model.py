@@ -235,11 +235,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     @property
     def need_mixin_abc(self) -> bool:
         """Do we want a mixin ABC class for typing purposes?"""
-        return any(
-            o
-            for o in self.operation_groups
-            if o.is_mixin and self.options["python3_only"]
-        )
+        return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
     def has_lro_operations(self) -> bool:
@@ -252,20 +248,19 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             ]
         )
 
-    def get_models_filename(self, is_python3_file: bool) -> str:
+    @property
+    def models_filename(self) -> str:
         """Get the names of the model file(s)"""
-        if not self.is_legacy and self.options["python3_only"]:
-            return "_models"
-        if is_python3_file:
+        if self.is_legacy:
             return "_models_py3"
         return "_models"
 
     @property
     def enums_filename(self) -> str:
         """The name of the enums file"""
-        if not self.is_legacy:
-            return "_enums"
-        return f"_{self.module_name}_enums"
+        if self.is_legacy:
+            return f"_{self.module_name}_enums"
+        return "_enums"
 
     @property
     def is_legacy(self) -> bool:

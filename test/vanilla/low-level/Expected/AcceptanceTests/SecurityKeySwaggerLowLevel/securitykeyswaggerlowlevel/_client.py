@@ -33,7 +33,6 @@ class AutorestSecurityKey:  # pylint: disable=client-accepts-api-version-keyword
     def __init__(
         self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-
         self._config = AutorestSecurityKeyConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

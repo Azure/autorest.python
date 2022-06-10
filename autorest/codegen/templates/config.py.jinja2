@@ -22,7 +22,7 @@ class {{ code_model.client.name }}Configuration(Configuration):  # pylint: disab
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
         super({{ code_model.client.name }}Configuration, self).__init__(**kwargs)
-    {% if code_model.config.parameters.kwargs_to_pop(async_mode) %}
+    {% if code_model.config.parameters.kwargs_to_pop %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
 {% if serializer.check_required_parameters() %}

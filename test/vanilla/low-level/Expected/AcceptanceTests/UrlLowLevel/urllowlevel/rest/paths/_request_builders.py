@@ -17,12 +17,8 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_boolean_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -39,32 +35,24 @@ def build_get_boolean_true_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    bool_path = kwargs.pop('bool_path', True)  # type: bool
-    accept = _headers.pop('Accept', "application/json")
+    bool_path = kwargs.pop("bool_path", True)  # type: bool
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/bool/true/{boolPath}"
     path_format_arguments = {
-        "boolPath": _SERIALIZER.url("bool_path", bool_path, 'bool'),
+        "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_boolean_false_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     """Get false Boolean value on path.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -81,32 +69,24 @@ def build_get_boolean_false_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    bool_path = kwargs.pop('bool_path', False)  # type: bool
-    accept = _headers.pop('Accept', "application/json")
+    bool_path = kwargs.pop("bool_path", False)  # type: bool
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/bool/false/{boolPath}"
     path_format_arguments = {
-        "boolPath": _SERIALIZER.url("bool_path", bool_path, 'bool'),
+        "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_int_one_million_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     """Get '1000000' integer value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -123,32 +103,24 @@ def build_get_int_one_million_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    int_path = kwargs.pop('int_path', 1000000)  # type: int
-    accept = _headers.pop('Accept', "application/json")
+    int_path = kwargs.pop("int_path", 1000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/int/1000000/{intPath}"
     path_format_arguments = {
-        "intPath": _SERIALIZER.url("int_path", int_path, 'int'),
+        "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_int_negative_one_million_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     """Get '-1000000' integer value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -165,32 +137,24 @@ def build_get_int_negative_one_million_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    int_path = kwargs.pop('int_path', -1000000)  # type: int
-    accept = _headers.pop('Accept', "application/json")
+    int_path = kwargs.pop("int_path", -1000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/int/-1000000/{intPath}"
     path_format_arguments = {
-        "intPath": _SERIALIZER.url("int_path", int_path, 'int'),
+        "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_ten_billion_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     """Get '10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -207,32 +171,24 @@ def build_get_ten_billion_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    long_path = kwargs.pop('long_path', 10000000000)  # type: int
-    accept = _headers.pop('Accept', "application/json")
+    long_path = kwargs.pop("long_path", 10000000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/long/10000000000/{longPath}"
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
+        "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_negative_ten_billion_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     """Get '-10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -249,32 +205,24 @@ def build_get_negative_ten_billion_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    long_path = kwargs.pop('long_path', -10000000000)  # type: int
-    accept = _headers.pop('Accept', "application/json")
+    long_path = kwargs.pop("long_path", -10000000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/long/-10000000000/{longPath}"
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
+        "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_float_scientific_positive_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     """Get '1.034E+20' numeric value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -291,32 +239,24 @@ def build_float_scientific_positive_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    float_path = kwargs.pop('float_path', 103400000000000000000)  # type: float
-    accept = _headers.pop('Accept', "application/json")
+    float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/float/1.034E+20/{floatPath}"
     path_format_arguments = {
-        "floatPath": _SERIALIZER.url("float_path", float_path, 'float'),
+        "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_float_scientific_negative_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     """Get '-1.034E-20' numeric value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -333,32 +273,24 @@ def build_float_scientific_negative_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    float_path = kwargs.pop('float_path', -1.034e-20)  # type: float
-    accept = _headers.pop('Accept', "application/json")
+    float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/float/-1.034E-20/{floatPath}"
     path_format_arguments = {
-        "floatPath": _SERIALIZER.url("float_path", float_path, 'float'),
+        "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_double_decimal_positive_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     """Get '9999999.999' numeric value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -375,32 +307,24 @@ def build_double_decimal_positive_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    double_path = kwargs.pop('double_path', 9999999.999)  # type: float
-    accept = _headers.pop('Accept', "application/json")
+    double_path = kwargs.pop("double_path", 9999999.999)  # type: float
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/double/9999999.999/{doublePath}"
     path_format_arguments = {
-        "doublePath": _SERIALIZER.url("double_path", double_path, 'float'),
+        "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_double_decimal_negative_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     """Get '-9999999.999' numeric value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -417,32 +341,24 @@ def build_double_decimal_negative_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    double_path = kwargs.pop('double_path', -9999999.999)  # type: float
-    accept = _headers.pop('Accept', "application/json")
+    double_path = kwargs.pop("double_path", -9999999.999)  # type: float
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/double/-9999999.999/{doublePath}"
     path_format_arguments = {
-        "doublePath": _SERIALIZER.url("double_path", double_path, 'float'),
+        "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_unicode_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
     """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -459,32 +375,24 @@ def build_string_unicode_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop('string_path', "啊齄丂狛狜隣郎隣兀﨩")  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/string/unicode/{stringPath}"
     path_format_arguments = {
-        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_url_encoded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     """Get 'begin!*'();:@ &=+$,/?#[]end.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -502,32 +410,24 @@ def build_string_url_encoded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop('string_path', "begin!*'();:@ &=+$,/?#[]end")  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
     path_format_arguments = {
-        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_url_non_encoded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     """Get 'begin!*'();:@&=+$,end.
 
     https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
@@ -547,32 +447,24 @@ def build_string_url_non_encoded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop('string_path', "begin!*'();:@&=+$,end")  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/paths/string/begin!*\'();:@&=+$,end/{stringPath}"
+    _url = "/paths/string/begin!*'();:@&=+$,end/{stringPath}"
     path_format_arguments = {
-        "stringPath": _SERIALIZER.url("string_path", string_path, 'str', skip_quote=True),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str", skip_quote=True),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_empty_request(**kwargs: Any) -> HttpRequest:
     """Get ''.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -589,33 +481,24 @@ def build_string_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop('string_path', "")  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    string_path = kwargs.pop("string_path", "")  # type: str
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/string/empty/{stringPath}"
     path_format_arguments = {
-        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_null_request(
-    string_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_null_request(string_path: str, **kwargs: Any) -> HttpRequest:
     """Get null (should throw).
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -631,32 +514,23 @@ def build_string_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/string/null/{stringPath}"
     path_format_arguments = {
-        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_valid_request(
-    enum_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     """Get using uri with 'green color' in path parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -673,32 +547,23 @@ def build_enum_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/enum/green%20color/{enumPath}"
     path_format_arguments = {
-        "enumPath": _SERIALIZER.url("enum_path", enum_path, 'str'),
+        "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_null_request(
-    enum_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     """Get null (should throw on the client before the request is sent on wire).
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -715,32 +580,23 @@ def build_enum_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/string/null/{enumPath}"
     path_format_arguments = {
-        "enumPath": _SERIALIZER.url("enum_path", enum_path, 'str'),
+        "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_byte_multi_byte_request(
-    byte_path,  # type: bytes
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_byte_multi_byte_request(byte_path: bytes, **kwargs: Any) -> HttpRequest:
     """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -756,31 +612,23 @@ def build_byte_multi_byte_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/byte/multibyte/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_byte_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
     """Get '' as byte array.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -797,33 +645,24 @@ def build_byte_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    byte_path = kwargs.pop('byte_path', bytes("", encoding="utf-8"))  # type: bytes
-    accept = _headers.pop('Accept', "application/json")
+    byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/byte/empty/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_byte_null_request(
-    byte_path,  # type: bytes
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_byte_null_request(byte_path: bytes, **kwargs: Any) -> HttpRequest:
     """Get null as byte array (should throw).
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -839,31 +678,23 @@ def build_byte_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/byte/null/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_date_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_date_valid_request(**kwargs: Any) -> HttpRequest:
     """Get '2012-01-01' as date.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -880,33 +711,24 @@ def build_date_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    date_path = kwargs.pop('date_path', "2012-01-01")  # type: datetime.date
-    accept = _headers.pop('Accept', "application/json")
+    date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/date/2012-01-01/{datePath}"
     path_format_arguments = {
-        "datePath": _SERIALIZER.url("date_path", date_path, 'date'),
+        "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_date_null_request(
-    date_path,  # type: datetime.date
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_date_null_request(date_path: datetime.date, **kwargs: Any) -> HttpRequest:
     """Get null as date - this should throw or be unusable on the client side, depending on date
     representation.
 
@@ -923,31 +745,23 @@ def build_date_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/date/null/{datePath}"
     path_format_arguments = {
-        "datePath": _SERIALIZER.url("date_path", date_path, 'date'),
+        "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_date_time_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     """Get '2012-01-01T01:01:01Z' as date-time.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -965,33 +779,24 @@ def build_date_time_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    date_time_path = kwargs.pop('date_time_path', "2012-01-01T01:01:01Z")  # type: datetime.datetime
-    accept = _headers.pop('Accept', "application/json")
+    date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"
     path_format_arguments = {
-        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
+        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_date_time_null_request(
-    date_time_path,  # type: datetime.datetime
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_date_time_null_request(date_time_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1007,32 +812,23 @@ def build_date_time_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/datetime/null/{dateTimePath}"
     path_format_arguments = {
-        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
+        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_base64_url_request(
-    base64_url_path,  # type: bytes
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> HttpRequest:
     """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1048,32 +844,23 @@ def build_base64_url_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/string/bG9yZW0/{base64UrlPath}"
     path_format_arguments = {
-        "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, 'base64'),
+        "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, "base64"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_csv_in_path_request(
-    array_path,  # type: List[str]
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> HttpRequest:
     """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
     csv-array format.
 
@@ -1091,32 +878,25 @@ def build_array_csv_in_path_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"
+    _url = (
+        "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"
+    )
     path_format_arguments = {
-        "arrayPath": _SERIALIZER.url("array_path", array_path, '[str]', div=','),
+        "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_unix_time_url_request(
-    unix_time_url_path,  # type: datetime.datetime
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1132,22 +912,17 @@ def build_unix_time_url_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paths/int/1460505600/{unixTimeUrlPath}"
     path_format_arguments = {
-        "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, 'unix-time'),
+        "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, "unix-time"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)

@@ -47,7 +47,6 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
         self._config = AutoRestUrlTestServiceConfiguration(
             global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
         )

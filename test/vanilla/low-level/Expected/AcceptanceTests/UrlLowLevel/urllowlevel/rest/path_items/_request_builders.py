@@ -16,15 +16,17 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
 def build_get_all_with_values_request(
-    path_item_string_path,  # type: str
-    local_string_path,  # type: str
-    global_string_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    path_item_string_path: str,
+    local_string_path: str,
+    global_string_path: str,
+    *,
+    path_item_string_query: Optional[str] = None,
+    local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
     localStringPath='localStringPath', globalStringQuery='globalStringQuery',
     pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
@@ -56,48 +58,42 @@ def build_get_all_with_values_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
-    local_string_query = kwargs.pop('local_string_query', _params.pop('localStringQuery', None))  # type: Optional[str]
-    global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
     if path_item_string_query is not None:
-        _params['pathItemStringQuery'] = _SERIALIZER.query("path_item_string_query", path_item_string_query, 'str')
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _params['globalStringQuery'] = _SERIALIZER.query("global_string_query", global_string_query, 'str')
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _params['localStringQuery'] = _SERIALIZER.query("local_string_query", local_string_query, 'str')
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_global_query_null_request(
-    path_item_string_path,  # type: str
-    local_string_path,  # type: str
-    global_string_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    path_item_string_path: str,
+    local_string_path: str,
+    global_string_path: str,
+    *,
+    path_item_string_query: Optional[str] = None,
+    local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
     localStringPath='localStringPath', globalStringQuery=null,
     pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
@@ -129,48 +125,42 @@ def build_get_global_query_null_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
-    local_string_query = kwargs.pop('local_string_query', _params.pop('localStringQuery', None))  # type: Optional[str]
-    global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
     if path_item_string_query is not None:
-        _params['pathItemStringQuery'] = _SERIALIZER.query("path_item_string_query", path_item_string_query, 'str')
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _params['globalStringQuery'] = _SERIALIZER.query("global_string_query", global_string_query, 'str')
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _params['localStringQuery'] = _SERIALIZER.query("local_string_query", local_string_query, 'str')
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_global_and_local_query_null_request(
-    path_item_string_path,  # type: str
-    local_string_path,  # type: str
-    global_string_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    path_item_string_path: str,
+    local_string_path: str,
+    global_string_path: str,
+    *,
+    path_item_string_query: Optional[str] = None,
+    local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
     localStringPath='localStringPath', globalStringQuery=null,
     pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
@@ -202,48 +192,42 @@ def build_get_global_and_local_query_null_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
-    local_string_query = kwargs.pop('local_string_query', _params.pop('localStringQuery', None))  # type: Optional[str]
-    global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
     if path_item_string_query is not None:
-        _params['pathItemStringQuery'] = _SERIALIZER.query("path_item_string_query", path_item_string_query, 'str')
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _params['globalStringQuery'] = _SERIALIZER.query("global_string_query", global_string_query, 'str')
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _params['localStringQuery'] = _SERIALIZER.query("local_string_query", local_string_query, 'str')
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_local_path_item_query_null_request(
-    path_item_string_path,  # type: str
-    local_string_path,  # type: str
-    global_string_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    path_item_string_path: str,
+    local_string_path: str,
+    global_string_path: str,
+    *,
+    path_item_string_query: Optional[str] = None,
+    local_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
     localStringPath='localStringPath', globalStringQuery='globalStringQuery',
     pathItemStringQuery=null, localStringQuery=null.
@@ -274,36 +258,27 @@ def build_get_local_path_item_query_null_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
-    local_string_query = kwargs.pop('local_string_query', _params.pop('localStringQuery', None))  # type: Optional[str]
-    global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
     if path_item_string_query is not None:
-        _params['pathItemStringQuery'] = _SERIALIZER.query("path_item_string_query", path_item_string_query, 'str')
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _params['globalStringQuery'] = _SERIALIZER.query("global_string_query", global_string_query, 'str')
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _params['localStringQuery'] = _SERIALIZER.query("local_string_query", local_string_query, 'str')
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)

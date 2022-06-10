@@ -9,8 +9,9 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
+from typing import Any, Optional
 
+from azure.core.credentials import AzureKeyCredential
 from azure.mgmt.core import ARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
@@ -18,12 +19,6 @@ from azure.profiles.multiapiclient import MultiApiClientMixin
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    from azure.core.credentials import AzureKeyCredential
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
@@ -68,9 +63,9 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     def __init__(
         self,
-        credential,  # type: AzureKeyCredential
+        credential: AzureKeyCredential,
         api_version=None, # type: Optional[str]
-        base_url="http://localhost:3000",  # type: str
+        base_url: str = "http://localhost:3000",
         profile=KnownProfiles.default, # type: KnownProfiles
         **kwargs  # type: Any
     ):

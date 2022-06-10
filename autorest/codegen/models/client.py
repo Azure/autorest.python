@@ -159,7 +159,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 # Also in this case, we're in version tolerant, so python3 only is true
                 file_import.add_submodule_import(
                     f"{path_to_models}models",
-                    f"{self.code_model.get_models_filename(is_python3_file=True)}",
+                    self.code_model.models_filename,
                     ImportType.LOCAL,
                     alias="models",
                 )

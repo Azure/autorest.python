@@ -32,7 +32,6 @@ class AutoRestParameterGroupingTestService:  # pylint: disable=client-accepts-ap
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
         self._config = AutoRestParameterGroupingTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

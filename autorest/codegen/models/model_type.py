@@ -238,13 +238,8 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
                     relative_path, "models", ImportType.LOCAL, alias="_models"
                 )
             else:
-                # a little hacky, but we only do this for version tolerant
-                # models files, which are all python3 only
-                models_filename = self.code_model.get_models_filename(
-                    is_python3_file=True
-                )
                 file_import.add_submodule_import(
-                    f"{relative_path}models.{models_filename}",
+                    f"{relative_path}models.{self.code_model.models_filename}",
                     self.name,
                     ImportType.LOCAL,
                 )

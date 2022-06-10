@@ -8,7 +8,6 @@
 
 from ._models_py3 import Pet
 
-
 from ._pet_store_inc_enums import DaysOfWeekExtensibleEnum
 from ._pet_store_inc_enums import IntEnum
 from ._patch import __all__ as _patch_all

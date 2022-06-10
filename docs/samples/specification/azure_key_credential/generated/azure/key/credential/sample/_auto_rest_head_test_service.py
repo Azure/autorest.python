@@ -7,9 +7,11 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.credentials import AzureKeyCredential
+from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestHeadTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
@@ -17,12 +19,9 @@ from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
+    from typing import Dict
 
-    from azure.core.credentials import AzureKeyCredential
-    from azure.core.rest import HttpRequest, HttpResponse
-
-class AutoRestHeadTestService(object):  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations
@@ -35,11 +34,10 @@ class AutoRestHeadTestService(object):  # pylint: disable=client-accepts-api-ver
 
     def __init__(
         self,
-        credential,  # type: AzureKeyCredential
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        credential: AzureKeyCredential,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -54,10 +52,9 @@ class AutoRestHeadTestService(object):  # pylint: disable=client-accepts-api-ver
 
     def _send_request(
         self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

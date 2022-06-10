@@ -8,19 +8,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from typing import TYPE_CHECKING
+from typing import Any
 
 from azure.core.configuration import Configuration
+from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
 from ._version import VERSION
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.credentials import AzureKeyCredential
 
 class MultiapiServiceClientConfiguration(Configuration):
     """Configuration for MultiapiServiceClient.
@@ -34,7 +29,7 @@ class MultiapiServiceClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential,  # type: AzureKeyCredential
+        credential: AzureKeyCredential,
         **kwargs  # type: Any
     ):
         # type: (...) -> None

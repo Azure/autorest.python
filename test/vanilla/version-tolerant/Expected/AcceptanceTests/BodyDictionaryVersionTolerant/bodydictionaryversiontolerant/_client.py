@@ -31,7 +31,6 @@ class AutoRestSwaggerBATDictionaryService:  # pylint: disable=client-accepts-api
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
         self._config = AutoRestSwaggerBATDictionaryServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

@@ -19,7 +19,6 @@ from ._models_py3 import ProductResult
 from ._models_py3 import ProductResultValue
 from ._models_py3 import ProductResultValueWithXMSClientName
 
-
 from ._auto_rest_paging_test_service_enums import OperationResultStatus
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import

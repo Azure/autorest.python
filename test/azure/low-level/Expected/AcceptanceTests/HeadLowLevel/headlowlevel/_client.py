@@ -34,7 +34,6 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     def __init__(
         self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
