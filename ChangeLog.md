@@ -28,7 +28,6 @@
 **Breaking Changes in Version Tolerant**
 
 - No longer allow users to specify `api_version` on the method level  #1281
-
 - Make `content_type` param required with no default if streaming with no `application/octet-stream`  #1288
 
 **Bug Fixes**
@@ -68,7 +67,6 @@
 - Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
 - Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type.  #1230
 - Add flag `--postprocess`. Run this after doing customizations for full mypy support
-- Add flag `--generate-sample` to generate samples  #1275
 
 **Breaking Changes in Version Tolerant**
 
