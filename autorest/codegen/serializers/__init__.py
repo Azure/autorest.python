@@ -609,7 +609,7 @@ class JinjaSerializer:
             imports.add_submodule_import(
                 "azure.identity", credential, ImportType.THIRDPARTY
             )
-        if credential == "AzureKeyCredential" or check_auth:
+        if credential or check_auth:
             imports.add_import("os", ImportType.STDLIB)
 
         return {
