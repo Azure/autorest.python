@@ -88,7 +88,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -157,7 +157,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -226,7 +226,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -296,7 +296,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -380,7 +380,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -463,7 +463,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -540,7 +540,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -625,7 +625,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -718,7 +718,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -796,7 +796,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -866,7 +866,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -935,7 +935,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1004,7 +1004,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1073,7 +1073,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1148,7 +1148,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1228,7 +1228,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1369,7 +1369,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1484,7 +1484,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.

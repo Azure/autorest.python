@@ -7,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Optional, TYPE_CHECKING
-
-from msrest import Serializer
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
@@ -19,201 +17,143 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import _convert_request
 
+<<<<<<< HEAD
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+=======
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/null")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_invalid_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_invalid_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/invaliddate")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_overflow_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_overflow_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/overflowdate")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_underflow_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_underflow_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/underflowdate")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_max_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_max_date_request(*, json: datetime.date, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/max")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_max_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_max_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/max")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_min_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_min_date_request(*, json: datetime.date, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/min")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_min_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_min_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/date/min")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
-# fmt: on
-class DateOperations(object):
+
+class DateOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -234,11 +174,15 @@ class DateOperations(object):
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_null(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> Optional[datetime.date]
+=======
+    def get_null(self, **kwargs: Any) -> Optional[datetime.date]:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -289,11 +233,15 @@ class DateOperations(object):
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_invalid_date(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
+=======
+    def get_invalid_date(self, **kwargs: Any) -> datetime.date:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -344,11 +292,15 @@ class DateOperations(object):
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_overflow_date(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
+=======
+    def get_overflow_date(self, **kwargs: Any) -> datetime.date:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -399,11 +351,15 @@ class DateOperations(object):
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_underflow_date(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
+=======
+    def get_underflow_date(self, **kwargs: Any) -> datetime.date:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -455,11 +411,8 @@ class DateOperations(object):
 
     @distributed_trace
     def put_max_date(  # pylint: disable=inconsistent-return-statements
-        self,
-        date_body,  # type: datetime.date
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, date_body: datetime.date, **kwargs: Any
+    ) -> None:
         """Put max date value 9999-12-31.
 
         :param date_body: date body. Required.
@@ -512,11 +465,15 @@ class DateOperations(object):
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_max_date(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
+=======
+    def get_max_date(self, **kwargs: Any) -> datetime.date:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -568,11 +525,8 @@ class DateOperations(object):
 
     @distributed_trace
     def put_min_date(  # pylint: disable=inconsistent-return-statements
-        self,
-        date_body,  # type: datetime.date
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, date_body: datetime.date, **kwargs: Any
+    ) -> None:
         """Put min date value 0000-01-01.
 
         :param date_body: date body. Required.
@@ -625,11 +579,15 @@ class DateOperations(object):
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_min_date(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
+=======
+    def get_min_date(self, **kwargs: Any) -> datetime.date:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

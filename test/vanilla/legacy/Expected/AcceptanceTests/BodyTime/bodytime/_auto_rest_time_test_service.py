@@ -7,16 +7,17 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
-
-from msrest import Deserializer, Serializer
+from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestTimeTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import TimeOperations
 
+<<<<<<< HEAD
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
@@ -24,6 +25,10 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 class AutoRestTimeTestService(object):  # pylint: disable=client-accepts-api-version-keyword
+=======
+
+class AutoRestTimeTestService:  # pylint: disable=client-accepts-api-version-keyword
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """Test Infrastructure for AutoRest.
 
     :ivar time: TimeOperations operations
@@ -32,12 +37,7 @@ class AutoRestTimeTestService(object):  # pylint: disable=client-accepts-api-ver
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestTimeTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -50,12 +50,7 @@ class AutoRestTimeTestService(object):  # pylint: disable=client-accepts-api-ver
         )
 
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -64,7 +59,7 @@ class AutoRestTimeTestService(object):  # pylint: disable=client-accepts-api-ver
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

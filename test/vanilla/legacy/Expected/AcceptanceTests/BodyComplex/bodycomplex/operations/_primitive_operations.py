@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import IO, Optional, TYPE_CHECKING, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from msrest import Serializer
 
@@ -21,533 +21,362 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._vendor import _convert_request
 
+<<<<<<< HEAD
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Optional, TypeVar
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+=======
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
-# fmt: off
 
-def build_get_int_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_get_int_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/integer")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_int_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_int_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/integer")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_long_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_long_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/long")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_long_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_long_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/long")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_float_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/float")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_float_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/float")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_double_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/double")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_double_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/double")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_bool_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_bool_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/bool")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_bool_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_bool_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/bool")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/string")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/string")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/date")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/date")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_rfc1123_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_time_rfc1123_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_duration_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/duration")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_duration_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/duration")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_byte_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_byte_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/byte")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_byte_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_byte_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/byte")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
-# fmt: on
-class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
+
+class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -568,11 +397,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_int(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.IntWrapper
+=======
+    def get_int(self, **kwargs: Any) -> _models.IntWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -624,11 +457,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.IntWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.IntWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
@@ -644,11 +474,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
@@ -665,11 +492,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.IntWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.IntWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Is either a model type or a IO type. Required.
@@ -732,11 +556,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_long(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.LongWrapper
+=======
+    def get_long(self, **kwargs: Any) -> _models.LongWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -788,11 +616,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.LongWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.LongWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
@@ -808,11 +633,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
@@ -829,11 +651,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.LongWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.LongWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a model type or a IO
@@ -897,11 +716,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_float(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.FloatWrapper
+=======
+    def get_float(self, **kwargs: Any) -> _models.FloatWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -953,11 +776,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.FloatWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.FloatWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Required.
@@ -973,11 +793,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Required.
@@ -994,11 +811,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.FloatWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.FloatWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Is either a model type or a IO type. Required.
@@ -1061,11 +875,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_double(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.DoubleWrapper
+=======
+    def get_double(self, **kwargs: Any) -> _models.DoubleWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1117,11 +935,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.DoubleWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.DoubleWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1138,11 +953,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1160,11 +972,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.DoubleWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.DoubleWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1229,11 +1038,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_bool(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.BooleanWrapper
+=======
+    def get_bool(self, **kwargs: Any) -> _models.BooleanWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1285,11 +1098,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.BooleanWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.BooleanWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
@@ -1305,11 +1115,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
@@ -1326,11 +1133,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.BooleanWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.BooleanWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Is either a model type or a IO type. Required.
@@ -1393,11 +1197,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_string(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.StringWrapper
+=======
+    def get_string(self, **kwargs: Any) -> _models.StringWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1449,11 +1257,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.StringWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.StringWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Required.
@@ -1469,11 +1274,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Required.
@@ -1490,11 +1292,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.StringWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.StringWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Is either a model type or a IO
@@ -1558,11 +1357,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_date(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.DateWrapper
+=======
+    def get_date(self, **kwargs: Any) -> _models.DateWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1614,11 +1417,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.DateWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.DateWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
@@ -1634,11 +1434,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
@@ -1655,11 +1452,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.DateWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.DateWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a model type or a IO
@@ -1723,11 +1517,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_date_time(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.DatetimeWrapper
+=======
+    def get_date_time(self, **kwargs: Any) -> _models.DatetimeWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1779,11 +1577,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.DatetimeWrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.DatetimeWrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
@@ -1800,11 +1595,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
@@ -1822,11 +1614,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.DatetimeWrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.DatetimeWrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
@@ -1890,11 +1679,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_date_time_rfc1123(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.Datetimerfc1123Wrapper
+=======
+    def get_date_time_rfc1123(self, **kwargs: Any) -> _models.Datetimerfc1123Wrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1946,11 +1739,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: _models.Datetimerfc1123Wrapper
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: _models.Datetimerfc1123Wrapper, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -1967,11 +1757,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -1989,11 +1776,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body,  # type: Union[_models.Datetimerfc1123Wrapper, IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, complex_body: Union[_models.Datetimerfc1123Wrapper, IO], **kwargs: Any
+    ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -2057,11 +1841,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_duration(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.DurationWrapper
+=======
+    def get_duration(self, **kwargs: Any) -> _models.DurationWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2113,11 +1901,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_duration(  # pylint: disable=inconsistent-return-statements
-        self,
-        field=None,  # type: Optional[datetime.timedelta]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, field: Optional[datetime.timedelta] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with duration properties.
 
         :param field: Default value is None.
@@ -2171,11 +1956,15 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
 
     @distributed_trace
+<<<<<<< HEAD
     def get_byte(
         self,
         **kwargs  # type: Any
     ):
         # type: (...) -> _models.ByteWrapper
+=======
+    def get_byte(self, **kwargs: Any) -> _models.ByteWrapper:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2227,11 +2016,8 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_byte(  # pylint: disable=inconsistent-return-statements
-        self,
-        field=None,  # type: Optional[bytes]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, field: Optional[bytes] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with byte properties.
 
         :param field: Default value is None.

@@ -7,21 +7,24 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
-
-from msrest import Deserializer, Serializer
+from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import ErrorWithSecretsConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import ErrorWithSecretsOperationsMixin
 
+<<<<<<< HEAD
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
+=======
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Tests whether loggers/tracers redact secrets and PII within error responses.
@@ -30,12 +33,7 @@ class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=clie
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = ErrorWithSecretsConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -44,6 +42,7 @@ class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=clie
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
+<<<<<<< HEAD
 
     def _send_request(
         self,
@@ -51,6 +50,9 @@ class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=clie
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
+=======
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -59,7 +61,7 @@ class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=clie
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

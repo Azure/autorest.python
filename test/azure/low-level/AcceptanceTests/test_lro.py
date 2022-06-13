@@ -33,6 +33,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from lrolowlevel import AutoRestLongRunningOperationTestService
 from lrolowlevel.rest import lr_os_custom_header, lro_retrys, lros, lrosads
+from lrolowlevel._serialization import Serializer, Deserializer
 from azure.core.polling import LROPoller, NoPolling
 
 try:
@@ -145,6 +146,14 @@ def assert_initial_call_raises_with_message(get_poller):
             get_poller(request, **kwargs)  # this makes the initial call
         _check_message_in_error(ex, message)
     return _callback
+
+@pytest.fixture()
+def serializer():
+    return Serializer()
+
+@pytest.fixture()
+def deserializer():
+    return Deserializer()
 
 def test_post_double_headers_final_continuation_token(client, get_poller, get_long_running_output):
     request = lros.build_post_double_headers_final_location_get_request()

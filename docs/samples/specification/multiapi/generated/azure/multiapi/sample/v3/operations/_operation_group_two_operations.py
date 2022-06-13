@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import IO, Optional, TYPE_CHECKING, Union, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
@@ -19,6 +17,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
+from ..._serialization import Serializer
 from .._vendor import _convert_request
 
 if TYPE_CHECKING:
@@ -142,7 +141,8 @@ class OperationGroupTwoOperations(object):
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
+         'image/tiff'. Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

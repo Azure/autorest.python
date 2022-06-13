@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,6 +25,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .._serialization import Serializer
 from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 9):
@@ -466,7 +465,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -535,7 +534,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -604,7 +603,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -674,7 +673,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -758,7 +757,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -841,7 +840,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -918,7 +917,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1003,7 +1002,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1096,7 +1095,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1174,7 +1173,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1244,7 +1243,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1313,7 +1312,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1382,7 +1381,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1451,7 +1450,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1524,7 +1523,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1604,7 +1603,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1745,7 +1744,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 202
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.
@@ -1858,7 +1857,7 @@ class PagingOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "properties": {
                         "id": 0,  # Optional.
                         "name": "str"  # Optional.

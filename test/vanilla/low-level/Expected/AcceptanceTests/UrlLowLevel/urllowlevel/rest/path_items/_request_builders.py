@@ -7,14 +7,14 @@
 # --------------------------------------------------------------------------
 from typing import Any, Optional
 
-from msrest import Serializer
-
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
+from ..._serialization import Serializer
 from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 # fmt: off
 
@@ -29,8 +29,8 @@ def build_get_all_with_values_request(
     localStringPath='localStringPath', globalStringQuery='globalStringQuery',
     pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
      Required.
@@ -48,7 +48,7 @@ def build_get_all_with_values_request(
     :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -102,8 +102,8 @@ def build_get_global_query_null_request(
     localStringPath='localStringPath', globalStringQuery=null,
     pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
      Required.
@@ -121,7 +121,7 @@ def build_get_global_query_null_request(
     :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -175,8 +175,8 @@ def build_get_global_and_local_query_null_request(
     localStringPath='localStringPath', globalStringQuery=null,
     pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
      Required.
@@ -194,7 +194,7 @@ def build_get_global_and_local_query_null_request(
     :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -248,8 +248,8 @@ def build_get_local_path_item_query_null_request(
     localStringPath='localStringPath', globalStringQuery='globalStringQuery',
     pathItemStringQuery=null, localStringQuery=null.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
      Required.
@@ -266,7 +266,7 @@ def build_get_local_path_item_query_null_request(
     :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

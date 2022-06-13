@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,6 +21,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
+
+from .._serialization import Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -358,14 +358,14 @@ class ParamsOperations:
         """
 
     @overload
-    def post_parameters(self, parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: IO, *, content_type: str, **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Known values are: 'application/json', 'image/jpeg'. Required.
         :paramtype content_type: str
         :return: JSON
         :rtype: JSON
@@ -399,6 +399,11 @@ class ParamsOperations:
         _content = None
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are:"
+                    + "'application/json', 'image/jpeg'"
+                )
         else:
             _json = parameter
             content_type = content_type or "application/json"

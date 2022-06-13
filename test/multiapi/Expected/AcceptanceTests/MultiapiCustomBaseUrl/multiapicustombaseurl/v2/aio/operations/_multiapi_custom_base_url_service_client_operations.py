@@ -18,10 +18,11 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._multiapi_custom_base_url_service_client_operations import build_test_request
+from .._vendor import MixinABC
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-class MultiapiCustomBaseUrlServiceClientOperationsMixin:
+class MultiapiCustomBaseUrlServiceClientOperationsMixin(MixinABC):
 
     @distributed_trace_async
     async def test(  # pylint: disable=inconsistent-return-statements

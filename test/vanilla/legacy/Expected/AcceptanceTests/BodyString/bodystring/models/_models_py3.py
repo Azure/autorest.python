@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -44,7 +44,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class RefColorConstant(msrest.serialization.Model):
+class RefColorConstant(_serialization.Model):
     """RefColorConstant.
 
     Variables are only populated by the server, and will be ignored when sending a request.

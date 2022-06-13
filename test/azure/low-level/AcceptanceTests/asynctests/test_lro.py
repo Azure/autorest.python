@@ -36,6 +36,7 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from lrolowlevel.aio import AutoRestLongRunningOperationTestService
 from lrolowlevel.rest import lr_os_custom_header, lro_retrys, lros, lrosads
+from lrolowlevel._serialization import Serializer, Deserializer
 
 try:
     from urlparse import urlparse
@@ -142,6 +143,15 @@ def assert_initial_call_raises_with_message(get_poller):
             await get_poller(request, **kwargs)  # this makes the initial call
         _check_message_in_error(ex, message)
     return _callback
+
+@pytest.fixture()
+def serializer():
+    return Serializer()
+
+@pytest.fixture()
+def deserializer():
+    return Deserializer()
+
 
 @pytest.mark.asyncio
 async def test_post_double_headers_final_continuation_token(client, get_poller, get_long_running_output):

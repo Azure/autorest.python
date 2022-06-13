@@ -26,12 +26,13 @@ from ...operations._auto_rest_report_service_operations import (
     build_get_optional_report_request,
     build_get_report_request,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestReportServiceOperationsMixin:
+class AutoRestReportServiceOperationsMixin(MixinABC):
     @distributed_trace_async
     async def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.

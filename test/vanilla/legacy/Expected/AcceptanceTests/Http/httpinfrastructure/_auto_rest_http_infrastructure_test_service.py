@@ -7,14 +7,14 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
-
-from msrest import Deserializer, Serializer
+from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
+<<<<<<< HEAD
 from .operations import HttpClientFailureOperations, HttpFailureOperations, HttpRedirectsOperations, HttpRetryOperations, HttpServerFailureOperations, HttpSuccessOperations, MultipleResponsesOperations
 
 if TYPE_CHECKING:
@@ -24,6 +24,21 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 class AutoRestHttpInfrastructureTestService(object):  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+=======
+from ._serialization import Deserializer, Serializer
+from .operations import (
+    HttpClientFailureOperations,
+    HttpFailureOperations,
+    HttpRedirectsOperations,
+    HttpRetryOperations,
+    HttpServerFailureOperations,
+    HttpSuccessOperations,
+    MultipleResponsesOperations,
+)
+
+
+class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations
@@ -44,12 +59,7 @@ class AutoRestHttpInfrastructureTestService(object):  # pylint: disable=client-a
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHttpInfrastructureTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -79,6 +89,7 @@ class AutoRestHttpInfrastructureTestService(object):  # pylint: disable=client-a
             self._client, self._config, self._serialize, self._deserialize
         )
 
+<<<<<<< HEAD
 
     def _send_request(
         self,
@@ -86,6 +97,9 @@ class AutoRestHttpInfrastructureTestService(object):  # pylint: disable=client-a
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
+=======
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -94,7 +108,7 @@ class AutoRestHttpInfrastructureTestService(object):  # pylint: disable=client-a
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

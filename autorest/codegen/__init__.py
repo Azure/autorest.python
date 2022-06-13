@@ -97,6 +97,11 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "We are working on creating a new multiapi SDK for version tolerant and it is not available yet."
         )
 
+    if options["client_side_validation"] and options["version_tolerant"]:
+        raise ValueError(
+            "Can not generate version tolerant with --client-side-validation. "
+        )
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -130,8 +135,8 @@ class CodeGenerator(Plugin):
     def _build_package_dependency() -> Dict[str, str]:
         return {
             "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.0",
-            "dependency_azure_core": "azure-core<2.0.0,>=1.23.0",
-            "dependency_msrest": "msrest>=0.6.21",
+            "dependency_azure_core": "azure-core<2.0.0,>=1.24.0",
+            "dependency_msrest": "msrest>=0.7.0",
         }
 
     def _create_code_model(

@@ -101,6 +101,14 @@ class ClientSerializer:
         except StopIteration:
             return "_endpoint"
 
+    @property
+    def should_init_super(self) -> bool:
+        return any(
+            og
+            for og in self.code_model.operation_groups
+            if og.is_mixin and og.has_abstract_operations
+        )
+
     def initialize_pipeline_client(self, async_mode: bool) -> str:
         pipeline_client_name = self.code_model.client.pipeline_class(async_mode)
         return (
@@ -224,7 +232,7 @@ class ClientSerializer:
             retval.extend(self._rest_request_example(async_mode))
         retval.append("")
         retval.append(
-            "For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart"
+            "For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request"
         )
         retval.append(f"")
         retval.append(":param request: The network request you want to make. Required.")

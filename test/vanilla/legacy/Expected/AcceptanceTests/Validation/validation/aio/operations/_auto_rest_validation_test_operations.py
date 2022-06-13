@@ -29,12 +29,13 @@ from ...operations._auto_rest_validation_test_operations import (
     build_validation_of_body_request,
     build_validation_of_method_parameters_request,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestValidationTestOperationsMixin:
+class AutoRestValidationTestOperationsMixin(MixinABC):
     @distributed_trace_async
     async def validation_of_method_parameters(
         self, resource_group_name: str, id: int, **kwargs: Any

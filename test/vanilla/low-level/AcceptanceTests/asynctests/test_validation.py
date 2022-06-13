@@ -24,8 +24,8 @@
 #
 # --------------------------------------------------------------------------
 import sys
-
-from msrest.exceptions import ValidationError
+ 
+from azure.core.exceptions import HttpResponseError
 from async_generator import yield_, async_generator
 
 from validationlowlevel.aio import AutoRestValidationTest
@@ -84,73 +84,11 @@ async def test_post_with_constant_in_body(send_request_json_response, constant_b
     product = await send_request_json_response(request)
     assert product is not None
 
+# Note: the client-side-validation is not supported for low-level client, 
+#       so this request with faked path will be sent to testserver and get an HttpResponseError
 @pytest.mark.asyncio
-async def test_min_length_validation(send_request):
-    try:
+async def test_fakedpath_validation(send_request):
+    with pytest.raises(HttpResponseError):
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="1", id=100)
         await send_request(request)
-    except ValidationError as err:
-        assert err.rule ==  "min_length"
-        assert err.target ==  "resource_group_name"
-
-@pytest.mark.asyncio
-async def test_max_length_validation(send_request):
-    try:
-        request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="1234567890A", id=100)
-        await send_request(request)
-    except ValidationError as err:
-        assert err.rule ==  "max_length"
-        assert err.target ==  "resource_group_name"
-
-@pytest.mark.asyncio
-async def test_pattern_validation(send_request):
-    try:
-        request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="!@#$", id=100)
-        await send_request(request)
-    except ValidationError as err:
-        assert err.rule ==  "pattern"
-        assert err.target ==  "resource_group_name"
-
-@pytest.mark.asyncio
-async def test_multiple_validation(send_request):
-    try:
-        request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=105)
-        await send_request(request)
-    except ValidationError as err:
-        assert err.rule ==  "multiple"
-        assert err.target ==  "id"
-
-@pytest.mark.asyncio
-async def test_minimum_validation(send_request):
-    try:
-        request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=0)
-        await send_request(request)
-    except ValidationError as err:
-        assert err.rule ==  "minimum"
-        assert err.target ==  "id"
-
-@pytest.mark.asyncio
-async def test_maximum_validation(send_request):
-    try:
-        request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=2000)
-        await send_request(request)
-    except ValidationError as err:
-        assert err.rule ==  "maximum"
-        assert err.target ==  "id"
-
-# NOTE: removed body validation, since it doesn't make sense for LLC as we serialize the body ourselves and pass it in
-
-
-@pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
-@pytest.mark.asyncio
-async def test_api_version_validation(send_request):
-    client = AutoRestValidationTest(
-        "abc123",
-    )
-    client.api_version = "abc"
-    try:
-        request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=150)
-        await send_request(request)
-    except ValidationError as err:
-        assert err.rule ==  "pattern"
-        assert err.target ==  "self.api_version"
+ 

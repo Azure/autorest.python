@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .._serialization import Serializer
 from .._vendor import MixinABC
 
 if sys.version_info >= (3, 9):
@@ -206,7 +205,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "isAShowHorse": bool,  # Optional.
                     "name": "str"  # Required.
                 }
@@ -354,7 +353,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "name": "str"  # Required.
                 }
         """
@@ -499,7 +498,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "hisses": bool,  # Optional.
                     "meows": bool  # Optional.
                 }
@@ -647,7 +646,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
@@ -802,7 +801,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "eatsMiceYet": bool,  # Optional.
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.

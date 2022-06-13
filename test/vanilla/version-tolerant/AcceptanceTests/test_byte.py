@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 
 from base64 import b64encode
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DeserializationError
 from bodybyteversiontolerant import AutoRestSwaggerBATByteService
 from .serializer import deserialize_base64, serialize_bytearray, deserialize_bytearray
 

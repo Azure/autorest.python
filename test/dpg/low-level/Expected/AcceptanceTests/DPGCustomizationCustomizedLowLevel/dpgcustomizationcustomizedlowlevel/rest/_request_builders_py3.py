@@ -8,11 +8,10 @@
 import sys
 from typing import Any, IO, Optional, Union, overload
 
-from msrest import Serializer
-
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
+from .._serialization import Serializer
 from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 9):
@@ -33,15 +32,15 @@ def build_get_model_request(
     """Get models that you will either return to end users as a raw body, or with a model added during
     grow up.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
      before returning to users. Required.
     :type mode: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -80,8 +79,8 @@ def build_post_model_request(
     """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
     take a model instead, and put in 'model' as mode.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -93,7 +92,7 @@ def build_post_model_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
@@ -118,8 +117,8 @@ def build_post_model_request(
     """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
     take a model instead, and put in 'model' as mode.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -131,7 +130,7 @@ def build_post_model_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -144,8 +143,8 @@ def build_post_model_request(
     """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
     take a model instead, and put in 'model' as mode.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -157,7 +156,7 @@ def build_post_model_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -195,15 +194,15 @@ def build_get_pages_request(
     """Get pages that you will either return to users in pages of raw bodies, or pages of models
     following growup.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
      before returning to users. Required.
     :type mode: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -238,15 +237,15 @@ def build_lro_request(
     """Long running put request that will either return to end users a final payload of a raw body, or
     a final payload of a model after the SDK has grown up.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
      before returning to users. Required.
     :type mode: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

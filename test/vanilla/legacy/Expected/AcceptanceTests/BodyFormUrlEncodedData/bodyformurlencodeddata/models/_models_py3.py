@@ -9,14 +9,20 @@
 
 from typing import Optional, TYPE_CHECKING, Union
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
+<<<<<<< HEAD
 class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(msrest.serialization.Model):
+=======
+class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
+    _serialization.Model
+):
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     All required parameters must be populated in order to send to Azure.
@@ -81,7 +87,13 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         self.status = status
 
 
+<<<<<<< HEAD
 class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(msrest.serialization.Model):
+=======
+class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
+    _serialization.Model
+):
+>>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     Variables are only populated by the server, and will be ignored when sending a request.

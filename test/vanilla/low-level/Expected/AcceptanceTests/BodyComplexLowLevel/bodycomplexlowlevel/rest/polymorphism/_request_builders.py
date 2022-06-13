@@ -8,10 +8,10 @@
 import sys
 from typing import Any, IO, Optional, Union, overload
 
-from msrest import Serializer
-
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
+
+from ..._serialization import Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -20,6 +20,7 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 # fmt: off
 
@@ -29,11 +30,11 @@ def build_get_valid_request(
     # type: (...) -> HttpRequest
     """Get complex types that are polymorphic.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -63,8 +64,8 @@ def build_put_valid_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put a salmon that looks like this:
      {
@@ -104,24 +105,71 @@ def build_put_valid_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            fishtype = 'salmon' or 'shark'
+            # The input is polymorphic. The following are possible polymorphic inputs based off
+              discriminator "fishtype":
 
-            # JSON input template you can fill out and use as your body input.
-            json = {
+            # JSON input template for discriminator value "smart_salmon":
+            fish = {
+                "college_degree": "str",  # Optional.
+                "fishtype": "smart_salmon",
+                "iswild": bool,  # Optional.
+                "length": 0.0,  # Required.
+                "location": "str",  # Optional.
+                "siblings": [
+                    fish
+                ],
+                "species": "str"  # Optional.
+            }
+
+            # JSON input template for discriminator value "cookiecuttershark":
+            fish = {
+                "age": 0,  # Optional.
+                "birthday": "2020-02-20 00:00:00",  # Required.
+                "fishtype": "cookiecuttershark",
                 "length": 0.0,  # Required.
                 "siblings": [
-                    ...
+                    fish
                 ],
-                "species": "str",  # Optional.
-                fishtype: fishtype
+                "species": "str"  # Optional.
             }
+
+            # JSON input template for discriminator value "goblin":
+            fish = {
+                "age": 0,  # Optional.
+                "birthday": "2020-02-20 00:00:00",  # Required.
+                "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                  values are: "pink", "gray", "brown", "RED", and "red".
+                "fishtype": "goblin",
+                "jawsize": 0,  # Optional.
+                "length": 0.0,  # Required.
+                "siblings": [
+                    fish
+                ],
+                "species": "str"  # Optional.
+            }
+
+            # JSON input template for discriminator value "sawshark":
+            fish = {
+                "age": 0,  # Optional.
+                "birthday": "2020-02-20 00:00:00",  # Required.
+                "fishtype": "sawshark",
+                "length": 0.0,  # Required.
+                "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                "siblings": [
+                    fish
+                ],
+                "species": "str"  # Optional.
+            }
+
+            # JSON input template you can fill out and use as your body input.
+            json = fish
     """
 
 
@@ -132,8 +180,8 @@ def build_put_valid_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please put a salmon that looks like this:
      {
@@ -173,7 +221,7 @@ def build_put_valid_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -185,8 +233,8 @@ def build_put_valid_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please put a salmon that looks like this:
      {
@@ -226,7 +274,7 @@ def build_put_valid_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -258,11 +306,11 @@ def build_get_dot_syntax_request(
     # type: (...) -> HttpRequest
     """Get complex types that are polymorphic, JSON key contains a dot.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -293,11 +341,11 @@ def build_get_composed_with_discriminator_request(
     element type, with discriminator specified. Deserialization must NOT fail and use the
     discriminator type specified on the wire.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -328,11 +376,11 @@ def build_get_composed_without_discriminator_request(
     element type, without discriminator specified on wire. Deserialization must NOT fail and use
     the explicit type of the property.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -362,11 +410,11 @@ def build_get_complicated_request(
     """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -397,8 +445,8 @@ def build_put_complicated_request(
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Required.
     :paramtype json: JSON
@@ -406,33 +454,31 @@ def build_put_complicated_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            fishtype = 'smart_salmon'
+            # The input is polymorphic. The following are possible polymorphic inputs based off
+              discriminator "fishtype":
 
-            # JSON input template you can fill out and use as your body input.
-            json = {
+            # JSON input template for discriminator value "smart_salmon":
+            fish = {
+                "college_degree": "str",  # Optional.
+                "fishtype": "smart_salmon",
                 "iswild": bool,  # Optional.
                 "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
-                    {
-                        "length": 0.0,  # Required.
-                        "siblings": [
-                            ...
-                        ],
-                        "species": "str",  # Optional.
-                        fishtype: fishtype
-                    }
+                    fish
                 ],
-                "species": "str",  # Optional.
-                fishtype: salmon
+                "species": "str"  # Optional.
             }
+
+            # JSON input template you can fill out and use as your body input.
+            json = salmon
     """
 
 
@@ -444,8 +490,8 @@ def build_put_complicated_request(
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Required.
     :paramtype content: IO
@@ -453,7 +499,7 @@ def build_put_complicated_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -466,8 +512,8 @@ def build_put_complicated_request(
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Is either a model type or a IO type. Required.
     :paramtype json: JSON or IO
@@ -475,7 +521,7 @@ def build_put_complicated_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -508,8 +554,8 @@ def build_put_missing_discriminator_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic, omitting the discriminator.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Required.
     :paramtype json: JSON
@@ -517,33 +563,31 @@ def build_put_missing_discriminator_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            fishtype = 'smart_salmon'
+            # The input is polymorphic. The following are possible polymorphic inputs based off
+              discriminator "fishtype":
 
-            # JSON input template you can fill out and use as your body input.
-            json = {
+            # JSON input template for discriminator value "smart_salmon":
+            fish = {
+                "college_degree": "str",  # Optional.
+                "fishtype": "smart_salmon",
                 "iswild": bool,  # Optional.
                 "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
-                    {
-                        "length": 0.0,  # Required.
-                        "siblings": [
-                            ...
-                        ],
-                        "species": "str",  # Optional.
-                        fishtype: fishtype
-                    }
+                    fish
                 ],
-                "species": "str",  # Optional.
-                fishtype: salmon
+                "species": "str"  # Optional.
             }
+
+            # JSON input template you can fill out and use as your body input.
+            json = salmon
     """
 
 
@@ -554,8 +598,8 @@ def build_put_missing_discriminator_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic, omitting the discriminator.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Required.
     :paramtype content: IO
@@ -563,7 +607,7 @@ def build_put_missing_discriminator_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -575,8 +619,8 @@ def build_put_missing_discriminator_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic, omitting the discriminator.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Is either a model type or a IO type. Required.
     :paramtype json: JSON or IO
@@ -584,7 +628,7 @@ def build_put_missing_discriminator_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -618,8 +662,8 @@ def build_put_valid_missing_required_request(
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please attempt put a sawshark that looks like this, the client should not allow
      this data to be sent:
@@ -653,24 +697,71 @@ def build_put_valid_missing_required_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-            fishtype = 'salmon' or 'shark'
+            # The input is polymorphic. The following are possible polymorphic inputs based off
+              discriminator "fishtype":
 
-            # JSON input template you can fill out and use as your body input.
-            json = {
+            # JSON input template for discriminator value "smart_salmon":
+            fish = {
+                "college_degree": "str",  # Optional.
+                "fishtype": "smart_salmon",
+                "iswild": bool,  # Optional.
+                "length": 0.0,  # Required.
+                "location": "str",  # Optional.
+                "siblings": [
+                    fish
+                ],
+                "species": "str"  # Optional.
+            }
+
+            # JSON input template for discriminator value "cookiecuttershark":
+            fish = {
+                "age": 0,  # Optional.
+                "birthday": "2020-02-20 00:00:00",  # Required.
+                "fishtype": "cookiecuttershark",
                 "length": 0.0,  # Required.
                 "siblings": [
-                    ...
+                    fish
                 ],
-                "species": "str",  # Optional.
-                fishtype: fishtype
+                "species": "str"  # Optional.
             }
+
+            # JSON input template for discriminator value "goblin":
+            fish = {
+                "age": 0,  # Optional.
+                "birthday": "2020-02-20 00:00:00",  # Required.
+                "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                  values are: "pink", "gray", "brown", "RED", and "red".
+                "fishtype": "goblin",
+                "jawsize": 0,  # Optional.
+                "length": 0.0,  # Required.
+                "siblings": [
+                    fish
+                ],
+                "species": "str"  # Optional.
+            }
+
+            # JSON input template for discriminator value "sawshark":
+            fish = {
+                "age": 0,  # Optional.
+                "birthday": "2020-02-20 00:00:00",  # Required.
+                "fishtype": "sawshark",
+                "length": 0.0,  # Required.
+                "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                "siblings": [
+                    fish
+                ],
+                "species": "str"  # Optional.
+            }
+
+            # JSON input template you can fill out and use as your body input.
+            json = fish
     """
 
 
@@ -682,8 +773,8 @@ def build_put_valid_missing_required_request(
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword content: Please attempt put a sawshark that looks like this, the client should not
      allow this data to be sent:
@@ -717,7 +808,7 @@ def build_put_valid_missing_required_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
@@ -730,8 +821,8 @@ def build_put_valid_missing_required_request(
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
 
     :keyword json: Please attempt put a sawshark that looks like this, the client should not allow
      this data to be sent:
@@ -765,7 +856,7 @@ def build_put_valid_missing_required_request(
      Default value is None.
     :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """

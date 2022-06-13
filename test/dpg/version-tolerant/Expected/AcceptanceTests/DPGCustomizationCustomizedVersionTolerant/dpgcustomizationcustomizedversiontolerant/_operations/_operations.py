@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,6 +25,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .._serialization import Serializer
 from .._vendor import MixinABC, _format_url_section
 
 if sys.version_info >= (3, 9):
@@ -138,7 +137,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -204,7 +203,7 @@ class DPGClientOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -231,7 +230,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -258,7 +257,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -326,7 +325,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -442,7 +441,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "provisioningState": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }

@@ -29,8 +29,8 @@ from datetime import date, datetime, timedelta
 from base64 import b64encode
 from bodyarraylowlevel import AutoRestSwaggerBATArrayService
 from bodyarraylowlevel.rest import array
+from bodyarraylowlevel._serialization import Serializer, Deserializer
 from azure.core.exceptions import DecodeError
-import msrest
 import pytest
 
 @pytest.fixture
@@ -69,6 +69,14 @@ def send_request_json_response(client, base_send_request_json_response):
     def _send_request(request):
         return base_send_request_json_response(client, request)
     return _send_request
+
+@pytest.fixture
+def serializer():
+    return Serializer()
+
+@pytest.fixture
+def deserializer():
+    return Deserializer()
 
 
 def test_empty(send_request, send_request_json_response):
@@ -157,17 +165,17 @@ def test_date_valid(send_request, send_request_json_response):
     request = array.build_put_date_valid_request(json=[str(date1), str(date2), str(date3)])  # dates are not json serializable
     send_request(request)
 
-def test_date_time_valid(send_request, send_request_json_response, datetimes, msrest_serializer):
+def test_date_time_valid(send_request, send_request_json_response, datetimes, serializer):
     request = array.build_get_date_time_valid_request()
 
     assert send_request_json_response(request), [datetimes[0], datetimes[1] ==  datetimes[2]]
-    request = array.build_put_date_time_valid_request(json=[msrest_serializer.serialize_iso(datetime) for datetime in datetimes])
+    request = array.build_put_date_time_valid_request(json=[serializer.serialize_iso(datetime) for datetime in datetimes])
     send_request(request)
 
-def test_date_time_rfc1123_valid(send_request, send_request_json_response, datetimes, msrest_serializer):
+def test_date_time_rfc1123_valid(send_request, send_request_json_response, datetimes, serializer):
     request = array.build_get_date_time_rfc1123_valid_request()
     assert send_request_json_response(request), [datetimes[0], datetimes[1] ==  datetimes[2]]
-    request = array.build_put_date_time_rfc1123_valid_request(json=[msrest_serializer.serialize_rfc(datetime) for datetime in datetimes])
+    request = array.build_put_date_time_rfc1123_valid_request(json=[serializer.serialize_rfc(datetime) for datetime in datetimes])
     send_request(request)
 
 def test_duration_valid(send_request, send_request_json_response):
@@ -339,13 +347,13 @@ def test_array_get_date_time_invalid_chars(send_request_json_response):
     request = array.build_get_date_time_invalid_chars_request()
     assert send_request_json_response(request) == ['2000-12-01t00:00:01z', 'date-time']
 
-def test_array_get_base64_url(send_request_json_response, msrest_deserializer):
+def test_array_get_base64_url(send_request_json_response, deserializer):
     test_array = ['a string that gets encoded with base64url'.encode(),
                     'test string'.encode(),
                     'Lorem ipsum'.encode()]
     request = array.build_get_base64_url_request()
     response = send_request_json_response(request)
-    assert [msrest_deserializer.deserialize_base64(s) for s in send_request_json_response(request)] == test_array
+    assert [deserializer.deserialize_base64(s) for s in send_request_json_response(request)] == test_array
 
 def test_array_enum_valid(send_request, send_request_json_response):
     request = array.build_get_enum_valid_request()

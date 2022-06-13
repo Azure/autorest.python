@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,12 +21,14 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .._serialization import Serializer
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_parameter_grouping_post_required_request(
@@ -88,10 +88,7 @@ def build_parameter_grouping_post_optional_request(
 def build_parameter_grouping_post_reserved_words_request(
     *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postReservedWords"
@@ -102,10 +99,7 @@ def build_parameter_grouping_post_reserved_words_request(
     if accept_parameter is not None:
         _params["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
 
 
 def build_parameter_grouping_post_multi_param_groups_request(

@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .._serialization import Serializer
 from .._vendor import MixinABC
 
 if sys.version_info >= (3, 9):
@@ -163,13 +162,14 @@ class MediaTypesClientOperationsMixin(MixinABC):
         """
 
     @overload
-    def analyze_body(self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def analyze_body(self, input: Optional[IO] = None, *, content_type: str, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
+         'image/tiff'. Required.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -202,6 +202,11 @@ class MediaTypesClientOperationsMixin(MixinABC):
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are:"
+                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
+                )
         else:
             if input is not None:
                 _json = input
@@ -265,7 +270,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
     @overload
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, input: Optional[IO] = None, *, content_type: str, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
@@ -273,7 +278,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
+         'image/tiff'. Required.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -309,6 +315,11 @@ class MediaTypesClientOperationsMixin(MixinABC):
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are:"
+                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
+                )
         else:
             if input is not None:
                 _json = input

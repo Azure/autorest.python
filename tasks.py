@@ -90,7 +90,6 @@ _DPG_SWAGGER_MAPPINGS = {
 _GENERATOR_SPECIFIC_TESTS = {
     _Generator.LEGACY: {
         _SwaggerGroup.VANILLA: {
-            "BodyComplexPythonThreeOnly": "body-complex.json",
             'BodyArrayWithNamespaceFolders': 'body-array.json',
             'BodyByteWithPackageName': 'body-byte.json',
             'BodyArrayWithPythonThreeOperationFiles': 'body-array.json',
@@ -113,11 +112,6 @@ _GENERATOR_SPECIFIC_TESTS = {
 _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
     'DPGTestModels': {
         "models-mode": "msrest",
-    },
-    'BodyComplexPythonThreeOnly': {
-        "python3-only": True,
-        "namespace": "bodycomplexpython3only",
-        "package-name": "bodycomplexpython3only",
     },
     'BodyArrayWithNamespaceFolders': {
         "namespace": "vanilla.body.array"
@@ -233,7 +227,9 @@ def _build_flags(
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
     override_flags = override_flags or {}
     override_flags.update(_PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
-    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
+    low_level_client = kwargs.get("low_level_client", False)
+    version_tolerant = kwargs.get("version_tolerant", False)
+    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not (low_level_client or version_tolerant)
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
 
     generator, output_folder = _get_config(swagger_group, package_name, **kwargs)
@@ -247,6 +243,7 @@ def _build_flags(
     else:
         override_flags["payload-flattening-threshold"] = 1
         override_flags["reformat-next-link"] = False
+        override_flags["python3-only"] = True  # others default to python3 only
 
     flags = {
         "use": AUTOREST_DIR,

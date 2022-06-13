@@ -35,8 +35,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError
-
 from additionalproperties.aio import AdditionalPropertiesClient
 from additionalproperties.models import (
     PetAPTrue,

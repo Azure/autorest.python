@@ -31,7 +31,7 @@ from azure.core.exceptions import HttpResponseError
 from bodystringlowlevel.aio import AutoRestSwaggerBATService
 from bodystringlowlevel.rest import string, enum
 import pytest
-from msrest import Serializer, Deserializer
+from bodystringlowlevel._serialization import Serializer, Deserializer
 from base64 import b64decode
 
 @pytest.fixture

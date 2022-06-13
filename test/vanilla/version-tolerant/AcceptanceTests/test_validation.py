@@ -23,8 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from msrest.exceptions import ValidationError
 
+from azure.core.exceptions import ResourceNotFoundError
 from validationversiontolerant import AutoRestValidationTest
 
 import pytest
@@ -62,73 +62,26 @@ def test_post_with_constant_in_body(client, constant_body):
     product = client.post_with_constant_in_body(body=constant_body)
     assert product is not None
 
-def test_min_length_validation(client):
-    with pytest.raises(ValidationError) as ex:
+# Note: the client-side-validation is not supported for low-level client, 
+#       so this request with faked path will be sent to testserver and get an ResourceNotFoundError
+def test_fakedpath_validation(client):
+    with pytest.raises(ResourceNotFoundError) as ex:
         client.validation_of_method_parameters("1", 100)
-    assert ex.value.rule ==  "min_length"
-    assert ex.value.target ==  "resource_group_name"
-
-def test_max_length_validation(client):
-    with pytest.raises(ValidationError) as ex:
-        client.validation_of_method_parameters("1234567890A", 100)
-    assert ex.value.rule ==  "max_length"
-    assert ex.value.target ==  "resource_group_name"
-
-def test_pattern_validation(client):
-    with pytest.raises(ValidationError) as ex:
-        client.validation_of_method_parameters("!@#$", 100)
-    assert ex.value.rule ==  "pattern"
-    assert ex.value.target ==  "resource_group_name"
-
-def test_multiple_validation(client):
-    with pytest.raises(ValidationError) as ex:
-        client.validation_of_method_parameters("123", 105)
-    assert ex.value.rule ==  "multiple"
-    assert ex.value.target ==  "id"
-
-def test_minimum_validation(client):
-    with pytest.raises(ValidationError) as ex:
-        client.validation_of_method_parameters("123", 0)
-    assert ex.value.rule ==  "minimum"
-    assert ex.value.target ==  "id"
-
-def test_maximum_validation(client):
-    with pytest.raises(ValidationError) as ex:
-        client.validation_of_method_parameters("123", 2000)
-    assert ex.value.rule ==  "maximum"
-    assert ex.value.target ==  "id"
 
 @pytest.mark.skip(reason="Not generating models yet, can't validate")
 def test_minimum_ex_validation(client, constant_body):
-    with pytest.raises(ValidationError) as ex:
+    with pytest.raises(ValueError) as ex:
         constant_body['capacity'] = 0
         client.validation_of_body("123", 150, constant_body)
-    assert ex.value.rule ==  "minimum_ex"
-    assert "capacity" in  ex.value.target
 
 @pytest.mark.skip(reason="Not generating models yet, can't validate")
 def test_maximum_ex_validation(client, constant_body):
-    with pytest.raises(ValidationError) as ex:
+    with pytest.raises(ValueError) as ex:
         constant_body['capacity'] = 100
         client.validation_of_body("123", 150, constant_body)
-    assert ex.value.rule ==  "maximum_ex"
-    assert "capacity" in  ex.value.target
 
 @pytest.mark.skip(reason="Not generating models yet, can't validate")
 def test_max_items_validation(client, constant_body):
-    with pytest.raises(ValidationError) as ex:
+    with pytest.raises(ValueError) as ex:
         constant_body.display_names = ["item1","item2","item3","item4","item5","item6","item7"]
         client.validation_of_body("123", 150, constant_body)
-    assert ex.value.rule ==  "max_items"
-    assert "display_names" in  ex.value.target
-
-@pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
-def test_api_version_validation(client):
-    client = AutoRestValidationTest(
-        "abc123",
-    )
-    client.api_version = "abc"
-    with pytest.raises(ValidationError) as ex:
-        client.validation_of_method_parameters("123", 150)
-    assert ex.value.rule ==  "pattern"
-    assert ex.value.target ==  "self.api_version"

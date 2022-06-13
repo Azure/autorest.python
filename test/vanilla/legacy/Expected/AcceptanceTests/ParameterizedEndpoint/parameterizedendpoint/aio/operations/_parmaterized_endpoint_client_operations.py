@@ -22,12 +22,13 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._vendor import _convert_request
 from ...operations._parmaterized_endpoint_client_operations import build_get_request
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ParmaterizedEndpointClientOperationsMixin:
+class ParmaterizedEndpointClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.

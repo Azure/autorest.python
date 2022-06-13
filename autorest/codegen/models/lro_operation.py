@@ -124,6 +124,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
         self, async_mode: bool, is_python3_file: bool, **kwargs: Any
     ) -> FileImport:
         file_import = super().imports(async_mode, is_python3_file, **kwargs)
+        if self.abstract:
+            return file_import
         if async_mode:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator_async",

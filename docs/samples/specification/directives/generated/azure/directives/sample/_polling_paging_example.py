@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 
 from . import models
 from ._configuration import PollingPagingExampleConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import PollingPagingExampleOperationsMixin
 
 if TYPE_CHECKING:
@@ -61,7 +60,7 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disa
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

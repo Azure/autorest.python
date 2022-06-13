@@ -98,7 +98,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "RefToModel": {
                         "ID": "str"  # Optional. The id of the res.
                     },
@@ -206,7 +206,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "RefToModel": {
                         "ID": "str"  # Optional. The id of the res.
                     },
@@ -314,7 +314,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "author": "str",  # Optional.
                     "date": "str",  # Optional.
                     "slides": [
@@ -438,7 +438,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "BadApples": [
                         "str"  # Optional.
                     ],
@@ -588,7 +588,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "author": "str",  # Optional.
                     "date": "str",  # Optional.
                     "slides": [
@@ -712,7 +712,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "BadApples": [
                         "str"  # Optional.
                     ],
@@ -824,7 +824,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                           you should reconsider eating this banana.
@@ -936,7 +936,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                           you should reconsider eating this banana.
@@ -1048,7 +1048,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
                           you should reconsider eating this banana.
@@ -1160,7 +1160,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you
                       should reconsider eating this banana.
                     "flavor": "str",  # Optional.
@@ -1271,7 +1271,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Containers": [
                         {
                             "Metadata": {
@@ -1354,7 +1354,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Cors": [
                         {
                             "AllowedHeaders": "str",  # the request headers that the
@@ -1628,7 +1628,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "AccessPolicy": {
                             "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
@@ -1770,7 +1770,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Blobs": {
                         "Blob": [
                             {
@@ -2005,7 +2005,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0  # Optional.
                 }
         """
@@ -2056,7 +2056,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "content": "str",  # Optional. Returned value should be 'I am text'.
                     "language": "str"  # Optional. Returned value should be 'english'.
                 }
@@ -2107,7 +2107,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Bytes": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
@@ -2209,7 +2209,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "Url": "str"  # Optional.
                 }
         """

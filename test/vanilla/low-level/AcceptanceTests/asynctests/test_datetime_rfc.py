@@ -28,6 +28,7 @@ from async_generator import yield_, async_generator
 
 from bodydatetimerfc1123lowlevel.aio import AutoRestRFC1123DateTimeTestService
 from bodydatetimerfc1123lowlevel.rest import datetimerfc1123
+from bodydatetimerfc1123lowlevel._serialization import Serializer
 
 import pytest
 
@@ -50,6 +51,11 @@ def send_request_json_response(client, base_send_request_json_response):
         return await base_send_request_json_response(client, request)
     return _send_request
 
+@pytest.fixture
+def serializer():
+    return Serializer()
+
+
 @pytest.mark.asyncio
 async def test_get_null(send_request):
     request = datetimerfc1123.build_get_null_request()
@@ -71,7 +77,7 @@ async def test_get_overflow(send_request_json_response):
     assert "Sat, 1 Jan 10000 00:00:00 GMT" == await send_request_json_response(request)
 
 @pytest.mark.asyncio
-async def test_utc_max_date_time(send_request, msrest_serializer):
+async def test_utc_max_date_time(send_request, serializer):
     max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
 
     request = datetimerfc1123.build_get_utc_lowercase_max_date_time_request()
@@ -80,14 +86,14 @@ async def test_utc_max_date_time(send_request, msrest_serializer):
     request = datetimerfc1123.build_get_utc_uppercase_max_date_time_request()
     await send_request(request)
 
-    request = datetimerfc1123.build_put_utc_max_date_time_request(json=msrest_serializer.serialize_rfc(max_date))
+    request = datetimerfc1123.build_put_utc_max_date_time_request(json=serializer.serialize_rfc(max_date))
     await send_request(request)
 
 @pytest.mark.asyncio
-async def test_utc_min_date_time(send_request, msrest_serializer):
+async def test_utc_min_date_time(send_request, serializer):
     min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
     request = datetimerfc1123.build_get_utc_min_date_time_request()
     await send_request(request)
 
-    request = datetimerfc1123.build_put_utc_min_date_time_request(json=msrest_serializer.serialize_rfc(min_date))
+    request = datetimerfc1123.build_put_utc_min_date_time_request(json=serializer.serialize_rfc(min_date))
     await send_request(request)
