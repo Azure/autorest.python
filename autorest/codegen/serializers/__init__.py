@@ -167,11 +167,6 @@ class JinjaSerializer:
                 ):
                     template = env.get_template(template_name)
                     render_result = template.render(**kwargs)
-                    # make sure some files will be formatted(setup.py, etc)
-                    if ".py" in file:
-                        render_result = black.format_file_contents(
-                            render_result, fast=True, mode=_BLACK_MODE
-                        )
                     self._autorestapi.write_file(output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
