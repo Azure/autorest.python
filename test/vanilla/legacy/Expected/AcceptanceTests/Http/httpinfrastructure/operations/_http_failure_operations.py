@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -19,16 +25,8 @@ from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-    T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-=======
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -95,17 +93,8 @@ class HttpFailureOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-<<<<<<< HEAD
-    def get_empty_error(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
-=======
     def get_empty_error(self, **kwargs: Any) -> bool:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -113,19 +102,16 @@ class HttpFailureOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
-        
         request = build_get_empty_error_request(
-            template_url=self.get_empty_error.metadata['url'],
+            template_url=self.get_empty_error.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -133,9 +119,7 @@ class HttpFailureOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -145,26 +129,17 @@ class HttpFailureOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_empty_error.metadata = {'url': "/http/failure/emptybody/error"}  # type: ignore
-
+    get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_no_model_error(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
-=======
     def get_no_model_error(self, **kwargs: Any) -> bool:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -172,19 +147,16 @@ class HttpFailureOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
-        
         request = build_get_no_model_error_request(
-            template_url=self.get_no_model_error.metadata['url'],
+            template_url=self.get_no_model_error.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -192,9 +164,7 @@ class HttpFailureOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -203,26 +173,17 @@ class HttpFailureOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_no_model_error.metadata = {'url': "/http/failure/nomodel/error"}  # type: ignore
-
+    get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_no_model_empty(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
-=======
     def get_no_model_empty(self, **kwargs: Any) -> bool:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get empty response from server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -230,19 +191,16 @@ class HttpFailureOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
-        
         request = build_get_no_model_empty_request(
-            template_url=self.get_no_model_empty.metadata['url'],
+            template_url=self.get_no_model_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -250,9 +208,7 @@ class HttpFailureOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -261,12 +217,11 @@ class HttpFailureOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_no_model_empty.metadata = {'url': "/http/failure/nomodel/empty"}  # type: ignore
-
+    get_no_model_empty.metadata = {"url": "/http/failure/nomodel/empty"}  # type: ignore

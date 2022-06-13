@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -17,9 +23,31 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._http_success_operations import build_delete200_request, build_delete202_request, build_delete204_request, build_get200_request, build_head200_request, build_head204_request, build_head404_request, build_options200_request, build_patch200_request, build_patch202_request, build_patch204_request, build_post200_request, build_post201_request, build_post202_request, build_post204_request, build_put200_request, build_put201_request, build_put202_request, build_put204_request
-T = TypeVar('T')
+from ...operations._http_success_operations import (
+    build_delete200_request,
+    build_delete202_request,
+    build_delete204_request,
+    build_get200_request,
+    build_head200_request,
+    build_head204_request,
+    build_head404_request,
+    build_options200_request,
+    build_patch200_request,
+    build_patch202_request,
+    build_patch204_request,
+    build_post200_request,
+    build_post201_request,
+    build_post202_request,
+    build_post204_request,
+    build_put200_request,
+    build_put201_request,
+    build_put202_request,
+    build_put204_request,
+)
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class HttpSuccessOperations:
     """
@@ -40,12 +68,8 @@ class HttpSuccessOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace_async
-    async def head200(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,19 +77,16 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head200_request(
-            template_url=self.head200.metadata['url'],
+            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -73,9 +94,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -88,14 +107,10 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def get200(
-        self,
-        **kwargs: Any
-    ) -> bool:
+    async def get200(self, **kwargs: Any) -> bool:
         """Get 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -103,19 +118,16 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
-        
         request = build_get200_request(
-            template_url=self.get200.metadata['url'],
+            template_url=self.get200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -123,9 +135,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -135,21 +145,17 @@ class HttpSuccessOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    get200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def options200(
-        self,
-        **kwargs: Any
-    ) -> bool:
+    async def options200(self, **kwargs: Any) -> bool:
         """Options 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -157,19 +163,16 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
-        
         request = build_options200_request(
-            template_url=self.options200.metadata['url'],
+            template_url=self.options200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -177,9 +180,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -189,21 +190,18 @@ class HttpSuccessOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    options200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def put200(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
@@ -215,26 +213,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put200.metadata['url'],
+            template_url=self.put200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -242,9 +238,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -257,14 +251,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def patch200(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
@@ -276,26 +267,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_patch200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch200.metadata['url'],
+            template_url=self.patch200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -303,9 +292,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -318,14 +305,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def post200(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
@@ -337,26 +321,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_post200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post200.metadata['url'],
+            template_url=self.post200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -364,9 +346,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -379,14 +359,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def delete200(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
@@ -398,26 +375,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_delete200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete200.metadata['url'],
+            template_url=self.delete200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -425,9 +400,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -440,14 +413,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def put201(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
@@ -459,26 +429,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put201_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put201.metadata['url'],
+            template_url=self.put201.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -486,9 +454,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -501,14 +467,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put201.metadata = {'url': "/http/success/201"}  # type: ignore
-
+    put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
     async def post201(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
@@ -520,26 +483,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_post201_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post201.metadata['url'],
+            template_url=self.post201.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -547,9 +508,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -562,14 +521,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post201.metadata = {'url': "/http/success/201"}  # type: ignore
-
+    post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
     async def put202(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
@@ -581,26 +537,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put202.metadata['url'],
+            template_url=self.put202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -608,9 +562,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -623,14 +575,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put202.metadata = {'url': "/http/success/202"}  # type: ignore
-
+    put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def patch202(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
@@ -642,26 +591,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_patch202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch202.metadata['url'],
+            template_url=self.patch202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -669,9 +616,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -684,14 +629,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch202.metadata = {'url': "/http/success/202"}  # type: ignore
-
+    patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def post202(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
@@ -703,26 +645,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_post202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post202.metadata['url'],
+            template_url=self.post202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -730,9 +670,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -745,14 +683,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post202.metadata = {'url': "/http/success/202"}  # type: ignore
-
+    post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def delete202(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
@@ -764,26 +699,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_delete202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete202.metadata['url'],
+            template_url=self.delete202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -791,9 +724,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -806,14 +737,10 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete202.metadata = {'url': "/http/success/202"}  # type: ignore
-
+    delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def head204(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -821,19 +748,16 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head204_request(
-            template_url=self.head204.metadata['url'],
+            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -841,9 +765,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -856,14 +778,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head204.metadata = {'url': "/http/success/204"}  # type: ignore
-
+    head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def put204(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
@@ -875,26 +794,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put204.metadata['url'],
+            template_url=self.put204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -902,9 +819,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -917,14 +832,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put204.metadata = {'url': "/http/success/204"}  # type: ignore
-
+    put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def patch204(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
@@ -936,26 +848,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_patch204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch204.metadata['url'],
+            template_url=self.patch204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -963,9 +873,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -978,14 +886,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch204.metadata = {'url': "/http/success/204"}  # type: ignore
-
+    patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def post204(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
@@ -997,26 +902,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_post204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post204.metadata['url'],
+            template_url=self.post204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1024,9 +927,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1039,14 +940,11 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post204.metadata = {'url': "/http/success/204"}  # type: ignore
-
+    post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def delete204(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
@@ -1058,26 +956,24 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_delete204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete204.metadata['url'],
+            template_url=self.delete204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1085,9 +981,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1100,14 +994,10 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete204.metadata = {'url': "/http/success/204"}  # type: ignore
-
+    delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def head404(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 404 status code.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1115,19 +1005,16 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head404_request(
-            template_url=self.head404.metadata['url'],
+            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1135,9 +1022,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1150,5 +1035,4 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head404.metadata = {'url': "/http/success/404"}  # type: ignore
-
+    head404.metadata = {"url": "/http/success/404"}  # type: ignore

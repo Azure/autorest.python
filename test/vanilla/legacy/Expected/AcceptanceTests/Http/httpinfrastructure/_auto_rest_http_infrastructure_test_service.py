@@ -14,17 +14,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
-<<<<<<< HEAD
-from .operations import HttpClientFailureOperations, HttpFailureOperations, HttpRedirectsOperations, HttpRetryOperations, HttpServerFailureOperations, HttpSuccessOperations, MultipleResponsesOperations
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.rest import HttpRequest, HttpResponse
-
-class AutoRestHttpInfrastructureTestService(object):  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
-=======
 from ._serialization import Deserializer, Serializer
 from .operations import (
     HttpClientFailureOperations,
@@ -38,7 +27,6 @@ from .operations import (
 
 
 class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations
@@ -67,39 +55,21 @@ class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-a
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.http_failure = HttpFailureOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.http_redirects = HttpRedirectsOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.http_failure = HttpFailureOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_redirects = HttpRedirectsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.http_client_failure = HttpClientFailureOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.http_server_failure = HttpServerFailureOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.http_retry = HttpRetryOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.http_retry = HttpRetryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.multiple_responses = MultipleResponsesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
-<<<<<<< HEAD
-
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
-=======
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

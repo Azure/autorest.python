@@ -10,7 +10,13 @@ from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from msrest import Serializer
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -20,16 +26,8 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._vendor import _convert_request
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-    T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-=======
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
 
@@ -84,17 +82,8 @@ class PolymorphicrecursiveOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-<<<<<<< HEAD
-    def get_valid(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> _models.Fish
-=======
     def get_valid(self, **kwargs: Any) -> _models.Fish:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -102,19 +91,16 @@ class PolymorphicrecursiveOperations:
         :rtype: ~bodycomplex.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Fish]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata['url'],
+            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -122,9 +108,7 @@ class PolymorphicrecursiveOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -134,15 +118,14 @@ class PolymorphicrecursiveOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('Fish', pipeline_response)
+        deserialized = self._deserialize("Fish", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_valid.metadata = {'url': "/complex/polymorphicrecursive/valid"}  # type: ignore
-
+    get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -282,7 +265,6 @@ class PolymorphicrecursiveOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[_models.Fish, IO], **kwargs: Any
@@ -351,16 +333,14 @@ class PolymorphicrecursiveOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -368,13 +348,13 @@ class PolymorphicrecursiveOperations:
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, 'Fish')
+            _json = self._serialize.body(complex_body, "Fish")
 
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata['url'],
+            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -382,9 +362,7 @@ class PolymorphicrecursiveOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -397,5 +375,4 @@ class PolymorphicrecursiveOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': "/complex/polymorphicrecursive/valid"}  # type: ignore
-
+    put_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore

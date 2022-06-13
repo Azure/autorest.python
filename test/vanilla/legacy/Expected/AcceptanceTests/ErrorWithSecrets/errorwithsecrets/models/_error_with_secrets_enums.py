@@ -11,15 +11,14 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class ErrorCode(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Human-readable error code.
-    """
+    """Human-readable error code."""
 
     BAD_PARAMETER = "BadParameter"
     UNAUTHORIZED = "Unauthorized"
 
+
 class InnerErrorCode(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Human-readable error code.
-    """
+    """Human-readable error code."""
 
     MISSING_SHARED_KEY = "MissingSharedKey"
     UNAUTHORIZED_SHARED_KEY = "UnauthorizedSharedKey"

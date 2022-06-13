@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -17,9 +23,38 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._http_client_failure_operations import build_delete400_request, build_delete407_request, build_delete417_request, build_get400_request, build_get402_request, build_get403_request, build_get411_request, build_get412_request, build_get416_request, build_head400_request, build_head401_request, build_head410_request, build_head429_request, build_options400_request, build_options403_request, build_options412_request, build_patch400_request, build_patch405_request, build_patch414_request, build_post400_request, build_post406_request, build_post415_request, build_put400_request, build_put404_request, build_put409_request, build_put413_request
-T = TypeVar('T')
+from ...operations._http_client_failure_operations import (
+    build_delete400_request,
+    build_delete407_request,
+    build_delete417_request,
+    build_get400_request,
+    build_get402_request,
+    build_get403_request,
+    build_get411_request,
+    build_get412_request,
+    build_get416_request,
+    build_head400_request,
+    build_head401_request,
+    build_head410_request,
+    build_head429_request,
+    build_options400_request,
+    build_options403_request,
+    build_options412_request,
+    build_patch400_request,
+    build_patch405_request,
+    build_patch414_request,
+    build_post400_request,
+    build_post406_request,
+    build_post415_request,
+    build_put400_request,
+    build_put404_request,
+    build_put409_request,
+    build_put413_request,
+)
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     """
@@ -40,12 +75,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace_async
-    async def head400(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def head400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,19 +84,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head400_request(
-            template_url=self.head400.metadata['url'],
+            template_url=self.head400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -73,9 +101,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -88,14 +114,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head400.metadata = {'url': "/http/failure/client/400"}  # type: ignore
-
+    head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def get400(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def get400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -103,19 +125,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_get400_request(
-            template_url=self.get400.metadata['url'],
+            template_url=self.get400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -123,9 +142,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -138,14 +155,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get400.metadata = {'url': "/http/failure/client/400"}  # type: ignore
-
+    get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def options400(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def options400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -153,19 +166,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_options400_request(
-            template_url=self.options400.metadata['url'],
+            template_url=self.options400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -173,9 +183,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -188,14 +196,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    options400.metadata = {'url': "/http/failure/client/400"}  # type: ignore
-
+    options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def put400(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -207,26 +212,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put400.metadata['url'],
+            template_url=self.put400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -234,9 +237,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -249,14 +250,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put400.metadata = {'url': "/http/failure/client/400"}  # type: ignore
-
+    put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def patch400(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -268,26 +266,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_patch400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch400.metadata['url'],
+            template_url=self.patch400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -295,9 +291,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -310,14 +304,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch400.metadata = {'url': "/http/failure/client/400"}  # type: ignore
-
+    patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def post400(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -329,26 +320,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_post400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post400.metadata['url'],
+            template_url=self.post400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -356,9 +345,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -371,14 +358,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    post400.metadata = {'url': "/http/failure/client/400"}  # type: ignore
-
+    post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def delete400(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -390,26 +374,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_delete400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete400.metadata['url'],
+            template_url=self.delete400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -417,9 +399,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -432,14 +412,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete400.metadata = {'url': "/http/failure/client/400"}  # type: ignore
-
+    delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def head401(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def head401(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 401 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -447,19 +423,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head401_request(
-            template_url=self.head401.metadata['url'],
+            template_url=self.head401.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -467,9 +440,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -482,14 +453,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head401.metadata = {'url': "/http/failure/client/401"}  # type: ignore
-
+    head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
     @distributed_trace_async
-    async def get402(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def get402(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 402 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -497,19 +464,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_get402_request(
-            template_url=self.get402.metadata['url'],
+            template_url=self.get402.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -517,9 +481,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -532,14 +494,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get402.metadata = {'url': "/http/failure/client/402"}  # type: ignore
-
+    get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
 
     @distributed_trace_async
-    async def options403(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def options403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -547,19 +505,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_options403_request(
-            template_url=self.options403.metadata['url'],
+            template_url=self.options403.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -567,9 +522,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -582,14 +535,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    options403.metadata = {'url': "/http/failure/client/403"}  # type: ignore
-
+    options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace_async
-    async def get403(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def get403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -597,19 +546,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_get403_request(
-            template_url=self.get403.metadata['url'],
+            template_url=self.get403.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -617,9 +563,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -632,14 +576,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get403.metadata = {'url': "/http/failure/client/403"}  # type: ignore
-
+    get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace_async
     async def put404(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
@@ -651,26 +592,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put404_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put404.metadata['url'],
+            template_url=self.put404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -678,9 +617,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -693,14 +630,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put404.metadata = {'url': "/http/failure/client/404"}  # type: ignore
-
+    put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
 
     @distributed_trace_async
     async def patch405(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
@@ -712,26 +646,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_patch405_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch405.metadata['url'],
+            template_url=self.patch405.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -739,9 +671,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -754,14 +684,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch405.metadata = {'url': "/http/failure/client/405"}  # type: ignore
-
+    patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
     @distributed_trace_async
     async def post406(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
@@ -773,26 +700,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_post406_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post406.metadata['url'],
+            template_url=self.post406.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -800,9 +725,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -815,14 +738,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    post406.metadata = {'url': "/http/failure/client/406"}  # type: ignore
-
+    post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
 
     @distributed_trace_async
     async def delete407(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
@@ -834,26 +754,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_delete407_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete407.metadata['url'],
+            template_url=self.delete407.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -861,9 +779,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -876,14 +792,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete407.metadata = {'url': "/http/failure/client/407"}  # type: ignore
-
+    delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
     @distributed_trace_async
     async def put409(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
@@ -895,26 +808,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put409_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put409.metadata['url'],
+            template_url=self.put409.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -922,9 +833,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -937,14 +846,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put409.metadata = {'url': "/http/failure/client/409"}  # type: ignore
-
+    put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
 
     @distributed_trace_async
-    async def head410(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def head410(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 410 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -952,19 +857,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head410_request(
-            template_url=self.head410.metadata['url'],
+            template_url=self.head410.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -972,9 +874,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -987,14 +887,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head410.metadata = {'url': "/http/failure/client/410"}  # type: ignore
-
+    head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
     @distributed_trace_async
-    async def get411(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def get411(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 411 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1002,19 +898,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_get411_request(
-            template_url=self.get411.metadata['url'],
+            template_url=self.get411.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1022,9 +915,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1037,14 +928,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get411.metadata = {'url': "/http/failure/client/411"}  # type: ignore
-
+    get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
 
     @distributed_trace_async
-    async def options412(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def options412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1052,19 +939,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_options412_request(
-            template_url=self.options412.metadata['url'],
+            template_url=self.options412.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1072,9 +956,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1087,14 +969,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    options412.metadata = {'url': "/http/failure/client/412"}  # type: ignore
-
+    options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace_async
-    async def get412(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def get412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1102,19 +980,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_get412_request(
-            template_url=self.get412.metadata['url'],
+            template_url=self.get412.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1122,9 +997,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1137,14 +1010,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get412.metadata = {'url': "/http/failure/client/412"}  # type: ignore
-
+    get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace_async
     async def put413(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
@@ -1156,26 +1026,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_put413_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put413.metadata['url'],
+            template_url=self.put413.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1183,9 +1051,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1198,14 +1064,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put413.metadata = {'url': "/http/failure/client/413"}  # type: ignore
-
+    put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
 
     @distributed_trace_async
     async def patch414(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
@@ -1217,26 +1080,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_patch414_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch414.metadata['url'],
+            template_url=self.patch414.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1244,9 +1105,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1259,14 +1118,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch414.metadata = {'url': "/http/failure/client/414"}  # type: ignore
-
+    patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
     @distributed_trace_async
     async def post415(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
@@ -1278,26 +1134,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_post415_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post415.metadata['url'],
+            template_url=self.post415.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1305,9 +1159,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1320,14 +1172,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    post415.metadata = {'url': "/http/failure/client/415"}  # type: ignore
-
+    post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
 
     @distributed_trace_async
-    async def get416(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def get416(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 416 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1335,19 +1183,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_get416_request(
-            template_url=self.get416.metadata['url'],
+            template_url=self.get416.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1355,9 +1200,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1370,14 +1213,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get416.metadata = {'url': "/http/failure/client/416"}  # type: ignore
-
+    get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
     @distributed_trace_async
     async def delete417(  # pylint: disable=inconsistent-return-statements
-        self,
-        boolean_value: bool = True,
-        **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
@@ -1389,26 +1229,24 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, 'bool')
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
         request = build_delete417_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete417.metadata['url'],
+            template_url=self.delete417.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1416,9 +1254,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1431,14 +1267,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete417.metadata = {'url': "/http/failure/client/417"}  # type: ignore
-
+    delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
 
     @distributed_trace_async
-    async def head429(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def head429(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 429 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1446,19 +1278,16 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head429_request(
-            template_url=self.head429.metadata['url'],
+            template_url=self.head429.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1466,9 +1295,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1481,5 +1308,4 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head429.metadata = {'url': "/http/failure/client/429"}  # type: ignore
-
+    head429.metadata = {"url": "/http/failure/client/429"}  # type: ignore

@@ -17,18 +17,8 @@ from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import EnumOperations, StringOperations
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.rest import HttpRequest, HttpResponse
-
-class AutoRestSwaggerBATService(object):  # pylint: disable=client-accepts-api-version-keyword
-=======
 
 class AutoRestSwaggerBATService:  # pylint: disable=client-accepts-api-version-keyword
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar string: StringOperations operations
@@ -47,13 +37,8 @@ class AutoRestSwaggerBATService:  # pylint: disable=client-accepts-api-version-k
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.string = StringOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.enum = EnumOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-
+        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

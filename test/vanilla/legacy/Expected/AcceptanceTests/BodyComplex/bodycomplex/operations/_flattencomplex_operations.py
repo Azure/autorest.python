@@ -10,7 +10,13 @@ from typing import Any, Callable, Dict, Optional, TypeVar
 
 from msrest import Serializer
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -20,16 +26,8 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._vendor import _convert_request
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-    T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-=======
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
 
@@ -67,17 +65,8 @@ class FlattencomplexOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-<<<<<<< HEAD
-    def get_valid(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> _models.MyBaseType
-=======
     def get_valid(self, **kwargs: Any) -> _models.MyBaseType:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -85,19 +74,16 @@ class FlattencomplexOperations:
         :rtype: ~bodycomplex.models.MyBaseType
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.MyBaseType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyBaseType]
 
-        
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata['url'],
+            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -105,9 +91,7 @@ class FlattencomplexOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -116,12 +100,11 @@ class FlattencomplexOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyBaseType', pipeline_response)
+        deserialized = self._deserialize("MyBaseType", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_valid.metadata = {'url': "/complex/flatten/valid"}  # type: ignore
-
+    get_valid.metadata = {"url": "/complex/flatten/valid"}  # type: ignore

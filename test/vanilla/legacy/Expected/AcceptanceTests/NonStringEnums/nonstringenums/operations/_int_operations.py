@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar, Union
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -19,16 +25,8 @@ from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar, Union
-    T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-=======
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -82,7 +80,6 @@ class IntOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
     def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs: Any) -> str:
         """Put an int enum.
@@ -95,26 +92,24 @@ class IntOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         if input is not None:
-            _json = self._serialize.body(input, 'int')
+            _json = self._serialize.body(input, "int")
         else:
             _json = None
 
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata['url'],
+            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -122,9 +117,7 @@ class IntOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -133,26 +126,17 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('str', pipeline_response)
+        deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    put.metadata = {'url': "/nonStringEnums/int/put"}  # type: ignore
-
+    put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Union[int, "_models.IntEnum"]
-=======
     def get(self, **kwargs: Any) -> Union[int, "_models.IntEnum"]:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -160,19 +144,16 @@ class IntOperations:
         :rtype: int or ~nonstringenums.models.IntEnum
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "_models.IntEnum"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Union[int, "_models.IntEnum"]]
 
-        
         request = build_get_request(
-            template_url=self.get.metadata['url'],
+            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -180,9 +161,7 @@ class IntOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -191,12 +170,11 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('int', pipeline_response)
+        deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get.metadata = {'url': "/nonStringEnums/int/get"}  # type: ignore
-
+    get.metadata = {"url": "/nonStringEnums/int/get"}  # type: ignore

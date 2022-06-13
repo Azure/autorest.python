@@ -11,8 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class Colors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Referenced Color Enum Description.
-    """
+    """Referenced Color Enum Description."""
 
     RED_COLOR = "red color"
     GREEN_COLOR = "green-color"

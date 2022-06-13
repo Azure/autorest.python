@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -18,8 +24,10 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._readonlyproperty_operations import build_get_valid_request, build_put_valid_request
-T = TypeVar('T')
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class ReadonlypropertyOperations:
     """
@@ -40,12 +48,8 @@ class ReadonlypropertyOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace_async
-    async def get_valid(
-        self,
-        **kwargs: Any
-    ) -> _models.ReadonlyObj:
+    async def get_valid(self, **kwargs: Any) -> _models.ReadonlyObj:
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,19 +57,16 @@ class ReadonlypropertyOperations:
         :rtype: ~bodycomplex.models.ReadonlyObj
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ReadonlyObj]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ReadonlyObj]
 
-        
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata['url'],
+            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -73,9 +74,7 @@ class ReadonlypropertyOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -85,21 +84,18 @@ class ReadonlypropertyOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('ReadonlyObj', pipeline_response)
+        deserialized = self._deserialize("ReadonlyObj", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_valid.metadata = {'url': "/complex/readonlyproperty/valid"}  # type: ignore
-
+    get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self,
-        size: Optional[int] = None,
-        **kwargs: Any
+        self, size: Optional[int] = None, **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
@@ -110,24 +106,22 @@ class ReadonlypropertyOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _complex_body = _models.ReadonlyObj(size=size)
-        _json = self._serialize.body(_complex_body, 'ReadonlyObj')
+        _json = self._serialize.body(_complex_body, "ReadonlyObj")
 
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata['url'],
+            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -135,9 +129,7 @@ class ReadonlypropertyOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -150,5 +142,4 @@ class ReadonlypropertyOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': "/complex/readonlyproperty/valid"}  # type: ignore
-
+    put_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore

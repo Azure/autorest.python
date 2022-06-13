@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -18,8 +24,10 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._inheritance_operations import build_get_valid_request, build_put_valid_request
-T = TypeVar('T')
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class InheritanceOperations:
     """
@@ -40,12 +48,8 @@ class InheritanceOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace_async
-    async def get_valid(
-        self,
-        **kwargs: Any
-    ) -> _models.Siamese:
+    async def get_valid(self, **kwargs: Any) -> _models.Siamese:
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,19 +57,16 @@ class InheritanceOperations:
         :rtype: ~bodycomplex.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Siamese]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
 
-        
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata['url'],
+            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -73,9 +74,7 @@ class InheritanceOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -85,23 +84,18 @@ class InheritanceOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('Siamese', pipeline_response)
+        deserialized = self._deserialize("Siamese", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_valid.metadata = {'url': "/complex/inheritance/valid"}  # type: ignore
-
+    get_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body: _models.Siamese,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, complex_body: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -120,11 +114,7 @@ class InheritanceOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body: IO,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -141,12 +131,9 @@ class InheritanceOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self,
-        complex_body: Union[_models.Siamese, IO],
-        **kwargs: Any
+        self, complex_body: Union[_models.Siamese, IO], **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -163,16 +150,14 @@ class InheritanceOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _json = None
@@ -180,13 +165,13 @@ class InheritanceOperations:
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
-            _json = self._serialize.body(complex_body, 'Siamese')
+            _json = self._serialize.body(complex_body, "Siamese")
 
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata['url'],
+            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -194,9 +179,7 @@ class InheritanceOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -209,5 +192,4 @@ class InheritanceOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': "/complex/inheritance/valid"}  # type: ignore
-
+    put_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore

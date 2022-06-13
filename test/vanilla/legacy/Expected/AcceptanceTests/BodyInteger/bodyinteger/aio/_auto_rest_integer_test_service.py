@@ -17,6 +17,7 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestIntegerTestServiceConfiguration
 from .operations import IntOperations
 
+
 class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
@@ -26,11 +27,7 @@ class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestIntegerTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -38,16 +35,9 @@ class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.int = IntOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
 
-
-    def _send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

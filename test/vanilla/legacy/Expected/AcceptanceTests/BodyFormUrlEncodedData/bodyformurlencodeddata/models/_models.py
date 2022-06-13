@@ -10,7 +10,9 @@
 import msrest.serialization
 
 
-class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(msrest.serialization.Model):
+class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
+    msrest.serialization.Model
+):
     """Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     All required parameters must be populated in order to send to Azure.
@@ -30,9 +32,9 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
     """
 
     _validation = {
-        'pet_type': {'required': True},
-        'pet_food': {'required': True},
-        'pet_age': {'required': True},
+        "pet_type": {"required": True},
+        "pet_food": {"required": True},
+        "pet_age": {"required": True},
     }
 
     _attribute_map = {
@@ -43,10 +45,7 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         "status": {"key": "status", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         """
         :keyword pet_type: Can take a value of dog, or cat, or fish. Required. Known values are: "dog",
          "cat", and "fish".
@@ -61,15 +60,19 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         :keyword status: Updated status of the pet.
         :paramtype status: str
         """
-        super(Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema, self).__init__(**kwargs)
-        self.pet_type = kwargs['pet_type']
-        self.pet_food = kwargs['pet_food']
-        self.pet_age = kwargs['pet_age']
-        self.name = kwargs.get('name', None)
-        self.status = kwargs.get('status', None)
+        super(
+            Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema, self
+        ).__init__(**kwargs)
+        self.pet_type = kwargs["pet_type"]
+        self.pet_food = kwargs["pet_food"]
+        self.pet_age = kwargs["pet_age"]
+        self.name = kwargs.get("name", None)
+        self.status = kwargs.get("status", None)
 
 
-class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(msrest.serialization.Model):
+class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
+    msrest.serialization.Model
+):
     """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -86,9 +89,9 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
     """
 
     _validation = {
-        'grant_type': {'required': True, 'constant': True},
-        'service': {'required': True},
-        'aad_access_token': {'required': True},
+        "grant_type": {"required": True, "constant": True},
+        "service": {"required": True},
+        "aad_access_token": {"required": True},
     }
 
     _attribute_map = {
@@ -99,10 +102,7 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 
     grant_type = "access_token"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         """
         :keyword service: Indicates the name of your Azure container registry. Required.
         :paramtype service: str
@@ -110,6 +110,9 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
          access_token_refresh_token or access_token. Required.
         :paramtype aad_access_token: str
         """
-        super(PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema, self).__init__(**kwargs)
-        self.service = kwargs['service']
-        self.aad_access_token = kwargs['aad_access_token']
+        super(
+            PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
+            self,
+        ).__init__(**kwargs)
+        self.service = kwargs["service"]
+        self.aad_access_token = kwargs["aad_access_token"]

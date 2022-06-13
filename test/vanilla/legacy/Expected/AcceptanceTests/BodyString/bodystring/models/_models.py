@@ -24,10 +24,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         """
         :keyword status:
         :paramtype status: int
@@ -35,8 +32,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
-        self.message = kwargs.get('message', None)
+        self.status = kwargs.get("status", None)
+        self.message = kwargs.get("message", None)
 
 
 class RefColorConstant(msrest.serialization.Model):
@@ -54,7 +51,7 @@ class RefColorConstant(msrest.serialization.Model):
     """
 
     _validation = {
-        'color_constant': {'required': True, 'constant': True},
+        "color_constant": {"required": True, "constant": True},
     }
 
     _attribute_map = {
@@ -64,13 +61,10 @@ class RefColorConstant(msrest.serialization.Model):
 
     color_constant = "green-color"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         """
         :keyword field1: Sample string.
         :paramtype field1: str
         """
         super(RefColorConstant, self).__init__(**kwargs)
-        self.field1 = kwargs.get('field1', None)
+        self.field1 = kwargs.get("field1", None)

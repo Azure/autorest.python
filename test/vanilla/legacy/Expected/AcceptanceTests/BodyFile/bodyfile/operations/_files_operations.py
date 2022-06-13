@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Iterator, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -19,16 +25,8 @@ from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-    T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-=======
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -95,17 +93,8 @@ class FilesOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-<<<<<<< HEAD
-    def get_file(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterator[bytes]
-=======
     def get_file(self, **kwargs: Any) -> Iterator[bytes]:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -113,19 +102,16 @@ class FilesOperations:
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[Iterator[bytes]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
 
-        
         request = build_get_file_request(
-            template_url=self.get_file.metadata['url'],
+            template_url=self.get_file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -133,9 +119,7 @@ class FilesOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=True,
-            **kwargs
+            request, stream=True, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -152,19 +136,10 @@ class FilesOperations:
 
         return deserialized
 
-    get_file.metadata = {'url': "/files/stream/nonempty"}  # type: ignore
-
+    get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_file_large(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterator[bytes]
-=======
     def get_file_large(self, **kwargs: Any) -> Iterator[bytes]:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -172,19 +147,16 @@ class FilesOperations:
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[Iterator[bytes]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
 
-        
         request = build_get_file_large_request(
-            template_url=self.get_file_large.metadata['url'],
+            template_url=self.get_file_large.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -192,9 +164,7 @@ class FilesOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=True,
-            **kwargs
+            request, stream=True, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -211,19 +181,10 @@ class FilesOperations:
 
         return deserialized
 
-    get_file_large.metadata = {'url': "/files/stream/verylarge"}  # type: ignore
-
+    get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_empty_file(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterator[bytes]
-=======
     def get_empty_file(self, **kwargs: Any) -> Iterator[bytes]:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -231,19 +192,16 @@ class FilesOperations:
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[Iterator[bytes]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
 
-        
         request = build_get_empty_file_request(
-            template_url=self.get_empty_file.metadata['url'],
+            template_url=self.get_empty_file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -251,9 +209,7 @@ class FilesOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=True,
-            **kwargs
+            request, stream=True, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -270,5 +226,4 @@ class FilesOperations:
 
         return deserialized
 
-    get_empty_file.metadata = {'url': "/files/stream/empty"}  # type: ignore
-
+    get_empty_file.metadata = {"url": "/files/stream/empty"}  # type: ignore

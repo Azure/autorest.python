@@ -11,8 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class FloatEnum(float, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """List of float enums.
-    """
+    """List of float enums."""
 
     TWO_HUNDRED4 = 200.4
     FOUR_HUNDRED_THREE4 = 403.4
@@ -20,9 +19,9 @@ class FloatEnum(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     FOUR_HUNDRED_SIX2 = 406.2
     FOUR_HUNDRED_TWENTY_NINE1 = 429.1
 
+
 class IntEnum(int, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """List of integer enums.
-    """
+    """List of integer enums."""
 
     TWO_HUNDRED = 200
     FOUR_HUNDRED_THREE = 403

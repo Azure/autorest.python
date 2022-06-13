@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -19,16 +25,8 @@ from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Optional, TypeVar
-    T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-=======
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -423,17 +421,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-<<<<<<< HEAD
-    def get_null(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[float]
-=======
     def get_null(self, **kwargs: Any) -> Optional[float]:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -441,19 +430,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[float]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[float]]
 
-        
         request = build_get_null_request(
-            template_url=self.get_null.metadata['url'],
+            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -461,9 +447,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -473,26 +457,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_null.metadata = {'url': "/number/null"}  # type: ignore
-
+    get_null.metadata = {"url": "/number/null"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_invalid_float(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_invalid_float(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get invalid float Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -500,19 +475,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_invalid_float_request(
-            template_url=self.get_invalid_float.metadata['url'],
+            template_url=self.get_invalid_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -520,9 +492,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -532,26 +502,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_invalid_float.metadata = {'url': "/number/invalidfloat"}  # type: ignore
-
+    get_invalid_float.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_invalid_double(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_invalid_double(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get invalid double Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -559,19 +520,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_invalid_double_request(
-            template_url=self.get_invalid_double.metadata['url'],
+            template_url=self.get_invalid_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -579,9 +537,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -591,26 +547,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_invalid_double.metadata = {'url': "/number/invaliddouble"}  # type: ignore
-
+    get_invalid_double.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_invalid_decimal(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_invalid_decimal(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get invalid decimal Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -618,19 +565,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_invalid_decimal_request(
-            template_url=self.get_invalid_decimal.metadata['url'],
+            template_url=self.get_invalid_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -638,9 +582,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -650,15 +592,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_invalid_decimal.metadata = {'url': "/number/invaliddecimal"}  # type: ignore
-
+    get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
     @distributed_trace
     def put_big_float(  # pylint: disable=inconsistent-return-statements
@@ -673,23 +614,21 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_float.metadata['url'],
+            template_url=self.put_big_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -697,9 +636,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -712,19 +649,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_float.metadata = {'url': "/number/big/float/3.402823e+20"}  # type: ignore
-
+    put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_big_float(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_big_float(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big float value 3.402823e+20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -732,19 +660,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_big_float_request(
-            template_url=self.get_big_float.metadata['url'],
+            template_url=self.get_big_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -752,9 +677,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -764,15 +687,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_big_float.metadata = {'url': "/number/big/float/3.402823e+20"}  # type: ignore
-
+    get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
     def put_big_double(  # pylint: disable=inconsistent-return-statements
@@ -787,23 +709,21 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double.metadata['url'],
+            template_url=self.put_big_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -811,9 +731,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -826,19 +744,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_double.metadata = {'url': "/number/big/double/2.5976931e+101"}  # type: ignore
-
+    put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_big_double(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_big_double(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big double value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -846,19 +755,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_big_double_request(
-            template_url=self.get_big_double.metadata['url'],
+            template_url=self.get_big_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -866,9 +772,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -878,26 +782,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_big_double.metadata = {'url': "/number/big/double/2.5976931e+101"}  # type: ignore
-
+    get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def put_big_double_positive_decimal(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-=======
     def put_big_double_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Put big double value 99999999.99.
 
         :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
@@ -908,24 +803,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        number_body = kwargs.pop('number_body', 99999999.99)  # type: float
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double_positive_decimal.metadata['url'],
+            template_url=self.put_big_double_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -933,9 +826,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -948,19 +839,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_double_positive_decimal.metadata = {'url': "/number/big/double/99999999.99"}  # type: ignore
-
+    put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_big_double_positive_decimal(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -968,19 +850,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_big_double_positive_decimal_request(
-            template_url=self.get_big_double_positive_decimal.metadata['url'],
+            template_url=self.get_big_double_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -988,9 +867,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1000,26 +877,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_big_double_positive_decimal.metadata = {'url': "/number/big/double/99999999.99"}  # type: ignore
-
+    get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def put_big_double_negative_decimal(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-=======
     def put_big_double_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Put big double value -99999999.99.
 
         :keyword number_body: Default value is -99999999.99. Note that overriding this default value
@@ -1030,24 +898,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        number_body = kwargs.pop('number_body', -99999999.99)  # type: float
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double_negative_decimal.metadata['url'],
+            template_url=self.put_big_double_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1055,9 +921,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1070,19 +934,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_double_negative_decimal.metadata = {'url': "/number/big/double/-99999999.99"}  # type: ignore
-
+    put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_big_double_negative_decimal(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1090,19 +945,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_big_double_negative_decimal_request(
-            template_url=self.get_big_double_negative_decimal.metadata['url'],
+            template_url=self.get_big_double_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1110,9 +962,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1122,15 +972,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_big_double_negative_decimal.metadata = {'url': "/number/big/double/-99999999.99"}  # type: ignore
-
+    get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1145,23 +994,21 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal.metadata['url'],
+            template_url=self.put_big_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1169,9 +1016,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1184,19 +1029,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_decimal.metadata = {'url': "/number/big/decimal/2.5976931e+101"}  # type: ignore
-
+    put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_big_decimal(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_big_decimal(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big decimal value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1204,19 +1040,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_big_decimal_request(
-            template_url=self.get_big_decimal.metadata['url'],
+            template_url=self.get_big_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1224,9 +1057,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1236,26 +1067,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_big_decimal.metadata = {'url': "/number/big/decimal/2.5976931e+101"}  # type: ignore
-
+    get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def put_big_decimal_positive_decimal(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-=======
     def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Put big decimal value 99999999.99.
 
         :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
@@ -1266,24 +1088,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        number_body = kwargs.pop('number_body', 99999999.99)  # type: float
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal_positive_decimal.metadata['url'],
+            template_url=self.put_big_decimal_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1291,9 +1111,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1306,19 +1124,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_decimal_positive_decimal.metadata = {'url': "/number/big/decimal/99999999.99"}  # type: ignore
-
+    put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_big_decimal_positive_decimal(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1326,19 +1135,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_big_decimal_positive_decimal_request(
-            template_url=self.get_big_decimal_positive_decimal.metadata['url'],
+            template_url=self.get_big_decimal_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1346,9 +1152,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1358,26 +1162,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_big_decimal_positive_decimal.metadata = {'url': "/number/big/decimal/99999999.99"}  # type: ignore
-
+    get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def put_big_decimal_negative_decimal(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-=======
     def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Put big decimal value -99999999.99.
 
         :keyword number_body: Default value is -99999999.99. Note that overriding this default value
@@ -1388,24 +1183,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        number_body = kwargs.pop('number_body', -99999999.99)  # type: float
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal_negative_decimal.metadata['url'],
+            template_url=self.put_big_decimal_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1413,9 +1206,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1428,19 +1219,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_decimal_negative_decimal.metadata = {'url': "/number/big/decimal/-99999999.99"}  # type: ignore
-
+    put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_big_decimal_negative_decimal(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1448,19 +1230,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_big_decimal_negative_decimal_request(
-            template_url=self.get_big_decimal_negative_decimal.metadata['url'],
+            template_url=self.get_big_decimal_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1468,9 +1247,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1480,15 +1257,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_big_decimal_negative_decimal.metadata = {'url': "/number/big/decimal/-99999999.99"}  # type: ignore
-
+    get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_small_float(  # pylint: disable=inconsistent-return-statements
@@ -1503,23 +1279,21 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_small_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_float.metadata['url'],
+            template_url=self.put_small_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1527,9 +1301,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1542,19 +1314,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_small_float.metadata = {'url': "/number/small/float/3.402823e-20"}  # type: ignore
-
+    put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_small_float(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_small_float(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big double value 3.402823e-20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1562,19 +1325,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_small_float_request(
-            template_url=self.get_small_float.metadata['url'],
+            template_url=self.get_small_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1582,9 +1342,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1594,15 +1352,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_small_float.metadata = {'url': "/number/small/float/3.402823e-20"}  # type: ignore
-
+    get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
     def put_small_double(  # pylint: disable=inconsistent-return-statements
@@ -1617,23 +1374,21 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_small_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_double.metadata['url'],
+            template_url=self.put_small_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1641,9 +1396,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1656,19 +1409,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_small_double.metadata = {'url': "/number/small/double/2.5976931e-101"}  # type: ignore
-
+    put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_small_double(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_small_double(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get big double value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1676,19 +1420,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_small_double_request(
-            template_url=self.get_small_double.metadata['url'],
+            template_url=self.get_small_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1696,9 +1437,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1708,15 +1447,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_small_double.metadata = {'url': "/number/small/double/2.5976931e-101"}  # type: ignore
-
+    get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def put_small_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1731,23 +1469,21 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(number_body, 'float')
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_small_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_decimal.metadata['url'],
+            template_url=self.put_small_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1755,9 +1491,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1770,19 +1504,10 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_small_decimal.metadata = {'url': "/number/small/decimal/2.5976931e-101"}  # type: ignore
-
+    put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_small_decimal(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> float
-=======
     def get_small_decimal(self, **kwargs: Any) -> float:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Get small decimal value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1790,19 +1515,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        
         request = build_get_small_decimal_request(
-            template_url=self.get_small_decimal.metadata['url'],
+            template_url=self.get_small_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1810,9 +1532,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1822,12 +1542,11 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('float', pipeline_response)
+        deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_small_decimal.metadata = {'url': "/number/small/decimal/2.5976931e-101"}  # type: ignore
-
+    get_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore

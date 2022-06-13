@@ -17,18 +17,8 @@ from ._configuration import BodyFormsDataURLEncodedConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import FormdataurlencodedOperations
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.rest import HttpRequest, HttpResponse
-
-class BodyFormsDataURLEncoded(object):  # pylint: disable=client-accepts-api-version-keyword
-=======
 
 class BodyFormsDataURLEncoded:  # pylint: disable=client-accepts-api-version-keyword
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdataurlencoded: FormdataurlencodedOperations operations
@@ -49,17 +39,7 @@ class BodyFormsDataURLEncoded:  # pylint: disable=client-accepts-api-version-key
             self._client, self._config, self._serialize, self._deserialize
         )
 
-<<<<<<< HEAD
-
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
-=======
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

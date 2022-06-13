@@ -17,18 +17,8 @@ from ._configuration import AutoRestIntegerTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import IntOperations
 
-<<<<<<< HEAD
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.rest import HttpRequest, HttpResponse
-
-class AutoRestIntegerTestService(object):  # pylint: disable=client-accepts-api-version-keyword
-=======
 
 class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-keyword
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
     """Test Infrastructure for AutoRest.
 
     :ivar int: IntOperations operations
@@ -45,10 +35,7 @@ class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.int = IntOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-
+        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

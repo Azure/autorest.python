@@ -10,8 +10,6 @@ from typing import TYPE_CHECKING
 
 from azure.core.pipeline.transport import HttpRequest
 
-<<<<<<< HEAD
-=======
 from ._configuration import ErrorWithSecretsConfiguration
 
 if TYPE_CHECKING:
@@ -21,7 +19,6 @@ if TYPE_CHECKING:
     from ._serialization import Deserializer, Serializer
 
 
->>>>>>> d323963ea2328b1e6bd0b2ff4c377178c078db9b
 def _convert_request(request, files=None):
     data = request.content if not files else None
     request = HttpRequest(method=request.method, url=request.url, headers=request.headers, data=data)
