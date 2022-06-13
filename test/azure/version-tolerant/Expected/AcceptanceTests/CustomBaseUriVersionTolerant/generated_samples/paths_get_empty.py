@@ -11,7 +11,7 @@ from custombaseurlversiontolerant import AutoRestParameterizedHostTestClient
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestParameterizedHostTestClient
+    pip install autorestparameterizedhosttestclient
 # USAGE
     python paths_get_empty.py
 """

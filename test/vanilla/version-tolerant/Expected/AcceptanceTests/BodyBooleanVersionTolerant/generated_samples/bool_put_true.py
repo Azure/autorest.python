@@ -11,7 +11,7 @@ from bodybooleanversiontolerant import AutoRestBoolTestService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestBoolTestService
+    pip install autorestbooltestservice
 # USAGE
     python bool_put_true.py
 """

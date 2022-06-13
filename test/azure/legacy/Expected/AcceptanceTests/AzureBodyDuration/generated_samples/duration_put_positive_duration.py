@@ -11,7 +11,7 @@ from bodyduration import AutoRestDurationTestService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestDurationTestService
+    pip install autorestdurationtestservice
 # USAGE
     python duration_put_positive_duration.py
 """

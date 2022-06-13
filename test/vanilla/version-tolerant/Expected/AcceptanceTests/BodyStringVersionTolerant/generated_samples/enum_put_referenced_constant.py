@@ -11,7 +11,7 @@ from bodystringversiontolerant import AutoRestSwaggerBATService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestSwaggerBATService
+    pip install autorestswaggerbatservice
 # USAGE
     python enum_put_referenced_constant.py
 """

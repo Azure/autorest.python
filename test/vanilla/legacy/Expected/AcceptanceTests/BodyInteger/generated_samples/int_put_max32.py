@@ -11,7 +11,7 @@ from bodyinteger import AutoRestIntegerTestService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestIntegerTestService
+    pip install autorestintegertestservice
 # USAGE
     python int_put_max32.py
 """

@@ -11,7 +11,7 @@ from bodybyteversiontolerant import AutoRestSwaggerBATByteService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestSwaggerBATByteService
+    pip install autorestswaggerbatbyteservice
 # USAGE
     python byte_get_null.py
 """

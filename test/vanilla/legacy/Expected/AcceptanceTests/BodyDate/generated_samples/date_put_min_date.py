@@ -11,7 +11,7 @@ from bodydate import AutoRestDateTestService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestDateTestService
+    pip install autorestdatetestservice
 # USAGE
     python date_put_min_date.py
 """

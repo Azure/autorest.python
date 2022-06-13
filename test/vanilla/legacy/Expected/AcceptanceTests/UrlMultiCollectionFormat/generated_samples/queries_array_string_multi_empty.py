@@ -11,7 +11,7 @@ from urlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestUrlMutliCollectionFormatTestService
+    pip install autoresturlmutlicollectionformattestservice
 # USAGE
     python queries_array_string_multi_empty.py
 """

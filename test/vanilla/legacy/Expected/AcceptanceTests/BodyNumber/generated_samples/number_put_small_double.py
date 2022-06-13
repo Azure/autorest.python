@@ -11,7 +11,7 @@ from bodynumber import AutoRestNumberTestService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestNumberTestService
+    pip install autorestnumbertestservice
 # USAGE
     python number_put_small_double.py
 """

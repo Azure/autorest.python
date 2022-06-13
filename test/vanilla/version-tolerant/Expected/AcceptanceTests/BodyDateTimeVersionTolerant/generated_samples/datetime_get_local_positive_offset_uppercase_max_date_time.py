@@ -11,7 +11,7 @@ from bodydatetimeversiontolerant import AutoRestDateTimeTestService
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install AutoRestDateTimeTestService
+    pip install autorestdatetimetestservice
 # USAGE
     python datetime_get_local_positive_offset_uppercase_max_date_time.py
 """

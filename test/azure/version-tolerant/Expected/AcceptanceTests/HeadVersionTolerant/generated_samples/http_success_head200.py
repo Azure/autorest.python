@@ -38,3 +38,4 @@ if __name__ == "__main__":
             " AZURE_TENANT_ID, AZURE_CLIENT_SECRET. For more info about how to get the value, "
             "please see https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal"
         )
+    main()
