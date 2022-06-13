@@ -1,5 +1,18 @@
 # Change
 
+### 2022-xx-xx - 5.19.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `msrest` dep of generated code                                          | `0.7.0`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**New Features**
+- Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
+
 ### 2022-07-13 - 5.18.0
 
 | Library                                                                 | Min Version |
@@ -19,23 +32,8 @@
 
 - Fix duplicate params in signature with `--payload-flattening-threshold`  #1289
 - Fix overloaded request builder signatures  #1289
-
-**New Features**
-- Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
-
-### 2022-xx-xx - 5.17.1
-
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.8.1`     |
-| `@autorest/modelerfour`                                                 | `4.23.5`    |
-| `azure-core` dep of generated code                                      | `1.23.0`    |
-| `msrest` dep of generated code                                          | `0.6.21`    |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
-
-**Bug Fixes**
-
 - Improve docstring templates, specifically for polymorphic bodies  #1279
+
 
 ### 2022-06-02 - 5.17.0
 
