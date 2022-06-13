@@ -18,7 +18,6 @@ The sample just shows how to use the method and may not run successfully.
 
 
 def main():
-    """ """
     client = AutoRestDateTimeTestService()
 
     response = client.datetime.put_local_positive_offset_max_date_time(

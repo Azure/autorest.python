@@ -18,7 +18,6 @@ The sample just shows how to use the method and may not run successfully.
 
 
 def main():
-    """ """
     client = AutoRestNumberTestService()
 
     response = client.number.get_big_decimal_negative_decimal()

@@ -18,7 +18,6 @@ The sample just shows how to use the method and may not run successfully.
 
 
 def main():
-    """ """
     client = PetStoreInc()
 
     response = client.pet.add_pet(

@@ -12,9 +12,6 @@ The sample just shows how to use the method and may not run successfully.
 # USAGE
     python {{ file_name }}
 """
-{% if origin_file %}
-# x-ms-original-file: {{ origin_file }}
-{% endif %}
 def main():
     client = {{ code_model.client.name }}(
         {% for key, value in client_params.items() %}
@@ -33,7 +30,9 @@ def main():
     {% endif %}
     print(response)
 
-
+{% if origin_file %}
+# x-ms-original-file: {{ origin_file }}
+{% endif %}
 if __name__ == "__main__":
     {% if check_auth == "aad" %}
     if not (os.getenv.get('AZURE_CLIENT_ID') and os.getenv.get('AZURE_TENANT_ID') and os.getenv.get('AZURE_CLIENT_SECRET')):
@@ -49,4 +48,3 @@ if __name__ == "__main__":
             "Please set environment variables "AZURE_KEY" with real value which can access your service"
         )
     {% endif %}
-    main()

@@ -21,9 +21,10 @@ The sample just shows how to use the method and may not run successfully.
 
 def main():
     """
-    Please set the values of the client ID, tenant ID and client secret of the AAD application as environment variables:
-    AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
-    For more info about how to get the value, please see https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
+    Please set the values of the client ID, tenant ID and client secret of the AAD application as
+    environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
+    For more info about how to get the value, please see
+    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
     """
     client = AutoRestHeadTestService(
         credential=DefaultAzureCredential(),

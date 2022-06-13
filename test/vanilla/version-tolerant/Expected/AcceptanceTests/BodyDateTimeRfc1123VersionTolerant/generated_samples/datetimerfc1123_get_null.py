@@ -18,7 +18,6 @@ The sample just shows how to use the method and may not run successfully.
 
 
 def main():
-    """ """
     client = AutoRestRFC1123DateTimeTestService()
 
     response = client.datetimerfc1123.get_null()

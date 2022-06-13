@@ -18,7 +18,6 @@ The sample just shows how to use the method and may not run successfully.
 
 
 def main():
-    """ """
     client = AutoRestSwaggerBATService()
 
     response = client.enum.put_referenced_constant(
