@@ -6,20 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_post_required_request
-    from ._request_builders_py3 import build_post_optional_request
-    from ._request_builders_py3 import build_post_reserved_words_request
-    from ._request_builders_py3 import build_post_multi_param_groups_request
-    from ._request_builders_py3 import build_post_shared_parameter_group_object_request
-    from ._request_builders_py3 import build_group_with_constant_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_post_required_request  # type: ignore
-    from ._request_builders import build_post_optional_request  # type: ignore
-    from ._request_builders import build_post_reserved_words_request  # type: ignore
-    from ._request_builders import build_post_multi_param_groups_request  # type: ignore
-    from ._request_builders import build_post_shared_parameter_group_object_request  # type: ignore
-    from ._request_builders import build_group_with_constant_request  # type: ignore
+from ._request_builders import build_post_required_request
+from ._request_builders import build_post_optional_request
+from ._request_builders import build_post_reserved_words_request
+from ._request_builders import build_post_multi_param_groups_request
+from ._request_builders import build_post_shared_parameter_group_object_request
+from ._request_builders import build_group_with_constant_request
 
 __all__ = [
     "build_post_required_request",

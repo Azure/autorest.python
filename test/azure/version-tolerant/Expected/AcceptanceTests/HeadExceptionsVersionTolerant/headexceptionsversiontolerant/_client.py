@@ -37,7 +37,6 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
     def __init__(
         self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

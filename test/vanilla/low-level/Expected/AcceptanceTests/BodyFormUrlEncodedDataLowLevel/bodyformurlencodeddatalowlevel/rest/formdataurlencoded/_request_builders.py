@@ -16,13 +16,8 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_update_pet_with_form_request(
-    pet_id,  # type: int
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_update_pet_with_form_request(pet_id: int, **kwargs: Any) -> HttpRequest:
     """Updates a pet in the store with form data.
 
     Updates a pet in the store with form data.
@@ -48,31 +43,23 @@ def build_update_pet_with_form_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/formsdataurlencoded/pet/add/{petId}"
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, 'int'),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "int"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_partial_constant_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_partial_constant_body_request(**kwargs: Any) -> HttpRequest:
     """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
     'foo', service: 'bar' } to pass the test.
 
@@ -95,17 +82,12 @@ def build_partial_constant_body_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/formsdataurlencoded/partialConstantBody"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

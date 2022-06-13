@@ -6,40 +6,22 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_head300_request
-    from ._request_builders_py3 import build_get300_request
-    from ._request_builders_py3 import build_head301_request
-    from ._request_builders_py3 import build_get301_request
-    from ._request_builders_py3 import build_put301_request
-    from ._request_builders_py3 import build_head302_request
-    from ._request_builders_py3 import build_get302_request
-    from ._request_builders_py3 import build_patch302_request
-    from ._request_builders_py3 import build_post303_request
-    from ._request_builders_py3 import build_head307_request
-    from ._request_builders_py3 import build_get307_request
-    from ._request_builders_py3 import build_options307_request
-    from ._request_builders_py3 import build_put307_request
-    from ._request_builders_py3 import build_patch307_request
-    from ._request_builders_py3 import build_post307_request
-    from ._request_builders_py3 import build_delete307_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_head300_request  # type: ignore
-    from ._request_builders import build_get300_request  # type: ignore
-    from ._request_builders import build_head301_request  # type: ignore
-    from ._request_builders import build_get301_request  # type: ignore
-    from ._request_builders import build_put301_request  # type: ignore
-    from ._request_builders import build_head302_request  # type: ignore
-    from ._request_builders import build_get302_request  # type: ignore
-    from ._request_builders import build_patch302_request  # type: ignore
-    from ._request_builders import build_post303_request  # type: ignore
-    from ._request_builders import build_head307_request  # type: ignore
-    from ._request_builders import build_get307_request  # type: ignore
-    from ._request_builders import build_options307_request  # type: ignore
-    from ._request_builders import build_put307_request  # type: ignore
-    from ._request_builders import build_patch307_request  # type: ignore
-    from ._request_builders import build_post307_request  # type: ignore
-    from ._request_builders import build_delete307_request  # type: ignore
+from ._request_builders import build_head300_request
+from ._request_builders import build_get300_request
+from ._request_builders import build_head301_request
+from ._request_builders import build_get301_request
+from ._request_builders import build_put301_request
+from ._request_builders import build_head302_request
+from ._request_builders import build_get302_request
+from ._request_builders import build_patch302_request
+from ._request_builders import build_post303_request
+from ._request_builders import build_head307_request
+from ._request_builders import build_get307_request
+from ._request_builders import build_options307_request
+from ._request_builders import build_put307_request
+from ._request_builders import build_patch307_request
+from ._request_builders import build_post307_request
+from ._request_builders import build_delete307_request
 
 __all__ = [
     "build_head300_request",

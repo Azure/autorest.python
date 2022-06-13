@@ -15,12 +15,8 @@ from ..._serialization import Serializer
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_upload_file_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_upload_file_request(**kwargs: Any) -> HttpRequest:
     """Upload file.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -42,29 +38,21 @@ def build_upload_file_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/octet-stream, application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/octet-stream, application/json")
 
     # Construct URL
     _url = "/formdata/stream/uploadfile"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_upload_file_via_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_upload_file_via_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     """Upload file.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -80,29 +68,21 @@ def build_upload_file_via_body_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/octet-stream, application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/octet-stream, application/json")
 
     # Construct URL
     _url = "/formdata/stream/uploadfile"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_upload_files_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_upload_files_request(**kwargs: Any) -> HttpRequest:
     """Upload multiple files.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -124,20 +104,15 @@ def build_upload_files_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/octet-stream, application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/octet-stream, application/json")
 
     # Construct URL
     _url = "/formdata/stream/uploadfiles"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

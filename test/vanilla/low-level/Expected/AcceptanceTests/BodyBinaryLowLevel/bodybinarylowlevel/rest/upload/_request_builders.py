@@ -15,12 +15,8 @@ from ..._serialization import Serializer
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_file_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_file_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     """Uploading json file.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -36,26 +32,18 @@ def build_file_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/binary/file"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_binary_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_binary_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     """Uploading binary file.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -71,17 +59,12 @@ def build_binary_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/binary/octet"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)

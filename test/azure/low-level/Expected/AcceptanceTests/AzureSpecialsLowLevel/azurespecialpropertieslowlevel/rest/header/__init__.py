@@ -6,14 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_custom_named_request_id_request
-    from ._request_builders_py3 import build_custom_named_request_id_param_grouping_request
-    from ._request_builders_py3 import build_custom_named_request_id_head_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_custom_named_request_id_request  # type: ignore
-    from ._request_builders import build_custom_named_request_id_param_grouping_request  # type: ignore
-    from ._request_builders import build_custom_named_request_id_head_request  # type: ignore
+from ._request_builders import build_custom_named_request_id_request
+from ._request_builders import build_custom_named_request_id_param_grouping_request
+from ._request_builders import build_custom_named_request_id_head_request
 
 __all__ = [
     "build_custom_named_request_id_request",

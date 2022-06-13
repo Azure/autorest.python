@@ -6,12 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_update_pet_with_form_request
-    from ._request_builders_py3 import build_partial_constant_body_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_update_pet_with_form_request  # type: ignore
-    from ._request_builders import build_partial_constant_body_request  # type: ignore
+from ._request_builders import build_update_pet_with_form_request
+from ._request_builders import build_partial_constant_body_request
 
 __all__ = [
     "build_update_pet_with_form_request",

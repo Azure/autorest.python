@@ -14,12 +14,8 @@ from .._serialization import Serializer
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_head_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_head_request(**kwargs: Any) -> HttpRequest:
     """Operation.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -34,8 +30,4 @@ def build_head_request(
     # Construct URL
     _url = "/securityaad"
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, **kwargs)

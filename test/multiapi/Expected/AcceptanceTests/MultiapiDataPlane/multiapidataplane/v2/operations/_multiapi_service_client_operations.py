@@ -24,6 +24,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+
 def build_test_one_request(
     *,
     id: int,

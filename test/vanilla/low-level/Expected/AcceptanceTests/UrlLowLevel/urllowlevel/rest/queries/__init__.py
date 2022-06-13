@@ -6,78 +6,41 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_get_boolean_true_request
-    from ._request_builders_py3 import build_get_boolean_false_request
-    from ._request_builders_py3 import build_get_boolean_null_request
-    from ._request_builders_py3 import build_get_int_one_million_request
-    from ._request_builders_py3 import build_get_int_negative_one_million_request
-    from ._request_builders_py3 import build_get_int_null_request
-    from ._request_builders_py3 import build_get_ten_billion_request
-    from ._request_builders_py3 import build_get_negative_ten_billion_request
-    from ._request_builders_py3 import build_get_long_null_request
-    from ._request_builders_py3 import build_float_scientific_positive_request
-    from ._request_builders_py3 import build_float_scientific_negative_request
-    from ._request_builders_py3 import build_float_null_request
-    from ._request_builders_py3 import build_double_decimal_positive_request
-    from ._request_builders_py3 import build_double_decimal_negative_request
-    from ._request_builders_py3 import build_double_null_request
-    from ._request_builders_py3 import build_string_unicode_request
-    from ._request_builders_py3 import build_string_url_encoded_request
-    from ._request_builders_py3 import build_string_empty_request
-    from ._request_builders_py3 import build_string_null_request
-    from ._request_builders_py3 import build_enum_valid_request
-    from ._request_builders_py3 import build_enum_null_request
-    from ._request_builders_py3 import build_byte_multi_byte_request
-    from ._request_builders_py3 import build_byte_empty_request
-    from ._request_builders_py3 import build_byte_null_request
-    from ._request_builders_py3 import build_date_valid_request
-    from ._request_builders_py3 import build_date_null_request
-    from ._request_builders_py3 import build_date_time_valid_request
-    from ._request_builders_py3 import build_date_time_null_request
-    from ._request_builders_py3 import build_array_string_csv_valid_request
-    from ._request_builders_py3 import build_array_string_csv_null_request
-    from ._request_builders_py3 import build_array_string_csv_empty_request
-    from ._request_builders_py3 import build_array_string_no_collection_format_empty_request
-    from ._request_builders_py3 import build_array_string_ssv_valid_request
-    from ._request_builders_py3 import build_array_string_tsv_valid_request
-    from ._request_builders_py3 import build_array_string_pipes_valid_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_get_boolean_true_request  # type: ignore
-    from ._request_builders import build_get_boolean_false_request  # type: ignore
-    from ._request_builders import build_get_boolean_null_request  # type: ignore
-    from ._request_builders import build_get_int_one_million_request  # type: ignore
-    from ._request_builders import build_get_int_negative_one_million_request  # type: ignore
-    from ._request_builders import build_get_int_null_request  # type: ignore
-    from ._request_builders import build_get_ten_billion_request  # type: ignore
-    from ._request_builders import build_get_negative_ten_billion_request  # type: ignore
-    from ._request_builders import build_get_long_null_request  # type: ignore
-    from ._request_builders import build_float_scientific_positive_request  # type: ignore
-    from ._request_builders import build_float_scientific_negative_request  # type: ignore
-    from ._request_builders import build_float_null_request  # type: ignore
-    from ._request_builders import build_double_decimal_positive_request  # type: ignore
-    from ._request_builders import build_double_decimal_negative_request  # type: ignore
-    from ._request_builders import build_double_null_request  # type: ignore
-    from ._request_builders import build_string_unicode_request  # type: ignore
-    from ._request_builders import build_string_url_encoded_request  # type: ignore
-    from ._request_builders import build_string_empty_request  # type: ignore
-    from ._request_builders import build_string_null_request  # type: ignore
-    from ._request_builders import build_enum_valid_request  # type: ignore
-    from ._request_builders import build_enum_null_request  # type: ignore
-    from ._request_builders import build_byte_multi_byte_request  # type: ignore
-    from ._request_builders import build_byte_empty_request  # type: ignore
-    from ._request_builders import build_byte_null_request  # type: ignore
-    from ._request_builders import build_date_valid_request  # type: ignore
-    from ._request_builders import build_date_null_request  # type: ignore
-    from ._request_builders import build_date_time_valid_request  # type: ignore
-    from ._request_builders import build_date_time_null_request  # type: ignore
-    from ._request_builders import build_array_string_csv_valid_request  # type: ignore
-    from ._request_builders import build_array_string_csv_null_request  # type: ignore
-    from ._request_builders import build_array_string_csv_empty_request  # type: ignore
-    from ._request_builders import build_array_string_no_collection_format_empty_request  # type: ignore
-    from ._request_builders import build_array_string_ssv_valid_request  # type: ignore
-    from ._request_builders import build_array_string_tsv_valid_request  # type: ignore
-    from ._request_builders import build_array_string_pipes_valid_request  # type: ignore
+from ._request_builders import build_get_boolean_true_request
+from ._request_builders import build_get_boolean_false_request
+from ._request_builders import build_get_boolean_null_request
+from ._request_builders import build_get_int_one_million_request
+from ._request_builders import build_get_int_negative_one_million_request
+from ._request_builders import build_get_int_null_request
+from ._request_builders import build_get_ten_billion_request
+from ._request_builders import build_get_negative_ten_billion_request
+from ._request_builders import build_get_long_null_request
+from ._request_builders import build_float_scientific_positive_request
+from ._request_builders import build_float_scientific_negative_request
+from ._request_builders import build_float_null_request
+from ._request_builders import build_double_decimal_positive_request
+from ._request_builders import build_double_decimal_negative_request
+from ._request_builders import build_double_null_request
+from ._request_builders import build_string_unicode_request
+from ._request_builders import build_string_url_encoded_request
+from ._request_builders import build_string_empty_request
+from ._request_builders import build_string_null_request
+from ._request_builders import build_enum_valid_request
+from ._request_builders import build_enum_null_request
+from ._request_builders import build_byte_multi_byte_request
+from ._request_builders import build_byte_empty_request
+from ._request_builders import build_byte_null_request
+from ._request_builders import build_date_valid_request
+from ._request_builders import build_date_null_request
+from ._request_builders import build_date_time_valid_request
+from ._request_builders import build_date_time_null_request
+from ._request_builders import build_array_string_csv_valid_request
+from ._request_builders import build_array_string_csv_null_request
+from ._request_builders import build_array_string_csv_empty_request
+from ._request_builders import build_array_string_no_collection_format_empty_request
+from ._request_builders import build_array_string_ssv_valid_request
+from ._request_builders import build_array_string_tsv_valid_request
+from ._request_builders import build_array_string_pipes_valid_request
 
 __all__ = [
     "build_get_boolean_true_request",

@@ -8,7 +8,6 @@
 
 from ._models_py3 import SourcePath
 
-
 from ._media_types_client_enums import ContentType
 from ._media_types_client_enums import ContentType1
 from ._media_types_client_enums import ContentType2

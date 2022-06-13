@@ -23,12 +23,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_complex_type_ref_no_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
     """Get a complex type that has a ref to a complex type with no XML node.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -42,26 +38,18 @@ def build_get_complex_type_ref_no_meta_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_complex_type_ref_no_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts a complex type that has a ref to a complex type with no XML node.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -88,26 +76,18 @@ def build_put_complex_type_ref_no_meta_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_complex_type_ref_with_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
     """Get a complex type that has a ref to a complex type with XML node.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -121,26 +101,18 @@ def build_get_complex_type_ref_with_meta_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_complex_type_ref_with_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts a complex type that has a ref to a complex type with XML node.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -167,26 +139,18 @@ def build_put_complex_type_ref_with_meta_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_simple_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_simple_request(**kwargs: Any) -> HttpRequest:
     """Get a simple XML document.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -200,26 +164,18 @@ def build_get_simple_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/simple"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Put a simple XML document.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -254,29 +210,21 @@ def build_put_simple_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/simple"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     """Get an XML document with multiple wrapped lists.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -290,26 +238,18 @@ def build_get_wrapped_lists_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/wrapped-lists"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Put an XML document with multiple wrapped lists.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -338,29 +278,21 @@ def build_put_wrapped_lists_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/wrapped-lists"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_headers_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_headers_request(**kwargs: Any) -> HttpRequest:
     """Get strongly-typed response headers.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -375,17 +307,10 @@ def build_get_headers_request(
     # Construct URL
     _url = "/xml/headers"
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_get_empty_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
     """Get an empty list.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -399,26 +324,18 @@ def build_get_empty_list_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-list"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_empty_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts an empty list.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -453,26 +370,18 @@ def build_put_empty_list_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-list"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_empty_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     """Gets some empty wrapped lists.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -486,26 +395,18 @@ def build_get_empty_wrapped_lists_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_empty_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts some empty wrapped lists.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -534,26 +435,18 @@ def build_put_empty_wrapped_lists_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
     """Gets a list as the root element.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -567,26 +460,18 @@ def build_get_root_list_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/root-list"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts a list as the root element.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -615,26 +500,18 @@ def build_put_root_list_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_root_list_single_item_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
     """Gets a list with a single item.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -648,26 +525,18 @@ def build_get_root_list_single_item_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/root-list-single-item"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_root_list_single_item_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts a list with a single item.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -696,26 +565,18 @@ def build_put_root_list_single_item_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list-single-item"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_empty_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
     """Gets an empty list as the root element.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -729,26 +590,18 @@ def build_get_empty_root_list_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-root-list"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_empty_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts an empty list as the root element.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -777,26 +630,18 @@ def build_put_empty_root_list_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-root-list"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_empty_child_element_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
     """Gets an XML document with an empty child element.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -810,26 +655,18 @@ def build_get_empty_child_element_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-child-element"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_empty_child_element_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts a value with an empty child element.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -856,26 +693,18 @@ def build_put_empty_child_element_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-child-element"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_list_containers_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_list_containers_request(**kwargs: Any) -> HttpRequest:
     """Lists containers in a storage account.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -893,31 +722,22 @@ def build_list_containers_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
+    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_service_properties_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
     """Gets storage service properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -938,33 +758,24 @@ def build_get_service_properties_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
+    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_put_service_properties_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_service_properties_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts storage service properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1071,33 +882,24 @@ def build_put_service_properties_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, content=content, **kwargs)
 
 
-def build_get_acls_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_acls_request(**kwargs: Any) -> HttpRequest:
     """Gets storage ACLs for a container.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1118,33 +920,24 @@ def build_get_acls_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
+    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_put_acls_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts storage ACLs for a container.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1185,33 +978,24 @@ def build_put_acls_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, content=content, **kwargs)
 
 
-def build_list_blobs_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
     """Lists blobs in a storage container.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1232,34 +1016,25 @@ def build_list_blobs_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
+    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 @overload
-def build_json_input_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_json_input_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
     number 42.
 
@@ -1287,10 +1062,7 @@ def build_json_input_request(
 
 
 @overload
-def build_json_input_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_json_input_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
     number 42.
 
@@ -1309,10 +1081,7 @@ def build_json_input_request(
     """
 
 
-def build_json_input_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_json_input_request(**kwargs: Any) -> HttpRequest:
     """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
     number 42.
 
@@ -1332,26 +1101,18 @@ def build_json_input_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/jsoninput"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_json_output_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_json_output_request(**kwargs: Any) -> HttpRequest:
     """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1365,26 +1126,18 @@ def build_json_output_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/xml/jsonoutput"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_xms_text_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_xms_text_request(**kwargs: Any) -> HttpRequest:
     """Get back an XML object with an x-ms-text property, which should translate to the returned
     object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
@@ -1399,26 +1152,18 @@ def build_get_xms_text_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/x-ms-text"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_bytes_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
     """Get an XML document with binary property.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1432,26 +1177,18 @@ def build_get_bytes_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_binary_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Put an XML document with binary property.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1475,29 +1212,21 @@ def build_put_binary_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_uri_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_uri_request(**kwargs: Any) -> HttpRequest:
     """Get an XML document with uri property.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1511,26 +1240,18 @@ def build_get_uri_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/xml")
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_uri_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Put an XML document with uri property.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1554,20 +1275,15 @@ def build_put_uri_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)

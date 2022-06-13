@@ -6,14 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_get_pages_partial_url_request
-    from ._request_builders_py3 import build_get_pages_partial_url_operation_request
-    from ._request_builders_py3 import build_get_pages_partial_url_operation_next_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_get_pages_partial_url_request  # type: ignore
-    from ._request_builders import build_get_pages_partial_url_operation_request  # type: ignore
-    from ._request_builders import build_get_pages_partial_url_operation_next_request  # type: ignore
+from ._request_builders import build_get_pages_partial_url_request
+from ._request_builders import build_get_pages_partial_url_operation_request
+from ._request_builders import build_get_pages_partial_url_operation_next_request
 
 __all__ = [
     "build_get_pages_partial_url_request",

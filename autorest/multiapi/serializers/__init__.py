@@ -57,18 +57,14 @@ class MultiAPISerializer(object):
         )
 
         # serialize service client file
-        imports = FileImportSerializer(
-            code_model.client.imports(async_mode), is_python3_file=async_mode
-        )
+        imports = FileImportSerializer(code_model.client.imports(async_mode))
         self._autorestapi.write_file(
             _get_file_path(code_model.client.filename, async_mode),
             _render_template("client", imports=imports),
         )
 
         # serialize config file
-        imports = FileImportSerializer(
-            code_model.config.imports(async_mode), is_python3_file=async_mode
-        )
+        imports = FileImportSerializer(code_model.config.imports(async_mode))
         self._autorestapi.write_file(
             _get_file_path("_configuration", async_mode),
             _render_template("config", imports=imports),
@@ -77,8 +73,7 @@ class MultiAPISerializer(object):
         # serialize mixins
         if code_model.operation_mixin_group.mixin_operations:
             imports = FileImportSerializer(
-                code_model.operation_mixin_group.imports(async_mode),
-                is_python3_file=async_mode,
+                code_model.operation_mixin_group.imports(async_mode)
             )
             self._autorestapi.write_file(
                 _get_file_path("_operations_mixin", async_mode),

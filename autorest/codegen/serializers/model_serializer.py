@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from abc import abstractmethod
 from typing import cast, List
 from jinja2 import Environment
 from ..models import ModelType, CodeModel, Property
@@ -27,22 +26,17 @@ def _documentation_string(
     return retval
 
 
-class ModelBaseSerializer:
-    def __init__(
-        self, code_model: CodeModel, env: Environment, is_python3_file: bool
-    ) -> None:
+class ModelSerializer:
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
         self.env = env
-        self.is_python3_file = is_python3_file
 
     def serialize(self) -> str:
         # Generate the models
         template = self.env.get_template("model_container.py.jinja2")
         return template.render(
             code_model=self.code_model,
-            imports=FileImportSerializer(
-                self.imports(), is_python3_file=self.is_python3_file
-            ),
+            imports=FileImportSerializer(self.imports()),
             str=str,
             serializer=self,
         )
@@ -54,6 +48,11 @@ class ModelBaseSerializer:
         )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
+            init_line_parameters = [
+                p for p in model.properties if not p.readonly and not p.is_discriminator
+            ]
+            for param in init_line_parameters:
+                file_import.merge(param.imports())
         return file_import
 
     @staticmethod
@@ -92,18 +91,12 @@ class ModelBaseSerializer:
     def variable_documentation_string(prop: Property) -> List[str]:
         return _documentation_string(prop, "ivar", "vartype")
 
-    @abstractmethod
-    def super_call_template(self, model: ModelType) -> str:
-        ...
-
     def super_call(self, model: ModelType):
-        return self.super_call_template(model).format(
-            self.properties_to_pass_to_super(model)
-        )
+        return f"super().__init__({self.properties_to_pass_to_super(model)})"
 
     def initialize_properties(self, model: ModelType) -> List[str]:
         init_args = []
-        for prop in ModelBaseSerializer.get_properties_to_initialize(model):
+        for prop in self.get_properties_to_initialize(model):
             if prop.is_discriminator:
                 discriminator_value = (
                     f"'{model.discriminator_value}'"
@@ -120,13 +113,17 @@ class ModelBaseSerializer:
             elif prop.readonly:
                 init_args.append(f"self.{prop.client_name} = None")
             elif not prop.constant:
-                init_args.append(self.initialize_standard_arg(prop))
+                init_args.append(f"self.{prop.client_name} = {prop.client_name}")
         return init_args
 
-    def initialize_standard_property(self, prop: Property):
+    @staticmethod
+    def initialize_standard_property(prop: Property):
         if not (prop.optional or prop.client_default_value is not None):
-            return self.required_property_no_default_init(prop)
-        return self.optional_property_init(prop)
+            return f"{prop.client_name}: {prop.type_annotation()},{prop.pylint_disable}"
+        return (
+            f"{prop.client_name}: {prop.type_annotation()} = "
+            f"{prop.client_default_value_declaration},{prop.pylint_disable}"
+        )
 
     @staticmethod
     def discriminator_docstring(model: ModelType) -> str:
@@ -135,22 +132,34 @@ class ModelBaseSerializer:
             f"Known sub-classes are: {', '.join(v.name for v in model.discriminated_subtypes.values())}"
         )
 
-    @abstractmethod
     def init_line(self, model: ModelType) -> List[str]:
-        ...
+        init_properties_declaration = []
+        init_line_parameters = [
+            p
+            for p in model.properties
+            if not p.readonly and not p.is_discriminator and not p.constant
+        ]
+        init_line_parameters.sort(key=lambda x: x.optional)
+        if init_line_parameters:
+            init_properties_declaration.append("*,")
+        for param in init_line_parameters:
+            init_properties_declaration.append(self.initialize_standard_property(param))
 
-    @abstractmethod
-    def properties_to_pass_to_super(self, model: ModelType) -> str:
-        ...
+        return init_properties_declaration
 
-    @abstractmethod
-    def required_property_no_default_init(self, prop: Property) -> str:
-        ...
-
-    @abstractmethod
-    def optional_property_init(self, prop: Property) -> str:
-        ...
-
-    @abstractmethod
-    def initialize_standard_arg(self, prop: Property) -> str:
-        ...
+    @staticmethod
+    def properties_to_pass_to_super(model: ModelType) -> str:
+        properties_to_pass_to_super = []
+        for parent in model.parents:
+            for prop in model.properties:
+                if (
+                    prop in parent.properties
+                    and not prop.is_discriminator
+                    and not prop.constant
+                    and not prop.readonly
+                ):
+                    properties_to_pass_to_super.append(
+                        f"{prop.client_name}={prop.client_name}"
+                    )
+        properties_to_pass_to_super.append("**kwargs")
+        return ", ".join(properties_to_pass_to_super)

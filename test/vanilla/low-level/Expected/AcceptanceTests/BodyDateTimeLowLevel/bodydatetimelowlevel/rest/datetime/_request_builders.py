@@ -16,12 +16,8 @@ from ..._serialization import Serializer
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """Get null datetime value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -35,26 +31,18 @@ def build_get_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/null"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get invalid datetime value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -68,26 +56,18 @@ def build_get_invalid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/invalid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_overflow_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_overflow_request(**kwargs: Any) -> HttpRequest:
     """Get overflow datetime value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -101,26 +81,18 @@ def build_get_overflow_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/overflow"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_underflow_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_underflow_request(**kwargs: Any) -> HttpRequest:
     """Get underflow datetime value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -134,26 +106,18 @@ def build_get_underflow_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/underflow"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_utc_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_utc_max_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Put max datetime value 9999-12-31T23:59:59.999Z.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -169,29 +133,21 @@ def build_put_utc_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_put_utc_max_date_time7_digits_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_utc_max_date_time7_digits_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
     This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -210,29 +166,21 @@ def build_put_utc_max_date_time7_digits_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc7ms"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_utc_lowercase_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get max datetime value 9999-12-31t23:59:59.999z.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -246,26 +194,18 @@ def build_get_utc_lowercase_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc/lowercase"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_utc_uppercase_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get max datetime value 9999-12-31T23:59:59.999Z.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -279,26 +219,18 @@ def build_get_utc_uppercase_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc/uppercase"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_utc_uppercase_max_date_time7_digits_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_utc_uppercase_max_date_time7_digits_request(**kwargs: Any) -> HttpRequest:
     """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
     This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -315,26 +247,18 @@ def build_get_utc_uppercase_max_date_time7_digits_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc7ms/uppercase"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_positive_offset_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_local_positive_offset_max_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -350,29 +274,21 @@ def build_put_local_positive_offset_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localpositiveoffset"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_positive_offset_lowercase_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_local_positive_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -386,26 +302,18 @@ def build_get_local_positive_offset_lowercase_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localpositiveoffset/lowercase"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_local_positive_offset_uppercase_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_local_positive_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -419,26 +327,18 @@ def build_get_local_positive_offset_uppercase_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localpositiveoffset/uppercase"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_negative_offset_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_local_negative_offset_max_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -454,29 +354,21 @@ def build_put_local_negative_offset_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localnegativeoffset"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_negative_offset_uppercase_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_local_negative_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -490,26 +382,18 @@ def build_get_local_negative_offset_uppercase_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localnegativeoffset/uppercase"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_local_negative_offset_lowercase_max_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_local_negative_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -523,26 +407,18 @@ def build_get_local_negative_offset_lowercase_max_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localnegativeoffset/lowercase"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_utc_min_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_utc_min_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Put min datetime value 0001-01-01T00:00:00Z.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -558,29 +434,21 @@ def build_put_utc_min_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/utc"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_utc_min_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get min datetime value 0001-01-01T00:00:00Z.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -594,26 +462,18 @@ def build_get_utc_min_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/utc"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_positive_offset_min_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_local_positive_offset_min_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Put min datetime value 0001-01-01T00:00:00+14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -629,29 +489,21 @@ def build_put_local_positive_offset_min_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localpositiveoffset"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_positive_offset_min_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_local_positive_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get min datetime value 0001-01-01T00:00:00+14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -665,26 +517,18 @@ def build_get_local_positive_offset_min_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localpositiveoffset"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_negative_offset_min_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_local_negative_offset_min_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     """Put min datetime value 0001-01-01T00:00:00-14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -700,29 +544,21 @@ def build_put_local_negative_offset_min_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localnegativeoffset"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_negative_offset_min_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_local_negative_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get min datetime value 0001-01-01T00:00:00-14:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -736,26 +572,18 @@ def build_get_local_negative_offset_min_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localnegativeoffset"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_local_no_offset_min_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_local_no_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get min datetime value 0001-01-01T00:00:00.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -769,17 +597,12 @@ def build_get_local_no_offset_min_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localnooffset"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)

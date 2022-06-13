@@ -57,13 +57,6 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "to 'public' or 'hidden'."
         )
 
-    if not options["show_operations"] and options["add_python3_operation_files"]:
-        raise ValueError(
-            "Can not add typed sync operation files if you are not showing operations. "
-            "If you want typed synced operation files, you have to add flag "
-            "--show-operations"
-        )
-
     if options["basic_setup_py"] and not options["package_version"]:
         raise ValueError("--basic-setup-py must be used with --package-version")
 
@@ -84,12 +77,6 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             raise ValueError(
                 "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
             )
-
-    if options["reformat_next_link"] and options["version_tolerant"]:
-        raise ValueError(
-            "--reformat-next-link can not be true for version tolerant generations. "
-            "Please remove --reformat-next-link from your call for version tolerant generations."
-        )
 
     if options["multiapi"] and options["version_tolerant"]:
         raise ValueError(
@@ -197,12 +184,22 @@ class CodeGenerator(Plugin):
         models_mode_default = (
             "none" if low_level_client or version_tolerant else "msrest"
         )
-        python3_only = cast(
-            bool,
-            self._autorestapi.get_boolean_value(
-                "python3-only", low_level_client or version_tolerant
-            ),
-        )
+        if self._autorestapi.get_boolean_value("python3-only") is False:
+            _LOGGER.warning(
+                "You have passed in --python3-only=False. We have force overriden "
+                "this to True."
+            )
+        if self._autorestapi.get_boolean_value("add-python3-operation-files"):
+            _LOGGER.warning(
+                "You have passed in --add-python3-operation-files. "
+                "This flag no longer has an effect bc all SDKs are now Python3 only."
+            )
+        if self._autorestapi.get_boolean_value("reformat-next-link"):
+            _LOGGER.warning(
+                "You have passed in --reformat-next-link. We have force overriden "
+                "this to False because we no longer reformat initial query parameters into next "
+                "calls unless explicitly defined in the service definition."
+            )
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -241,16 +238,11 @@ class CodeGenerator(Plugin):
                 "only-path-and-body-params-positional",
                 low_level_client or version_tolerant,
             ),
-            "add_python3_operation_files": self._autorestapi.get_boolean_value(
-                "add-python3-operation-files",
-                python3_only and not (low_level_client or version_tolerant),
-            ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,
             "combine_operation_files": self._autorestapi.get_boolean_value(
                 "combine-operation-files", version_tolerant
             ),
-            "python3_only": python3_only,
             "package_mode": self._autorestapi.get_value("package-mode"),
             "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
             "package_configuration": self._autorestapi.get_value(
@@ -259,9 +251,6 @@ class CodeGenerator(Plugin):
             "default_optional_constants_to_none": self._autorestapi.get_boolean_value(
                 "default-optional-constants-to-none",
                 low_level_client or version_tolerant,
-            ),
-            "reformat_next_link": self._autorestapi.get_boolean_value(
-                "reformat-next-link", not version_tolerant
             ),
         }
 

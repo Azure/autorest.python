@@ -47,7 +47,6 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(
             required_global_path=required_global_path,
             required_global_query=required_global_query,

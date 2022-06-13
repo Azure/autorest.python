@@ -22,12 +22,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_put_optional_binary_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional body parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -43,29 +39,21 @@ def build_put_optional_binary_body_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/explicit/optional/binary-body"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_put_required_binary_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_required_binary_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     """Test explicitly required body parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -81,29 +69,21 @@ def build_put_required_binary_body_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/explicit/required/binary-body"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_post_required_integer_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_integer_parameter_request(*, json: int, **kwargs: Any) -> HttpRequest:
     """Test explicitly required integer. Please put null and the client library should throw before
     the request is sent.
 
@@ -120,29 +100,21 @@ def build_post_required_integer_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/integer/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_post_optional_integer_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_integer_parameter_request(*, json: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional integer. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -158,30 +130,24 @@ def build_post_optional_integer_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/integer/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
 @overload
 def build_post_required_integer_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -210,9 +176,8 @@ def build_post_required_integer_property_request(
 
 @overload
 def build_post_required_integer_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -231,10 +196,7 @@ def build_post_required_integer_property_request(
     """
 
 
-def build_post_required_integer_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_integer_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -254,30 +216,24 @@ def build_post_required_integer_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/integer/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_optional_integer_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -305,9 +261,8 @@ def build_post_optional_integer_property_request(
 
 @overload
 def build_post_optional_integer_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -325,10 +280,7 @@ def build_post_optional_integer_property_request(
     """
 
 
-def build_post_optional_integer_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_integer_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -347,29 +299,21 @@ def build_post_optional_integer_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/integer/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_required_integer_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_integer_header_request(*, header_parameter: int, **kwargs: Any) -> HttpRequest:
     """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
@@ -386,28 +330,19 @@ def build_post_required_integer_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter')  # type: int
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/integer/header"
 
     # Construct headers
-    _headers['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, 'int')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_optional_integer_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_integer_header_request(*, header_parameter: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -423,29 +358,20 @@ def build_post_optional_integer_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter', _headers.pop('headerParameter', None))  # type: Optional[int]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/integer/header"
 
     # Construct headers
     if header_parameter is not None:
-        _headers['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, 'int')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_required_string_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_string_parameter_request(*, content: str, **kwargs: Any) -> HttpRequest:
     """Test explicitly required string. Please put null and the client library should throw before the
     request is sent.
 
@@ -462,29 +388,21 @@ def build_post_required_string_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/string/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_post_optional_string_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_string_parameter_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional string. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -500,30 +418,24 @@ def build_post_optional_string_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/string/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
 @overload
 def build_post_required_string_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -552,9 +464,8 @@ def build_post_required_string_property_request(
 
 @overload
 def build_post_required_string_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -573,10 +484,7 @@ def build_post_required_string_property_request(
     """
 
 
-def build_post_required_string_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_string_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -596,30 +504,24 @@ def build_post_required_string_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/string/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_optional_string_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -647,9 +549,8 @@ def build_post_optional_string_property_request(
 
 @overload
 def build_post_optional_string_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -667,10 +568,7 @@ def build_post_optional_string_property_request(
     """
 
 
-def build_post_optional_string_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_string_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -689,29 +587,21 @@ def build_post_optional_string_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/string/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_required_string_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_string_header_request(*, header_parameter: str, **kwargs: Any) -> HttpRequest:
     """Test explicitly required string. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
@@ -728,28 +618,19 @@ def build_post_required_string_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter')  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/string/header"
 
     # Construct headers
-    _headers['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_optional_string_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_string_header_request(*, body_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -765,30 +646,23 @@ def build_post_optional_string_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    body_parameter = kwargs.pop('body_parameter', _headers.pop('bodyParameter', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/string/header"
 
     # Construct headers
     if body_parameter is not None:
-        _headers['bodyParameter'] = _SERIALIZER.header("body_parameter", body_parameter, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_required_class_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required complex object. Please put null and the client library should throw
     before the request is sent.
 
@@ -818,9 +692,8 @@ def build_post_required_class_parameter_request(
 
 @overload
 def build_post_required_class_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required complex object. Please put null and the client library should throw
     before the request is sent.
 
@@ -839,10 +712,7 @@ def build_post_required_class_parameter_request(
     """
 
 
-def build_post_required_class_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_class_parameter_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly required complex object. Please put null and the client library should throw
     before the request is sent.
 
@@ -862,30 +732,24 @@ def build_post_required_class_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/class/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_optional_class_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional complex object. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -914,9 +778,8 @@ def build_post_optional_class_parameter_request(
 
 @overload
 def build_post_optional_class_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional complex object. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -934,10 +797,7 @@ def build_post_optional_class_parameter_request(
     """
 
 
-def build_post_optional_class_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_class_parameter_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly optional complex object. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -956,30 +816,24 @@ def build_post_optional_class_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/class/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_required_class_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
     and the client library should throw before the request is sent.
 
@@ -1011,9 +865,8 @@ def build_post_required_class_property_request(
 
 @overload
 def build_post_required_class_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
     and the client library should throw before the request is sent.
 
@@ -1032,10 +885,7 @@ def build_post_required_class_property_request(
     """
 
 
-def build_post_required_class_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_class_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
     and the client library should throw before the request is sent.
 
@@ -1055,30 +905,24 @@ def build_post_required_class_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/class/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_optional_class_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1109,9 +953,8 @@ def build_post_optional_class_property_request(
 
 @overload
 def build_post_optional_class_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1129,10 +972,7 @@ def build_post_optional_class_property_request(
     """
 
 
-def build_post_optional_class_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_class_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1151,30 +991,24 @@ def build_post_optional_class_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/class/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_required_array_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: List[str], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
 
@@ -1203,9 +1037,8 @@ def build_post_required_array_parameter_request(
 
 @overload
 def build_post_required_array_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
 
@@ -1224,10 +1057,7 @@ def build_post_required_array_parameter_request(
     """
 
 
-def build_post_required_array_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_array_parameter_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
 
@@ -1247,30 +1077,24 @@ def build_post_required_array_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/array/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_optional_array_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[List[str]] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional array. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1298,9 +1122,8 @@ def build_post_optional_array_parameter_request(
 
 @overload
 def build_post_optional_array_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional array. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1318,10 +1141,7 @@ def build_post_optional_array_parameter_request(
     """
 
 
-def build_post_optional_array_parameter_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_array_parameter_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly optional array. Please put null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1340,30 +1160,24 @@ def build_post_optional_array_parameter_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/array/parameter"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_required_array_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -1394,9 +1208,8 @@ def build_post_required_array_property_request(
 
 @overload
 def build_post_required_array_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -1415,10 +1228,7 @@ def build_post_required_array_property_request(
     """
 
 
-def build_post_required_array_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_array_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
@@ -1438,30 +1248,24 @@ def build_post_required_array_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/array/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_optional_array_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1491,9 +1295,8 @@ def build_post_optional_array_property_request(
 
 @overload
 def build_post_optional_array_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1511,10 +1314,7 @@ def build_post_optional_array_property_request(
     """
 
 
-def build_post_optional_array_property_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_optional_array_property_request(**kwargs: Any) -> HttpRequest:
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1533,29 +1333,21 @@ def build_post_optional_array_property_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/array/property"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_required_array_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_required_array_header_request(*, header_parameter: List[str], **kwargs: Any) -> HttpRequest:
     """Test explicitly required array. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
@@ -1572,28 +1364,21 @@ def build_post_required_array_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter')  # type: List[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/requied/array/header"
 
     # Construct headers
-    _headers['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, '[str]', div=',')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_post_optional_array_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, header_parameter: Optional[List[str]] = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1609,20 +1394,14 @@ def build_post_optional_array_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter', _headers.pop('headerParameter', None))  # type: Optional[List[str]]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/optional/array/header"
 
     # Construct headers
     if header_parameter is not None:
-        _headers['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, '[str]', div=',')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

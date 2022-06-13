@@ -22,13 +22,9 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
 @overload
-def build_create_ap_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_true_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -57,10 +53,7 @@ def build_create_ap_true_request(
 
 
 @overload
-def build_create_ap_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_true_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -78,10 +71,7 @@ def build_create_ap_true_request(
     """
 
 
-def build_create_ap_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_true_request(**kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -100,30 +90,22 @@ def build_create_ap_true_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/additionalProperties/true"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_create_cat_ap_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_cat_ap_true_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a CatAPTrue which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -153,10 +135,7 @@ def build_create_cat_ap_true_request(
 
 
 @overload
-def build_create_cat_ap_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_cat_ap_true_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a CatAPTrue which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -174,10 +153,7 @@ def build_create_cat_ap_true_request(
     """
 
 
-def build_create_cat_ap_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_cat_ap_true_request(**kwargs: Any) -> HttpRequest:
     """Create a CatAPTrue which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -196,30 +172,22 @@ def build_create_cat_ap_true_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/additionalProperties/true-subclass"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_create_ap_object_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_object_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -248,10 +216,7 @@ def build_create_ap_object_request(
 
 
 @overload
-def build_create_ap_object_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_object_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -269,10 +234,7 @@ def build_create_ap_object_request(
     """
 
 
-def build_create_ap_object_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_object_request(**kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -291,30 +253,22 @@ def build_create_ap_object_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/additionalProperties/type/object"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_create_ap_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_string_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -343,10 +297,7 @@ def build_create_ap_string_request(
 
 
 @overload
-def build_create_ap_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_string_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -364,10 +315,7 @@ def build_create_ap_string_request(
     """
 
 
-def build_create_ap_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_string_request(**kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -386,30 +334,24 @@ def build_create_ap_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/additionalProperties/type/string"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_create_ap_in_properties_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -439,9 +381,8 @@ def build_create_ap_in_properties_request(
 
 @overload
 def build_create_ap_in_properties_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -459,10 +400,7 @@ def build_create_ap_in_properties_request(
     """
 
 
-def build_create_ap_in_properties_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_in_properties_request(**kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -481,30 +419,24 @@ def build_create_ap_in_properties_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/additionalProperties/in/properties"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_create_ap_in_properties_with_ap_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -538,9 +470,8 @@ def build_create_ap_in_properties_with_ap_string_request(
 
 @overload
 def build_create_ap_in_properties_with_ap_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -558,10 +489,7 @@ def build_create_ap_in_properties_with_ap_string_request(
     """
 
 
-def build_create_ap_in_properties_with_ap_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_create_ap_in_properties_with_ap_string_request(**kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -580,20 +508,15 @@ def build_create_ap_in_properties_with_ap_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/additionalProperties/in/properties/with/additionalProperties/string"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)

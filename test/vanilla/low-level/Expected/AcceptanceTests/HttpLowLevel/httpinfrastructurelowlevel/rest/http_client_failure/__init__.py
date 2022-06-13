@@ -6,60 +6,32 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_head400_request
-    from ._request_builders_py3 import build_get400_request
-    from ._request_builders_py3 import build_options400_request
-    from ._request_builders_py3 import build_put400_request
-    from ._request_builders_py3 import build_patch400_request
-    from ._request_builders_py3 import build_post400_request
-    from ._request_builders_py3 import build_delete400_request
-    from ._request_builders_py3 import build_head401_request
-    from ._request_builders_py3 import build_get402_request
-    from ._request_builders_py3 import build_options403_request
-    from ._request_builders_py3 import build_get403_request
-    from ._request_builders_py3 import build_put404_request
-    from ._request_builders_py3 import build_patch405_request
-    from ._request_builders_py3 import build_post406_request
-    from ._request_builders_py3 import build_delete407_request
-    from ._request_builders_py3 import build_put409_request
-    from ._request_builders_py3 import build_head410_request
-    from ._request_builders_py3 import build_get411_request
-    from ._request_builders_py3 import build_options412_request
-    from ._request_builders_py3 import build_get412_request
-    from ._request_builders_py3 import build_put413_request
-    from ._request_builders_py3 import build_patch414_request
-    from ._request_builders_py3 import build_post415_request
-    from ._request_builders_py3 import build_get416_request
-    from ._request_builders_py3 import build_delete417_request
-    from ._request_builders_py3 import build_head429_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_head400_request  # type: ignore
-    from ._request_builders import build_get400_request  # type: ignore
-    from ._request_builders import build_options400_request  # type: ignore
-    from ._request_builders import build_put400_request  # type: ignore
-    from ._request_builders import build_patch400_request  # type: ignore
-    from ._request_builders import build_post400_request  # type: ignore
-    from ._request_builders import build_delete400_request  # type: ignore
-    from ._request_builders import build_head401_request  # type: ignore
-    from ._request_builders import build_get402_request  # type: ignore
-    from ._request_builders import build_options403_request  # type: ignore
-    from ._request_builders import build_get403_request  # type: ignore
-    from ._request_builders import build_put404_request  # type: ignore
-    from ._request_builders import build_patch405_request  # type: ignore
-    from ._request_builders import build_post406_request  # type: ignore
-    from ._request_builders import build_delete407_request  # type: ignore
-    from ._request_builders import build_put409_request  # type: ignore
-    from ._request_builders import build_head410_request  # type: ignore
-    from ._request_builders import build_get411_request  # type: ignore
-    from ._request_builders import build_options412_request  # type: ignore
-    from ._request_builders import build_get412_request  # type: ignore
-    from ._request_builders import build_put413_request  # type: ignore
-    from ._request_builders import build_patch414_request  # type: ignore
-    from ._request_builders import build_post415_request  # type: ignore
-    from ._request_builders import build_get416_request  # type: ignore
-    from ._request_builders import build_delete417_request  # type: ignore
-    from ._request_builders import build_head429_request  # type: ignore
+from ._request_builders import build_head400_request
+from ._request_builders import build_get400_request
+from ._request_builders import build_options400_request
+from ._request_builders import build_put400_request
+from ._request_builders import build_patch400_request
+from ._request_builders import build_post400_request
+from ._request_builders import build_delete400_request
+from ._request_builders import build_head401_request
+from ._request_builders import build_get402_request
+from ._request_builders import build_options403_request
+from ._request_builders import build_get403_request
+from ._request_builders import build_put404_request
+from ._request_builders import build_patch405_request
+from ._request_builders import build_post406_request
+from ._request_builders import build_delete407_request
+from ._request_builders import build_put409_request
+from ._request_builders import build_head410_request
+from ._request_builders import build_get411_request
+from ._request_builders import build_options412_request
+from ._request_builders import build_get412_request
+from ._request_builders import build_put413_request
+from ._request_builders import build_patch414_request
+from ._request_builders import build_post415_request
+from ._request_builders import build_get416_request
+from ._request_builders import build_delete417_request
+from ._request_builders import build_head429_request
 
 __all__ = [
     "build_head400_request",

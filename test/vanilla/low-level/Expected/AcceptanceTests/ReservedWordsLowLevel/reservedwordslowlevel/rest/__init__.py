@@ -6,18 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_operation_with_content_param_request
-    from ._request_builders_py3 import build_operation_with_json_param_request
-    from ._request_builders_py3 import build_operation_with_data_param_request
-    from ._request_builders_py3 import build_operation_with_files_param_request
-    from ._request_builders_py3 import build_operation_with_url_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_operation_with_content_param_request  # type: ignore
-    from ._request_builders import build_operation_with_json_param_request  # type: ignore
-    from ._request_builders import build_operation_with_data_param_request  # type: ignore
-    from ._request_builders import build_operation_with_files_param_request  # type: ignore
-    from ._request_builders import build_operation_with_url_request  # type: ignore
+from ._request_builders import build_operation_with_content_param_request
+from ._request_builders import build_operation_with_json_param_request
+from ._request_builders import build_operation_with_data_param_request
+from ._request_builders import build_operation_with_files_param_request
+from ._request_builders import build_operation_with_url_request
 
 __all__ = [
     "build_operation_with_content_param_request",

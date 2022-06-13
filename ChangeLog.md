@@ -1,5 +1,19 @@
 # Release History
 
+### 2022-xx-xx - 6.0.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Breaking Changes**
+
+- Only generate Python3 SDKs  #1297
+- Don't reformat initial query parameters into the next link  #1297
+
 ### 2022-07-13 - 5.19.0
 
 | Library                                                                 | Min Version |
@@ -11,6 +25,7 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
+
 - Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
 
 ### 2022-07-13 - 5.18.0

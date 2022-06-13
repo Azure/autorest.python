@@ -15,12 +15,8 @@ from ..._serialization import Serializer
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_head501_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_head501_request(**kwargs: Any) -> HttpRequest:
     """Return 501 status code - should be represented in the client as an error.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -34,26 +30,18 @@ def build_head501_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/http/failure/server/501"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_get501_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get501_request(**kwargs: Any) -> HttpRequest:
     """Return 501 status code - should be represented in the client as an error.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -67,26 +55,18 @@ def build_get501_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/http/failure/server/501"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post505_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post505_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     """Return 505 status code - should be represented in the client as an error.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -103,29 +83,21 @@ def build_post505_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/http/failure/server/505"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_delete505_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete505_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     """Return 505 status code - should be represented in the client as an error.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -142,20 +114,15 @@ def build_delete505_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/http/failure/server/505"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, **kwargs)
