@@ -43,7 +43,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         parameters: ParameterListType,
         *,
         overloads: Optional[List["RequestBuilder"]] = None,
-        abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -51,7 +50,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             name=name,
             parameters=parameters,
             overloads=overloads,
-            abstract=abstract,
             want_tracing=False,
         )
         self.overloads: List["RequestBuilder"] = overloads or []
@@ -147,23 +145,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             RequestBuilder.from_yaml(rb_yaml_data, code_model)
             for rb_yaml_data in yaml_data.get("overloads", [])
         ]
-        abstract = False
         parameter_list = cls.parameter_list_type()(yaml_data, code_model)
-        if (
-            code_model.options["version_tolerant"]
-            and parameter_list.has_body
-            and isinstance(
-                parameter_list.body_parameter, RequestBuilderMultipartBodyParameter
-            )
-        ):
-            _LOGGER.warning(
-                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
-                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
-                'Please write your own custom operation in the "_patch.py" file '
-                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-                name,
-            )
-            abstract = True
 
         return cls(
             yaml_data=yaml_data,
@@ -171,7 +153,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             name=name,
             parameters=parameter_list,
             overloads=overloads,
-            abstract=abstract,
         )
 
 

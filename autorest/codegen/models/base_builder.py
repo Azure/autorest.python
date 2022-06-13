@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import logging
 from abc import abstractmethod
 from typing import Any, Dict, List, Optional, TypeVar, Union, TYPE_CHECKING, Generic
 from .base_model import BaseModel
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     from .operation import Operation
     from .request_builder import RequestBuilder
 
+_LOGGER = logging.getLogger(__name__)
 
 class BaseBuilder(Generic[ParameterListType], BaseModel):
     """Base class for Operations and Request Builders"""
@@ -39,7 +41,6 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
         parameters: ParameterListType,
         *,
         overloads=None,
-        abstract: bool = False,
         want_tracing: bool = True,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
@@ -50,13 +51,21 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
             overloads or []
         )
         self._summary: str = yaml_data.get("summary", "")
-        # for operations where we don't know what to do, we mark them as abstract so users implement
-        # in patch.py
-        self.abstract = abstract
         self.want_tracing = want_tracing
         self.group_name: str = yaml_data["groupName"]
         self.is_overload: bool = yaml_data["isOverload"]
         self.api_versions: List[str] = yaml_data["apiVersions"]
+
+        if code_model.options["version_tolerant"] and yaml_data.get("abstract"):
+            _LOGGER.warning(
+                'Not going to generate operation "%s" because it we are unable to generate this type of operation right now. '
+                'Please write your own custom operation in the "_patch.py" file '
+                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
+                name,
+            )
+            self.abstract = True
+        else:
+            self.abstract = False
 
     @property
     def summary(self) -> Optional[str]:
