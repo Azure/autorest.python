@@ -31,9 +31,7 @@ def main():
 
 
 if __name__ == "__main__":
-    if not (
-        os.getenv.get("AZURE_CLIENT_ID") and os.getenv.get("AZURE_TENANT_ID") and os.getenv.get("AZURE_CLIENT_SECRET")
-    ):
+    if not (os.getenv("AZURE_CLIENT_ID") and os.getenv("AZURE_TENANT_ID") and os.getenv("AZURE_CLIENT_SECRET")):
         raise Exception(
             "Please set the values of the client ID, tenant ID and client secret "
             "of the AAD application as environment variables: AZURE_CLIENT_ID, "
