@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 from typing import (
     Any,
     Callable,
@@ -22,12 +21,10 @@ from .parameter_list import (
     OverloadedRequestBuilderParameterList,
 )
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
-from .request_builder_parameter import RequestBuilderMultipartBodyParameter
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-_LOGGER = logging.getLogger(__name__)
 ParameterListType = TypeVar(
     "ParameterListType",
     bound=Union[RequestBuilderParameterList, OverloadedRequestBuilderParameterList],

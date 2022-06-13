@@ -495,8 +495,11 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             body_parameter["type"]["type"] == "combined" if body_parameter else False
         )
         abstract = False
-        if body_parameter and body_parameter.get("entries"):
-            # this means it's formdata or urlencoded
+        if body_parameter and (
+            body_parameter.get("entries")
+            or len(body_parameter["type"].get("types", [])) > 2
+        ):
+            # this means it's formdata or urlencoded, or there are more than 2 types of body
             abstract = True
         return {
             "name": yaml_data["language"]["default"]["name"],
@@ -524,7 +527,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             "discriminator": "operation",
             "isOverload": is_overload,
             "apiVersions": _get_api_versions(yaml_data.get("apiVersions", [])),
-            "abstract": abstract
+            "abstract": abstract,
         }
 
     def get_operation_creator(
