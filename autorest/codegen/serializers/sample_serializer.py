@@ -40,7 +40,7 @@ class SampleSerializer:
             operation_params=self.operation_params,
             origin_file=self.origin_file,
             imports=FileImportSerializer(self.sample_params["imports"], True),
-            annotation=self.sample_params["annotation"],
+            check_auth=self.sample_params["check_auth"],
             operation_result=self.operation_result,
             file_name=self.sample_params["file_name"],
         )

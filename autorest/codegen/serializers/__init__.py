@@ -33,7 +33,6 @@ from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from ..models import BodyParameter
-from .utils import SAMPLE_AAD_ANNOTATION, SAMPLE_KEY_ANNOTATION
 
 _LOGGER = logging.getLogger(__name__)
 _BLACK_MODE = black.Mode()
@@ -547,24 +546,29 @@ class JinjaSerializer:
             namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
         )
 
+    # find root folder where "setup.py" is
     def _package_root_folder(self, namespace_path: Path) -> Path:
-        count = (self.code_model.options.get("package_name") or "").count("-")
-        extra = 2 if self.code_model.options["multiapi"] else 1
-        for _ in range(count + extra):
-            namespace_path = namespace_path / Path("..")
-        return namespace_path
+        count = (
+            max(
+                (self.code_model.options.get("package_name") or "").count("-"),
+                self.code_model.namespace.count("."),
+            )
+            + 1
+        )
+
+        return namespace_path / Path(".." * count)
 
     def _prepare_sample_render_param(self) -> Dict[Any, Any]:
         # client params
         credential = ""
-        annotation = ""
+        check_auth = ""
         credential_type = getattr(self.code_model.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             credential = "DefaultAzureCredential"
-            annotation = SAMPLE_AAD_ANNOTATION
+            check_auth = "aad"
         elif isinstance(credential_type, AzureKeyCredentialType):
             credential = "AzureKeyCredential"
-            annotation = SAMPLE_KEY_ANNOTATION
+            check_auth = "key"
 
         addtional_info = (
             'key=os.getenv("AZURE_KEY")' if credential == "AzureKeyCredential" else ""
@@ -600,7 +604,7 @@ class JinjaSerializer:
         return {
             "imports": imports,
             "client_params": client_params,
-            "annotation": annotation,
+            "check_auth": check_auth,
         }
 
     @staticmethod

@@ -8,7 +8,7 @@ The sample just shows how to use the method and may not run successfully.
 {% if "credential" in client_params %}
     pip install azure-identity
 {% endif %}
-    pip install {{ code_model.options["package_name"] or code_model.client.name }}
+    pip install {{ code_model.options["package_name"] or (code_model.client.name|lower) }}
 # USAGE
     python {{ file_name }}
 """
@@ -16,9 +16,6 @@ The sample just shows how to use the method and may not run successfully.
 # x-ms-original-file: {{ origin_file }}
 {% endif %}
 def main():
-    """
-    {{- annotation }}
-    """
     client = {{ code_model.client.name }}(
         {% for key, value in client_params.items() %}
         {{ key }}={{ value }},
@@ -38,4 +35,18 @@ def main():
 
 
 if __name__ == "__main__":
+    {% if check_auth == "aad" %}
+    if not (os.getenv.get('AZURE_CLIENT_ID') and os.getenv.get('AZURE_TENANT_ID') and os.getenv.get('AZURE_CLIENT_SECRET')):
+        raise Exception(
+            "Please set the values of the client ID, tenant ID and client secret "\
+            "of the AAD application as environment variables: AZURE_CLIENT_ID, "\
+            " AZURE_TENANT_ID, AZURE_CLIENT_SECRET. For more info about how to get the value, "\
+            "please see https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal"
+        )
+    {% elif check_auth == "key" %}
+    if not os.getenv.get('AZURE_KEY'):
+        raise Exception(
+            "Please set environment variables "AZURE_KEY" with real value which can access your service"
+        )
+    {% endif %}
     main()
