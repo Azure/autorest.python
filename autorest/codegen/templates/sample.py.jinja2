@@ -35,7 +35,7 @@ def main():
 {% endif %}
 if __name__ == "__main__":
     {% if check_auth == "aad" %}
-    if not (os.getenv.get('AZURE_CLIENT_ID') and os.getenv.get('AZURE_TENANT_ID') and os.getenv.get('AZURE_CLIENT_SECRET')):
+    if not (os.getenv('AZURE_CLIENT_ID') and os.getenv('AZURE_TENANT_ID') and os.getenv('AZURE_CLIENT_SECRET')):
         raise Exception(
             "Please set the values of the client ID, tenant ID and client secret "\
             "of the AAD application as environment variables: AZURE_CLIENT_ID, "\
@@ -43,7 +43,7 @@ if __name__ == "__main__":
             "please see https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal"
         )
     {% elif check_auth == "key" %}
-    if not os.getenv.get('AZURE_KEY'):
+    if not os.getenv('AZURE_KEY'):
         raise Exception(
             "Please set environment variables "AZURE_KEY" with real value which can access your service"
         )
