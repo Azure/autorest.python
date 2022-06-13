@@ -5,7 +5,6 @@
 # --------------------------------------------------------------------------
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
-import black
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.models.request_builder import OverloadedRequestBuilder
@@ -23,8 +22,6 @@ from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
-
-_BLACK_MODE = black.Mode()
 
 __all__ = [
     "JinjaSerializer",
