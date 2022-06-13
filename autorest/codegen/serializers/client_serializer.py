@@ -155,7 +155,7 @@ class ClientSerializer:
     def send_request_signature_and_response_type_annotation(
         self, async_mode: bool
     ) -> str:
-        send_request_signature = self._send_request_signature(async_mode)
+        send_request_signature = self._send_request_signature()
         return utils.method_signature_and_response_type_annotation_template(
             method_signature=send_request_signature,
             response_type_annotation="Awaitable[AsyncHttpResponse]"
