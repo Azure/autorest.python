@@ -1,4 +1,4 @@
-# Change
+# Release History
 
 ### 2022-xx-xx - 5.19.0
 
