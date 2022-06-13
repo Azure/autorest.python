@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
+from ..models.imports import MsrestImportType
 from ..models import (
     FileImport,
     ImportType,
@@ -73,11 +74,11 @@ class GeneralSerializer:
                 f"{self.code_model.client.name}Configuration",
                 ImportType.LOCAL,
             )
-            file_import.add_submodule_import(
-                "msrest", "Serializer", ImportType.THIRDPARTY, TypingSection.TYPING
-            )
-            file_import.add_submodule_import(
-                "msrest", "Deserializer", ImportType.THIRDPARTY, TypingSection.TYPING
+            file_import.add_msrest_import(
+                self.code_model,
+                ".." if self.async_mode else ".",
+                MsrestImportType.SerializerDeserializer,
+                TypingSection.TYPING,
             )
 
         return template.render(
@@ -120,3 +121,7 @@ class GeneralSerializer:
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
         return template.render(code_model=self.code_model, **params)
+
+    def serialize_serialization_file(self) -> str:
+        template = self.env.get_template("serialization.py.jinja2")
+        return template.render(code_model=self.code_model)

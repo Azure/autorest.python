@@ -9,10 +9,10 @@
 
 from typing import List, Optional
 
-import msrest.serialization
+from ... import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -44,7 +44,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class PagingResult(msrest.serialization.Model):
+class PagingResult(_serialization.Model):
     """PagingResult.
 
     :ivar values:
@@ -76,7 +76,7 @@ class PagingResult(msrest.serialization.Model):
         self.next_link = next_link
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar id:
@@ -101,7 +101,7 @@ class Product(msrest.serialization.Model):
         self.id = id
 
 
-class TestLroAndPagingOptions(msrest.serialization.Model):
+class TestLroAndPagingOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.

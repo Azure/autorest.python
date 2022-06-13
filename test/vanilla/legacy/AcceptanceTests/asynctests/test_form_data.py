@@ -33,8 +33,6 @@ import os
 import tempfile
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError
-
 from bodyformdata.aio import AutoRestSwaggerBATFormDataService
 
 import pytest

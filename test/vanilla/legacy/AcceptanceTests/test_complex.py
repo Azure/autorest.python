@@ -34,7 +34,7 @@ from datetime import date, datetime, timedelta, tzinfo
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError, SerializationError, ValidationError
+from msrest.exceptions import DeserializationError, ValidationError
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import CustomHookPolicy
 

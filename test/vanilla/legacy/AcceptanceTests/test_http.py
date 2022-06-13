@@ -39,7 +39,6 @@ import requests
 
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RedirectPolicy
-from msrest.exceptions import DeserializationError
 
 from httpinfrastructure import AutoRestHttpInfrastructureTestService
 from httpinfrastructure.models import MyException, B, C, D

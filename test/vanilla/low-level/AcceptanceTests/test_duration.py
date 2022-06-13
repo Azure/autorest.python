@@ -26,7 +26,7 @@
 
 from datetime import timedelta
 import isodate
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DeserializationError
 
 from bodydurationlowlevel import AutoRestDurationTestService
 from bodydurationlowlevel.rest import duration

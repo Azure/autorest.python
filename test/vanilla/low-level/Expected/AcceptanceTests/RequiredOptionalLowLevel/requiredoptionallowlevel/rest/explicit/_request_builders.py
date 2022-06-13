@@ -8,10 +8,10 @@
 import sys
 from typing import Any, IO, List, Optional, Union, overload
 
-from msrest import Serializer
-
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
+
+from ..._serialization import Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -20,6 +20,7 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 # fmt: off
 

@@ -9,14 +9,14 @@
 
 from typing import Dict, List, Optional, TYPE_CHECKING
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class BaseProduct(msrest.serialization.Model):
+class BaseProduct(_serialization.Model):
     """The product documentation.
 
     All required parameters must be populated in order to send to Azure.
@@ -52,7 +52,7 @@ class BaseProduct(msrest.serialization.Model):
         self.description = description
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -91,7 +91,7 @@ class Error(msrest.serialization.Model):
         self.parent_error = parent_error
 
 
-class Resource(msrest.serialization.Model):
+class Resource(_serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -212,7 +212,7 @@ class FlattenedProduct(Resource):
         self.provisioning_state = provisioning_state
 
 
-class FlattenParameterGroup(msrest.serialization.Model):
+class FlattenParameterGroup(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -297,7 +297,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         self.odata_value = odata_value
 
 
-class GenericUrl(msrest.serialization.Model):
+class GenericUrl(_serialization.Model):
     """The Generic URL.
 
     :ivar generic_value: Generic URL value.
@@ -342,7 +342,7 @@ class ProductUrl(GenericUrl):
         self.odata_value = odata_value
 
 
-class ProductWrapper(msrest.serialization.Model):
+class ProductWrapper(_serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.
@@ -362,7 +362,7 @@ class ProductWrapper(msrest.serialization.Model):
         self.value = value
 
 
-class ResourceCollection(msrest.serialization.Model):
+class ResourceCollection(_serialization.Model):
     """ResourceCollection.
 
     :ivar productresource: Flattened product.
@@ -469,7 +469,7 @@ class SimpleProduct(BaseProduct):
         self.odata_value = odata_value
 
 
-class WrappedProduct(msrest.serialization.Model):
+class WrappedProduct(_serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.

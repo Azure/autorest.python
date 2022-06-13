@@ -8,7 +8,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from msrest import Serializer, Deserializer
+from {{ ".." if async_mode else "." }}_serialization import Serializer, Deserializer
 {% if imports %}
 {{ imports }}
 {% endif %}

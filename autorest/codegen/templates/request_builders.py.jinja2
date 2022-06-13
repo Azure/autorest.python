@@ -3,7 +3,7 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
-{{ op_tools.declare_serializer(code_model) }}
+{{ op_tools.declare_serializer(code_model, request_builders) }}
 {% if not is_python3_file %}
 # fmt: off
 {% endif %}

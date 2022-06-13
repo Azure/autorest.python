@@ -27,7 +27,6 @@
 from async_generator import yield_, async_generator
 import io
 from azure.core.exceptions import HttpResponseError
-from msrest.exceptions import ValidationError
 
 from requiredoptionallowlevel.aio import AutoRestRequiredOptionalTestService
 from requiredoptionallowlevel.rest import implicit, explicit
@@ -134,21 +133,21 @@ async def test_post_optional_array(send_request_required_client):
 
 @pytest.mark.asyncio
 async def test_implicit_get_required(send_request_client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = implicit.build_get_required_path_request(path_parameter=None)
         await send_request_client(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = implicit.build_get_required_global_path_request(required_global_path=None)
         await send_request_client(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = implicit.build_get_required_global_query_request(required_global_query=None)
         await send_request_client(request)
 
 @pytest.mark.asyncio
 async def test_post_required_string(send_request_client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = explicit.build_post_required_string_header_request(header_parameter=None)
         await send_request_client(request)
 
@@ -165,7 +164,7 @@ async def test_post_required_string(send_request_client):
 
 @pytest.mark.asyncio
 async def test_post_required_array(send_request_client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(TypeError):
         request = explicit.build_post_required_array_header_request(header_parameter=None)
         await send_request_client(request)
 

@@ -70,4 +70,7 @@ class OperationGroupsSerializer:
                 async_mode=False,
                 is_python3_file=self.is_python3_file,
             ),
+            request_builders=[
+                rb for rb in self.code_model.request_builders if not rb.abstract
+            ],
         )

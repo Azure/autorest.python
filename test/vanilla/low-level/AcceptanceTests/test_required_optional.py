@@ -27,7 +27,6 @@
 import sys
 import io
 from azure.core.exceptions import HttpResponseError
-from msrest.exceptions import ValidationError
 
 from requiredoptionallowlevel import AutoRestRequiredOptionalTestService
 from requiredoptionallowlevel.rest import implicit, explicit
@@ -124,20 +123,20 @@ def test_post_optional_array(send_request_required_client):
     send_request_required_client(request)
 
 def test_implicit_get_required(send_request_client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = implicit.build_get_required_path_request(path_parameter=None)
         send_request_client(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = implicit.build_get_required_global_path_request(required_global_path=None)
         send_request_client(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = implicit.build_get_required_global_query_request(required_global_query=None)
         send_request_client(request)
 
 def test_post_required_string(send_request_client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = explicit.build_post_required_string_header_request(header_parameter=None)
         send_request_client(request)
 
@@ -153,7 +152,7 @@ def test_post_required_string(send_request_client):
     assert "Not Found" in str(ex.value)
 
 def test_post_required_array(send_request_client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(TypeError):
         request = explicit.build_post_required_array_header_request(header_parameter=None)
         send_request_client(request)
 

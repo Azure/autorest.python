@@ -29,7 +29,6 @@ from urllowlevel import AutoRestUrlTestService
 from urllowlevel.rest import queries, paths, path_items
 from urlmulticollectionformatlowlevel import AutoRestUrlMutliCollectionFormatTestService
 from urlmulticollectionformatlowlevel.rest import queries as multiqueries
-from msrest.exceptions import ValidationError
 
 import pytest
 
@@ -63,7 +62,7 @@ def test_byte_empty_and_null(send_request):
     request = paths.build_byte_empty_request()
     send_request(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_byte_null_request(None)
 
 def test_byte_multi_byte(send_request):
@@ -72,11 +71,11 @@ def test_byte_multi_byte(send_request):
     send_request(request)
 
 def test_date_null(send_request):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_date_null_request(None)
 
 def test_date_time_null(send_request):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_date_time_null_request(None)
 
 def test_date_time_valid(send_request):
@@ -129,7 +128,7 @@ def test_string_empty_and_null(send_request):
     request = paths.build_string_empty_request()
     send_request(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_string_null_request(None)
 
 def test_array_csv_in_path(send_request):
@@ -154,7 +153,7 @@ def test_enum_valid(send_request):
     send_request(request)
 
 def test_enum_null(send_request):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_enum_null_request(None)
 
 def test_base64_url(send_request):

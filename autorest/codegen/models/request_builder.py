@@ -21,7 +21,7 @@ from .parameter_list import (
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
 )
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .request_builder_parameter import RequestBuilderMultipartBodyParameter
 
 if TYPE_CHECKING:
@@ -73,34 +73,45 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        if not self.abstract:
-            for parameter in self.parameters.method:
-                file_import.merge(parameter.imports(async_mode=False))
+        if self.abstract:
+            return file_import
+        for parameter in self.parameters.method:
+            file_import.merge(parameter.imports(async_mode=False))
 
         file_import.add_submodule_import(
             "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        if not self.abstract:
-            if self.parameters.path:
-                relative_path = ".."
-                if (
-                    not self.code_model.options["builders_visibility"] == "embedded"
-                    and self.group_name
-                ):
-                    relative_path = "..." if self.group_name else ".."
-                file_import.add_submodule_import(
-                    f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
-                )
-            if self.parameters.headers or self.parameters.query:
-                file_import.add_submodule_import(
-                    "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
-                )
+
+        if self.parameters.path:
+            relative_path = ".."
+            if (
+                not self.code_model.options["builders_visibility"] == "embedded"
+                and self.group_name
+            ):
+                relative_path = "..." if self.group_name else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
+            )
+        if self.parameters.headers or self.parameters.query:
+            file_import.add_submodule_import(
+                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+            )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
+        file_import.add_msrest_import(
+            self.code_model,
+            "..."
+            if (
+                not self.code_model.options["builders_visibility"] == "embedded"
+                and self.group_name
+            )
+            else "..",
+            MsrestImportType.Serializer,
+            TypingSection.REGULAR,
+        )
         if (
             self.overloads
             and self.code_model.options["builders_visibility"] != "embedded"

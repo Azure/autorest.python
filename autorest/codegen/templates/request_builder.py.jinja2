@@ -5,12 +5,6 @@
     {{ op_tools.description(request_builder, request_builder_serializer) | indent }}
 {% endif %}
 {% if not request_builder.is_overload %}
-    {% if request_builder.abstract %}
-    raise NotImplementedError(
-        "You need to write a custom operation for '{{ request_builder.name }}'. "
-        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
-    )
-    {% else %}
         {% if request_builder_serializer.pop_kwargs_from_signature(request_builder) %}
     {{ op_tools.serialize(request_builder_serializer.pop_kwargs_from_signature(request_builder)) | indent }}
         {%- endif -%}
@@ -31,5 +25,4 @@
     {{ op_tools.serialize(request_builder_serializer.serialize_headers(request_builder)) | indent }}
         {% endif %}
     {{ op_tools.serialize(request_builder_serializer.create_http_request(request_builder)) | indent }}
-        {% endif %}
 {% endif %}
