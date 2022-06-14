@@ -19,9 +19,7 @@ class PatchSerializer:
         imports.add_submodule_import(
             "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        is_python3_file = self.code_model.options["python3_only"]
         return template.render(
             code_model=self.code_model,
-            imports=FileImportSerializer(imports, is_python3_file=is_python3_file),
-            is_python3_file=is_python3_file,
+            imports=FileImportSerializer(imports),
         )

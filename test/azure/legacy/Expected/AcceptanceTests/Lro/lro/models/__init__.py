@@ -14,7 +14,6 @@ from ._models_py3 import Sku
 from ._models_py3 import SubProduct
 from ._models_py3 import SubResource
 
-
 from ._auto_rest_long_running_operation_test_service_enums import OperationResultStatus
 from ._auto_rest_long_running_operation_test_service_enums import ProductPropertiesProvisioningStateValues
 from ._auto_rest_long_running_operation_test_service_enums import SubProductPropertiesProvisioningStateValues

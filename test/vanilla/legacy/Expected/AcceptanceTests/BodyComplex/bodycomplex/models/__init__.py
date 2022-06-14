@@ -39,7 +39,6 @@ from ._models_py3 import Siamese
 from ._models_py3 import SmartSalmon
 from ._models_py3 import StringWrapper
 
-
 from ._auto_rest_complex_test_service_enums import CMYKColors
 from ._auto_rest_complex_test_service_enums import GoblinSharkColor
 from ._auto_rest_complex_test_service_enums import MyKind

@@ -6,12 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_create_secret_request
-    from ._request_builders_py3 import build_get_error_with_secrets_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_create_secret_request  # type: ignore
-    from ._request_builders import build_get_error_with_secrets_request  # type: ignore
+from ._request_builders import build_create_secret_request
+from ._request_builders import build_get_error_with_secrets_request
 
 __all__ = [
     "build_create_secret_request",

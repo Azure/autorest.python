@@ -47,7 +47,6 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
         self._config = MicrosoftAzureTestUrlConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )

@@ -16,12 +16,10 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
 def build_put_no_model_as_string_no_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -39,26 +37,19 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', None))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_no_model_as_string_no_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -76,26 +67,19 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_no_model_as_string_no_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -113,26 +97,19 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_no_model_as_string_no_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -150,26 +127,17 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_no_model_as_string_required_two_value_no_default_request(*, input: str, **kwargs: Any) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -187,25 +155,18 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input')  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredTwoValueNoDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_no_model_as_string_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -223,25 +184,16 @@ def build_put_no_model_as_string_required_two_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredTwoValueDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -260,25 +212,17 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
+    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueNoDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -297,25 +241,19 @@ def build_put_no_model_as_string_required_one_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
+    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_model_as_string_no_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -333,26 +271,19 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', None))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueNoDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_model_as_string_no_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -370,26 +301,19 @@ def build_put_model_as_string_no_required_two_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_model_as_string_no_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -407,26 +331,19 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', None))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueNoDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_model_as_string_no_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -444,26 +361,17 @@ def build_put_model_as_string_no_required_one_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueDefault"
 
     # Construct parameters
     if input is not None:
-        _params['input'] = _SERIALIZER.query("input", input, 'str')
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_model_as_string_required_two_value_no_default_request(*, input: str, **kwargs: Any) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -481,25 +389,18 @@ def build_put_model_as_string_required_two_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input')  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredTwoValueNoDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_model_as_string_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -517,25 +418,16 @@ def build_put_model_as_string_required_two_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredTwoValueDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_model_as_string_required_one_value_no_default_request(*, input: str, **kwargs: Any) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -553,25 +445,18 @@ def build_put_model_as_string_required_one_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input')  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredOneValueNoDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
 def build_put_model_as_string_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -589,25 +474,16 @@ def build_put_model_as_string_required_one_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredOneValueDefault"
 
     # Construct parameters
-    _params['input'] = _SERIALIZER.query("input", input, 'str')
+    _params["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_client_constants_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     """Pass constants from the client to this function. Will pass in constant path, query, and header
     parameters.
 
@@ -635,27 +511,21 @@ def build_put_client_constants_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_constant = kwargs.pop('header_constant', _headers.pop('header-constant', True))  # type: bool
-    query_constant = kwargs.pop('query_constant', _params.pop('query-constant', 100))  # type: int
-    path_constant = kwargs.pop('path_constant', "path")  # type: str
+    header_constant = kwargs.pop("header_constant", _headers.pop("header-constant", True))  # type: bool
+    query_constant = kwargs.pop("query_constant", _params.pop("query-constant", 100))  # type: int
+    path_constant = kwargs.pop("path_constant", "path")  # type: str
     # Construct URL
     _url = "/constants/clientConstants/{path-constant}"
     path_format_arguments = {
-        "path-constant": _SERIALIZER.url("path_constant", path_constant, 'str'),
+        "path-constant": _SERIALIZER.url("path_constant", path_constant, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _params['query-constant'] = _SERIALIZER.query("query_constant", query_constant, 'int')
+    _params["query-constant"] = _SERIALIZER.query("query_constant", query_constant, "int")
 
     # Construct headers
-    _headers['header-constant'] = _SERIALIZER.header("header_constant", header_constant, 'bool')
+    _headers["header-constant"] = _SERIALIZER.header("header_constant", header_constant, "bool")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)

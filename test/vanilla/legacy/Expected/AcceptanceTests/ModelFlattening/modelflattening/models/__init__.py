@@ -18,7 +18,6 @@ from ._models_py3 import ResourceCollection
 from ._models_py3 import SimpleProduct
 from ._models_py3 import WrappedProduct
 
-
 from ._auto_rest_resource_flattening_test_service_enums import FlattenedProductPropertiesProvisioningStateValues
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import

@@ -235,49 +235,36 @@ class _ParameterListBase(
         """Sorted method params. First positional, then keyword only, then kwarg"""
         return self.positional + self.keyword_only + self.kwarg
 
-    def method_signature(self, is_python3_file: bool, async_mode: bool) -> List[str]:
+    def method_signature(self, async_mode: bool) -> List[str]:
         """Method signature for this parameter list."""
         return method_signature_helper(
-            positional=self.method_signature_positional(is_python3_file, async_mode),
-            keyword_only=self.method_signature_keyword_only(
-                is_python3_file, async_mode
-            ),
-            kwarg_params=self.method_signature_kwargs(is_python3_file),
+            positional=self.method_signature_positional(async_mode),
+            keyword_only=self.method_signature_keyword_only(async_mode),
+            kwarg_params=self.method_signature_kwargs,
         )
 
-    def method_signature_positional(
-        self, is_python3_file: bool, async_mode: bool
-    ) -> List[str]:
+    def method_signature_positional(self, async_mode: bool) -> List[str]:
         """Signature for positional parameters"""
-        return [
-            parameter.method_signature(is_python3_file, async_mode)
-            for parameter in self.positional
-        ]
+        return [parameter.method_signature(async_mode) for parameter in self.positional]
 
-    def method_signature_keyword_only(
-        self, is_python3_file: bool, async_mode: bool
-    ) -> List[str]:
+    def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
         """Signature for keyword only parameters"""
-        if not (self.keyword_only and is_python3_file):
+        if not self.keyword_only:
             return []
         return ["*,"] + [
-            parameter.method_signature(is_python3_file, async_mode)
-            for parameter in self.keyword_only
+            parameter.method_signature(async_mode) for parameter in self.keyword_only
         ]
 
-    @staticmethod
-    def method_signature_kwargs(is_python3_file: bool) -> List[str]:
+    @property
+    def method_signature_kwargs(self) -> List[str]:
         """Signature for kwargs"""
-        return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
+        return ["**kwargs: Any"]
 
-    def kwargs_to_pop(
-        self, is_python3_file: bool
-    ) -> List[Union[ParameterType, BodyParameterType]]:
+    @property
+    def kwargs_to_pop(self) -> List[Union[ParameterType, BodyParameterType]]:
         """Method kwargs we want to pop"""
         # don't want to pop bodies unless it's a constant
         kwargs_to_pop = self.kwarg
-        if not is_python3_file:
-            kwargs_to_pop += self.keyword_only
         return [
             k
             for k in kwargs_to_pop
@@ -416,14 +403,12 @@ class RequestBuilderParameterList(_RequestBuilderParameterList):
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for OverloadedRequestBuilder"""
 
-    def method_signature_keyword_only(
-        self, is_python3_file: bool, async_mode: bool
-    ) -> List[str]:
+    def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
         """Signature for keyword only parameters"""
-        if not (self.keyword_only and is_python3_file):
+        if not self.keyword_only:
             return []
         return ["*,"] + [
-            parameter.method_signature(is_python3_file, async_mode)
+            parameter.method_signature(async_mode)
             for parameter in self.keyword_only
             if parameter.location != ParameterLocation.BODY
         ]
@@ -478,13 +463,12 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
         except StopIteration:
             return None
 
-    def kwargs_to_pop(
-        self, is_python3_file: bool
-    ) -> List[Union[ClientParameter, BodyParameter]]:
+    @property
+    def kwargs_to_pop(self) -> List[Union[ClientParameter, BodyParameter]]:
         """We only want to pass base url path parameters in the client"""
         return [
             k
-            for k in super().kwargs_to_pop(is_python3_file=is_python3_file)
+            for k in super().kwargs_to_pop
             if k.location == ParameterLocation.ENDPOINT_PATH
         ]
 

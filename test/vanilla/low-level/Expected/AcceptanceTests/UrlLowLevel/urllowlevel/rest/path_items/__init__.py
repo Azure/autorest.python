@@ -6,16 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_get_all_with_values_request
-    from ._request_builders_py3 import build_get_global_query_null_request
-    from ._request_builders_py3 import build_get_global_and_local_query_null_request
-    from ._request_builders_py3 import build_get_local_path_item_query_null_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_get_all_with_values_request  # type: ignore
-    from ._request_builders import build_get_global_query_null_request  # type: ignore
-    from ._request_builders import build_get_global_and_local_query_null_request  # type: ignore
-    from ._request_builders import build_get_local_path_item_query_null_request  # type: ignore
+from ._request_builders import build_get_all_with_values_request
+from ._request_builders import build_get_global_query_null_request
+from ._request_builders import build_get_global_and_local_query_null_request
+from ._request_builders import build_get_local_path_item_query_null_request
 
 __all__ = [
     "build_get_all_with_values_request",

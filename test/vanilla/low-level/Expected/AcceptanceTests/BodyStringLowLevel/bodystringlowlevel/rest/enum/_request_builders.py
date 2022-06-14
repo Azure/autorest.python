@@ -22,12 +22,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_not_expandable_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
     """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -41,26 +37,18 @@ def build_get_not_expandable_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/notExpandable"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_not_expandable_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_not_expandable_request(*, json: str, **kwargs: Any) -> HttpRequest:
     """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -77,29 +65,21 @@ def build_put_not_expandable_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/notExpandable"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_referenced_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_referenced_request(**kwargs: Any) -> HttpRequest:
     """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -113,26 +93,18 @@ def build_get_referenced_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/Referenced"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_referenced_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_referenced_request(*, json: str, **kwargs: Any) -> HttpRequest:
     """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -149,29 +121,21 @@ def build_put_referenced_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/Referenced"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_referenced_constant_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     """Get value 'green-color' from the constant.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -185,27 +149,21 @@ def build_get_referenced_constant_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/ReferencedConstant"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_referenced_constant_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Sends value 'green-color' from a constant.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -235,9 +193,8 @@ def build_put_referenced_constant_request(
 
 @overload
 def build_put_referenced_constant_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Sends value 'green-color' from a constant.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -255,10 +212,7 @@ def build_put_referenced_constant_request(
     """
 
 
-def build_put_referenced_constant_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     """Sends value 'green-color' from a constant.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -277,20 +231,15 @@ def build_put_referenced_constant_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/ReferencedConstant"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)

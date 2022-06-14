@@ -6,26 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_head408_request
-    from ._request_builders_py3 import build_put500_request
-    from ._request_builders_py3 import build_patch500_request
-    from ._request_builders_py3 import build_get502_request
-    from ._request_builders_py3 import build_options502_request
-    from ._request_builders_py3 import build_post503_request
-    from ._request_builders_py3 import build_delete503_request
-    from ._request_builders_py3 import build_put504_request
-    from ._request_builders_py3 import build_patch504_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_head408_request  # type: ignore
-    from ._request_builders import build_put500_request  # type: ignore
-    from ._request_builders import build_patch500_request  # type: ignore
-    from ._request_builders import build_get502_request  # type: ignore
-    from ._request_builders import build_options502_request  # type: ignore
-    from ._request_builders import build_post503_request  # type: ignore
-    from ._request_builders import build_delete503_request  # type: ignore
-    from ._request_builders import build_put504_request  # type: ignore
-    from ._request_builders import build_patch504_request  # type: ignore
+from ._request_builders import build_head408_request
+from ._request_builders import build_put500_request
+from ._request_builders import build_patch500_request
+from ._request_builders import build_get502_request
+from ._request_builders import build_options502_request
+from ._request_builders import build_post503_request
+from ._request_builders import build_delete503_request
+from ._request_builders import build_put504_request
+from ._request_builders import build_patch504_request
 
 __all__ = [
     "build_head408_request",

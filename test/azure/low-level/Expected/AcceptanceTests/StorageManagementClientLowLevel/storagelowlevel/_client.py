@@ -45,7 +45,6 @@ class StorageManagementClient:  # pylint: disable=client-accepts-api-version-key
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-
         self._config = StorageManagementClientConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )

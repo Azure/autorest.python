@@ -14,12 +14,8 @@ from ..._serialization import Serializer
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_head200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_head200_request(**kwargs: Any) -> HttpRequest:
     """Return 200 status code if successful.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -34,17 +30,10 @@ def build_head200_request(
     # Construct URL
     _url = "/http/success/200"
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_head204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_head204_request(**kwargs: Any) -> HttpRequest:
     """Return 204 status code if successful.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -59,17 +48,10 @@ def build_head204_request(
     # Construct URL
     _url = "/http/success/204"
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_head404_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_head404_request(**kwargs: Any) -> HttpRequest:
     """Return 404 status code if successful.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -84,8 +66,4 @@ def build_head404_request(
     # Construct URL
     _url = "/http/success/404"
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, **kwargs)

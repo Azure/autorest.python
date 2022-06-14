@@ -22,10 +22,11 @@ from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, As
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._polling_paging_example_operations import build_basic_paging_request, build_basic_polling_request
+from .._vendor import MixinABC
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-class PollingPagingExampleOperationsMixin:
+class PollingPagingExampleOperationsMixin(MixinABC):
 
     async def _basic_polling_initial(
         self,

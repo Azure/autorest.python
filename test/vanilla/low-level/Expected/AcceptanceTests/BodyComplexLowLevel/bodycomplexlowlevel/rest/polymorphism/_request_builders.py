@@ -22,12 +22,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     """Get complex types that are polymorphic.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -41,27 +37,19 @@ def build_get_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_valid_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -174,10 +162,7 @@ def build_put_valid_request(
 
 
 @overload
-def build_put_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -227,10 +212,7 @@ def build_put_valid_request(
     """
 
 
-def build_put_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_valid_request(**kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -281,29 +263,21 @@ def build_put_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_dot_syntax_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
     """Get complex types that are polymorphic, JSON key contains a dot.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -317,26 +291,18 @@ def build_get_dot_syntax_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/dotsyntax"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_composed_with_discriminator_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
     """Get complex object composing a polymorphic scalar property and array property with polymorphic
     element type, with discriminator specified. Deserialization must NOT fail and use the
     discriminator type specified on the wire.
@@ -352,26 +318,18 @@ def build_get_composed_with_discriminator_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/composedWithDiscriminator"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_composed_without_discriminator_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpRequest:
     """Get complex object composing a polymorphic scalar property and array property with polymorphic
     element type, without discriminator specified on wire. Deserialization must NOT fail and use
     the explicit type of the property.
@@ -387,26 +345,18 @@ def build_get_composed_without_discriminator_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/composedWithoutDiscriminator"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_complicated_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
     """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
@@ -421,27 +371,19 @@ def build_get_complicated_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/complicated"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_complicated_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_complicated_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
@@ -483,10 +425,7 @@ def build_put_complicated_request(
 
 
 @overload
-def build_put_complicated_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_complicated_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
@@ -505,10 +444,7 @@ def build_put_complicated_request(
     """
 
 
-def build_put_complicated_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_complicated_request(**kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
@@ -528,30 +464,24 @@ def build_put_complicated_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/complicated"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_missing_discriminator_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put complex types that are polymorphic, omitting the discriminator.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -593,9 +523,8 @@ def build_put_missing_discriminator_request(
 
 @overload
 def build_put_missing_discriminator_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put complex types that are polymorphic, omitting the discriminator.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -613,10 +542,7 @@ def build_put_missing_discriminator_request(
     """
 
 
-def build_put_missing_discriminator_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_missing_discriminator_request(**kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic, omitting the discriminator.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -635,30 +561,24 @@ def build_put_missing_discriminator_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/missingdiscriminator"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_valid_missing_required_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
 
@@ -767,9 +687,8 @@ def build_put_valid_missing_required_request(
 
 @overload
 def build_put_valid_missing_required_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
 
@@ -814,10 +733,7 @@ def build_put_valid_missing_required_request(
     """
 
 
-def build_put_valid_missing_required_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_valid_missing_required_request(**kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
 
@@ -863,20 +779,15 @@ def build_put_valid_missing_required_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/polymorphism/missingrequired/invalid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)

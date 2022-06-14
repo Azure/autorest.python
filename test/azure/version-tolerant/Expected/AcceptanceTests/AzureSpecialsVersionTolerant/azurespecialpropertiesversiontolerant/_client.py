@@ -77,7 +77,6 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )

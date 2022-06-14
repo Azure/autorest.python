@@ -120,10 +120,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
     def get_no_polling_method(self, async_mode: bool) -> str:
         return self.responses[0].get_no_polling_method(async_mode)
 
-    def imports(
-        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
-    ) -> FileImport:
-        file_import = super().imports(async_mode, is_python3_file, **kwargs)
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super().imports(async_mode, **kwargs)
         if self.abstract:
             return file_import
         if async_mode:

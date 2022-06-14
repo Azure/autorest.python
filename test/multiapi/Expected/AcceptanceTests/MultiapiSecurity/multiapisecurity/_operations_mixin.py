@@ -9,26 +9,21 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from ._serialization import Serializer, Deserializer
-from typing import IO, Optional, TYPE_CHECKING, Union
+from typing import Any, IO, Iterable, Optional, Union
 
 from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
 
 from . import models as _models
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Iterable
-
 
 class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro(
         self,
-        product=None,  # type: Optional[Union[_models.Product, IO]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[_models.Product]
+        product: Optional[Union[_models.Product, IO]] = None,
+        **kwargs: Any
+    ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Is either a model type or a IO type. Default value is None.
@@ -63,11 +58,10 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro_and_paging(
         self,
-        client_request_id=None,  # type: Optional[str]
-        test_lro_and_paging_options=None,  # type: Optional[_models.TestLroAndPagingOptions]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[Iterable["_models.Product"]]
+        client_request_id: Optional[str] = None,
+        test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
+        **kwargs: Any
+    ) -> LROPoller[Iterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -103,10 +97,9 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
-        greeting_in_english,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        greeting_in_english: str,
+        **kwargs: Any
+    ) -> None:
         """Has added parameters across the API versions.
 
         :param greeting_in_english: pass in 'hello' to pass test. Required.
@@ -131,11 +124,10 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def test_one(  # pylint: disable=inconsistent-return-statements
         self,
-        id,  # type: int
-        message=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        id: int,
+        message: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
         :param id: An int parameter. Required.

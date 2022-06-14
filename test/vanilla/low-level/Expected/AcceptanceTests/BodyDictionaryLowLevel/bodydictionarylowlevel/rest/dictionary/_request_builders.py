@@ -23,12 +23,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """Get null dictionary value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -42,26 +38,18 @@ def build_get_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/null"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     """Get empty dictionary value {}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -75,27 +63,19 @@ def build_get_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/empty"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_empty_request(*, json: Dict[str, str], content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -122,10 +102,7 @@ def build_put_empty_request(
 
 
 @overload
-def build_put_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_empty_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -143,10 +120,7 @@ def build_put_empty_request(
     """
 
 
-def build_put_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_empty_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -165,29 +139,21 @@ def build_put_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/empty"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_null_value_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_null_value_request(**kwargs: Any) -> HttpRequest:
     """Get Dictionary with null value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -201,26 +167,18 @@ def build_get_null_value_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/nullvalue"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_null_key_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_null_key_request(**kwargs: Any) -> HttpRequest:
     """Get Dictionary with null key.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -234,26 +192,18 @@ def build_get_null_key_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/nullkey"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_empty_string_key_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_empty_string_key_request(**kwargs: Any) -> HttpRequest:
     """Get Dictionary with key as empty string.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -267,26 +217,18 @@ def build_get_empty_string_key_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/keyemptystring"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get invalid Dictionary value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -300,26 +242,18 @@ def build_get_invalid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/invalid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_boolean_tfft_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -333,27 +267,21 @@ def build_get_boolean_tfft_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/boolean/tfft"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_boolean_tfft_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, bool], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -380,10 +308,7 @@ def build_put_boolean_tfft_request(
 
 
 @overload
-def build_put_boolean_tfft_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_boolean_tfft_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -401,10 +326,7 @@ def build_put_boolean_tfft_request(
     """
 
 
-def build_put_boolean_tfft_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -423,29 +345,21 @@ def build_put_boolean_tfft_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/boolean/tfft"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_boolean_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -459,26 +373,18 @@ def build_get_boolean_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/boolean/true.null.false"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_boolean_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -492,26 +398,18 @@ def build_get_boolean_invalid_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/boolean/true.boolean.false"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_integer_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -525,27 +423,21 @@ def build_get_integer_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/integer/1.-1.3.300"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_integer_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, int], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -572,10 +464,7 @@ def build_put_integer_valid_request(
 
 
 @overload
-def build_put_integer_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_integer_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -593,10 +482,7 @@ def build_put_integer_valid_request(
     """
 
 
-def build_put_integer_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_integer_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -615,29 +501,21 @@ def build_put_integer_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/integer/1.-1.3.300"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_int_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -651,26 +529,18 @@ def build_get_int_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/integer/1.null.zero"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_int_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -684,26 +554,18 @@ def build_get_int_invalid_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/integer/1.integer.0"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_long_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -717,27 +579,21 @@ def build_get_long_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/long/1.-1.3.300"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_long_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, int], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -764,10 +620,7 @@ def build_put_long_valid_request(
 
 
 @overload
-def build_put_long_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_long_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -785,10 +638,7 @@ def build_put_long_valid_request(
     """
 
 
-def build_put_long_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_long_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -807,29 +657,21 @@ def build_put_long_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/long/1.-1.3.300"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_long_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -843,26 +685,18 @@ def build_get_long_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/long/1.null.zero"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_long_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -876,26 +710,18 @@ def build_get_long_invalid_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/long/1.integer.0"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_float_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -909,27 +735,21 @@ def build_get_float_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/float/0--0.01-1.2e20"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_float_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, float], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -956,10 +776,7 @@ def build_put_float_valid_request(
 
 
 @overload
-def build_put_float_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_float_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -977,10 +794,7 @@ def build_put_float_valid_request(
     """
 
 
-def build_put_float_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_float_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -999,29 +813,21 @@ def build_put_float_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/float/0--0.01-1.2e20"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_float_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1035,26 +841,18 @@ def build_get_float_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/float/0.0-null-1.2e20"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_float_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1068,26 +866,18 @@ def build_get_float_invalid_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/float/1.number.0"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_double_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1101,27 +891,21 @@ def build_get_double_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/double/0--0.01-1.2e20"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_double_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, float], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1148,10 +932,7 @@ def build_put_double_valid_request(
 
 
 @overload
-def build_put_double_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_double_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1169,10 +950,7 @@ def build_put_double_valid_request(
     """
 
 
-def build_put_double_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_double_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1191,29 +969,21 @@ def build_put_double_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/double/0--0.01-1.2e20"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_double_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1227,26 +997,18 @@ def build_get_double_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/double/0.0-null-1.2e20"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_double_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1260,26 +1022,18 @@ def build_get_double_invalid_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/double/1.number.0"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_string_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1293,27 +1047,21 @@ def build_get_string_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/string/foo1.foo2.foo3"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_string_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, str], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1340,10 +1088,7 @@ def build_put_string_valid_request(
 
 
 @overload
-def build_put_string_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_string_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1361,10 +1106,7 @@ def build_put_string_valid_request(
     """
 
 
-def build_put_string_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_string_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1383,29 +1125,21 @@ def build_put_string_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/string/foo1.foo2.foo3"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_string_with_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
     """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1419,26 +1153,18 @@ def build_get_string_with_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/string/foo.null.foo2"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_string_with_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1452,26 +1178,18 @@ def build_get_string_with_invalid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/string/foo.123.foo2"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1485,27 +1203,21 @@ def build_get_date_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_date_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, datetime.date], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1532,10 +1244,7 @@ def build_put_date_valid_request(
 
 
 @overload
-def build_put_date_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1553,10 +1262,7 @@ def build_put_date_valid_request(
     """
 
 
-def build_put_date_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1575,29 +1281,21 @@ def build_put_date_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1611,26 +1309,18 @@ def build_get_date_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date/invalidnull"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_invalid_chars_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1644,26 +1334,18 @@ def build_get_date_invalid_chars_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date/invalidchars"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
     "2": "1492-10-12T10:15:01-08:00"}.
 
@@ -1678,27 +1360,21 @@ def build_get_date_time_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date-time/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_date_time_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, datetime.datetime], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
     "1492-10-12T10:15:01-08:00"}.
 
@@ -1726,10 +1402,7 @@ def build_put_date_time_valid_request(
 
 
 @overload
-def build_put_date_time_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
     "1492-10-12T10:15:01-08:00"}.
 
@@ -1748,10 +1421,7 @@ def build_put_date_time_valid_request(
     """
 
 
-def build_put_date_time_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
     "1492-10-12T10:15:01-08:00"}.
 
@@ -1771,29 +1441,21 @@ def build_put_date_time_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date-time/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1807,26 +1469,18 @@ def build_get_date_time_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date-time/invalidnull"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_invalid_chars_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1840,26 +1494,18 @@ def build_get_date_time_invalid_chars_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date-time/invalidchars"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_rfc1123_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
     """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
     1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -1874,27 +1520,21 @@ def build_get_date_time_rfc1123_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date-time-rfc1123/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_date_time_rfc1123_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, datetime.datetime], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
     00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -1923,9 +1563,8 @@ def build_put_date_time_rfc1123_valid_request(
 
 @overload
 def build_put_date_time_rfc1123_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
     00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -1944,10 +1583,7 @@ def build_put_date_time_rfc1123_valid_request(
     """
 
 
-def build_put_date_time_rfc1123_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
     00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -1967,29 +1603,21 @@ def build_put_date_time_rfc1123_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/date-time-rfc1123/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_duration_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2003,27 +1631,21 @@ def build_get_duration_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/duration/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_duration_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, datetime.timedelta], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2050,10 +1672,7 @@ def build_put_duration_valid_request(
 
 
 @overload
-def build_put_duration_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_duration_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2071,10 +1690,7 @@ def build_put_duration_valid_request(
     """
 
 
-def build_put_duration_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_duration_valid_request(**kwargs: Any) -> HttpRequest:
     """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2093,29 +1709,21 @@ def build_put_duration_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/duration/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_byte_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
     with each item encoded in base64.
 
@@ -2130,27 +1738,21 @@ def build_get_byte_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/byte/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_byte_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, bytes], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
     with each elementencoded in base 64.
 
@@ -2178,10 +1780,7 @@ def build_put_byte_valid_request(
 
 
 @overload
-def build_put_byte_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_byte_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
     with each elementencoded in base 64.
 
@@ -2200,10 +1799,7 @@ def build_put_byte_valid_request(
     """
 
 
-def build_put_byte_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_byte_valid_request(**kwargs: Any) -> HttpRequest:
     """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
     with each elementencoded in base 64.
 
@@ -2223,29 +1819,21 @@ def build_put_byte_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/byte/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_byte_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
     encoded.
 
@@ -2260,26 +1848,18 @@ def build_get_byte_invalid_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/byte/invalidnull"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_base64_url_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_base64_url_request(**kwargs: Any) -> HttpRequest:
     """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
     string", "2": "Lorem ipsum"}.
 
@@ -2294,26 +1874,18 @@ def build_get_base64_url_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/prim/base64url/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_complex_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complex_null_request(**kwargs: Any) -> HttpRequest:
     """Get dictionary of complex type null value.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2327,26 +1899,18 @@ def build_get_complex_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/complex/null"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_complex_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
     """Get empty dictionary of complex type {}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2360,26 +1924,18 @@ def build_get_complex_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/complex/empty"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_complex_item_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:
     """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
     "2": {"integer": 5, "string": "6"}}.
 
@@ -2394,26 +1950,18 @@ def build_get_complex_item_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/complex/itemnull"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_complex_item_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:
     """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
     "2": {"integer": 5, "string": "6"}}.
 
@@ -2428,26 +1976,18 @@ def build_get_complex_item_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/complex/itemempty"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_complex_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
     "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -2462,27 +2002,21 @@ def build_get_complex_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/complex/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_complex_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, JSON], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
     {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -2513,10 +2047,7 @@ def build_put_complex_valid_request(
 
 
 @overload
-def build_put_complex_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_complex_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
     {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -2535,10 +2066,7 @@ def build_put_complex_valid_request(
     """
 
 
-def build_put_complex_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_complex_valid_request(**kwargs: Any) -> HttpRequest:
     """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
     {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -2558,29 +2086,21 @@ def build_put_complex_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/complex/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_array_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_array_null_request(**kwargs: Any) -> HttpRequest:
     """Get a null array.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2594,26 +2114,18 @@ def build_get_array_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/array/null"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_array_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_array_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an empty dictionary {}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2627,26 +2139,18 @@ def build_get_array_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/array/empty"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_array_item_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
     """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2660,26 +2164,18 @@ def build_get_array_item_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/array/itemnull"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_array_item_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2693,26 +2189,18 @@ def build_get_array_item_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/array/itemempty"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_array_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
     "9"]}.
 
@@ -2727,27 +2215,21 @@ def build_get_array_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/array/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_array_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, List[str]], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
     "9"]}.
 
@@ -2777,10 +2259,7 @@ def build_put_array_valid_request(
 
 
 @overload
-def build_put_array_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_array_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
     "9"]}.
 
@@ -2799,10 +2278,7 @@ def build_put_array_valid_request(
     """
 
 
-def build_put_array_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_array_valid_request(**kwargs: Any) -> HttpRequest:
     """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
     "9"]}.
 
@@ -2822,29 +2298,21 @@ def build_put_array_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/array/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_dictionary_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
     """Get an dictionaries of dictionaries with value null.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2858,26 +2326,18 @@ def build_get_dictionary_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/dictionary/null"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_dictionary_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2891,26 +2351,18 @@ def build_get_dictionary_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/dictionary/empty"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_dictionary_item_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:
     """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
     "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
@@ -2925,26 +2377,18 @@ def build_get_dictionary_item_null_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/dictionary/itemnull"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_dictionary_item_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
     "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
@@ -2959,26 +2403,18 @@ def build_get_dictionary_item_empty_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/dictionary/itemempty"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_dictionary_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
     "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
     "eight", "9": "nine"}}.
@@ -2994,27 +2430,21 @@ def build_get_dictionary_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/dictionary/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_dictionary_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: Dict[str, Dict[str, str]], content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
     "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
     "eight", "9": "nine"}}.
@@ -3046,9 +2476,8 @@ def build_put_dictionary_valid_request(
 
 @overload
 def build_put_dictionary_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
     "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
     "eight", "9": "nine"}}.
@@ -3068,10 +2497,7 @@ def build_put_dictionary_valid_request(
     """
 
 
-def build_put_dictionary_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
     "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
     "eight", "9": "nine"}}.
@@ -3092,20 +2518,15 @@ def build_put_dictionary_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/dictionary/dictionary/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)

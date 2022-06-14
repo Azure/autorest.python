@@ -11,7 +11,6 @@ from ._models_py3 import ModelThree
 from ._models_py3 import PagingResult
 from ._models_py3 import SourcePath
 
-
 from ._multiapi_service_client_enums import ContentType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import

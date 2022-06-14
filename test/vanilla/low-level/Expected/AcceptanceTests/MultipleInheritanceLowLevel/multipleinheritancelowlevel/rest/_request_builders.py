@@ -22,12 +22,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_horse_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     """Get a horse with name 'Fred' and isAShowHorse true.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -41,27 +37,19 @@ def build_get_horse_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/horse"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_horse_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_horse_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a horse with name 'General' and isAShowHorse false.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -89,10 +77,7 @@ def build_put_horse_request(
 
 
 @overload
-def build_put_horse_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_horse_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a horse with name 'General' and isAShowHorse false.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -110,10 +95,7 @@ def build_put_horse_request(
     """
 
 
-def build_put_horse_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_horse_request(**kwargs: Any) -> HttpRequest:
     """Put a horse with name 'General' and isAShowHorse false.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -133,29 +115,21 @@ def build_put_horse_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/horse"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     """Get a pet with name 'Peanut'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -169,27 +143,19 @@ def build_get_pet_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/pet"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_pet_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a pet with name 'Butter'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -216,10 +182,7 @@ def build_put_pet_request(
 
 
 @overload
-def build_put_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_pet_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a pet with name 'Butter'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -237,10 +200,7 @@ def build_put_pet_request(
     """
 
 
-def build_put_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_pet_request(**kwargs: Any) -> HttpRequest:
     """Put a pet with name 'Butter'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -259,29 +219,21 @@ def build_put_pet_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/pet"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_feline_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     """Get a feline where meows and hisses are true.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -295,27 +247,19 @@ def build_get_feline_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/feline"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_feline_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_feline_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a feline who hisses and doesn't meow.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -343,10 +287,7 @@ def build_put_feline_request(
 
 
 @overload
-def build_put_feline_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_feline_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a feline who hisses and doesn't meow.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -364,10 +305,7 @@ def build_put_feline_request(
     """
 
 
-def build_put_feline_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_feline_request(**kwargs: Any) -> HttpRequest:
     """Put a feline who hisses and doesn't meow.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -387,29 +325,21 @@ def build_put_feline_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/feline"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_cat_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -423,27 +353,19 @@ def build_get_cat_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/cat"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_cat_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_cat_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -474,10 +396,7 @@ def build_put_cat_request(
 
 
 @overload
-def build_put_cat_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_cat_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -496,10 +415,7 @@ def build_put_cat_request(
     """
 
 
-def build_put_cat_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_cat_request(**kwargs: Any) -> HttpRequest:
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -519,29 +435,21 @@ def build_put_cat_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/cat"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_kitten_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
     is false.
 
@@ -556,27 +464,19 @@ def build_get_kitten_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/kitten"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_kitten_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_kitten_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
     true.
 
@@ -609,10 +509,7 @@ def build_put_kitten_request(
 
 
 @overload
-def build_put_kitten_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_kitten_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
     true.
 
@@ -632,10 +529,7 @@ def build_put_kitten_request(
     """
 
 
-def build_put_kitten_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_kitten_request(**kwargs: Any) -> HttpRequest:
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
     true.
 
@@ -656,20 +550,15 @@ def build_put_kitten_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/multipleInheritance/kitten"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
