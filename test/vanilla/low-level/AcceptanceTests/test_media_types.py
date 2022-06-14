@@ -86,3 +86,15 @@ def test_binary_body_three_content_types(send_request):
     content = "hello, world"
     request = build_binary_body_with_three_content_types_request(content=content, content_type="text/plain")
     send_request(request)
+
+def test_body_three_types(send_request):
+    request = build_body_three_types_request(json={"hello":"world"})
+    send_request(request)
+
+    content = b"hello, world"
+    request = build_body_three_types_request(content=content, content_type="application/octet-stream")
+    send_request(request)
+
+    content = "hello, world"
+    request = build_body_three_types_request(content=content, content_type="text/plain")
+    send_request(request)
