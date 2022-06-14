@@ -825,10 +825,15 @@ class _OperationSerializer(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
             )
         if request_builder.overloads:
+            seen_body_params = set()
             for overload in request_builder.overloads:
                 body_param = cast(
                     RequestBuilderBodyParameter, overload.parameters.body_parameter
                 )
+                if body_param.client_name in seen_body_params:
+                    continue
+                seen_body_params.add(body_param.client_name)
+
                 retval.append(
                     f"    {body_param.client_name}={body_param.name_in_high_level_operation},"
                 )

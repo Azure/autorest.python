@@ -596,7 +596,6 @@ class MediaTypesClientOperationsMixin(MixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            content=_content,
             template_url=self.body_three_types.metadata["url"],
             headers=_headers,
             params=_params,
