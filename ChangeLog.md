@@ -15,6 +15,10 @@
 - Only generate Python3 SDKs  #1297
 - Don't reformat initial query parameters into the next link  #1297
 
+**Breaking Changes in Version Tolerant**
+
+- Don't generate operations with more than two body types. SDK authors need to implement this operation themselves  #1300
+
 ### 2022-07-13 - 5.19.0
 
 | Library                                                                 | Min Version |

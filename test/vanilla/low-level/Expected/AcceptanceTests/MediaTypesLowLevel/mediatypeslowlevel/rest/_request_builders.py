@@ -282,6 +282,105 @@ def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs:
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
+@overload
+def build_body_three_types_request(*, json: Any, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+    content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+    string for 'application/octet-stream'.
+
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
+
+    :keyword json: The payload body. Required.
+    :paramtype json: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+@overload
+def build_body_three_types_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+    content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+    string for 'application/octet-stream'.
+
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
+
+    :keyword content: The payload body. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Known values are: 'application/json', 'application/octet-stream', 'text/plain'. Default value
+     is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+@overload
+def build_body_three_types_request(*, content: str, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+    content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+    string for 'application/octet-stream'.
+
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
+
+    :keyword content: The payload body. Required.
+    :paramtype content: str
+    :keyword content_type: Body Parameter content-type. Content type parameter for string body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+
+def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
+    """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+    content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+    string for 'application/octet-stream'.
+
+    See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
+    builder into your code flow.
+
+    :keyword json: The payload body. Is one of the following types: any, IO, string Required.
+    :paramtype json: any or IO or str
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+     'application/octet-stream', 'text/plain'. Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "text/plain")
+
+    # Construct URL
+    _url = "/mediatypes/bodyThreeTypes"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
 def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> HttpRequest:
     """Body that's either text/plain or application/json.
 

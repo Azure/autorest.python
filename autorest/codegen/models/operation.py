@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 from itertools import chain
 from typing import (
     Dict,
@@ -43,8 +42,6 @@ from .request_builder import OverloadedRequestBuilder, RequestBuilder
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-_LOGGER = logging.getLogger(__name__)
-
 ResponseType = TypeVar(
     "ResponseType",
     bound=Union[Response, PagingResponse, LROResponse, LROPagingResponse],
@@ -67,7 +64,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         overloads: Optional[List["Operation"]] = None,
         public: bool = True,
         want_tracing: bool = True,
-        abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -75,7 +71,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             name=name,
             parameters=parameters,
             overloads=overloads,
-            abstract=abstract,
             want_tracing=want_tracing,
         )
         self.overloads: List["Operation"] = overloads or []
@@ -429,20 +424,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             cls.from_yaml(overload, code_model)
             for overload in yaml_data.get("overloads", [])
         ]
-        abstract = False
-        if (
-            code_model.options["version_tolerant"]
-            and parameter_list.has_body
-            and isinstance(parameter_list.body_parameter, MultipartBodyParameter)
-        ):
-            _LOGGER.warning(
-                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
-                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
-                'Please write your own custom operation in the "_patch.py" file '
-                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-                name,
-            )
-            abstract = True
 
         return cls(
             yaml_data=yaml_data,
@@ -454,7 +435,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             responses=responses,
             exceptions=exceptions,
             want_tracing=not yaml_data["isOverload"],
-            abstract=abstract,
         )
 
 

@@ -33,7 +33,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         overloads: Optional[List[Operation]] = None,
         public: bool = True,
         want_tracing: bool = True,
-        abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -46,7 +45,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
             overloads=overloads,
             public=public,
             want_tracing=want_tracing,
-            abstract=abstract,
         )
         self.name = "begin_" + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
