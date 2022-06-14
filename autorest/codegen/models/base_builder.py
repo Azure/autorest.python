@@ -59,8 +59,8 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
 
         if code_model.options["version_tolerant"] and yaml_data.get("abstract"):
             _LOGGER.warning(
-                'Not going to generate operation "%s" because it we are unable to generate this '
-                'type of operation right now. '
+                'Not going to generate operation "%s" because we are unable to generate this '
+                "type of operation right now. "
                 'Please write your own custom operation in the "_patch.py" file '
                 "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
                 name,
