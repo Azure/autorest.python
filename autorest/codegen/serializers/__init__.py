@@ -144,13 +144,12 @@ class JinjaSerializer:
             if self.code_model.options["no_namespace_folders"]:
                 count = self.code_model.namespace.count(".")
                 out_folder = Path("..")
-                while count > 0:
+                for _ in range(count):
                     self._autorestapi.write_file(
                         out_folder / Path("__init__.py"),
                         general_serializer.serialize_pkgutil_init_file(),
                     )
                     out_folder = out_folder / Path("..")
-                    count -= 1
 
     def _serialize_and_write_package_files(self, out_path: Path) -> None:
         def _serialize_and_write_package_files_proc(**kwargs: Any):
