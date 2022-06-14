@@ -92,7 +92,6 @@ _GENERATOR_SPECIFIC_TESTS = {
         _SwaggerGroup.VANILLA: {
             'BodyArrayWithNamespaceFolders': 'body-array.json',
             'BodyByteWithPackageName': 'body-byte.json',
-            'BodyArrayWithPythonThreeOperationFiles': 'body-array.json',
             'SecurityAadSwaggerCredentialFlag': 'security-aad.json',
             'SecurityKeySwaggerCredentialFlag': 'security-key.json',
         },
@@ -123,9 +122,6 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
     "HeadWithAzureKeyCredentialPolicy": {
         "credential-default-policy-type": "AzureKeyCredentialPolicy",
         "credential-key-header-name": "Authorization"
-    },
-    "BodyArrayWithPythonThreeOperationFiles": {
-        "add-python3-operation-files": True
     },
     "SecurityAadSwaggerCredentialFlag": {
         "add-credential": True,
@@ -242,8 +238,6 @@ def _build_flags(
         namespace += "versiontolerant"
     else:
         override_flags["payload-flattening-threshold"] = 1
-        override_flags["reformat-next-link"] = False
-        override_flags["python3-only"] = True  # others default to python3 only
 
     flags = {
         "use": AUTOREST_DIR,

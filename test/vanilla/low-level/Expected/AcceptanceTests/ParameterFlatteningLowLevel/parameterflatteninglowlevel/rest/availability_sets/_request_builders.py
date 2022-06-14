@@ -23,15 +23,11 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
 @overload
 def build_update_request(
-    resource_group_name,  # type: str
-    avset,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    resource_group_name: str, avset: str, *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Updates the tags for an availability set.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -65,11 +61,8 @@ def build_update_request(
 
 @overload
 def build_update_request(
-    resource_group_name,  # type: str
-    avset,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    resource_group_name: str, avset: str, *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Updates the tags for an availability set.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -91,12 +84,7 @@ def build_update_request(
     """
 
 
-def build_update_request(
-    resource_group_name,  # type: str
-    avset,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_update_request(resource_group_name: str, avset: str, **kwargs: Any) -> HttpRequest:
     """Updates the tags for an availability set.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -119,23 +107,18 @@ def build_update_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        "availabilitySetName": _SERIALIZER.url("avset", avset, 'str', max_length=80),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "availabilitySetName": _SERIALIZER.url("avset", avset, "str", max_length=80),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)

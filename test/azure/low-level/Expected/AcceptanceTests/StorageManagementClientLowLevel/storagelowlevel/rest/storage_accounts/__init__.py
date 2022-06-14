@@ -6,26 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_check_name_availability_request
-    from ._request_builders_py3 import build_create_request
-    from ._request_builders_py3 import build_delete_request
-    from ._request_builders_py3 import build_get_properties_request
-    from ._request_builders_py3 import build_update_request
-    from ._request_builders_py3 import build_list_keys_request
-    from ._request_builders_py3 import build_list_request
-    from ._request_builders_py3 import build_list_by_resource_group_request
-    from ._request_builders_py3 import build_regenerate_key_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_check_name_availability_request  # type: ignore
-    from ._request_builders import build_create_request  # type: ignore
-    from ._request_builders import build_delete_request  # type: ignore
-    from ._request_builders import build_get_properties_request  # type: ignore
-    from ._request_builders import build_update_request  # type: ignore
-    from ._request_builders import build_list_keys_request  # type: ignore
-    from ._request_builders import build_list_request  # type: ignore
-    from ._request_builders import build_list_by_resource_group_request  # type: ignore
-    from ._request_builders import build_regenerate_key_request  # type: ignore
+from ._request_builders import build_check_name_availability_request
+from ._request_builders import build_create_request
+from ._request_builders import build_delete_request
+from ._request_builders import build_get_properties_request
+from ._request_builders import build_update_request
+from ._request_builders import build_list_keys_request
+from ._request_builders import build_list_request
+from ._request_builders import build_list_by_resource_group_request
+from ._request_builders import build_regenerate_key_request
 
 __all__ = [
     "build_check_name_availability_request",

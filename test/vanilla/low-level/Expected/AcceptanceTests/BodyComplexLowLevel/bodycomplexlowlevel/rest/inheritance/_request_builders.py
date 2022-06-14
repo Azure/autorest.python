@@ -22,12 +22,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     """Get complex types that extend others.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -41,27 +37,19 @@ def build_get_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/inheritance/valid"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_valid_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that extend others.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -100,10 +88,7 @@ def build_put_valid_request(
 
 
 @overload
-def build_put_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that extend others.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -123,10 +108,7 @@ def build_put_valid_request(
     """
 
 
-def build_put_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_valid_request(**kwargs: Any) -> HttpRequest:
     """Put complex types that extend others.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -148,20 +130,15 @@ def build_put_valid_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/inheritance/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)

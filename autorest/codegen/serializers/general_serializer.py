@@ -34,14 +34,12 @@ class GeneralSerializer:
 
         template = self.env.get_template("client.py.jinja2")
 
-        python3_only = self.code_model.options["python3_only"]
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
-            serializer=ClientSerializer(self.code_model, is_python3_file=python3_only),
+            serializer=ClientSerializer(self.code_model),
             imports=FileImportSerializer(
                 self.code_model.client.imports(self.async_mode),
-                is_python3_file=self.async_mode or python3_only,
             ),
         )
 
@@ -85,7 +83,6 @@ class GeneralSerializer:
             code_model=self.code_model,
             imports=FileImportSerializer(
                 file_import,
-                is_python3_file=self.async_mode,
             ),
             async_mode=self.async_mode,
         )
@@ -99,15 +96,13 @@ class GeneralSerializer:
             package_name if package_name else self.code_model.client.name.lower()
         )
         template = self.env.get_template("config.py.jinja2")
-        python3_only = self.code_model.options["python3_only"]
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(
                 self.code_model.config.imports(self.async_mode),
-                is_python3_file=self.async_mode or python3_only,
             ),
-            serializer=ConfigSerializer(self.code_model, is_python3_file=python3_only),
+            serializer=ConfigSerializer(self.code_model),
             sdk_moniker=sdk_moniker,
         )
 

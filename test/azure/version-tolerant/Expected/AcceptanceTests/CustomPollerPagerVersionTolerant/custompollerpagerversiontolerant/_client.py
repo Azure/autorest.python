@@ -39,7 +39,6 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
     def __init__(
         self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

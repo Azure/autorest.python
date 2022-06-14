@@ -16,12 +16,8 @@ from .._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_operation_with_content_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_operation_with_content_param_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     """Operation with body param called content. Pass in b'hello, world'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -37,29 +33,21 @@ def build_operation_with_content_param_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/content"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_operation_with_json_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -75,29 +63,21 @@ def build_operation_with_json_param_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/json"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_operation_with_data_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_operation_with_data_param_request(**kwargs: Any) -> HttpRequest:
     """Operation with urlencoded body param called 'data'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -119,29 +99,21 @@ def build_operation_with_data_param_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/data"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_operation_with_files_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_operation_with_files_param_request(**kwargs: Any) -> HttpRequest:
     """Operation with multipart body param called 'files'.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -163,30 +135,23 @@ def build_operation_with_files_param_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/files"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_operation_with_url_request(
-    url,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+) -> HttpRequest:
     """Operation with path format argument URL, header param headerParameters, and query param
     queryParameters.
 
@@ -210,30 +175,24 @@ def build_operation_with_url_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_parameters = kwargs.pop('header_parameters')  # type: str
-    query_parameters = kwargs.pop('query_parameters', _params.pop('queryParameters', None))  # type: Optional[List[str]]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reservedWords/{url}"
     path_format_arguments = {
-        "url": _SERIALIZER.url("url", url, 'str'),
+        "url": _SERIALIZER.url("url", url, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
     if query_parameters is not None:
-        _params['queryParameters'] = [_SERIALIZER.query("query_parameters", q, 'str') if q is not None else '' for q in query_parameters]
+        _params["queryParameters"] = [
+            _SERIALIZER.query("query_parameters", q, "str") if q is not None else "" for q in query_parameters
+        ]
 
     # Construct headers
-    _headers['headerParameters'] = _SERIALIZER.header("header_parameters", header_parameters, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["headerParameters"] = _SERIALIZER.header("header_parameters", header_parameters, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)

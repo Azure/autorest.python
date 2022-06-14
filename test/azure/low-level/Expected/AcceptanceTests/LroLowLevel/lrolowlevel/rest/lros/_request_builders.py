@@ -22,13 +22,11 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
 @overload
 def build_put200_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -69,9 +67,8 @@ def build_put200_succeeded_request(
 
 @overload
 def build_put200_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -90,10 +87,7 @@ def build_put200_succeeded_request(
     """
 
 
-def build_put200_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put200_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -113,30 +107,24 @@ def build_put200_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_patch200_succeeded_ignore_headers_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request with location header. We
     should not have any subsequent calls after receiving this first response.
 
@@ -177,9 +165,8 @@ def build_patch200_succeeded_ignore_headers_request(
 
 @overload
 def build_patch200_succeeded_ignore_headers_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request with location header. We
     should not have any subsequent calls after receiving this first response.
 
@@ -198,10 +185,7 @@ def build_patch200_succeeded_ignore_headers_request(
     """
 
 
-def build_patch200_succeeded_ignore_headers_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_patch200_succeeded_ignore_headers_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request with location header. We
     should not have any subsequent calls after receiving this first response.
 
@@ -221,30 +205,24 @@ def build_patch200_succeeded_ignore_headers_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/patch/200/succeeded/ignoreheaders"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_patch201_retry_with_async_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running patch request, service returns a 201 to the initial request with async header.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -284,9 +262,8 @@ def build_patch201_retry_with_async_header_request(
 
 @overload
 def build_patch201_retry_with_async_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running patch request, service returns a 201 to the initial request with async header.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -304,10 +281,7 @@ def build_patch201_retry_with_async_header_request(
     """
 
 
-def build_patch201_retry_with_async_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_patch201_retry_with_async_header_request(**kwargs: Any) -> HttpRequest:
     """Long running patch request, service returns a 201 to the initial request with async header.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -326,30 +300,24 @@ def build_patch201_retry_with_async_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/patch/201/retry/onlyAsyncHeader"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_patch202_retry_with_async_and_location_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running patch request, service returns a 202 to the initial request with async and
     location header.
 
@@ -390,9 +358,8 @@ def build_patch202_retry_with_async_and_location_header_request(
 
 @overload
 def build_patch202_retry_with_async_and_location_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running patch request, service returns a 202 to the initial request with async and
     location header.
 
@@ -411,10 +378,7 @@ def build_patch202_retry_with_async_and_location_header_request(
     """
 
 
-def build_patch202_retry_with_async_and_location_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_patch202_retry_with_async_and_location_header_request(**kwargs: Any) -> HttpRequest:
     """Long running patch request, service returns a 202 to the initial request with async and
     location header.
 
@@ -434,30 +398,24 @@ def build_patch202_retry_with_async_and_location_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/patch/202/retry/asyncAndLocationHeader"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put201_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -498,9 +456,8 @@ def build_put201_succeeded_request(
 
 @overload
 def build_put201_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -519,10 +476,7 @@ def build_put201_succeeded_request(
     """
 
 
-def build_put201_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put201_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -542,29 +496,21 @@ def build_put201_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/201/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_post202_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post202_list_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 202 with empty body to first request, returns a 200
     with body [{ 'id': '100', 'name': 'foo' }].
 
@@ -579,27 +525,21 @@ def build_post202_list_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/list"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put200_succeeded_no_state_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     does not contain ProvisioningState=’Succeeded’.
 
@@ -640,9 +580,8 @@ def build_put200_succeeded_no_state_request(
 
 @overload
 def build_put200_succeeded_no_state_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     does not contain ProvisioningState=’Succeeded’.
 
@@ -661,10 +600,7 @@ def build_put200_succeeded_no_state_request(
     """
 
 
-def build_put200_succeeded_no_state_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put200_succeeded_no_state_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     does not contain ProvisioningState=’Succeeded’.
 
@@ -684,30 +620,24 @@ def build_put200_succeeded_no_state_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/succeeded/nostate"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request, with a location header
     that points to a polling URL that returns a 200 and an entity that doesn't contains
     ProvisioningState.
@@ -749,9 +679,8 @@ def build_put202_retry200_request(
 
 @overload
 def build_put202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request, with a location header
     that points to a polling URL that returns a 200 and an entity that doesn't contains
     ProvisioningState.
@@ -771,10 +700,7 @@ def build_put202_retry200_request(
     """
 
 
-def build_put202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put202_retry200_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request, with a location header
     that points to a polling URL that returns a 200 and an entity that doesn't contains
     ProvisioningState.
@@ -795,30 +721,24 @@ def build_put202_retry200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/202/retry/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put201_creating_succeeded200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -860,9 +780,8 @@ def build_put201_creating_succeeded200_request(
 
 @overload
 def build_put201_creating_succeeded200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -882,10 +801,7 @@ def build_put201_creating_succeeded200_request(
     """
 
 
-def build_put201_creating_succeeded200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -906,30 +822,24 @@ def build_put201_creating_succeeded200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/201/creating/succeeded/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put200_updating_succeeded204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -971,9 +881,8 @@ def build_put200_updating_succeeded204_request(
 
 @overload
 def build_put200_updating_succeeded204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -993,10 +902,7 @@ def build_put200_updating_succeeded204_request(
     """
 
 
-def build_put200_updating_succeeded204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put200_updating_succeeded204_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -1017,30 +923,24 @@ def build_put200_updating_succeeded204_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/updating/succeeded/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put201_creating_failed200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -1082,9 +982,8 @@ def build_put201_creating_failed200_request(
 
 @overload
 def build_put201_creating_failed200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -1104,10 +1003,7 @@ def build_put201_creating_failed200_request(
     """
 
 
-def build_put201_creating_failed200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put201_creating_failed200_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -1128,30 +1024,24 @@ def build_put201_creating_failed200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/201/created/failed/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put200_acceptedcanceled200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -1193,9 +1083,8 @@ def build_put200_acceptedcanceled200_request(
 
 @overload
 def build_put200_acceptedcanceled200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -1215,10 +1104,7 @@ def build_put200_acceptedcanceled200_request(
     """
 
 
-def build_put200_acceptedcanceled200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put200_acceptedcanceled200_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -1239,30 +1125,24 @@ def build_put200_acceptedcanceled200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/accepted/canceled/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request with location header.
     Subsequent calls to operation status do not contain location header.
 
@@ -1303,9 +1183,8 @@ def build_put_no_header_in_retry_request(
 
 @overload
 def build_put_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request with location header.
     Subsequent calls to operation status do not contain location header.
 
@@ -1324,10 +1203,7 @@ def build_put_no_header_in_retry_request(
     """
 
 
-def build_put_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request with location header.
     Subsequent calls to operation status do not contain location header.
 
@@ -1347,30 +1223,24 @@ def build_put_no_header_in_retry_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/noheader/202/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1412,9 +1282,8 @@ def build_put_async_retry_succeeded_request(
 
 @overload
 def build_put_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1434,10 +1303,7 @@ def build_put_async_retry_succeeded_request(
     """
 
 
-def build_put_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1458,30 +1324,24 @@ def build_put_async_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/retry/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_async_no_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1523,9 +1383,8 @@ def build_put_async_no_retry_succeeded_request(
 
 @overload
 def build_put_async_no_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1545,10 +1404,7 @@ def build_put_async_no_retry_succeeded_request(
     """
 
 
-def build_put_async_no_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1569,30 +1425,24 @@ def build_put_async_no_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/noretry/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_async_retry_failed_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1634,9 +1484,8 @@ def build_put_async_retry_failed_request(
 
 @overload
 def build_put_async_retry_failed_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1656,10 +1505,7 @@ def build_put_async_retry_failed_request(
     """
 
 
-def build_put_async_retry_failed_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_retry_failed_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1680,30 +1526,24 @@ def build_put_async_retry_failed_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/retry/failed"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_async_no_retrycanceled_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1745,9 +1585,8 @@ def build_put_async_no_retrycanceled_request(
 
 @overload
 def build_put_async_no_retrycanceled_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1767,10 +1606,7 @@ def build_put_async_no_retrycanceled_request(
     """
 
 
-def build_put_async_no_retrycanceled_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_no_retrycanceled_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1791,30 +1627,24 @@ def build_put_async_no_retrycanceled_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/noretry/canceled"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_async_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request with
     Azure-AsyncOperation header. Subsequent calls to operation status do not contain
     Azure-AsyncOperation header.
@@ -1856,9 +1686,8 @@ def build_put_async_no_header_in_retry_request(
 
 @overload
 def build_put_async_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request with
     Azure-AsyncOperation header. Subsequent calls to operation status do not contain
     Azure-AsyncOperation header.
@@ -1878,10 +1707,7 @@ def build_put_async_no_header_in_retry_request(
     """
 
 
-def build_put_async_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request with
     Azure-AsyncOperation header. Subsequent calls to operation status do not contain
     Azure-AsyncOperation header.
@@ -1902,30 +1728,24 @@ def build_put_async_no_header_in_retry_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/noheader/201/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_non_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with non resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1954,9 +1774,8 @@ def build_put_non_resource_request(
 
 @overload
 def build_put_non_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with non resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1974,10 +1793,7 @@ def build_put_non_resource_request(
     """
 
 
-def build_put_non_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_non_resource_request(**kwargs: Any) -> HttpRequest:
     """Long running put request with non resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1996,30 +1812,24 @@ def build_put_non_resource_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putnonresource/202/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_async_non_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with non resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2048,9 +1858,8 @@ def build_put_async_non_resource_request(
 
 @overload
 def build_put_async_non_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with non resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2068,10 +1877,7 @@ def build_put_async_non_resource_request(
     """
 
 
-def build_put_async_non_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_non_resource_request(**kwargs: Any) -> HttpRequest:
     """Long running put request with non resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2090,30 +1896,24 @@ def build_put_async_non_resource_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putnonresourceasync/202/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_sub_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with sub resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2147,9 +1947,8 @@ def build_put_sub_resource_request(
 
 @overload
 def build_put_sub_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with sub resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2167,10 +1966,7 @@ def build_put_sub_resource_request(
     """
 
 
-def build_put_sub_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_sub_resource_request(**kwargs: Any) -> HttpRequest:
     """Long running put request with sub resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2189,30 +1985,24 @@ def build_put_sub_resource_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putsubresource/202/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_async_sub_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with sub resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2246,9 +2036,8 @@ def build_put_async_sub_resource_request(
 
 @overload
 def build_put_async_sub_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running put request with sub resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2266,10 +2055,7 @@ def build_put_async_sub_resource_request(
     """
 
 
-def build_put_async_sub_resource_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_sub_resource_request(**kwargs: Any) -> HttpRequest:
     """Long running put request with sub resource.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2288,29 +2074,21 @@ def build_put_async_sub_resource_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putsubresourceasync/202/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_accepted200_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -2326,26 +2104,18 @@ def build_delete_provisioning202_accepted200_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/provisioning/202/accepted/200/succeeded"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_deleting_failed200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_provisioning202_deleting_failed200_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -2361,26 +2131,18 @@ def build_delete_provisioning202_deleting_failed200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/provisioning/202/deleting/200/failed"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_deletingcanceled200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_provisioning202_deletingcanceled200_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -2396,26 +2158,18 @@ def build_delete_provisioning202_deletingcanceled200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/provisioning/202/deleting/200/canceled"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete204_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running delete succeeds and returns right away.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -2429,26 +2183,18 @@ def build_delete204_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/204/succeeded"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2463,26 +2209,18 @@ def build_delete202_retry200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/202/retry/200"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete202_no_retry204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete202_no_retry204_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2497,26 +2235,18 @@ def build_delete202_no_retry204_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/202/noretry/204"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a location header in the initial request.
     Subsequent calls to operation status do not contain location header.
 
@@ -2531,26 +2261,18 @@ def build_delete_no_header_in_retry_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/noheader"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_no_header_in_retry_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns an Azure-AsyncOperation header in the initial
     request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -2565,26 +2287,18 @@ def build_delete_async_no_header_in_retry_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/noheader/202/204"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2599,26 +2313,18 @@ def build_delete_async_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/retry/succeeded"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_no_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2633,26 +2339,18 @@ def build_delete_async_no_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/noretry/succeeded"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_retry_failed_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_async_retry_failed_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2667,26 +2365,18 @@ def build_delete_async_retry_failed_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/retry/failed"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_retrycanceled_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_delete_async_retrycanceled_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2701,26 +2391,18 @@ def build_delete_async_retrycanceled_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/retry/canceled"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_post200_with_payload_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post200_with_payload_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location'
     header. Poll returns a 200 with a response body after success.
 
@@ -2735,27 +2417,21 @@ def build_post200_with_payload_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/post/payload/200"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location' and
     'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -2796,9 +2472,8 @@ def build_post202_retry200_request(
 
 @overload
 def build_post202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location' and
     'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -2817,10 +2492,7 @@ def build_post202_retry200_request(
     """
 
 
-def build_post202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post202_retry200_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location' and
     'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -2840,30 +2512,24 @@ def build_post202_retry200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/post/202/retry/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post202_no_retry204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location'
     header, 204 with noresponse body after success.
 
@@ -2904,9 +2570,8 @@ def build_post202_no_retry204_request(
 
 @overload
 def build_post202_no_retry204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location'
     header, 204 with noresponse body after success.
 
@@ -2925,10 +2590,7 @@ def build_post202_no_retry204_request(
     """
 
 
-def build_post202_no_retry204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post202_no_retry204_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location'
     header, 204 with noresponse body after success.
 
@@ -2948,29 +2610,21 @@ def build_post202_no_retry204_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/post/202/noretry/204"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_double_headers_final_location_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
     object.
@@ -2986,26 +2640,18 @@ def build_post_double_headers_final_location_get_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/LROPostDoubleHeadersFinalLocationGet"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_double_headers_final_azure_header_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_double_headers_final_azure_header_get_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object.
@@ -3021,26 +2667,18 @@ def build_post_double_headers_final_azure_header_get_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_double_headers_final_azure_header_get_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_double_headers_final_azure_header_get_default_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object if you support initial Autorest behavior.
@@ -3056,27 +2694,21 @@ def build_post_double_headers_final_azure_header_get_default_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3118,9 +2750,8 @@ def build_post_async_retry_succeeded_request(
 
 @overload
 def build_post_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3140,10 +2771,7 @@ def build_post_async_retry_succeeded_request(
     """
 
 
-def build_post_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3164,30 +2792,24 @@ def build_post_async_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/retry/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_async_no_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3229,9 +2851,8 @@ def build_post_async_no_retry_succeeded_request(
 
 @overload
 def build_post_async_no_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3251,10 +2872,7 @@ def build_post_async_no_retry_succeeded_request(
     """
 
 
-def build_post_async_no_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3275,30 +2893,24 @@ def build_post_async_no_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/noretry/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_async_retry_failed_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3340,9 +2952,8 @@ def build_post_async_retry_failed_request(
 
 @overload
 def build_post_async_retry_failed_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3362,10 +2973,7 @@ def build_post_async_retry_failed_request(
     """
 
 
-def build_post_async_retry_failed_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_async_retry_failed_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3386,30 +2994,24 @@ def build_post_async_retry_failed_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/retry/failed"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_async_retrycanceled_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3451,9 +3053,8 @@ def build_post_async_retrycanceled_request(
 
 @overload
 def build_post_async_retrycanceled_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3473,10 +3074,7 @@ def build_post_async_retrycanceled_request(
     """
 
 
-def build_post_async_retrycanceled_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_async_retrycanceled_request(**kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3497,20 +3095,15 @@ def build_post_async_retrycanceled_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/retry/canceled"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

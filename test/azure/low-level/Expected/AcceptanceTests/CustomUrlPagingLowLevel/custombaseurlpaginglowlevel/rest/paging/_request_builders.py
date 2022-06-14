@@ -16,12 +16,8 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_pages_partial_url_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that combines custom url, paging and partial URL and expect to concat after
     host.
 
@@ -36,26 +32,18 @@ def build_get_pages_partial_url_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlink"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_pages_partial_url_operation_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that combines custom url, paging and partial URL with next operation.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -69,27 +57,18 @@ def build_get_pages_partial_url_operation_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlinkop"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_pages_partial_url_operation_next_request(
-    next_link,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs: Any) -> HttpRequest:
     """A paging operation that combines custom url, paging and partial URL
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -105,22 +84,17 @@ def build_get_pages_partial_url_operation_next_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/{nextLink}"
     path_format_arguments = {
-        "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)

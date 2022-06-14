@@ -6,7 +6,7 @@
 
 {{ imports }}
 
-{{ serializer.class_definition(async_mode) }}
+{{ serializer.class_definition }}
     """{{ op_tools.wrap_string(code_model.client.description, "\n") | indent }}
 
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n ") | indent }}
@@ -14,8 +14,8 @@
     {% if serializer.should_init_super %}
         super().__init__()
     {% endif %}
-    {% if code_model.client.parameters.kwargs_to_pop(async_mode) %}
-        {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
+    {% if code_model.client.parameters.kwargs_to_pop %}
+        {{ op_tools.serialize(serializer.pop_kwargs_from_signature()) | indent(8) }}
     {% endif %}
         {% if code_model.client.has_parameterized_host %}
         {{ serializer.host_variable_name }} = {{ keywords.escape_str(code_model.client.url) }}

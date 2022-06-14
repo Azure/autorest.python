@@ -7,20 +7,15 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import PollingPagingExampleConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import PollingPagingExampleOperationsMixin
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
-    from azure.core.rest import HttpRequest, HttpResponse
 
 class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Show polling and paging generation.
@@ -33,10 +28,9 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disa
 
     def __init__(
         self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = PollingPagingExampleConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -48,10 +42,9 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disa
 
     def _send_request(
         self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

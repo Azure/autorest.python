@@ -563,7 +563,6 @@ class PagingOperations:
             else:
                 
                 request = build_duplicate_params_request(
-                    filter=filter,
                     template_url=next_link,
                     headers=_headers,
                     params=_params,

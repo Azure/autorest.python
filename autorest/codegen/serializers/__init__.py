@@ -14,9 +14,8 @@ from ..models import CodeModel, OperationGroup, RequestBuilder
 from ..models import TokenCredentialType
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
-from .model_generic_serializer import ModelGenericSerializer
 from .model_init_serializer import ModelInitSerializer
-from .model_python3_serializer import ModelPython3Serializer
+from .model_serializer import ModelSerializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
@@ -238,22 +237,9 @@ class JinjaSerializer:
         # Write the models folder
         models_path = namespace_path / Path("models")
         if self.code_model.model_types:
-            if not self.code_model.options["python3_only"]:
-                self._autorestapi.write_file(
-                    models_path
-                    / Path(
-                        f"{self.code_model.get_models_filename(is_python3_file=False)}.py"
-                    ),
-                    ModelGenericSerializer(
-                        code_model=self.code_model, env=env
-                    ).serialize(),
-                )
             self._autorestapi.write_file(
-                models_path
-                / Path(
-                    f"{self.code_model.get_models_filename(is_python3_file=True)}.py"
-                ),
-                ModelPython3Serializer(code_model=self.code_model, env=env).serialize(),
+                models_path / Path(f"{self.code_model.models_filename}.py"),
+                ModelSerializer(code_model=self.code_model, env=env).serialize(),
             )
         if self.code_model.enums:
             self._autorestapi.write_file(
@@ -301,18 +287,6 @@ class JinjaSerializer:
                 code_model=self.code_model,
                 env=env,
                 request_builders=request_builders,
-                is_python3_file=False,
-            ).serialize_request_builders(),
-        )
-
-        # write python3 request builders file
-        self._autorestapi.write_file(
-            output_path / Path("_request_builders_py3.py"),
-            RequestBuildersSerializer(
-                code_model=self.code_model,
-                env=env,
-                request_builders=request_builders,
-                is_python3_file=True,
             ).serialize_request_builders(),
         )
 
@@ -323,7 +297,6 @@ class JinjaSerializer:
                 code_model=self.code_model,
                 env=env,
                 request_builders=request_builders,
-                is_python3_file=True,
             ).serialize_init(),
         )
 
@@ -339,7 +312,6 @@ class JinjaSerializer:
             code_model=self.code_model,
             env=env,
             async_mode=False,
-            is_python3_file=self.code_model.options["python3_only"],
             operation_group=operation_group,
         )
         self._autorestapi.write_file(
@@ -349,31 +321,12 @@ class JinjaSerializer:
             operation_group_serializer.serialize(),
         )
 
-        if (
-            not self.code_model.options["python3_only"]
-            and self.code_model.options["add_python3_operation_files"]
-        ):
-            # write typed second file if not python 3 only
-            operation_group_serializer = OperationGroupsSerializer(
-                code_model=self.code_model,
-                env=env,
-                async_mode=False,
-                is_python3_file=True,
-            )
-            self._autorestapi.write_file(
-                namespace_path
-                / Path(self.code_model.operations_folder_name)
-                / Path(f"{filename}_py3.py"),
-                operation_group_serializer.serialize(),
-            )
-
         if self.has_aio_folder:
             # write async operation group and operation files
             operation_group_async_serializer = OperationGroupsSerializer(
                 code_model=self.code_model,
                 env=env,
                 async_mode=True,
-                is_python3_file=True,
                 operation_group=operation_group,
             )
             self._autorestapi.write_file(

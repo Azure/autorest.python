@@ -6,16 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_get_method_global_valid_request
-    from ._request_builders_py3 import build_get_method_global_not_provided_valid_request
-    from ._request_builders_py3 import build_get_path_global_valid_request
-    from ._request_builders_py3 import build_get_swagger_global_valid_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_get_method_global_valid_request  # type: ignore
-    from ._request_builders import build_get_method_global_not_provided_valid_request  # type: ignore
-    from ._request_builders import build_get_path_global_valid_request  # type: ignore
-    from ._request_builders import build_get_swagger_global_valid_request  # type: ignore
+from ._request_builders import build_get_method_global_valid_request
+from ._request_builders import build_get_method_global_not_provided_valid_request
+from ._request_builders import build_get_path_global_valid_request
+from ._request_builders import build_get_swagger_global_valid_request
 
 __all__ = [
     "build_get_method_global_valid_request",

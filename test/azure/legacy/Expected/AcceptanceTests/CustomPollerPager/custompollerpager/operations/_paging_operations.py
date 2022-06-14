@@ -29,6 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+
 def build_get_no_item_name_pages_request(
     **kwargs: Any
 ) -> HttpRequest:
@@ -1130,7 +1131,6 @@ class PagingOperations:
             else:
                 
                 request = build_duplicate_params_request(
-                    filter=filter,
                     template_url=next_link,
                     headers=_headers,
                     params=_params,

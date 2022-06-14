@@ -14,12 +14,8 @@ from .._serialization import Serializer
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_request(**kwargs: Any) -> HttpRequest:
     """Basic get to make sure base url formatting of 'endpoint' works.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -34,8 +30,4 @@ def build_get_request(
     # Construct URL
     _url = "/parameterizedEndpoint/get"
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, **kwargs)

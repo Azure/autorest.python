@@ -179,15 +179,11 @@ class _ParameterBase(
     def in_method_signature(self) -> bool:
         ...
 
-    def method_signature(self, is_python3_file: bool, async_mode: bool) -> str:
+    def method_signature(self, async_mode: bool) -> str:
         type_annot = self.type_annotation(async_mode=async_mode)
-        if is_python3_file:
-            if self.client_default_value is not None or self.optional:
-                return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
-            return f"{self.client_name}: {type_annot},"
         if self.client_default_value is not None or self.optional:
-            return f"{self.client_name}={self.client_default_value_declaration},  # type: {type_annot}"
-        return f"{self.client_name},  # type: {type_annot}"
+            return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
+        return f"{self.client_name}: {type_annot},"
 
 
 class _BodyParameterBase(_ParameterBase):

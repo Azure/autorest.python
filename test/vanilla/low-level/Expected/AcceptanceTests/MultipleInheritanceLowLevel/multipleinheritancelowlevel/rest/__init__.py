@@ -6,28 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_get_horse_request
-    from ._request_builders_py3 import build_put_horse_request
-    from ._request_builders_py3 import build_get_pet_request
-    from ._request_builders_py3 import build_put_pet_request
-    from ._request_builders_py3 import build_get_feline_request
-    from ._request_builders_py3 import build_put_feline_request
-    from ._request_builders_py3 import build_get_cat_request
-    from ._request_builders_py3 import build_put_cat_request
-    from ._request_builders_py3 import build_get_kitten_request
-    from ._request_builders_py3 import build_put_kitten_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_get_horse_request  # type: ignore
-    from ._request_builders import build_put_horse_request  # type: ignore
-    from ._request_builders import build_get_pet_request  # type: ignore
-    from ._request_builders import build_put_pet_request  # type: ignore
-    from ._request_builders import build_get_feline_request  # type: ignore
-    from ._request_builders import build_put_feline_request  # type: ignore
-    from ._request_builders import build_get_cat_request  # type: ignore
-    from ._request_builders import build_put_cat_request  # type: ignore
-    from ._request_builders import build_get_kitten_request  # type: ignore
-    from ._request_builders import build_put_kitten_request  # type: ignore
+from ._request_builders import build_get_horse_request
+from ._request_builders import build_put_horse_request
+from ._request_builders import build_get_pet_request
+from ._request_builders import build_put_pet_request
+from ._request_builders import build_get_feline_request
+from ._request_builders import build_put_feline_request
+from ._request_builders import build_get_cat_request
+from ._request_builders import build_put_cat_request
+from ._request_builders import build_get_kitten_request
+from ._request_builders import build_put_kitten_request
 
 __all__ = [
     "build_get_horse_request",

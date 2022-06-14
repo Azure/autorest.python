@@ -22,12 +22,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_int_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_int_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with integer properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -41,27 +37,19 @@ def build_get_int_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/integer"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_int_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_int_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with integer properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -89,10 +77,7 @@ def build_put_int_request(
 
 
 @overload
-def build_put_int_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_int_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with integer properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -110,10 +95,7 @@ def build_put_int_request(
     """
 
 
-def build_put_int_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_int_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with integer properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -132,29 +114,21 @@ def build_put_int_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/integer"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_long_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_long_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with long properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -168,27 +142,19 @@ def build_get_long_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/long"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_long_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_long_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with long properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -216,10 +182,7 @@ def build_put_long_request(
 
 
 @overload
-def build_put_long_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_long_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with long properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -237,10 +200,7 @@ def build_put_long_request(
     """
 
 
-def build_put_long_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_long_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with long properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -260,29 +220,21 @@ def build_put_long_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/long"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_float_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with float properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -296,27 +248,19 @@ def build_get_float_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/float"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_float_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with float properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -344,10 +288,7 @@ def build_put_float_request(
 
 
 @overload
-def build_put_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_float_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with float properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -365,10 +306,7 @@ def build_put_float_request(
     """
 
 
-def build_put_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_float_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with float properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -387,29 +325,21 @@ def build_put_float_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/float"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_double_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with double properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -423,27 +353,19 @@ def build_get_double_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/double"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_double_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with double properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -473,10 +395,7 @@ def build_put_double_request(
 
 
 @overload
-def build_put_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_double_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with double properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -495,10 +414,7 @@ def build_put_double_request(
     """
 
 
-def build_put_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_double_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with double properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -519,29 +435,21 @@ def build_put_double_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/double"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_bool_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_bool_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with bool properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -555,27 +463,19 @@ def build_get_bool_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/bool"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_bool_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_bool_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with bool properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -603,10 +503,7 @@ def build_put_bool_request(
 
 
 @overload
-def build_put_bool_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_bool_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with bool properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -624,10 +521,7 @@ def build_put_bool_request(
     """
 
 
-def build_put_bool_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_bool_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with bool properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -646,29 +540,21 @@ def build_put_bool_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/bool"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_string_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with string properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -682,27 +568,19 @@ def build_get_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/string"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_string_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with string properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -731,10 +609,7 @@ def build_put_string_request(
 
 
 @overload
-def build_put_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_string_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with string properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -752,10 +627,7 @@ def build_put_string_request(
     """
 
 
-def build_put_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_string_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with string properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -775,29 +647,21 @@ def build_put_string_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/string"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with date properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -811,27 +675,19 @@ def build_get_date_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/date"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with date properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -859,10 +715,7 @@ def build_put_date_request(
 
 
 @overload
-def build_put_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with date properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -880,10 +733,7 @@ def build_put_date_request(
     """
 
 
-def build_put_date_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with date properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -903,29 +753,21 @@ def build_put_date_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/date"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with datetime properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -939,27 +781,19 @@ def build_get_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetime"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with datetime properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -988,10 +822,7 @@ def build_put_date_time_request(
 
 
 @overload
-def build_put_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with datetime properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1010,10 +841,7 @@ def build_put_date_time_request(
     """
 
 
-def build_put_date_time_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with datetime properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1033,29 +861,21 @@ def build_put_date_time_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetime"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_rfc1123_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with datetimeRfc1123 properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1069,27 +889,21 @@ def build_get_date_time_rfc1123_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetimerfc1123"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put_date_time_rfc1123_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put complex types with datetimeRfc1123 properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1119,9 +933,8 @@ def build_put_date_time_rfc1123_request(
 
 @overload
 def build_put_date_time_rfc1123_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     """Put complex types with datetimeRfc1123 properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1140,10 +953,7 @@ def build_put_date_time_rfc1123_request(
     """
 
 
-def build_put_date_time_rfc1123_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with datetimeRfc1123 properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1163,29 +973,21 @@ def build_put_date_time_rfc1123_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetimerfc1123"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_duration_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with duration properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1199,27 +1001,19 @@ def build_get_duration_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/duration"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_duration_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with duration properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1246,10 +1040,7 @@ def build_put_duration_request(
 
 
 @overload
-def build_put_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_duration_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with duration properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1267,10 +1058,7 @@ def build_put_duration_request(
     """
 
 
-def build_put_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_duration_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with duration properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1289,29 +1077,21 @@ def build_put_duration_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/duration"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_byte_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_byte_request(**kwargs: Any) -> HttpRequest:
     """Get complex types with byte properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1325,27 +1105,19 @@ def build_get_byte_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/byte"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
-def build_put_byte_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_byte_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with byte properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1372,10 +1144,7 @@ def build_put_byte_request(
 
 
 @overload
-def build_put_byte_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_byte_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with byte properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1394,10 +1163,7 @@ def build_put_byte_request(
     """
 
 
-def build_put_byte_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_byte_request(**kwargs: Any) -> HttpRequest:
     """Put complex types with byte properties.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -1417,20 +1183,15 @@ def build_put_byte_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/complex/primitive/byte"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)

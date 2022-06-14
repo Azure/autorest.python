@@ -89,7 +89,7 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
             )
         return self._description or self.name
 
-    def method_signature(self, is_python3_file: bool, async_mode: bool) -> List[str]:
+    def method_signature(self, async_mode: bool) -> List[str]:
         if self.abstract:
             return ["*args,", "**kwargs"]
-        return self.parameters.method_signature(is_python3_file, async_mode)
+        return self.parameters.method_signature(async_mode)

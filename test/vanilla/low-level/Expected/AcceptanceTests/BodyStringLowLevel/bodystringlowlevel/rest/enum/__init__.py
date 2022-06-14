@@ -6,20 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_get_not_expandable_request
-    from ._request_builders_py3 import build_put_not_expandable_request
-    from ._request_builders_py3 import build_get_referenced_request
-    from ._request_builders_py3 import build_put_referenced_request
-    from ._request_builders_py3 import build_get_referenced_constant_request
-    from ._request_builders_py3 import build_put_referenced_constant_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_get_not_expandable_request  # type: ignore
-    from ._request_builders import build_put_not_expandable_request  # type: ignore
-    from ._request_builders import build_get_referenced_request  # type: ignore
-    from ._request_builders import build_put_referenced_request  # type: ignore
-    from ._request_builders import build_get_referenced_constant_request  # type: ignore
-    from ._request_builders import build_put_referenced_constant_request  # type: ignore
+from ._request_builders import build_get_not_expandable_request
+from ._request_builders import build_put_not_expandable_request
+from ._request_builders import build_get_referenced_request
+from ._request_builders import build_put_referenced_request
+from ._request_builders import build_get_referenced_constant_request
+from ._request_builders import build_put_referenced_constant_request
 
 __all__ = [
     "build_get_not_expandable_request",

@@ -274,22 +274,14 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                     alias="rest",
                 )
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
-            suffix = (
-                "_py3"
-                if self.code_model.options["add_python3_operation_files"]
-                and not self.code_model.options["python3_only"]
-                else ""
-            )
             file_import.add_submodule_import(
-                f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
+                f"...{self.code_model.operations_folder_name}.{self.filename}",
                 request_builder.name,
                 import_type=ImportType.LOCAL,
             )
         return file_import
 
-    def imports(
-        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
-    ) -> FileImport:
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
             return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
@@ -326,11 +318,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
         )
 
-        kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
         if self.has_kwargs_to_pop_with_default(
-            kwargs_to_pop, ParameterLocation.HEADER
+            self.parameters.kwargs_to_pop, ParameterLocation.HEADER
         ) or self.has_kwargs_to_pop_with_default(
-            kwargs_to_pop, ParameterLocation.QUERY
+            self.parameters.kwargs_to_pop, ParameterLocation.QUERY
         ):
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
@@ -468,10 +459,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
 
 
 class Operation(OperationBase[Response]):
-    def imports(
-        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
-    ) -> FileImport:
-        file_import = super().imports(async_mode, is_python3_file, **kwargs)
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super().imports(async_mode, **kwargs)
         if self.abstract:
             return file_import
         if async_mode:

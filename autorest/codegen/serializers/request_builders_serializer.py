@@ -18,13 +18,11 @@ class RequestBuildersSerializer:
         code_model: CodeModel,
         env: Environment,
         request_builders: List[RequestBuilderType],
-        is_python3_file: bool,
     ) -> None:
         self.code_model = code_model
         self.env = env
         self.request_builders = request_builders
         self.group_name = request_builders[0].group_name
-        self.is_python3_file = is_python3_file
 
     @property
     def imports(self) -> FileImport:
@@ -49,9 +47,8 @@ class RequestBuildersSerializer:
             request_builders=[rb for rb in self.request_builders if not rb.abstract],
             imports=FileImportSerializer(
                 self.imports,
-                is_python3_file=True,
             ),
             request_builder_serializer=RequestBuilderSerializer(
-                self.code_model, async_mode=False, is_python3_file=self.is_python3_file
+                self.code_model, async_mode=False
             ),
         )

@@ -16,13 +16,8 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_required_path_request(
-    path_parameter,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpRequest:
     """Test implicitly required path parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -38,31 +33,23 @@ def build_get_required_path_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/implicit/required/path/{pathParameter}"
     path_format_arguments = {
-        "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, 'str'),
+        "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_optional_query_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_optional_query_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional query parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -79,32 +66,22 @@ def build_put_optional_query_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    query_parameter = kwargs.pop('query_parameter', _params.pop('queryParameter', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/implicit/optional/query"
 
     # Construct parameters
     if query_parameter is not None:
-        _params['queryParameter'] = _SERIALIZER.query("query_parameter", query_parameter, 'str')
+        _params["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_put_optional_header_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_optional_header_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional header parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -120,29 +97,20 @@ def build_put_optional_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    query_parameter = kwargs.pop('query_parameter', _headers.pop('queryParameter', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/implicit/optional/header"
 
     # Construct headers
     if query_parameter is not None:
-        _headers['queryParameter'] = _SERIALIZER.header("query_parameter", query_parameter, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_optional_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_optional_body_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional body parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -158,29 +126,21 @@ def build_put_optional_body_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/implicit/optional/body"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_put_optional_binary_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional body parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -196,30 +156,21 @@ def build_put_optional_binary_body_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/implicit/optional/binary-body"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_required_global_path_request(
-    required_global_path,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_required_global_path_request(required_global_path: str, **kwargs: Any) -> HttpRequest:
     """Test implicitly required path parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -235,31 +186,23 @@ def build_get_required_global_path_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/global/required/path/{required-global-path}"
     path_format_arguments = {
-        "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, 'str'),
+        "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_required_global_query_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_required_global_query_request(*, required_global_query: str, **kwargs: Any) -> HttpRequest:
     """Test implicitly required query parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -276,31 +219,23 @@ def build_get_required_global_query_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    required_global_query = kwargs.pop('required_global_query')  # type: str
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/global/required/query"
 
     # Construct parameters
-    _params['required-global-query'] = _SERIALIZER.query("required_global_query", required_global_query, 'str')
+    _params["required-global-query"] = _SERIALIZER.query("required_global_query", required_global_query, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_optional_global_query_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, optional_global_query: Optional[int] = None, **kwargs: Any
+) -> HttpRequest:
     """Test implicitly optional query parameter.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -317,23 +252,16 @@ def build_get_optional_global_query_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    optional_global_query = kwargs.pop('optional_global_query', _params.pop('optional-global-query', None))  # type: Optional[int]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/reqopt/global/optional/query"
 
     # Construct parameters
     if optional_global_query is not None:
-        _params['optional-global-query'] = _SERIALIZER.query("optional_global_query", optional_global_query, 'int')
+        _params["optional-global-query"] = _SERIALIZER.query("optional_global_query", optional_global_query, "int")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)

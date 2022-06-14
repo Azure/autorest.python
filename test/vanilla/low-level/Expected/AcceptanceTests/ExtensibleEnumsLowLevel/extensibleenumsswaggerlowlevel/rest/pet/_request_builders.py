@@ -23,13 +23,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
-def build_get_by_pet_id_request(
-    pet_id,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     """get pet by id.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -45,32 +40,26 @@ def build_get_by_pet_id_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/extensibleenums/pet/{petId}"
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_add_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """add pet.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -102,9 +91,8 @@ def build_add_pet_request(
 
 @overload
 def build_add_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """add pet.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -122,10 +110,7 @@ def build_add_pet_request(
     """
 
 
-def build_add_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_add_pet_request(**kwargs: Any) -> HttpRequest:
     """add pet.
 
     See https://aka.ms/azsdk/dpcodegen/python/send_request for how to incorporate this request
@@ -144,20 +129,15 @@ def build_add_pet_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/extensibleenums/pet/addPet"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

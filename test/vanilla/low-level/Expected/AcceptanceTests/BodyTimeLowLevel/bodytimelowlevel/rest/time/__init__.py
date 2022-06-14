@@ -6,12 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_get_request
-    from ._request_builders_py3 import build_put_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_get_request  # type: ignore
-    from ._request_builders import build_put_request  # type: ignore
+from ._request_builders import build_get_request
+from ._request_builders import build_put_request
 
 __all__ = [
     "build_get_request",

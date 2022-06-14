@@ -6,14 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._request_builders_py3 import build_head200_request
-    from ._request_builders_py3 import build_head204_request
-    from ._request_builders_py3 import build_head404_request
-except (SyntaxError, ImportError):
-    from ._request_builders import build_head200_request  # type: ignore
-    from ._request_builders import build_head204_request  # type: ignore
-    from ._request_builders import build_head404_request  # type: ignore
+from ._request_builders import build_head200_request
+from ._request_builders import build_head204_request
+from ._request_builders import build_head404_request
 
 __all__ = [
     "build_head200_request",

@@ -24,7 +24,6 @@ from ._models_py3 import Usage
 from ._models_py3 import UsageListResult
 from ._models_py3 import UsageName
 
-
 from ._storage_management_client_enums import AccountStatus
 from ._storage_management_client_enums import AccountType
 from ._storage_management_client_enums import KeyName

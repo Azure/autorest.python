@@ -22,13 +22,11 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
-# fmt: off
 
 @overload
 def build_put_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 200 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -71,9 +69,8 @@ def build_put_async_retry_succeeded_request(
 
 @overload
 def build_put_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 200 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -94,10 +91,7 @@ def build_put_async_retry_succeeded_request(
     """
 
 
-def build_put_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 200 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -119,30 +113,24 @@ def build_put_async_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/customheader/putasync/retry/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_put201_creating_succeeded200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 201 to the initial request, with an
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -185,9 +173,8 @@ def build_put201_creating_succeeded200_request(
 
 @overload
 def build_put201_creating_succeeded200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 201 to the initial request, with an
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -208,10 +195,7 @@ def build_put201_creating_succeeded200_request(
     """
 
 
-def build_put201_creating_succeeded200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 201 to the initial request, with an
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -233,30 +217,24 @@ def build_put201_creating_succeeded200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/customheader/put/201/creating/succeeded/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -298,9 +276,8 @@ def build_post202_retry200_request(
 
 @overload
 def build_post202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -320,10 +297,7 @@ def build_post202_retry200_request(
     """
 
 
-def build_post202_retry200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post202_retry200_request(**kwargs: Any) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -344,30 +318,24 @@ def build_post202_retry200_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/customheader/post/202/retry/200"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 @overload
 def build_post_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -410,9 +378,8 @@ def build_post_async_retry_succeeded_request(
 
 @overload
 def build_post_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -433,10 +400,7 @@ def build_post_async_retry_succeeded_request(
     """
 
 
-def build_post_async_retry_succeeded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_post_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -458,20 +422,15 @@ def build_post_async_retry_succeeded_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/customheader/postasync/retry/succeeded"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

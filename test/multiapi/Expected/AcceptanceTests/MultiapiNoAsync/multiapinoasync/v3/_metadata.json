@@ -16,7 +16,7 @@
     "global_parameters": {
         "sync": {
             "credential": {
-                "signature": "credential,  # type: \"TokenCredential\"",
+                "signature": "credential: \"TokenCredential\",",
                 "description": "Credential needed for the client to connect to Azure. Required.",
                 "docstring_type": "~azure.core.credentials.TokenCredential",
                 "required": true
@@ -42,7 +42,7 @@
                     "required": false
                 },
                 "base_url": {
-                    "signature": "base_url=\"http://localhost:3000\",  # type: str",
+                    "signature": "base_url: str = \"http://localhost:3000\",",
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false
@@ -94,7 +94,7 @@
         "operations": {
             "test_paging" : {
                 "sync": {
-                    "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e Iterable[\"_models.ModelThree\"]\n",
+                    "signature": "def test_paging(\n    self,\n    **kwargs: Any\n) -\u003e Iterable[\"_models.ModelThree\"]:\n",
                     "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either ModelThree or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapinoasync.v3.models.ModelThree]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "**kwargs"
                 },
@@ -107,7 +107,7 @@
             },
             "test_different_calls" : {
                 "sync": {
-                    "signature": "def test_different_calls(  # pylint: disable=inconsistent-return-statements\n    self,\n    greeting_in_english,  # type: str\n    greeting_in_chinese=None,  # type: Optional[str]\n    greeting_in_french=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e None\n",
+                    "signature": "def test_different_calls(  # pylint: disable=inconsistent-return-statements\n    self,\n    greeting_in_english: str,\n    greeting_in_chinese: Optional[str] = None,\n    greeting_in_french: Optional[str] = None,\n    **kwargs: Any\n) -\u003e None:\n",
                     "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test. Default value is None.\n:type greeting_in_chinese: str\n:param greeting_in_french: pass in \u0027bonjour\u0027 to pass test. Default value is None.\n:type greeting_in_french: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs"
                 },
