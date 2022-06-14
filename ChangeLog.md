@@ -14,6 +14,10 @@
 - Only generate Python3 SDKs  #1297
 - Don't reformat initial query parameters into the next link  #1297
 
+**New Features**
+
+- Add flag `--generate-sample` to generate samples #1275
+
 ### 2022-07-13 - 5.19.0
 
 | Library                                                                 | Min Version |
