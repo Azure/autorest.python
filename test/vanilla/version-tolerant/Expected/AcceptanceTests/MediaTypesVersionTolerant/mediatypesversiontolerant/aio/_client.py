@@ -29,6 +29,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):  # pylint: disable=clie
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+        super().__init__()
         self._config = MediaTypesClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
