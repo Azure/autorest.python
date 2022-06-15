@@ -440,7 +440,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
 
     @property
     def version_tolerant(self) -> bool:
-        return bool(self._autorestapi.get_boolean_value("version-tolerant", True))
+        return bool(self._autorestapi.get_boolean_value("version-tolerant"))
 
     @property
     def low_level_client(self) -> bool:
