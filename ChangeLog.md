@@ -19,7 +19,7 @@
 
 - Don't generate operations with more than two body types. SDK authors need to implement this operation themselves  #1300
 
-### 2022-07-13 - 5.19.0
+### 2022-06-13 - 5.19.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -33,7 +33,7 @@
 
 - Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
 
-### 2022-07-13 - 5.18.0
+### 2022-06-09 - 5.18.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
