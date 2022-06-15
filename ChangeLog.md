@@ -12,12 +12,15 @@
 
 **Breaking Changes**
 
+- Default to generating DPG SDKs with `--version-tolerant` now defaulting to `true`. For a list of flag default changes, please
+see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
 - Only generate Python3 SDKs  #1297
 - Don't reformat initial query parameters into the next link  #1297
-
-**Breaking Changes in Version Tolerant**
-
 - Don't generate operations with more than two body types. SDK authors need to implement this operation themselves  #1300
+
+**New Features**
+
+- Automatically format generated code with `black`. To not format, pass in `--black=false`  #1304
 
 ### 2022-06-13 - 5.19.0
 
