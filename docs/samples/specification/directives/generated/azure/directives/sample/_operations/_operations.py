@@ -9,7 +9,13 @@
 import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
@@ -20,79 +26,60 @@ from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .._serialization import Serializer
 from .._vendor import MixinABC
+
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any] # pylint: disable=unsubscriptable-object
-T = TypeVar('T')
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_basic_polling_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_basic_polling_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/basic/polling"
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_basic_paging_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_basic_paging_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/basic/paging"
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
 
 class PollingPagingExampleOperationsMixin(MixinABC):
-
-    def _basic_polling_initial(
-        self,
-        product: Optional[Union[JSON, IO]] = None,
-        **kwargs: Any
-    ) -> Optional[JSON]:
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+    def _basic_polling_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> Optional[JSON]:
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[JSON]]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         content_type = content_type or "application/json"
         _json = None
@@ -115,9 +102,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -138,15 +123,9 @@ class PollingPagingExampleOperationsMixin(MixinABC):
 
         return deserialized
 
-
-
     @overload
     def begin_basic_polling(
-        self,
-        product: Optional[JSON] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> CustomPoller[JSON]:
         """A simple polling operation.
 
@@ -188,11 +167,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
 
     @overload
     def begin_basic_polling(
-        self,
-        product: Optional[IO] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> CustomPoller[JSON]:
         """A simple polling operation.
 
@@ -224,13 +199,8 @@ class PollingPagingExampleOperationsMixin(MixinABC):
                 }
         """
 
-
     @distributed_trace
-    def begin_basic_polling(
-        self,
-        product: Optional[Union[JSON, IO]] = None,
-        **kwargs: Any
-    ) -> CustomPoller[JSON]:
+    def begin_basic_polling(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> CustomPoller[JSON]:
         """A simple polling operation.
 
         :param product: Product to put. Is either a model type or a IO type. Default value is None.
@@ -263,24 +233,21 @@ class PollingPagingExampleOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
-        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._basic_polling_initial(  # type: ignore
                 product=product,
                 content_type=content_type,
-                cls=lambda x,y,z: x,
+                cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
-        kwargs.pop('error_map', None)
+        kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
@@ -292,32 +259,23 @@ class PollingPagingExampleOperationsMixin(MixinABC):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-
         if polling is True:
-            polling_method = cast(PollingMethod, CustomDefaultPollingMethod(
-                lro_delay,
-                
-                
-                **kwargs
-        ))  # type: PollingMethod
-        elif polling is False: polling_method = cast(PollingMethod, NoPolling())
-        else: polling_method = polling
+            polling_method = cast(PollingMethod, CustomDefaultPollingMethod(lro_delay, **kwargs))  # type: PollingMethod
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
         if cont_token:
             return CustomPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
-                deserialization_callback=get_long_running_output
+                deserialization_callback=get_long_running_output,
             )
         return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-
-
     @distributed_trace
-    def basic_paging(
-        self,
-        **kwargs: Any
-    ) -> Iterable[JSON]:
+    def basic_paging(self, **kwargs: Any) -> Iterable[JSON]:
         """A simple paging operation.
 
         :return: An iterator like instance of JSON object
@@ -338,15 +296,14 @@ class PollingPagingExampleOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_basic_paging_request(
                     headers=_headers,
                     params=_params,
@@ -354,7 +311,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_basic_paging_request(
                     headers=_headers,
                     params=_params,
@@ -374,9 +331,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -386,8 +341,4 @@ class PollingPagingExampleOperationsMixin(MixinABC):
 
             return pipeline_response
 
-
-        return CustomPager(
-            get_next, extract_data
-        )
-
+        return CustomPager(get_next, extract_data)

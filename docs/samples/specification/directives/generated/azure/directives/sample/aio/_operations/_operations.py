@@ -10,7 +10,13 @@ import sys
 from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.async_paging import AsyncList
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
@@ -22,31 +28,26 @@ from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, As
 
 from ..._operations._operations import build_basic_paging_request, build_basic_polling_request
 from .._vendor import MixinABC
+
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any] # pylint: disable=unsubscriptable-object
-T = TypeVar('T')
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-class PollingPagingExampleOperationsMixin(MixinABC):
 
-    async def _basic_polling_initial(
-        self,
-        product: Optional[Union[JSON, IO]] = None,
-        **kwargs: Any
-    ) -> Optional[JSON]:
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+class PollingPagingExampleOperationsMixin(MixinABC):
+    async def _basic_polling_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> Optional[JSON]:
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[JSON]]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         content_type = content_type or "application/json"
         _json = None
@@ -69,9 +70,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -92,15 +91,9 @@ class PollingPagingExampleOperationsMixin(MixinABC):
 
         return deserialized
 
-
-
     @overload
     async def begin_basic_polling(
-        self,
-        product: Optional[JSON] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncCustomPoller[JSON]:
         """A simple polling operation.
 
@@ -142,11 +135,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
 
     @overload
     async def begin_basic_polling(
-        self,
-        product: Optional[IO] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncCustomPoller[JSON]:
         """A simple polling operation.
 
@@ -178,12 +167,9 @@ class PollingPagingExampleOperationsMixin(MixinABC):
                 }
         """
 
-
     @distributed_trace_async
     async def begin_basic_polling(
-        self,
-        product: Optional[Union[JSON, IO]] = None,
-        **kwargs: Any
+        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncCustomPoller[JSON]:
         """A simple polling operation.
 
@@ -217,24 +203,21 @@ class PollingPagingExampleOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._basic_polling_initial(  # type: ignore
                 product=product,
                 content_type=content_type,
-                cls=lambda x,y,z: x,
+                cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
-        kwargs.pop('error_map', None)
+        kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
@@ -246,32 +229,25 @@ class PollingPagingExampleOperationsMixin(MixinABC):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-
         if polling is True:
-            polling_method = cast(AsyncPollingMethod, AsyncCustomDefaultPollingMethod(
-                lro_delay,
-                
-                
-                **kwargs
-        ))  # type: AsyncPollingMethod
-        elif polling is False: polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
-        else: polling_method = polling
+            polling_method = cast(
+                AsyncPollingMethod, AsyncCustomDefaultPollingMethod(lro_delay, **kwargs)
+            )  # type: AsyncPollingMethod
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
         if cont_token:
             return AsyncCustomPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
-                deserialization_callback=get_long_running_output
+                deserialization_callback=get_long_running_output,
             )
         return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-
-
     @distributed_trace
-    def basic_paging(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def basic_paging(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A simple paging operation.
 
         :return: An iterator like instance of JSON object
@@ -292,15 +268,14 @@ class PollingPagingExampleOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_basic_paging_request(
                     headers=_headers,
                     params=_params,
@@ -308,7 +283,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_basic_paging_request(
                     headers=_headers,
                     params=_params,
@@ -328,9 +303,7 @@ class PollingPagingExampleOperationsMixin(MixinABC):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -340,8 +313,4 @@ class PollingPagingExampleOperationsMixin(MixinABC):
 
             return pipeline_response
 
-
-        return AsyncCustomPager(
-            get_next, extract_data
-        )
-
+        return AsyncCustomPager(get_next, extract_data)

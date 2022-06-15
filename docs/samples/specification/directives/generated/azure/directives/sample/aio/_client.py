@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
+
 class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Show polling and paging generation.
 
@@ -29,12 +30,7 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disa
      Retry-After header is present.
     """
 
-    def __init__(
-        self,
-        *,
-        endpoint: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = PollingPagingExampleConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
@@ -42,12 +38,7 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disa
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-
-    def send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

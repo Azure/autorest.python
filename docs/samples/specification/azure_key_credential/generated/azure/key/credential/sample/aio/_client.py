@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
+
 class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
@@ -33,11 +34,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     """
 
     def __init__(
-        self,
-        credential: AzureKeyCredential,
-        *,
-        endpoint: str = "http://localhost:3000",
-        **kwargs: Any
+        self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
@@ -45,16 +42,9 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-
-    def send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

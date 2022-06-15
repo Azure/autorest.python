@@ -26,5 +26,5 @@ setup(
     ],
     long_description="""\
     Show polling and paging generation.
-    """
+    """,
 )

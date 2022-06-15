@@ -18,6 +18,7 @@ from ..._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
 
+
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi client testing.
 
@@ -36,12 +37,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: di
     :paramtype api_version: str
     """
 
-    def __init__(
-        self,
-        credential: AzureKeyCredential,
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -56,12 +52,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: di
             self._client, self._config, self._serialize, self._deserialize
         )
 
-
-    def _send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
