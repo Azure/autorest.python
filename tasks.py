@@ -455,7 +455,7 @@ def regenerate(
         "low_level_client" if low_level_client else "",
         "legacy" if legacy else "",
     ]
-    generators = [g for g in generators if g] or ["legacy", "low_level_client", "version_tolerant"]
+    generators = [g for g in generators if g] or ["legacy", "version_tolerant"]
     folders = [
         "vanilla" if vanilla else "",
         "azure" if azure else "",
