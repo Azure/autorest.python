@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._polling_paging_example import PollingPagingExample
+from ._client import PollingPagingExample
 from ._version import VERSION
 
 __version__ = VERSION

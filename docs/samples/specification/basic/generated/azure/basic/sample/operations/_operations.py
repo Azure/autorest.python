@@ -15,7 +15,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .._serialization import Serializer
-from .._vendor import _convert_request
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -23,11 +22,11 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_head200_request(
+def build_http_success_head200_request(
     **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
-    _url = kwargs.pop("template_url", "/http/success/200")
+    _url = "/http/success/200"
 
     return HttpRequest(
         method="HEAD",
@@ -36,11 +35,11 @@ def build_head200_request(
     )
 
 
-def build_head204_request(
+def build_http_success_head204_request(
     **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
-    _url = kwargs.pop("template_url", "/http/success/204")
+    _url = "/http/success/204"
 
     return HttpRequest(
         method="HEAD",
@@ -49,11 +48,11 @@ def build_head204_request(
     )
 
 
-def build_head404_request(
+def build_http_success_head404_request(
     **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
-    _url = kwargs.pop("template_url", "/http/success/404")
+    _url = "/http/success/404"
 
     return HttpRequest(
         method="HEAD",
@@ -67,7 +66,7 @@ class HttpSuccessOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.key.credential.sample.AutoRestHeadTestService`'s
+        :class:`~azure.basic.sample.AutoRestHeadTestService`'s
         :attr:`http_success` attribute.
     """
 
@@ -86,8 +85,7 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 200 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -102,12 +100,10 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head200_request(
-            template_url=self.head200.metadata['url'],
+        request = build_http_success_head200_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -125,7 +121,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head200.metadata = {'url': "/http/success/200"}  # type: ignore
 
 
     @distributed_trace
@@ -135,8 +130,7 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 204 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -151,12 +145,10 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head204_request(
-            template_url=self.head204.metadata['url'],
+        request = build_http_success_head204_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -174,7 +166,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head204.metadata = {'url': "/http/success/204"}  # type: ignore
 
 
     @distributed_trace
@@ -184,8 +175,7 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 404 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -200,12 +190,10 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head404_request(
-            template_url=self.head404.metadata['url'],
+        request = build_http_success_head404_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -223,5 +211,4 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head404.metadata = {'url': "/http/success/404"}  # type: ignore
 

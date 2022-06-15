@@ -14,8 +14,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._vendor import _convert_request
-from ...operations._http_success_operations import build_head200_request, build_head204_request, build_head404_request
+from ...operations._operations import build_http_success_head200_request, build_http_success_head204_request, build_http_success_head404_request
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -44,8 +43,7 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 200 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -60,12 +58,10 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head200_request(
-            template_url=self.head200.metadata['url'],
+        request = build_http_success_head200_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -83,7 +79,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head200.metadata = {'url': "/http/success/200"}  # type: ignore
 
 
     @distributed_trace_async
@@ -93,8 +88,7 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 204 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -109,12 +103,10 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head204_request(
-            template_url=self.head204.metadata['url'],
+        request = build_http_success_head204_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -132,7 +124,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head204.metadata = {'url': "/http/success/204"}  # type: ignore
 
 
     @distributed_trace_async
@@ -142,8 +133,7 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 404 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -158,12 +148,10 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head404_request(
-            template_url=self.head404.metadata['url'],
+        request = build_http_success_head404_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -181,5 +169,4 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head404.metadata = {'url': "/http/success/404"}  # type: ignore
 

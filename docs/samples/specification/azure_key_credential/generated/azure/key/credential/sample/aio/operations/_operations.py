@@ -10,56 +10,13 @@ from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 
-from .._serialization import Serializer
-from .._vendor import _convert_request
+from ...operations._operations import build_http_success_head200_request, build_http_success_head204_request, build_http_success_head404_request
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
-
-
-def build_head200_request(
-    **kwargs: Any
-) -> HttpRequest:
-    # Construct URL
-    _url = kwargs.pop("template_url", "/http/success/200")
-
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
-
-
-def build_head204_request(
-    **kwargs: Any
-) -> HttpRequest:
-    # Construct URL
-    _url = kwargs.pop("template_url", "/http/success/204")
-
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
-
-
-def build_head404_request(
-    **kwargs: Any
-) -> HttpRequest:
-    # Construct URL
-    _url = kwargs.pop("template_url", "/http/success/404")
-
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class HttpSuccessOperations:
     """
@@ -67,11 +24,11 @@ class HttpSuccessOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.basic.sample.AutoRestHeadTestService`'s
+        :class:`~azure.key.credential.sample.aio.AutoRestHeadTestService`'s
         :attr:`http_success` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -79,15 +36,14 @@ class HttpSuccessOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
 
-    @distributed_trace
-    def head200(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace_async
+    async def head200(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:
         """Return 200 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -102,15 +58,13 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head200_request(
-            template_url=self.head200.metadata['url'],
+        request = build_http_success_head200_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request,
             stream=False,
             **kwargs
@@ -125,18 +79,16 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head200.metadata = {'url': "/http/success/200"}  # type: ignore
 
 
-    @distributed_trace
-    def head204(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace_async
+    async def head204(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:
         """Return 204 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -151,15 +103,13 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head204_request(
-            template_url=self.head204.metadata['url'],
+        request = build_http_success_head204_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request,
             stream=False,
             **kwargs
@@ -174,18 +124,16 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head204.metadata = {'url': "/http/success/204"}  # type: ignore
 
 
-    @distributed_trace
-    def head404(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace_async
+    async def head404(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:
         """Return 404 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -200,15 +148,13 @@ class HttpSuccessOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
-        request = build_head404_request(
-            template_url=self.head404.metadata['url'],
+        request = build_http_success_head404_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request,
             stream=False,
             **kwargs
@@ -223,5 +169,4 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head404.metadata = {'url': "/http/success/404"}  # type: ignore
 

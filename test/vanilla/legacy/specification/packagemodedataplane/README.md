@@ -17,4 +17,5 @@ clear-output-folder: true
 black: true
 vanilla: true
 package-mode: dataplane
+version-tolerant: false
 ```

@@ -7,40 +7,50 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import HttpRequest, HttpResponse
 
-from . import models
-from ._configuration import PollingPagingExampleConfiguration
+from ._configuration import AutoRestHeadTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import PollingPagingExampleOperationsMixin
+from .operations import HttpSuccessOperations
 
-class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Show polling and paging generation.
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Dict
 
-    :param base_url: Service URL. Default value is "http://localhost:3000".
-    :type base_url: str
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-     Retry-After header is present.
+class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
+    """Test Infrastructure for AutoRest.
+
+    :ivar http_success: HttpSuccessOperations operations
+    :vartype http_success: azure.key.credential.sample.operations.HttpSuccessOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.AzureKeyCredential
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
-        base_url: str = "http://localhost:3000",
+        credential: AzureKeyCredential,
+        *,
+        endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = PollingPagingExampleConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
+        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.http_success = HttpSuccessOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
 
-    def _send_request(
+    def send_request(
         self,
         request: HttpRequest,
         **kwargs: Any
@@ -50,7 +60,7 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disa
         >>> from azure.core.rest import HttpRequest
         >>> request = HttpRequest("GET", "https://www.example.org/")
         <HttpRequest [GET], url: 'https://www.example.org/'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
@@ -71,7 +81,7 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):  # pylint: disa
         self._client.close()
 
     def __enter__(self):
-        # type: () -> PollingPagingExample
+        # type: () -> AutoRestHeadTestService
         self._client.__enter__()
         return self
 
