@@ -22,6 +22,10 @@ see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
 
 - Automatically format generated code with `black`. To not format, pass in `--black=false`  #1304
 
+**Other**
+
+- Remove testing support for `--low-level-client` SDKs  #1303
+
 ### 2022-06-13 - 5.19.0
 
 | Library                                                                 | Min Version |
