@@ -1373,14 +1373,9 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_storage_accounts_list_request(
-                    subscription_id=self._config.subscription_id,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
@@ -1509,15 +1504,9 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_storage_accounts_list_by_resource_group_request(
-                    resource_group_name=resource_group_name,
-                    subscription_id=self._config.subscription_id,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):

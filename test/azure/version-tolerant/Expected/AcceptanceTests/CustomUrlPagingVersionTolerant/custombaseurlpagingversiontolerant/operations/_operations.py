@@ -146,22 +146,13 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
             else:
-
-                request = build_paging_get_pages_partial_url_request(
-                    headers=_headers,
-                    params=_params,
-                )
+                request = HttpRequest("GET", next_link)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(next_link, **path_format_arguments)  # type: ignore
+                request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-                path_format_arguments = {
-                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-                }
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):

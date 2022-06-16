@@ -1133,9 +1133,16 @@ class _PagingOperationSerializer(
             template_url = "next_link"
 
         request_builder = builder.next_request_builder or builder.request_builder
-        return self._call_request_builder_helper(
-            builder, request_builder, template_url=template_url, is_next_request=True
-        )
+        if builder.next_request_builder or self.code_model.is_legacy:
+            return self._call_request_builder_helper(
+                builder,
+                request_builder,
+                template_url=template_url,
+                is_next_request=True,
+            )
+        retval = ['request = HttpRequest("GET", next_link)']
+        retval.extend(self._postprocess_http_request(builder, "request.url"))
+        return retval
 
     def _prepare_request_callback(self, builder: PagingOperationType) -> List[str]:
         retval = ["def prepare_request(next_link=None):"]
@@ -1148,10 +1155,7 @@ class _PagingOperationSerializer(
         retval.extend(
             [f"        {line}" for line in self.call_next_link_request_builder(builder)]
         )
-        if not builder.next_request_builder and builder.parameters.path:
-            retval.append("")
-            retval.extend([f"        {line}" for line in self.serialize_path(builder)])
-        if not builder.next_request_builder:
+        if not builder.next_request_builder and self.code_model.is_legacy:
             retval.append('        request.method = "GET"')
         else:
             retval.append("")
