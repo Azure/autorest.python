@@ -223,11 +223,9 @@ def _build_flags(
 
     generator, output_folder = _get_config(swagger_group, package_name, **kwargs)
 
-    if generator == _Generator.VERSION_TOLERANT:
-        override_flags["version-tolerant"] = True
-        namespace += "versiontolerant"
-    else:
+    if generator == _Generator.LEGACY:
         override_flags["payload-flattening-threshold"] = 1
+        override_flags["version-tolerant"] = False
 
     flags = {
         "use": AUTOREST_DIR,

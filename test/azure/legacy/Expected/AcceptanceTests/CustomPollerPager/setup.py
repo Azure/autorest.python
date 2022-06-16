@@ -26,5 +26,5 @@ setup(
     ],
     long_description="""\
     Long-running Operation for AutoRest.
-    """
+    """,
 )

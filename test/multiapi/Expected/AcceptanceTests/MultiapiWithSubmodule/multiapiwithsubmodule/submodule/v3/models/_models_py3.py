@@ -26,13 +26,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         """
         :keyword status:
         :paramtype status: int
@@ -55,12 +49,7 @@ class ModelThree(_serialization.Model):
         "optional_property": {"key": "optionalProperty", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        optional_property: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, optional_property: Optional[str] = None, **kwargs):
         """
         :keyword optional_property:
         :paramtype optional_property: str
@@ -84,11 +73,7 @@ class PagingResult(_serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        values: Optional[List["_models.ModelThree"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
+        self, *, values: Optional[List["_models.ModelThree"]] = None, next_link: Optional[str] = None, **kwargs
     ):
         """
         :keyword values:
@@ -109,19 +94,14 @@ class SourcePath(_serialization.Model):
     """
 
     _validation = {
-        'source': {'max_length': 2048},
+        "source": {"max_length": 2048},
     }
 
     _attribute_map = {
         "source": {"key": "source", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        source: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, source: Optional[str] = None, **kwargs):
         """
         :keyword source: File source path.
         :paramtype source: str

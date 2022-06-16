@@ -1080,9 +1080,7 @@ class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-method
             "skipUrlEncoding": True,
             "inOverload": False,
         }
-        if self._autorestapi.get_boolean_value(
-            "version-tolerant"
-        ) or self._autorestapi.get_boolean_value("low-level-client"):
+        if self.version_tolerant or self.low_level_client:
             parameters.append(credential)
         else:
             parameters.insert(0, credential)

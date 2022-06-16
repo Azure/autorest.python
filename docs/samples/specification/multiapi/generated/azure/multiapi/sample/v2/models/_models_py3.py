@@ -26,13 +26,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         """
         :keyword status:
         :paramtype status: int
@@ -56,7 +50,7 @@ class ModelTwo(_serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
+        "id": {"required": True},
     }
 
     _attribute_map = {
@@ -64,13 +58,7 @@ class ModelTwo(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: int,  # pylint: disable=redefined-builtin
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, id: int, message: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id: Required.
         :paramtype id: int
