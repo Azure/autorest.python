@@ -226,6 +226,8 @@ def _build_flags(
     if generator == _Generator.LEGACY:
         override_flags["payload-flattening-threshold"] = 1
         override_flags["version-tolerant"] = False
+    else:
+        namespace += "versiontolerant"
 
     flags = {
         "use": AUTOREST_DIR,
