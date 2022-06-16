@@ -24,7 +24,6 @@ class _SwaggerGroup(str, Enum):
 class _Generator(Enum):
     LEGACY = "legacy"
     VERSION_TOLERANT = "version_tolerant"
-    LOW_LEVEL_CLIENT = "low_level_client"
 
 class Config(NamedTuple):
     generator: _Generator
@@ -196,14 +195,9 @@ def _get_config(
     else:
         generation_section = "azure"
 
-    low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
 
-    if low_level_client:
-        package_name += "LowLevel"
-        generation_section += "/low-level"
-        generator = _Generator.LOW_LEVEL_CLIENT
-    elif version_tolerant:
+    if version_tolerant:
         package_name += "VersionTolerant"
         generation_section += "/version-tolerant"
         generator = _Generator.VERSION_TOLERANT
@@ -223,17 +217,13 @@ def _build_flags(
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
     override_flags = override_flags or {}
     override_flags.update(_PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
-    low_level_client = kwargs.get("low_level_client", False)
     version_tolerant = kwargs.get("version_tolerant", False)
-    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not (low_level_client or version_tolerant)
+    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not version_tolerant
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
 
     generator, output_folder = _get_config(swagger_group, package_name, **kwargs)
 
-    if generator == _Generator.LOW_LEVEL_CLIENT:
-        override_flags["low-level-client"] = True
-        namespace += "lowlevel"
-    elif generator == _Generator.VERSION_TOLERANT:
+    if generator == _Generator.VERSION_TOLERANT:
         override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
     else:
@@ -328,9 +318,7 @@ def _regenerate(
     _run_autorest(post_process_cmds, debug=debug)
 
 def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None, debug=False, **kwargs):
-    if kwargs.get("low_level_client", False):
-        generator = _Generator.LOW_LEVEL_CLIENT
-    elif kwargs.get("version_tolerant", False):
+    if kwargs.get("version_tolerant", False):
         generator = _Generator.VERSION_TOLERANT
     else:
         generator = _Generator.LEGACY
@@ -347,30 +335,6 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
-
-@task
-def regenerate_dpg_low_level_client(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(
-        c,
-        _DPG_SWAGGER_MAPPINGS,
-        _SwaggerGroup.DPG,
-        swagger_name,
-        debug,
-        low_level_client=True,
-        **kwargs
-    )
-
-@task
-def regenerate_vanilla_low_level_client(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(
-        c,
-        _VANILLA_SWAGGER_MAPPINGS,
-        _SwaggerGroup.VANILLA,
-        swagger_name,
-        debug,
-        low_level_client=True,
-        **kwargs
-    )
 
 @task
 def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
@@ -404,10 +368,6 @@ def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.AZURE)
 
 @task
-def regenerate_azure_low_level_client(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, low_level_client=True, **kwargs)
-
-@task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
     if not swagger_name:
@@ -416,10 +376,6 @@ def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwarg
 @task
 def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
-
-@task
-def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
 def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
@@ -441,7 +397,6 @@ def regenerate(
     swagger_name=None,
     debug=False,
     version_tolerant=False,
-    low_level_client=False,
     legacy=False,
     vanilla=False,
     azure=False,
@@ -452,7 +407,6 @@ def regenerate(
         raise ValueError("Can not specify legacy flag and dpg flag at the same time.")
     generators = [
         "version_tolerant" if version_tolerant else "",
-        "low_level_client" if low_level_client else "",
         "legacy" if legacy else "",
     ]
     generators = [g for g in generators if g] or ["legacy", "version_tolerant"]
@@ -466,7 +420,6 @@ def regenerate(
     if not folder_flags:
         mapping = {
             "legacy": regenerate_legacy,
-            "low_level_client": regenerate_low_level_client,
             "version_tolerant": regenerate_version_tolerant,
         }
         funcs = [mapping[g] for g in generators if g in mapping.keys()]
@@ -479,23 +432,12 @@ def regenerate(
             ("version_tolerant", "azure"): regenerate_azure_version_tolerant,
             ("version_tolerant", "azure_arm"): regenerate_azure_arm_version_tolerant,
             ("version_tolerant", "dpg"): regenerate_dpg_version_tolerant,
-            ("low_level_client", "vanilla"): regenerate_vanilla_low_level_client,
-            ("low_level_client", "azure"): regenerate_azure_low_level_client,
-            ("low_level_client", "azure_arm"): regenerate_azure_arm_low_level_client,
-            ("low_level_client", "dpg"): regenerate_dpg_low_level_client,
         }
         funcs = [
             v for k, v in mapping.items() if k in itertools.product(generators, folder_flags)
         ]
     for func in funcs:
         func(c, swagger_name, debug)
-
-@task
-def regenerate_low_level_client(c, swagger_name=None, debug=False):
-    regenerate_dpg_low_level_client(c, swagger_name, debug)
-    regenerate_vanilla_low_level_client(c, swagger_name, debug)
-    regenerate_azure_low_level_client(c, swagger_name, debug)
-    regenerate_azure_arm_low_level_client(c, swagger_name, debug)
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):
@@ -511,7 +453,7 @@ def test(c):
     cmd = 'tox -e ci'
 
     autorest_types = ["azure", "vanilla"]
-    gen_types = ["legacy", "low-level", "version-tolerant"]
+    gen_types = ["legacy", "version-tolerant"]
     for autorest_type, gen_type in itertools.product(autorest_types, gen_types):
         os.chdir(f"{base_dir}/test/{autorest_type}/{gen_type}")
         c.run(cmd)
