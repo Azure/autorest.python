@@ -234,10 +234,10 @@ def _build_flags(
         override_flags["low-level-client"] = True
         namespace += "lowlevel"
     elif generator == _Generator.VERSION_TOLERANT:
-        override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
     else:
         override_flags["payload-flattening-threshold"] = 1
+        override_flags["version-tolerant"] = False
 
     flags = {
         "use": AUTOREST_DIR,

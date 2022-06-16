@@ -22,6 +22,7 @@ if TYPE_CHECKING:
 
     from azure.core.credentials import TokenCredential
 
+
 class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
@@ -33,12 +34,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        credential: "TokenCredential",
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -46,16 +42,9 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-
-    def _send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

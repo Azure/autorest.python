@@ -176,7 +176,7 @@ class CodeGenerator(Plugin):
             bool, self._autorestapi.get_boolean_value("low-level-client", False)
         )
         version_tolerant = cast(
-            bool, self._autorestapi.get_boolean_value("version-tolerant", False)
+            bool, self._autorestapi.get_boolean_value("version-tolerant")
         )
         show_operations = self._autorestapi.get_boolean_value(
             "show-operations", not low_level_client

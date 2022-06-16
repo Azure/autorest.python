@@ -31,6 +31,7 @@ azure-arm: true
 add-credentials: true
 credential-default-policy-type: AzureKeyCredentialPolicy
 python3-only: true
+version-tolerant: false
 ```
 
 ``` yaml $(multiapi)
