@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from urllib.parse import parse_qs, urlparse
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -1638,7 +1639,10 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                _next_request_params: Dict[str, str] = {}
+                if "api-version" not in parse_qs(urlparse(next_link).query).keys():
+                    _next_request_params = {"api-version": self._config.api_version}
+                request = HttpRequest("GET", next_link, params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -1769,7 +1773,10 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                _next_request_params: Dict[str, str] = {}
+                if "api-version" not in parse_qs(urlparse(next_link).query).keys():
+                    _next_request_params = {"api-version": self._config.api_version}
+                request = HttpRequest("GET", next_link, params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request

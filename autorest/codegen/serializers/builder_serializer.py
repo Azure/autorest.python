@@ -1140,8 +1140,30 @@ class _PagingOperationSerializer(
                 template_url=template_url,
                 is_next_request=True,
             )
-        retval = ['request = HttpRequest("GET", next_link)']
+        retval: List[str] = []
+        query_str = ""
+        try:
+            api_version_param = next(
+                p
+                for p in self.code_model.client.parameters
+                if p.rest_api_name == "api-version"
+            )
+            retval.append("_next_request_params: Dict[str, str] = {}")
+            retval.append(
+                'if "api-version" not in parse_qs(urlparse(next_link).query).keys():'
+            )
+            retval.append(
+                '    _next_request_params = {"api-version": '
+                + api_version_param.full_client_name
+                + "}"
+            )
+            query_str = ", params=_next_request_params"
+        except StopIteration:
+            pass
+
+        retval.append(f'request = HttpRequest("GET", next_link{query_str})')
         retval.extend(self._postprocess_http_request(builder, "request.url"))
+
         return retval
 
     def _prepare_request_callback(self, builder: PagingOperationType) -> List[str]:

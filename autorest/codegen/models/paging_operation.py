@@ -140,7 +140,18 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.merge(
                 self.get_request_builder_import(self.next_request_builder, async_mode)
             )
-
+        elif (
+            "api-version"
+            in [p.rest_api_name for p in self.code_model.client.parameters]
+            and self.code_model.options["version_tolerant"]
+        ):
+            file_import.add_submodule_import(
+                "urllib.parse", "urlparse", ImportType.STDLIB
+            )
+            file_import.add_submodule_import(
+                "urllib.parse", "parse_qs", ImportType.STDLIB
+            )
+            file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
         return file_import
 
 
