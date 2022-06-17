@@ -283,13 +283,9 @@ class PollingPagingExampleOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_basic_paging_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):

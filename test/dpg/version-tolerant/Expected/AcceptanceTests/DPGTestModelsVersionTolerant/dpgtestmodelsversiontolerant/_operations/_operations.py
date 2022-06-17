@@ -297,14 +297,9 @@ class DPGClientOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_get_pages_request(
-                    mode=mode,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
