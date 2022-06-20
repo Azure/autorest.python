@@ -356,7 +356,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             param.rest_api_name,
             self.parameter_serializer.serialize_parameter(param, self.serializer_name),
         )
-        if not param.optional or param.use_default_type:
+        if not param.optional:
             retval = [set_parameter]
         else:
             retval = [

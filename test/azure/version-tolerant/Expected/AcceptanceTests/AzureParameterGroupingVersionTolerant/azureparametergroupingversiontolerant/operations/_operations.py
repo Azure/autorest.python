@@ -51,7 +51,8 @@ def build_parameter_grouping_post_required_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _params["query"] = _SERIALIZER.query("query", query, "int")
+    if query is not None:
+        _params["query"] = _SERIALIZER.query("query", query, "int")
 
     # Construct headers
     if custom_header is not None:
@@ -77,7 +78,8 @@ def build_parameter_grouping_post_optional_request(
     _url = "/parameterGrouping/postOptional"
 
     # Construct parameters
-    _params["query"] = _SERIALIZER.query("query", query, "int")
+    if query is not None:
+        _params["query"] = _SERIALIZER.query("query", query, "int")
 
     # Construct headers
     if custom_header is not None:
@@ -125,8 +127,10 @@ def build_parameter_grouping_post_multi_param_groups_request(
     _url = "/parameterGrouping/postMultipleParameterGroups"
 
     # Construct parameters
-    _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
-    _params["query-two"] = _SERIALIZER.query("query_two", query_two, "int")
+    if query_one is not None:
+        _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
+    if query_two is not None:
+        _params["query-two"] = _SERIALIZER.query("query_two", query_two, "int")
 
     # Construct headers
     if header_one is not None:
@@ -152,7 +156,8 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(
     _url = "/parameterGrouping/sharedParameterGroupObject"
 
     # Construct parameters
-    _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
+    if query_one is not None:
+        _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
 
     # Construct headers
     if header_one is not None:

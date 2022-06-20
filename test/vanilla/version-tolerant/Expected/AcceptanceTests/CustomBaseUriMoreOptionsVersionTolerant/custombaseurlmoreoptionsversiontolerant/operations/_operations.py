@@ -51,7 +51,8 @@ def build_paths_get_empty_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _params["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
+    if key_version is not None:
+        _params["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

@@ -57,7 +57,8 @@ def build_contants_put_no_model_as_string_no_required_two_value_default_request(
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
@@ -172,7 +173,8 @@ def build_contants_put_model_as_string_no_required_two_value_default_request(
     _url = "/constants/putModelAsStringNoRequiredTwoValueDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
@@ -203,7 +205,8 @@ def build_contants_put_model_as_string_no_required_one_value_default_request(
     _url = "/constants/putModelAsStringNoRequiredOneValueDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 

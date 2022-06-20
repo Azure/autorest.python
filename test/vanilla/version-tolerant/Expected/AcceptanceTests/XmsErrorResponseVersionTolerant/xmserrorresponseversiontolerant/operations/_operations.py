@@ -87,7 +87,8 @@ def build_pet_has_models_param_request(*, models: str = DefaultStr("value1"), **
     _url = "/errorStatusCodes/Pets/hasModelsParam"
 
     # Construct parameters
-    _params["models"] = _SERIALIZER.query("models", models, "str")
+    if models is not None:
+        _params["models"] = _SERIALIZER.query("models", models, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

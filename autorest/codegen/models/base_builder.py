@@ -22,8 +22,6 @@ from .parameter_list import (
     OverloadedRequestBuilderParameterList,
 )
 from .base_type import BaseType
-from .constant_type import ConstantType
-from .parameter import ParameterLocation
 
 ParameterListType = TypeVar(
     "ParameterListType",

@@ -117,7 +117,8 @@ def build_paging_get_multiple_pages_request(
         _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if timeout is not None:
+        _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -202,7 +203,8 @@ def build_paging_get_odata_multiple_pages_request(
         _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if timeout is not None:
+        _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -235,7 +237,8 @@ def build_paging_get_multiple_pages_with_offset_request(
         _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if timeout is not None:
+        _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -432,7 +435,8 @@ def build_paging_get_multiple_pages_lro_request(
         _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if timeout is not None:
+        _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
