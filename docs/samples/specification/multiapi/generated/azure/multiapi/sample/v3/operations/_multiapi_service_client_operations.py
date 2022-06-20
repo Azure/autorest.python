@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Iterable, Optional, TypeVar
+from urllib.parse import parse_qs, urlparse
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -108,12 +109,9 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-
-                request = build_test_paging_request(
-                    template_url=next_link,
-                    headers=_headers,
-                    params=_params,
-                )
+                _next_request_params = case_insensitive_dict(parse_qs(urlparse(next_link).query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", next_link, params=_next_request_params)
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
                 request.method = "GET"
