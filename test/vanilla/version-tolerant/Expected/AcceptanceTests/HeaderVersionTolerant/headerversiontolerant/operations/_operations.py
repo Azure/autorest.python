@@ -23,7 +23,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import DefaultDatetimedatetime, DefaultStr
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -246,21 +245,18 @@ def build_header_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_param_string_request(
-    *, scenario: str, value: Optional[str] = DefaultStr(None), **kwargs: Any
-) -> HttpRequest:
+def build_header_param_string_request(*, scenario: str, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(value, "is_default", False) and "value" in _headers:
-        value = _headers.pop("value")
     # Construct URL
     _url = "/header/param/prim/string"
 
     # Construct headers
     _headers["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    _headers["value"] = _SERIALIZER.header("value", value, "str")
+    if value is not None:
+        _headers["value"] = _SERIALIZER.header("value", value, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -344,20 +340,19 @@ def build_header_response_datetime_request(*, scenario: str, **kwargs: Any) -> H
 
 
 def build_header_param_datetime_rfc1123_request(
-    *, scenario: str, value: Optional[datetime.datetime] = DefaultDatetimedatetime(None), **kwargs: Any
+    *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(value, "is_default", False) and "value" in _headers:
-        value = _headers.pop("value")
     # Construct URL
     _url = "/header/param/prim/datetimerfc1123"
 
     # Construct headers
     _headers["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    _headers["value"] = _SERIALIZER.header("value", value, "rfc-1123")
+    if value is not None:
+        _headers["value"] = _SERIALIZER.header("value", value, "rfc-1123")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -440,21 +435,18 @@ def build_header_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_param_enum_request(
-    *, scenario: str, value: Optional[str] = DefaultStr(None), **kwargs: Any
-) -> HttpRequest:
+def build_header_param_enum_request(*, scenario: str, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(value, "is_default", False) and "value" in _headers:
-        value = _headers.pop("value")
     # Construct URL
     _url = "/header/param/prim/enum"
 
     # Construct headers
     _headers["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    _headers["value"] = _SERIALIZER.header("value", value, "str")
+    if value is not None:
+        _headers["value"] = _SERIALIZER.header("value", value, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -1104,7 +1096,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def param_string(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
@@ -1371,7 +1363,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[datetime.datetime] = DefaultDatetimedatetime(None), **kwargs: Any
+        self, *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
@@ -1632,7 +1624,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def param_enum(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.

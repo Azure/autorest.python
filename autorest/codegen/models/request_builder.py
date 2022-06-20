@@ -89,10 +89,10 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
-        for _, default_type in self.default_type_annotations.items():
+        for _, t in self.default_type_annotations.items():
             file_import.add_submodule_import(
                 f"{relative_path}_vendor",
-                default_type,
+                t.default_type_annotation,
                 ImportType.LOCAL,
             )
         if self.parameters.headers or self.parameters.query:

@@ -22,7 +22,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import DefaultListstr
 from ...operations._operations import (
     build_import_operations_operation_one_request,
     build_operation_with_content_param_request,
@@ -213,12 +212,7 @@ class ReservedWordsClientOperationsMixin(MixinABC):
 
     @distributed_trace_async
     async def operation_with_url(
-        self,
-        url: str,
-        *,
-        header_parameters: str,
-        query_parameters: Optional[List[str]] = DefaultListstr(None),
-        **kwargs: Any
+        self, url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
     ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.

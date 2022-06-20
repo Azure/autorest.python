@@ -22,7 +22,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import DefaultListstr
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -32,20 +31,21 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_queries_array_string_multi_null_request(
-    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+    *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
-        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/multi/string/null"
 
     # Construct parameters
-    _params["arrayQuery"] = [_SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query]
+    if array_query is not None:
+        _params["arrayQuery"] = [
+            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
+        ]
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -54,20 +54,21 @@ def build_queries_array_string_multi_null_request(
 
 
 def build_queries_array_string_multi_empty_request(
-    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+    *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
-        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/multi/string/empty"
 
     # Construct parameters
-    _params["arrayQuery"] = [_SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query]
+    if array_query is not None:
+        _params["arrayQuery"] = [
+            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
+        ]
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -76,20 +77,21 @@ def build_queries_array_string_multi_empty_request(
 
 
 def build_queries_array_string_multi_valid_request(
-    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+    *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
-        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/multi/string/valid"
 
     # Construct parameters
-    _params["arrayQuery"] = [_SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query]
+    if array_query is not None:
+        _params["arrayQuery"] = [
+            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
+        ]
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -116,7 +118,7 @@ class QueriesOperations:
 
     @distributed_trace
     def array_string_multi_null(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get a null array of string using the multi-array format.
 
@@ -157,7 +159,7 @@ class QueriesOperations:
 
     @distributed_trace
     def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
@@ -198,7 +200,7 @@ class QueriesOperations:
 
     @distributed_trace
     def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.

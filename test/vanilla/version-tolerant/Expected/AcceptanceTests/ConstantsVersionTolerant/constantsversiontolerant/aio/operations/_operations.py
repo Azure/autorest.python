@@ -65,7 +65,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -275,7 +275,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: str = DefaultStr("value1"), **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -405,7 +405,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -489,7 +489,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -615,7 +615,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: str = DefaultStr("value1"), **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -699,7 +699,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: str = DefaultStr("value1"), **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 

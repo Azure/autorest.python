@@ -32,17 +32,16 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
-    *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+    *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    if getattr(input, "is_default", False) and "input" in _params:
-        input = _params.pop("input")
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
@@ -72,7 +71,8 @@ def build_contants_put_no_model_as_string_no_required_one_value_no_default_reque
     _url = "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
@@ -86,7 +86,8 @@ def build_contants_put_no_model_as_string_no_required_one_value_default_request(
     _url = "/constants/putNoModelAsStringNoRequiredOneValueDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
@@ -106,12 +107,10 @@ def build_contants_put_no_model_as_string_required_two_value_no_default_request(
 
 
 def build_contants_put_no_model_as_string_required_two_value_default_request(
-    *, input: str = DefaultStr("value1"), **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    if getattr(input, "is_default", False) and "input" in _params:
-        input = _params.pop("input")
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredTwoValueDefault"
 
@@ -148,17 +147,16 @@ def build_contants_put_no_model_as_string_required_one_value_default_request(**k
 
 
 def build_contants_put_model_as_string_no_required_two_value_no_default_request(
-    *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+    *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    if getattr(input, "is_default", False) and "input" in _params:
-        input = _params.pop("input")
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueNoDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
@@ -180,17 +178,16 @@ def build_contants_put_model_as_string_no_required_two_value_default_request(
 
 
 def build_contants_put_model_as_string_no_required_one_value_no_default_request(
-    *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+    *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    if getattr(input, "is_default", False) and "input" in _params:
-        input = _params.pop("input")
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueNoDefault"
 
     # Construct parameters
-    _params["input"] = _SERIALIZER.query("input", input, "str")
+    if input is not None:
+        _params["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
@@ -226,12 +223,10 @@ def build_contants_put_model_as_string_required_two_value_no_default_request(
 
 
 def build_contants_put_model_as_string_required_two_value_default_request(
-    *, input: str = DefaultStr("value1"), **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    if getattr(input, "is_default", False) and "input" in _params:
-        input = _params.pop("input")
     # Construct URL
     _url = "/constants/putModelAsStringRequiredTwoValueDefault"
 
@@ -256,12 +251,10 @@ def build_contants_put_model_as_string_required_one_value_no_default_request(
 
 
 def build_contants_put_model_as_string_required_one_value_default_request(
-    *, input: str = DefaultStr("value1"), **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    if getattr(input, "is_default", False) and "input" in _params:
-        input = _params.pop("input")
     # Construct URL
     _url = "/constants/putModelAsStringRequiredOneValueDefault"
 
@@ -314,7 +307,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -524,7 +517,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: str = DefaultStr("value1"), **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -654,7 +647,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -738,7 +731,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -864,7 +857,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: str = DefaultStr("value1"), **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -948,7 +941,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: str = DefaultStr("value1"), **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 

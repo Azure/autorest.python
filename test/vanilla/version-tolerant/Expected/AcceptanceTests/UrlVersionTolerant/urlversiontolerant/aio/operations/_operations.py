@@ -22,16 +22,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import (
-    DefaultBool,
-    DefaultBytes,
-    DefaultDatetimedate,
-    DefaultDatetimedatetime,
-    DefaultFloat,
-    DefaultInt,
-    DefaultListstr,
-    DefaultStr,
-)
 from ...operations._operations import (
     build_path_items_get_all_with_values_request,
     build_path_items_get_global_and_local_query_null_request,
@@ -1310,7 +1300,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def get_boolean_null(  # pylint: disable=inconsistent-return-statements
-        self, *, bool_query: Optional[bool] = DefaultBool(None), **kwargs: Any
+        self, *, bool_query: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
@@ -1432,7 +1422,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def get_int_null(  # pylint: disable=inconsistent-return-statements
-        self, *, int_query: Optional[int] = DefaultInt(None), **kwargs: Any
+        self, *, int_query: Optional[int] = None, **kwargs: Any
     ) -> None:
         """Get null integer value (no query parameter).
 
@@ -1552,7 +1542,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def get_long_null(  # pylint: disable=inconsistent-return-statements
-        self, *, long_query: Optional[int] = DefaultInt(None), **kwargs: Any
+        self, *, long_query: Optional[int] = None, **kwargs: Any
     ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
@@ -1672,7 +1662,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def float_null(  # pylint: disable=inconsistent-return-statements
-        self, *, float_query: Optional[float] = DefaultFloat(None), **kwargs: Any
+        self, *, float_query: Optional[float] = None, **kwargs: Any
     ) -> None:
         """Get null numeric value (no query parameter).
 
@@ -1792,7 +1782,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def double_null(  # pylint: disable=inconsistent-return-statements
-        self, *, double_query: Optional[float] = DefaultFloat(None), **kwargs: Any
+        self, *, double_query: Optional[float] = None, **kwargs: Any
     ) -> None:
         """Get null numeric value (no query parameter).
 
@@ -1955,7 +1945,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def string_null(  # pylint: disable=inconsistent-return-statements
-        self, *, string_query: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, string_query: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 
@@ -1995,7 +1985,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, enum_query: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, enum_query: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
@@ -2036,7 +2026,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def enum_null(  # pylint: disable=inconsistent-return-statements
-        self, *, enum_query: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, enum_query: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 
@@ -2077,7 +2067,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytes] = DefaultBytes(None), **kwargs: Any
+        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -2158,7 +2148,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_null(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytes] = DefaultBytes(None), **kwargs: Any
+        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
@@ -2238,7 +2228,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def date_null(  # pylint: disable=inconsistent-return-statements
-        self, *, date_query: Optional[datetime.date] = DefaultDatetimedate(None), **kwargs: Any
+        self, *, date_query: Optional[datetime.date] = None, **kwargs: Any
     ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
@@ -2321,7 +2311,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def date_time_null(  # pylint: disable=inconsistent-return-statements
-        self, *, date_time_query: Optional[datetime.datetime] = DefaultDatetimedatetime(None), **kwargs: Any
+        self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
@@ -2361,7 +2351,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
@@ -2403,7 +2393,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get a null array of string using the csv-array format.
 
@@ -2443,7 +2433,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
@@ -2484,7 +2474,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
@@ -2526,7 +2516,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
@@ -2568,7 +2558,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
@@ -2610,7 +2600,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
@@ -2674,8 +2664,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = DefaultStr(None),
-        local_string_query: Optional[str] = DefaultStr(None),
+        path_item_string_query: Optional[str] = None,
+        local_string_query: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
@@ -2735,8 +2725,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = DefaultStr(None),
-        local_string_query: Optional[str] = DefaultStr(None),
+        path_item_string_query: Optional[str] = None,
+        local_string_query: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
@@ -2796,8 +2786,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = DefaultStr(None),
-        local_string_query: Optional[str] = DefaultStr(None),
+        path_item_string_query: Optional[str] = None,
+        local_string_query: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
@@ -2857,8 +2847,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = DefaultStr(None),
-        local_string_query: Optional[str] = DefaultStr(None),
+        path_item_string_query: Optional[str] = None,
+        local_string_query: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',

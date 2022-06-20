@@ -236,14 +236,12 @@ class _ParameterListBase(
         return self.positional + self.keyword_only + self.kwarg
 
     def method_signature(
-        self, async_mode: bool, use_default_type: bool = False
+        self, async_mode: bool, of_overload: bool = False
     ) -> List[str]:
         """Method signature for this parameter list."""
         return method_signature_helper(
             positional=self.method_signature_positional(async_mode),
-            keyword_only=self.method_signature_keyword_only(
-                async_mode, use_default_type
-            ),
+            keyword_only=self.method_signature_keyword_only(async_mode, of_overload),
             kwarg_params=self.method_signature_kwargs,
         )
 
@@ -252,13 +250,13 @@ class _ParameterListBase(
         return [parameter.method_signature(async_mode) for parameter in self.positional]
 
     def method_signature_keyword_only(
-        self, async_mode: bool, use_default_type: bool
+        self, async_mode: bool, of_overload: bool
     ) -> List[str]:
         """Signature for keyword only parameters"""
         if not self.keyword_only:
             return []
         return ["*,"] + [
-            parameter.method_signature(async_mode, use_default_type)
+            parameter.method_signature(async_mode, of_overload)
             for parameter in self.keyword_only
         ]
 
@@ -410,9 +408,7 @@ class RequestBuilderParameterList(_RequestBuilderParameterList):
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for OverloadedRequestBuilder"""
 
-    def method_signature_keyword_only(
-        self, async_mode: bool, use_default_type: bool
-    ) -> List[str]:
+    def method_signature_keyword_only(self, async_mode: bool, _: bool) -> List[str]:
         """Signature for keyword only parameters"""
         if not self.keyword_only:
             return []

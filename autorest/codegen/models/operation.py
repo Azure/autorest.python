@@ -329,10 +329,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
-        for _, default_t in self.default_type_annotations.items():
+        for _, t in self.default_type_annotations.items():
             file_import.add_submodule_import(
                 f"{relative_path}_vendor",
-                default_t,
+                t.default_type_annotation,
                 ImportType.LOCAL,
             )
         if async_mode:

@@ -21,7 +21,6 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._vendor import DefaultDatetimedatetime, DefaultStr
 from ...operations._operations import (
     build_header_custom_request_id_request,
     build_header_param_bool_request,
@@ -679,7 +678,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def param_string(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
@@ -948,7 +947,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[datetime.datetime] = DefaultDatetimedatetime(None), **kwargs: Any
+        self, *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
@@ -1211,7 +1210,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def param_enum(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.

@@ -84,6 +84,8 @@ class GeneralSerializer:
             for op in og.operations
             for k, v in op.default_type_annotations.items()
         }
+        for t in default_type_annotations.values():
+            file_import.merge(t.imports())
 
         return template.render(
             code_model=self.code_model,

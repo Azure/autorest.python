@@ -15,17 +15,3 @@ def _format_url_section(template, **kwargs):
             formatted_components = template.split("/")
             components = [c for c in formatted_components if "{}".format(key.args[0]) not in c]
             template = "/".join(components)
-
-
-class DefaultStr(str):
-    def __new__(cls, *args, **kwargs):
-        instance = str.__new__(cls, *args, **kwargs)
-        instance.is_default = True
-        return instance
-
-
-class DefaultInt(int):
-    def __new__(cls, *args, **kwargs):
-        instance = int.__new__(cls, *args, **kwargs)
-        instance.is_default = True
-        return instance

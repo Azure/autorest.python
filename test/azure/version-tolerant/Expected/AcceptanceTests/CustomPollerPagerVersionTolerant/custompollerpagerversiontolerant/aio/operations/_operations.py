@@ -28,7 +28,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
-from ..._vendor import DefaultInt, DefaultStr
+from ..._vendor import DefaultInt
 from ...operations._operations import (
     build_paging_duplicate_params_request,
     build_paging_first_response_empty_request,
@@ -344,8 +344,8 @@ class PagingOperations:
     def get_multiple_pages(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
@@ -505,7 +505,7 @@ class PagingOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def duplicate_params(self, *, filter: Optional[str] = DefaultStr(None), **kwargs: Any) -> AsyncIterable[JSON]:
+    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable[JSON]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
@@ -578,8 +578,8 @@ class PagingOperations:
     def get_odata_multiple_pages(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
@@ -662,8 +662,8 @@ class PagingOperations:
         self,
         offset: int,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
@@ -1234,8 +1234,8 @@ class PagingOperations:
     async def _get_multiple_pages_lro_initial(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> JSON:
@@ -1280,8 +1280,8 @@ class PagingOperations:
     async def begin_get_multiple_pages_lro(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> AsyncCustomPoller[AsyncIterable[JSON]]:

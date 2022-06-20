@@ -356,11 +356,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             param.rest_api_name,
             self.parameter_serializer.serialize_parameter(param, self.serializer_name),
         )
-        if (
-            not param.optional
-            or param.method_location == ParameterMethodLocation.KEYWORD_ONLY
-            and not self.code_model.is_legacy
-        ):
+        if not param.optional or param.use_default_type:
             retval = [set_parameter]
         else:
             retval = [
@@ -455,21 +451,20 @@ class RequestBuilderSerializer(
         if builder.abstract or builder.is_overload or self.code_model.is_legacy:
             return checks
         for p in builder.parameters.keyword_only:
+            if not p.use_default_type:
+                continue
             for location, dict_name in [
                 (ParameterLocation.HEADER, "_headers"),
                 (ParameterLocation.QUERY, "_params"),
             ]:
-                if (
-                    (p.location == location)
-                    and (p.client_default_value is not None or p.optional)
-                    and not isinstance(p.type, ConstantType)
-                ):
+                if p.location == location:
                     checks.append(
                         f"if getattr({p.client_name}, 'is_default', False) and '{p.rest_api_name}' in {dict_name}:"
                     )
                     checks.append(
                         f"    {p.client_name} = {dict_name}.pop('{p.rest_api_name}')"
                     )
+                    break
         return checks
 
     @staticmethod

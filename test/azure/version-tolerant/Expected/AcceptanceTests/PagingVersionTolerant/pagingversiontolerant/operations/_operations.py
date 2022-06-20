@@ -26,7 +26,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import DefaultInt, DefaultStr, _format_url_section
+from .._vendor import DefaultInt, _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -98,8 +98,8 @@ def build_paging_first_response_empty_request(**kwargs: Any) -> HttpRequest:
 
 def build_paging_get_multiple_pages_request(
     *,
-    client_request_id: Optional[str] = DefaultStr(None),
-    maxresults: Optional[int] = DefaultInt(None),
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
     timeout: int = DefaultInt(30),
     **kwargs: Any
 ) -> HttpRequest:
@@ -107,18 +107,16 @@ def build_paging_get_multiple_pages_request(
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(client_request_id, "is_default", False) and "client-request-id" in _headers:
-        client_request_id = _headers.pop("client-request-id")
-    if getattr(maxresults, "is_default", False) and "maxresults" in _headers:
-        maxresults = _headers.pop("maxresults")
     if getattr(timeout, "is_default", False) and "timeout" in _headers:
         timeout = _headers.pop("timeout")
     # Construct URL
     _url = "/paging/multiple"
 
     # Construct headers
-    _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if client_request_id is not None:
+        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
@@ -164,19 +162,18 @@ def build_paging_next_operation_with_query_params_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_duplicate_params_request(*, filter: Optional[str] = DefaultStr(None), **kwargs: Any) -> HttpRequest:
+def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(filter, "is_default", False) and "$filter" in _params:
-        filter = _params.pop("$filter")
     # Construct URL
     _url = "/paging/multiple/duplicateParams/1"
 
     # Construct parameters
-    _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -186,8 +183,8 @@ def build_paging_duplicate_params_request(*, filter: Optional[str] = DefaultStr(
 
 def build_paging_get_odata_multiple_pages_request(
     *,
-    client_request_id: Optional[str] = DefaultStr(None),
-    maxresults: Optional[int] = DefaultInt(None),
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
     timeout: int = DefaultInt(30),
     **kwargs: Any
 ) -> HttpRequest:
@@ -195,18 +192,16 @@ def build_paging_get_odata_multiple_pages_request(
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(client_request_id, "is_default", False) and "client-request-id" in _headers:
-        client_request_id = _headers.pop("client-request-id")
-    if getattr(maxresults, "is_default", False) and "maxresults" in _headers:
-        maxresults = _headers.pop("maxresults")
     if getattr(timeout, "is_default", False) and "timeout" in _headers:
         timeout = _headers.pop("timeout")
     # Construct URL
     _url = "/paging/multiple/odata"
 
     # Construct headers
-    _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if client_request_id is not None:
+        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
@@ -216,8 +211,8 @@ def build_paging_get_odata_multiple_pages_request(
 def build_paging_get_multiple_pages_with_offset_request(
     offset: int,
     *,
-    client_request_id: Optional[str] = DefaultStr(None),
-    maxresults: Optional[int] = DefaultInt(None),
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
     timeout: int = DefaultInt(30),
     **kwargs: Any
 ) -> HttpRequest:
@@ -225,10 +220,6 @@ def build_paging_get_multiple_pages_with_offset_request(
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(client_request_id, "is_default", False) and "client-request-id" in _headers:
-        client_request_id = _headers.pop("client-request-id")
-    if getattr(maxresults, "is_default", False) and "maxresults" in _headers:
-        maxresults = _headers.pop("maxresults")
     if getattr(timeout, "is_default", False) and "timeout" in _headers:
         timeout = _headers.pop("timeout")
     # Construct URL
@@ -240,8 +231,10 @@ def build_paging_get_multiple_pages_with_offset_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if client_request_id is not None:
+        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
@@ -420,8 +413,8 @@ def build_paging_next_fragment_with_grouping_request(
 
 def build_paging_get_multiple_pages_lro_request(
     *,
-    client_request_id: Optional[str] = DefaultStr(None),
-    maxresults: Optional[int] = DefaultInt(None),
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
     timeout: int = DefaultInt(30),
     **kwargs: Any
 ) -> HttpRequest:
@@ -429,18 +422,16 @@ def build_paging_get_multiple_pages_lro_request(
 
     accept = _headers.pop("Accept", "application/json")
 
-    if getattr(client_request_id, "is_default", False) and "client-request-id" in _headers:
-        client_request_id = _headers.pop("client-request-id")
-    if getattr(maxresults, "is_default", False) and "maxresults" in _headers:
-        maxresults = _headers.pop("maxresults")
     if getattr(timeout, "is_default", False) and "timeout" in _headers:
         timeout = _headers.pop("timeout")
     # Construct URL
     _url = "/paging/multiple/lro"
 
     # Construct headers
-    _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if client_request_id is not None:
+        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
@@ -743,8 +734,8 @@ class PagingOperations:
     def get_multiple_pages(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> Iterable[JSON]:
@@ -904,7 +895,7 @@ class PagingOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def duplicate_params(self, *, filter: Optional[str] = DefaultStr(None), **kwargs: Any) -> Iterable[JSON]:
+    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> Iterable[JSON]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
@@ -977,8 +968,8 @@ class PagingOperations:
     def get_odata_multiple_pages(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> Iterable[JSON]:
@@ -1061,8 +1052,8 @@ class PagingOperations:
         self,
         offset: int,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> Iterable[JSON]:
@@ -1631,8 +1622,8 @@ class PagingOperations:
     def _get_multiple_pages_lro_initial(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> JSON:
@@ -1677,8 +1668,8 @@ class PagingOperations:
     def begin_get_multiple_pages_lro(
         self,
         *,
-        client_request_id: Optional[str] = DefaultStr(None),
-        maxresults: Optional[int] = DefaultInt(None),
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
         timeout: int = DefaultInt(30),
         **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:

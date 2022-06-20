@@ -21,7 +21,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_get_report_request
-from ..._vendor import DefaultStr
 from .._vendor import MixinABC
 
 T = TypeVar("T")
@@ -30,7 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestReportServiceForAzureOperationsMixin(MixinABC):
     @distributed_trace_async
-    async def get_report(self, *, qualifier: Optional[str] = DefaultStr(None), **kwargs: Any) -> Dict[str, int]:
+    async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'

@@ -116,19 +116,17 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
         if self.abstract:
             return ["*args,", "**kwargs"]
         return self.parameters.method_signature(
-            async_mode, use_default_type=not self.is_overload
+            async_mode, of_overload=self.is_overload
         )
 
     @property
     def default_type_annotations(
         self,
-    ) -> Dict[str, str]:  # return a dict of type_annotation --> default_type_annotation
+    ) -> Dict[str, BaseType]:
         if self.abstract or self.is_overload or self.code_model.is_legacy:
             return {}
         return {
-            p.type.type_annotation(): p.type.default_type_annotation
+            p.type.type_annotation(): p.type
             for p in self.parameters.keyword_only
-            if (p.client_default_value is not None or p.optional)
-            and not isinstance(p.type, ConstantType)
-            and (p.location in [ParameterLocation.HEADER, ParameterLocation.QUERY])
+            if p.use_default_type
         }

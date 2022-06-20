@@ -22,7 +22,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ..._vendor import DefaultInt, DefaultStr
 from ...operations._operations import (
     build_api_version_default_get_method_global_not_provided_valid_request,
     build_api_version_default_get_method_global_valid_request,
@@ -771,7 +770,7 @@ class ApiVersionLocalOperations:
 
     @distributed_trace_async
     async def get_method_local_null(  # pylint: disable=inconsistent-return-statements
-        self, *, api_version: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, api_version: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
@@ -1072,7 +1071,7 @@ class SkipUrlEncodingOperations:
 
     @distributed_trace_async
     async def get_method_query_null(  # pylint: disable=inconsistent-return-statements
-        self, *, q1: Optional[str] = DefaultStr(None), **kwargs: Any
+        self, *, q1: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value null.
 
@@ -1211,12 +1210,7 @@ class OdataOperations:
 
     @distributed_trace_async
     async def get_with_filter(  # pylint: disable=inconsistent-return-statements
-        self,
-        *,
-        filter: Optional[str] = DefaultStr(None),
-        top: Optional[int] = DefaultInt(None),
-        orderby: Optional[str] = DefaultStr(None),
-        **kwargs: Any
+        self, *, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 

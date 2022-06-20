@@ -22,7 +22,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import DefaultStr
 from ...operations._operations import (
     build_params_delete_parameters_request,
     build_params_get_new_operation_request,
@@ -60,7 +59,7 @@ class ParamsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def head_no_params(self, *, new_parameter: Optional[str] = DefaultStr(None), **kwargs: Any) -> JSON:
+    async def head_no_params(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
         """Head request, no params. Initially has no query parameters. After evolution, a new optional
         query parameter is added.
 
@@ -106,9 +105,7 @@ class ParamsOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_required(
-        self, *, parameter: str, new_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
-    ) -> JSON:
+    async def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
         """Get true Boolean value on path.
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
@@ -162,8 +159,8 @@ class ParamsOperations:
         self,
         *,
         required_param: str,
-        optional_param: Optional[str] = DefaultStr(None),
-        new_parameter: Optional[str] = DefaultStr(None),
+        optional_param: Optional[str] = None,
+        new_parameter: Optional[str] = None,
         **kwargs: Any
     ) -> JSON:
         """Initially has one required query parameter and one optional query parameter.  After evolution,
@@ -358,11 +355,7 @@ class ParamsOperations:
 
     @distributed_trace_async
     async def get_optional(
-        self,
-        *,
-        optional_param: Optional[str] = DefaultStr(None),
-        new_parameter: Optional[str] = DefaultStr(None),
-        **kwargs: Any
+        self, *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> JSON:
         """Get true Boolean value on path.
          Initially has one optional query parameter. After evolution, a new optional query parameter is
