@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
+from .._vendor import DefaultStr, _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -75,18 +75,19 @@ def build_pet_do_something_request(what_action: str, **kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_pet_has_models_param_request(*, models: str = "value1", **kwargs: Any) -> HttpRequest:
+def build_pet_has_models_param_request(*, models: str = DefaultStr("value1"), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(models, "is_default", False) and "models" in _params:
+        models = _params.pop("models")
     # Construct URL
     _url = "/errorStatusCodes/Pets/hasModelsParam"
 
     # Construct parameters
-    if models is not None:
-        _params["models"] = _SERIALIZER.query("models", models, "str")
+    _params["models"] = _SERIALIZER.query("models", models, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -233,7 +234,7 @@ class PetOperations:
 
     @distributed_trace
     def has_models_param(  # pylint: disable=inconsistent-return-statements
-        self, *, models: str = "value1", **kwargs: Any
+        self, *, models: str = DefaultStr("value1"), **kwargs: Any
     ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.

@@ -46,3 +46,10 @@ def raise_if_not_implemented(cls, abstract_methods):
                 cls.__name__, "', '".join(not_implemented)
             )
         )
+
+
+class DefaultListstr(List[str]):
+    def __new__(cls, *args, **kwargs):
+        instance = List[str].__new__(cls, *args, **kwargs)
+        instance.is_default = True
+        return instance

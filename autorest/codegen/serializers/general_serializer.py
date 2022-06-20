@@ -78,6 +78,12 @@ class GeneralSerializer:
                 MsrestImportType.SerializerDeserializer,
                 TypingSection.TYPING,
             )
+        default_type_annotations = {
+            k: v
+            for og in self.code_model.operation_groups
+            for op in og.operations
+            for k, v in op.default_type_annotations.items()
+        }
 
         return template.render(
             code_model=self.code_model,
@@ -85,6 +91,7 @@ class GeneralSerializer:
                 file_import,
             ),
             async_mode=self.async_mode,
+            default_type_annotations=default_type_annotations,
         )
 
     def serialize_config_file(self) -> str:

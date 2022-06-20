@@ -356,7 +356,11 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             param.rest_api_name,
             self.parameter_serializer.serialize_parameter(param, self.serializer_name),
         )
-        if not param.optional:
+        if (
+            not param.optional
+            or param.method_location == ParameterMethodLocation.KEYWORD_ONLY
+            and not self.code_model.is_legacy
+        ):
             retval = [set_parameter]
         else:
             retval = [
@@ -445,6 +449,28 @@ class RequestBuilderSerializer(
             if bool(builder.parameters.query)
             else PopKwargType.NO,
         )
+
+    def check_keyword_only_default(self, builder: OperationType) -> List[str]:
+        checks = []
+        if builder.abstract or builder.is_overload or self.code_model.is_legacy:
+            return checks
+        for p in builder.parameters.keyword_only:
+            for location, dict_name in [
+                (ParameterLocation.HEADER, "_headers"),
+                (ParameterLocation.QUERY, "_params"),
+            ]:
+                if (
+                    (p.location == location)
+                    and (p.client_default_value is not None or p.optional)
+                    and not isinstance(p.type, ConstantType)
+                ):
+                    checks.append(
+                        f"if getattr({p.client_name}, 'is_default', False) and '{p.rest_api_name}' in {dict_name}:"
+                    )
+                    checks.append(
+                        f"    {p.client_name} = {dict_name}.pop('{p.rest_api_name}')"
+                    )
+        return checks
 
     @staticmethod
     def create_http_request(builder: RequestBuilderType) -> List[str]:

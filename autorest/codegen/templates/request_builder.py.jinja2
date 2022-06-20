@@ -11,6 +11,9 @@
     {% if request_builder_serializer.declare_non_inputtable_constants(request_builder) %}
     {{ op_tools.serialize(request_builder_serializer.declare_non_inputtable_constants(request_builder)) | indent }}
         {% endif %}
+    {% if request_builder_serializer.check_keyword_only_default(request_builder) %}
+    {{ op_tools.serialize(request_builder_serializer.check_keyword_only_default(request_builder)) | indent }}
+    {%- endif -%}
     # Construct URL
     {{ request_builder_serializer.construct_url(request_builder) }}
     {% if request_builder.parameters.path %}

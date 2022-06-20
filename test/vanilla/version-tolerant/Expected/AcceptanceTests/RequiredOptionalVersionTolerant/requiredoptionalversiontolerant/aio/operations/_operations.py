@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ..._vendor import DefaultInt, DefaultListstr, DefaultStr
 from ...operations._operations import (
     build_explicit_post_optional_array_header_request,
     build_explicit_post_optional_array_parameter_request,
@@ -125,7 +126,7 @@ class ImplicitOperations:
 
     @distributed_trace_async
     async def put_optional_query(  # pylint: disable=inconsistent-return-statements
-        self, *, query_parameter: Optional[str] = None, **kwargs: Any
+        self, *, query_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Test implicitly optional query parameter.
 
@@ -165,7 +166,7 @@ class ImplicitOperations:
 
     @distributed_trace_async
     async def put_optional_header(  # pylint: disable=inconsistent-return-statements
-        self, *, query_parameter: Optional[str] = None, **kwargs: Any
+        self, *, query_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Test implicitly optional header parameter.
 
@@ -837,7 +838,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: Optional[int] = None, **kwargs: Any
+        self, *, header_parameter: Optional[int] = DefaultInt(None), **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
@@ -1204,7 +1205,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
-        self, *, body_parameter: Optional[str] = None, **kwargs: Any
+        self, *, body_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
@@ -2073,7 +2074,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any
+        self, *, header_parameter: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 

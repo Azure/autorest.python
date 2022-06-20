@@ -79,15 +79,21 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             ImportType.AZURECORE,
         )
 
+        relative_path = ".."
+        if (
+            not self.code_model.options["builders_visibility"] == "embedded"
+            and self.group_name
+        ):
+            relative_path = "..." if self.group_name else ".."
         if self.parameters.path:
-            relative_path = ".."
-            if (
-                not self.code_model.options["builders_visibility"] == "embedded"
-                and self.group_name
-            ):
-                relative_path = "..." if self.group_name else ".."
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
+            )
+        for _, default_type in self.default_type_annotations.items():
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor",
+                default_type,
+                ImportType.LOCAL,
             )
         if self.parameters.headers or self.parameters.query:
             file_import.add_submodule_import(

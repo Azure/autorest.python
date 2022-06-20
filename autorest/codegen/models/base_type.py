@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
+import re
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .base_model import BaseModel
@@ -159,3 +160,9 @@ class BaseType(BaseModel, ABC):
     def serialization_constraints(self) -> List[str]:
         """Whether there are any serialization constraints when serializing this type."""
         return []
+
+    @property
+    def default_type_annotation(self) -> str:
+        return re.sub(
+            "[^A-Za-z0-9]+", "", f"Default{self.type_annotation().capitalize()}"
+        )

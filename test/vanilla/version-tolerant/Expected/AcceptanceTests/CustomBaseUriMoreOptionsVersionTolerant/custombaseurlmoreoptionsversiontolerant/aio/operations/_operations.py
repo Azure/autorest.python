@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._vendor import DefaultStr
 from ...operations._operations import build_paths_get_empty_request
 
 T = TypeVar("T")
@@ -45,7 +46,7 @@ class PathsOperations:
 
     @distributed_trace_async
     async def get_empty(  # pylint: disable=inconsistent-return-statements
-        self, vault: str, secret: str, key_name: str, *, key_version: str = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, *, key_version: str = DefaultStr("v1"), **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.
 

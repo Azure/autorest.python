@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC, _format_url_section, raise_if_not_implemented
+from .._vendor import DefaultListstr, MixinABC, _format_url_section, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -90,13 +90,15 @@ def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> Http
 
 
 def build_operation_with_url_request(
-    url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+    url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(query_parameters, "is_default", False) and "queryParameters" in _params:
+        query_parameters = _params.pop("queryParameters")
     # Construct URL
     _url = "/reservedWords/{url}"
     path_format_arguments = {
@@ -106,10 +108,9 @@ def build_operation_with_url_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    if query_parameters is not None:
-        _params["queryParameters"] = [
-            _SERIALIZER.query("query_parameters", q, "str") if q is not None else "" for q in query_parameters
-        ]
+    _params["queryParameters"] = [
+        _SERIALIZER.query("query_parameters", q, "str") if q is not None else "" for q in query_parameters
+    ]
 
     # Construct headers
     _headers["headerParameters"] = _SERIALIZER.header("header_parameters", header_parameters, "str")
@@ -291,7 +292,12 @@ class ReservedWordsClientOperationsMixin(MixinABC):
 
     @distributed_trace
     def operation_with_url(
-        self, url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+        self,
+        url: str,
+        *,
+        header_parameters: str,
+        query_parameters: Optional[List[str]] = DefaultListstr(None),
+        **kwargs: Any
     ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.

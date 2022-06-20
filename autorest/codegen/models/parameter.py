@@ -179,10 +179,24 @@ class _ParameterBase(
     def in_method_signature(self) -> bool:
         ...
 
-    def method_signature(self, async_mode: bool) -> str:
+    def method_signature(self, async_mode: bool, use_default_type: bool = False) -> str:
         type_annot = self.type_annotation(async_mode=async_mode)
         if self.client_default_value is not None or self.optional:
-            return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
+            default_value_declaration = self.client_default_value_declaration
+            if (
+                not self.code_model.is_legacy
+                and use_default_type
+                and self.location
+                in (
+                    ParameterLocation.HEADER,
+                    ParameterLocation.QUERY,
+                )
+                and not isinstance(self.type, ConstantType)
+            ):
+                default_value_declaration = (
+                    f"{self.type.default_type_annotation}({default_value_declaration})"
+                )
+            return f"{self.client_name}: {type_annot} = {default_value_declaration},"
         return f"{self.client_name}: {type_annot},"
 
 

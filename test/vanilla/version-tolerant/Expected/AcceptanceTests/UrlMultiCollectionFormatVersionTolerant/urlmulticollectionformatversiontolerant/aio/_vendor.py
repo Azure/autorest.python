@@ -6,19 +6,8 @@
 # --------------------------------------------------------------------------
 
 
-def _format_url_section(template, **kwargs):
-    components = template.split("/")
-    while components:
-        try:
-            return template.format(**kwargs)
-        except KeyError as key:
-            formatted_components = template.split("/")
-            components = [c for c in formatted_components if "{}".format(key.args[0]) not in c]
-            template = "/".join(components)
-
-
-class DefaultStr(str):
+class DefaultListstr(List[str]):
     def __new__(cls, *args, **kwargs):
-        instance = str.__new__(cls, *args, **kwargs)
+        instance = List[str].__new__(cls, *args, **kwargs)
         instance.is_default = True
         return instance

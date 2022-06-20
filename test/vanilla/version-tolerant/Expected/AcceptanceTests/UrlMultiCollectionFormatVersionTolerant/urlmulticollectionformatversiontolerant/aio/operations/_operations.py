@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._vendor import DefaultListstr
 from ...operations._operations import (
     build_queries_array_string_multi_empty_request,
     build_queries_array_string_multi_null_request,
@@ -49,7 +50,7 @@ class QueriesOperations:
 
     @distributed_trace_async
     async def array_string_multi_null(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get a null array of string using the multi-array format.
 
@@ -90,7 +91,7 @@ class QueriesOperations:
 
     @distributed_trace_async
     async def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
@@ -131,7 +132,7 @@ class QueriesOperations:
 
     @distributed_trace_async
     async def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.

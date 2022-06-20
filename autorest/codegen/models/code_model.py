@@ -209,6 +209,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         """Whether we need to vendor code in the _vendor.py file for this SDK"""
         if self.has_abstract_operations:
             return True
+        if any(
+            len(op.default_type_annotations.keys()) > 0
+            for og in self.operation_groups
+            for op in og.operations
+        ):
+            return True
         if async_mode:
             return self.need_mixin_abc
         return (

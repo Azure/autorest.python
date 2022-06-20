@@ -23,7 +23,17 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
+from .._vendor import (
+    DefaultBool,
+    DefaultBytes,
+    DefaultDatetimedate,
+    DefaultDatetimedatetime,
+    DefaultFloat,
+    DefaultInt,
+    DefaultListstr,
+    DefaultStr,
+    _format_url_section,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -602,18 +612,21 @@ def build_queries_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_get_boolean_null_request(*, bool_query: Optional[bool] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_get_boolean_null_request(
+    *, bool_query: Optional[bool] = DefaultBool(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(bool_query, "is_default", False) and "boolQuery" in _params:
+        bool_query = _params.pop("boolQuery")
     # Construct URL
     _url = "/queries/bool/null"
 
     # Construct parameters
-    if bool_query is not None:
-        _params["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    _params["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -659,18 +672,19 @@ def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_get_int_null_request(*, int_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_get_int_null_request(*, int_query: Optional[int] = DefaultInt(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(int_query, "is_default", False) and "intQuery" in _params:
+        int_query = _params.pop("intQuery")
     # Construct URL
     _url = "/queries/int/null"
 
     # Construct parameters
-    if int_query is not None:
-        _params["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    _params["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -716,18 +730,19 @@ def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_get_long_null_request(*, long_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_get_long_null_request(*, long_query: Optional[int] = DefaultInt(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(long_query, "is_default", False) and "longQuery" in _params:
+        long_query = _params.pop("longQuery")
     # Construct URL
     _url = "/queries/long/null"
 
     # Construct parameters
-    if long_query is not None:
-        _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "int")
+    _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -773,18 +788,21 @@ def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_float_null_request(*, float_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_float_null_request(
+    *, float_query: Optional[float] = DefaultFloat(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(float_query, "is_default", False) and "floatQuery" in _params:
+        float_query = _params.pop("floatQuery")
     # Construct URL
     _url = "/queries/float/null"
 
     # Construct parameters
-    if float_query is not None:
-        _params["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    _params["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -830,18 +848,21 @@ def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_double_null_request(*, double_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_double_null_request(
+    *, double_query: Optional[float] = DefaultFloat(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(double_query, "is_default", False) and "doubleQuery" in _params:
+        double_query = _params.pop("doubleQuery")
     # Construct URL
     _url = "/queries/double/null"
 
     # Construct parameters
-    if double_query is not None:
-        _params["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    _params["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -906,18 +927,19 @@ def build_queries_string_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_string_null_request(*, string_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_string_null_request(*, string_query: Optional[str] = DefaultStr(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(string_query, "is_default", False) and "stringQuery" in _params:
+        string_query = _params.pop("stringQuery")
     # Construct URL
     _url = "/queries/string/null"
 
     # Construct parameters
-    if string_query is not None:
-        _params["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    _params["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -925,18 +947,19 @@ def build_queries_string_null_request(*, string_query: Optional[str] = None, **k
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_enum_valid_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_enum_valid_request(*, enum_query: Optional[str] = DefaultStr(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(enum_query, "is_default", False) and "enumQuery" in _params:
+        enum_query = _params.pop("enumQuery")
     # Construct URL
     _url = "/queries/enum/green%20color"
 
     # Construct parameters
-    if enum_query is not None:
-        _params["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+    _params["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -944,18 +967,19 @@ def build_queries_enum_valid_request(*, enum_query: Optional[str] = None, **kwar
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_enum_null_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_enum_null_request(*, enum_query: Optional[str] = DefaultStr(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(enum_query, "is_default", False) and "enumQuery" in _params:
+        enum_query = _params.pop("enumQuery")
     # Construct URL
     _url = "/queries/enum/null"
 
     # Construct parameters
-    if enum_query is not None:
-        _params["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+    _params["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -963,18 +987,21 @@ def build_queries_enum_null_request(*, enum_query: Optional[str] = None, **kwarg
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_byte_multi_byte_request(*, byte_query: Optional[bytes] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_byte_multi_byte_request(
+    *, byte_query: Optional[bytes] = DefaultBytes(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(byte_query, "is_default", False) and "byteQuery" in _params:
+        byte_query = _params.pop("byteQuery")
     # Construct URL
     _url = "/queries/byte/multibyte"
 
     # Construct parameters
-    if byte_query is not None:
-        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+    _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1001,18 +1028,19 @@ def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_byte_null_request(*, byte_query: Optional[bytes] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_byte_null_request(*, byte_query: Optional[bytes] = DefaultBytes(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(byte_query, "is_default", False) and "byteQuery" in _params:
+        byte_query = _params.pop("byteQuery")
     # Construct URL
     _url = "/queries/byte/null"
 
     # Construct parameters
-    if byte_query is not None:
-        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+    _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1039,18 +1067,21 @@ def build_queries_date_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_date_null_request(*, date_query: Optional[datetime.date] = None, **kwargs: Any) -> HttpRequest:
+def build_queries_date_null_request(
+    *, date_query: Optional[datetime.date] = DefaultDatetimedate(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(date_query, "is_default", False) and "dateQuery" in _params:
+        date_query = _params.pop("dateQuery")
     # Construct URL
     _url = "/queries/date/null"
 
     # Construct parameters
-    if date_query is not None:
-        _params["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+    _params["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1080,19 +1111,20 @@ def build_queries_date_time_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_queries_date_time_null_request(
-    *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
+    *, date_time_query: Optional[datetime.datetime] = DefaultDatetimedatetime(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(date_time_query, "is_default", False) and "dateTimeQuery" in _params:
+        date_time_query = _params.pop("dateTimeQuery")
     # Construct URL
     _url = "/queries/datetime/null"
 
     # Construct parameters
-    if date_time_query is not None:
-        _params["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+    _params["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1101,19 +1133,20 @@ def build_queries_date_time_null_request(
 
 
 def build_queries_array_string_csv_valid_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
+        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/csv/string/valid"
 
     # Construct parameters
-    if array_query is not None:
-        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+    _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1122,19 +1155,20 @@ def build_queries_array_string_csv_valid_request(
 
 
 def build_queries_array_string_csv_null_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
+        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/csv/string/null"
 
     # Construct parameters
-    if array_query is not None:
-        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+    _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1143,19 +1177,20 @@ def build_queries_array_string_csv_null_request(
 
 
 def build_queries_array_string_csv_empty_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
+        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/csv/string/empty"
 
     # Construct parameters
-    if array_query is not None:
-        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+    _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1164,19 +1199,20 @@ def build_queries_array_string_csv_empty_request(
 
 
 def build_queries_array_string_no_collection_format_empty_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
+        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/none/string/empty"
 
     # Construct parameters
-    if array_query is not None:
-        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+    _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1185,19 +1221,20 @@ def build_queries_array_string_no_collection_format_empty_request(
 
 
 def build_queries_array_string_ssv_valid_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
+        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/ssv/string/valid"
 
     # Construct parameters
-    if array_query is not None:
-        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
+    _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1206,19 +1243,20 @@ def build_queries_array_string_ssv_valid_request(
 
 
 def build_queries_array_string_tsv_valid_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
+        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/tsv/string/valid"
 
     # Construct parameters
-    if array_query is not None:
-        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
+    _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1227,19 +1265,20 @@ def build_queries_array_string_tsv_valid_request(
 
 
 def build_queries_array_string_pipes_valid_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(array_query, "is_default", False) and "arrayQuery" in _params:
+        array_query = _params.pop("arrayQuery")
     # Construct URL
     _url = "/queries/array/pipes/string/valid"
 
     # Construct parameters
-    if array_query is not None:
-        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
+    _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1252,9 +1291,9 @@ def build_path_items_get_all_with_values_request(
     local_string_path: str,
     global_string_path: str,
     *,
-    path_item_string_query: Optional[str] = None,
-    local_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
+    path_item_string_query: Optional[str] = DefaultStr(None),
+    local_string_query: Optional[str] = DefaultStr(None),
+    global_string_query: Optional[str] = DefaultStr(None),
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1262,6 +1301,12 @@ def build_path_items_get_all_with_values_request(
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(path_item_string_query, "is_default", False) and "pathItemStringQuery" in _params:
+        path_item_string_query = _params.pop("pathItemStringQuery")
+    if getattr(local_string_query, "is_default", False) and "localStringQuery" in _params:
+        local_string_query = _params.pop("localStringQuery")
+    if getattr(global_string_query, "is_default", False) and "globalStringQuery" in _params:
+        global_string_query = _params.pop("globalStringQuery")
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1273,12 +1318,9 @@ def build_path_items_get_all_with_values_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    if path_item_string_query is not None:
-        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
-    if global_string_query is not None:
-        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
-        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+    _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
+    _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+    _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1291,9 +1333,9 @@ def build_path_items_get_global_query_null_request(
     local_string_path: str,
     global_string_path: str,
     *,
-    path_item_string_query: Optional[str] = None,
-    local_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
+    path_item_string_query: Optional[str] = DefaultStr(None),
+    local_string_query: Optional[str] = DefaultStr(None),
+    global_string_query: Optional[str] = DefaultStr(None),
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1301,6 +1343,12 @@ def build_path_items_get_global_query_null_request(
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(path_item_string_query, "is_default", False) and "pathItemStringQuery" in _params:
+        path_item_string_query = _params.pop("pathItemStringQuery")
+    if getattr(local_string_query, "is_default", False) and "localStringQuery" in _params:
+        local_string_query = _params.pop("localStringQuery")
+    if getattr(global_string_query, "is_default", False) and "globalStringQuery" in _params:
+        global_string_query = _params.pop("globalStringQuery")
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1312,12 +1360,9 @@ def build_path_items_get_global_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    if path_item_string_query is not None:
-        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
-    if global_string_query is not None:
-        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
-        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+    _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
+    _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+    _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1330,9 +1375,9 @@ def build_path_items_get_global_and_local_query_null_request(
     local_string_path: str,
     global_string_path: str,
     *,
-    path_item_string_query: Optional[str] = None,
-    local_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
+    path_item_string_query: Optional[str] = DefaultStr(None),
+    local_string_query: Optional[str] = DefaultStr(None),
+    global_string_query: Optional[str] = DefaultStr(None),
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1340,6 +1385,12 @@ def build_path_items_get_global_and_local_query_null_request(
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(path_item_string_query, "is_default", False) and "pathItemStringQuery" in _params:
+        path_item_string_query = _params.pop("pathItemStringQuery")
+    if getattr(local_string_query, "is_default", False) and "localStringQuery" in _params:
+        local_string_query = _params.pop("localStringQuery")
+    if getattr(global_string_query, "is_default", False) and "globalStringQuery" in _params:
+        global_string_query = _params.pop("globalStringQuery")
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1351,12 +1402,9 @@ def build_path_items_get_global_and_local_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    if path_item_string_query is not None:
-        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
-    if global_string_query is not None:
-        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
-        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+    _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
+    _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+    _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1369,9 +1417,9 @@ def build_path_items_get_local_path_item_query_null_request(
     local_string_path: str,
     global_string_path: str,
     *,
-    path_item_string_query: Optional[str] = None,
-    local_string_query: Optional[str] = None,
-    global_string_query: Optional[str] = None,
+    path_item_string_query: Optional[str] = DefaultStr(None),
+    local_string_query: Optional[str] = DefaultStr(None),
+    global_string_query: Optional[str] = DefaultStr(None),
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1379,6 +1427,12 @@ def build_path_items_get_local_path_item_query_null_request(
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(path_item_string_query, "is_default", False) and "pathItemStringQuery" in _params:
+        path_item_string_query = _params.pop("pathItemStringQuery")
+    if getattr(local_string_query, "is_default", False) and "localStringQuery" in _params:
+        local_string_query = _params.pop("localStringQuery")
+    if getattr(global_string_query, "is_default", False) and "globalStringQuery" in _params:
+        global_string_query = _params.pop("globalStringQuery")
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1390,12 +1444,9 @@ def build_path_items_get_local_path_item_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    if path_item_string_query is not None:
-        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
-    if global_string_query is not None:
-        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
-        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+    _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
+    _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+    _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -2602,7 +2653,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_boolean_null(  # pylint: disable=inconsistent-return-statements
-        self, *, bool_query: Optional[bool] = None, **kwargs: Any
+        self, *, bool_query: Optional[bool] = DefaultBool(None), **kwargs: Any
     ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
@@ -2722,7 +2773,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_int_null(  # pylint: disable=inconsistent-return-statements
-        self, *, int_query: Optional[int] = None, **kwargs: Any
+        self, *, int_query: Optional[int] = DefaultInt(None), **kwargs: Any
     ) -> None:
         """Get null integer value (no query parameter).
 
@@ -2842,7 +2893,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_long_null(  # pylint: disable=inconsistent-return-statements
-        self, *, long_query: Optional[int] = None, **kwargs: Any
+        self, *, long_query: Optional[int] = DefaultInt(None), **kwargs: Any
     ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
@@ -2962,7 +3013,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def float_null(  # pylint: disable=inconsistent-return-statements
-        self, *, float_query: Optional[float] = None, **kwargs: Any
+        self, *, float_query: Optional[float] = DefaultFloat(None), **kwargs: Any
     ) -> None:
         """Get null numeric value (no query parameter).
 
@@ -3082,7 +3133,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def double_null(  # pylint: disable=inconsistent-return-statements
-        self, *, double_query: Optional[float] = None, **kwargs: Any
+        self, *, double_query: Optional[float] = DefaultFloat(None), **kwargs: Any
     ) -> None:
         """Get null numeric value (no query parameter).
 
@@ -3245,7 +3296,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def string_null(  # pylint: disable=inconsistent-return-statements
-        self, *, string_query: Optional[str] = None, **kwargs: Any
+        self, *, string_query: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 
@@ -3285,7 +3336,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, enum_query: Optional[str] = None, **kwargs: Any
+        self, *, enum_query: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
@@ -3326,7 +3377,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def enum_null(  # pylint: disable=inconsistent-return-statements
-        self, *, enum_query: Optional[str] = None, **kwargs: Any
+        self, *, enum_query: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 
@@ -3367,7 +3418,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
+        self, *, byte_query: Optional[bytes] = DefaultBytes(None), **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -3448,7 +3499,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def byte_null(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
+        self, *, byte_query: Optional[bytes] = DefaultBytes(None), **kwargs: Any
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
@@ -3528,7 +3579,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def date_null(  # pylint: disable=inconsistent-return-statements
-        self, *, date_query: Optional[datetime.date] = None, **kwargs: Any
+        self, *, date_query: Optional[datetime.date] = DefaultDatetimedate(None), **kwargs: Any
     ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
@@ -3611,7 +3662,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def date_time_null(  # pylint: disable=inconsistent-return-statements
-        self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
+        self, *, date_time_query: Optional[datetime.datetime] = DefaultDatetimedatetime(None), **kwargs: Any
     ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
@@ -3651,7 +3702,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
@@ -3693,7 +3744,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get a null array of string using the csv-array format.
 
@@ -3733,7 +3784,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
@@ -3774,7 +3825,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
@@ -3816,7 +3867,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
@@ -3858,7 +3909,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
@@ -3900,7 +3951,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
@@ -3964,8 +4015,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
+        path_item_string_query: Optional[str] = DefaultStr(None),
+        local_string_query: Optional[str] = DefaultStr(None),
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
@@ -4025,8 +4076,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
+        path_item_string_query: Optional[str] = DefaultStr(None),
+        local_string_query: Optional[str] = DefaultStr(None),
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
@@ -4086,8 +4137,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
+        path_item_string_query: Optional[str] = DefaultStr(None),
+        local_string_query: Optional[str] = DefaultStr(None),
         **kwargs: Any
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
@@ -4147,8 +4198,8 @@ class PathItemsOperations:
         path_item_string_path: str,
         local_string_path: str,
         *,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
+        path_item_string_query: Optional[str] = DefaultStr(None),
+        local_string_query: Optional[str] = DefaultStr(None),
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',

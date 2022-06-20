@@ -235,11 +235,15 @@ class _ParameterListBase(
         """Sorted method params. First positional, then keyword only, then kwarg"""
         return self.positional + self.keyword_only + self.kwarg
 
-    def method_signature(self, async_mode: bool) -> List[str]:
+    def method_signature(
+        self, async_mode: bool, use_default_type: bool = False
+    ) -> List[str]:
         """Method signature for this parameter list."""
         return method_signature_helper(
             positional=self.method_signature_positional(async_mode),
-            keyword_only=self.method_signature_keyword_only(async_mode),
+            keyword_only=self.method_signature_keyword_only(
+                async_mode, use_default_type
+            ),
             kwarg_params=self.method_signature_kwargs,
         )
 
@@ -247,12 +251,15 @@ class _ParameterListBase(
         """Signature for positional parameters"""
         return [parameter.method_signature(async_mode) for parameter in self.positional]
 
-    def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
+    def method_signature_keyword_only(
+        self, async_mode: bool, use_default_type: bool
+    ) -> List[str]:
         """Signature for keyword only parameters"""
         if not self.keyword_only:
             return []
         return ["*,"] + [
-            parameter.method_signature(async_mode) for parameter in self.keyword_only
+            parameter.method_signature(async_mode, use_default_type)
+            for parameter in self.keyword_only
         ]
 
     @property
@@ -403,7 +410,9 @@ class RequestBuilderParameterList(_RequestBuilderParameterList):
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for OverloadedRequestBuilder"""
 
-    def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
+    def method_signature_keyword_only(
+        self, async_mode: bool, use_default_type: bool
+    ) -> List[str]:
         """Signature for keyword only parameters"""
         if not self.keyword_only:
             return []

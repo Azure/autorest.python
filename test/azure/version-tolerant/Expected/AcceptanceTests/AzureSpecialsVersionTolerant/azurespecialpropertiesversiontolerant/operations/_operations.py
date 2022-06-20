@@ -23,7 +23,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
+from .._vendor import DefaultInt, DefaultStr, _format_url_section
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -338,19 +338,20 @@ def build_api_version_local_get_method_local_valid_request(**kwargs: Any) -> Htt
 
 
 def build_api_version_local_get_method_local_null_request(
-    *, api_version: Optional[str] = None, **kwargs: Any
+    *, api_version: Optional[str] = DefaultStr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(api_version, "is_default", False) and "api-version" in _params:
+        api_version = _params.pop("api-version")
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/local/null"
 
     # Construct parameters
-    if api_version is not None:
-        _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -472,18 +473,21 @@ def build_skip_url_encoding_get_method_query_valid_request(*, q1: str, **kwargs:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_method_query_null_request(*, q1: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_skip_url_encoding_get_method_query_null_request(
+    *, q1: Optional[str] = DefaultStr(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(q1, "is_default", False) and "q1" in _params:
+        q1 = _params.pop("q1")
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/query/null"
 
     # Construct parameters
-    if q1 is not None:
-        _params["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
+    _params["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -529,23 +533,30 @@ def build_skip_url_encoding_get_swagger_query_valid_request(**kwargs: Any) -> Ht
 
 
 def build_odata_get_with_filter_request(
-    *, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs: Any
+    *,
+    filter: Optional[str] = DefaultStr(None),
+    top: Optional[int] = DefaultInt(None),
+    orderby: Optional[str] = DefaultStr(None),
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(filter, "is_default", False) and "$filter" in _params:
+        filter = _params.pop("$filter")
+    if getattr(top, "is_default", False) and "$top" in _params:
+        top = _params.pop("$top")
+    if getattr(orderby, "is_default", False) and "$orderby" in _params:
+        orderby = _params.pop("$orderby")
     # Construct URL
     _url = "/azurespecials/odata/filter"
 
     # Construct parameters
-    if filter is not None:
-        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
-    if top is not None:
-        _params["$top"] = _SERIALIZER.query("top", top, "int")
-    if orderby is not None:
-        _params["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+    _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    _params["$top"] = _SERIALIZER.query("top", top, "int")
+    _params["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1311,7 +1322,7 @@ class ApiVersionLocalOperations:
 
     @distributed_trace
     def get_method_local_null(  # pylint: disable=inconsistent-return-statements
-        self, *, api_version: Optional[str] = None, **kwargs: Any
+        self, *, api_version: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
@@ -1612,7 +1623,7 @@ class SkipUrlEncodingOperations:
 
     @distributed_trace
     def get_method_query_null(  # pylint: disable=inconsistent-return-statements
-        self, *, q1: Optional[str] = None, **kwargs: Any
+        self, *, q1: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value null.
 
@@ -1749,7 +1760,12 @@ class OdataOperations:
 
     @distributed_trace
     def get_with_filter(  # pylint: disable=inconsistent-return-statements
-        self, *, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        filter: Optional[str] = DefaultStr(None),
+        top: Optional[int] = DefaultInt(None),
+        orderby: Optional[str] = DefaultStr(None),
+        **kwargs: Any
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 

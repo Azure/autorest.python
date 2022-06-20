@@ -44,3 +44,11 @@ def raise_if_not_implemented(cls, abstract_methods):
         cls.__name__, '\', \''.join(not_implemented))
         )
 {% endif %}
+{% for type, default_type in default_type_annotations.items() %}
+
+class {{default_type}}({{type}}):
+    def __new__(cls, *args, **kwargs):
+        instance = {{type}}.__new__(cls, *args, **kwargs)
+        instance.is_default = True
+        return instance
+{% endfor %}

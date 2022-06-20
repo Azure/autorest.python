@@ -21,6 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._vendor import DefaultStr
 from ...operations._operations import (
     build_pet_do_something_request,
     build_pet_get_pet_by_id_request,
@@ -175,7 +176,7 @@ class PetOperations:
 
     @distributed_trace_async
     async def has_models_param(  # pylint: disable=inconsistent-return-statements
-        self, *, models: str = "value1", **kwargs: Any
+        self, *, models: str = DefaultStr("value1"), **kwargs: Any
     ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.

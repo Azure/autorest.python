@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
+from .._vendor import DefaultInt, DefaultListstr, DefaultStr, _format_url_section
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -56,18 +56,21 @@ def build_implicit_get_required_path_request(path_parameter: str, **kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_implicit_put_optional_query_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_implicit_put_optional_query_request(
+    *, query_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(query_parameter, "is_default", False) and "queryParameter" in _params:
+        query_parameter = _params.pop("queryParameter")
     # Construct URL
     _url = "/reqopt/implicit/optional/query"
 
     # Construct parameters
-    if query_parameter is not None:
-        _params["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
+    _params["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -75,17 +78,20 @@ def build_implicit_put_optional_query_request(*, query_parameter: Optional[str] 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_implicit_put_optional_header_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_implicit_put_optional_header_request(
+    *, query_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(query_parameter, "is_default", False) and "queryParameter" in _headers:
+        query_parameter = _headers.pop("queryParameter")
     # Construct URL
     _url = "/reqopt/implicit/optional/header"
 
     # Construct headers
-    if query_parameter is not None:
-        _headers["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
+    _headers["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -163,19 +169,20 @@ def build_implicit_get_required_global_query_request(*, required_global_query: s
 
 
 def build_implicit_get_optional_global_query_request(
-    *, optional_global_query: Optional[int] = None, **kwargs: Any
+    *, optional_global_query: Optional[int] = DefaultInt(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(optional_global_query, "is_default", False) and "optional-global-query" in _params:
+        optional_global_query = _params.pop("optional-global-query")
     # Construct URL
     _url = "/reqopt/global/optional/query"
 
     # Construct parameters
-    if optional_global_query is not None:
-        _params["optional-global-query"] = _SERIALIZER.query("optional_global_query", optional_global_query, "int")
+    _params["optional-global-query"] = _SERIALIZER.query("optional_global_query", optional_global_query, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -301,18 +308,19 @@ def build_explicit_post_required_integer_header_request(*, header_parameter: int
 
 
 def build_explicit_post_optional_integer_header_request(
-    *, header_parameter: Optional[int] = None, **kwargs: Any
+    *, header_parameter: Optional[int] = DefaultInt(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(header_parameter, "is_default", False) and "headerParameter" in _headers:
+        header_parameter = _headers.pop("headerParameter")
     # Construct URL
     _url = "/reqopt/optional/integer/header"
 
     # Construct headers
-    if header_parameter is not None:
-        _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
+    _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -404,18 +412,19 @@ def build_explicit_post_required_string_header_request(*, header_parameter: str,
 
 
 def build_explicit_post_optional_string_header_request(
-    *, body_parameter: Optional[str] = None, **kwargs: Any
+    *, body_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(body_parameter, "is_default", False) and "bodyParameter" in _headers:
+        body_parameter = _headers.pop("bodyParameter")
     # Construct URL
     _url = "/reqopt/optional/string/header"
 
     # Construct headers
-    if body_parameter is not None:
-        _headers["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
+    _headers["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -573,18 +582,19 @@ def build_explicit_post_required_array_header_request(*, header_parameter: List[
 
 
 def build_explicit_post_optional_array_header_request(
-    *, header_parameter: Optional[List[str]] = None, **kwargs: Any
+    *, header_parameter: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(header_parameter, "is_default", False) and "headerParameter" in _headers:
+        header_parameter = _headers.pop("headerParameter")
     # Construct URL
     _url = "/reqopt/optional/array/header"
 
     # Construct headers
-    if header_parameter is not None:
-        _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
+    _headers["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -649,7 +659,7 @@ class ImplicitOperations:
 
     @distributed_trace
     def put_optional_query(  # pylint: disable=inconsistent-return-statements
-        self, *, query_parameter: Optional[str] = None, **kwargs: Any
+        self, *, query_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Test implicitly optional query parameter.
 
@@ -689,7 +699,7 @@ class ImplicitOperations:
 
     @distributed_trace
     def put_optional_header(  # pylint: disable=inconsistent-return-statements
-        self, *, query_parameter: Optional[str] = None, **kwargs: Any
+        self, *, query_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Test implicitly optional header parameter.
 
@@ -1361,7 +1371,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: Optional[int] = None, **kwargs: Any
+        self, *, header_parameter: Optional[int] = DefaultInt(None), **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
@@ -1728,7 +1738,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
-        self, *, body_parameter: Optional[str] = None, **kwargs: Any
+        self, *, body_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
@@ -2597,7 +2607,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any
+        self, *, header_parameter: Optional[List[str]] = DefaultListstr(None), **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 

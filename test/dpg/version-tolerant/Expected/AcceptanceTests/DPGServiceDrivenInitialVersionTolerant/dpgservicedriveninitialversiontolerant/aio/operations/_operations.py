@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ..._vendor import DefaultStr
 from ...operations._operations import (
     build_params_get_optional_request,
     build_params_get_required_request,
@@ -148,7 +149,7 @@ class ParamsOperations:
 
     @distributed_trace_async
     async def put_required_optional(
-        self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
+        self, *, required_param: str, optional_param: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> JSON:
         """Initially has one required query parameter and one optional query parameter.  After evolution,
         a new optional query parameter is added.
@@ -296,7 +297,7 @@ class ParamsOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> JSON:
+    async def get_optional(self, *, optional_param: Optional[str] = DefaultStr(None), **kwargs: Any) -> JSON:
         """Get true Boolean value on path.
          Initially has one optional query parameter. After evolution, a new optional query parameter is
         added.

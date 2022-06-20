@@ -324,10 +324,16 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.deprecated:
             file_import.add_import("warnings", ImportType.STDLIB)
 
+        relative_path = "..." if async_mode else ".."
         if self.code_model.need_request_converter:
-            relative_path = "..." if async_mode else ".."
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
+            )
+        for _, default_t in self.default_type_annotations.items():
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor",
+                default_t,
+                ImportType.LOCAL,
             )
         if async_mode:
             file_import.add_submodule_import(

@@ -21,6 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ..._vendor import DefaultInt, DefaultStr
 from ...operations._operations import (
     build_parameter_grouping_group_with_constant_request,
     build_parameter_grouping_post_multi_param_groups_request,
@@ -53,7 +54,13 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_required(  # pylint: disable=inconsistent-return-statements
-        self, path: str, body: int, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+        self,
+        path: str,
+        body: int,
+        *,
+        custom_header: Optional[str] = DefaultStr(None),
+        query: int = DefaultInt(30),
+        **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
@@ -106,7 +113,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_optional(  # pylint: disable=inconsistent-return-statements
-        self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+        self, *, custom_header: Optional[str] = DefaultStr(None), query: int = DefaultInt(30), **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
@@ -149,7 +156,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_reserved_words(  # pylint: disable=inconsistent-return-statements
-        self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        from_parameter: Optional[str] = DefaultStr(None),
+        accept_parameter: Optional[str] = DefaultStr(None),
+        **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
 
@@ -196,10 +207,10 @@ class ParameterGroupingOperations:
     async def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
         self,
         *,
-        header_one: Optional[str] = None,
-        query_one: int = 30,
-        header_two: Optional[str] = None,
-        query_two: int = 30,
+        header_one: Optional[str] = DefaultStr(None),
+        query_one: int = DefaultInt(30),
+        header_two: Optional[str] = DefaultStr(None),
+        query_two: int = DefaultInt(30),
         **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
@@ -249,7 +260,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
-        self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
+        self, *, header_one: Optional[str] = DefaultStr(None), query_one: int = DefaultInt(30), **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 
@@ -292,7 +303,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def group_with_constant(  # pylint: disable=inconsistent-return-statements
-        self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        grouped_constant: Optional[str] = None,
+        grouped_parameter: Optional[str] = DefaultStr(None),
+        **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.

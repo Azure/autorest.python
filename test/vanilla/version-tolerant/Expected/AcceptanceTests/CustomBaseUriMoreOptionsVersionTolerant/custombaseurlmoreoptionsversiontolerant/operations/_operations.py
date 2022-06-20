@@ -22,7 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
+from .._vendor import DefaultStr, _format_url_section
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -32,13 +32,15 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_paths_get_empty_request(
-    key_name: str, subscription_id: str, *, key_version: str = "v1", **kwargs: Any
+    key_name: str, subscription_id: str, *, key_version: str = DefaultStr("v1"), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(key_version, "is_default", False) and "keyVersion" in _params:
+        key_version = _params.pop("keyVersion")
     # Construct URL
     _url = "/customuri/{subscriptionId}/{keyName}"
     path_format_arguments = {
@@ -49,8 +51,7 @@ def build_paths_get_empty_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    if key_version is not None:
-        _params["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
+    _params["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -77,7 +78,7 @@ class PathsOperations:
 
     @distributed_trace
     def get_empty(  # pylint: disable=inconsistent-return-statements
-        self, vault: str, secret: str, key_name: str, *, key_version: str = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, *, key_version: str = DefaultStr("v1"), **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.
 

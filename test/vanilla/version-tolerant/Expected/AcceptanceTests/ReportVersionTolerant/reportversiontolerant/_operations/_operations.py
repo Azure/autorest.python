@@ -22,7 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import DefaultStr, MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -31,18 +31,19 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_get_report_request(*, qualifier: Optional[str] = DefaultStr(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(qualifier, "is_default", False) and "qualifier" in _params:
+        qualifier = _params.pop("qualifier")
     # Construct URL
     _url = "/report"
 
     # Construct parameters
-    if qualifier is not None:
-        _params["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+    _params["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -50,18 +51,19 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_get_optional_report_request(*, qualifier: Optional[str] = DefaultStr(None), **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(qualifier, "is_default", False) and "qualifier" in _params:
+        qualifier = _params.pop("qualifier")
     # Construct URL
     _url = "/report/optional"
 
     # Construct parameters
-    if qualifier is not None:
-        _params["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+    _params["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -71,7 +73,7 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
 
 class AutoRestReportServiceOperationsMixin(MixinABC):
     @distributed_trace
-    def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
+    def get_report(self, *, qualifier: Optional[str] = DefaultStr(None), **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
@@ -126,7 +128,7 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
         return cast(Dict[str, int], deserialized)
 
     @distributed_trace
-    def get_optional_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
+    def get_optional_report(self, *, qualifier: Optional[str] = DefaultStr(None), **kwargs: Any) -> Dict[str, int]:
         """Get optional test coverage report.
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'

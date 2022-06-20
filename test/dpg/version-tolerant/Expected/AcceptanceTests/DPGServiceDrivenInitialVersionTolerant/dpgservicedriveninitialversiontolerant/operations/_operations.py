@@ -23,6 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
+from .._vendor import DefaultStr
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -69,20 +70,21 @@ def build_params_get_required_request(*, parameter: str, **kwargs: Any) -> HttpR
 
 
 def build_params_put_required_optional_request(
-    *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
+    *, required_param: str, optional_param: Optional[str] = DefaultStr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(optional_param, "is_default", False) and "optionalParam" in _params:
+        optional_param = _params.pop("optionalParam")
     # Construct URL
     _url = "/serviceDriven/parameters"
 
     # Construct parameters
     _params["requiredParam"] = _SERIALIZER.query("required_param", required_param, "str")
-    if optional_param is not None:
-        _params["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
+    _params["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -107,18 +109,21 @@ def build_params_post_parameters_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_params_get_optional_request(*, optional_param: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_params_get_optional_request(
+    *, optional_param: Optional[str] = DefaultStr(None), **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(optional_param, "is_default", False) and "optionalParam" in _params:
+        optional_param = _params.pop("optionalParam")
     # Construct URL
     _url = "/serviceDriven/moreParameters"
 
     # Construct parameters
-    if optional_param is not None:
-        _params["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
+    _params["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -235,7 +240,7 @@ class ParamsOperations:
 
     @distributed_trace
     def put_required_optional(
-        self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
+        self, *, required_param: str, optional_param: Optional[str] = DefaultStr(None), **kwargs: Any
     ) -> JSON:
         """Initially has one required query parameter and one optional query parameter.  After evolution,
         a new optional query parameter is added.
@@ -383,7 +388,7 @@ class ParamsOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> JSON:
+    def get_optional(self, *, optional_param: Optional[str] = DefaultStr(None), **kwargs: Any) -> JSON:
         """Get true Boolean value on path.
          Initially has one optional query parameter. After evolution, a new optional query parameter is
         added.

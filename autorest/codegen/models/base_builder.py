@@ -5,13 +5,25 @@
 # --------------------------------------------------------------------------
 import logging
 from abc import abstractmethod
-from typing import Any, Dict, List, Optional, TypeVar, Union, TYPE_CHECKING, Generic
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+    TypeVar,
+    Union,
+    TYPE_CHECKING,
+    Generic,
+)
 from .base_model import BaseModel
 from .parameter_list import (
     ParameterList,
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
 )
+from .base_type import BaseType
+from .constant_type import ConstantType
+from .parameter import ParameterLocation
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -103,4 +115,20 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
     def method_signature(self, async_mode: bool) -> List[str]:
         if self.abstract:
             return ["*args,", "**kwargs"]
-        return self.parameters.method_signature(async_mode)
+        return self.parameters.method_signature(
+            async_mode, use_default_type=not self.is_overload
+        )
+
+    @property
+    def default_type_annotations(
+        self,
+    ) -> Dict[str, str]:  # return a dict of type_annotation --> default_type_annotation
+        if self.abstract or self.is_overload or self.code_model.is_legacy:
+            return {}
+        return {
+            p.type.type_annotation(): p.type.default_type_annotation
+            for p in self.parameters.keyword_only
+            if (p.client_default_value is not None or p.optional)
+            and not isinstance(p.type, ConstantType)
+            and (p.location in [ParameterLocation.HEADER, ParameterLocation.QUERY])
+        }

@@ -22,7 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
+from .._vendor import DefaultInt, DefaultStr, _format_url_section
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -32,7 +32,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_parameter_grouping_post_required_request(
-    path: str, *, json: int, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+    path: str, *, json: int, custom_header: Optional[str] = DefaultStr(None), query: int = DefaultInt(30), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -40,6 +40,10 @@ def build_parameter_grouping_post_required_request(
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(custom_header, "is_default", False) and "customHeader" in _headers:
+        custom_header = _headers.pop("customHeader")
+    if getattr(query, "is_default", False) and "query" in _params:
+        query = _params.pop("query")
     # Construct URL
     _url = "/parameterGrouping/postRequired/{path}"
     path_format_arguments = {
@@ -49,12 +53,10 @@ def build_parameter_grouping_post_required_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    if query is not None:
-        _params["query"] = _SERIALIZER.query("query", query, "int")
+    _params["query"] = _SERIALIZER.query("query", query, "int")
 
     # Construct headers
-    if custom_header is not None:
-        _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
+    _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -63,51 +65,58 @@ def build_parameter_grouping_post_required_request(
 
 
 def build_parameter_grouping_post_optional_request(
-    *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+    *, custom_header: Optional[str] = DefaultStr(None), query: int = DefaultInt(30), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(custom_header, "is_default", False) and "customHeader" in _headers:
+        custom_header = _headers.pop("customHeader")
+    if getattr(query, "is_default", False) and "query" in _params:
+        query = _params.pop("query")
     # Construct URL
     _url = "/parameterGrouping/postOptional"
 
     # Construct parameters
-    if query is not None:
-        _params["query"] = _SERIALIZER.query("query", query, "int")
+    _params["query"] = _SERIALIZER.query("query", query, "int")
 
     # Construct headers
-    if custom_header is not None:
-        _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
+    _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_parameter_grouping_post_reserved_words_request(
-    *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
+    *,
+    from_parameter: Optional[str] = DefaultStr(None),
+    accept_parameter: Optional[str] = DefaultStr(None),
+    **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    if getattr(from_parameter, "is_default", False) and "from" in _params:
+        from_parameter = _params.pop("from")
+    if getattr(accept_parameter, "is_default", False) and "accept" in _params:
+        accept_parameter = _params.pop("accept")
     # Construct URL
     _url = "/parameterGrouping/postReservedWords"
 
     # Construct parameters
-    if from_parameter is not None:
-        _params["from"] = _SERIALIZER.query("from_parameter", from_parameter, "str")
-    if accept_parameter is not None:
-        _params["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
+    _params["from"] = _SERIALIZER.query("from_parameter", from_parameter, "str")
+    _params["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
 
 
 def build_parameter_grouping_post_multi_param_groups_request(
     *,
-    header_one: Optional[str] = None,
-    query_one: int = 30,
-    header_two: Optional[str] = None,
-    query_two: int = 30,
+    header_one: Optional[str] = DefaultStr(None),
+    query_one: int = DefaultInt(30),
+    header_two: Optional[str] = DefaultStr(None),
+    query_two: int = DefaultInt(30),
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -115,63 +124,69 @@ def build_parameter_grouping_post_multi_param_groups_request(
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(header_one, "is_default", False) and "header-one" in _headers:
+        header_one = _headers.pop("header-one")
+    if getattr(query_one, "is_default", False) and "query-one" in _params:
+        query_one = _params.pop("query-one")
+    if getattr(header_two, "is_default", False) and "header-two" in _headers:
+        header_two = _headers.pop("header-two")
+    if getattr(query_two, "is_default", False) and "query-two" in _params:
+        query_two = _params.pop("query-two")
     # Construct URL
     _url = "/parameterGrouping/postMultipleParameterGroups"
 
     # Construct parameters
-    if query_one is not None:
-        _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
-    if query_two is not None:
-        _params["query-two"] = _SERIALIZER.query("query_two", query_two, "int")
+    _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
+    _params["query-two"] = _SERIALIZER.query("query_two", query_two, "int")
 
     # Construct headers
-    if header_one is not None:
-        _headers["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
-    if header_two is not None:
-        _headers["header-two"] = _SERIALIZER.header("header_two", header_two, "str")
+    _headers["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
+    _headers["header-two"] = _SERIALIZER.header("header_two", header_two, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_parameter_grouping_post_shared_parameter_group_object_request(
-    *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
+    *, header_one: Optional[str] = DefaultStr(None), query_one: int = DefaultInt(30), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(header_one, "is_default", False) and "header-one" in _headers:
+        header_one = _headers.pop("header-one")
+    if getattr(query_one, "is_default", False) and "query-one" in _params:
+        query_one = _params.pop("query-one")
     # Construct URL
     _url = "/parameterGrouping/sharedParameterGroupObject"
 
     # Construct parameters
-    if query_one is not None:
-        _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
+    _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
 
     # Construct headers
-    if header_one is not None:
-        _headers["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
+    _headers["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_parameter_grouping_group_with_constant_request(
-    *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+    *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = DefaultStr(None), **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
+    if getattr(grouped_parameter, "is_default", False) and "groupedParameter" in _headers:
+        grouped_parameter = _headers.pop("groupedParameter")
     # Construct URL
     _url = "/parameterGrouping/groupWithConstant"
 
     # Construct headers
-    if grouped_constant is not None:
-        _headers["groupedConstant"] = _SERIALIZER.header("grouped_constant", grouped_constant, "str")
-    if grouped_parameter is not None:
-        _headers["groupedParameter"] = _SERIALIZER.header("grouped_parameter", grouped_parameter, "str")
+    _headers["groupedConstant"] = _SERIALIZER.header("grouped_constant", grouped_constant, "str")
+    _headers["groupedParameter"] = _SERIALIZER.header("grouped_parameter", grouped_parameter, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -196,7 +211,13 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_required(  # pylint: disable=inconsistent-return-statements
-        self, path: str, body: int, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+        self,
+        path: str,
+        body: int,
+        *,
+        custom_header: Optional[str] = DefaultStr(None),
+        query: int = DefaultInt(30),
+        **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
@@ -249,7 +270,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_optional(  # pylint: disable=inconsistent-return-statements
-        self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+        self, *, custom_header: Optional[str] = DefaultStr(None), query: int = DefaultInt(30), **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
@@ -292,7 +313,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_reserved_words(  # pylint: disable=inconsistent-return-statements
-        self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        from_parameter: Optional[str] = DefaultStr(None),
+        accept_parameter: Optional[str] = DefaultStr(None),
+        **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
 
@@ -339,10 +364,10 @@ class ParameterGroupingOperations:
     def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
         self,
         *,
-        header_one: Optional[str] = None,
-        query_one: int = 30,
-        header_two: Optional[str] = None,
-        query_two: int = 30,
+        header_one: Optional[str] = DefaultStr(None),
+        query_one: int = DefaultInt(30),
+        header_two: Optional[str] = DefaultStr(None),
+        query_two: int = DefaultInt(30),
         **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
@@ -392,7 +417,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
-        self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
+        self, *, header_one: Optional[str] = DefaultStr(None), query_one: int = DefaultInt(30), **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 
@@ -435,7 +460,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def group_with_constant(  # pylint: disable=inconsistent-return-statements
-        self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        grouped_constant: Optional[str] = None,
+        grouped_parameter: Optional[str] = DefaultStr(None),
+        **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.
