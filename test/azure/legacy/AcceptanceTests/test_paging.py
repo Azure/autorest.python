@@ -186,8 +186,14 @@ class TestPaging(object):
         assert pages[0].properties.id == 1
         assert pages[0].properties.name == "Product"
 
-    def test_api_version(self, client):
-        pages = list(client.paging.page_with_api_version())
+    def test_append_api_version(self, client):
+        pages = list(client.paging.append_api_version())
+        assert len(pages) == 1
+        assert pages[0].properties.id == 1
+        assert pages[0].properties.name == "Product"
+
+    def test_replace_api_version(self, client):
+        pages = list(client.paging.replace_api_version())
         assert len(pages) == 1
         assert pages[0].properties.id == 1
         assert pages[0].properties.name == "Product"

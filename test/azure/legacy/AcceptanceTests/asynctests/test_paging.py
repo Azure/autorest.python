@@ -254,3 +254,17 @@ class TestPaging(object):
         assert len(pages) == 1
         assert pages[0].properties.id == 1
         assert pages[0].properties.name == "Product"
+
+    @pytest.mark.asyncio
+    async def test_append_api_version(self, client):
+        pages = [p async for p in client.paging.append_api_version()]
+        assert len(pages) == 1
+        assert pages[0].properties.id == 1
+        assert pages[0].properties.name == "Product"
+
+    @pytest.mark.asyncio
+    async def test_replace_api_version(self, client):
+        pages = [p async for p in client.paging.replace_api_version()]
+        assert len(pages) == 1
+        assert pages[0].properties.id == 1
+        assert pages[0].properties.name == "Product"

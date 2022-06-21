@@ -236,8 +236,15 @@ async def test_duplicate_params(client):
     assert pages[0]["properties"]["name"] == "Product"
 
 @pytest.mark.asyncio
-async def test_api_version(client):
-    pages = [p async for p in client.paging.page_with_api_version()]
+async def test_append_api_version(client):
+    pages = [p async for p in client.paging.append_api_version()]
+    assert len(pages) == 1
+    assert pages[0]["properties"]["id"] == 1
+    assert pages[0]["properties"]["name"] == "Product"
+
+@pytest.mark.asyncio
+async def test_replace_api_version(client):
+    pages = [p async for p in client.paging.replace_api_version()]
     assert len(pages) == 1
     assert pages[0]["properties"]["id"] == 1
     assert pages[0]["properties"]["name"] == "Product"
