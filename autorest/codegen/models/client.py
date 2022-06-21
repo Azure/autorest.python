@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, Optional
+from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union
 
 from .base_model import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList

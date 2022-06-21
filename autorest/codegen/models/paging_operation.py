@@ -140,9 +140,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.merge(
                 self.get_request_builder_import(self.next_request_builder, async_mode)
             )
-        elif (
-            "api-version" in [p.rest_api_name for p in self.code_model.client.parameters]
-        ):
+        elif "api-version" in [
+            p.rest_api_name for p in self.code_model.client.parameters
+        ]:
             file_import.add_submodule_import(
                 "urllib.parse", "urlparse", ImportType.STDLIB
             )
