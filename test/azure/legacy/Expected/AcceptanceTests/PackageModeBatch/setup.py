@@ -21,7 +21,6 @@ package_folder_path = PACKAGE_NAME.replace("-", "/")
 # Version extraction inspired from 'requests'
 version = str(next(Path(package_folder_path).rglob("**/_version.py")))
 with open(version, "r") as fd:
-
     version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
 if not version:
