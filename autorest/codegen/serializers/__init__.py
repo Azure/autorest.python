@@ -142,9 +142,9 @@ class JinjaSerializer:
             self._serialize_and_write_package_files(out_path=namespace_path)
             # make sure there is pkgtutil "__init__.py"
             if self.code_model.options["no_namespace_folders"]:
-                count = self.code_model.namespace.count(".")
+                depth = self.code_model.namespace.count(".")
                 out_folder = Path("..")
-                for _ in range(count):
+                for _ in range(depth):
                     self._autorestapi.write_file(
                         out_folder / Path("__init__.py"),
                         general_serializer.serialize_pkgutil_init_file(),
