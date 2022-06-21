@@ -12,6 +12,14 @@ from .python_mappings import PadType
 from .. import YamlUpdatePlugin
 
 
+def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
+    # we don't expose maxpagesize for version tolerant generation
+    # users should be passing this into `by_page`
+    yaml_data["parameters"] = [
+        p for p in yaml_data.get("parameters", [])
+        if p["restApiName"].lower() not in ["maxpagesize", "$maxpagesize"]
+    ]
+
 def update_description(
     description: Optional[str], default_description: str = ""
 ) -> str:
@@ -21,7 +29,6 @@ def update_description(
     if description and description[-1] != ".":
         description += "."
     return description
-
 
 def update_operation_group_class_name(
     yaml_data: Dict[str, Any], class_name: str
@@ -84,6 +91,10 @@ def update_paging_response(yaml_data: Dict[str, Any]) -> None:
 
 class PreProcessPlugin(YamlUpdatePlugin):
     """Add Python naming information."""
+
+    @property
+    def version_tolerant(self) -> bool:
+        return bool(self._autorestapi.get_boolean_value("version-tolerant", True))
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
@@ -164,15 +175,18 @@ class PreProcessPlugin(YamlUpdatePlugin):
             if yaml_data.get("nextOperation")
             else yaml_data["responses"][0]
         )
-        # if we're in version tolerant, hide the paging model
-        if self._autorestapi.get_boolean_value("version-tolerant"):
+        if self.version_tolerant:
+            # if we're in version tolerant, hide the paging model
             returned_response_object["type"]["isPublic"] = False
+            _remove_paging_maxpagesize(yaml_data)
         item_type = next(
             p["type"]["elementType"]
             for p in returned_response_object["type"]["properties"]
             if p["restApiName"] == yaml_data["itemName"]
         )
         if yaml_data.get("nextOperation"):
+            if self.version_tolerant:
+                _remove_paging_maxpagesize(yaml_data["nextOperation"])
             yaml_data["nextOperation"]["groupName"] = pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )
