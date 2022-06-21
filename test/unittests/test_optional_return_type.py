@@ -21,7 +21,8 @@ def code_model():
         }},
         options={
             "show_send_request": True,
-            "builders_visibility": "public"
+            "builders_visibility": "public",
+            "version_tolerant": True
         },
     )
 

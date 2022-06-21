@@ -8,8 +8,6 @@
 from abc import ABC
 from typing import TYPE_CHECKING
 
-from azure.core.pipeline.transport import HttpRequest
-
 from ._configuration import PollingPagingExampleConfiguration
 
 if TYPE_CHECKING:
@@ -21,6 +19,7 @@ if TYPE_CHECKING:
 
 class MixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
+
     _client: "AsyncPipelineClient"
     _config: PollingPagingExampleConfiguration
     _serialize: "Serializer"

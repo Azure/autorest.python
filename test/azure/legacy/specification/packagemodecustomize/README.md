@@ -16,6 +16,7 @@ payload-flattening-threshold: 1
 clear-output-folder: true
 black: true
 package-mode: test/azure/legacy/specification/packagemodecustomize/template
+version-tolerant: false
 ```
 
 ```yaml $(package-mode)

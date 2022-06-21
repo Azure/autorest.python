@@ -30,7 +30,7 @@ from ..._operations._operations import (
     build_content_type_with_encoding_request,
     build_put_text_and_json_body_request,
 )
-from .._vendor import MixinABC
+from .._vendor import MixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -42,6 +42,14 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MediaTypesClientOperationsMixin(MixinABC):
+    def __init__(self) -> None:
+        raise_if_not_implemented(
+            self.__class__,
+            [
+                "body_three_types",
+            ],
+        )
+
     @overload
     async def analyze_body(
         self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any

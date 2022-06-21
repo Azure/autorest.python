@@ -38,7 +38,6 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         overloads: Optional[List[Operation]] = None,
         public: bool = True,
         want_tracing: bool = True,
-        abstract: bool = False,
         override_success_response_to_200: bool = False,
     ) -> None:
         super().__init__(
@@ -52,7 +51,6 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             overloads=overloads,
             public=public,
             want_tracing=want_tracing,
-            abstract=abstract,
         )
         self.next_request_builder: Optional[
             Union[RequestBuilder, OverloadedRequestBuilder]

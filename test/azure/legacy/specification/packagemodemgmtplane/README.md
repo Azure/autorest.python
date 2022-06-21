@@ -17,4 +17,5 @@ payload-flattening-threshold: 1
 clear-output-folder: true
 black: true
 package-mode: mgmtplane
+version-tolerant: false
 ```

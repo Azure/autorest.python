@@ -28,8 +28,8 @@ class CustomParameterGroup(_serialization.Model):
     """
 
     _validation = {
-        'api_version': {'required': True},
-        'tenant': {'required': True},
+        "api_version": {"required": True},
+        "tenant": {"required": True},
     }
 
     _attribute_map = {
@@ -37,13 +37,7 @@ class CustomParameterGroup(_serialization.Model):
         "tenant": {"key": "tenant", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        api_version: str,
-        tenant: str,
-        **kwargs
-    ):
+    def __init__(self, *, api_version: str, tenant: str, **kwargs):
         """
         :keyword api_version: Sets the api version to use. Required.
         :paramtype api_version: str
@@ -70,11 +64,7 @@ class OdataProductResult(_serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        values: Optional[List["_models.Product"]] = None,
-        odata_next_link: Optional[str] = None,
-        **kwargs
+        self, *, values: Optional[List["_models.Product"]] = None, odata_next_link: Optional[str] = None, **kwargs
     ):
         """
         :keyword values:
@@ -99,12 +89,7 @@ class OperationResult(_serialization.Model):
         "status": {"key": "status", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[Union[str, "_models.OperationResultStatus"]] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[Union[str, "_models.OperationResultStatus"]] = None, **kwargs):
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
@@ -130,13 +115,7 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -164,13 +143,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -198,7 +171,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
     """
 
     _validation = {
-        'offset': {'required': True},
+        "offset": {"required": True},
     }
 
     _attribute_map = {
@@ -207,14 +180,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        offset: int,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -245,13 +211,7 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -275,12 +235,7 @@ class Product(_serialization.Model):
         "properties": {"key": "properties", "type": "ProductProperties"},
     }
 
-    def __init__(
-        self,
-        *,
-        properties: Optional["_models.ProductProperties"] = None,
-        **kwargs
-    ):
+    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
         """
         :keyword properties:
         :paramtype properties: ~custompollerpager.models.ProductProperties
@@ -304,11 +259,7 @@ class ProductProperties(_serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        id: Optional[int] = None,  # pylint: disable=redefined-builtin
-        name: Optional[str] = None,
-        **kwargs
+        self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
     ):
         """
         :keyword id:
@@ -335,13 +286,7 @@ class ProductResult(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        values: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword values:
         :paramtype values: list[~custompollerpager.models.Product]
@@ -367,13 +312,7 @@ class ProductResultValue(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword value:
         :paramtype value: list[~custompollerpager.models.Product]
@@ -399,13 +338,7 @@ class ProductResultValueWithXMSClientName(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        indexes: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, indexes: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword indexes:
         :paramtype indexes: list[~custompollerpager.models.Product]
