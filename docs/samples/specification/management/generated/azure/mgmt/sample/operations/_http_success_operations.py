@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -17,50 +23,34 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .._serialization import Serializer
 from .._vendor import _convert_request
-T = TypeVar('T')
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_head200_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_head200_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_head204_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_head204_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/204")
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_head404_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_head404_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/404")
 
-    return HttpRequest(
-        method="HEAD",
-        url=_url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
+
 
 class HttpSuccessOperations:
     """
@@ -79,12 +69,8 @@ class HttpSuccessOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-    def head200(
-        self,
-        **kwargs: Any
-    ) -> bool:
+    def head200(self, **kwargs: Any) -> bool:
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -92,19 +78,16 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head200_request(
-            template_url=self.head200.metadata['url'],
+            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -112,9 +95,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -127,14 +108,10 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head200.metadata = {'url': "/http/success/200"}  # type: ignore
-
+    head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def head204(
-        self,
-        **kwargs: Any
-    ) -> bool:
+    def head204(self, **kwargs: Any) -> bool:
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -142,19 +119,16 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head204_request(
-            template_url=self.head204.metadata['url'],
+            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -162,9 +136,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -177,14 +149,10 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head204.metadata = {'url': "/http/success/204"}  # type: ignore
-
+    head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def head404(
-        self,
-        **kwargs: Any
-    ) -> bool:
+    def head404(self, **kwargs: Any) -> bool:
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -192,19 +160,16 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_head404_request(
-            template_url=self.head404.metadata['url'],
+            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -212,9 +177,7 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -227,5 +190,4 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head404.metadata = {'url': "/http/success/404"}  # type: ignore
-
+    head404.metadata = {"url": "/http/success/404"}  # type: ignore

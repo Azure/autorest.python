@@ -81,3 +81,14 @@ async def test_binary_body_three_content_types(client):
 
     content = "hello, world"
     await client.binary_body_with_three_content_types(content, content_type="text/plain")
+
+@pytest.mark.asyncio
+async def test_body_three_types(client):
+    json_input = {"hello":"world"}
+    await client.body_three_types(json_input)
+
+    content = b"hello, world"
+    await client.body_three_types(content)
+
+    content = "hello, world"
+    await client.body_three_types(content)

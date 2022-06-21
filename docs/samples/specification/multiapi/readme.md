@@ -12,6 +12,7 @@ no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
 azure-arm: true
 add-credential: true
+version-tolerant: false
 ```
 
 ### Multi API Generation

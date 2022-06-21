@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 VERSION = "unknown"
 
+
 class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for MultiapiServiceClient.
 
@@ -30,37 +31,32 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
     :paramtype api_version: str
     """
 
-    def __init__(
-        self,
-        credential: "AsyncTokenCredential",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+        api_version = kwargs.pop("api_version", "2.0.0")  # type: str
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
         self.api_version = api_version
-        self.credential_scopes = kwargs.pop('credential_scopes', [])
-        kwargs.setdefault('sdk_moniker', 'multiapidataplane/{}'.format(VERSION))
+        self.credential_scopes = kwargs.pop("credential_scopes", [])
+        kwargs.setdefault("sdk_moniker", "multiapidataplane/{}".format(VERSION))
         self._configure(**kwargs)
 
-    def _configure(
-        self,
-        **kwargs: Any
-    ) -> None:
-        self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
-        self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
-        self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
-        self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.http_logging_policy = kwargs.get('http_logging_policy') or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get('retry_policy') or policies.AsyncRetryPolicy(**kwargs)
-        self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get('redirect_policy') or policies.AsyncRedirectPolicy(**kwargs)
-        self.authentication_policy = kwargs.get('authentication_policy')
+    def _configure(self, **kwargs: Any) -> None:
+        self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = kwargs.get("headers_policy") or policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
+        self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
+        self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
+        self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.authentication_policy = kwargs.get("authentication_policy")
         if not self.credential_scopes and not self.authentication_policy:
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)
+            self.authentication_policy = policies.AsyncBearerTokenCredentialPolicy(
+                self.credential, *self.credential_scopes, **kwargs
+            )

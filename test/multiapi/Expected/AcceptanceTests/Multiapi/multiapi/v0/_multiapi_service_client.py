@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
+
 class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi client testing.
 
@@ -35,12 +36,7 @@ class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keywo
     :paramtype api_version: str
     """
 
-    def __init__(
-        self,
-        credential: "TokenCredential",
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -52,12 +48,7 @@ class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keywo
             self._client, self._config, self._serialize, self._deserialize
         )
 
-
-    def _send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
