@@ -7,7 +7,6 @@ import re
 import logging
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
-import black
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 
 from autorest.codegen.models.credential_types import (
@@ -34,7 +33,6 @@ from .sample_serializer import SampleSerializer
 from ..models import BodyParameter
 
 _LOGGER = logging.getLogger(__name__)
-_BLACK_MODE = black.Mode()
 
 __all__ = [
     "JinjaSerializer",
@@ -175,7 +173,9 @@ class JinjaSerializer:
                     self._autorestapi.write_file(output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
-            package_parts = self.code_model.options["package_name"].split("-")[:-1]
+            package_parts = (self.code_model.options["package_name"] or "").split("-")[
+                :-1
+            ]
             token_cred = isinstance(
                 getattr(self.code_model.credential, "type", None), TokenCredentialType
             )
@@ -510,15 +510,8 @@ class JinjaSerializer:
 
     # find root folder where "setup.py" is
     def _package_root_folder(self, namespace_path: Path) -> Path:
-        count = (
-            max(
-                (self.code_model.options.get("package_name") or "").count("-"),
-                self.code_model.namespace.count("."),
-            )
-            + 1
-        )
-
-        return namespace_path / Path("../" * count)
+        depth = self.code_model.namespace.count(".") + 1
+        return namespace_path / Path("../" * depth)
 
     def _prepare_sample_render_param(self) -> Dict[Any, Any]:
         # client params
@@ -651,21 +644,18 @@ class JinjaSerializer:
                     try:
                         file_name = self._to_snake_case(key) + ".py"
                         sample_params["file_name"] = file_name
-                        file_str = SampleSerializer(
-                            code_model=self.code_model,
-                            env=env,
-                            operation_group_name=operation_group.property_name,
-                            operation_name=operation.name,
-                            operation_params=operation_params,
-                            sample_params=sample_params,
-                            operation_result=operation_result,
-                            origin_file=value.get("x-ms-original-file"),
-                        ).serialize()
                         self._autorestapi.write_file(
                             out_path / f"{api_version_folder}{file_name}",
-                            black.format_file_contents(
-                                file_str, fast=True, mode=_BLACK_MODE
-                            ),
+                            SampleSerializer(
+                                code_model=self.code_model,
+                                env=env,
+                                operation_group_name=operation_group.property_name,
+                                operation_name=operation.name,
+                                operation_params=operation_params,
+                                sample_params=sample_params,
+                                operation_result=operation_result,
+                                origin_file=value.get("x-ms-original-file"),
+                            ).serialize(),
                         )
                     except Exception as e:  # pylint: disable=broad-except
                         # sample generation shall not block code generation, so just log error
