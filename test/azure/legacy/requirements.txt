@@ -27,3 +27,4 @@ msrest==0.7.1
 -e ./Expected/AcceptanceTests/PackageModeCustomize
 -e ./Expected/AcceptanceTests/SecurityAadSwagger
 -e ./Expected/AcceptanceTests/SecurityKeySwagger
+-e ./Expected/AcceptanceTests/PackageModeBatch

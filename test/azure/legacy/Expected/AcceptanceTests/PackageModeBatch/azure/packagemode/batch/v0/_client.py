@@ -7,62 +7,45 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
+from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
-from azure.mgmt.core import ARMPipelineClient
-
-from ._configuration import BatchV1ClientConfiguration
+from ._configuration import BatchV0ClientConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
-
-    from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class BatchV1Client(object):  # pylint: disable=client-accepts-api-version-keyword
+class BatchV0Client:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: azure.packagemode.batch.v1.operations.HttpSuccessOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
-    :param base_url: Service URL. Default value is "http://localhost:3000".
-    :type base_url: str
+    :vartype http_success: azure.packagemode.batch.v0.operations.HttpSuccessOperations
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(
-        self,
-        credential,  # type: "TokenCredential"
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        self._config = BatchV1ClientConfiguration(credential=credential, **kwargs)
-        self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = BatchV0ClientConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
         >>> request = HttpRequest("GET", "https://www.example.org/")
         <HttpRequest [GET], url: 'https://www.example.org/'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
@@ -83,7 +66,7 @@ class BatchV1Client(object):  # pylint: disable=client-accepts-api-version-keywo
         self._client.close()
 
     def __enter__(self):
-        # type: () -> BatchV1Client
+        # type: () -> BatchV0Client
         self._client.__enter__()
         return self
 

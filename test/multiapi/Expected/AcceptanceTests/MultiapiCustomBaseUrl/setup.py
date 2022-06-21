@@ -1,9 +1,9 @@
 # coding=utf-8
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
-#--------------------------------------------------------------------------
+# --------------------------------------------------------------------------
 # coding: utf-8
 
 from setuptools import setup, find_packages
@@ -38,5 +38,5 @@ setup(
     The profile sets a mapping between an operation group and its API version.
     The api-version parameter sets the default API version if the operation
     group is not described in the profile.
-    """
+    """,
 )

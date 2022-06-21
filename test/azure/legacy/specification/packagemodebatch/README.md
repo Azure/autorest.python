@@ -3,8 +3,6 @@
 ### Settings
 
 ``` yaml
-azure-arm: true
-add-credentials: true
 package-version: 1.0.0b1
 license-header: MICROSOFT_MIT_NO_VERSION
 output-artifact: code-model-v4-no-tags

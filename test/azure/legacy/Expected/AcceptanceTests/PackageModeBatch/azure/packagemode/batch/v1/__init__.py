@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._batch_v1_client import BatchV1Client
+from ._client import BatchV1Client
 from ._version import VERSION
 
 __version__ = VERSION
