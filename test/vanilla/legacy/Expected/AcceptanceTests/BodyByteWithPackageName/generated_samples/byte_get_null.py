@@ -6,31 +6,23 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import os
-
-from azure.identity import AzureKeyCredential
-from headwithazurekeycredentialpolicy import AutoRestHeadTestService
+from package.name import ClassName
 
 """
 The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
-    pip install azure-identity
-    pip install autorestheadtestservice
+    pip install package-name
 # USAGE
-    python http_success_head204.py
+    python byte_get_null.py
 """
 
 
 def main():
-    client = AutoRestHeadTestService(
-        credential=AzureKeyCredential(key=os.getenv("AZURE_KEY")),
-    )
+    client = ClassName()
 
-    response = client.http_success.head204()
+    response = client.byte.get_null()
     print(response)
 
 
 if __name__ == "__main__":
-    if not os.getenv("AZURE_KEY"):
-        raise Exception("Please set environment variables AZURE_KEY with real value which can access your service")
     main()

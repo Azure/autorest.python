@@ -6,9 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from urlmulticollectionformatversiontolerant import (
-    AutoRestUrlMutliCollectionFormatTestService,
-)
+from urlmulticollectionformatversiontolerant import AutoRestUrlMutliCollectionFormatTestService
 
 """
 The sample just shows how to use the method and may not run successfully.
