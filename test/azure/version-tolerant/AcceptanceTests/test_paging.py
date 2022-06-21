@@ -170,3 +170,6 @@ def test_duplicate_params(client):
     assert len(pages) == 1
     assert pages[0]["properties"]["id"] == 1
     assert pages[0]["properties"]["name"] == "Product"
+
+def test_dont_send_maxpagesize(client):
+    list(client.paging.page_with_max_page_size())
