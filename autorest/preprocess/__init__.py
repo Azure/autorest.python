@@ -16,9 +16,11 @@ def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
     # we don't expose maxpagesize for version tolerant generation
     # users should be passing this into `by_page`
     yaml_data["parameters"] = [
-        p for p in yaml_data.get("parameters", [])
+        p
+        for p in yaml_data.get("parameters", [])
         if p["restApiName"].lower() not in ["maxpagesize", "$maxpagesize"]
     ]
+
 
 def update_description(
     description: Optional[str], default_description: str = ""
@@ -29,6 +31,7 @@ def update_description(
     if description and description[-1] != ".":
         description += "."
     return description
+
 
 def update_operation_group_class_name(
     yaml_data: Dict[str, Any], class_name: str
