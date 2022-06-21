@@ -170,7 +170,7 @@ class PreProcessPlugin(YamlUpdatePlugin):
         item_type = next(
             p["type"]["elementType"]
             for p in returned_response_object["type"]["properties"]
-            if p["restApiName"] == yaml_data["itemName"]
+            if p["restApiName"] == (yaml_data["itemName"] or "value")
         )
         if yaml_data.get("nextOperation"):
             yaml_data["nextOperation"]["groupName"] = pad_reserved_words(
