@@ -371,6 +371,7 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                # make call to next link with the client's api-version
                 _parsed_next_link = urlparse(next_link)
                 _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
                 _next_request_params["api-version"] = self._config.api_version

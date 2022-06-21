@@ -32,6 +32,9 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
     :type credential: ~azure.core.credentials.TokenCredential
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
+    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+     value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
