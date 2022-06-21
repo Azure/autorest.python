@@ -37,9 +37,8 @@ class BlackScriptPlugin(Plugin):
         # format files that may be outside output folder(setup.py, etc)
         if self._autorestapi.get_boolean_value("no-namespace-folders", False):
             namespace = self._autorestapi.get_value("namespace") or ""
-            package_name = self._autorestapi.get_value("package-name") or ""
-            count = max(namespace.count("."), package_name.count("-")) + 1
-            target_file = Path("../" * count) / "setup.py"
+            depth = namespace.count(".") + 1
+            target_file = Path("../" * depth) / "setup.py"
             if self._autorestapi.read_file(target_file):
                 self.format_file(self.output_folder / target_file)
 
