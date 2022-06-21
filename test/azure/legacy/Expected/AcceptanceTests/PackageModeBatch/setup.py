@@ -7,11 +7,9 @@
 # --------------------------------------------------------------------------
 # coding: utf-8
 
-from glob import glob
 from pathlib import Path
 import re
 from setuptools import setup, find_packages
-
 
 
 PACKAGE_NAME = "azure-packagemode-batch"
@@ -21,32 +19,26 @@ PACKAGE_PPRINT_NAME = "Azure Package Mode Data Plane"
 package_folder_path = PACKAGE_NAME.replace("-", "/")
 
 # Version extraction inspired from 'requests'
-versions = glob(f"{package_folder_path}/**/_version.py", recursive=True)
-with open(str(Path(versions[0])), "r") as fd:
+version = str(next(Path(package_folder_path).rglob("**/_version.py")))
+with open(version, "r") as fd:
 
-    version = re.search(
-        r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
-    ).group(1)
+    version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
 
 
 setup(
     name=PACKAGE_NAME,
     version=version,
     description="Microsoft Azure Package Mode Data Plane Client Library for Python",
-    
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
     author="Microsoft Corporation",
-    
     author_email="azpysdkhelp@microsoft.com",
     url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
     keywords="azure, azure sdk",
-    
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",
@@ -63,25 +55,18 @@ setup(
     packages=find_packages(
         exclude=[
             "tests",
-            
             # Exclude packages that will be covered by PEP420 or nspkg
-            
             "azure",
             "azure.packagemode",
         ]
     ),
     include_package_data=True,
     package_data={
-        'pytyped': ['py.typed'],
+        "pytyped": ["py.typed"],
     },
-    
     install_requires=[
         "msrest>=0.6.21",
-        
         "azure-mgmt-core<2.0.0,>=1.3.0",
-        
     ],
-    
     python_requires=">=3.6",
-    
 )
