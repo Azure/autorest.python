@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from ... import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -26,13 +26,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         """
         :keyword status:
         :paramtype status: int

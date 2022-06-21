@@ -35,13 +35,8 @@ from uuid import uuid4
 import os
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import (
-    DeserializationError,
-    SerializationError,
-    ValidationError
-)
-
-from azure.core.exceptions import ServiceRequestError
+from azure.core.exceptions import DeserializationError, SerializationError, ServiceRequestError
+from msrest.exceptions import ValidationError
 
 from custombaseurl import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error

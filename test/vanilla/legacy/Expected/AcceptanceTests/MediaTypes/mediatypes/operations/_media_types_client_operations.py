@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,6 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import MixinABC, _convert_request
 
 T = TypeVar("T")
@@ -113,6 +112,23 @@ def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
+
+
+def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "text/plain")
+
+    # Construct URL
+    _url = kwargs.pop("template_url", "/mediatypes/bodyThreeTypes")
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> HttpRequest:
@@ -488,6 +504,123 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return deserialized
 
     binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}  # type: ignore
+
+    @overload
+    def body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+        content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+        string for 'application/octet-stream'.
+
+        :param message: The payload body. Required.
+        :type message: any
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str or the result of cls(response)
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def body_three_types(self, message: IO, *, content_type: str = "application/octet-stream", **kwargs: Any) -> str:
+        """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+        content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+        string for 'application/octet-stream'.
+
+        :param message: The payload body. Required.
+        :type message: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Known values are: 'application/json', 'application/octet-stream', 'text/plain'. Default value
+         is "application/octet-stream".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str or the result of cls(response)
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+        """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+        content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+        string for 'application/octet-stream'.
+
+        :param message: The payload body. Required.
+        :type message: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for string body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str or the result of cls(response)
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def body_three_types(self, message: Union[Any, IO, str], **kwargs: Any) -> str:
+        """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
+        content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+        string for 'application/octet-stream'.
+
+        :param message: The payload body. Is one of the following types: any, IO, string Required.
+        :type message: any or IO or str
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+         'application/octet-stream', 'text/plain'. Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str or the result of cls(response)
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+
+        _json = None
+        _content = None
+        _content = None
+        if isinstance(message, (IO, bytes)):
+            content_type = content_type or "application/octet-stream"
+            _content = message
+        else:
+            _json = self._serialize.body(message, "object")
+            content_type = content_type or "application/json"
+
+        request = build_body_three_types_request(
+            content_type=content_type,
+            json=_json,
+            content=_content,
+            template_url=self.body_three_types.metadata["url"],
+            headers=_headers,
+            params=_params,
+        )
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize("str", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    body_three_types.metadata = {"url": "/mediatypes/bodyThreeTypes"}  # type: ignore
 
     @distributed_trace
     def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:

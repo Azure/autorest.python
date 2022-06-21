@@ -12,9 +12,9 @@ from ._configuration import MediaTypesClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from msrest import Deserializer, Serializer
-
     from azure.core import AsyncPipelineClient
+
+    from .._serialization import Deserializer, Serializer
 
 
 class MixinABC(ABC):
@@ -24,3 +24,14 @@ class MixinABC(ABC):
     _config: MediaTypesClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
+
+
+def raise_if_not_implemented(cls, abstract_methods):
+    not_implemented = [f for f in abstract_methods if not callable(getattr(cls, f, None))]
+    if not_implemented:
+        raise NotImplementedError(
+            "The following methods on operation group '{}' are not implemented: '{}'."
+            " Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.".format(
+                cls.__name__, "', '".join(not_implemented)
+            )
+        )

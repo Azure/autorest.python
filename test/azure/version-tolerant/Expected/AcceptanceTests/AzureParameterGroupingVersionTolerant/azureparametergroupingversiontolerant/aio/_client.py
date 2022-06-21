@@ -9,11 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
+from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
 from .operations import ParameterGroupingOperations
 
@@ -38,6 +37,7 @@ class AutoRestParameterGroupingTestService:  # pylint: disable=client-accepts-ap
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.parameter_grouping = ParameterGroupingOperations(
             self._client, self._config, self._serialize, self._deserialize
         )

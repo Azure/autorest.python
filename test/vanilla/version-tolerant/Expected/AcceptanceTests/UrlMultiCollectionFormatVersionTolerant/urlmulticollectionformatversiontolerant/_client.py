@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import QueriesOperations
 
 if TYPE_CHECKING:
@@ -32,7 +31,6 @@ class AutoRestUrlMutliCollectionFormatTestService:  # pylint: disable=client-acc
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
         self._config = AutoRestUrlMutliCollectionFormatTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

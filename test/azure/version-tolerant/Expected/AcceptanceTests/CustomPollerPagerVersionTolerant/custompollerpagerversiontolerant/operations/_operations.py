@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -29,6 +27,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from custompollerpagerdefinitions import CustomPager, CustomPoller
 
+from .._serialization import Serializer
 from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 9):
@@ -493,13 +492,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_no_item_name_pages_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -562,13 +557,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_null_next_link_name_pages_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -631,13 +622,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_single_pages_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -701,13 +688,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_first_response_empty_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -788,16 +771,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_multiple_pages_request(
-                    client_request_id=client_request_id,
-                    maxresults=maxresults,
-                    timeout=timeout,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -946,13 +922,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_duplicate_params_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1033,16 +1005,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_odata_multiple_pages_request(
-                    client_request_id=client_request_id,
-                    maxresults=maxresults,
-                    timeout=timeout,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1127,17 +1092,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_multiple_pages_with_offset_request(
-                    offset=offset,
-                    client_request_id=client_request_id,
-                    maxresults=maxresults,
-                    timeout=timeout,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1201,13 +1158,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_multiple_pages_retry_first_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1271,13 +1224,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_multiple_pages_retry_second_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1340,13 +1289,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_single_pages_failure_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1409,13 +1354,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_multiple_pages_failure_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1478,13 +1419,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_multiple_pages_failure_uri_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1776,16 +1713,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_multiple_pages_lro_request(
-                    client_request_id=client_request_id,
-                    maxresults=maxresults,
-                    timeout=timeout,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1885,13 +1815,9 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):

@@ -176,12 +176,9 @@ def _get_json_response_template_to_status_codes(
 
 
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
-    def __init__(
-        self, code_model: CodeModel, async_mode: bool, is_python3_file: bool
-    ) -> None:
+    def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         self.code_model = code_model
         self.async_mode = async_mode
-        self.is_python3_file = is_python3_file
         self.parameter_serializer = ParameterSerializer()
 
     @property
@@ -225,9 +222,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             function_def=self._function_def,
             method_name=builder.name,
             need_self_param=self._need_self_param,
-            method_param_signatures=builder.method_signature(
-                self.async_mode or self.is_python3_file, self.async_mode
-            ),
+            method_param_signatures=builder.method_signature(self.async_mode),
             pylint_disable=builder.pylint_disable,
         )
 
@@ -245,7 +240,6 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         return (
             decorators_str
             + utils.method_signature_and_response_type_annotation_template(
-                is_python3_file=self.is_python3_file,
                 method_signature=method_signature,
                 response_type_annotation=response_type_annotation,
             )
@@ -442,7 +436,7 @@ class RequestBuilderSerializer(
 
     def pop_kwargs_from_signature(self, builder: RequestBuilderType) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
-            builder.parameters.kwargs_to_pop(is_python3_file=self.is_python3_file),
+            builder.parameters.kwargs_to_pop,
             check_kwarg_dict=True,
             pop_headers_kwarg=PopKwargType.CASE_INSENSITIVE
             if bool(builder.parameters.headers)
@@ -452,7 +446,8 @@ class RequestBuilderSerializer(
             else PopKwargType.NO,
         )
 
-    def create_http_request(self, builder: RequestBuilderType) -> List[str]:
+    @staticmethod
+    def create_http_request(builder: RequestBuilderType) -> List[str]:
         retval = ["return HttpRequest("]
         retval.append(f'    method="{builder.method}",')
         retval.append("    url=_url,")
@@ -465,9 +460,9 @@ class RequestBuilderSerializer(
             and builder.parameters.body_parameter.in_method_signature
         ):
             body_param = builder.parameters.body_parameter
-            if body_param.constant or (
-                self.is_python3_file
-                and body_param.method_location != ParameterMethodLocation.KWARG
+            if (
+                body_param.constant
+                or body_param.method_location != ParameterMethodLocation.KWARG
             ):
                 # we only need to pass it through if it's not a kwarg or it's a popped kwarg
                 retval.append(
@@ -598,8 +593,6 @@ class _OperationSerializer(
     def decorators(self, builder: OperationType) -> List[str]:
         """Decorators for the method"""
         super_decorators = super().decorators(builder)
-        if builder.abstract:
-            super_decorators.append("@abc.abstractmethod")
         return super_decorators
 
     def param_description(
@@ -613,9 +606,7 @@ class _OperationSerializer(
         return description_list
 
     def pop_kwargs_from_signature(self, builder: OperationType) -> List[str]:
-        kwargs_to_pop = builder.parameters.kwargs_to_pop(
-            is_python3_file=self.is_python3_file
-        )
+        kwargs_to_pop = builder.parameters.kwargs_to_pop
         kwargs = self.parameter_serializer.pop_kwargs_from_signature(
             kwargs_to_pop,
             check_kwarg_dict=True,
@@ -824,7 +815,6 @@ class _OperationSerializer(
                 is_next_request
                 and builder.operation_type == "paging"
                 and not bool(builder.next_request_builder)  # type: ignore
-                and not self.code_model.options["reformat_next_link"]
                 and parameter.location == ParameterLocation.QUERY
             ):
                 # if we don't want to reformat query parameters for next link calls
@@ -835,10 +825,15 @@ class _OperationSerializer(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
             )
         if request_builder.overloads:
+            seen_body_params = set()
             for overload in request_builder.overloads:
                 body_param = cast(
                     RequestBuilderBodyParameter, overload.parameters.body_parameter
                 )
+                if body_param.client_name in seen_body_params:
+                    continue
+                seen_body_params.add(body_param.client_name)
+
                 retval.append(
                     f"    {body_param.client_name}={body_param.name_in_high_level_operation},"
                 )
@@ -1105,15 +1100,12 @@ PagingOperationType = TypeVar(
 class _PagingOperationSerializer(
     _OperationSerializer[PagingOperationType]
 ):  # pylint: disable=abstract-method
-    def __init__(
-        self, code_model: CodeModel, async_mode: bool, is_python3_file: bool
-    ) -> None:
+    def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         # for pylint reasons need to redefine init
         # probably because inheritance is going too deep
-        super().__init__(code_model, async_mode, is_python3_file)
+        super().__init__(code_model, async_mode)
         self.code_model = code_model
         self.async_mode = async_mode
-        self.is_python3_file = is_python3_file
         self.parameter_serializer = ParameterSerializer()
 
     def serialize_path(self, builder: PagingOperationType) -> List[str]:
@@ -1126,8 +1118,6 @@ class _PagingOperationSerializer(
         retval: List[str] = []
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append("@distributed_trace")
-        if builder.abstract:
-            retval.append("@abc.abstractmethod")
         return retval
 
     def call_next_link_request_builder(self, builder: PagingOperationType) -> List[str]:
@@ -1143,9 +1133,16 @@ class _PagingOperationSerializer(
             template_url = "next_link"
 
         request_builder = builder.next_request_builder or builder.request_builder
-        return self._call_request_builder_helper(
-            builder, request_builder, template_url=template_url, is_next_request=True
-        )
+        if builder.next_request_builder or self.code_model.is_legacy:
+            return self._call_request_builder_helper(
+                builder,
+                request_builder,
+                template_url=template_url,
+                is_next_request=True,
+            )
+        retval = ['request = HttpRequest("GET", next_link)']
+        retval.extend(self._postprocess_http_request(builder, "request.url"))
+        return retval
 
     def _prepare_request_callback(self, builder: PagingOperationType) -> List[str]:
         retval = ["def prepare_request(next_link=None):"]
@@ -1158,10 +1155,7 @@ class _PagingOperationSerializer(
         retval.extend(
             [f"        {line}" for line in self.call_next_link_request_builder(builder)]
         )
-        if not builder.next_request_builder and builder.parameters.path:
-            retval.append("")
-            retval.extend([f"        {line}" for line in self.serialize_path(builder)])
-        if not builder.next_request_builder:
+        if not builder.next_request_builder and self.code_model.is_legacy:
             retval.append('        request.method = "GET"')
         else:
             retval.append("")
@@ -1239,15 +1233,12 @@ LROOperationType = TypeVar(
 
 
 class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
-    def __init__(
-        self, code_model: CodeModel, async_mode: bool, is_python3_file: bool
-    ) -> None:
+    def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         # for pylint reasons need to redefine init
         # probably because inheritance is going too deep
-        super().__init__(code_model, async_mode, is_python3_file)
+        super().__init__(code_model, async_mode)
         self.code_model = code_model
         self.async_mode = async_mode
-        self.is_python3_file = is_python3_file
         self.parameter_serializer = ParameterSerializer()
 
     def param_description(self, builder: LROOperationType) -> List[str]:
@@ -1427,7 +1418,6 @@ def get_operation_serializer(
     builder: Operation,
     code_model,
     async_mode: bool,
-    is_python3_file: bool,
 ) -> Union[
     OperationSerializer,
     PagingOperationSerializer,
@@ -1446,4 +1436,4 @@ def get_operation_serializer(
         retcls = LROOperationSerializer
     elif builder.operation_type == "paging":
         retcls = PagingOperationSerializer
-    return retcls(code_model, async_mode, is_python3_file)
+    return retcls(code_model, async_mode)

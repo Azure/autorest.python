@@ -36,7 +36,6 @@ from ._models_py3 import Slide
 from ._models_py3 import Slideshow
 from ._models_py3 import StorageServiceProperties
 
-
 from ._auto_rest_swagger_batxml_service_enums import AccessTier
 from ._auto_rest_swagger_batxml_service_enums import ArchiveStatus
 from ._auto_rest_swagger_batxml_service_enums import BlobType

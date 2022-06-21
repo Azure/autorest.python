@@ -9,18 +9,18 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 
 from .. import models
+from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
+
 
 class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Long-running Operation for AutoRest.
@@ -36,10 +36,7 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
     """
 
     def __init__(
-        self,
-        credential: "AsyncTokenCredential",
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
+        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
@@ -48,16 +45,9 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.paging = PagingOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
-
-    def _send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

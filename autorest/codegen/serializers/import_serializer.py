@@ -58,11 +58,8 @@ def _get_import_clauses(imports: List[ImportModel], delimiter: str) -> List[str]
 
 
 class FileImportSerializer:
-    def __init__(
-        self, file_import: FileImport, is_python3_file: bool, async_mode: bool = False
-    ) -> None:
+    def __init__(self, file_import: FileImport, async_mode: bool = False) -> None:
         self.file_import = file_import
-        self.is_python3_file = is_python3_file
         self.async_mode = async_mode
 
     def _get_imports_list(
@@ -82,20 +79,14 @@ class FileImportSerializer:
         return file_import_copy.get_imports_from_section(baseline_typing_section)
 
     def _add_type_checking_import(self):
-        any_typing = any(
-            self.file_import.get_imports_from_section(TypingSection.TYPING)
-        )
-        conditional_and_not_py3 = not self.is_python3_file and any(
-            self.file_import.get_imports_from_section(TypingSection.CONDITIONAL)
-        )
-        if any_typing or conditional_and_not_py3:
+        if any(self.file_import.get_imports_from_section(TypingSection.TYPING)):
             self.file_import.add_submodule_import(
                 "typing", "TYPE_CHECKING", ImportType.STDLIB
             )
 
     def _get_typing_definitions(self) -> str:
         def declare_defintion(
-            spacing: str, type_name: str, type_definition: TypeDefinition
+            type_name: str, type_definition: TypeDefinition
         ) -> List[str]:
             ret: List[str] = []
             definition_value = (
@@ -112,21 +103,20 @@ class FileImportSerializer:
                 ):
                     if version is not None:
                         ret.append(
-                            "{}{} sys.version_info >= {}:".format(
-                                spacing, "if" if i == 0 else "elif", version
+                            "{} sys.version_info >= {}:".format(
+                                "if" if i == 0 else "elif", version
                             )
                         )
                     elif i > 0:
-                        ret.append("{}else:".format(spacing))
+                        ret.append("else:")
                     for import_clause in _get_import_clauses(
                         [type_definition.version_imports[version]], "\n"
                     ):
                         ret.append(
-                            "{}{}{}".format(
+                            "{}{}".format(
                                 "    "
                                 if len(versions) > 1 or version is not None
                                 else "",
-                                spacing,
                                 import_clause,
                             )
                         )
@@ -134,15 +124,14 @@ class FileImportSerializer:
                             ret[
                                 -1
                             ] += "  # type: ignore  # pylint: disable=ungrouped-imports"
-            ret.append("{}{} = {}".format(spacing, type_name, definition_value))
+            ret.append("{} = {}".format(type_name, definition_value))
             return ret
 
         if not self.file_import.type_definitions:
             return ""
-        spacing = "" if self.is_python3_file else "    "
         declarations: List[str] = [""]
         for type_name, value in self.file_import.type_definitions.items():
-            declarations.extend(declare_defintion(spacing, type_name, value))
+            declarations.extend(declare_defintion(type_name, value))
         return "\n".join(declarations)
 
     def __str__(self) -> str:
@@ -150,7 +139,7 @@ class FileImportSerializer:
         regular_imports = ""
         regular_imports_list = self._get_imports_list(
             baseline_typing_section=TypingSection.REGULAR,
-            add_conditional_typing=self.is_python3_file,
+            add_conditional_typing=True,
         )
 
         if regular_imports_list:
@@ -161,7 +150,7 @@ class FileImportSerializer:
         typing_imports = ""
         typing_imports_list = self._get_imports_list(
             baseline_typing_section=TypingSection.TYPING,
-            add_conditional_typing=not self.is_python3_file,
+            add_conditional_typing=False,
         )
         if typing_imports_list:
             typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    "

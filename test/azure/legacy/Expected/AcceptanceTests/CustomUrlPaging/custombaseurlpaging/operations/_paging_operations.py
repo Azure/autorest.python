@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Iterable, Optional, TypeVar
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,6 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
 T = TypeVar("T")
@@ -148,11 +147,6 @@ class PagingOperations:
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
                 request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
-
-                path_format_arguments = {
-                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-                }
                 request.method = "GET"
             return request
 

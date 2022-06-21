@@ -32,8 +32,7 @@ import os
 from datetime import date, datetime, timedelta
 from os.path import dirname, pardir, join, realpath
 
-from azure.core.exceptions import DecodeError
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError, DeserializationError
 
 from bodydictionary import AutoRestSwaggerBATDictionaryService
 from bodydictionary.models import Widget

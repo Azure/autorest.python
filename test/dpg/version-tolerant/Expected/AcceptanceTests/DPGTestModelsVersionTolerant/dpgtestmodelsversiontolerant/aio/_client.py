@@ -9,11 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable
 
-from msrest import Deserializer, Serializer
-
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
+from .._serialization import Deserializer, Serializer
 from ..models import _models as models
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin

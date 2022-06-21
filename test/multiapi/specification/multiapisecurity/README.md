@@ -23,6 +23,7 @@ no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
 security: AADToken
 python3-only: true
+version-tolerant: false
 ```
 
 ``` yaml $(multiapi)

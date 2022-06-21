@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import (
     HttpClientFailureOperations,
     HttpFailureOperations,
@@ -55,7 +54,6 @@ class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-a
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
         self._config = AutoRestHttpInfrastructureTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

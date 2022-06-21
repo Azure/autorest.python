@@ -143,13 +143,11 @@ class MetadataSerializer:
                 get_operation_serializer,
                 code_model=self.code_model,
                 async_mode=True,
-                is_python3_file=True,
             ),
             get_sync_operation_serializer=functools.partial(
                 get_operation_serializer,
                 code_model=self.code_model,
                 async_mode=False,
-                is_python3_file=False,
             ),
             has_credential=bool(self.code_model.credential),
         )

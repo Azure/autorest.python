@@ -3,10 +3,7 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
-{{ op_tools.declare_serializer(code_model) }}
-{% if not is_python3_file %}
-# fmt: off
-{% endif %}
+{{ op_tools.declare_serializer(code_model, request_builders) }}
 {% for request_builder in request_builders %}
 
 {% include "request_builder.py.jinja2" %}

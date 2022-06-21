@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import ExplicitOperations, ImplicitOperations
 
 if TYPE_CHECKING:
@@ -48,7 +47,6 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(
             required_global_path=required_global_path,
             required_global_query=required_global_query,
@@ -59,6 +57,7 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 

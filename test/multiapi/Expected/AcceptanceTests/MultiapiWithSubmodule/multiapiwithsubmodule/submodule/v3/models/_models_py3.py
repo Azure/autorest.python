@@ -9,10 +9,10 @@
 
 from typing import List, Optional
 
-import msrest.serialization
+from ... import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -26,13 +26,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         """
         :keyword status:
         :paramtype status: int
@@ -44,7 +38,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class ModelThree(msrest.serialization.Model):
+class ModelThree(_serialization.Model):
     """Only exists in api version 3.0.0.
 
     :ivar optional_property:
@@ -55,12 +49,7 @@ class ModelThree(msrest.serialization.Model):
         "optional_property": {"key": "optionalProperty", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        optional_property: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, optional_property: Optional[str] = None, **kwargs):
         """
         :keyword optional_property:
         :paramtype optional_property: str
@@ -69,7 +58,7 @@ class ModelThree(msrest.serialization.Model):
         self.optional_property = optional_property
 
 
-class PagingResult(msrest.serialization.Model):
+class PagingResult(_serialization.Model):
     """PagingResult.
 
     :ivar values:
@@ -84,11 +73,7 @@ class PagingResult(msrest.serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        values: Optional[List["_models.ModelThree"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
+        self, *, values: Optional[List["_models.ModelThree"]] = None, next_link: Optional[str] = None, **kwargs
     ):
         """
         :keyword values:
@@ -101,7 +86,7 @@ class PagingResult(msrest.serialization.Model):
         self.next_link = next_link
 
 
-class SourcePath(msrest.serialization.Model):
+class SourcePath(_serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.
@@ -109,19 +94,14 @@ class SourcePath(msrest.serialization.Model):
     """
 
     _validation = {
-        'source': {'max_length': 2048},
+        "source": {"max_length": 2048},
     }
 
     _attribute_map = {
         "source": {"key": "source", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        source: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, source: Optional[str] = None, **kwargs):
         """
         :keyword source: File source path.
         :paramtype source: str

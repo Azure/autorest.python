@@ -9,13 +9,12 @@
 from copy import deepcopy
 from typing import Any
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import EnumOperations, StringOperations
 
 

@@ -8,24 +8,19 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from msrest import Serializer, Deserializer
-from typing import TYPE_CHECKING
+from ._serialization import Serializer, Deserializer
+from typing import Any
 
 from . import models as _models
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
     def test(  # pylint: disable=inconsistent-return-statements
         self,
-        id,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        id: int,
+        **kwargs: Any
+    ) -> None:
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
         version of 2.0.0 to pass.
 

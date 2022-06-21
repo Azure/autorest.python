@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .._serialization import Serializer
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
@@ -35,6 +34,7 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_implicit_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpRequest:

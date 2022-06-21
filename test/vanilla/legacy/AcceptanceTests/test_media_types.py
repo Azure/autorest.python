@@ -75,6 +75,13 @@ class TestMediaTypes(object):
         content = "hello, world"
         client.binary_body_with_three_content_types(content, content_type="text/plain")
 
+    def test_body_three_types(self, client):
+        json_input = {"hello":"world"}
+        client.body_three_types(json_input)
+
+        content = b"hello, world"
+        client.body_three_types(content)
+
     def test_models(self):
         from mediatypes.models import SourcePath
 

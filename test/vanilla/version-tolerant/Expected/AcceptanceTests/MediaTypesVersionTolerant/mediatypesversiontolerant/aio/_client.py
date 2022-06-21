@@ -9,11 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
+from .._serialization import Deserializer, Serializer
 from ._configuration import MediaTypesClientConfiguration
 from ._operations import MediaTypesClientOperationsMixin
 
@@ -30,6 +29,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):  # pylint: disable=clie
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+        super().__init__()
         self._config = MediaTypesClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

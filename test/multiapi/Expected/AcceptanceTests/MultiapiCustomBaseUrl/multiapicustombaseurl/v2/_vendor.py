@@ -14,9 +14,10 @@ from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from msrest import Deserializer, Serializer
-
     from azure.core import PipelineClient
+
+    from .._serialization import Deserializer, Serializer
+
 
 def _convert_request(request, files=None):
     data = request.content if not files else None
@@ -25,8 +26,10 @@ def _convert_request(request, files=None):
         request.set_formdata_body(files)
     return request
 
+
 class MixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
+
     _client: "PipelineClient"
     _config: MultiapiCustomBaseUrlServiceClientConfiguration
     _serialize: "Serializer"

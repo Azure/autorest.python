@@ -38,7 +38,6 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         overloads: Optional[List[Operation]] = None,
         public: bool = True,
         want_tracing: bool = True,
-        abstract: bool = False,
         override_success_response_to_200: bool = False,
     ) -> None:
         super().__init__(
@@ -52,7 +51,6 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             overloads=overloads,
             public=public,
             want_tracing=want_tracing,
-            abstract=abstract,
         )
         self.next_request_builder: Optional[
             Union[RequestBuilder, OverloadedRequestBuilder]
@@ -127,11 +125,11 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def has_optional_return_type(self) -> bool:
         return False
 
-    def imports(
-        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
-    ) -> FileImport:
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        if self.abstract:
+            return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
-        file_import.merge(super().imports(async_mode, is_python3_file, **kwargs))
+        file_import.merge(super().imports(async_mode, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",

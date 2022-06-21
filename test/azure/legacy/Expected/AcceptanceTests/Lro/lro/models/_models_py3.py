@@ -9,14 +9,14 @@
 
 from typing import Dict, Optional, TYPE_CHECKING, Union
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class OperationResult(msrest.serialization.Model):
+class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
@@ -51,7 +51,7 @@ class OperationResult(msrest.serialization.Model):
         self.error = error
 
 
-class OperationResultError(msrest.serialization.Model):
+class OperationResultError(_serialization.Model):
     """OperationResultError.
 
     :ivar code: The error code for an operation failure.
@@ -77,7 +77,7 @@ class OperationResultError(msrest.serialization.Model):
         self.message = message
 
 
-class Resource(msrest.serialization.Model):
+class Resource(_serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -183,7 +183,7 @@ class Product(Resource):
         self.provisioning_state_values = None
 
 
-class Sku(msrest.serialization.Model):
+class Sku(_serialization.Model):
     """Sku.
 
     :ivar name:
@@ -211,7 +211,7 @@ class Sku(msrest.serialization.Model):
         self.id = id
 
 
-class SubResource(msrest.serialization.Model):
+class SubResource(_serialization.Model):
     """SubResource.
 
     Variables are only populated by the server, and will be ignored when sending a request.

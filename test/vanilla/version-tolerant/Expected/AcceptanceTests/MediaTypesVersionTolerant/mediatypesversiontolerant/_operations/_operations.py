@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,7 +22,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._vendor import MixinABC
+from .._serialization import Serializer
+from .._vendor import MixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -138,6 +137,14 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
 
 
 class MediaTypesClientOperationsMixin(MixinABC):
+    def __init__(self):
+        raise_if_not_implemented(
+            self.__class__,
+            [
+                "body_three_types",
+            ],
+        )
+
     @overload
     def analyze_body(
         self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any

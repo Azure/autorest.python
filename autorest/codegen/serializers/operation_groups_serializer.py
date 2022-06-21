@@ -22,13 +22,11 @@ class OperationGroupsSerializer:
         code_model: CodeModel,
         env: Environment,
         async_mode: bool,
-        is_python3_file: bool,
         operation_group: Optional[OperationGroup] = None,
     ) -> None:
         self.code_model = code_model
         self.env = env
         self.async_mode = async_mode
-        self.is_python3_file = is_python3_file
         self.operation_group = operation_group
 
     def serialize(self) -> str:
@@ -42,7 +40,6 @@ class OperationGroupsSerializer:
             imports.merge(
                 operation_group.imports(
                     async_mode=self.async_mode,
-                    is_python3_file=self.is_python3_file,
                 )
             )
 
@@ -54,20 +51,19 @@ class OperationGroupsSerializer:
             operation_groups=operation_groups,
             imports=FileImportSerializer(
                 imports,
-                is_python3_file=self.is_python3_file,
                 async_mode=self.async_mode,
             ),
             async_mode=self.async_mode,
-            is_python3_file=self.is_python3_file,
             get_operation_serializer=functools.partial(
                 get_operation_serializer,
                 code_model=self.code_model,
                 async_mode=self.async_mode,
-                is_python3_file=self.is_python3_file,
             ),
             request_builder_serializer=RequestBuilderSerializer(
                 self.code_model,
                 async_mode=False,
-                is_python3_file=self.is_python3_file,
             ),
+            request_builders=[
+                rb for rb in self.code_model.request_builders if not rb.abstract
+            ],
         )

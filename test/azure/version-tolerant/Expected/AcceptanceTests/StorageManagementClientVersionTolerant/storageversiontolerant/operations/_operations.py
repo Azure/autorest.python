@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -28,6 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
+from .._serialization import Serializer
 from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 9):
@@ -1639,14 +1638,9 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_storage_accounts_list_request(
-                    subscription_id=self._config.subscription_id,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
@@ -1775,15 +1769,9 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_storage_accounts_list_by_resource_group_request(
-                    resource_group_name=resource_group_name,
-                    subscription_id=self._config.subscription_id,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):

@@ -1,13 +1,53 @@
-# Change
+# Release History
 
-### 2022-xx-xx - 5.18.0
+### 2022-06-17 - 6.0.0-rc.1
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.8.1`     |
 | `@autorest/modelerfour`                                                 | `4.23.5`    |
-| `azure-core` dep of generated code                                      | `1.23.0`    |
-| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Breaking Changes**
+
+- Default to generating DPG SDKs with `--version-tolerant` now defaulting to `true`. For a list of flag default changes, please
+see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
+- Only generate Python3 SDKs  #1297
+- Don't reformat initial query parameters into the next link  #1297
+- Don't generate operations with more than two body types. SDK authors need to implement this operation themselves  #1300
+
+**New Features**
+
+- Automatically format generated code with `black`. To not format, pass in `--black=false`  #1304
+
+**Other**
+
+- Remove testing support for `--low-level-client` SDKs  #1303
+
+### 2022-06-13 - 5.19.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `msrest` dep of generated code                                          | `0.7.0`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**New Features**
+
+- Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
+
+### 2022-06-09 - 5.18.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `msrest` dep of generated code                                          | `0.7.0`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Breaking Changes in Version Tolerant**
@@ -19,20 +59,8 @@
 
 - Fix duplicate params in signature with `--payload-flattening-threshold`  #1289
 - Fix overloaded request builder signatures  #1289
-
-### 2022-xx-xx - 5.17.1
-
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.8.1`     |
-| `@autorest/modelerfour`                                                 | `4.23.5`    |
-| `azure-core` dep of generated code                                      | `1.23.0`    |
-| `msrest` dep of generated code                                          | `0.6.21`    |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
-
-**Bug Fixes**
-
 - Improve docstring templates, specifically for polymorphic bodies  #1279
+
 
 ### 2022-06-02 - 5.17.0
 

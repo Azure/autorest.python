@@ -9,13 +9,12 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ObjectTypeClientConfiguration
 from ._operations import ObjectTypeClientOperationsMixin
+from ._serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,7 +29,6 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=clie
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
         self._config = ObjectTypeClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

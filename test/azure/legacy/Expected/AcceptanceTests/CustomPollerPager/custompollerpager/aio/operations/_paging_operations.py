@@ -9,7 +9,13 @@
 from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
@@ -23,9 +29,33 @@ from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._paging_operations import build_duplicate_params_request, build_first_response_empty_request, build_get_multiple_pages_failure_request, build_get_multiple_pages_failure_uri_request, build_get_multiple_pages_fragment_next_link_request, build_get_multiple_pages_fragment_with_grouping_next_link_request, build_get_multiple_pages_lro_request, build_get_multiple_pages_request, build_get_multiple_pages_retry_first_request, build_get_multiple_pages_retry_second_request, build_get_multiple_pages_with_offset_request, build_get_no_item_name_pages_request, build_get_null_next_link_name_pages_request, build_get_odata_multiple_pages_request, build_get_paging_model_with_item_name_with_xms_client_name_request, build_get_single_pages_failure_request, build_get_single_pages_request, build_get_with_query_params_request, build_next_fragment_request, build_next_fragment_with_grouping_request, build_next_operation_with_query_params_request
-T = TypeVar('T')
+from ...operations._paging_operations import (
+    build_duplicate_params_request,
+    build_first_response_empty_request,
+    build_get_multiple_pages_failure_request,
+    build_get_multiple_pages_failure_uri_request,
+    build_get_multiple_pages_fragment_next_link_request,
+    build_get_multiple_pages_fragment_with_grouping_next_link_request,
+    build_get_multiple_pages_lro_request,
+    build_get_multiple_pages_request,
+    build_get_multiple_pages_retry_first_request,
+    build_get_multiple_pages_retry_second_request,
+    build_get_multiple_pages_with_offset_request,
+    build_get_no_item_name_pages_request,
+    build_get_null_next_link_name_pages_request,
+    build_get_odata_multiple_pages_request,
+    build_get_paging_model_with_item_name_with_xms_client_name_request,
+    build_get_single_pages_failure_request,
+    build_get_single_pages_request,
+    build_get_with_query_params_request,
+    build_next_fragment_request,
+    build_next_fragment_with_grouping_request,
+    build_next_operation_with_query_params_request,
+)
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PagingOperations:
     """
@@ -46,12 +76,8 @@ class PagingOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-    def get_no_item_name_pages(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_no_item_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -62,17 +88,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResultValue]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResultValue]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_no_item_name_pages_request(
-                    template_url=self.get_no_item_name_pages.metadata['url'],
+                    template_url=self.get_no_item_name_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -80,7 +105,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_no_item_name_pages_request(
                     template_url=next_link,
                     headers=_headers,
@@ -102,9 +127,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -114,17 +137,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_no_item_name_pages.metadata = {'url': "/paging/noitemname"}  # type: ignore
+    get_no_item_name_pages.metadata = {"url": "/paging/noitemname"}  # type: ignore
 
     @distributed_trace
-    def get_null_next_link_name_pages(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -135,17 +153,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_null_next_link_name_pages_request(
-                    template_url=self.get_null_next_link_name_pages.metadata['url'],
+                    template_url=self.get_null_next_link_name_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -153,7 +170,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_null_next_link_name_pages_request(
                     template_url=next_link,
                     headers=_headers,
@@ -175,9 +192,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -187,17 +202,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_null_next_link_name_pages.metadata = {'url': "/paging/nullnextlink"}  # type: ignore
+    get_null_next_link_name_pages.metadata = {"url": "/paging/nullnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_single_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -208,17 +218,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_single_pages_request(
-                    template_url=self.get_single_pages.metadata['url'],
+                    template_url=self.get_single_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -226,7 +235,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_single_pages_request(
                     template_url=next_link,
                     headers=_headers,
@@ -248,9 +257,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -260,17 +267,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncCustomPager(get_next, extract_data)
 
-        return AsyncCustomPager(
-            get_next, extract_data
-        )
-    get_single_pages.metadata = {'url': "/paging/single"}  # type: ignore
+    get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
 
     @distributed_trace
-    def first_response_empty(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def first_response_empty(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -282,17 +284,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResultValue]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResultValue]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_first_response_empty_request(
-                    template_url=self.first_response_empty.metadata['url'],
+                    template_url=self.first_response_empty.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -300,7 +301,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_first_response_empty_request(
                     template_url=next_link,
                     headers=_headers,
@@ -322,9 +323,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -334,11 +333,9 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    first_response_empty.metadata = {'url': "/paging/firstResponseEmpty/1"}  # type: ignore
+    first_response_empty.metadata = {"url": "/paging/firstResponseEmpty/1"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -362,12 +359,11 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -375,12 +371,12 @@ class PagingOperations:
                 if paging_get_multiple_pages_options is not None:
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
-                
+
                 request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.get_multiple_pages.metadata['url'],
+                    template_url=self.get_multiple_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -393,7 +389,7 @@ class PagingOperations:
                 if paging_get_multiple_pages_options is not None:
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
-                
+
                 request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -418,9 +414,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -430,18 +424,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages.metadata = {'url': "/paging/multiple"}  # type: ignore
+    get_multiple_pages.metadata = {"url": "/paging/multiple"}  # type: ignore
 
     @distributed_trace
-    def get_with_query_params(
-        self,
-        required_query_parameter: int,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_with_query_params(self, required_query_parameter: int, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -460,20 +448,19 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        query_constant = kwargs.pop('query_constant', _params.pop('queryConstant', True))  # type: bool
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
-                    template_url=self.get_with_query_params.metadata['url'],
+                    template_url=self.get_with_query_params.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -481,10 +468,10 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_next_operation_with_query_params_request(
                     query_constant=query_constant,
-                    template_url='/paging/multiple/nextOperationWithQueryParams',
+                    template_url="/paging/multiple/nextOperationWithQueryParams",
                     headers=_headers,
                     params=_params,
                 )
@@ -504,9 +491,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -516,18 +501,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_with_query_params.metadata = {'url': "/paging/multiple/getWithQueryParams"}  # type: ignore
+    get_with_query_params.metadata = {"url": "/paging/multiple/getWithQueryParams"}  # type: ignore
 
     @distributed_trace
-    def duplicate_params(
-        self,
-        filter: Optional[str] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def duplicate_params(self, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
@@ -542,18 +521,17 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_duplicate_params_request(
                     filter=filter,
-                    template_url=self.duplicate_params.metadata['url'],
+                    template_url=self.duplicate_params.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -561,9 +539,8 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_duplicate_params_request(
-                    filter=filter,
                     template_url=next_link,
                     headers=_headers,
                     params=_params,
@@ -584,9 +561,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -596,11 +571,9 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    duplicate_params.metadata = {'url': "/paging/multiple/duplicateParams/1"}  # type: ignore
+    duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -624,12 +597,11 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.OdataProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OdataProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -637,12 +609,12 @@ class PagingOperations:
                 if paging_get_odata_multiple_pages_options is not None:
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
-                
+
                 request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.get_odata_multiple_pages.metadata['url'],
+                    template_url=self.get_odata_multiple_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -655,7 +627,7 @@ class PagingOperations:
                 if paging_get_odata_multiple_pages_options is not None:
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
-                
+
                 request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -680,9 +652,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -692,11 +662,9 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_odata_multiple_pages.metadata = {'url': "/paging/multiple/odata"}  # type: ignore
+    get_odata_multiple_pages.metadata = {"url": "/paging/multiple/odata"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -720,12 +688,11 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -735,13 +702,13 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
-                
+
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.get_multiple_pages_with_offset.metadata['url'],
+                    template_url=self.get_multiple_pages_with_offset.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -756,7 +723,7 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
-                
+
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
@@ -782,9 +749,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -794,17 +759,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages_with_offset.metadata = {'url': "/paging/multiple/withpath/{offset}"}  # type: ignore
+    get_multiple_pages_with_offset.metadata = {"url": "/paging/multiple/withpath/{offset}"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_first(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -816,17 +776,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_multiple_pages_retry_first_request(
-                    template_url=self.get_multiple_pages_retry_first.metadata['url'],
+                    template_url=self.get_multiple_pages_retry_first.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -834,7 +793,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_multiple_pages_retry_first_request(
                     template_url=next_link,
                     headers=_headers,
@@ -856,9 +815,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -868,17 +825,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages_retry_first.metadata = {'url': "/paging/multiple/retryfirst"}  # type: ignore
+    get_multiple_pages_retry_first.metadata = {"url": "/paging/multiple/retryfirst"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_second(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -890,17 +842,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_multiple_pages_retry_second_request(
-                    template_url=self.get_multiple_pages_retry_second.metadata['url'],
+                    template_url=self.get_multiple_pages_retry_second.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -908,7 +859,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_multiple_pages_retry_second_request(
                     template_url=next_link,
                     headers=_headers,
@@ -930,9 +881,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -942,17 +891,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages_retry_second.metadata = {'url': "/paging/multiple/retrysecond"}  # type: ignore
+    get_multiple_pages_retry_second.metadata = {"url": "/paging/multiple/retrysecond"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages_failure(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -963,17 +907,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_single_pages_failure_request(
-                    template_url=self.get_single_pages_failure.metadata['url'],
+                    template_url=self.get_single_pages_failure.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -981,7 +924,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_single_pages_failure_request(
                     template_url=next_link,
                     headers=_headers,
@@ -1003,9 +946,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1015,17 +956,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_single_pages_failure.metadata = {'url': "/paging/single/failure"}  # type: ignore
+    get_single_pages_failure.metadata = {"url": "/paging/single/failure"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1036,17 +972,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_multiple_pages_failure_request(
-                    template_url=self.get_multiple_pages_failure.metadata['url'],
+                    template_url=self.get_multiple_pages_failure.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1054,7 +989,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_multiple_pages_failure_request(
                     template_url=next_link,
                     headers=_headers,
@@ -1076,9 +1011,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1088,17 +1021,12 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages_failure.metadata = {'url': "/paging/multiple/failure"}  # type: ignore
+    get_multiple_pages_failure.metadata = {"url": "/paging/multiple/failure"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1109,17 +1037,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_multiple_pages_failure_uri_request(
-                    template_url=self.get_multiple_pages_failure_uri.metadata['url'],
+                    template_url=self.get_multiple_pages_failure_uri.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1127,7 +1054,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
                     headers=_headers,
@@ -1149,9 +1076,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1161,18 +1086,13 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages_failure_uri.metadata = {'url': "/paging/multiple/failureuri"}  # type: ignore
+    get_multiple_pages_failure_uri.metadata = {"url": "/paging/multiple/failureuri"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
-        self,
-        api_version: str,
-        tenant: str,
-        **kwargs: Any
+        self, api_version: str, tenant: str, **kwargs: Any
     ) -> AsyncIterable["_models.Product"]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
@@ -1188,19 +1108,18 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.OdataProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OdataProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
-                    template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
+                    template_url=self.get_multiple_pages_fragment_next_link.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1208,12 +1127,12 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_next_fragment_request(
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
-                    template_url='/paging/multiple/fragment/{tenant}/{nextLink}',
+                    template_url="/paging/multiple/fragment/{tenant}/{nextLink}",
                     headers=_headers,
                     params=_params,
                 )
@@ -1233,9 +1152,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1245,17 +1162,13 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages_fragment_next_link.metadata = {'url': "/paging/multiple/fragment/{tenant}"}  # type: ignore
+    get_multiple_pages_fragment_next_link.metadata = {"url": "/paging/multiple/fragment/{tenant}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
-        self,
-        custom_parameter_group: _models.CustomParameterGroup,
-        **kwargs: Any
+        self, custom_parameter_group: _models.CustomParameterGroup, **kwargs: Any
     ) -> AsyncIterable["_models.Product"]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
@@ -1269,12 +1182,11 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.OdataProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OdataProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
                 _api_version = None
@@ -1282,11 +1194,11 @@ class PagingOperations:
                 if custom_parameter_group is not None:
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
-                
+
                 request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=_tenant,
                     api_version=_api_version,
-                    template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
+                    template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1299,12 +1211,12 @@ class PagingOperations:
                 if custom_parameter_group is not None:
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
-                
+
                 request = build_next_fragment_with_grouping_request(
                     tenant=_tenant,
                     next_link=next_link,
                     api_version=_api_version,
-                    template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
+                    template_url="/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
                     headers=_headers,
                     params=_params,
                 )
@@ -1324,9 +1236,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1336,11 +1246,9 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
+    get_multiple_pages_fragment_with_grouping_next_link.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
 
     async def _get_multiple_pages_lro_initial(
         self,
@@ -1348,15 +1256,13 @@ class PagingOperations:
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any
     ) -> _models.ProductResult:
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         _maxresults = None
         _timeout = None
@@ -1368,7 +1274,7 @@ class PagingOperations:
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
-            template_url=self._get_multiple_pages_lro_initial.metadata['url'],
+            template_url=self._get_multiple_pages_lro_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1376,9 +1282,7 @@ class PagingOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1387,15 +1291,14 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize('ProductResult', pipeline_response)
+        deserialized = self._deserialize("ProductResult", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    _get_multiple_pages_lro_initial.metadata = {'url': "/paging/multiple/lro"}  # type: ignore
-
+    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
@@ -1429,12 +1332,11 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -1442,12 +1344,12 @@ class PagingOperations:
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-                
+
                 request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.begin_get_multiple_pages_lro.metadata['url'],
+                    template_url=self.begin_get_multiple_pages_lro.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1460,7 +1362,7 @@ class PagingOperations:
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-                
+
                 request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -1485,9 +1387,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1497,23 +1397,19 @@ class PagingOperations:
 
             return pipeline_response
 
-
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._get_multiple_pages_lro_initial(  # type: ignore
                 client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-                cls=lambda x,y,z: x,
+                cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
-        kwargs.pop('error_map', None)
+        kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             async def internal_get_next(next_link=None):
@@ -1521,36 +1417,27 @@ class PagingOperations:
                     return pipeline_response
                 return await get_next(next_link)
 
-            return AsyncItemPaged(
-                internal_get_next, extract_data
-            )
+            return AsyncItemPaged(internal_get_next, extract_data)
 
         if polling is True:
-            polling_method = cast(AsyncPollingMethod, AsyncARMPolling(
-                lro_delay,
-                
-                
-                **kwargs
-        ))  # type: AsyncPollingMethod
-        elif polling is False: polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
-        else: polling_method = polling
+            polling_method = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))  # type: AsyncPollingMethod
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
         if cont_token:
             return AsyncCustomPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
-                deserialization_callback=get_long_running_output
+                deserialization_callback=get_long_running_output,
             )
         return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_get_multiple_pages_lro.metadata = {'url': "/paging/multiple/lro"}  # type: ignore
-
+    begin_get_multiple_pages_lro.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
 
     @distributed_trace
-    def get_paging_model_with_item_name_with_xms_client_name(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def get_paging_model_with_item_name_with_xms_client_name(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
@@ -1562,17 +1449,16 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResultValueWithXMSClientName]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResultValueWithXMSClientName]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_get_paging_model_with_item_name_with_xms_client_name_request(
-                    template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
+                    template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1580,7 +1466,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
                     headers=_headers,
@@ -1602,9 +1488,7 @@ class PagingOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1614,8 +1498,6 @@ class PagingOperations:
 
             return pipeline_response
 
+        return AsyncItemPaged(get_next, extract_data)
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_paging_model_with_item_name_with_xms_client_name.metadata = {'url': "/paging/itemNameWithXMSClientName"}  # type: ignore
+    get_paging_model_with_item_name_with_xms_client_name.metadata = {"url": "/paging/itemNameWithXMSClientName"}  # type: ignore

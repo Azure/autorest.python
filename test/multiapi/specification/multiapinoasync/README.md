@@ -31,6 +31,7 @@ azure-arm: true
 add-credentials: true
 no-async: true
 python3-only: true
+version-tolerant: false
 ```
 
 ``` yaml $(multiapi)

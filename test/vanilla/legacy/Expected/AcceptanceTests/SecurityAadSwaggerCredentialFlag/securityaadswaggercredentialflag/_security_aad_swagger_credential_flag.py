@@ -9,13 +9,12 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SecurityAadSwaggerCredentialFlagConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import SecurityAadSwaggerCredentialFlagOperationsMixin
 
 if TYPE_CHECKING:

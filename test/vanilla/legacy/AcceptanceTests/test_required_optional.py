@@ -33,7 +33,7 @@ import io
 from datetime import date, datetime, timedelta
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError, SerializationError, ValidationError
+from msrest.exceptions import ValidationError
 
 from requiredoptional import AutoRestRequiredOptionalTestService
 from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper

@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from ._configuration import MicrosoftAzureTestUrlConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import GroupOperations
 
 if TYPE_CHECKING:
@@ -48,7 +47,6 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
         self._config = MicrosoftAzureTestUrlConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )

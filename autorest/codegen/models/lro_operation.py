@@ -33,7 +33,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         overloads: Optional[List[Operation]] = None,
         public: bool = True,
         want_tracing: bool = True,
-        abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -46,7 +45,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
             overloads=overloads,
             public=public,
             want_tracing=want_tracing,
-            abstract=abstract,
         )
         self.name = "begin_" + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
@@ -120,10 +118,10 @@ class LROOperationBase(OperationBase[LROResponseType]):
     def get_no_polling_method(self, async_mode: bool) -> str:
         return self.responses[0].get_no_polling_method(async_mode)
 
-    def imports(
-        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
-    ) -> FileImport:
-        file_import = super().imports(async_mode, is_python3_file, **kwargs)
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super().imports(async_mode, **kwargs)
+        if self.abstract:
+            return file_import
         if async_mode:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator_async",

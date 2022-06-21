@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import PathsOperations
 
 if TYPE_CHECKING:
@@ -39,6 +38,7 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:

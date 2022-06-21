@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 from itertools import chain
 from typing import (
     Dict,
@@ -43,8 +42,6 @@ from .request_builder import OverloadedRequestBuilder, RequestBuilder
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-_LOGGER = logging.getLogger(__name__)
-
 ResponseType = TypeVar(
     "ResponseType",
     bound=Union[Response, PagingResponse, LROResponse, LROPagingResponse],
@@ -67,7 +64,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         overloads: Optional[List["Operation"]] = None,
         public: bool = True,
         want_tracing: bool = True,
-        abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -75,7 +71,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             name=name,
             parameters=parameters,
             overloads=overloads,
-            abstract=abstract,
             want_tracing=want_tracing,
         )
         self.overloads: List["Operation"] = overloads or []
@@ -204,9 +199,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if not self.abstract:
-            for param in self.parameters.method:
-                file_import.merge(param.imports(async_mode, **kwargs))
+        for param in self.parameters.method:
+            file_import.merge(param.imports(async_mode, **kwargs))
 
         response_types = [
             r.type_annotation(async_mode=async_mode) for r in self.responses if r.type
@@ -218,6 +212,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        if self.abstract:
+            return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
         for response in self.responses:
             file_import.merge(
@@ -273,22 +269,16 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                     alias="rest",
                 )
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
-            suffix = (
-                "_py3"
-                if self.code_model.options["add_python3_operation_files"]
-                and not self.code_model.options["python3_only"]
-                else ""
-            )
             file_import.add_submodule_import(
-                f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
+                f"...{self.code_model.operations_folder_name}.{self.filename}",
                 request_builder.name,
                 import_type=ImportType.LOCAL,
             )
         return file_import
 
-    def imports(
-        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
-    ) -> FileImport:
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        if self.abstract:
+            return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
 
         for response in self.responses:
@@ -301,48 +291,44 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(self.parameters.body_parameter.type.imports(**kwargs))
 
         # Exceptions
-        if self.abstract:
-            file_import.add_import("abc", ImportType.STDLIB)
-        else:
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "map_error", ImportType.AZURECORE
+        )
+        if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.core.exceptions", "map_error", ImportType.AZURECORE
+                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
             )
-            if self.code_model.options["azure_arm"]:
-                file_import.add_submodule_import(
-                    "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
-                )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions",
-                "ClientAuthenticationError",
-                ImportType.AZURECORE,
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
-            )
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.core.exceptions",
+            "ClientAuthenticationError",
+            ImportType.AZURECORE,
+        )
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
+        )
 
-            kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
-            if self.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.HEADER
-            ) or self.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.QUERY
-            ):
-                file_import.add_submodule_import(
-                    "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
-                )
-            if self.deprecated:
-                file_import.add_import("warnings", ImportType.STDLIB)
+        if self.has_kwargs_to_pop_with_default(
+            self.parameters.kwargs_to_pop, ParameterLocation.HEADER
+        ) or self.has_kwargs_to_pop_with_default(
+            self.parameters.kwargs_to_pop, ParameterLocation.QUERY
+        ):
+            file_import.add_submodule_import(
+                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+            )
+        if self.deprecated:
+            file_import.add_import("warnings", ImportType.STDLIB)
 
-            if self.code_model.need_request_converter:
-                relative_path = "..." if async_mode else ".."
-                file_import.add_submodule_import(
-                    f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
-                )
+        if self.code_model.need_request_converter:
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
+            )
         if async_mode:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
@@ -382,10 +368,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 f"distributed_trace",
                 ImportType.AZURECORE,
             )
-        if not self.abstract:
-            file_import.merge(
-                self.get_request_builder_import(self.request_builder, async_mode)
-            )
+        file_import.merge(
+            self.get_request_builder_import(self.request_builder, async_mode)
+        )
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
@@ -439,20 +424,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             cls.from_yaml(overload, code_model)
             for overload in yaml_data.get("overloads", [])
         ]
-        abstract = False
-        if (
-            code_model.options["version_tolerant"]
-            and parameter_list.has_body
-            and isinstance(parameter_list.body_parameter, MultipartBodyParameter)
-        ):
-            _LOGGER.warning(
-                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
-                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
-                'Please write your own custom operation in the "_patch.py" file '
-                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-                name,
-            )
-            abstract = True
 
         return cls(
             yaml_data=yaml_data,
@@ -464,23 +435,20 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             responses=responses,
             exceptions=exceptions,
             want_tracing=not yaml_data["isOverload"],
-            abstract=abstract,
         )
 
 
 class Operation(OperationBase[Response]):
-    def imports(
-        self, async_mode: bool, is_python3_file: bool, **kwargs: Any
-    ) -> FileImport:
-        file_import = super().imports(async_mode, is_python3_file, **kwargs)
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super().imports(async_mode, **kwargs)
+        if self.abstract:
+            return file_import
         if async_mode:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator_async",
                 f"distributed_trace_async",
                 ImportType.AZURECORE,
             )
-        if self.abstract:
-            return file_import
         if (
             self.has_response_body
             and not self.has_optional_return_type

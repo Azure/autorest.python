@@ -9,13 +9,12 @@
 from copy import deepcopy
 from typing import Any
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin
+from ._serialization import Deserializer, Serializer
 from .models import _models as models
 
 
@@ -29,7 +28,6 @@ class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
         self._config = DPGClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

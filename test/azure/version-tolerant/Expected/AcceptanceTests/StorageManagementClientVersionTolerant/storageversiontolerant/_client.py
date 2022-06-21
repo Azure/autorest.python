@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from ._configuration import StorageManagementClientConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import StorageAccountsOperations, UsageOperations
 
 if TYPE_CHECKING:
@@ -53,7 +52,6 @@ class StorageManagementClient:  # pylint: disable=client-accepts-api-version-key
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-
         self._config = StorageManagementClientConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )

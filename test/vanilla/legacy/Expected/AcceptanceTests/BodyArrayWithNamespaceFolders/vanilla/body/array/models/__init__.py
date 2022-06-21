@@ -9,7 +9,6 @@
 from ._models_py3 import Error
 from ._models_py3 import Product
 
-
 from ._auto_rest_swagger_bat_array_service_enums import Enum0
 from ._auto_rest_swagger_bat_array_service_enums import Enum1
 from ._auto_rest_swagger_bat_array_service_enums import FooEnum

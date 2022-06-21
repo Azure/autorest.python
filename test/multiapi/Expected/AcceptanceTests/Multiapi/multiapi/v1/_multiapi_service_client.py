@@ -9,18 +9,18 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from . import models
+from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
+
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi client testing.
@@ -38,12 +38,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: di
      Retry-After header is present.
     """
 
-    def __init__(
-        self,
-        credential: "TokenCredential",
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -55,12 +50,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: di
             self._client, self._config, self._serialize, self._deserialize
         )
 
-
-    def _send_request(
-        self,
-        request: HttpRequest,
-        **kwargs: Any
-    ) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
