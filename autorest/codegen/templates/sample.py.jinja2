@@ -45,7 +45,7 @@ if __name__ == "__main__":
     {% elif check_auth == "key" %}
     if not os.getenv('AZURE_KEY'):
         raise Exception(
-            "Please set environment variables "AZURE_KEY" with real value which can access your service"
+            "Please set environment variables AZURE_KEY with real value which can access your service"
         )
     {% endif %}
     main()
