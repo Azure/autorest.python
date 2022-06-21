@@ -26,21 +26,25 @@ class BlackScriptPlugin(Plugin):
             output_folder_uri = output_folder_uri[3:]
         self.output_folder = Path(output_folder_uri)
 
-    def process(self) -> bool:
-        # apply format_file on every file in the output folder
+    def proc_files(self, folder: Path, pattern: str):
         list(
             map(
                 self.format_file,
-                [f for f in self.output_folder.glob("**/*") if f.is_file()],
+                [f for f in folder.glob(pattern) if f.is_file()],
             )
         )
+
+    def process(self) -> bool:
+        # apply format_file on every file in the output folder
+        self.proc_files(folder=self.output_folder, pattern="**/*")
+
         # format files that may be outside output folder(setup.py, etc)
         if self._autorestapi.get_boolean_value("no-namespace-folders", False):
             namespace = self._autorestapi.get_value("namespace") or ""
             depth = namespace.count(".") + 1
-            target_file = Path("../" * depth) / "setup.py"
-            if self._autorestapi.read_file(target_file):
-                self.format_file(self.output_folder / target_file)
+            self.proc_files(
+                folder=self.output_folder / Path("../" * depth), pattern="setup.py"
+            )
 
         return True
 
