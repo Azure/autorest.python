@@ -45,7 +45,7 @@ class BlackScriptPlugin(Plugin):
                 depth = namespace.count(".") + 1
                 self.proc_files(
                     folder=self.output_folder / Path("../" * depth),
-                    pattern="generate_samples/**/*",
+                    pattern="generated_samples/**/*",
                 )
         return True
 
