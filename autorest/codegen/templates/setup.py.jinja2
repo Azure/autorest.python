@@ -22,7 +22,7 @@ package_folder_path = PACKAGE_NAME.replace("-", "/")
 
 # Version extraction inspired from 'requests'
 {%- if glob_version %}
-version = str(next(Path(package_folder_path).rglob("**/_version.py")))
+version = str(next(Path(package_folder_path).rglob("_version.py")))
 with open(version, "r") as fd:
 {%- else %}
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:

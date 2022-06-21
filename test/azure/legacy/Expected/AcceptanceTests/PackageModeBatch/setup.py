@@ -19,7 +19,7 @@ PACKAGE_PPRINT_NAME = "Azure Package Mode Data Plane"
 package_folder_path = PACKAGE_NAME.replace("-", "/")
 
 # Version extraction inspired from 'requests'
-version = str(next(Path(package_folder_path).rglob("**/_version.py")))
+version = str(next(Path(package_folder_path).rglob("_version.py")))
 with open(version, "r") as fd:
     version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
