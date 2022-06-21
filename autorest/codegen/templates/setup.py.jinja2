@@ -3,7 +3,6 @@
 # coding: utf-8
 {% if package_mode %}
 {%- if glob_version %}
-from glob import glob
 from pathlib import Path
 {% else %}
 import os
@@ -23,8 +22,8 @@ package_folder_path = PACKAGE_NAME.replace("-", "/")
 
 # Version extraction inspired from 'requests'
 {%- if glob_version %}
-versions = glob(f"{package_folder_path}/**/_version.py", recursive=True)
-with open(str(Path(versions[0])), "r") as fd:
+version = str(next(Path(package_folder_path).rglob("**/_version.py")))
+with open(version, "r") as fd:
 {% else %}
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 {%- endif %}
