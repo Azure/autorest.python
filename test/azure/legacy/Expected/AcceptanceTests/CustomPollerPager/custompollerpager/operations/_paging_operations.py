@@ -174,6 +174,25 @@ def build_duplicate_params_request(*, filter: Optional[str] = None, **kwargs: An
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
+def build_page_with_max_page_size_request(*, maxpagesize: str = "5", **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = kwargs.pop("template_url", "/paging/maxPageSize")
+
+    # Construct parameters
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
 def build_get_odata_multiple_pages_request(
     *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
@@ -973,6 +992,74 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}  # type: ignore
+
+    @distributed_trace
+    def page_with_max_page_size(self, maxpagesize: str = "5", **kwargs: Any) -> Iterable["_models.Product"]:
+        """Paging with max page size. We don't want to.
+
+        :param maxpagesize: Max page size query param. Don't send. Known values are "5" and None.
+         Default value is "5".
+        :type maxpagesize: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_page_with_max_page_size_request(
+                    maxpagesize=maxpagesize,
+                    template_url=self.page_with_max_page_size.metadata["url"],
+                    headers=_headers,
+                    params=_params,
+                )
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)  # type: ignore
+                request.method = "GET"
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize("ProductResult", pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return ItemPaged(get_next, extract_data)
+
+    page_with_max_page_size.metadata = {"url": "/paging/maxPageSize"}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
