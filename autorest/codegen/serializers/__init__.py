@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import os
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
@@ -21,6 +22,7 @@ from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
+from ..._utils import get_output_folder
 
 __all__ = [
     "JinjaSerializer",
@@ -49,7 +51,26 @@ class JinjaSerializer:
             self.code_model.request_builders
         )
 
+    def _clear_python_folder(self):
+        output_folder = get_output_folder(
+            self._autorestapi.get_value("outputFolderUri")
+        )
+        clear_folder = output_folder / self.code_model.options["clear_python_folder"]
+        list(
+            map(
+                os.remove,
+                [
+                    f
+                    for f in clear_folder.glob("**/*")
+                    if f.is_file() and f.parts[-1] != "_patch.py"
+                ],
+            )
+        )
+
     def serialize(self) -> None:
+        if self.code_model.options["clear_python_folder"]:
+            self._clear_python_folder()
+
         env = Environment(
             loader=PackageLoader("autorest.codegen", "templates"),
             keep_trailing_newline=True,

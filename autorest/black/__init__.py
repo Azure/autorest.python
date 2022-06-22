@@ -4,11 +4,10 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from pathlib import Path
-import os
 import black
 
 from .. import Plugin
+from .._utils import get_output_folder
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -19,12 +18,9 @@ _BLACK_MODE.line_length = 120
 class BlackScriptPlugin(Plugin):
     def __init__(self, autorestapi):
         super().__init__(autorestapi)
-        output_folder_uri = self._autorestapi.get_value("outputFolderUri")
-        if output_folder_uri.startswith("file:"):
-            output_folder_uri = output_folder_uri[5:]
-        if os.name == "nt" and output_folder_uri.startswith("///"):
-            output_folder_uri = output_folder_uri[3:]
-        self.output_folder = Path(output_folder_uri)
+        self.output_folder = get_output_folder(
+            self._autorestapi.get_value("outputFolderUri")
+        )
 
     def process(self) -> bool:
         # apply format_file on every file in the output folder

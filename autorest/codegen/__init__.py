@@ -252,6 +252,7 @@ class CodeGenerator(Plugin):
                 "default-optional-constants-to-none",
                 low_level_client or version_tolerant,
             ),
+            "clear_python_folder": self._autorestapi.get_value("clear-python-folder"),
         }
 
         if options["builders_visibility"] is None:
