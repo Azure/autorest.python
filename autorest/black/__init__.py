@@ -28,12 +28,7 @@ class BlackScriptPlugin(Plugin):
 
     def process(self) -> bool:
         # apply format_file on every file in the output folder
-        list(
-            map(
-                self.format_file,
-                [f for f in self.output_folder.glob("**/*.py") if f.is_file()],
-            )
-        )
+        list(map(self.format_file, list(self.output_folder.glob("**/*.py"))))
         return True
 
     def format_file(self, full_path) -> None:
