@@ -144,13 +144,16 @@ class PreProcessPlugin(YamlUpdatePlugin):
     def update_lro_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_lro_operation(yaml_data)
         self.update_paging_operation(yaml_data)
+        yaml_data["discriminator"] = "lropaging"
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lropaging"
+        for overload in yaml_data.get("overloads", []):
+            self.update_lro_paging_operation(overload)
 
     def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_operation(yaml_data)
         self._update_lro_operation_helper(yaml_data)
-        for overload in yaml_data["overloads"]:
+        for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
 
     def update_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
@@ -170,7 +173,7 @@ class PreProcessPlugin(YamlUpdatePlugin):
         item_type = next(
             p["type"]["elementType"]
             for p in returned_response_object["type"]["properties"]
-            if p["restApiName"] == (yaml_data["itemName"] or "value")
+            if p["restApiName"] == (yaml_data.get("itemName") or "value")
         )
         if yaml_data.get("nextOperation"):
             yaml_data["nextOperation"]["groupName"] = pad_reserved_words(
