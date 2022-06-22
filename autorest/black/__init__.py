@@ -31,7 +31,7 @@ class BlackScriptPlugin(Plugin):
         list(
             map(
                 self.format_file,
-                [f for f in self.output_folder.glob("**/*") if f.is_file()],
+                [f for f in self.output_folder.glob("**/*.py") if f.is_file()],
             )
         )
         return True
@@ -39,9 +39,6 @@ class BlackScriptPlugin(Plugin):
     def format_file(self, full_path) -> None:
         file = full_path.relative_to(self.output_folder)
         file_content = self._autorestapi.read_file(file)
-        if not file.suffix == ".py":
-            self._autorestapi.write_file(file, file_content)
-            return
         try:
             file_content = black.format_file_contents(
                 file_content, fast=True, mode=_BLACK_MODE
