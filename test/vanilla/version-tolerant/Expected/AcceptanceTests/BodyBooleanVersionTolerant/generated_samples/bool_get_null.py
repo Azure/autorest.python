@@ -14,6 +14,7 @@ The sample just shows how to use the method and may not run successfully.
     pip install autorestbooltestservice
 # USAGE
     python bool_get_null.py
+
 """
 
 

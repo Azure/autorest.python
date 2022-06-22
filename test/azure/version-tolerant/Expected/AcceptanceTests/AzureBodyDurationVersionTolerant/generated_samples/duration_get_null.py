@@ -14,6 +14,7 @@ The sample just shows how to use the method and may not run successfully.
     pip install autorestdurationtestservice
 # USAGE
     python duration_get_null.py
+
 """
 
 
