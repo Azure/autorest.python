@@ -124,6 +124,8 @@ class CodeGenerator(Plugin):
             "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.0",
             "dependency_azure_core": "azure-core<2.0.0,>=1.24.0",
             "dependency_msrest": "msrest>=0.7.1",
+            "dependency_isodate": "isodate<1.0.0,>=0.6.1",
+            "dependency_defusedxml": "defusedxml<1.0.0,>=0.7.1",
         }
 
     def _create_code_model(

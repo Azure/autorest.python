@@ -85,7 +85,8 @@ setup(
         {% if code_model.is_legacy %}
         "{{ dependency_msrest }}",
         {% else %}
-        "isodate<1.0.0,>=0.6.1",
+        "{{ dependency_isodate }}",
+        "{{ dependency_defusedxml }}",
         {% endif %}
         {% if azure_arm %}
         "{{ dependency_azure_mgmt_core }}",
