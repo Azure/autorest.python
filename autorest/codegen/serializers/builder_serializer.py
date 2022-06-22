@@ -447,7 +447,7 @@ class RequestBuilderSerializer(
         )
 
     def check_keyword_only_default(self, builder: OperationType) -> List[str]:
-        checks = []
+        checks: List[str] = []
         if builder.abstract or builder.is_overload or self.code_model.is_legacy:
             return checks
         for p in builder.parameters.keyword_only:
