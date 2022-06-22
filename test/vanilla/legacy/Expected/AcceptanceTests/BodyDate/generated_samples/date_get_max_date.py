@@ -14,7 +14,6 @@ The sample just shows how to use the method and may not run successfully.
     pip install autorestdatetestservice
 # USAGE
     python date_get_max_date.py
-
 """
 
 

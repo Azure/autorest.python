@@ -18,7 +18,7 @@ The sample just shows how to use the method and may not run successfully.
     pip install autorestheadtestservice
 # USAGE
     python http_success_head404.py
-
+    
     Before run the sample, please set environment variables AZURE_KEY with real value
     which can access your service
 """

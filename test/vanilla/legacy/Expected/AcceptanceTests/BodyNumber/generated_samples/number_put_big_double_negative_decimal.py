@@ -14,7 +14,6 @@ The sample just shows how to use the method and may not run successfully.
     pip install autorestnumbertestservice
 # USAGE
     python number_put_big_double_negative_decimal.py
-
 """
 
 

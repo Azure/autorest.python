@@ -14,7 +14,6 @@ The sample just shows how to use the method and may not run successfully.
     pip install autorestswaggerbatbyteservice
 # USAGE
     python byte_get_null.py
-
 """
 
 
