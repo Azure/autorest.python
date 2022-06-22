@@ -11,6 +11,16 @@ The sample just shows how to use the method and may not run successfully.
     pip install {{ (code_model.options["package_name"] or code_model.client.name)|lower }}
 # USAGE
     python {{ file_name }}
+
+    {% if auth_type == "aad" %}
+    Before run the sample, please set the values of the client ID, tenant ID and client secret 
+    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,
+    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:
+    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
+    {% elif auth_type == "key" %}
+    Before run the sample, please set environment variables AZURE_KEY with real value
+    which can access your service
+    {% endif %}
 """
 def main():
     client = {{ code_model.client.name }}(
@@ -34,18 +44,4 @@ def main():
 # x-ms-original-file: {{ origin_file }}
 {% endif %}
 if __name__ == "__main__":
-    {% if check_auth == "aad" %}
-    if not (os.getenv('AZURE_CLIENT_ID') and os.getenv('AZURE_TENANT_ID') and os.getenv('AZURE_CLIENT_SECRET')):
-        raise Exception(
-            "Please set the values of the client ID, tenant ID and client secret "\
-            "of the AAD application as environment variables: AZURE_CLIENT_ID, "\
-            "AZURE_TENANT_ID, AZURE_CLIENT_SECRET. For more info about how to get the value, "\
-            "please see https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal"
-        )
-    {% elif check_auth == "key" %}
-    if not os.getenv('AZURE_KEY'):
-        raise Exception(
-            "Please set environment variables AZURE_KEY with real value which can access your service"
-        )
-    {% endif %}
     main()

@@ -516,14 +516,14 @@ class JinjaSerializer:
     def _prepare_sample_render_param(self) -> Dict[Any, Any]:
         # client params
         credential = ""
-        check_auth = ""
+        auth_type = ""
         credential_type = getattr(self.code_model.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             credential = "DefaultAzureCredential"
-            check_auth = "aad"
+            auth_type = "aad"
         elif isinstance(credential_type, AzureKeyCredentialType):
             credential = "AzureKeyCredential"
-            check_auth = "key"
+            auth_type = "key"
 
         addtional_info = (
             'key=os.getenv("AZURE_KEY")' if credential == "AzureKeyCredential" else ""
@@ -560,7 +560,7 @@ class JinjaSerializer:
         return {
             "imports": imports,
             "client_params": client_params,
-            "check_auth": check_auth,
+            "auth_type": auth_type,
         }
 
     @staticmethod
