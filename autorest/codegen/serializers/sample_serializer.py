@@ -13,7 +13,6 @@ from ..models.imports import FileImport, ImportType
 from ..models.credential_types import TokenCredentialType
 from ..models.credential_types import AzureKeyCredentialType
 from .utils import (
-    to_lower_camel_case,
     to_snake_case,
     operation_additional,
     package_root_folder,
@@ -57,10 +56,12 @@ class SampleSerializer:
             for p in self.code_model.client.parameters.positional
             if not (p.optional or p.client_default_value)
         ]
+        # rest_api_name: [client_name, value]
         client_params = {
-            p.client_name: special_param.get(
-                p.client_name, f'"{p.client_name.upper()}"'
-            )
+            p.rest_api_name: [
+                p.client_name,
+                special_param.get(p.client_name, f'"{p.client_name.upper()}"'),
+            ]
             for p in params_positional
         }
 
@@ -93,9 +94,10 @@ class SampleSerializer:
         for op_group in self.code_model.operation_groups:
             if self.code_model.options["multiapi"]:
                 api_version_folder = f"{op_group.api_versions[0]}/"
-                sample_params["client_params"][
-                    "api_version"
-                ] = f'"{op_group.api_versions[0]}"'
+                sample_params["client_params"]["apiVersion"] = [
+                    "api_version",
+                    f'"{op_group.api_versions[0]}"',
+                ]
             else:
                 api_version_folder = ""
             sample_params["operation_group_name"] = (
@@ -115,20 +117,17 @@ class SampleSerializer:
                 for key, value in samples.items():
                     # update client parameters if it is defined in example files
                     for param in sample_params["client_params"].keys():
-                        param_value = value["parameters"].get(
-                            to_lower_camel_case(param)
-                        )
-                        if param_value:
-                            sample_params["client_params"][param] = f'"{param_value}"'
+                        p_value = value["parameters"].get(param)
+                        if p_value:
+                            sample_params["client_params"][param][1] = f'"{p_value}"'
 
                     # prepare method parameters
                     operation_params = {}
                     for param in params_positional:
+                        name = param.rest_api_name or param.client_name
                         if isinstance(param, BodyParameter):
-                            name = to_lower_camel_case(param.client_name)
                             fake_value = '"can not find valid value"'
                         else:
-                            name = param.rest_api_name
                             fake_value = param.client_name.upper()
 
                         param_value = value["parameters"].get(name)

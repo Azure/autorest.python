@@ -29,10 +29,6 @@ def operation_additional(operation: OperationBase[Any]) -> str:
     return ""
 
 
-def to_lower_camel_case(name: str) -> str:
-    return re.sub(r"_([a-z])", lambda x: x.group(1).upper(), name)
-
-
 def to_snake_case(name: str) -> str:
     return re.sub(
         "((?!^)(?<!_)[A-Z][a-z]+|(?<=[a-z0-9])[A-Z])",
