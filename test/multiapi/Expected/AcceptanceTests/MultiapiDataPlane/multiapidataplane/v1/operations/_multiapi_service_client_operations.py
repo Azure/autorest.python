@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from urllib.parse import parse_qs, urljoin, urlparse
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -443,20 +444,11 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                _maxresults = None
-                _timeout = None
-                if test_lro_and_paging_options is not None:
-                    _maxresults = test_lro_and_paging_options.maxresults
-                    _timeout = test_lro_and_paging_options.timeout
-
-                request = build_test_lro_and_paging_request(
-                    client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
-                    template_url=next_link,
-                    headers=_headers,
-                    params=_params,
-                )
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
                 request.method = "GET"

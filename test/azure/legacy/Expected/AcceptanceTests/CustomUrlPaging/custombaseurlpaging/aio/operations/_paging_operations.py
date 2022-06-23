@@ -88,12 +88,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
             else:
-
-                request = build_get_pages_partial_url_request(
-                    template_url=next_link,
-                    headers=_headers,
-                    params=_params,
-                )
+                request = HttpRequest("GET", next_link)
                 request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

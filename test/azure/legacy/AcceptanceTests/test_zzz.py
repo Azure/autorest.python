@@ -41,6 +41,7 @@ class TestAcceptance(object):
         # Add tests that wont be supported due to the nature of Python here
         not_supported = {
             "LROPatchInlineCompleteIgnoreHeaders": 1,
+            "PagingDontSendMaxPageSize": 1,  # we're still sending maxpagesize in legacy
         }
 
         # Please add missing features or failing tests here

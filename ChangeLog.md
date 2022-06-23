@@ -1,15 +1,20 @@
 # Release History
 
-### 2022-06-xx - 6.0.0
+### 2022-06-24 - 6.0.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.8.1`     |
 | `@autorest/modelerfour`                                                 | `4.23.5`    |
 | `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
+**Breaking Changes**
+
+- Don't generate paging variables `maxpagesize` for DPG generations. Users should pass in `maxpagesize` to the `by_page` method of their
+pager  #1320
 **New Features**
 
 - Add flag `--generate-sample` to generate samples #1275
@@ -21,6 +26,7 @@
 | `@autorest/core`                                                        | `3.8.1`     |
 | `@autorest/modelerfour`                                                 | `4.23.5`    |
 | `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
@@ -29,7 +35,7 @@
 - Default to generating DPG SDKs with `--version-tolerant` now defaulting to `true`. For a list of flag default changes, please
 see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
 - Only generate Python3 SDKs  #1297
-- Don't reformat initial query parameters into the next link  #1297
+- Don't reformat initial query parameters into the next link. However, we do append `api-version` parameters if they are not present in the next link  #1297  #1309
 - Don't generate operations with more than two body types. SDK authors need to implement this operation themselves  #1300
 
 **New Features**

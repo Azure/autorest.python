@@ -1133,15 +1133,38 @@ class _PagingOperationSerializer(
             template_url = "next_link"
 
         request_builder = builder.next_request_builder or builder.request_builder
-        if builder.next_request_builder or self.code_model.is_legacy:
+        if builder.next_request_builder:
             return self._call_request_builder_helper(
                 builder,
                 request_builder,
                 template_url=template_url,
                 is_next_request=True,
             )
-        retval = ['request = HttpRequest("GET", next_link)']
+        retval: List[str] = []
+        query_str = ""
+        next_link_str = "next_link"
+        try:
+            api_version_param = next(
+                p
+                for p in self.code_model.client.parameters
+                if p.rest_api_name == "api-version"
+            )
+            retval.append("# make call to next link with the client's api-version")
+            retval.append("_parsed_next_link = urlparse(next_link)")
+            retval.append(
+                "_next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))"
+            )
+            retval.append(
+                f'_next_request_params["api-version"] = {api_version_param.full_client_name}'
+            )
+            query_str = ", params=_next_request_params"
+            next_link_str = "urljoin(next_link, _parsed_next_link.path)"
+        except StopIteration:
+            pass
+
+        retval.append(f'request = HttpRequest("GET", {next_link_str}{query_str})')
         retval.extend(self._postprocess_http_request(builder, "request.url"))
+
         return retval
 
     def _prepare_request_callback(self, builder: PagingOperationType) -> List[str]:
