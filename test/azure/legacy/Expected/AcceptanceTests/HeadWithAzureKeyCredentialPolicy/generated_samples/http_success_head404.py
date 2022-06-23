@@ -13,7 +13,6 @@ from headwithazurekeycredentialpolicy import AutoRestHeadTestService
 
 """
 # PREREQUISITES
-    pip install azure-identity
     pip install autorestheadtestservice
 # USAGE
     python http_success_head404.py
