@@ -1,22 +1,24 @@
 # coding=utf-8
+{% set aad_token = "DefaultAzureCredential" %}
+{% set azure_key = "AzureKeyCredential" %}
 {{ code_model.options['license_header'] }}
 
 {{ imports }}
 """
 # PREREQUISITES
-{% if auth_type == "aad" %}
+{% if aad_token in client_params.get("credential", "") %}
     pip install azure-identity
 {% endif %}
     pip install {{ (code_model.options["package_name"] or code_model.client.name)|lower }}
 # USAGE
     python {{ file_name }}
-    {% if auth_type == "aad" %}
+    {% if aad_token in client_params.get("credential", "") %}
 
     Before run the sample, please set the values of the client ID, tenant ID and client secret 
     of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,
     AZURE_CLIENT_SECRET. For more info about how to get the value, please see:
     https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
-    {% elif auth_type == "key" %}
+    {% elif azure_key in client_params.get("credential") %}
     
     Before run the sample, please set environment variables AZURE_KEY with real value
     which can access your service

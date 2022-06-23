@@ -38,15 +38,12 @@ class SampleSerializer:
     def _prepare_sample_render_param(self) -> Dict[str, Any]:
         # client params
         credential = ""
-        auth_type = ""
         credential_type = getattr(self.code_model.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             credential = "DefaultAzureCredential"
-            auth_type = "aad"
             third_party = "azure.identity"
         elif isinstance(credential_type, AzureKeyCredentialType):
             credential = "AzureKeyCredential"
-            auth_type = "key"
             third_party = "azure.core.credentials"
 
         additional_info = (
@@ -82,7 +79,6 @@ class SampleSerializer:
         return {
             "imports": FileImportSerializer(imports, True),
             "client_params": client_params,
-            "auth_type": auth_type,
         }
 
     def serialize_and_write(self) -> None:
