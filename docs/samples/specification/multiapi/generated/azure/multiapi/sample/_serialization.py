@@ -42,7 +42,8 @@ try:
     from urllib import quote  # type: ignore
 except ImportError:
     from urllib.parse import quote  # type: ignore
-import defusedxml.ElementTree as ET
+import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as DefusedET
 
 import isodate
 
@@ -107,8 +108,8 @@ class RawDeserializer:
                 except NameError:
                     pass
 
-                return ET.fromstring(data_as_str)
-            except ET.ParseError:
+                return DefusedET.fromstring(data_as_str)
+            except DefusedET.ParseError:
                 # It might be because the server has an issue, and returned JSON with
                 # content-type XML....
                 # So let's try a JSON load, and if it's still broken
@@ -832,7 +833,7 @@ class Serializer(object):
             return custom_serializer(data)
         if data_type == 'str':
             return cls.serialize_unicode(data)
-        return ast.eval(data_type)(data)
+        return ast.literal_eval(data_type)(data)
 
     @classmethod
     def serialize_unicode(cls, data):
@@ -1766,7 +1767,7 @@ class Deserializer(object):
 
         if data_type == 'str':
             return self.deserialize_unicode(attr)
-        return ast.eval(data_type)(attr)
+        return ast.literal_eval(data_type)(attr)
 
     @staticmethod
     def deserialize_unicode(data):
