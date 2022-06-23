@@ -40,3 +40,7 @@ def to_snake_case(name: str) -> str:
 # find root folder where "setup.py" is
 def package_root_folder(namespace: str, namespace_path: Path) -> Path:
     return namespace_path / Path("../" * (namespace.count(".") + 1))
+
+
+def to_lower_camel_case(name: str) -> str:
+    return re.sub(r"_([a-z])", lambda x: x.group(1).upper(), name)
