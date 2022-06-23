@@ -26,7 +26,6 @@
 
 # pylint: skip-file
 
-import ast
 from base64 import b64decode, b64encode
 import calendar
 import datetime
@@ -829,7 +828,7 @@ class Serializer(object):
             return custom_serializer(data)
         if data_type == "str":
             return cls.serialize_unicode(data)
-        return ast.literal_eval(data_type)(data)
+        return globals()["__builtins__"][data_type](data)
 
     @classmethod
     def serialize_unicode(cls, data):
@@ -1732,7 +1731,7 @@ class Deserializer(object):
 
         if data_type == "str":
             return self.deserialize_unicode(attr)
-        return ast.literal_eval(data_type)(attr)
+        return globals()["__builtins__"][data_type](attr)
 
     @staticmethod
     def deserialize_unicode(data):
