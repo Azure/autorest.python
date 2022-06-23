@@ -9,12 +9,10 @@
 from bodystringversiontolerant import AutoRestSwaggerBATService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestswaggerbatservice
 # USAGE
     python string_put_mbcs.py
-
 """
 
 

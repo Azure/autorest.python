@@ -9,12 +9,10 @@
 from bodyintegerversiontolerant import AutoRestIntegerTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestintegertestservice
 # USAGE
     python int_get_null_unix_time.py
-
 """
 
 

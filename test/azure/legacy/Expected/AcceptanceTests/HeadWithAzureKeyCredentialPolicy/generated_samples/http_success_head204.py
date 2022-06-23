@@ -8,11 +8,10 @@
 
 import os
 
-from azure.identity import AzureKeyCredential
+from azure.core.credentials import AzureKeyCredential
 from headwithazurekeycredentialpolicy import AutoRestHeadTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install azure-identity
     pip install autorestheadtestservice

@@ -9,12 +9,10 @@
 from urlmulticollectionformatversiontolerant import AutoRestUrlMutliCollectionFormatTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autoresturlmutlicollectionformattestservice
 # USAGE
     python queries_array_string_multi_valid.py
-
 """
 
 

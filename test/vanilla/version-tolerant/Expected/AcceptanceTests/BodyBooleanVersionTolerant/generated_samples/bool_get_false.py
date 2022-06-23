@@ -9,12 +9,10 @@
 from bodybooleanversiontolerant import AutoRestBoolTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestbooltestservice
 # USAGE
     python bool_get_false.py
-
 """
 
 

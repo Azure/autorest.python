@@ -9,12 +9,10 @@
 from bodystringversiontolerant import AutoRestSwaggerBATService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestswaggerbatservice
 # USAGE
     python enum_put_not_expandable.py
-
 """
 
 

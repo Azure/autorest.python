@@ -9,12 +9,10 @@
 from bodydurationversiontolerant import AutoRestDurationTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestdurationtestservice
 # USAGE
     python duration_get_null.py
-
 """
 
 

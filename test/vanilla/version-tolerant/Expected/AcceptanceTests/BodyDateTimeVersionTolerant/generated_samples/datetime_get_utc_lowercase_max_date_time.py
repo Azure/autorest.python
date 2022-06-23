@@ -9,12 +9,10 @@
 from bodydatetimeversiontolerant import AutoRestDateTimeTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestdatetimetestservice
 # USAGE
     python datetime_get_utc_lowercase_max_date_time.py
-
 """
 
 

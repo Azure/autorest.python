@@ -9,12 +9,10 @@
 from nonstringenumsversiontolerant import NonStringEnumsClient
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install nonstringenumsclient
 # USAGE
     python float_get.py
-
 """
 
 

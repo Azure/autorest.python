@@ -9,7 +9,6 @@
 from bodyboolean import AutoRestBoolTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestbooltestservice
 # USAGE

@@ -9,7 +9,6 @@
 from bodydatetime import AutoRestDateTimeTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestdatetimetestservice
 # USAGE

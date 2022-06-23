@@ -12,7 +12,6 @@ from azure.identity import DefaultAzureCredential
 from headversiontolerant import AutoRestHeadTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install azure-identity
     pip install autorestheadtestservice

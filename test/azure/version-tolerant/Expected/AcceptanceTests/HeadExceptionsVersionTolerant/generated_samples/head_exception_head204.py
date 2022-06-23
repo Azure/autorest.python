@@ -12,7 +12,6 @@ from azure.identity import DefaultAzureCredential
 from headexceptionsversiontolerant import AutoRestHeadExceptionTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install azure-identity
     pip install autorestheadexceptiontestservice

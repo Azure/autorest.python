@@ -9,7 +9,6 @@
 from bodytime import AutoRestTimeTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autoresttimetestservice
 # USAGE

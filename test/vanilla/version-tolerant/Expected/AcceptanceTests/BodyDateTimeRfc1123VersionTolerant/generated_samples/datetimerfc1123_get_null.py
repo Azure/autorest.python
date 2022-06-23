@@ -9,12 +9,10 @@
 from bodydatetimerfc1123versiontolerant import AutoRestRFC1123DateTimeTestService
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install autorestrfc1123datetimetestservice
 # USAGE
     python datetimerfc1123_get_null.py
-
 """
 
 

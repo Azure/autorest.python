@@ -9,12 +9,10 @@
 from extensibleenumsswaggerversiontolerant import PetStoreInc
 
 """
-The sample just shows how to use the method and may not run successfully.
 # PREREQUISITES
     pip install petstoreinc
 # USAGE
     python pet_add_pet.py
-
 """
 
 
