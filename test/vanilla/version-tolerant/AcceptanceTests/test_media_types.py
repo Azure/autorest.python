@@ -36,6 +36,8 @@ def client():
 def test_pdf(client):
     result = client.analyze_body(input=b"PDF", content_type="application/pdf")
     assert result == "Nice job with PDF"
+    with pytest.raises(TypeError):
+        client.analyze_body(input=b"PDF")
 
 def test_json(client):
     json_input = json.loads('{"source":"foo"}')
@@ -69,3 +71,13 @@ def test_binary_body_three_content_types(client):
 
     content = "hello, world"
     client.binary_body_with_three_content_types(content, content_type="text/plain")
+
+def test_body_three_types(client):
+    json_input = {"hello":"world"}
+    client.body_three_types(json_input)
+
+    content = b"hello, world"
+    client.body_three_types(content)
+
+    content = "hello, world"
+    client.body_three_types(content)

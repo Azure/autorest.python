@@ -27,7 +27,7 @@ import isodate
 from async_generator import yield_, async_generator
 from datetime import timedelta
 
-from msrest import Serializer
+from bodyarrayversiontolerant._serialization import Serializer
 from azure.core.exceptions import DecodeError
 from base64 import b64encode
 from ..serializer import deserialize_base64

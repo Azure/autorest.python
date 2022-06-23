@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -19,18 +25,15 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_one_request
-T = TypeVar('T')
+from .._vendor import MixinABC
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-class MultiapiServiceClientOperationsMixin:
 
+class MultiapiServiceClientOperationsMixin(MixinABC):
     @distributed_trace_async
-    async def test_one(
-        self,
-        id: int,
-        message: Optional[str] = None,
-        **kwargs: Any
-    ) -> _models.ModelTwo:
+    async def test_one(self, id: int, message: Optional[str] = None, **kwargs: Any) -> _models.ModelTwo:
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter. Required.
@@ -42,23 +45,20 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelTwo]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelTwo]
 
-        
         request = build_test_one_request(
             id=id,
             message=message,
             api_version=api_version,
-            template_url=self.test_one.metadata['url'],
+            template_url=self.test_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -66,9 +66,7 @@ class MultiapiServiceClientOperationsMixin:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -78,22 +76,18 @@ class MultiapiServiceClientOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize('ModelTwo', pipeline_response)
+        deserialized = self._deserialize("ModelTwo", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    test_one.metadata = {'url': "/multiapi/testOneEndpoint"}  # type: ignore
-
+    test_one.metadata = {"url": "/multiapi/testOneEndpoint"}  # type: ignore
 
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
-        self,
-        greeting_in_english: str,
-        greeting_in_chinese: Optional[str] = None,
-        **kwargs: Any
+        self, greeting_in_english: str, greeting_in_chinese: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
 
@@ -106,23 +100,20 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata['url'],
+            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -130,9 +121,7 @@ class MultiapiServiceClientOperationsMixin:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -145,5 +134,4 @@ class MultiapiServiceClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {'url': "/multiapi/testDifferentCalls"}  # type: ignore
-
+    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}  # type: ignore

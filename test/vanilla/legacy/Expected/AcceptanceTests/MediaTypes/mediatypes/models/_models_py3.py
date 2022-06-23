@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from .. import _serialization
 
 
-class SourcePath(msrest.serialization.Model):
+class SourcePath(_serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.

@@ -9,8 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,6 +21,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
+
+from .._serialization import Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -179,7 +179,7 @@ class PetsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -203,7 +203,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -227,7 +227,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -306,7 +306,7 @@ class PetsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "friendly": bool,  # Optional.
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
@@ -333,7 +333,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "friendly": bool,  # Optional.
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
@@ -358,7 +358,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "friendly": bool,  # Optional.
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
@@ -437,7 +437,7 @@ class PetsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -461,7 +461,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -485,7 +485,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -563,7 +563,7 @@ class PetsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -587,7 +587,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -611,7 +611,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -689,7 +689,7 @@ class PetsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -715,7 +715,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -739,7 +739,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -821,7 +821,7 @@ class PetsOperations:
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "@odata.location": "str",  # Required.
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
@@ -851,7 +851,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "@odata.location": "str",  # Required.
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
@@ -879,7 +879,7 @@ class PetsOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "@odata.location": "str",  # Required.
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.

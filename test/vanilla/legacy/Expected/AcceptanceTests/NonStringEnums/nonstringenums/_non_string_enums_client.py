@@ -7,23 +7,21 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
-
-from msrest import Deserializer, Serializer
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import NonStringEnumsClientConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import FloatOperations, IntOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class NonStringEnumsClient(object):  # pylint: disable=client-accepts-api-version-keyword
+class NonStringEnumsClient:  # pylint: disable=client-accepts-api-version-keyword
     """Testing non-string enums.
 
     :ivar int: IntOperations operations
@@ -34,12 +32,7 @@ class NonStringEnumsClient(object):  # pylint: disable=client-accepts-api-versio
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = NonStringEnumsClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -50,12 +43,7 @@ class NonStringEnumsClient(object):  # pylint: disable=client-accepts-api-versio
         self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -64,7 +52,7 @@ class NonStringEnumsClient(object):  # pylint: disable=client-accepts-api-versio
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

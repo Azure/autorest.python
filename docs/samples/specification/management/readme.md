@@ -14,6 +14,7 @@ add-credential: true
 package-version: 0.1.0
 basic-setup-py: true
 clear-output-folder: true
+version-tolerant: false
 ```
 
 <!-- LINKS -->

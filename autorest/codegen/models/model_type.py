@@ -47,7 +47,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         *,
         properties: Optional[List[Property]] = None,
         parents: Optional[List["ModelType"]] = None,
-        discriminated_subtypes: Optional[Dict[str, str]] = None,
+        discriminated_subtypes: Optional[Dict[str, "ModelType"]] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name: str = self.yaml_data["name"]
@@ -61,6 +61,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         )
         self._created_json_template_representation = False
         self.is_public: bool = self.yaml_data.get("isPublic", True)
+        self.snake_case_name: str = self.yaml_data["snakeCaseName"]
 
     @property
     def is_xml(self) -> bool:
@@ -111,6 +112,10 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         # but we don't want to write a serialization context for an object.
         return super().xml_serialization_ctxt
 
+    @property
+    def discriminated_subtypes_name_mapping(self) -> Dict[str, str]:
+        return {k: v.name for k, v in self.discriminated_subtypes.items()}
+
     def get_json_template_representation(
         self,
         *,
@@ -121,6 +126,11 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         if self._created_json_template_representation:
             return "..."  # do this to avoid loop
         self._created_json_template_representation = True
+        if self.discriminated_subtypes:
+            # we will instead print the discriminated subtypes
+            self._created_json_template_representation = False
+            return self.snake_case_name
+
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
         representation = {
@@ -135,19 +145,29 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
                 if not (p.is_discriminator or p.client_name == "additional_properties")
             ]
         }
-        try:
-            # add discriminator prop if there is one
-            discriminator = next(p for p in self.properties if p.is_discriminator)
-            representation[discriminator.rest_api_name] = (
-                self.discriminator_value or discriminator.rest_api_name
-            )
-        except StopIteration:
-            pass
+        if self.discriminator and self.discriminator_value:
+            representation[
+                f'"{self.discriminator.rest_api_name}"'
+            ] = f'"{self.discriminator_value}"'
 
         # once we've finished, we want to reset created_json_template_representation to false
         # so we can call it again
         self._created_json_template_representation = False
         return representation
+
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        is_polymorphic_subtype = (
+            self.discriminator_value and not self.discriminated_subtypes
+        )
+        if (
+            self.name not in (m.name for m in polymorphic_subtypes)
+            and is_polymorphic_subtype
+        ):
+            polymorphic_subtypes.append(self)
+        for discriminated_subtype in self.discriminated_subtypes.values():
+            discriminated_subtype.get_polymorphic_subtypes(polymorphic_subtypes)
+        for property in self.properties:
+            property.get_polymorphic_subtypes(polymorphic_subtypes)
 
     @classmethod
     def from_yaml(
@@ -172,7 +192,10 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         ]
         self.properties = _get_properties(self, properties)
         # checking to see if this is a polymorphic class
-        self.discriminated_subtypes = self.yaml_data.get("discriminatedSubtypes", {})
+        self.discriminated_subtypes = {
+            k: cast(ModelType, build_type(v, code_model))
+            for k, v in self.yaml_data.get("discriminatedSubtypes", {}).items()
+        }
 
     @property
     def has_readonly_or_constant_property(self) -> bool:
@@ -215,13 +238,8 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
                     relative_path, "models", ImportType.LOCAL, alias="_models"
                 )
             else:
-                # a little hacky, but we only do this for version tolerant
-                # models files, which are all python3 only
-                models_filename = self.code_model.get_models_filename(
-                    is_python3_file=True
-                )
                 file_import.add_submodule_import(
-                    f"{relative_path}models.{models_filename}",
+                    f"{relative_path}models.{self.code_model.models_filename}",
                     self.name,
                     ImportType.LOCAL,
                 )

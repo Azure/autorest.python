@@ -6,14 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import Error
-    from ._models_py3 import Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema
-    from ._models_py3 import Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema
-except (SyntaxError, ImportError):
-    from ._models import Error  # type: ignore
-    from ._models import Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema  # type: ignore
-    from ._models import Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema  # type: ignore
+from ._models_py3 import Error
+from ._models_py3 import Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema
+from ._models_py3 import Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

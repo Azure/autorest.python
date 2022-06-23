@@ -7,25 +7,22 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 
 from . import models
 from ._configuration import StorageManagementClientConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import StorageAccountsOperations, UsageOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
     from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest, HttpResponse
 
 
-class StorageManagementClient(object):  # pylint: disable=client-accepts-api-version-keyword
+class StorageManagementClient:  # pylint: disable=client-accepts-api-version-keyword
     """StorageManagementClient.
 
     :ivar storage_accounts: StorageAccountsOperations operations
@@ -48,12 +45,11 @@ class StorageManagementClient(object):  # pylint: disable=client-accepts-api-ver
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
-        subscription_id,  # type: str
-        base_url="https://management.azure.com",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        credential: "TokenCredential",
+        subscription_id: str,
+        base_url: str = "https://management.azure.com",
+        **kwargs: Any
+    ) -> None:
         self._config = StorageManagementClientConfiguration(
             credential=credential, subscription_id=subscription_id, **kwargs
         )
@@ -68,12 +64,7 @@ class StorageManagementClient(object):  # pylint: disable=client-accepts-api-ver
         )
         self.usage = UsageOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -82,7 +73,7 @@ class StorageManagementClient(object):  # pylint: disable=client-accepts-api-ver
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

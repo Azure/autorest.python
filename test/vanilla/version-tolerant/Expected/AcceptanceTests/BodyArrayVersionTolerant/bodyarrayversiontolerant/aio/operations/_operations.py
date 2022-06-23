@@ -133,7 +133,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -183,7 +183,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -233,7 +233,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -377,7 +377,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     bool  # Optional.
                 ]
         """
@@ -521,7 +521,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     bool  # Optional.
                 ]
         """
@@ -571,7 +571,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     bool  # Optional.
                 ]
         """
@@ -621,7 +621,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -765,7 +765,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -815,7 +815,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -865,7 +865,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -1009,7 +1009,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -1059,7 +1059,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0  # Optional.
                 ]
         """
@@ -1109,7 +1109,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0.0  # Optional.
                 ]
         """
@@ -1253,7 +1253,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0.0  # Optional.
                 ]
         """
@@ -1303,7 +1303,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0.0  # Optional.
                 ]
         """
@@ -1353,7 +1353,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0.0  # Optional.
                 ]
         """
@@ -1497,7 +1497,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0.0  # Optional.
                 ]
         """
@@ -1547,7 +1547,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     0.0  # Optional.
                 ]
         """
@@ -1597,7 +1597,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -1741,7 +1741,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -1885,7 +1885,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -2029,7 +2029,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -2079,7 +2079,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -2130,7 +2130,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -2277,7 +2277,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "str"  # Optional.
                 ]
         """
@@ -2327,7 +2327,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "2020-02-20"  # Optional.
                 ]
         """
@@ -2471,7 +2471,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "2020-02-20"  # Optional.
                 ]
         """
@@ -2521,7 +2521,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "2020-02-20"  # Optional.
                 ]
         """
@@ -2572,7 +2572,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
@@ -2719,7 +2719,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
@@ -2769,7 +2769,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
@@ -2820,7 +2820,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
@@ -2967,7 +2967,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     "1 day, 0:00:00"  # Optional.
                 ]
         """
@@ -3112,7 +3112,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     bytes("bytes", encoding="utf-8")  # Optional.
                 ]
         """
@@ -3259,7 +3259,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     bytes("bytes", encoding="utf-8")  # Optional.
                 ]
         """
@@ -3310,7 +3310,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     bytes("bytes", encoding="utf-8")  # Optional.
                 ]
         """
@@ -3360,7 +3360,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3413,7 +3413,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3467,7 +3467,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3521,7 +3521,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3575,7 +3575,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "integer": 0,  # Optional.
                         "string": "str"  # Optional.
@@ -3728,7 +3728,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     [
                         "str"  # Optional.
                     ]
@@ -3780,7 +3780,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     [
                         "str"  # Optional.
                     ]
@@ -3832,7 +3832,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     [
                         "str"  # Optional.
                     ]
@@ -3884,7 +3884,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     [
                         "str"  # Optional.
                     ]
@@ -3936,7 +3936,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     [
                         "str"  # Optional.
                     ]
@@ -4084,7 +4084,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "str": "str"  # Optional.
                     }
@@ -4136,7 +4136,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "str": "str"  # Optional.
                     }
@@ -4189,7 +4189,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "str": "str"  # Optional.
                     }
@@ -4242,7 +4242,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "str": "str"  # Optional.
                     }
@@ -4295,7 +4295,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == [
+                response == [
                     {
                         "str": "str"  # Optional.
                     }

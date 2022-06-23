@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from ... import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -26,13 +26,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         """
         :keyword status:
         :paramtype status: int
@@ -44,7 +38,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class ModelTwo(msrest.serialization.Model):
+class ModelTwo(_serialization.Model):
     """Only exists in api version 2.0.0.
 
     All required parameters must be populated in order to send to Azure.
@@ -56,7 +50,7 @@ class ModelTwo(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
+        "id": {"required": True},
     }
 
     _attribute_map = {
@@ -64,13 +58,7 @@ class ModelTwo(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: int,  # pylint: disable=redefined-builtin
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, id: int, message: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id: Required.
         :paramtype id: int

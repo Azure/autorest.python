@@ -9,14 +9,14 @@
 
 from typing import List, Optional, TYPE_CHECKING, Union
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class CustomParameterGroup(msrest.serialization.Model):
+class CustomParameterGroup(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -28,8 +28,8 @@ class CustomParameterGroup(msrest.serialization.Model):
     """
 
     _validation = {
-        'api_version': {'required': True},
-        'tenant': {'required': True},
+        "api_version": {"required": True},
+        "tenant": {"required": True},
     }
 
     _attribute_map = {
@@ -37,13 +37,7 @@ class CustomParameterGroup(msrest.serialization.Model):
         "tenant": {"key": "tenant", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        api_version: str,
-        tenant: str,
-        **kwargs
-    ):
+    def __init__(self, *, api_version: str, tenant: str, **kwargs):
         """
         :keyword api_version: Sets the api version to use. Required.
         :paramtype api_version: str
@@ -55,7 +49,7 @@ class CustomParameterGroup(msrest.serialization.Model):
         self.tenant = tenant
 
 
-class OdataProductResult(msrest.serialization.Model):
+class OdataProductResult(_serialization.Model):
     """OdataProductResult.
 
     :ivar values:
@@ -70,11 +64,7 @@ class OdataProductResult(msrest.serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        values: Optional[List["_models.Product"]] = None,
-        odata_next_link: Optional[str] = None,
-        **kwargs
+        self, *, values: Optional[List["_models.Product"]] = None, odata_next_link: Optional[str] = None, **kwargs
     ):
         """
         :keyword values:
@@ -87,7 +77,7 @@ class OdataProductResult(msrest.serialization.Model):
         self.odata_next_link = odata_next_link
 
 
-class OperationResult(msrest.serialization.Model):
+class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
@@ -99,12 +89,7 @@ class OperationResult(msrest.serialization.Model):
         "status": {"key": "status", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[Union[str, "_models.OperationResultStatus"]] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[Union[str, "_models.OperationResultStatus"]] = None, **kwargs):
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
@@ -115,7 +100,7 @@ class OperationResult(msrest.serialization.Model):
         self.status = status
 
 
-class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
+class PagingGetMultiplePagesLroOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -130,13 +115,7 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -149,7 +128,7 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
         self.timeout = timeout
 
 
-class PagingGetMultiplePagesOptions(msrest.serialization.Model):
+class PagingGetMultiplePagesOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -164,13 +143,7 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -183,7 +156,7 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
         self.timeout = timeout
 
 
-class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
+class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -198,7 +171,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
     """
 
     _validation = {
-        'offset': {'required': True},
+        "offset": {"required": True},
     }
 
     _attribute_map = {
@@ -207,14 +180,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        offset: int,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -230,7 +196,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         self.timeout = timeout
 
 
-class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
+class PagingGetOdataMultiplePagesOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -245,13 +211,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -264,7 +224,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
         self.timeout = timeout
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar properties:
@@ -275,12 +235,7 @@ class Product(msrest.serialization.Model):
         "properties": {"key": "properties", "type": "ProductProperties"},
     }
 
-    def __init__(
-        self,
-        *,
-        properties: Optional["_models.ProductProperties"] = None,
-        **kwargs
-    ):
+    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
         """
         :keyword properties:
         :paramtype properties: ~custompollerpager.models.ProductProperties
@@ -289,7 +244,7 @@ class Product(msrest.serialization.Model):
         self.properties = properties
 
 
-class ProductProperties(msrest.serialization.Model):
+class ProductProperties(_serialization.Model):
     """ProductProperties.
 
     :ivar id:
@@ -304,11 +259,7 @@ class ProductProperties(msrest.serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        id: Optional[int] = None,  # pylint: disable=redefined-builtin
-        name: Optional[str] = None,
-        **kwargs
+        self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
     ):
         """
         :keyword id:
@@ -321,7 +272,7 @@ class ProductProperties(msrest.serialization.Model):
         self.name = name
 
 
-class ProductResult(msrest.serialization.Model):
+class ProductResult(_serialization.Model):
     """ProductResult.
 
     :ivar values:
@@ -335,13 +286,7 @@ class ProductResult(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        values: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword values:
         :paramtype values: list[~custompollerpager.models.Product]
@@ -353,7 +298,7 @@ class ProductResult(msrest.serialization.Model):
         self.next_link = next_link
 
 
-class ProductResultValue(msrest.serialization.Model):
+class ProductResultValue(_serialization.Model):
     """ProductResultValue.
 
     :ivar value:
@@ -367,13 +312,7 @@ class ProductResultValue(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword value:
         :paramtype value: list[~custompollerpager.models.Product]
@@ -385,7 +324,7 @@ class ProductResultValue(msrest.serialization.Model):
         self.next_link = next_link
 
 
-class ProductResultValueWithXMSClientName(msrest.serialization.Model):
+class ProductResultValueWithXMSClientName(_serialization.Model):
     """ProductResultValueWithXMSClientName.
 
     :ivar indexes:
@@ -399,13 +338,7 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        indexes: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, indexes: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword indexes:
         :paramtype indexes: list[~custompollerpager.models.Product]

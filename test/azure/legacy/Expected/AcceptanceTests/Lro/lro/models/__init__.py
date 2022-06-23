@@ -6,22 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import OperationResult
-    from ._models_py3 import OperationResultError
-    from ._models_py3 import Product
-    from ._models_py3 import Resource
-    from ._models_py3 import Sku
-    from ._models_py3 import SubProduct
-    from ._models_py3 import SubResource
-except (SyntaxError, ImportError):
-    from ._models import OperationResult  # type: ignore
-    from ._models import OperationResultError  # type: ignore
-    from ._models import Product  # type: ignore
-    from ._models import Resource  # type: ignore
-    from ._models import Sku  # type: ignore
-    from ._models import SubProduct  # type: ignore
-    from ._models import SubResource  # type: ignore
+from ._models_py3 import OperationResult
+from ._models_py3 import OperationResultError
+from ._models_py3 import Product
+from ._models_py3 import Resource
+from ._models_py3 import Sku
+from ._models_py3 import SubProduct
+from ._models_py3 import SubResource
 
 from ._auto_rest_long_running_operation_test_service_enums import OperationResultStatus
 from ._auto_rest_long_running_operation_test_service_enums import ProductPropertiesProvisioningStateValues

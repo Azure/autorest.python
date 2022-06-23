@@ -7,24 +7,18 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
-
-from msrest import Deserializer, Serializer
+from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import BodyFormsDataURLEncodedConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import FormdataurlencodedOperations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class BodyFormsDataURLEncoded(object):  # pylint: disable=client-accepts-api-version-keyword
+class BodyFormsDataURLEncoded:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdataurlencoded: FormdataurlencodedOperations operations
@@ -33,12 +27,7 @@ class BodyFormsDataURLEncoded(object):  # pylint: disable=client-accepts-api-ver
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = BodyFormsDataURLEncodedConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -50,12 +39,7 @@ class BodyFormsDataURLEncoded(object):  # pylint: disable=client-accepts-api-ver
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -64,7 +48,7 @@ class BodyFormsDataURLEncoded(object):  # pylint: disable=client-accepts-api-ver
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

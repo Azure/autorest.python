@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -19,8 +25,11 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._operation_group_one_operations import build_test_two_request
-T = TypeVar('T')
+from .._vendor import MixinABC
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class OperationGroupOneOperations:
     """
@@ -40,7 +49,6 @@ class OperationGroupOneOperations:
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
 
     @overload
     async def test_two(
@@ -65,11 +73,7 @@ class OperationGroupOneOperations:
 
     @overload
     async def test_two(
-        self,
-        parameter_one: Optional[IO] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
@@ -84,12 +88,9 @@ class OperationGroupOneOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace_async
     async def test_two(
-        self,
-        parameter_one: Optional[Union[_models.ModelThree, IO]] = None,
-        **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelThree, IO]] = None, **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
@@ -104,17 +105,15 @@ class OperationGroupOneOperations:
         :rtype: ~multiapi.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelThree]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelThree]
 
         content_type = content_type or "application/json"
         _json = None
@@ -123,7 +122,7 @@ class OperationGroupOneOperations:
             _content = parameter_one
         else:
             if parameter_one is not None:
-                _json = self._serialize.body(parameter_one, 'ModelThree')
+                _json = self._serialize.body(parameter_one, "ModelThree")
             else:
                 _json = None
 
@@ -132,7 +131,7 @@ class OperationGroupOneOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_two.metadata['url'],
+            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -140,9 +139,7 @@ class OperationGroupOneOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -152,12 +149,11 @@ class OperationGroupOneOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize('ModelThree', pipeline_response)
+        deserialized = self._deserialize("ModelThree", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    test_two.metadata = {'url': "/multiapi/one/testTwoEndpoint"}  # type: ignore
-
+    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}  # type: ignore

@@ -9,10 +9,10 @@
 
 from typing import List, Optional
 
-import msrest.serialization
+from ... import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -26,13 +26,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         """
         :keyword status:
         :paramtype status: int
@@ -44,7 +38,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class PagingResult(msrest.serialization.Model):
+class PagingResult(_serialization.Model):
     """PagingResult.
 
     :ivar values:
@@ -58,13 +52,7 @@ class PagingResult(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        values: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword values:
         :paramtype values: list[~multiapicredentialdefaultpolicy.v1.models.Product]
@@ -76,7 +64,7 @@ class PagingResult(msrest.serialization.Model):
         self.next_link = next_link
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar id:
@@ -87,12 +75,7 @@ class Product(msrest.serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: Optional[int] = None,  # pylint: disable=redefined-builtin
-        **kwargs
-    ):
+    def __init__(self, *, id: Optional[int] = None, **kwargs):  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -101,7 +84,7 @@ class Product(msrest.serialization.Model):
         self.id = id
 
 
-class TestLroAndPagingOptions(msrest.serialization.Model):
+class TestLroAndPagingOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -116,13 +99,7 @@ class TestLroAndPagingOptions(msrest.serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs
-    ):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int

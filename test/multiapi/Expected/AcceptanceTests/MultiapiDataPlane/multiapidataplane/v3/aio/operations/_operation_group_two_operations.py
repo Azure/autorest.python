@@ -8,7 +8,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
@@ -18,8 +24,11 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._operation_group_two_operations import build_test_five_request, build_test_four_request
-T = TypeVar('T')
+from .._vendor import MixinABC
+
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class OperationGroupTwoOperations:
     """
@@ -40,14 +49,9 @@ class OperationGroupTwoOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @overload
     async def test_four(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[_models.SourcePath] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
@@ -64,18 +68,15 @@ class OperationGroupTwoOperations:
 
     @overload
     async def test_four(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[IO] = None,
-        *,
-        content_type: Optional[str] = None,
-        **kwargs: Any
+        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+         Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
+         'image/tiff'. Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -83,12 +84,9 @@ class OperationGroupTwoOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace_async
     async def test_four(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[_models.SourcePath, IO]] = None,
-        **kwargs: Any
+        self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
@@ -102,17 +100,15 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
@@ -120,7 +116,7 @@ class OperationGroupTwoOperations:
             _content = input
         else:
             if input is not None:
-                _json = self._serialize.body(input, 'SourcePath')
+                _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
             content_type = content_type or "application/json"
@@ -130,7 +126,7 @@ class OperationGroupTwoOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_four.metadata['url'],
+            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -138,9 +134,7 @@ class OperationGroupTwoOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -153,14 +147,10 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': "/multiapi/two/testFourEndpoint"}  # type: ignore
-
+    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}  # type: ignore
 
     @distributed_trace_async
-    async def test_five(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestFive should be in OperationGroupTwoOperations.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -168,21 +158,18 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        
         request = build_test_five_request(
             api_version=api_version,
-            template_url=self.test_five.metadata['url'],
+            template_url=self.test_five.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -190,9 +177,7 @@ class OperationGroupTwoOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -205,5 +190,4 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_five.metadata = {'url': "/multiapi/two/testFiveEndpoint"}  # type: ignore
-
+    test_five.metadata = {"url": "/multiapi/two/testFiveEndpoint"}  # type: ignore

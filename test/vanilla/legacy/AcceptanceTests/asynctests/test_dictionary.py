@@ -39,8 +39,7 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyDictionary"))
 
-from azure.core.exceptions import DecodeError
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError, DeserializationError
 
 from bodydictionary.aio import AutoRestSwaggerBATDictionaryService
 from bodydictionary.models import Widget

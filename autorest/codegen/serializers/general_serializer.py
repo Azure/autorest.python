@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
+from ..models.imports import MsrestImportType
 from ..models import (
     FileImport,
     ImportType,
@@ -33,14 +34,12 @@ class GeneralSerializer:
 
         template = self.env.get_template("client.py.jinja2")
 
-        python3_only = self.code_model.options["python3_only"]
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
-            serializer=ClientSerializer(self.code_model, is_python3_file=python3_only),
+            serializer=ClientSerializer(self.code_model),
             imports=FileImportSerializer(
                 self.code_model.client.imports(self.async_mode),
-                is_python3_file=self.async_mode or python3_only,
             ),
         )
 
@@ -73,18 +72,17 @@ class GeneralSerializer:
                 f"{self.code_model.client.name}Configuration",
                 ImportType.LOCAL,
             )
-            file_import.add_submodule_import(
-                "msrest", "Serializer", ImportType.THIRDPARTY, TypingSection.TYPING
-            )
-            file_import.add_submodule_import(
-                "msrest", "Deserializer", ImportType.THIRDPARTY, TypingSection.TYPING
+            file_import.add_msrest_import(
+                self.code_model,
+                ".." if self.async_mode else ".",
+                MsrestImportType.SerializerDeserializer,
+                TypingSection.TYPING,
             )
 
         return template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(
                 file_import,
-                is_python3_file=self.async_mode,
             ),
             async_mode=self.async_mode,
         )
@@ -98,15 +96,13 @@ class GeneralSerializer:
             package_name if package_name else self.code_model.client.name.lower()
         )
         template = self.env.get_template("config.py.jinja2")
-        python3_only = self.code_model.options["python3_only"]
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(
                 self.code_model.config.imports(self.async_mode),
-                is_python3_file=self.async_mode or python3_only,
             ),
-            serializer=ConfigSerializer(self.code_model, is_python3_file=python3_only),
+            serializer=ConfigSerializer(self.code_model),
             sdk_moniker=sdk_moniker,
         )
 
@@ -120,3 +116,7 @@ class GeneralSerializer:
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
         return template.render(code_model=self.code_model, **params)
+
+    def serialize_serialization_file(self) -> str:
+        template = self.env.get_template("serialization.py.jinja2")
+        return template.render(code_model=self.code_model)

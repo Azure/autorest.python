@@ -31,6 +31,7 @@ from ...operations._reserved_words_client_operations import (
     build_operation_with_json_param_request,
     build_operation_with_url_request,
 )
+from .._vendor import MixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -41,7 +42,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ReservedWordsClientOperationsMixin:
+class ReservedWordsClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.

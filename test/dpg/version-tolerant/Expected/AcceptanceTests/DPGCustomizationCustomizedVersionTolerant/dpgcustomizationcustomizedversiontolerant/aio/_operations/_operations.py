@@ -61,7 +61,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -129,7 +129,7 @@ class DPGClientOperationsMixin(MixinABC):
                 }
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -156,7 +156,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -183,7 +183,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -251,7 +251,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -274,14 +274,9 @@ class DPGClientOperationsMixin(MixinABC):
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-                request = build_get_pages_request(
-                    mode=mode,
-                    headers=_headers,
-                    params=_params,
-                )
-                request.url = self._client.format_url(next_link)  # type: ignore
-                request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
@@ -367,7 +362,7 @@ class DPGClientOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "provisioningState": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }

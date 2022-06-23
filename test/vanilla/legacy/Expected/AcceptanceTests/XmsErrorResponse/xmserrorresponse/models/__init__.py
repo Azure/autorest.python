@@ -6,28 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import Animal
-    from ._models_py3 import AnimalNotFound
-    from ._models_py3 import BaseError
-    from ._models_py3 import LinkNotFound
-    from ._models_py3 import NotFoundErrorBase
-    from ._models_py3 import Pet
-    from ._models_py3 import PetAction
-    from ._models_py3 import PetActionError
-    from ._models_py3 import PetHungryOrThirstyError
-    from ._models_py3 import PetSadError
-except (SyntaxError, ImportError):
-    from ._models import Animal  # type: ignore
-    from ._models import AnimalNotFound  # type: ignore
-    from ._models import BaseError  # type: ignore
-    from ._models import LinkNotFound  # type: ignore
-    from ._models import NotFoundErrorBase  # type: ignore
-    from ._models import Pet  # type: ignore
-    from ._models import PetAction  # type: ignore
-    from ._models import PetActionError  # type: ignore
-    from ._models import PetHungryOrThirstyError  # type: ignore
-    from ._models import PetSadError  # type: ignore
+from ._models_py3 import Animal
+from ._models_py3 import AnimalNotFound
+from ._models_py3 import BaseError
+from ._models_py3 import LinkNotFound
+from ._models_py3 import NotFoundErrorBase
+from ._models_py3 import Pet
+from ._models_py3 import PetAction
+from ._models_py3 import PetActionError
+from ._models_py3 import PetHungryOrThirstyError
+from ._models_py3 import PetSadError
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk

@@ -6,16 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
+from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
 
 class ObjectTypeClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -25,10 +21,7 @@ class ObjectTypeClientConfiguration(Configuration):  # pylint: disable=too-many-
     attributes.
     """
 
-    def __init__(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, **kwargs: Any) -> None:
         super(ObjectTypeClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "objecttypeclient/{}".format(VERSION))

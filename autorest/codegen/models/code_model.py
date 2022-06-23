@@ -200,8 +200,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             name = f"_{name}"
         return name
 
+    @property
+    def has_abstract_operations(self) -> bool:
+        """Whether there is abstract operation in any operation group."""
+        return any(og.has_abstract_operations for og in self.operation_groups)
+
     def need_vendored_code(self, async_mode: bool) -> bool:
         """Whether we need to vendor code in the _vendor.py file for this SDK"""
+        if self.has_abstract_operations:
+            return True
         if async_mode:
             return self.need_mixin_abc
         return (
@@ -228,11 +235,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     @property
     def need_mixin_abc(self) -> bool:
         """Do we want a mixin ABC class for typing purposes?"""
-        return any(
-            o
-            for o in self.operation_groups
-            if o.is_mixin and self.options["python3_only"]
-        )
+        return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
     def has_lro_operations(self) -> bool:
@@ -245,22 +248,25 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             ]
         )
 
-    def get_models_filename(self, is_python3_file: bool) -> str:
+    @property
+    def models_filename(self) -> str:
         """Get the names of the model file(s)"""
-        if (
-            self.options["version_tolerant"] or self.options["low_level_client"]
-        ) and self.options["python3_only"]:
-            return "_models"
-        if is_python3_file:
+        if self.is_legacy:
             return "_models_py3"
         return "_models"
 
     @property
     def enums_filename(self) -> str:
         """The name of the enums file"""
-        if self.options["version_tolerant"] or self.options["low_level_client"]:
-            return "_enums"
-        return f"_{self.module_name}_enums"
+        if self.is_legacy:
+            return f"_{self.module_name}_enums"
+        return "_enums"
+
+    @property
+    def is_legacy(self) -> bool:
+        return not (
+            self.options["version_tolerant"] or self.options["low_level_client"]
+        )
 
     @property
     def rest_layer_name(self) -> str:

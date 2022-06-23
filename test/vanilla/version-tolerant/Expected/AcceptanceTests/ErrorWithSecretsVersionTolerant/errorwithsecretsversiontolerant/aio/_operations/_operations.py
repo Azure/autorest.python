@@ -46,7 +46,7 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == {
+                response == {
                     "key": "str",  # The secret key. Required.
                     "value": "str"  # The secret value. Required.
                 }

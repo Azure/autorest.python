@@ -9,10 +9,10 @@
 
 from typing import Optional
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Feline(msrest.serialization.Model):
+class Feline(_serialization.Model):
     """Feline.
 
     :ivar meows:
@@ -38,7 +38,7 @@ class Feline(msrest.serialization.Model):
         self.hisses = hisses
 
 
-class Pet(msrest.serialization.Model):
+class Pet(_serialization.Model):
     """Pet.
 
     All required parameters must be populated in order to send to Azure.
@@ -116,7 +116,7 @@ class Cat(Pet, Feline):
         self.name = name
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:

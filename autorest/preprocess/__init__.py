@@ -12,6 +12,16 @@ from .python_mappings import PadType
 from .. import YamlUpdatePlugin
 
 
+def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
+    # we don't expose maxpagesize for version tolerant generation
+    # users should be passing this into `by_page`
+    yaml_data["parameters"] = [
+        p
+        for p in yaml_data.get("parameters", [])
+        if p["restApiName"].lower() not in ["maxpagesize", "$maxpagesize"]
+    ]
+
+
 def update_description(
     description: Optional[str], default_description: str = ""
 ) -> str:
@@ -62,6 +72,7 @@ def update_types(yaml_data: List[Dict[str, Any]]) -> None:
             add_redefined_builtin_info(property["clientName"], property)
         if type.get("name"):
             type["description"] = update_description(type["description"], type["name"])
+            type["snakeCaseName"] = to_snake_case(type["name"])
 
 
 def update_client(yaml_data: Dict[str, Any]) -> None:
@@ -83,6 +94,10 @@ def update_paging_response(yaml_data: Dict[str, Any]) -> None:
 
 class PreProcessPlugin(YamlUpdatePlugin):
     """Add Python naming information."""
+
+    @property
+    def version_tolerant(self) -> bool:
+        return bool(self._autorestapi.get_boolean_value("version-tolerant", True))
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
@@ -143,13 +158,16 @@ class PreProcessPlugin(YamlUpdatePlugin):
     def update_lro_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_lro_operation(yaml_data)
         self.update_paging_operation(yaml_data)
+        yaml_data["discriminator"] = "lropaging"
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lropaging"
+        for overload in yaml_data.get("overloads", []):
+            self.update_lro_paging_operation(overload)
 
     def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_operation(yaml_data)
         self._update_lro_operation_helper(yaml_data)
-        for overload in yaml_data["overloads"]:
+        for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
 
     def update_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
@@ -163,15 +181,18 @@ class PreProcessPlugin(YamlUpdatePlugin):
             if yaml_data.get("nextOperation")
             else yaml_data["responses"][0]
         )
-        # if we're in version tolerant, hide the paging model
-        if self._autorestapi.get_boolean_value("version-tolerant"):
+        if self.version_tolerant:
+            # if we're in version tolerant, hide the paging model
             returned_response_object["type"]["isPublic"] = False
+            _remove_paging_maxpagesize(yaml_data)
         item_type = next(
             p["type"]["elementType"]
             for p in returned_response_object["type"]["properties"]
-            if p["restApiName"] == yaml_data["itemName"]
+            if p["restApiName"] == (yaml_data.get("itemName") or "value")
         )
         if yaml_data.get("nextOperation"):
+            if self.version_tolerant:
+                _remove_paging_maxpagesize(yaml_data["nextOperation"])
             yaml_data["nextOperation"]["groupName"] = pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )

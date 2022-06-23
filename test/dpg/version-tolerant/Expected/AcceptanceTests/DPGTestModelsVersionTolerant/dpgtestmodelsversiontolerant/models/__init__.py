@@ -10,7 +10,6 @@ from ._models import Input
 from ._models import LROProduct
 from ._patch import Product
 
-
 from ._enums import ProductReceived
 
 from ._patch import AddedModel

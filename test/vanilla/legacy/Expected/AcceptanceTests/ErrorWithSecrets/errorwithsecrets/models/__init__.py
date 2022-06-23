@@ -6,16 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import Error
-    from ._models_py3 import ErrorResponse
-    from ._models_py3 import InnerError
-    from ._models_py3 import SecretResponse
-except (SyntaxError, ImportError):
-    from ._models import Error  # type: ignore
-    from ._models import ErrorResponse  # type: ignore
-    from ._models import InnerError  # type: ignore
-    from ._models import SecretResponse  # type: ignore
+from ._models_py3 import Error
+from ._models_py3 import ErrorResponse
+from ._models_py3 import InnerError
+from ._models_py3 import SecretResponse
 
 from ._error_with_secrets_enums import ErrorCode
 from ._error_with_secrets_enums import InnerErrorCode

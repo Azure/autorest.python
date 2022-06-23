@@ -7,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, IO, Optional, TYPE_CHECKING
-
-from msrest import Serializer
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -25,169 +23,121 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _format_url_section
+from .._serialization import Serializer
+from .._vendor import MixinABC, _convert_request, _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, List, Optional, TypeVar
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
-    T = TypeVar("T")
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_operation_with_content_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_operation_with_content_param_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/content")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_operation_with_json_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/json")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_operation_with_data_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_operation_with_data_param_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/data")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_operation_with_files_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_operation_with_files_param_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/files")
 
     # Construct headers
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_operation_with_url_request(
-    url,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_parameters = kwargs.pop('header_parameters')  # type: str
-    query_parameters = kwargs.pop('query_parameters', _params.pop('queryParameters', None))  # type: Optional[List[str]]
-    accept = _headers.pop('Accept', "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/{url}")
     path_format_arguments = {
-        "url": _SERIALIZER.url("url", url, 'str'),
+        "url": _SERIALIZER.url("url", url, "str"),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
     if query_parameters is not None:
-        _params['queryParameters'] = [_SERIALIZER.query("query_parameters", q, 'str') if q is not None else '' for q in query_parameters]
+        _params["queryParameters"] = [
+            _SERIALIZER.query("query_parameters", q, "str") if q is not None else "" for q in query_parameters
+        ]
 
     # Construct headers
-    _headers['headerParameters'] = _SERIALIZER.header("header_parameters", header_parameters, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["headerParameters"] = _SERIALIZER.header("header_parameters", header_parameters, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
-# fmt: on
-class ReservedWordsClientOperationsMixin(object):
+
+class ReservedWordsClientOperationsMixin(MixinABC):
     @distributed_trace
-    def operation_with_content_param(
-        self,
-        content,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSON
+    def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'. Required.
@@ -238,12 +188,7 @@ class ReservedWordsClientOperationsMixin(object):
     operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}  # type: ignore
 
     @distributed_trace
-    def operation_with_json_param(
-        self,
-        json,  # type: Any
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSON
+    def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
         :param json: Pass in {'hello': 'world'}. Required.
@@ -294,13 +239,7 @@ class ReservedWordsClientOperationsMixin(object):
     operation_with_json_param.metadata = {"url": "/reservedWords/operation/json"}  # type: ignore
 
     @distributed_trace
-    def operation_with_data_param(
-        self,
-        data,  # type: str
-        world,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSON
+    def operation_with_data_param(self, data: str, world: str, **kwargs: Any) -> JSON:
         """Operation with urlencoded body param called 'data'.
 
         :param data: Pass in 'hello'. Required.
@@ -359,13 +298,7 @@ class ReservedWordsClientOperationsMixin(object):
     operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}  # type: ignore
 
     @distributed_trace
-    def operation_with_files_param(
-        self,
-        files,  # type: IO
-        file_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSON
+    def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
         """Operation with multipart body param called 'files'.
 
         :param files: Files to upload. Pass in list of input streams. Required.
@@ -423,13 +356,8 @@ class ReservedWordsClientOperationsMixin(object):
 
     @distributed_trace
     def operation_with_url(
-        self,
-        url,  # type: str
-        header_parameters,  # type: str
-        query_parameters=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSON
+        self, url: str, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+    ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.
 

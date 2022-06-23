@@ -11,9 +11,8 @@ from .parameter_serializer import ParameterSerializer, PopKwargType
 
 
 class ClientSerializer:
-    def __init__(self, code_model: CodeModel, is_python3_file: bool) -> None:
+    def __init__(self, code_model: CodeModel) -> None:
         self.code_model = code_model
-        self.is_python3_file = is_python3_file
         self.parameter_serializer = ParameterSerializer()
 
     def _init_signature(self, async_mode: bool) -> str:
@@ -22,36 +21,32 @@ class ClientSerializer:
             method_name="__init__",
             need_self_param=True,
             method_param_signatures=self.code_model.client.parameters.method_signature(
-                async_mode or self.is_python3_file, async_mode
+                async_mode
             ),
         )
 
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         init_signature = self._init_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            is_python3_file=async_mode or self.is_python3_file,
             method_signature=init_signature,
             response_type_annotation="None",
         )
 
-    def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
+    def pop_kwargs_from_signature(self) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
-            self.code_model.client.parameters.kwargs_to_pop(
-                async_mode or self.is_python3_file,
-            ),
+            self.code_model.client.parameters.kwargs_to_pop,
             check_kwarg_dict=False,
             pop_headers_kwarg=PopKwargType.NO,
             pop_params_kwarg=PopKwargType.NO,
         )
 
-    def class_definition(self, async_mode) -> str:
+    @property
+    def class_definition(self) -> str:
         class_name = self.code_model.client.name
         has_mixin_og = any(og for og in self.code_model.operation_groups if og.is_mixin)
         base_class = ""
         if has_mixin_og:
             base_class = f"{class_name}OperationsMixin"
-        elif not (async_mode or self.is_python3_file):
-            base_class = "object"
         pylint_disable = self.code_model.client.pylint_disable
         if base_class:
             return f"class {class_name}({base_class}):{pylint_disable}"
@@ -101,6 +96,14 @@ class ClientSerializer:
         except StopIteration:
             return "_endpoint"
 
+    @property
+    def should_init_super(self) -> bool:
+        return any(
+            og
+            for og in self.code_model.operation_groups
+            if og.is_mixin and og.has_abstract_operations
+        )
+
     def initialize_pipeline_client(self, async_mode: bool) -> str:
         pipeline_client_name = self.code_model.client.pipeline_class(async_mode)
         return (
@@ -138,17 +141,10 @@ class ClientSerializer:
             )
         return retval
 
-    def _send_request_signature(self, async_mode: bool) -> str:
-        is_python3_file = async_mode or self.code_model.options["python3_only"]
-        request_signature = [
+    def _send_request_signature(self) -> str:
+        send_request_signature = [
             "request: HttpRequest,"
-            if is_python3_file
-            else "request,  # type: HttpRequest"
-        ]
-        send_request_signature = (
-            request_signature
-            + self.code_model.client.parameters.method_signature_kwargs(is_python3_file)
-        )
+        ] + self.code_model.client.parameters.method_signature_kwargs
         return self.parameter_serializer.serialize_method(
             function_def="def",
             method_name=self.code_model.client.send_request_name,
@@ -159,9 +155,8 @@ class ClientSerializer:
     def send_request_signature_and_response_type_annotation(
         self, async_mode: bool
     ) -> str:
-        send_request_signature = self._send_request_signature(async_mode)
+        send_request_signature = self._send_request_signature()
         return utils.method_signature_and_response_type_annotation_template(
-            is_python3_file=async_mode or self.is_python3_file,
             method_signature=send_request_signature,
             response_type_annotation="Awaitable[AsyncHttpResponse]"
             if async_mode
@@ -224,7 +219,7 @@ class ClientSerializer:
             retval.extend(self._rest_request_example(async_mode))
         retval.append("")
         retval.append(
-            "For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart"
+            "For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request"
         )
         retval.append(f"")
         retval.append(":param request: The network request you want to make. Required.")
@@ -247,10 +242,9 @@ class ClientSerializer:
 
 
 class ConfigSerializer:
-    def __init__(self, code_model: CodeModel, is_python3_file: bool) -> None:
+    def __init__(self, code_model: CodeModel) -> None:
         self.code_model = code_model
         self.parameter_serializer = ParameterSerializer()
-        self.is_python3_file = is_python3_file
 
     def _init_signature(self, async_mode: bool) -> str:
         return self.parameter_serializer.serialize_method(
@@ -258,23 +252,20 @@ class ConfigSerializer:
             method_name="__init__",
             need_self_param=True,
             method_param_signatures=self.code_model.config.parameters.method_signature(
-                async_mode or self.is_python3_file, async_mode
+                async_mode
             ),
         )
 
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         init_signature = self._init_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            is_python3_file=async_mode or self.is_python3_file,
             method_signature=init_signature,
             response_type_annotation="None",
         )
 
-    def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
+    def pop_kwargs_from_signature(self) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
-            self.code_model.config.parameters.kwargs_to_pop(
-                async_mode or self.is_python3_file
-            ),
+            self.code_model.config.parameters.kwargs_to_pop,
             check_kwarg_dict=False,
             pop_headers_kwarg=PopKwargType.NO,
             pop_params_kwarg=PopKwargType.NO,

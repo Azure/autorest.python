@@ -7,24 +7,19 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Optional, TYPE_CHECKING
+from typing import Any, Optional
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ExplicitOperations, ImplicitOperations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
 
-    from azure.core.rest import HttpRequest, HttpResponse
-
-
-class AutoRestRequiredOptionalTestService(object):  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar implicit: ImplicitOperations operations
@@ -43,13 +38,12 @@ class AutoRestRequiredOptionalTestService(object):  # pylint: disable=client-acc
 
     def __init__(
         self,
-        required_global_path,  # type: str
-        required_global_query,  # type: str
-        optional_global_query=None,  # type: Optional[int]
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        required_global_path: str,
+        required_global_query: str,
+        optional_global_query: Optional[int] = None,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(
             required_global_path=required_global_path,
             required_global_query=required_global_query,
@@ -64,12 +58,7 @@ class AutoRestRequiredOptionalTestService(object):  # pylint: disable=client-acc
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -78,7 +67,7 @@ class AutoRestRequiredOptionalTestService(object):  # pylint: disable=client-acc
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

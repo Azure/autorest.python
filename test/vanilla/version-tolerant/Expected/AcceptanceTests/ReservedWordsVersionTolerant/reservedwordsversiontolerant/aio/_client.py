@@ -9,11 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
+from .._serialization import Deserializer, Serializer
 from ._configuration import ReservedWordsClientConfiguration
 from .operations import ImportOperations, ReservedWordsClientOperationsMixin
 
@@ -32,6 +31,7 @@ class ReservedWordsClient(ReservedWordsClientOperationsMixin):  # pylint: disabl
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+        super().__init__()
         self._config = ReservedWordsClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
@@ -49,7 +49,7 @@ class ReservedWordsClient(ReservedWordsClientOperationsMixin):  # pylint: disabl
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

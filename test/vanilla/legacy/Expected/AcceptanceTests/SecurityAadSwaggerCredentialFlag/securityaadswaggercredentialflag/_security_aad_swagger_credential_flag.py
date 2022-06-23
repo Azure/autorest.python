@@ -7,21 +7,19 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
-
-from msrest import Deserializer, Serializer
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.credentials import AzureKeyCredential
+from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SecurityAadSwaggerCredentialFlagConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import SecurityAadSwaggerCredentialFlagOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
-
-    from azure.core.credentials import AzureKeyCredential
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
 class SecurityAadSwaggerCredentialFlag(
@@ -35,13 +33,7 @@ class SecurityAadSwaggerCredentialFlag(
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        credential,  # type: AzureKeyCredential
-        base_url="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = SecurityAadSwaggerCredentialFlagConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -50,12 +42,7 @@ class SecurityAadSwaggerCredentialFlag(
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -64,7 +51,7 @@ class SecurityAadSwaggerCredentialFlag(
         >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

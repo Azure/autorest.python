@@ -18,6 +18,8 @@ package-name: multiapicustombaseurl
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
 add-credentials: true
+python3-only: true
+version-tolerant: false
 ```
 
 ``` yaml $(multiapi)

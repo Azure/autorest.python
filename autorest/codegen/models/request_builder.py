@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
 from typing import (
     Any,
     Callable,
@@ -21,13 +20,11 @@ from .parameter_list import (
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
 )
-from .imports import FileImport, ImportType, TypingSection
-from .request_builder_parameter import RequestBuilderMultipartBodyParameter
+from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-_LOGGER = logging.getLogger(__name__)
 ParameterListType = TypeVar(
     "ParameterListType",
     bound=Union[RequestBuilderParameterList, OverloadedRequestBuilderParameterList],
@@ -43,7 +40,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         parameters: ParameterListType,
         *,
         overloads: Optional[List["RequestBuilder"]] = None,
-        abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -51,7 +47,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             name=name,
             parameters=parameters,
             overloads=overloads,
-            abstract=abstract,
             want_tracing=False,
         )
         self.overloads: List["RequestBuilder"] = overloads or []
@@ -64,7 +59,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
     def response_docstring_text(self, **kwargs) -> str:
         return (
             "Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
-            + "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to "
+            + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
 
@@ -73,34 +68,45 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        if not self.abstract:
-            for parameter in self.parameters.method:
-                file_import.merge(parameter.imports(async_mode=False))
+        if self.abstract:
+            return file_import
+        for parameter in self.parameters.method:
+            file_import.merge(parameter.imports(async_mode=False))
 
         file_import.add_submodule_import(
             "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        if not self.abstract:
-            if self.parameters.path:
-                relative_path = ".."
-                if (
-                    not self.code_model.options["builders_visibility"] == "embedded"
-                    and self.group_name
-                ):
-                    relative_path = "..." if self.group_name else ".."
-                file_import.add_submodule_import(
-                    f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
-                )
-            if self.parameters.headers or self.parameters.query:
-                file_import.add_submodule_import(
-                    "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
-                )
+
+        if self.parameters.path:
+            relative_path = ".."
+            if (
+                not self.code_model.options["builders_visibility"] == "embedded"
+                and self.group_name
+            ):
+                relative_path = "..." if self.group_name else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
+            )
+        if self.parameters.headers or self.parameters.query:
+            file_import.add_submodule_import(
+                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+            )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
+        file_import.add_msrest_import(
+            self.code_model,
+            "..."
+            if (
+                not self.code_model.options["builders_visibility"] == "embedded"
+                and self.group_name
+            )
+            else "..",
+            MsrestImportType.Serializer,
+            TypingSection.REGULAR,
+        )
         if (
             self.overloads
             and self.code_model.options["builders_visibility"] != "embedded"
@@ -136,23 +142,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             RequestBuilder.from_yaml(rb_yaml_data, code_model)
             for rb_yaml_data in yaml_data.get("overloads", [])
         ]
-        abstract = False
         parameter_list = cls.parameter_list_type()(yaml_data, code_model)
-        if (
-            code_model.options["version_tolerant"]
-            and parameter_list.has_body
-            and isinstance(
-                parameter_list.body_parameter, RequestBuilderMultipartBodyParameter
-            )
-        ):
-            _LOGGER.warning(
-                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
-                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
-                'Please write your own custom operation in the "_patch.py" file '
-                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-                name,
-            )
-            abstract = True
 
         return cls(
             yaml_data=yaml_data,
@@ -160,7 +150,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             name=name,
             parameters=parameter_list,
             overloads=overloads,
-            abstract=abstract,
         )
 
 

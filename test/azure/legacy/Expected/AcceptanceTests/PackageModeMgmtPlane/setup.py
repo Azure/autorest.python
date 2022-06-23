@@ -63,7 +63,7 @@ setup(
         "pytyped": ["py.typed"],
     },
     install_requires=[
-        "msrest>=0.6.21",
+        "msrest>=0.7.1",
         "azure-mgmt-core<2.0.0,>=1.3.0",
     ],
     python_requires=">=3.6",

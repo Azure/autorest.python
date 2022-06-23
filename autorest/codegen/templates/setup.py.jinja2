@@ -82,7 +82,11 @@ setup(
     include_package_data=True,
     {% endif %}
     install_requires=[
+        {% if code_model.is_legacy %}
         "{{ dependency_msrest }}",
+        {% else %}
+        "isodate<1.0.0,>=0.6.1",
+        {% endif %}
         {% if azure_arm %}
         "{{ dependency_azure_mgmt_core }}",
         {% else %}

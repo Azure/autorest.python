@@ -186,6 +186,18 @@ class TestPaging(object):
         assert pages[0].properties.id == 1
         assert pages[0].properties.name == "Product"
 
+    def test_append_api_version(self, client):
+        pages = list(client.paging.append_api_version())
+        assert len(pages) == 1
+        assert pages[0].properties.id == 1
+        assert pages[0].properties.name == "Product"
+
+    def test_replace_api_version(self, client):
+        pages = list(client.paging.replace_api_version())
+        assert len(pages) == 1
+        assert pages[0].properties.id == 1
+        assert pages[0].properties.name == "Product"
+
     def test_models(self):
         from paging.models import OperationResult
         from paging.models._models_py3 import OperationResult as OperationResultPy3

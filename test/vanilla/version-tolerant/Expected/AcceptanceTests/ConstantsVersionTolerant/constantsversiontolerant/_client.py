@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestSwaggerConstantServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import ContantsOperations
 
 if TYPE_CHECKING:
@@ -44,7 +43,6 @@ class AutoRestSwaggerConstantService:  # pylint: disable=client-accepts-api-vers
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
         self._config = AutoRestSwaggerConstantServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
@@ -62,7 +60,7 @@ class AutoRestSwaggerConstantService:  # pylint: disable=client-accepts-api-vers
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+        For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest
