@@ -6,10 +6,7 @@
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
-
-from autorest.codegen.models.credential_types import (
-    TokenCredentialType,
-)
+from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.models.request_builder import OverloadedRequestBuilder
 
 from ...jsonrpc import AutorestAPI
