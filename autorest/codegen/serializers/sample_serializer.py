@@ -3,44 +3,161 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Optional, Dict, Any
+import logging
+from typing import Dict, Any, Callable
+from pathlib import Path
 from jinja2 import Environment
-from autorest.codegen.serializers.import_serializer import FileImportSerializer
-from ..models import CodeModel
+from ..serializers.import_serializer import FileImportSerializer
+from ..models import CodeModel, BodyParameter
+from ..models.imports import FileImport, ImportType
+from ..models.credential_types import TokenCredentialType
+from ..models.credential_types import AzureKeyCredentialType
+from .utils import (
+    to_lower_camel_case,
+    to_snake_case,
+    operation_additional,
+    package_root_folder,
+)
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class SampleSerializer:
     def __init__(
         self,
+        namespace_path: Path,
         code_model: CodeModel,
         env: Environment,
-        operation_group_name: str,
-        operation_name: str,
-        operation_params: Dict[Any, Any],
-        sample_params: Dict[Any, Any],
-        operation_result: str,
-        origin_file: Optional[str],
+        write_func: Callable[[Path, str], None],
     ) -> None:
+        self.namespace_path = namespace_path
         self.code_model = code_model
         self.env = env
-        self.operation_group_name = operation_group_name
-        self.operation_name = operation_name
-        self.operation_params = operation_params
-        self.sample_params = sample_params
-        self.operation_result = operation_result
-        self.origin_file = origin_file
+        self.write_func = write_func
 
-    def serialize(self) -> str:
-        template = self.env.get_template("sample.py.jinja2")
-        return template.render(
-            code_model=self.code_model,
-            operation_group_name=self.operation_group_name,
-            operation_name=self.operation_name,
-            client_params=self.sample_params["client_params"],
-            operation_params=self.operation_params,
-            origin_file=self.origin_file,
-            imports=FileImportSerializer(self.sample_params["imports"], True),
-            auth_type=self.sample_params["auth_type"],
-            operation_result=self.operation_result,
-            file_name=self.sample_params["file_name"],
+    def _prepare_sample_render_param(self) -> Dict[str, Any]:
+        # client params
+        credential = ""
+        auth_type = ""
+        credential_type = getattr(self.code_model.credential, "type", None)
+        if isinstance(credential_type, TokenCredentialType):
+            credential = "DefaultAzureCredential"
+            auth_type = "aad"
+            third_party = "azure.identity"
+        elif isinstance(credential_type, AzureKeyCredentialType):
+            credential = "AzureKeyCredential"
+            auth_type = "key"
+            third_party = "azure.core.credentials"
+
+        additional_info = (
+            'key=os.getenv("AZURE_KEY")' if credential == "AzureKeyCredential" else ""
         )
+        special_param = {
+            "credential": f"{credential}({additional_info})",
+        }
+        params_positional = [
+            p
+            for p in self.code_model.client.parameters.positional
+            if not (p.optional or p.client_default_value)
+        ]
+        client_params = {
+            p.client_name: special_param.get(
+                p.client_name, f'"{p.client_name.upper()}"'
+            )
+            for p in params_positional
+        }
+
+        # imports
+        imports = FileImport()
+        namespace = (self.code_model.options["package_name"] or "").replace(
+            "-", "."
+        ) or self.code_model.namespace
+        imports.add_submodule_import(
+            namespace, self.code_model.client.name, ImportType.THIRDPARTY
+        )
+        if credential:
+            imports.add_import("os", ImportType.STDLIB)
+            imports.add_submodule_import(third_party, credential, ImportType.THIRDPARTY)
+
+        return {
+            "imports": FileImportSerializer(imports, True),
+            "client_params": client_params,
+            "auth_type": auth_type,
+        }
+
+    def serialize_and_write(self) -> None:
+        template = self.env.get_template("sample.py.jinja2")
+        out_path = package_root_folder(
+            self.code_model.namespace, self.namespace_path / Path("generated_samples")
+        )
+        sample_params = self._prepare_sample_render_param()
+        cls = lambda x: f'"{x}"' if isinstance(x, str) else str(x)
+        failure_info = '"fail to find required param named {%s} in example file {%s}"'
+        # pylint: disable=too-many-nested-blocks
+        for op_group in self.code_model.operation_groups:
+            if self.code_model.options["multiapi"]:
+                api_version_folder = f"{op_group.api_versions[0]}/"
+                sample_params["client_params"][
+                    "api_version"
+                ] = f'"{op_group.api_versions[0]}"'
+            else:
+                api_version_folder = ""
+            sample_params["operation_group_name"] = (
+                "" if op_group.is_mixin else f".{op_group.property_name}"
+            )
+            for operation in op_group.operations:
+                samples = operation.yaml_data["samples"]
+                if not samples:
+                    continue
+                params_positional = [
+                    p
+                    for p in operation.parameters.positional
+                    if not p.client_default_value
+                ]
+                sample_params["operation_result"] = operation_additional(operation)
+                sample_params["operation_name"] = f".{operation.name}"
+                for key, value in samples.items():
+                    # update client parameters if it is defined in example files
+                    for param in sample_params["client_params"].keys():
+                        param_value = value["parameters"].get(
+                            to_lower_camel_case(param)
+                        )
+                        if param_value:
+                            sample_params["client_params"][param] = f'"{param_value}"'
+
+                    # prepare method parameters
+                    operation_params = {}
+                    for param in params_positional:
+                        if isinstance(param, BodyParameter):
+                            name = to_lower_camel_case(param.client_name)
+                            fake_value = '"can not find valid value"'
+                        else:
+                            name = param.rest_api_name
+                            fake_value = param.client_name.upper()
+
+                        param_value = value["parameters"].get(name)
+                        if param_value or not param.optional:
+                            if not param_value:
+                                # if can't find required param, need to log it
+                                _LOGGER.warning(failure_info, name, key)
+                                param_value = fake_value
+                            operation_params[param.client_name] = cls(param_value)
+
+                    # serialize and output
+                    try:
+                        file_name = to_snake_case(key) + ".py"
+                        sample_params["file_name"] = file_name
+                        sample_params["origin_file"] = value.get("x-ms-original-file")
+                        self.write_func(
+                            out_path / f"{api_version_folder}{file_name}",
+                            template.render(
+                                code_model=self.code_model,
+                                operation_params=operation_params,
+                                **sample_params,
+                            ),
+                        ),
+                    except Exception as e:  # pylint: disable=broad-except
+                        # sample generation shall not block code generation, so just log error
+                        _LOGGER.error(
+                            "error happens when generate sample with {%s}: {%s}", key, e
+                        )

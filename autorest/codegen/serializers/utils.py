@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import re
 from typing import Any
+from pathlib import Path
 from autorest.codegen.models.operation import OperationBase
 
 
@@ -14,6 +15,7 @@ def method_signature_and_response_type_annotation_template(
     response_type_annotation: str,
 ) -> str:
     return f"{method_signature} -> {response_type_annotation}:"
+
 
 def operation_additional(operation: OperationBase[Any]) -> str:
     lro = ".result()"
@@ -26,8 +28,10 @@ def operation_additional(operation: OperationBase[Any]) -> str:
         return lro + paging
     return ""
 
+
 def to_lower_camel_case(name: str) -> str:
     return re.sub(r"_([a-z])", lambda x: x.group(1).upper(), name)
+
 
 def to_snake_case(name: str) -> str:
     return re.sub(
@@ -35,3 +39,8 @@ def to_snake_case(name: str) -> str:
         r"_\1",
         name.replace("-", "").replace(" ", "_"),
     ).lower()
+
+
+# find root folder where "setup.py" is
+def package_root_folder(namespace: str, namespace_path: Path) -> Path:
+    return namespace_path / Path("../" * (namespace.count(".") + 1))
