@@ -26,6 +26,7 @@
 
 # pylint: skip-file
 
+import ast
 from base64 import b64decode, b64encode
 import calendar
 import datetime
@@ -41,7 +42,7 @@ try:
     from urllib import quote  # type: ignore
 except ImportError:
     from urllib.parse import quote  # type: ignore
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 
 import isodate
 
@@ -831,7 +832,7 @@ class Serializer(object):
             return custom_serializer(data)
         if data_type == 'str':
             return cls.serialize_unicode(data)
-        return eval(data_type)(data)
+        return ast.eval(data_type)(data)
 
     @classmethod
     def serialize_unicode(cls, data):
@@ -1765,7 +1766,7 @@ class Deserializer(object):
 
         if data_type == 'str':
             return self.deserialize_unicode(attr)
-        return eval(data_type)(attr)
+        return ast.eval(data_type)(attr)
 
     @staticmethod
     def deserialize_unicode(data):

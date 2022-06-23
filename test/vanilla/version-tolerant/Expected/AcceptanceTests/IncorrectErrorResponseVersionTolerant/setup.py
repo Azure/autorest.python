@@ -22,6 +22,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
+        "defusedxml<1.0.0,>=0.7.1",
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
