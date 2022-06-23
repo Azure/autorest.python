@@ -88,8 +88,8 @@ class SampleSerializer:
     def serialize_and_write(self) -> None:
         template = self.env.get_template("sample.py.jinja2")
         out_path = package_root_folder(
-            self.code_model.namespace, self.namespace_path / Path("generated_samples")
-        )
+            self.code_model.namespace, self.namespace_path
+        ) / Path("generated_samples")
         sample_params = self._prepare_sample_render_param()
         cls = lambda x: f'"{x}"' if isinstance(x, str) else str(x)
         failure_info = '"fail to find required param named {%s} in example file {%s}"'
@@ -155,7 +155,7 @@ class SampleSerializer:
                                 operation_params=operation_params,
                                 **sample_params,
                             ),
-                        ),
+                        )
                     except Exception as e:  # pylint: disable=broad-except
                         # sample generation shall not block code generation, so just log error
                         _LOGGER.error(
