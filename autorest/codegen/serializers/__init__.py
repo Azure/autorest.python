@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import re
 import logging
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
@@ -14,7 +13,6 @@ from autorest.codegen.models.credential_types import (
     TokenCredentialType,
 )
 from autorest.codegen.models.imports import FileImport, ImportType
-from autorest.codegen.models.operation import OperationBase
 from autorest.codegen.models.request_builder import OverloadedRequestBuilder
 
 from ...jsonrpc import AutorestAPI
@@ -31,6 +29,7 @@ from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from ..models import BodyParameter
+from .utils import to_lower_camel_case, to_snake_case, operation_additional
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -521,15 +520,17 @@ class JinjaSerializer:
         if isinstance(credential_type, TokenCredentialType):
             credential = "DefaultAzureCredential"
             auth_type = "aad"
+            third_party = "azure.identity"
         elif isinstance(credential_type, AzureKeyCredentialType):
             credential = "AzureKeyCredential"
             auth_type = "key"
+            third_party = "azure.core.credentials"
 
-        addtional_info = (
+        additional_info = (
             'key=os.getenv("AZURE_KEY")' if credential == "AzureKeyCredential" else ""
         )
         special_param = {
-            "credential": f"{credential}({addtional_info})",
+            "credential": f"{credential}({additional_info})",
         }
         params_positional = [
             p
@@ -554,7 +555,7 @@ class JinjaSerializer:
         if credential:
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
-                "azure.identity", credential, ImportType.THIRDPARTY
+                third_party, credential, ImportType.THIRDPARTY
             )
 
         return {
@@ -562,30 +563,6 @@ class JinjaSerializer:
             "client_params": client_params,
             "auth_type": auth_type,
         }
-
-    @staticmethod
-    def _operation_additional(operation: OperationBase[Any]) -> str:
-        lro = ".result()"
-        paging = "\n    response = [item for item in response]"
-        if operation.operation_type == "paging":
-            return "\n    response = [item for item in response]"
-        if operation.operation_type == "lro":
-            return ".result()"
-        if operation.operation_type == "lropaging":
-            return lro + paging
-        return ""
-
-    @staticmethod
-    def _to_lower_camel_case(name: str) -> str:
-        return re.sub(r"_([a-z])", lambda x: x.group(1).upper(), name)
-
-    @staticmethod
-    def _to_snake_case(name: str) -> str:
-        return re.sub(
-            "((?!^)(?<!_)[A-Z][a-z]+|(?<=[a-z0-9])[A-Z])",
-            r"_\1",
-            name.replace("-", "").replace(" ", "_"),
-        ).lower()
 
     def _serialize_and_write_sample_folder(
         self, env: Environment, namespace_path: Path
@@ -612,12 +589,12 @@ class JinjaSerializer:
                     for p in operation.parameters.positional
                     if not p.client_default_value
                 ]
-                operation_result = self._operation_additional(operation)
+                operation_result = operation_additional(operation)
                 for key, value in samples.items():
                     # update client parameters if it is defined in example files
                     for param in sample_params["client_params"].keys():
                         param_value = value["parameters"].get(
-                            self._to_lower_camel_case(param)
+                            to_lower_camel_case(param)
                         )
                         if param_value:
                             sample_params["client_params"][param] = f'"{param_value}"'
@@ -626,7 +603,7 @@ class JinjaSerializer:
                     operation_params = {}
                     for param in params_positional:
                         if isinstance(param, BodyParameter):
-                            name = self._to_lower_camel_case(param.client_name)
+                            name = to_lower_camel_case(param.client_name)
                             fake_value = '"can not find valie value"'
                         else:
                             name = param.rest_api_name
@@ -642,7 +619,7 @@ class JinjaSerializer:
 
                     # serialize and output
                     try:
-                        file_name = self._to_snake_case(key) + ".py"
+                        file_name = to_snake_case(key) + ".py"
                         sample_params["file_name"] = file_name
                         self._autorestapi.write_file(
                             out_path / f"{api_version_folder}{file_name}",

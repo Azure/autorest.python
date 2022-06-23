@@ -29,15 +29,11 @@ def main():
         {% endfor %}
     )
 
-    {% if operation_params %}
     response = client.{{ operation_group_name }}.{{ operation_name }}(
         {% for key, value in operation_params.items() %}
         {{ key }}={{ value|indent(8) }},
         {% endfor %}
     ){{ operation_result }}
-    {% else %}
-    response = client.{{ operation_group_name }}.{{ operation_name }}(){{ operation_result }}
-    {% endif %}
     print(response)
 
 {% if origin_file %}
