@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 import sys
 from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
+from urllib.parse import parse_qs, urljoin, urlparse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -27,6 +28,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
+    build_paging_append_api_version_request,
     build_paging_duplicate_params_request,
     build_paging_first_response_empty_request,
     build_paging_get_multiple_pages_failure_request,
@@ -48,6 +50,8 @@ from ...operations._operations import (
     build_paging_next_fragment_request,
     build_paging_next_fragment_with_grouping_request,
     build_paging_next_operation_with_query_params_request,
+    build_paging_page_with_max_page_size_request,
+    build_paging_replace_api_version_request,
 )
 
 if sys.version_info >= (3, 9):
@@ -59,7 +63,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PagingOperations:
+class PagingOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -113,7 +117,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -178,7 +186,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -243,7 +255,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -309,7 +325,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -392,7 +412,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -543,7 +567,80 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace
+    def page_with_max_page_size(self, **kwargs: Any) -> AsyncIterable[JSON]:
+        """Paging with max page size. We don't want to.
+
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_paging_page_with_max_page_size_request(
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -626,7 +723,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -713,7 +814,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -779,7 +884,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -845,7 +954,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -910,7 +1023,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -975,7 +1092,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -1040,7 +1161,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -1336,7 +1461,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
@@ -1403,6 +1532,148 @@ class PagingOperations:
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     @distributed_trace
+    def append_api_version(self, **kwargs: Any) -> AsyncIterable[JSON]:
+        """A paging operation with api version. When calling the next link, you want to append your
+        client's api version to the next link.
+
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_paging_append_api_version_request(
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace
+    def replace_api_version(self, **kwargs: Any) -> AsyncIterable[JSON]:
+        """A paging operation with api version. When calling the next link, you want to reformat it and
+        override the returned api version with your client's api version.
+
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_paging_replace_api_version_request(
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
@@ -1440,7 +1711,11 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                request = HttpRequest("GET", next_link)
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
