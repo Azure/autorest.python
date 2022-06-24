@@ -18,10 +18,10 @@ class MultiClientPlugin(Plugin):
         )
         _LOGGER.info("Generating files for multi client")
 
-        multiapi_serializer = MultiClientSerializer(
+        multiclient_serializer = MultiClientSerializer(
             autorestapi=self._autorestapi, code_model=CodeModel(package_version)
         )
-        multiapi_serializer.serialize()
+        multiclient_serializer.serialize()
 
         _LOGGER.info("Generating Done for multi client!")
         return True
