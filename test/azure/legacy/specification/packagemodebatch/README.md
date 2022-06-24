@@ -35,5 +35,6 @@ namespace: azure.packagemode.batch.v1
 ```
 
 ``` yaml $(multiclient)
+perform-load: false
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeBatch/azure/packagemode/batch
 ```

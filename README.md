@@ -23,7 +23,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
-```yaml !$(multiapiscript)
+```yaml !$(multiapiscript) && !$(multiclient)
 # default values for version tolerant and black
 black: true
 ```
