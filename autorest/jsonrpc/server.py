@@ -26,6 +26,7 @@ def GetPluginNames():
         "black",
         "multiapiscript",
         "postprocess",
+        "multiclient",
     ]
 
 
@@ -56,6 +57,8 @@ def Process(plugin_name: str, session_id: str) -> bool:
             from ..black import BlackScriptPlugin as PluginToLoad  # type: ignore
         elif plugin_name == "multiapiscript":
             from ..multiapi import MultiApiScriptPlugin as PluginToLoad  # type: ignore
+        elif plugin_name == "multiclient":
+            from ..multiapi import MultiClientPlugin as PluginToLoad  # type: ignore
         else:
             _LOGGER.fatal("Unknown plugin name %s", plugin_name)
             raise RuntimeError(f"Unknown plugin name {plugin_name}")

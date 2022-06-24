@@ -161,6 +161,25 @@ scope-postprocess/emitter:
 output-artifact: python-files
 ```
 
+# Multi Client pipeline
+
+```yaml $(multiclient)
+pipeline:
+  python/multiclient:
+    scope: multiclient
+    output-artifact: python-files
+
+  python/multiclient/emitter:
+    input: multiclient
+    scope: scope-multiclient/emitter
+
+scope-multiclient/emitter:
+  input-artifact: python-files
+  output-uri-expr: $key
+
+output-artifact: python-files
+```
+
 # Help
 
 ```yaml
