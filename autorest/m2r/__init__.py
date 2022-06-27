@@ -10,7 +10,7 @@ from typing import Any, Dict, Set
 
 import m2r
 
-from .. import YamlUpdatePlugin
+from .. import YamlUpdatePluginAutorest, YamlUpdatePlugin
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -58,3 +58,8 @@ class M2R(YamlUpdatePlugin):
             return m2r.convert(string_to_convert, renderer=AutorestRender()).strip()
         except Exception:  # pylint: disable=broad-except
             return string_to_convert
+
+
+class M2RAutorest(YamlUpdatePluginAutorest, M2R):
+    def get_options(self) -> Dict[str, Any]:
+        return {}

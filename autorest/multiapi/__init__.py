@@ -11,41 +11,51 @@ import shutil
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional, cast, Any
-from .serializers import MultiAPISerializer
+
+from autorest.jsonrpc import AutorestAPI
+from .serializers import MultiAPISerializer, MultiAPISerializerAutorest
 from .models import CodeModel
 from .utils import _get_default_api_version_from_list
-from ..jsonrpc import AutorestAPI
 
-from .. import Plugin
+from .. import Plugin, PluginAutorest, ReaderAndWriter, ReaderAndWriterAutorest
 
 _LOGGER = logging.getLogger(__name__)
 
 
 class MultiApiScriptPlugin(Plugin):
     def process(self) -> bool:
-        input_package_name: str = self._autorestapi.get_value("package-name")
-        output_folder: str = self._autorestapi.get_value("output-folder")
-        user_specified_default_api: str = self._autorestapi.get_value("default-api")
-        no_async = self._autorestapi.get_boolean_value("no-async")
-        generator = MultiAPI(
-            input_package_name,
-            output_folder,
-            self._autorestapi,
-            no_async,
-            user_specified_default_api,
-        )
+        generator = self.get_generator()
         return generator.process()
 
+    def get_generator(self) -> "MultiAPI":
+        return MultiAPI(**self.options)
 
-class MultiAPI:
+
+class MultiApiScriptPluginAutorest(MultiApiScriptPlugin, PluginAutorest):
+    def get_generator(self) -> "MultiAPI":
+        return MultiAPIAutorest(autorestapi=self._autorestapi, **self.options)
+
+    def get_options(self) -> Dict[str, Any]:
+        options = {
+            "input_package_name": self._autorestapi.get_value("package-name"),
+            "output_folder": self._autorestapi.get_value("output-folder"),
+            "default_api": self._autorestapi.get_value("default-api"),
+            "no_async": self._autorestapi.get_value("no-async"),
+        }
+        return {k: v for k, v in options.items() if v is not None}
+
+
+class MultiAPI(ReaderAndWriter):
     def __init__(
         self,
-        input_package_name: str,
+        *,
+        input_package_name: Optional[str] = None,
         output_folder: str,
-        autorestapi: AutorestAPI,
         no_async: Optional[bool] = False,
         user_specified_default_api: Optional[str] = None,
+        **kwargs: Any,
     ) -> None:
+        super().__init__(**kwargs)
         if input_package_name is None:
             raise ValueError(
                 "package-name is required, either provide it as args or check your readme configuration"
@@ -57,7 +67,6 @@ class MultiAPI:
         _LOGGER.debug("Received output-folder %s", output_folder)
         self.output_package_name: str = ""
         self.no_async = no_async
-        self._autorestapi = autorestapi
         self.user_specified_default_api = user_specified_default_api
 
     @property
@@ -77,9 +86,7 @@ class MultiAPI:
             if self.default_api_version.replace("-", "_") == path_to_version.stem:
                 path_to_default_version = path_to_version
                 break
-        return json.loads(
-            self._autorestapi.read_file(path_to_default_version / "_metadata.json")
-        )
+        return json.loads(self.read_file(path_to_default_version / "_metadata.json"))
 
     @property
     def module_name(self) -> str:
@@ -120,9 +127,7 @@ class MultiAPI:
     @property
     def version_path_to_metadata(self) -> Dict[Path, Dict[str, Any]]:
         return {
-            version_path: json.loads(
-                self._autorestapi.read_file(version_path / "_metadata.json")
-            )
+            version_path: json.loads(self.read_file(version_path / "_metadata.json"))
             for version_path in self.paths_to_versions
         }
 
@@ -130,9 +135,7 @@ class MultiAPI:
     def mod_to_api_version(self) -> Dict[str, str]:
         mod_to_api_version: Dict[str, str] = defaultdict(str)
         for version_path in self.paths_to_versions:
-            metadata_json = json.loads(
-                self._autorestapi.read_file(version_path / "_metadata.json")
-            )
+            metadata_json = json.loads(self.read_file(version_path / "_metadata.json"))
             version = metadata_json["chosen_version"]
             total_api_version_list = metadata_json["total_api_version_list"]
             if not version:
@@ -144,6 +147,9 @@ class MultiAPI:
                     sys.exit(f"Unable to extract api version of {version_path.stem}")
             mod_to_api_version[version_path.name] = version
         return mod_to_api_version
+
+    def get_serializer(self) -> MultiAPISerializer:
+        return MultiAPISerializer()
 
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
@@ -163,8 +169,16 @@ class MultiAPI:
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
-        multiapi_serializer = MultiAPISerializer(self._autorestapi)
+        multiapi_serializer = self.get_serializer()
         multiapi_serializer.serialize(code_model, self.no_async)
 
         _LOGGER.info("Done!")
         return True
+
+
+class MultiAPIAutorest(MultiAPI, ReaderAndWriterAutorest):
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+
+    def get_serializer(self) -> MultiAPISerializer:
+        return MultiAPISerializerAutorest(self._autorestapi)

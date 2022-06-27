@@ -18,8 +18,8 @@ _BLACK_MODE.line_length = 120
 
 
 class BlackScriptPlugin(Plugin):
-    def __init__(self, options: Dict[str, Any]):
-        super().__init__(options)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         output_folder_uri = self.options["outputFolderUri"]
         if output_folder_uri.startswith("file:"):
             output_folder_uri = output_folder_uri[5:]
@@ -51,9 +51,7 @@ class BlackScriptPlugin(Plugin):
             pass
         self.write_file(file, file_content)
 
-class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):
 
+class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
-        return {
-            "outputFolderUri": self._autorestapi.get_value("outputFolderUri")
-        }
+        return {"outputFolderUri": self._autorestapi.get_value("outputFolderUri")}

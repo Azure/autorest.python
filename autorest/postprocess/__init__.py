@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Tuple
+from typing import Tuple, Any, Dict
 from pathlib import Path
 import os
 import shutil
@@ -11,7 +11,7 @@ from venv import EnvBuilder
 import black
 from .venvtools import ExtendedEnvBuilder, python_run
 
-from .. import Plugin
+from .. import Plugin, PluginAutorest
 
 _BLACK_MODE = black.Mode()
 _BLACK_MODE.line_length = 120
@@ -30,9 +30,9 @@ def format_file(file: Path, file_content: str) -> str:
 
 
 class PostProcessPlugin(Plugin):
-    def __init__(self, autorestapi):
-        super().__init__(autorestapi)
-        output_folder_uri = self._autorestapi.get_value("outputFolderUri")
+    def __init__(self, **kwargs: Any):
+        super().__init__(**kwargs)
+        output_folder_uri = self.options["outputFolderUri"]
         if output_folder_uri.startswith("file:"):
             output_folder_uri = output_folder_uri[5:]
         if os.name == "nt" and output_folder_uri.startswith("///"):
@@ -65,9 +65,7 @@ class PostProcessPlugin(Plugin):
         try:
             init_file = next(d for d in dir.iterdir() if d.name == "__init__.py")
             # we don't care about pkgutil inits, we skip over them
-            file_content = self._autorestapi.read_file(
-                init_file.relative_to(self.output_folder)
-            )
+            file_content = self.read_file(init_file.relative_to(self.output_folder))
             if not "pkgutil" in file_content:
                 return dir, namespace
         except StopIteration:
@@ -157,7 +155,7 @@ class PostProcessPlugin(Plugin):
             k: None for k in customized_objects_str.split(",")
         }.keys()  # filter out duplicates
         file = (folder_path / "__init__.py").relative_to(self.output_folder)
-        file_content = self._autorestapi.read_file(file)
+        file_content = self.read_file(file)
         added_objs = []
         for obj in customized_objects:
             if f" import {obj}\n" in file_content:
@@ -199,4 +197,9 @@ class PostProcessPlugin(Plugin):
                 "__all__ = [", f"__all__ = [\n{added_objs_all}", 1
             )
         formatted_file = format_file(file, file_content)
-        self._autorestapi.write_file(file, formatted_file)
+        self.write_file(file, formatted_file)
+
+
+class PostProcessPluginAutorest(PostProcessPlugin, PluginAutorest):
+    def get_options(self) -> Dict[str, Any]:
+        return {"outputFolderUri": self._autorestapi.get_value("outputFolderUri")}
