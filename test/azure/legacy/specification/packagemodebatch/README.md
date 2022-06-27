@@ -11,6 +11,7 @@ package-mode: dataplane
 package-name: azure-packagemode-batch
 package-pprint-name: Azure Package Mode Batch Data Plane
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeBatch
+clear-output-folder: true
 ```
 
 ### Python multi-client

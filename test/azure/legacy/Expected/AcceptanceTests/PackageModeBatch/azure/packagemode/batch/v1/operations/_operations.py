@@ -8,47 +8,57 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .._serialization import Serializer
-
-T = TypeVar("T")
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_http_success_head200_request(**kwargs: Any) -> HttpRequest:
+def build_http_success_head200_request(
+    **kwargs: Any
+) -> HttpRequest:
     # Construct URL
     _url = "/http/success/200"
 
-    return HttpRequest(method="HEAD", url=_url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=_url,
+        **kwargs
+    )
 
 
-def build_http_success_head204_request(**kwargs: Any) -> HttpRequest:
+def build_http_success_head204_request(
+    **kwargs: Any
+) -> HttpRequest:
     # Construct URL
     _url = "/http/success/204"
 
-    return HttpRequest(method="HEAD", url=_url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=_url,
+        **kwargs
+    )
 
 
-def build_http_success_head404_request(**kwargs: Any) -> HttpRequest:
+def build_http_success_head404_request(
+    **kwargs: Any
+) -> HttpRequest:
     # Construct URL
     _url = "/http/success/404"
 
-    return HttpRequest(method="HEAD", url=_url, **kwargs)
-
+    return HttpRequest(
+        method="HEAD",
+        url=_url,
+        **kwargs
+    )
 
 class HttpSuccessOperations:
     """
@@ -67,22 +77,29 @@ class HttpSuccessOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+
     @distributed_trace
-    def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def head200(  # pylint: disable=inconsistent-return-statements
+        self,
+        **kwargs: Any
+    ) -> None:
         """Return 200 status code if successful.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_http_success_head200_request(
             headers=_headers,
             params=_params,
@@ -90,7 +107,9 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -102,22 +121,30 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+
+
     @distributed_trace
-    def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def head204(  # pylint: disable=inconsistent-return-statements
+        self,
+        **kwargs: Any
+    ) -> None:
         """Return 204 status code if successful.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_http_success_head204_request(
             headers=_headers,
             params=_params,
@@ -125,7 +152,9 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -137,22 +166,30 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+
+
     @distributed_trace
-    def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def head404(  # pylint: disable=inconsistent-return-statements
+        self,
+        **kwargs: Any
+    ) -> None:
         """Return 404 status code if successful.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
+        
         request = build_http_success_head404_request(
             headers=_headers,
             params=_params,
@@ -160,7 +197,9 @@ class HttpSuccessOperations:
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request,
+            stream=False,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -171,3 +210,5 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
+
+
