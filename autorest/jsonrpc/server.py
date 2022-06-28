@@ -43,24 +43,24 @@ def Process(plugin_name: str, session_id: str) -> bool:
             session_id,
         )
         if plugin_name == "m2r":
-            from ..m2r import M2R as PluginToLoad
+            from ..m2r import M2RAutorest as PluginToLoad
         elif plugin_name == "preprocess":
-            from ..preprocess import PreProcessPlugin as PluginToLoad  # type: ignore
+            from ..preprocess import PreProcessPluginAutorest as PluginToLoad  # type: ignore
         elif plugin_name == "m4reformatter":
             from ..m4reformatter import M4Reformatter as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
-            from ..codegen import CodeGenerator as PluginToLoad  # type: ignore
+            from ..codegen import CodeGeneratorAutorest as PluginToLoad  # type: ignore
         elif plugin_name == "postprocess":
-            from ..postprocess import PostProcessPlugin as PluginToLoad  # type: ignore
+            from ..postprocess import PostProcessPluginAutorest as PluginToLoad  # type: ignore
         elif plugin_name == "black":
-            from ..black import BlackScriptPlugin as PluginToLoad  # type: ignore
+            from ..black import BlackScriptPluginAutorest as PluginToLoad  # type: ignore
         elif plugin_name == "multiapiscript":
-            from ..multiapi import MultiApiScriptPlugin as PluginToLoad  # type: ignore
+            from ..multiapi import MultiApiScriptPluginAutorest as PluginToLoad  # type: ignore
         else:
             _LOGGER.fatal("Unknown plugin name %s", plugin_name)
             raise RuntimeError(f"Unknown plugin name {plugin_name}")
 
-        plugin = PluginToLoad(stdstream_connection)
+        plugin = PluginToLoad(autorestapi=stdstream_connection)
 
         try:
             _LOGGER.debug("Starting plugin %s", PluginToLoad.__name__)
