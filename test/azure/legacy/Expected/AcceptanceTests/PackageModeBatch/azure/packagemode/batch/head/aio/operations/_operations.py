@@ -36,7 +36,7 @@ class HttpSuccessOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.packagemode.batch.v1.aio.BatchV1Client`'s
+        :class:`~azure.packagemode.batch.head.aio.HeadClient`'s
         :attr:`http_success` attribute.
     """
 

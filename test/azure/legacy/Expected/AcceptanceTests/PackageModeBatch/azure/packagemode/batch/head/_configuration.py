@@ -14,15 +14,15 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class BatchV1ClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for BatchV1Client.
+class HeadClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for HeadClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(BatchV1ClientConfiguration, self).__init__(**kwargs)
+        super(HeadClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "packagemode-batch/{}".format(VERSION))
         self._configure(**kwargs)

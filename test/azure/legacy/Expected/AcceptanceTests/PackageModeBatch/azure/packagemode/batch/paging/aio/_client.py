@@ -13,33 +13,49 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import BatchV0ClientConfiguration
-from .operations import HttpSuccessOperations
+from ._configuration import PagingClientConfiguration
+from .operations import PagingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
+class PagingClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Long-running Operation for AutoRest.
 
-class BatchV0Client:  # pylint: disable=client-accepts-api-version-keyword
-    """Test Infrastructure for AutoRest.
-
-    :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: azure.packagemode.batch.v0.aio.operations.HttpSuccessOperations
+    :ivar paging: PagingOperations operations
+    :vartype paging: azure.packagemode.batch.paging.aio.operations.PagingOperations
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
+    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+     value may result in unsupported behavior.
+    :paramtype api_version: str
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+     Retry-After header is present.
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = BatchV0ClientConfiguration(**kwargs)
+    def __init__(
+        self,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
+        self._config = PagingClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paging = PagingOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -64,7 +80,7 @@ class BatchV0Client:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "BatchV0Client":
+    async def __aenter__(self) -> "PagingClient":
         await self._client.__aenter__()
         return self
 

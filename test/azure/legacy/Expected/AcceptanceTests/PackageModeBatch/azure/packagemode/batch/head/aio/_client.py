@@ -13,7 +13,7 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import BatchV1ClientConfiguration
+from ._configuration import HeadClientConfiguration
 from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
@@ -21,17 +21,17 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class BatchV1Client:  # pylint: disable=client-accepts-api-version-keyword
+class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: azure.packagemode.batch.v1.aio.operations.HttpSuccessOperations
+    :vartype http_success: azure.packagemode.batch.head.aio.operations.HttpSuccessOperations
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = BatchV1ClientConfiguration(**kwargs)
+        self._config = HeadClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -64,7 +64,7 @@ class BatchV1Client:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "BatchV1Client":
+    async def __aenter__(self) -> "HeadClient":
         await self._client.__aenter__()
         return self
 
