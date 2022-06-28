@@ -13,7 +13,7 @@
 
 **New Features**
 
-- Add new plugin `MultiClient` to handle package structure of multi client  #1328
+- Add new plugin `MultiClient` and new flag `--multiclientscript` to handle package structure of multi client  #1328
 
 ### 2022-06-24 - 6.0.0
 

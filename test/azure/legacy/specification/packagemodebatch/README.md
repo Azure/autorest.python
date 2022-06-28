@@ -18,24 +18,24 @@ clear-output-folder: true
 
 ``` yaml
 batch:
-    - tag: v0
-    - tag: v1
-    - multiclient: true
+    - tag: head
+    - tag: paging
+    - multiclientscript: true
 ```
 
-``` yaml $(tag) == 'v0'
-title: BatchV0Client
+``` yaml $(tag) == 'head'
+title: HeadClient
 input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
-namespace: azure.packagemode.batch.v0
+namespace: azure.packagemode.batch.head
 ```
 
-``` yaml $(tag) == 'v1'
-title: BatchV1Client
-input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
-namespace: azure.packagemode.batch.v1
+``` yaml $(tag) == 'paging'
+title: PagingClient
+input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/paging.json
+namespace: azure.packagemode.batch.paging
 ```
 
-``` yaml $(multiclient)
+``` yaml $(multiclientscript)
 perform-load: false
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeBatch/azure/packagemode/batch
 ```

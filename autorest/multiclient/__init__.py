@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from .serializers import MultiClientSerializer
-from .models import CodeModel
+from pathlib import Path
+from jinja2 import Environment, PackageLoader
 from .. import Plugin
 
 _LOGGER = logging.getLogger(__name__)
@@ -18,10 +18,23 @@ class MultiClientPlugin(Plugin):
         )
         _LOGGER.info("Generating files for multi client")
 
-        multiclient_serializer = MultiClientSerializer(
-            autorestapi=self._autorestapi, code_model=CodeModel(package_version)
+        env = Environment(
+            loader=PackageLoader("autorest.multiclient", "templates"),
+            keep_trailing_newline=True,
+            line_statement_prefix="##",
+            line_comment_prefix="###",
+            trim_blocks=True,
+            lstrip_blocks=True,
         )
-        multiclient_serializer.serialize()
+
+        # _version.py
+        template = env.get_template("version.py.jinja2")
+        self._autorestapi.write_file(
+            Path("_version.py"), template.render(package_version=package_version)
+        )
+
+        # py.typed
+        self._autorestapi.write_file(Path("py.typed"), "# Marker file for PEP 561.")
 
         _LOGGER.info("Generating Done for multi client!")
         return True
