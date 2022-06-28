@@ -23,10 +23,10 @@ _LOGGER = logging.getLogger(__name__)
 
 class MultiApiScriptPlugin(Plugin):  # pylint: disable=abstract-method
     def process(self) -> bool:
-        generator = self.get_generator()
-        return generator.process()
+        return self.generator.process()
 
-    def get_generator(self) -> "MultiAPI":
+    @property
+    def generator(self) -> "MultiAPI":
         return MultiAPI(
             input_package_name=self.options.get("package-name"),
             output_folder=self.options["output-folder"],
@@ -36,8 +36,15 @@ class MultiApiScriptPlugin(Plugin):  # pylint: disable=abstract-method
 
 
 class MultiApiScriptPluginAutorest(MultiApiScriptPlugin, PluginAutorest):
-    def get_generator(self) -> "MultiAPI":
-        return MultiAPIAutorest(autorestapi=self._autorestapi, **self.options)
+    @property
+    def generator(self) -> "MultiAPI":
+        return MultiAPIAutorest(
+            autorestapi=self._autorestapi,
+            input_package_name=self.options.get("package-name"),
+            output_folder=self.options["output-folder"],
+            user_specified_default_api=self.options.get("default-api"),
+            no_async=self.options.get("no-async", False),
+        )
 
     def get_options(self) -> Dict[str, Any]:
         options = {
