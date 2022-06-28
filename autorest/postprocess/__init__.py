@@ -29,7 +29,7 @@ def format_file(file: Path, file_content: str) -> str:
     return file_content
 
 
-class PostProcessPlugin(Plugin):
+class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
     def __init__(self, **kwargs: Any):
         super().__init__(**kwargs)
         output_folder_uri = self.options["outputFolderUri"]

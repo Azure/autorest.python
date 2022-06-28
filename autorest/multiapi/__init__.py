@@ -12,7 +12,6 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional, cast, Any
 
-from autorest.jsonrpc import AutorestAPI
 from .serializers import MultiAPISerializer, MultiAPISerializerAutorest
 from .models import CodeModel
 from .utils import _get_default_api_version_from_list
@@ -22,13 +21,18 @@ from .. import Plugin, PluginAutorest, ReaderAndWriter, ReaderAndWriterAutorest
 _LOGGER = logging.getLogger(__name__)
 
 
-class MultiApiScriptPlugin(Plugin):
+class MultiApiScriptPlugin(Plugin):  # pylint: disable=abstract-method
     def process(self) -> bool:
         generator = self.get_generator()
         return generator.process()
 
     def get_generator(self) -> "MultiAPI":
-        return MultiAPI(**self.options)
+        return MultiAPI(
+            input_package_name=self.options.get("package-name"),
+            output_folder=self.options["output-folder"],
+            user_specified_default_api=self.options.get("default-api"),
+            no_async=self.options.get("no-async", False),
+        )
 
 
 class MultiApiScriptPluginAutorest(MultiApiScriptPlugin, PluginAutorest):
@@ -37,15 +41,15 @@ class MultiApiScriptPluginAutorest(MultiApiScriptPlugin, PluginAutorest):
 
     def get_options(self) -> Dict[str, Any]:
         options = {
-            "input_package_name": self._autorestapi.get_value("package-name"),
-            "output_folder": self._autorestapi.get_value("output-folder"),
-            "default_api": self._autorestapi.get_value("default-api"),
-            "no_async": self._autorestapi.get_value("no-async"),
+            "package-name": self._autorestapi.get_value("package-name"),
+            "output-folder": self._autorestapi.get_value("output-folder"),
+            "default-api": self._autorestapi.get_value("default-api"),
+            "no-async": self._autorestapi.get_value("no-async"),
         }
         return {k: v for k, v in options.items() if v is not None}
 
 
-class MultiAPI(ReaderAndWriter):
+class MultiAPI(ReaderAndWriter):  # pylint: disable=abstract-method
     def __init__(
         self,
         *,
@@ -148,7 +152,8 @@ class MultiAPI(ReaderAndWriter):
             mod_to_api_version[version_path.name] = version
         return mod_to_api_version
 
-    def get_serializer(self) -> MultiAPISerializer:
+    @property
+    def serializer(self) -> MultiAPISerializer:
         return MultiAPISerializer()
 
     def process(self) -> bool:
@@ -180,5 +185,6 @@ class MultiAPIAutorest(MultiAPI, ReaderAndWriterAutorest):
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
 
-    def get_serializer(self) -> MultiAPISerializer:
+    @property
+    def serializer(self) -> MultiAPISerializer:
         return MultiAPISerializerAutorest(self._autorestapi)

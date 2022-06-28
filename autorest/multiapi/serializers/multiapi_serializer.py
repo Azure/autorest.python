@@ -11,7 +11,7 @@ from ...jsonrpc import AutorestAPI
 from ... import ReaderAndWriter, ReaderAndWriterAutorest
 
 
-class MultiAPISerializer(ReaderAndWriter):
+class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def __init__(
         self,
         conf: Dict[str, Any],

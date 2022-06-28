@@ -6,8 +6,8 @@
 import logging
 from pathlib import Path
 import os
-import black
 from typing import Any, Dict
+import black
 
 from .. import Plugin, PluginAutorest
 
@@ -17,7 +17,7 @@ _BLACK_MODE = black.Mode()
 _BLACK_MODE.line_length = 120
 
 
-class BlackScriptPlugin(Plugin):
+class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         output_folder_uri = self.options["outputFolderUri"]
