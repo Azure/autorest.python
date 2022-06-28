@@ -23,7 +23,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
-```yaml !$(multiapiscript) && !$(multiclient)
+```yaml !$(multiapiscript) && !$(multiclientscript)
 # default values for version tolerant and black
 black: true
 ```
@@ -43,7 +43,7 @@ modelerfour:
 allow-no-input: true
 ```
 
-```yaml !$(multiapiscript) && !$(multiclient)
+```yaml !$(multiapiscript) && !$(multiclientscript)
 pass-thru:
   - model-deduplicator
   - subset-reducer
@@ -163,17 +163,17 @@ output-artifact: python-files
 
 # Multi Client pipeline
 
-```yaml $(multiclient)
+```yaml $(multiclientscript)
 pipeline:
-  python/multiclient:
-    scope: multiclient
+  python/multiclientscript:
+    scope: multiclientscript
     output-artifact: python-files
 
-  python/multiclient/emitter:
-    input: multiclient
-    scope: scope-multiclient/emitter
+  python/multiclientscript/emitter:
+    input: multiclientscript
+    scope: scope-multiclientscript/emitter
 
-scope-multiclient/emitter:
+scope-multiclientscript/emitter:
   input-artifact: python-files
   output-uri-expr: $key
 
