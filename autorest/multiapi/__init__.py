@@ -174,7 +174,7 @@ class MultiAPI(ReaderAndWriter):  # pylint: disable=abstract-method
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
-        multiapi_serializer = self.get_serializer()
+        multiapi_serializer = self.serializer
         multiapi_serializer.serialize(code_model, self.no_async)
 
         _LOGGER.info("Done!")

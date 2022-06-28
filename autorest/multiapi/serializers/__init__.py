@@ -33,7 +33,7 @@ def _get_file_path(filename: str, async_mode: bool) -> Path:
     return Path(filename)
 
 
-class MultiAPISerializer(ReaderAndWriter):
+class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.env = Environment(

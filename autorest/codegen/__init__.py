@@ -240,7 +240,7 @@ class CodeGenerator(Plugin):
         raise NotImplementedError()
 
     @staticmethod
-    def get_serializer(code_model: CodeModel) -> JinjaSerializer:
+    def get_serializer(code_model: CodeModel):
         return JinjaSerializer(code_model)
 
     def process(self) -> bool:
@@ -350,7 +350,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
         # Parse the received YAML
         return yaml.safe_load(file_content)
 
-    def get_serializer(self, code_model: CodeModel) -> JinjaSerializer:
+    def get_serializer(self, code_model: CodeModel):  # type: ignore
         return JinjaSerializerAutorest(self._autorestapi, code_model)
 
 
