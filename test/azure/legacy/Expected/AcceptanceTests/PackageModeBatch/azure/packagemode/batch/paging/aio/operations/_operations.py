@@ -11,7 +11,13 @@ from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union,
 from urllib.parse import parse_qs, urljoin, urlparse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
@@ -21,14 +27,41 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ...operations._operations import build_paging_append_api_version_request, build_paging_duplicate_params_request, build_paging_first_response_empty_request, build_paging_get_multiple_pages_failure_request, build_paging_get_multiple_pages_failure_uri_request, build_paging_get_multiple_pages_fragment_next_link_request, build_paging_get_multiple_pages_fragment_with_grouping_next_link_request, build_paging_get_multiple_pages_lro_request, build_paging_get_multiple_pages_request, build_paging_get_multiple_pages_retry_first_request, build_paging_get_multiple_pages_retry_second_request, build_paging_get_multiple_pages_with_offset_request, build_paging_get_no_item_name_pages_request, build_paging_get_null_next_link_name_pages_request, build_paging_get_odata_multiple_pages_request, build_paging_get_paging_model_with_item_name_with_xms_client_name_request, build_paging_get_single_pages_failure_request, build_paging_get_single_pages_request, build_paging_get_with_query_params_request, build_paging_next_fragment_request, build_paging_next_fragment_with_grouping_request, build_paging_next_operation_with_query_params_request, build_paging_page_with_max_page_size_request, build_paging_replace_api_version_request
+from ...operations._operations import (
+    build_paging_append_api_version_request,
+    build_paging_duplicate_params_request,
+    build_paging_first_response_empty_request,
+    build_paging_get_multiple_pages_failure_request,
+    build_paging_get_multiple_pages_failure_uri_request,
+    build_paging_get_multiple_pages_fragment_next_link_request,
+    build_paging_get_multiple_pages_fragment_with_grouping_next_link_request,
+    build_paging_get_multiple_pages_lro_request,
+    build_paging_get_multiple_pages_request,
+    build_paging_get_multiple_pages_retry_first_request,
+    build_paging_get_multiple_pages_retry_second_request,
+    build_paging_get_multiple_pages_with_offset_request,
+    build_paging_get_no_item_name_pages_request,
+    build_paging_get_null_next_link_name_pages_request,
+    build_paging_get_odata_multiple_pages_request,
+    build_paging_get_paging_model_with_item_name_with_xms_client_name_request,
+    build_paging_get_single_pages_failure_request,
+    build_paging_get_single_pages_request,
+    build_paging_get_with_query_params_request,
+    build_paging_next_fragment_request,
+    build_paging_next_fragment_with_grouping_request,
+    build_paging_next_operation_with_query_params_request,
+    build_paging_page_with_max_page_size_request,
+    build_paging_replace_api_version_request,
+)
+
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any] # pylint: disable=unsubscriptable-object
-T = TypeVar('T')
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PagingOperations:  # pylint: disable=too-many-public-methods
     """
@@ -47,12 +80,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
     @distributed_trace
-    def get_no_item_name_pages(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_no_item_name_pages(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that must return result of the default 'value' node.
 
         :return: An iterator like instance of JSON object
@@ -73,15 +102,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_no_item_name_pages_request(
                     headers=_headers,
                     params=_params,
@@ -109,9 +137,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -121,17 +147,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_null_next_link_name_pages(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :return: An iterator like instance of JSON object
@@ -152,15 +171,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_null_next_link_name_pages_request(
                     headers=_headers,
                     params=_params,
@@ -188,9 +206,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -200,17 +216,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_single_pages(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_single_pages(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of JSON object
@@ -231,15 +240,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_single_pages_request(
                     headers=_headers,
                     params=_params,
@@ -267,9 +275,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -279,17 +285,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def first_response_empty(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def first_response_empty(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -311,15 +310,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_first_response_empty_request(
                     headers=_headers,
                     params=_params,
@@ -347,9 +345,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -359,11 +355,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def get_multiple_pages(
@@ -402,15 +394,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=maxresults,
@@ -441,9 +432,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -453,19 +442,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_with_query_params(
-        self,
-        *,
-        required_query_parameter: int,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_with_query_params(self, *, required_query_parameter: int, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -494,16 +474,15 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        query_constant = kwargs.pop('query_constant', _params.pop('queryConstant', True))  # type: bool
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
@@ -513,7 +492,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_paging_next_operation_with_query_params_request(
                     query_constant=query_constant,
                     headers=_headers,
@@ -534,9 +513,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -546,19 +523,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def duplicate_params(
-        self,
-        *,
-        filter: Optional[str] = None,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable[JSON]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
@@ -583,15 +551,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_duplicate_params_request(
                     filter=filter,
                     headers=_headers,
@@ -620,9 +587,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -632,17 +597,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def page_with_max_page_size(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def page_with_max_page_size(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """Paging with max page size. We don't want to.
 
         :return: An iterator like instance of JSON object
@@ -663,15 +621,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_page_with_max_page_size_request(
                     headers=_headers,
                     params=_params,
@@ -699,9 +656,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -711,11 +666,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -754,15 +705,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=maxresults,
@@ -793,9 +743,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -805,11 +753,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -851,15 +795,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_with_offset_request(
                     offset=offset,
                     client_request_id=client_request_id,
@@ -891,9 +834,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -903,17 +844,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_retry_first(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -935,15 +869,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_retry_first_request(
                     headers=_headers,
                     params=_params,
@@ -971,9 +904,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -983,17 +914,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_retry_second(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -1015,15 +939,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_retry_second_request(
                     headers=_headers,
                     params=_params,
@@ -1051,9 +974,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1063,17 +984,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_single_pages_failure(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of JSON object
@@ -1094,15 +1008,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_single_pages_failure_request(
                     headers=_headers,
                     params=_params,
@@ -1130,9 +1043,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1142,17 +1053,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_failure(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of JSON object
@@ -1173,15 +1077,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_failure_request(
                     headers=_headers,
                     params=_params,
@@ -1209,9 +1112,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1221,17 +1122,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of JSON object
@@ -1252,15 +1146,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_failure_uri_request(
                     headers=_headers,
                     params=_params,
@@ -1288,9 +1181,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1300,19 +1191,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
-        self,
-        tenant: str,
-        *,
-        api_version: str,
-        **kwargs: Any
+        self, tenant: str, *, api_version: str, **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
@@ -1338,15 +1221,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
@@ -1356,7 +1238,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_paging_next_fragment_request(
                     tenant=tenant,
                     next_link=next_link,
@@ -1379,9 +1261,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1391,19 +1271,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
-        self,
-        tenant: str,
-        *,
-        api_version: str,
-        **kwargs: Any
+        self, tenant: str, *, api_version: str, **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
@@ -1429,15 +1301,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
@@ -1447,7 +1318,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
-                
+
                 request = build_paging_next_fragment_with_grouping_request(
                     tenant=tenant,
                     next_link=next_link,
@@ -1470,9 +1341,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1482,11 +1351,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     async def _get_multiple_pages_lro_initial(
         self,
@@ -1496,17 +1361,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         timeout: int = 30,
         **kwargs: Any
     ) -> JSON:
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        
         request = build_paging_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
             maxresults=maxresults,
@@ -1517,9 +1379,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request,
-            stream=False,
-            **kwargs
+            request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1537,8 +1397,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, cast(JSON, deserialized), {})
 
         return cast(JSON, deserialized)
-
-
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
@@ -1585,15 +1443,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=maxresults,
@@ -1624,9 +1481,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1636,24 +1491,20 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._get_multiple_pages_lro_initial(  # type: ignore
                 client_request_id=client_request_id,
                 maxresults=maxresults,
                 timeout=timeout,
-                cls=lambda x,y,z: x,
+                cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
-        kwargs.pop('error_map', None)
+        kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             async def internal_get_next(next_link=None):
@@ -1661,35 +1512,27 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     return pipeline_response
                 return await get_next(next_link)
 
-            return AsyncItemPaged(
-                internal_get_next, extract_data
-            )
+            return AsyncItemPaged(internal_get_next, extract_data)
 
         if polling is True:
-            polling_method = cast(AsyncPollingMethod, AsyncLROBasePolling(
-                lro_delay,
-                
-                
-                **kwargs
-        ))  # type: AsyncPollingMethod
-        elif polling is False: polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
-        else: polling_method = polling
+            polling_method = cast(
+                AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs)
+            )  # type: AsyncPollingMethod
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
         if cont_token:
             return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
-                deserialization_callback=get_long_running_output
+                deserialization_callback=get_long_running_output,
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-
-
     @distributed_trace
-    def append_api_version(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def append_api_version(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation with api version. When calling the next link, you want to append your
         client's api version to the next link.
 
@@ -1711,15 +1554,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_append_api_version_request(
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -1748,9 +1590,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1760,17 +1600,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def replace_api_version(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def replace_api_version(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation with api version. When calling the next link, you want to reformat it and
         override the returned api version with your client's api version.
 
@@ -1792,15 +1625,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_replace_api_version_request(
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -1829,9 +1661,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1841,17 +1671,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_paging_model_with_item_name_with_xms_client_name(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_paging_model_with_item_name_with_xms_client_name(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
@@ -1873,15 +1696,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
                     headers=_headers,
                     params=_params,
@@ -1909,9 +1731,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request,
-                stream=False,
-                **kwargs
+                request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1921,8 +1741,4 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
