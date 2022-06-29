@@ -26,7 +26,7 @@ def test_m2r_replace_basic():
         }
     }
 
-    m2r = M2R(None)
+    m2r = M2R()
     m2r.update_yaml(yaml_data)
 
     assert yaml_data['description'] == _RST_LINK
@@ -44,12 +44,12 @@ def test_m2r_cycle():
     yaml_data['obj'] = yaml_data
     assert yaml_data['obj']['obj'] is yaml_data
 
-    m2r = M2R(None)
+    m2r = M2R()
     m2r.update_yaml(yaml_data)
 
     assert yaml_data['description'] == _RST_LINK
     assert yaml_data['summary'] == _RST_LINK
 
 def test_inline_html():
-    m2r = M2R(None)
+    m2r = M2R()
     assert m2r.convert_to_rst("Dictionary of <FlattenedProduct>.") == "Dictionary of :code:`<FlattenedProduct>`."

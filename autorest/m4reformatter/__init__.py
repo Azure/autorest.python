@@ -11,7 +11,7 @@ import copy
 import logging
 from typing import Callable, Dict, Any, Iterable, List, Optional, Set
 
-from .. import YamlUpdatePlugin
+from .. import YamlUpdatePluginAutorest
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
@@ -431,7 +431,9 @@ def update_client_url(yaml_data: Dict[str, Any]) -> str:
     ]["uri"]
 
 
-class M4Reformatter(YamlUpdatePlugin):  # pylint: disable=too-many-public-methods
+class M4Reformatter(
+    YamlUpdatePluginAutorest
+):  # pylint: disable=too-many-public-methods
     """Add Python naming information."""
 
     @property

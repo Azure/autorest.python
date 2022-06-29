@@ -10,13 +10,13 @@ from pathlib import Path
 import yaml
 
 
-from .. import Plugin
+from .. import Plugin, PluginAutorest
 from .models.client import Client, Config
 from .models.code_model import CodeModel
 from .models import build_type
 from .models.request_builder import get_request_builder
 from .models.operation_group import OperationGroup
-from .serializers import JinjaSerializer
+from .serializers import JinjaSerializer, JinjaSerializerAutorest
 
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
@@ -162,8 +162,8 @@ class CodeGenerator(Plugin):
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
-        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
-        license_header = self._autorestapi.get_value("header-text")
+        azure_arm = self.options.get("azure-arm", False)
+        license_header = self.options["header-text"]
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
             license_header = (
@@ -172,83 +172,46 @@ class CodeGenerator(Plugin):
             )
             license_header += "\n# --------------------------------------------------------------------------"
 
-        low_level_client = cast(
-            bool, self._autorestapi.get_boolean_value("low-level-client", False)
-        )
-        version_tolerant = cast(
-            bool, self._autorestapi.get_boolean_value("version-tolerant")
-        )
-        show_operations = self._autorestapi.get_boolean_value(
-            "show-operations", not low_level_client
-        )
+        low_level_client = cast(bool, self.options.get("low-level-client", False))
+        version_tolerant = cast(bool, self.options.get("version-tolerant", True))
+        show_operations = self.options.get("show-operations", not low_level_client)
         models_mode_default = (
             "none" if low_level_client or version_tolerant else "msrest"
         )
-        if self._autorestapi.get_boolean_value("python3-only") is False:
-            _LOGGER.warning(
-                "You have passed in --python3-only=False. We have force overriden "
-                "this to True."
-            )
-        if self._autorestapi.get_boolean_value("add-python3-operation-files"):
-            _LOGGER.warning(
-                "You have passed in --add-python3-operation-files. "
-                "This flag no longer has an effect bc all SDKs are now Python3 only."
-            )
-        if self._autorestapi.get_boolean_value("reformat-next-link"):
-            _LOGGER.warning(
-                "You have passed in --reformat-next-link. We have force overriden "
-                "this to False because we no longer reformat initial query parameters into next "
-                "calls unless explicitly defined in the service definition."
-            )
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
-            "head_as_boolean": self._autorestapi.get_boolean_value(
-                "head-as-boolean", False
-            ),
+            "head_as_boolean": self.options.get("head-as-boolean", True),
             "license_header": license_header,
-            "keep_version_file": self._autorestapi.get_boolean_value(
-                "keep-version-file", False
-            ),
-            "no_async": self._autorestapi.get_boolean_value("no-async", False),
-            "no_namespace_folders": self._autorestapi.get_boolean_value(
-                "no-namespace-folders", False
-            ),
-            "basic_setup_py": self._autorestapi.get_boolean_value(
-                "basic-setup-py", False
-            ),
-            "package_name": self._autorestapi.get_value("package-name"),
-            "package_version": self._autorestapi.get_value("package-version"),
-            "client_side_validation": self._autorestapi.get_boolean_value(
-                "client-side-validation", False
-            ),
-            "tracing": self._autorestapi.get_boolean_value("trace", show_operations),
-            "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
-            "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples")
-            or 5,
-            "models_mode": (
-                self._autorestapi.get_value("models-mode") or models_mode_default
-            ).lower(),
-            "builders_visibility": self._autorestapi.get_value("builders-visibility"),
+            "keep_version_file": self.options.get("keep-version-file", False),
+            "no_async": self.options.get("no-async", False),
+            "no_namespace_folders": self.options.get("no-namespace-folders", False),
+            "basic_setup_py": self.options.get("basic-setup-py", False),
+            "package_name": self.options.get("package-name"),
+            "package_version": self.options.get("package-version"),
+            "client_side_validation": self.options.get("client-side-validation", False),
+            "tracing": self.options.get("tracing", show_operations),
+            "multiapi": self.options.get("multiapi", False),
+            "polymorphic_examples": self.options.get("polymorphic-examples", 5),
+            "models_mode": self.options.get("models-mode", models_mode_default).lower(),
+            "builders_visibility": self.options.get("builders-visibility"),
             "show_operations": show_operations,
-            "show_send_request": self._autorestapi.get_boolean_value(
+            "show_send_request": self.options.get(
                 "show-send-request", low_level_client or version_tolerant
             ),
-            "only_path_and_body_params_positional": self._autorestapi.get_boolean_value(
+            "only_path_and_body_params_positional": self.options.get(
                 "only-path-and-body-params-positional",
                 low_level_client or version_tolerant,
             ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,
-            "combine_operation_files": self._autorestapi.get_boolean_value(
+            "combine_operation_files": self.options.get(
                 "combine-operation-files", version_tolerant
             ),
-            "package_mode": self._autorestapi.get_value("package-mode"),
-            "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
-            "package_configuration": self._autorestapi.get_value(
-                "package-configuration"
-            ),
-            "default_optional_constants_to_none": self._autorestapi.get_boolean_value(
+            "package_mode": self.options.get("package-mode"),
+            "package_pprint_name": self.options.get("package-pprint-name"),
+            "package_configuration": self.options.get("package-configuration"),
+            "default_optional_constants_to_none": self.options.get(
                 "default-optional-constants-to-none",
                 low_level_client or version_tolerant,
             ),
@@ -275,8 +238,102 @@ class CodeGenerator(Plugin):
             options["head_as_boolean"] = True
         return options
 
+    def get_yaml(self) -> Dict[str, Any]:
+        # cadl should call this one
+        raise NotImplementedError()
+
+    @staticmethod
+    def get_serializer(code_model: CodeModel):
+        return JinjaSerializer(code_model)
+
     def process(self) -> bool:
         # List the input file, should be only one
+
+        options = self._build_code_model_options()
+        yaml_data = self.get_yaml()
+
+        if options["azure_arm"]:
+            self.remove_cloud_errors(yaml_data)
+
+        code_model = self._create_code_model(yaml_data=yaml_data, options=options)
+
+        serializer = self.get_serializer(code_model)
+        serializer.serialize()
+
+        return True
+
+
+class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
+    def get_options(self) -> Dict[str, Any]:
+        if self._autorestapi.get_boolean_value("python3-only") is False:
+            _LOGGER.warning(
+                "You have passed in --python3-only=False. We have force overriden "
+                "this to True."
+            )
+        if self._autorestapi.get_boolean_value("add-python3-operation-files"):
+            _LOGGER.warning(
+                "You have passed in --add-python3-operation-files. "
+                "This flag no longer has an effect bc all SDKs are now Python3 only."
+            )
+        if self._autorestapi.get_boolean_value("reformat-next-link"):
+            _LOGGER.warning(
+                "You have passed in --reformat-next-link. We have force overriden "
+                "this to False because we no longer reformat initial query parameters into next "
+                "calls unless explicitly defined in the service definition."
+            )
+        options = {
+            "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
+            "header-text": self._autorestapi.get_value("header-text"),
+            "low-level-client": self._autorestapi.get_boolean_value(
+                "low-level-client", False
+            ),
+            "version-tolerant": self._autorestapi.get_boolean_value(
+                "version-tolerant", True
+            ),
+            "show-operations": self._autorestapi.get_boolean_value("show-operations"),
+            "python3-only": self._autorestapi.get_boolean_value("python3-only"),
+            "head-as-boolean": self._autorestapi.get_boolean_value(
+                "head-as-boolean", False
+            ),
+            "keep-version-file": self._autorestapi.get_boolean_value(
+                "keep-version-file"
+            ),
+            "no-async": self._autorestapi.get_boolean_value("no-async"),
+            "no-namespace-folders": self._autorestapi.get_boolean_value(
+                "no-namespace-folders"
+            ),
+            "basic-setup-py": self._autorestapi.get_boolean_value("basic-setup-py"),
+            "package-name": self._autorestapi.get_value("package-name"),
+            "package-version": self._autorestapi.get_value("package-version"),
+            "client-side-validation": self._autorestapi.get_boolean_value(
+                "client-side-validation"
+            ),
+            "tracing": self._autorestapi.get_boolean_value("trace"),
+            "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
+            "polymorphic-examples": self._autorestapi.get_value("polymorphic-examples"),
+            "models-mode": self._autorestapi.get_value("models-mode"),
+            "builders-visibility": self._autorestapi.get_value("builders-visibility"),
+            "show-send-request": self._autorestapi.get_boolean_value(
+                "show-send-request"
+            ),
+            "only-path-and-body-params-positional": self._autorestapi.get_boolean_value(
+                "only-path-and-body-params-positional"
+            ),
+            "combine-operation-files": self._autorestapi.get_boolean_value(
+                "combine-operation-files"
+            ),
+            "package-mode": self._autorestapi.get_value("package-mode"),
+            "package-pprint-name": self._autorestapi.get_value("package-pprint-name"),
+            "package-configuration": self._autorestapi.get_value(
+                "package-configuration"
+            ),
+            "default-optional-constants-to-none": self._autorestapi.get_boolean_value(
+                "default-optional-constants-to-none"
+            ),
+        }
+        return {k: v for k, v in options.items() if v is not None}
+
+    def get_yaml(self) -> Dict[str, Any]:
         inputs = self._autorestapi.list_inputs()
         _LOGGER.debug("Possible Inputs: %s", inputs)
         if "code-model-v4-no-tags.yaml" not in inputs:
@@ -294,19 +351,10 @@ class CodeGenerator(Plugin):
             file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         # Parse the received YAML
-        yaml_data = yaml.safe_load(file_content)
+        return yaml.safe_load(file_content)
 
-        options = self._build_code_model_options()
-
-        if options["azure_arm"]:
-            self.remove_cloud_errors(yaml_data)
-
-        code_model = self._create_code_model(yaml_data=yaml_data, options=options)
-
-        serializer = JinjaSerializer(self._autorestapi, code_model)
-        serializer.serialize()
-
-        return True
+    def get_serializer(self, code_model: CodeModel):  # type: ignore
+        return JinjaSerializerAutorest(self._autorestapi, code_model)
 
 
 def main(yaml_model_file: str) -> None:
@@ -314,7 +362,7 @@ def main(yaml_model_file: str) -> None:
         LocalAutorestAPI,
     )
 
-    code_generator = CodeGenerator(
+    code_generator = CodeGeneratorAutorest(
         autorestapi=LocalAutorestAPI(reachable_files=[yaml_model_file])
     )
     if not code_generator.process():

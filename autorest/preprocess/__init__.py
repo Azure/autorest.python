@@ -9,7 +9,7 @@ from typing import Callable, Dict, Any, List, Optional
 from .helpers import to_snake_case, pad_reserved_words, add_redefined_builtin_info
 from .python_mappings import PadType
 
-from .. import YamlUpdatePlugin
+from .. import YamlUpdatePlugin, PluginAutorest
 
 
 def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
@@ -92,12 +92,12 @@ def update_paging_response(yaml_data: Dict[str, Any]) -> None:
     )
 
 
-class PreProcessPlugin(YamlUpdatePlugin):
+class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     """Add Python naming information."""
 
     @property
     def version_tolerant(self) -> bool:
-        return bool(self._autorestapi.get_boolean_value("version-tolerant", True))
+        return self.options.get("version-tolerant", True)
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
@@ -133,7 +133,7 @@ class PreProcessPlugin(YamlUpdatePlugin):
             response["discriminator"] = "operation"
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
-        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
+        azure_arm = self.options.get("azure-arm", False)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lro"
             response["pollerSync"] = (
@@ -228,3 +228,12 @@ class PreProcessPlugin(YamlUpdatePlugin):
         update_client(yaml_data["client"])
         update_types(yaml_data["types"])
         self.update_operation_groups(yaml_data)
+
+
+class PreProcessPluginAutorest(PluginAutorest, PreProcessPlugin):
+    def get_options(self) -> Dict[str, Any]:
+        options = {
+            "version-tolerant": self._autorestapi.get_boolean_value("version-tolerant"),
+            "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
+        }
+        return {k: v for k, v in options.items() if v is not None}
