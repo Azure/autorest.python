@@ -246,7 +246,7 @@ def _build_flags(
         "namespace": namespace,
         "client-side-validation": client_side_validation,
         "black": True,
-        "generate-sample": True,
+        "generate-sample": swagger_group == _SwaggerGroup.AZURE or swagger_group == _SwaggerGroup.AZURE_ARM,
     }
     if override_flags:
         flags.update(override_flags)
