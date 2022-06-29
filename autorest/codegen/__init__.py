@@ -328,6 +328,9 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             "default-optional-constants-to-none": self._autorestapi.get_boolean_value(
                 "default-optional-constants-to-none"
             ),
+            "generate-sample": self._autorestapi.get_boolean_value(
+                "generate-sample", False
+            ),
         }
         return {k: v for k, v in options.items() if v is not None}
 
