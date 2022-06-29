@@ -215,7 +215,7 @@ class CodeGenerator(Plugin):
                 "default-optional-constants-to-none",
                 low_level_client or version_tolerant,
             ),
-            "generate_sample": self._autorestapi.get_boolean_value(
+            "generate_sample": self.options.get(
                 "generate-sample", False
             ),
         }

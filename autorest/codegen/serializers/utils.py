@@ -3,10 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import logging
 import re
 from typing import Any
-from pathlib import Path
 from autorest.codegen.models.operation import OperationBase
+
+_LOGGER = logging.getLogger(__name__)
 
 
 def method_signature_and_response_type_annotation_template(
@@ -35,8 +37,3 @@ def to_snake_case(name: str) -> str:
         r"_\1",
         name.replace("-", "").replace(" ", "_"),
     ).lower()
-
-
-# find root folder where "setup.py" is
-def package_root_folder(namespace: str, namespace_path: Path) -> Path:
-    return namespace_path / Path("../" * (namespace.count(".") + 1))
