@@ -4,18 +4,16 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from typing import Any, Dict
 from pathlib import Path
 from jinja2 import Environment, PackageLoader
-from .. import Plugin
+from .. import Plugin, PluginAutorest
 
 _LOGGER = logging.getLogger(__name__)
 
 
 class MultiClientPlugin(Plugin):
     def process(self) -> bool:
-        package_version: str = (
-            self._autorestapi.get_value("package-version") or "1.0.0b1"
-        )
         _LOGGER.info("Generating files for multi client")
 
         env = Environment(
@@ -29,12 +27,20 @@ class MultiClientPlugin(Plugin):
 
         # _version.py
         template = env.get_template("version.py.jinja2")
-        self._autorestapi.write_file(
-            Path("_version.py"), template.render(package_version=package_version)
+        self.write_file(
+            Path("_version.py"),
+            template.render(
+                package_version=self.options.get("package-version") or "1.0.0b1"
+            ),
         )
 
         # py.typed
-        self._autorestapi.write_file(Path("py.typed"), "# Marker file for PEP 561.")
+        self.write_file(Path("py.typed"), "# Marker file for PEP 561.")
 
         _LOGGER.info("Generating Done for multi client!")
         return True
+
+
+class MultiClientPluginAutorest(MultiClientPlugin, PluginAutorest):
+    def get_options(self) -> Dict[str, Any]:
+        return {"package-version": self._autorestapi.get_value("package-version")}

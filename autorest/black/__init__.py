@@ -6,9 +6,10 @@
 import logging
 from pathlib import Path
 import os
+from typing import Any, Dict
 import black
 
-from .. import Plugin
+from .. import Plugin, PluginAutorest
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -16,10 +17,10 @@ _BLACK_MODE = black.Mode()
 _BLACK_MODE.line_length = 120
 
 
-class BlackScriptPlugin(Plugin):
-    def __init__(self, autorestapi):
-        super().__init__(autorestapi)
-        output_folder_uri = self._autorestapi.get_value("outputFolderUri")
+class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        output_folder_uri = self.options["outputFolderUri"]
         if output_folder_uri.startswith("file:"):
             output_folder_uri = output_folder_uri[5:]
         if os.name == "nt" and output_folder_uri.startswith("///"):
@@ -38,9 +39,9 @@ class BlackScriptPlugin(Plugin):
 
     def format_file(self, full_path) -> None:
         file = full_path.relative_to(self.output_folder)
-        file_content = self._autorestapi.read_file(file)
+        file_content = self.read_file(file)
         if not file.suffix == ".py":
-            self._autorestapi.write_file(file, file_content)
+            self.write_file(file, file_content)
             return
         try:
             file_content = black.format_file_contents(
@@ -48,4 +49,9 @@ class BlackScriptPlugin(Plugin):
             )
         except black.NothingChanged:
             pass
-        self._autorestapi.write_file(file, file_content)
+        self.write_file(file, file_content)
+
+
+class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):
+    def get_options(self) -> Dict[str, Any]:
+        return {"outputFolderUri": self._autorestapi.get_value("outputFolderUri")}
