@@ -30,7 +30,9 @@ class LROWithParamaterizedEndpoints(
      Retry-After header is present.
     """
 
-    def __init__(self, host: str = "host", **kwargs: Any) -> None:
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, host: str = "host", **kwargs: Any
+    ) -> None:
         _endpoint = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)

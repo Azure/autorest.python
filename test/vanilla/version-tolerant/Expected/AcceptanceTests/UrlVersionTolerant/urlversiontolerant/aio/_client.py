@@ -39,7 +39,7 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
     :paramtype endpoint: str
     """
 
-    def __init__(
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self,
         global_string_path: str,
         global_string_query: Optional[str] = None,
