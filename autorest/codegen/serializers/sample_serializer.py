@@ -38,10 +38,6 @@ class SampleSerializer:
         self.file_name = file_name
         self.sample_origin_name = sample_origin_name
 
-    def _handle_sample_value(self, rest_api_name: str) -> str:
-        value = self.sample["parameters"].get(rest_api_name)
-        return "" if not value else f'"{value}"'
-
     def _prepare_sample_render_param(self) -> Dict[str, Any]:
         # client params
         credential = ""
@@ -64,16 +60,19 @@ class SampleSerializer:
             for p in self.code_model.client.parameters.positional
             if not (p.optional or p.client_default_value)
         ]
+        cls = lambda x: f'"{x}"'
         client_params = {
             p.client_name: special_param.get(
                 p.client_name,
-                self._handle_sample_value(p.rest_api_name)
-                or f'"{p.client_name.upper()}"',
+                cls(
+                    self.sample["parameters"].get(p.rest_api_name)
+                    or p.client_name.upper()
+                ),
             )
             for p in params_positional
         }
         if self.code_model.options["multiapi"]:
-            client_params["api_version"] = f'"{self.operation_group.api_versions[0]}"'
+            client_params["api_version"] = cls(self.operation_group.api_versions[0])
 
         # imports
         imports = FileImport()
