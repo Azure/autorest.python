@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "azure-packagemode-batch"
-PACKAGE_PPRINT_NAME = "Azure Package Mode Batch Data Plane"
+PACKAGE_PPRINT_NAME = "Azure Package Mode Batch Mgmt Plane"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -29,7 +29,7 @@ if not version:
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="Microsoft Azure Package Mode Batch Data Plane Client Library for Python",
+    description="Microsoft Azure Package Mode Batch Mgmt Plane Client Library for Python",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
@@ -63,8 +63,8 @@ setup(
         "pytyped": ["py.typed"],
     },
     install_requires=[
-        "isodate<1.0.0,>=0.6.1",
-        "azure-core<2.0.0,>=1.24.0",
+        "msrest>=0.7.1",
+        "azure-mgmt-core<2.0.0,>=1.3.0",
     ],
     python_requires=">=3.6",
 )

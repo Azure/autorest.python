@@ -9,43 +9,52 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
-from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
+from azure.mgmt.core import ARMPipelineClient
 
-from ._configuration import HeadClientConfiguration
+from . import models
+from ._configuration import PagingClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import HttpSuccessOperations
+from .operations import PagingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
+    from azure.core.credentials import TokenCredential
 
 
-class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Test Infrastructure for AutoRest.
+class PagingClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Long-running Operation for AutoRest.
 
-    :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: azure.packagemode.batch.head.operations.HttpSuccessOperations
-    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
-    :paramtype endpoint: str
+    :ivar paging: PagingOperations operations
+    :vartype paging: azure.packagemode.batch.paging.operations.PagingOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
+    :param base_url: Service URL. Default value is "http://localhost:3000".
+    :type base_url: str
+    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+     value may result in unsupported behavior.
+    :paramtype api_version: str
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+     Retry-After header is present.
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = HeadClientConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = PagingClientConfiguration(credential=credential, **kwargs)
+        self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        self._serialize = Serializer()
-        self._deserialize = Deserializer()
+        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        self._serialize = Serializer(client_models)
+        self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
         >>> request = HttpRequest("GET", "https://www.example.org/")
         <HttpRequest [GET], url: 'https://www.example.org/'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
@@ -66,7 +75,7 @@ class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
         self._client.close()
 
     def __enter__(self):
-        # type: () -> HeadClient
+        # type: () -> PagingClient
         self._client.__enter__()
         return self
 

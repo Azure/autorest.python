@@ -9,48 +9,50 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.mgmt.core import AsyncARMPipelineClient
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import PagingClientConfiguration
-from .operations import PagingOperations
+from ._configuration import HeadClientConfiguration
+from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
+    from azure.core.credentials_async import AsyncTokenCredential
 
-class PagingClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Long-running Operation for AutoRest.
 
-    :ivar paging: PagingOperations operations
-    :vartype paging: azure.packagemode.batch.paging.aio.operations.PagingOperations
-    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
-    :paramtype endpoint: str
-    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
-     value may result in unsupported behavior.
-    :paramtype api_version: str
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-     Retry-After header is present.
+class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Test Infrastructure for AutoRest.
+
+    :ivar http_success: HttpSuccessOperations operations
+    :vartype http_success: azure.packagemode.batch.head.aio.operations.HttpSuccessOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :param base_url: Service URL. Default value is "http://localhost:3000".
+    :type base_url: str
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = PagingClientConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+    def __init__(
+        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
+        self._config = HeadClientConfiguration(credential=credential, **kwargs)
+        self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        self._serialize = Serializer()
-        self._deserialize = Deserializer()
+        client_models = {}  # type: Dict[str, Any]
+        self._serialize = Serializer(client_models)
+        self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
         >>> request = HttpRequest("GET", "https://www.example.org/")
         <HttpRequest [GET], url: 'https://www.example.org/'>
-        >>> response = await client.send_request(request)
+        >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
@@ -69,7 +71,7 @@ class PagingClient:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "PagingClient":
+    async def __aenter__(self) -> "HeadClient":
         await self._client.__aenter__()
         return self
 

@@ -12,7 +12,7 @@ from .. import Plugin, PluginAutorest
 _LOGGER = logging.getLogger(__name__)
 
 
-class MultiClientPlugin(Plugin):
+class MultiClientPlugin(Plugin):  # pylint: disable=abstract-method
     def process(self) -> bool:
         _LOGGER.info("Generating files for multi client")
 

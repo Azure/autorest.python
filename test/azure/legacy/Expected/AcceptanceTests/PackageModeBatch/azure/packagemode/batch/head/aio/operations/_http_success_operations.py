@@ -16,38 +16,16 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .._serialization import Serializer
+from ..._vendor import _convert_request
+from ...operations._http_success_operations import build_head200_request, build_head204_request, build_head404_request
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
-
-
-def build_http_success_head200_request(**kwargs: Any) -> HttpRequest:
-    # Construct URL
-    _url = "/http/success/200"
-
-    return HttpRequest(method="HEAD", url=_url, **kwargs)
-
-
-def build_http_success_head204_request(**kwargs: Any) -> HttpRequest:
-    # Construct URL
-    _url = "/http/success/204"
-
-    return HttpRequest(method="HEAD", url=_url, **kwargs)
-
-
-def build_http_success_head404_request(**kwargs: Any) -> HttpRequest:
-    # Construct URL
-    _url = "/http/success/404"
-
-    return HttpRequest(method="HEAD", url=_url, **kwargs)
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class HttpSuccessOperations:
@@ -56,23 +34,24 @@ class HttpSuccessOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.packagemode.batch.head.HeadClient`'s
+        :class:`~azure.packagemode.batch.head.aio.HeadClient`'s
         :attr:`http_success` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @distributed_trace
-    def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    @distributed_trace_async
+    async def head200(self, **kwargs: Any) -> bool:
         """Return 200 status code if successful.
 
-        :return: None
-        :rtype: None
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: bool or the result of cls(response)
+        :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -83,13 +62,15 @@ class HttpSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_http_success_head200_request(
+        request = build_head200_request(
+            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -97,17 +78,21 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
+        return 200 <= response.status_code <= 299
 
-    @distributed_trace
-    def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    head200.metadata = {"url": "/http/success/200"}  # type: ignore
+
+    @distributed_trace_async
+    async def head204(self, **kwargs: Any) -> bool:
         """Return 204 status code if successful.
 
-        :return: None
-        :rtype: None
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: bool or the result of cls(response)
+        :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -118,13 +103,15 @@ class HttpSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_http_success_head204_request(
+        request = build_head204_request(
+            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -132,17 +119,21 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
+        return 200 <= response.status_code <= 299
 
-    @distributed_trace
-    def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    head204.metadata = {"url": "/http/success/204"}  # type: ignore
+
+    @distributed_trace_async
+    async def head404(self, **kwargs: Any) -> bool:
         """Return 404 status code if successful.
 
-        :return: None
-        :rtype: None
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: bool or the result of cls(response)
+        :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -153,13 +144,15 @@ class HttpSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_http_success_head404_request(
+        request = build_head404_request(
+            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -167,7 +160,10 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
+        return 200 <= response.status_code <= 299
+
+    head404.metadata = {"url": "/http/success/404"}  # type: ignore
