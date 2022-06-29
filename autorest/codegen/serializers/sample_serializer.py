@@ -8,12 +8,11 @@ from typing import Dict, Any, Callable
 from pathlib import Path
 from jinja2 import Environment
 from ..serializers.import_serializer import FileImportSerializer
-from ..models import CodeModel, BodyParameter
+from ..models import CodeModel
 from ..models.imports import FileImport, ImportType
 from ..models.credential_types import TokenCredentialType
 from ..models.credential_types import AzureKeyCredentialType
 from .utils import (
-    to_lower_camel_case,
     to_snake_case,
     operation_additional,
     package_root_folder,
@@ -125,13 +124,8 @@ class SampleSerializer:
                     # prepare method parameters
                     operation_params = {}
                     for param in params_positional:
-                        if isinstance(param, BodyParameter):
-                            name = to_lower_camel_case(param.client_name)
-                            fake_value = "can not find valid value"
-                        else:
-                            name = param.rest_api_name
-                            fake_value = param.client_name.upper()
-
+                        name = param.rest_api_name
+                        fake_value = param.client_name.upper()
                         param_value = value["parameters"].get(name)
                         if param_value or not param.optional:
                             if not param_value:

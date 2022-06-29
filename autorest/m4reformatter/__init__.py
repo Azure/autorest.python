@@ -431,6 +431,10 @@ def update_client_url(yaml_data: Dict[str, Any]) -> str:
     ]["uri"]
 
 
+def to_lower_camel_case(name: str) -> str:
+    return re.sub(r"_([a-z])", lambda x: x.group(1).upper(), name)
+
+
 class M4Reformatter(
     YamlUpdatePluginAutorest
 ):  # pylint: disable=too-many-public-methods
@@ -689,6 +693,9 @@ class M4Reformatter(
                 body_param["clientDefaultValue"] = body_type["value"]
         body_param["flattened"] = flattened
         body_param["isPartialBody"] = is_partial_body
+        body_param["restApiName"] = body_param["restApiName"] or to_lower_camel_case(
+            body_param["clientName"]
+        )
         return body_param
 
     def update_multipart_body_parameter(
