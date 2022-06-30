@@ -14,7 +14,6 @@ from autorest.codegen.models.operation import OperationBase
 from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.serializers.import_serializer import FileImportSerializer
 from ..models import CodeModel
-from .utils import operation_additional
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -38,23 +37,37 @@ class SampleSerializer:
         self.file_name = file_name
         self.sample_origin_name = sample_origin_name
 
-    def _prepare_sample_render_param(self) -> Dict[str, Any]:
-        # client params
-        credential = ""
+    def _imports(self) -> FileImportSerializer:
+        imports = FileImport()
+        namespace = (self.code_model.options["package_name"] or "").replace(
+            "-", "."
+        ) or self.code_model.namespace
+        imports.add_submodule_import(
+            namespace, self.code_model.client.name, ImportType.THIRDPARTY
+        )
         credential_type = getattr(self.code_model.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
-            credential = "DefaultAzureCredential"
-            third_party = "azure.identity"
+            imports.add_submodule_import(
+                "azure.identity", "DefaultAzureCredential", ImportType.THIRDPARTY
+            )
         elif isinstance(credential_type, AzureKeyCredentialType):
-            credential = "AzureKeyCredential"
-            third_party = "azure.core.credentials"
+            imports.add_import("os", ImportType.STDLIB)
+            imports.add_submodule_import(
+                "azure.core.credentials", "AzureKeyCredential", ImportType.THIRDPARTY
+            )
+        return FileImportSerializer(imports, True)
 
-        additional_info = (
-            'key=os.getenv("AZURE_KEY")' if credential == "AzureKeyCredential" else ""
-        )
-        special_param = {
-            "credential": f"{credential}({additional_info})",
-        }
+    def _client_params(self) -> Dict[str, Any]:
+        # client params
+        special_param = dict()
+        credential_type = getattr(self.code_model.credential, "type", None)
+        if isinstance(credential_type, TokenCredentialType):
+            special_param.update({"credential": "DefaultAzureCredential()"})
+        elif isinstance(credential_type, AzureKeyCredentialType):
+            special_param.update(
+                {"credential": 'AzureKeyCredential(key=os.getenv("AZURE_KEY"))'}
+            )
+
         params_positional = [
             p
             for p in self.code_model.client.parameters.positional
@@ -74,39 +87,10 @@ class SampleSerializer:
         if self.code_model.options["multiapi"]:
             client_params["api_version"] = cls(self.operation_group.api_versions[0])
 
-        # imports
-        imports = FileImport()
-        namespace = (self.code_model.options["package_name"] or "").replace(
-            "-", "."
-        ) or self.code_model.namespace
-        imports.add_submodule_import(
-            namespace, self.code_model.client.name, ImportType.THIRDPARTY
-        )
-        if credential:
-            imports.add_import("os", ImportType.STDLIB)
-            imports.add_submodule_import(third_party, credential, ImportType.THIRDPARTY)
+        return client_params
 
-        # operation group name
-        operation_group_name = (
-            ""
-            if self.operation_group.is_mixin
-            else f".{self.operation_group.property_name}"
-        )
-
-        return {
-            "file_name": self.file_name,
-            "origin_file": self.sample.get("x-ms-original-file"),
-            "imports": FileImportSerializer(imports, True),
-            "client_params": client_params,
-            "operation_group_name": operation_group_name,
-            "operation_result": operation_additional(self.operation),
-            "operation_name": f".{self.operation.name}",
-        }
-
-    # prepare method parameters
-    def _sample_operation_params(
-        self,
-    ) -> Dict[str, Any]:
+    # prepare operation parameters
+    def _operation_params(self) -> Dict[str, Any]:
         params_positional = [
             p
             for p in self.operation.parameters.positional
@@ -117,21 +101,43 @@ class SampleSerializer:
         operation_params = {}
         for param in params_positional:
             name = param.rest_api_name
-            fake_value = param.client_name.upper()
             param_value = self.sample["parameters"].get(name)
             if param_value or not param.optional:
                 if not param_value:
                     # if can't find required param, need to log it
                     _LOGGER.warning(failure_info, name, self.sample_origin_name)
-                    param_value = fake_value
+                    param_value = param.client_name.upper()
                 operation_params[param.client_name] = cls(param_value)
         return operation_params
 
+    def _operation_group_name(self) -> str:
+        if self.operation_group.is_mixin:
+            return ""
+        return f".{self.operation_group.property_name}"
+
+    def _operation_result(self) -> str:
+        lro = ".result()"
+        paging = "\n    response = [item for item in response]"
+        if self.operation.operation_type == "paging":
+            return "\n    response = [item for item in response]"
+        if self.operation.operation_type == "lro":
+            return ".result()"
+        if self.operation.operation_type == "lropaging":
+            return lro + paging
+        return ""
+
+    def _operation_name(self) -> str:
+        return f".{self.operation.name}"
+
     def serialize(self) -> str:
-        sample_params = self._prepare_sample_render_param()
-        operation_params = self._sample_operation_params()
         return self.env.get_template("sample.py.jinja2").render(
             code_model=self.code_model,
-            operation_params=operation_params,
-            **sample_params,
+            file_name=self.file_name,
+            operation_result=self._operation_result(),
+            operation_params=self._operation_params(),
+            operation_group_name=self._operation_group_name(),
+            operation_name=self._operation_name(),
+            imports=self._imports(),
+            client_params=self._client_params(),
+            origin_file=self.sample.get("x-ms-original-file"),
         )

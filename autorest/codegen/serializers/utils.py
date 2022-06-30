@@ -19,18 +19,6 @@ def method_signature_and_response_type_annotation_template(
     return f"{method_signature} -> {response_type_annotation}:"
 
 
-def operation_additional(operation: OperationBase[Any]) -> str:
-    lro = ".result()"
-    paging = "\n    response = [item for item in response]"
-    if operation.operation_type == "paging":
-        return "\n    response = [item for item in response]"
-    if operation.operation_type == "lro":
-        return ".result()"
-    if operation.operation_type == "lropaging":
-        return lro + paging
-    return ""
-
-
 def to_snake_case(name: str) -> str:
     return re.sub(
         "((?!^)(?<!_)[A-Z][a-z]+|(?<=[a-z0-9])[A-Z])",

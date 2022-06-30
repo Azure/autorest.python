@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import os
-
 from azure.identity import DefaultAzureCredential
 from head import AutoRestHeadTestService
 
