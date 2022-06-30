@@ -150,7 +150,9 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     self.write_file(output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
-            package_parts = package_name.split("-")[:-1]
+            package_parts = (self.code_model.options["package_name"] or "").split("-")[
+                :-1
+            ]
             token_cred = isinstance(
                 getattr(self.code_model.credential, "type", None), TokenCredentialType
             )
@@ -177,14 +179,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             params.update(self.code_model.package_dependency)
             return params
 
-        package_name = (
-            self.code_model.options["package_name"]
-            or self.code_model.client.name.lower()
-        )
-        count = package_name.count("-") + 1
-        for _ in range(count):
-            out_path = out_path / Path("..")
-
+        out_path = out_path / Path("../" * (self.code_model.namespace.count(".") + 1))
         if self.code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
             env = Environment(
                 loader=PackageLoader("autorest.codegen", "templates"),
