@@ -14,6 +14,7 @@
 **New Features**
 
 - Add flag `--generate-sample` to generate samples #1275
+- Add new plugin `MultiClient` and new flag `--multiclientscript` to handle package structure of multi client  #1328
 
 ### 2022-06-29 - 6.0.1
 
