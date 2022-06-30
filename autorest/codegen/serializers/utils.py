@@ -5,8 +5,6 @@
 # --------------------------------------------------------------------------
 import logging
 import re
-from typing import Any
-from autorest.codegen.models.operation import OperationBase
 
 _LOGGER = logging.getLogger(__name__)
 
