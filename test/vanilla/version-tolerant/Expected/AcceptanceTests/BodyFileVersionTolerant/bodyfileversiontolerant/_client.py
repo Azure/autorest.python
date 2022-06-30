@@ -30,7 +30,9 @@ class AutoRestSwaggerBATFileService:  # pylint: disable=client-accepts-api-versi
     :paramtype endpoint: str
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = AutoRestSwaggerBATFileServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

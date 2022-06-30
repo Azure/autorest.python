@@ -15,6 +15,21 @@
 
 - Add flag `--generate-sample` to generate samples #1275
 
+### 2022-06-29 - 6.0.1
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Bug Fixes**
+
+- Ignore linting error for clients with no credentials  #1333
+
 ### 2022-06-24 - 6.0.0
 
 | Library                                                                 | Min Version |

@@ -36,7 +36,7 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
     :type base_url: str
     """
 
-    def __init__(
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self,
         required_global_path: str,
         required_global_query: str,
