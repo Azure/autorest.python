@@ -33,7 +33,9 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any) -> None:
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any
+    ) -> None:
         _endpoint = "{vault}{secret}{dnsSuffix}"
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs

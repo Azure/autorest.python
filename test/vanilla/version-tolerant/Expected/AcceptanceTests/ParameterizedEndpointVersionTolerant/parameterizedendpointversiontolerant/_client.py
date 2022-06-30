@@ -30,7 +30,9 @@ class ParmaterizedEndpointClient(
     :type endpoint: str
     """
 
-    def __init__(self, endpoint: str, **kwargs: Any) -> None:
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, endpoint: str, **kwargs: Any
+    ) -> None:
         _endpoint = "{endpoint}"
         self._config = ParmaterizedEndpointClientConfiguration(endpoint=endpoint, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)

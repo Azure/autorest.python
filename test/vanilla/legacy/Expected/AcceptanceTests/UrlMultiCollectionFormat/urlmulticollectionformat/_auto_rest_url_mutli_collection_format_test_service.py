@@ -27,7 +27,9 @@ class AutoRestUrlMutliCollectionFormatTestService:  # pylint: disable=client-acc
     :type base_url: str
     """
 
-    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, base_url: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = AutoRestUrlMutliCollectionFormatTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 

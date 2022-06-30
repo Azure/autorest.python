@@ -16,6 +16,11 @@ class ClientSerializer:
         self.parameter_serializer = ParameterSerializer()
 
     def _init_signature(self, async_mode: bool) -> str:
+        pylint_disable = ""
+        if not self.code_model.client.parameters.credential:
+            pylint_disable = (
+                "  # pylint: disable=missing-client-constructor-parameter-credential"
+            )
         return self.parameter_serializer.serialize_method(
             function_def="def",
             method_name="__init__",
@@ -23,6 +28,7 @@ class ClientSerializer:
             method_param_signatures=self.code_model.client.parameters.method_signature(
                 async_mode
             ),
+            pylint_disable=pylint_disable,
         )
 
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
