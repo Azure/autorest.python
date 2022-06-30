@@ -25,6 +25,10 @@ class MultiClientPlugin(Plugin):  # pylint: disable=abstract-method
             lstrip_blocks=True,
         )
 
+        # __init__.py
+        template = env.get_template("init.py.jinja2")
+        self.write_file(Path("__init__.py"), template.render())
+
         # _version.py
         template = env.get_template("version.py.jinja2")
         self.write_file(
