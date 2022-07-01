@@ -1272,12 +1272,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
+                    "MaxResults": 0,  # Required.
+                    "NextMarker": "str",  # Required.
+                    "Prefix": "str",  # Required.
+                    "ServiceEndpoint": "str",  # Required.
                     "Containers": [
                         {
-                            "Metadata": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
-                            },
                             "Name": "str",  # Required.
                             "Properties": {
                                 "Etag": "str",  # Required.
@@ -1290,14 +1290,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                   "locked" and "unlocked".
                                 "PublicAccess": "str"  # Optional. Known values are:
                                   "container" and "blob".
+                            },
+                            "Metadata": {
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
                             }
                         }
                     ],
-                    "Marker": "str",  # Optional.
-                    "MaxResults": 0,  # Required.
-                    "NextMarker": "str",  # Required.
-                    "Prefix": "str",  # Required.
-                    "ServiceEndpoint": "str"  # Required.
+                    "Marker": "str"  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1379,11 +1379,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                       requests to the Blob service if an incoming request's version is not specified.
                       Possible values include version 2008-10-27 and all more recent versions.
                     "DeleteRetentionPolicy": {
-                        "Days": 0,  # Optional. Indicates the number of days that metrics or
+                        "Enabled": bool,  # Indicates whether a retention policy is enabled
+                          for the storage service. Required.
+                        "Days": 0  # Optional. Indicates the number of days that metrics or
                           logging or soft-deleted data should be retained. All data older than this
                           value will be deleted.
-                        "Enabled": bool  # Indicates whether a retention policy is enabled
-                          for the storage service. Required.
                     },
                     "HourMetrics": {
                         "Enabled": bool,  # Indicates whether metrics are enabled for the
@@ -1391,11 +1391,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
+                            "Enabled": bool,  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
+                            "Days": 0  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1406,11 +1406,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "Read": bool,  # Indicates whether all read requests should be
                           logged. Required.
                         "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
+                            "Enabled": bool,  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
+                            "Days": 0  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
                         },
                         "Version": "str",  # The version of Storage Analytics to configure.
                           Required.
@@ -1423,11 +1423,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
+                            "Enabled": bool,  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
+                            "Days": 0  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1519,11 +1519,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                       requests to the Blob service if an incoming request's version is not specified.
                       Possible values include version 2008-10-27 and all more recent versions.
                     "DeleteRetentionPolicy": {
-                        "Days": 0,  # Optional. Indicates the number of days that metrics or
+                        "Enabled": bool,  # Indicates whether a retention policy is enabled
+                          for the storage service. Required.
+                        "Days": 0  # Optional. Indicates the number of days that metrics or
                           logging or soft-deleted data should be retained. All data older than this
                           value will be deleted.
-                        "Enabled": bool  # Indicates whether a retention policy is enabled
-                          for the storage service. Required.
                     },
                     "HourMetrics": {
                         "Enabled": bool,  # Indicates whether metrics are enabled for the
@@ -1531,11 +1531,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
+                            "Enabled": bool,  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
+                            "Days": 0  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1546,11 +1546,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "Read": bool,  # Indicates whether all read requests should be
                           logged. Required.
                         "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
+                            "Enabled": bool,  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
+                            "Days": 0  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
                         },
                         "Version": "str",  # The version of Storage Analytics to configure.
                           Required.
@@ -1563,11 +1563,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
+                            "Enabled": bool,  # Indicates whether a retention policy is
+                              enabled for the storage service. Required.
+                            "Days": 0  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
-                            "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1775,12 +1775,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         "Blob": [
                             {
                                 "Deleted": bool,  # Required.
-                                "Metadata": {
-                                    "str": "str"  # Optional. Dictionary of
-                                      :code:`<string>`.
-                                },
                                 "Name": "str",  # Required.
                                 "Properties": {
+                                    "Etag": "str",  # Required.
+                                    "Last-Modified": "2020-02-20 00:00:00",  #
+                                      Required.
                                     "AccessTier": "str",  # Optional. Known
                                       values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
                                       "Cool", and "Archive".
@@ -1821,11 +1820,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                       Optional. Properties of a blob. Required.
                                     "DestinationSnapshot": "str",  # Optional.
                                       Properties of a blob. Required.
-                                    "Etag": "str",  # Required.
                                     "IncrementalCopy": bool,  # Optional.
                                       Properties of a blob. Required.
-                                    "Last-Modified": "2020-02-20 00:00:00",  #
-                                      Required.
                                     "LeaseDuration": "str",  # Optional. Known
                                       values are: "infinite" and "fixed".
                                     "LeaseState": "str",  # Optional. Known
@@ -1840,7 +1836,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                     "x-ms-blob-sequence-number": 0  # Optional.
                                       Properties of a blob. Required.
                                 },
-                                "Snapshot": "str"  # Required.
+                                "Snapshot": "str",  # Required.
+                                "Metadata": {
+                                    "str": "str"  # Optional. Dictionary of
+                                      :code:`<string>`.
+                                }
                             }
                         ],
                         "BlobPrefix": [

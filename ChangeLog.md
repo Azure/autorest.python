@@ -15,6 +15,10 @@
 
 - Add new plugin `MultiClient` and new flag `--multiclientscript` to handle package structure of multi client  #1328
 
+**Other Changes**
+
+- Order json input and response template entries by whether they are required or not #1335
+
 ### 2022-06-29 - 6.0.1
 
 | Library                                                                 | Min Version |
