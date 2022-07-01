@@ -65,10 +65,10 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -127,19 +127,19 @@ class PetOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 pet_param = {
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
 
                 # response body for status code(s): 200
                 response == {
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -164,10 +164,10 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -190,10 +190,10 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
                       Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                       "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """

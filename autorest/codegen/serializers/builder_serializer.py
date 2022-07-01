@@ -79,9 +79,7 @@ def _improve_json_string(template_representation: str) -> Any:
 
 def _json_dumps_template(template_representation: Any) -> Any:
     # only for template use, since it wraps everything in strings
-    return _improve_json_string(
-        json.dumps(template_representation, sort_keys=True, indent=4)
-    )
+    return _improve_json_string(json.dumps(template_representation, indent=4))
 
 
 def _get_polymorphic_subtype_template(polymorphic_subtype: ModelType) -> List[str]:

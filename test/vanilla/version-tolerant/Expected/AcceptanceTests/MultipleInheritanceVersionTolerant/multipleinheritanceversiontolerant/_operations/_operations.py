@@ -206,8 +206,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "isAShowHorse": bool,  # Optional.
-                    "name": "str"  # Required.
+                    "name": "str",  # Required.
+                    "isAShowHorse": bool  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -262,8 +262,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 horse = {
-                    "isAShowHorse": bool,  # Optional.
-                    "name": "str"  # Required.
+                    "name": "str",  # Required.
+                    "isAShowHorse": bool  # Optional.
                 }
         """
 
@@ -647,10 +647,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
+                    "name": "str",  # Required.
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
-                    "meows": bool,  # Optional.
-                    "name": "str"  # Required.
+                    "meows": bool  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -706,10 +706,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 cat = {
+                    "name": "str",  # Required.
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
-                    "meows": bool,  # Optional.
-                    "name": "str"  # Required.
+                    "meows": bool  # Optional.
                 }
         """
 
@@ -802,11 +802,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
+                    "name": "str",  # Required.
                     "eatsMiceYet": bool,  # Optional.
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
-                    "meows": bool,  # Optional.
-                    "name": "str"  # Required.
+                    "meows": bool  # Optional.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -863,11 +863,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 kitten = {
+                    "name": "str",  # Required.
                     "eatsMiceYet": bool,  # Optional.
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
-                    "meows": bool,  # Optional.
-                    "name": "str"  # Required.
+                    "meows": bool  # Optional.
                 }
         """
 
