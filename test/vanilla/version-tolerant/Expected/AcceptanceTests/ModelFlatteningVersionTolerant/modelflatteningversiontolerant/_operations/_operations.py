@@ -1024,10 +1024,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1042,10 +1042,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1079,10 +1079,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1115,10 +1115,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1200,10 +1200,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1218,10 +1218,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1255,10 +1255,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1293,10 +1293,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1385,10 +1385,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1403,10 +1403,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1447,10 +1447,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.
@@ -1487,10 +1487,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
                       will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
                           Capacity of product. For example, 4 people. Required.

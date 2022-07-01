@@ -316,8 +316,8 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str"  # Optional. Gets or sets the account type.
@@ -332,8 +332,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -441,8 +441,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -545,8 +545,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -726,8 +726,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -869,8 +869,8 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets or sets the account type.
@@ -894,8 +894,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1000,8 +1000,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1100,8 +1100,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1289,8 +1289,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1423,8 +1423,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Resource Id.
                     "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage

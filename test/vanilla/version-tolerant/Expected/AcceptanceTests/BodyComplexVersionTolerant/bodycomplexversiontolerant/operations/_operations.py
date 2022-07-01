@@ -3922,10 +3922,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -3935,10 +3935,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "siblings": [
                         fish
                     ],
@@ -3947,13 +3947,13 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
                       values are: "pink", "gray", "brown", "RED", and "red".
-                    "fishtype": "goblin",
                     "jawsize": 0,  # Optional.
-                    "length": 0.0,  # Required.
                     "siblings": [
                         fish
                     ],
@@ -3962,10 +3962,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "sawshark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "picture": bytes("bytes", encoding="utf-8"),  # Optional.
                     "siblings": [
                         fish
@@ -4065,10 +4065,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4078,10 +4078,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "siblings": [
                         fish
                     ],
@@ -4090,13 +4090,13 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
                       values are: "pink", "gray", "brown", "RED", and "red".
-                    "fishtype": "goblin",
                     "jawsize": 0,  # Optional.
-                    "length": 0.0,  # Required.
                     "siblings": [
                         fish
                     ],
@@ -4105,10 +4105,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "sawshark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "picture": bytes("bytes", encoding="utf-8"),  # Optional.
                     "siblings": [
                         fish
@@ -4486,10 +4486,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4558,10 +4558,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4668,10 +4668,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4686,10 +4686,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4723,10 +4723,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4758,10 +4758,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4868,10 +4868,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -4881,10 +4881,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "siblings": [
                         fish
                     ],
@@ -4893,13 +4893,13 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
                       values are: "pink", "gray", "brown", "RED", and "red".
-                    "fishtype": "goblin",
                     "jawsize": 0,  # Optional.
-                    "length": 0.0,  # Required.
                     "siblings": [
                         fish
                     ],
@@ -4908,10 +4908,10 @@ class PolymorphismOperations:
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "sawshark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "picture": bytes("bytes", encoding="utf-8"),  # Optional.
                     "siblings": [
                         fish
@@ -5080,10 +5080,10 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -5093,10 +5093,10 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "siblings": [
                         fish
                     ],
@@ -5105,13 +5105,13 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
                       values are: "pink", "gray", "brown", "RED", and "red".
-                    "fishtype": "goblin",
                     "jawsize": 0,  # Optional.
-                    "length": 0.0,  # Required.
                     "siblings": [
                         fish
                     ],
@@ -5120,10 +5120,10 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "sawshark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "picture": bytes("bytes", encoding="utf-8"),  # Optional.
                     "siblings": [
                         fish
@@ -5243,10 +5243,10 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "college_degree": "str",  # Optional.
                     "fishtype": "smart_salmon",
-                    "iswild": bool,  # Optional.
                     "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
                     "location": "str",  # Optional.
                     "siblings": [
                         fish
@@ -5256,10 +5256,10 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "cookiecuttershark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "siblings": [
                         fish
                     ],
@@ -5268,13 +5268,13 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
                       values are: "pink", "gray", "brown", "RED", and "red".
-                    "fishtype": "goblin",
                     "jawsize": 0,  # Optional.
-                    "length": 0.0,  # Required.
                     "siblings": [
                         fish
                     ],
@@ -5283,10 +5283,10 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "age": 0,  # Optional.
                     "birthday": "2020-02-20 00:00:00",  # Required.
                     "fishtype": "sawshark",
                     "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
                     "picture": bytes("bytes", encoding="utf-8"),  # Optional.
                     "siblings": [
                         fish
@@ -5669,10 +5669,10 @@ class FlattencomplexOperations:
 
                 # JSON input template for discriminator value "Kind1":
                 my_base_type = {
+                    "kind": "Kind1",
                     "helper": {
                         "propBH1": "str"  # Optional.
                     },
-                    "kind": "Kind1",
                     "propB1": "str",  # Optional.
                     "propD1": "str"  # Optional.
                 }

@@ -155,7 +155,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -170,6 +169,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -248,7 +248,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -263,6 +262,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -274,7 +274,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -289,6 +288,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -330,7 +330,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -345,6 +344,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -380,7 +380,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -395,6 +394,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -520,7 +520,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -535,6 +534,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -546,7 +546,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -561,6 +560,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -594,7 +594,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -609,6 +608,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -640,7 +640,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
                           string. Required.
@@ -655,6 +654,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "constInt": 0,  # Default value is 0. Constant int. Required.
                     "constString": "constant",  # Default value is "constant". Constant string.
                       Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [

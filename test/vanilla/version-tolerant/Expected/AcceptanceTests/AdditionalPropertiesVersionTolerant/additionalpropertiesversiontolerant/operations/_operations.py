@@ -299,16 +299,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "friendly": bool,  # Optional.
                     "id": 0,  # Required.
+                    "friendly": bool,  # Optional.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "friendly": bool,  # Optional.
                     "id": 0,  # Required.
+                    "friendly": bool,  # Optional.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -334,8 +334,8 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "friendly": bool,  # Optional.
                     "id": 0,  # Required.
+                    "friendly": bool,  # Optional.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -359,8 +359,8 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "friendly": bool,  # Optional.
                     "id": 0,  # Required.
+                    "friendly": bool,  # Optional.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -812,10 +812,10 @@ class PetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
                     "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                     },
-                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -823,10 +823,10 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response == {
                     "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                     },
-                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -853,10 +853,10 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response == {
                     "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                     },
-                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -881,10 +881,10 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response == {
                     "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                     },
-                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }

@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from collections import OrderedDict
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 
 from autorest.codegen.models.utils import add_to_pylint_disable
@@ -153,7 +154,17 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         # once we've finished, we want to reset created_json_template_representation to false
         # so we can call it again
         self._created_json_template_representation = False
-        return representation
+        optional_keys = [
+            f'"{p.rest_api_name}"'
+            for p in self.properties
+            if getattr(p, "optional", False)
+        ]
+        return OrderedDict(
+            sorted(
+                representation.items(),
+                key=lambda item: f"{1 if item[0] in optional_keys else 0}{item[0]}",
+            )
+        )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
         is_polymorphic_subtype = (
