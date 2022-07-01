@@ -340,11 +340,6 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             input_yaml = self._autorestapi.get_value("input-yaml")
             file_content = self._autorestapi.read_file(input_yaml)
         else:
-            inputs = self._autorestapi.list_inputs()
-            _LOGGER.debug("Possible Inputs: %s", inputs)
-            if "code-model-v4-no-tags.yaml" not in inputs:
-                raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
-
             file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         # Parse the received YAML
