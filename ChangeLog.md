@@ -15,6 +15,10 @@
 
 - Add new plugin `MultiClient` and new flag `--multiclientscript` to handle package structure of multi client  #1328
 
+**Bug Fixes**
+
+- Fallback unrecognized type as string to avoid a fatal error. #1341
+
 **Other Changes**
 
 - Order json input and response template entries by whether they are required or not #1335
