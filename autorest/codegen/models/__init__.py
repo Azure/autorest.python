@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import logging
 from typing import Any, Dict, Union
 from .base_model import BaseModel
 from .code_model import CodeModel
@@ -140,6 +141,7 @@ TYPE_TO_OBJECT = {
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
 }
+_LOGGER = logging.getLogger(__name__)
 
 
 def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
@@ -155,7 +157,13 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
     else:
-        response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(yaml_data, code_model)  # type: ignore
+        if yaml_data["type"] in TYPE_TO_OBJECT:
+            response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(yaml_data, code_model)  # type: ignore
+        else:
+            _LOGGER.warning(
+                f'Unrecognized definition type "{yaml_data["type"]}" is found, falling back it as "string"! '
+            )
+            response = TYPE_TO_OBJECT["string"].from_yaml(yaml_data, code_model)  # type: ignore
     code_model.types_map[yaml_id] = response
     return response
 
