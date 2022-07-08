@@ -1,0 +1,65 @@
+{# actual template starts here #}
+
+
+{{ serializer.declare_model(model) }}
+    """{{ model.description(is_operation_file=False) }}
+    {% if model.discriminated_subtypes %}
+
+    {{ serializer.discriminator_docstring(model) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}
+    {% endif %}
+    {% if model.has_readonly_or_constant_property %}
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+    {% endif %}
+    {% if (model.properties | selectattr('optional', "equalto", false) | first) is defined %}
+
+    All required parameters must be populated in order to send to Azure.
+    {% endif %}
+
+    {% if model.properties != None %}
+        {% for p in model.properties %}
+            {% for line in serializer.variable_documentation_string(p) %}
+                {% for doc_string in line.replace('\n', '\n ').split('\n') %}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    """
+
+    {% if model.properties %}
+        {% for p in model.properties %}
+    {{ p.attribute_declaration }}
+        {% endfor %}
+    {% endif %}
+
+    # todo: handle discriminator, xml, constant
+
+    @overload
+    def __init__(
+        self,
+        {% for param_signature in serializer.init_line(model) %}
+        {{ param_signature }}
+        {% endfor %}
+    ):
+        """
+    {% if model.properties %}
+        {% for p in model.properties %}
+            {% if p.is_input %}
+                {% for line in serializer.input_documentation_string(p) %}
+                    {% for doc_string in line.replace('\n', '\n ').split('\n') %}
+        {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n         ') }}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+        """
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any], /):
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

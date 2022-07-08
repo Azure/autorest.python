@@ -8,6 +8,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING, List
 from .base_model import BaseModel
 from .constant_type import ConstantType
 from .base_type import BaseType
+from .enum_type import EnumType
 from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_description, add_to_pylint_disable
 
@@ -45,7 +46,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def description(self, *, is_operation_file: bool) -> str:
         from .model_type import ModelType
 
-        description = self.yaml_data["description"]
+        description = (
+            self.yaml_data["description"] if "description" in self.yaml_data else ""
+        )
         if not (self.optional or self.client_default_value):
             description = add_to_description(description, "Required.")
         # don't want model type documentation as part of property doc
@@ -132,6 +135,23 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return retval or None
 
     @property
+    def attribute_declaration(self) -> str:
+        attribute_key = self.rest_api_name.replace(".", "\\\\.")
+        if self.flattened_names:
+            pass
+            # todo: does flatten supported in DPG?
+            # attribute_key = ".".join(
+            #     n.replace(".", "\\\\.") for n in self.flattened_names
+            # )
+
+        # todo: shall we do something special for xml?
+        # if self.type.xml_serialization_ctxt:
+        #     xml_metadata = f", 'xml': {{{self.type.xml_serialization_ctxt}}}"
+        # else:
+        #     xml_metadata = ""
+        return f'{self.client_name}: {self.type_annotation()} = rest_field(name="{attribute_key}") # {" ".join(self.description(is_operation_file=False).splitlines())}'
+
+    @property
     def attribute_map(self) -> str:
         if self.flattened_names:
             attribute_key = ".".join(
@@ -159,6 +179,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 TypingSection.TYPING,
                 alias="_models",
             )
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import(
+                "azure.core.serialization", "rest_field", ImportType.AZURECORE
+            )
+            if isinstance(self.type, EnumType):
+                file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         return file_import
 
     @classmethod

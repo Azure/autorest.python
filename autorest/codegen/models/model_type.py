@@ -221,7 +221,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
 
     @property
     def instance_check_template(self) -> str:
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return "isinstance({}, msrest.Model)"
         return "isinstance({}, MutableMapping)"
 
@@ -255,6 +255,11 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
                     ImportType.LOCAL,
                 )
         if self.code_model.options["models_mode"]:
+            # todo: xml for dpg model
+            if self.is_xml:
+                file_import.add_submodule_import(
+                    "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
+                )
             return file_import
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL

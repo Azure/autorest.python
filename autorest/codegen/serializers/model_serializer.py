@@ -6,7 +6,7 @@
 from typing import cast, List
 from jinja2 import Environment
 from ..models import ModelType, CodeModel, Property
-from ..models.imports import FileImport, TypingSection, MsrestImportType
+from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
 
 
@@ -43,12 +43,24 @@ class ModelSerializer:
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_msrest_import(
-            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
-        )
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import(
+                "azure.core",
+                "serialization",
+                ImportType.AZURECORE,
+                TypingSection.REGULAR,
+                "_serialization",
+            )
+            file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+        else:
+            file_import.add_msrest_import(
+                self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+            )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            init_line_parameters = [
+            init_line_parameters = model.properties if self.code_model.options["models_mode"] == "dpg" else [
                 p for p in model.properties if not p.readonly and not p.is_discriminator
             ]
             for param in init_line_parameters:

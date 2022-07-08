@@ -43,9 +43,9 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "or 'embedded'"
         )
 
-    if options["models_mode"] not in ["msrest", "none"]:
+    if options["models_mode"] not in ["msrest", "dpg", "none"]:
         raise ValueError(
-            "--models-mode can only be 'msrest' or 'none'. "
+            "--models-mode can only be 'msrest', 'dpg' or 'none'. "
             "Pass in 'msrest' if you want msrest models, or "
             "'none' if you don't want any."
         )
@@ -338,7 +338,8 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
 
         if self._autorestapi.get_value("input-yaml"):
             input_yaml = self._autorestapi.get_value("input-yaml")
-            file_content = self._autorestapi.read_file(input_yaml)
+            # file_content = self._autorestapi.read_file(input_yaml)
+            file_content = open(input_yaml, "r").read()
         else:
             inputs = self._autorestapi.list_inputs()
             _LOGGER.debug("Possible Inputs: %s", inputs)

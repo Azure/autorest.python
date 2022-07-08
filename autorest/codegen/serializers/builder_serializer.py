@@ -656,7 +656,7 @@ class _OperationSerializer(
         ser_ctxt_name = "serialization_ctxt"
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             is_xml_cmd = ", is_xml=True" if send_xml else ""
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
@@ -929,7 +929,11 @@ class _OperationSerializer(
                 )
             )
         elif response.type:
-            if self.code_model.options["models_mode"]:
+            if self.code_model.options["models_mode"] == "msrest":
+                retval.append(
+                    f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
+                )
+            elif self.code_model.options["models_mode"] == "dpg":
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
