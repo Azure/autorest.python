@@ -18,6 +18,7 @@
 **Other Changes**
 
 - Order json input and response template entries by whether they are required or not #1335
+- Reduce extreme amount of `black` logs when running in `--debug` mode to just log errors
 
 ### 2022-06-29 - 6.0.1
 
