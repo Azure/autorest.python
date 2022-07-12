@@ -11,7 +11,7 @@ import black
 
 from .. import Plugin, PluginAutorest
 
-_LOGGER = logging.getLogger(__name__)
+logging.getLogger("blib2to3").setLevel(logging.ERROR)
 
 _BLACK_MODE = black.Mode()
 _BLACK_MODE.line_length = 120
