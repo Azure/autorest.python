@@ -24,6 +24,7 @@ class ReaderAndWriter:
 
     def read_file(self, path: Union[str, Path]) -> str:
         """How does one read a file in cadl?"""
+        # make path relative to output folder
         raise NotImplementedError("Haven't plugged in Cadl yet")
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
