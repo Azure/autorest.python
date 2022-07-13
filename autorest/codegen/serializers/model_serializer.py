@@ -94,6 +94,10 @@ class ModelSerializer:
             basename = ", ".join([cast(ModelType, m).name for m in model.parents])
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
+    def declare_property(self, property: Property) -> str:
+        attribute_key = property.rest_api_name.replace(".", "\\\\.")
+        return f'{property.client_name}: {property.type_annotation()} = rest_field(name="{attribute_key}") # {" ".join(property.description(is_operation_file=False).splitlines())}'
+
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:
         # building the param line of the property doc

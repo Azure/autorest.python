@@ -46,9 +46,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def description(self, *, is_operation_file: bool) -> str:
         from .model_type import ModelType
 
-        description = (
-            self.yaml_data["description"] if "description" in self.yaml_data else ""
-        )
+        description = self.yaml_data.get("description", "")
         if not (self.optional or self.client_default_value):
             description = add_to_description(description, "Required.")
         # don't want model type documentation as part of property doc
@@ -133,23 +131,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             retval["constant"] = True
         retval.update(self.type.validation or {})
         return retval or None
-
-    @property
-    def attribute_declaration(self) -> str:
-        attribute_key = self.rest_api_name.replace(".", "\\\\.")
-        if self.flattened_names:
-            pass
-            # todo: does flatten supported in DPG?
-            # attribute_key = ".".join(
-            #     n.replace(".", "\\\\.") for n in self.flattened_names
-            # )
-
-        # todo: shall we do something special for xml?
-        # if self.type.xml_serialization_ctxt:
-        #     xml_metadata = f", 'xml': {{{self.type.xml_serialization_ctxt}}}"
-        # else:
-        #     xml_metadata = ""
-        return f'{self.client_name}: {self.type_annotation()} = rest_field(name="{attribute_key}") # {" ".join(self.description(is_operation_file=False).splitlines())}'
 
     @property
     def attribute_map(self) -> str:

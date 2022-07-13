@@ -29,11 +29,9 @@
 
     {% if model.properties %}
         {% for p in model.properties %}
-    {{ p.attribute_declaration }}
+    {{ serializer.declare_property(p) }}
         {% endfor %}
     {% endif %}
-
-    # todo: handle discriminator, xml, constant
 
     @overload
     def __init__(

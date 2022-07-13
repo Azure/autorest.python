@@ -192,4 +192,6 @@ class EnumType(BaseType):
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         return file_import
