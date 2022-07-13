@@ -17,6 +17,7 @@
 
 **Other Changes**
 
+- Generated code no longer supports Python 3.6  #1353
 - Order json input and response template entries by whether they are required or not #1335
 
 ### 2022-06-29 - 6.0.1
