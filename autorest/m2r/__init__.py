@@ -8,7 +8,7 @@
 import logging
 from typing import Any, Dict, Set
 
-import m2r
+import m2r2
 
 from .. import YamlUpdatePluginAutorest, YamlUpdatePlugin
 
@@ -16,12 +16,12 @@ from .. import YamlUpdatePluginAutorest, YamlUpdatePlugin
 _LOGGER = logging.getLogger(__name__)
 
 
-class AutorestRender(m2r.RestRenderer):
+class AutorestRender(m2r2.RestRenderer):
     """Redefine the concept of inline HTML in the renderer, we don't want to define a new format
     in the description/summary.
     """
 
-    def inline_html(self, html: str) -> str:
+    def inline_html(self, html: str) -> str:  # pylint: disable=no-self-use
         """Do not render inline HTML with a role definition."""
         return f":code:`{html}`"
 
@@ -55,7 +55,7 @@ class M2R(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def convert_to_rst(string_to_convert: str) -> str:
         """Convert that string from MD to RST."""
         try:
-            return m2r.convert(string_to_convert, renderer=AutorestRender()).strip()
+            return m2r2.convert(string_to_convert, renderer=AutorestRender()).strip()
         except Exception:  # pylint: disable=broad-except
             return string_to_convert
 
