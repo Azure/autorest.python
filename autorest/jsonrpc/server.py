@@ -63,7 +63,10 @@ def Process(plugin_name: str, session_id: str) -> bool:
             _LOGGER.fatal("Unknown plugin name %s", plugin_name)
             raise RuntimeError(f"Unknown plugin name {plugin_name}")
 
-        plugin = PluginToLoad(autorestapi=stdstream_connection)
+        plugin = PluginToLoad(
+            autorestapi=stdstream_connection,
+            output_folder=stdstream_connection.get_value("output-folder"),
+        )
 
         try:
             _LOGGER.debug("Starting plugin %s", PluginToLoad.__name__)

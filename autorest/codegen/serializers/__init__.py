@@ -40,8 +40,10 @@ _REGENERATE_FILES = {"setup.py", "MANIFEST.in"}
 
 
 class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
-    def __init__(self, code_model: CodeModel, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(
+        self, code_model: CodeModel, *, output_folder: Union[str, Path], **kwargs: Any
+    ) -> None:
+        super().__init__(output_folder=output_folder, **kwargs)
         self.code_model = code_model
 
     @property
@@ -479,5 +481,13 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
-    def __init__(self, autorestapi: AutorestAPI, code_model: CodeModel) -> None:
-        super().__init__(autorestapi=autorestapi, code_model=code_model)
+    def __init__(
+        self,
+        autorestapi: AutorestAPI,
+        code_model: CodeModel,
+        *,
+        output_folder: Union[str, Path],
+    ) -> None:
+        super().__init__(
+            autorestapi=autorestapi, code_model=code_model, output_folder=output_folder
+        )

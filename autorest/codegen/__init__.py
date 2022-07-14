@@ -239,9 +239,8 @@ class CodeGenerator(Plugin):
         # cadl should call this one
         raise NotImplementedError()
 
-    @staticmethod
-    def get_serializer(code_model: CodeModel):
-        return JinjaSerializer(code_model)
+    def get_serializer(self, code_model: CodeModel):
+        return JinjaSerializer(code_model, output_folder=self.output_folder)
 
     def process(self) -> bool:
         # List the input file, should be only one
@@ -351,7 +350,9 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
         return yaml.safe_load(file_content)
 
     def get_serializer(self, code_model: CodeModel):  # type: ignore
-        return JinjaSerializerAutorest(self._autorestapi, code_model)
+        return JinjaSerializerAutorest(
+            self._autorestapi, code_model, output_folder=self.output_folder
+        )
 
 
 def main(yaml_model_file: str) -> None:
@@ -359,8 +360,10 @@ def main(yaml_model_file: str) -> None:
         LocalAutorestAPI,
     )
 
+    autorestapi = LocalAutorestAPI(reachable_files=[yaml_model_file])
     code_generator = CodeGeneratorAutorest(
-        autorestapi=LocalAutorestAPI(reachable_files=[yaml_model_file])
+        autorestapi=autorestapi,
+        output_folder=cast(str, autorestapi.get_value("output-folder")),
     )
     if not code_generator.process():
         raise SystemExit("Process didn't finish gracefully")

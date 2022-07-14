@@ -41,7 +41,7 @@ class MultiApiScriptPluginAutorest(MultiApiScriptPlugin, PluginAutorest):
         return MultiAPIAutorest(
             autorestapi=self._autorestapi,
             input_package_name=self.options.get("package-name"),
-            output_folder=self.options["output-folder"],
+            output_folder=self.output_folder,
             user_specified_default_api=self.options.get("default-api"),
             no_async=self.options.get("no-async", False),
         )
@@ -49,7 +49,6 @@ class MultiApiScriptPluginAutorest(MultiApiScriptPlugin, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
         options = {
             "package-name": self._autorestapi.get_value("package-name"),
-            "output-folder": self._autorestapi.get_value("output-folder"),
             "default-api": self._autorestapi.get_value("default-api"),
             "no-async": self._autorestapi.get_value("no-async"),
         }
@@ -66,15 +65,13 @@ class MultiAPI(ReaderAndWriter):  # pylint: disable=abstract-method
         user_specified_default_api: Optional[str] = None,
         **kwargs: Any,
     ) -> None:
-        super().__init__(**kwargs)
+        super().__init__(output_folder=Path(output_folder).resolve(), **kwargs)
         if input_package_name is None:
             raise ValueError(
                 "package-name is required, either provide it as args or check your readme configuration"
             )
         self.input_package_name = input_package_name
         _LOGGER.debug("Received package name %s", input_package_name)
-
-        self.output_folder = Path(output_folder).resolve()
         _LOGGER.debug("Received output-folder %s", output_folder)
         self.output_package_name: str = ""
         self.no_async = no_async
@@ -194,4 +191,6 @@ class MultiAPIAutorest(MultiAPI, ReaderAndWriterAutorest):
 
     @property
     def serializer(self) -> MultiAPISerializer:
-        return MultiAPISerializerAutorest(self._autorestapi)
+        return MultiAPISerializerAutorest(
+            self._autorestapi, output_folder=self.output_folder
+        )

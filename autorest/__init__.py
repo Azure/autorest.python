@@ -19,22 +19,31 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ReaderAndWriter:
-    def __init__(self, **kwargs: Any) -> None:
-        pass
+    def __init__(
+        self,
+        *,
+        output_folder: Union[str, Path],
+        **kwargs: Any  # pylint: disable=unused-argument
+    ) -> None:
+        self.output_folder = Path(output_folder)
 
     def read_file(self, path: Union[str, Path]) -> str:
         """How does one read a file in cadl?"""
         # make path relative to output folder
-        raise NotImplementedError("Haven't plugged in Cadl yet")
+        with open(self.output_folder / Path(path), "r") as fd:
+            return fd.read()
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """How does writing work in cadl?"""
-        raise NotImplementedError("Haven't plugged in Cadl yet")
+        with open(self.output_folder / Path(filename), "w") as fd:
+            fd.write(file_content)
 
 
 class ReaderAndWriterAutorest(ReaderAndWriter):
-    def __init__(self, *, autorestapi: AutorestAPI) -> None:
-        super().__init__()
+    def __init__(
+        self, *, output_folder: Union[str, Path], autorestapi: AutorestAPI
+    ) -> None:
+        super().__init__(output_folder=output_folder)
         self._autorestapi = autorestapi
 
     def read_file(self, path: Union[str, Path]) -> str:
@@ -50,9 +59,9 @@ class Plugin(ReaderAndWriter, ABC):
     :param autorestapi: An autorest API instance
     """
 
-    def __init__(self, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
-        self.options: Dict[str, Any] = {}
+    def __init__(self, *, output_folder: Union[str, Path], **kwargs: Any) -> None:
+        super().__init__(output_folder=output_folder, **kwargs)
+        self.options: Dict[str, Any] = kwargs.pop("options", {})
 
     @abstractmethod
     def process(self) -> bool:
@@ -68,8 +77,10 @@ class Plugin(ReaderAndWriter, ABC):
 class PluginAutorest(Plugin, ReaderAndWriterAutorest):
     """For our Autorest plugins, we want to take autorest api as input as options, then pass it to the Plugin"""
 
-    def __init__(self, autorestapi: AutorestAPI) -> None:
-        super().__init__(autorestapi=autorestapi)
+    def __init__(
+        self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]
+    ) -> None:
+        super().__init__(autorestapi=autorestapi, output_folder=output_folder)
         self.options = self.get_options()
 
     @abstractmethod
