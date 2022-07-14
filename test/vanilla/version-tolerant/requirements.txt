@@ -36,6 +36,7 @@ azure-core==1.24.0
 -e ./Expected/AcceptanceTests/MergePatchJsonVersionTolerant
 -e ./Expected/AcceptanceTests/ModelFlatteningVersionTolerant
 -e ./Expected/AcceptanceTests/MultipleInheritanceVersionTolerant
+-e ./Expected/AcceptanceTests/NoNamespaceFlagVersionTolerant
 -e ./Expected/AcceptanceTests/NoOperationsVersionTolerant
 -e ./Expected/AcceptanceTests/NonStringEnumsVersionTolerant
 -e ./Expected/AcceptanceTests/ObjectTypeVersionTolerant
