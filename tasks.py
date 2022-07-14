@@ -103,11 +103,14 @@ _GENERATOR_SPECIFIC_TESTS = {
     _Generator.VERSION_TOLERANT: {
         _SwaggerGroup.DPG: {
             'DPGTestModels': 'dpg-customization.json',
+        },
+        _SwaggerGroup.VANILLA: {
+            'NoNamespaceFlag': "any-type.json",
         }
     },
 }
 
-_PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
+_PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
     'DPGTestModels': {
         "models-mode": "msrest",
     },
@@ -130,7 +133,11 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
     "SecurityKeySwaggerCredentialFlag": {
         "add-credential": True,
         "title": "SecurityKeySwaggerCredentialFlag",
-    }
+    },
+    "NoNamespaceFlag": {
+        "namespace": None,  # clear our namespace flag
+        "package-name": "nonamespaceflag"
+     }
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -249,6 +256,7 @@ def _build_flags(
     }
     if override_flags:
         flags.update(override_flags)
+        flags = {k: v for k, v in flags.items() if v is not None}
     return flags
 
 def _build_command_line(
