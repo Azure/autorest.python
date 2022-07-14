@@ -37,10 +37,6 @@ jobs:
 
     strategy:
       matrix:
-        Windows_Python36:
-          OSName: "Windows"
-          OSVmImage: "MMS2019"
-          PythonVersion: "3.6"
         Linux_Python37:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
