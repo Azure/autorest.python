@@ -6,8 +6,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
-if not sys.version_info >= (3, 6, 0):
-    raise Exception("Autorest for Python extension requires Python 3.6 at least")
+if not sys.version_info >= (3, 7, 0):
+    raise Exception("Autorest for Python extension requires Python 3.7 at least")
 
 try:
     import pip
@@ -20,7 +20,7 @@ except ImportError:
     raise Exception("Your Python installation doesn't have venv available")
 
 
-# Now we have pip and Py >= 3.6, go to work
+# Now we have pip and Py >= 3.7, go to work
 
 import subprocess
 from pathlib import Path

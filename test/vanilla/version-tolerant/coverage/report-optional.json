@@ -2,6 +2,7 @@
   "StreamUploadFile": 42,
   "UpdatePetWithForm": 1,
   "UrlEncodedDataWithPartialConstantBody": 1,
+  "PagingDontSendMaxPageSize": 0,
   "getDecimalInvalid": 2,
   "getDecimalBig": 2,
   "getDecimalSmall": 2,

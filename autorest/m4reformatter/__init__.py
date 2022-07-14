@@ -11,6 +11,7 @@ import copy
 import logging
 from typing import Callable, Dict, Any, Iterable, List, Optional, Set
 
+from .._utils import to_snake_case
 from .. import YamlUpdatePluginAutorest
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
@@ -1100,7 +1101,7 @@ class M4Reformatter(
             if yaml_data.get("globalParameters")
             else "",
             "namespace": self._autorestapi.get_value("namespace")
-            or yaml_data["language"]["default"]["name"],
+            or to_snake_case(yaml_data["info"]["title"].replace(" ", "")),
         }
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:

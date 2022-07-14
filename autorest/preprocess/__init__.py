@@ -6,7 +6,8 @@
 """The preprocessing autorest plugin.
 """
 from typing import Callable, Dict, Any, List, Optional
-from .helpers import to_snake_case, pad_reserved_words, add_redefined_builtin_info
+from .._utils import to_snake_case
+from .helpers import pad_reserved_words, add_redefined_builtin_info
 from .python_mappings import PadType
 
 from .. import YamlUpdatePlugin, PluginAutorest
