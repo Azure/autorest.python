@@ -17,6 +17,7 @@
 
 **Bug Fixes**
 
+- Fallback unrecognized type as string to avoid a fatal error. #1341
 - Fix regression in default namespace for SDKs generated without `--namespace` flag  #1354
 
 **Other Changes**
