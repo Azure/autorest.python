@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-xx-xx - 6.1.0
+### 2022-07-14 - 6.1.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -24,6 +24,7 @@
 
 - Generated code no longer supports Python 3.6  #1353
 - Order json input and response template entries by whether they are required or not #1335
+- Reduce extreme amount of `black` logs when running in `--debug` mode to just log errors
 
 ### 2022-06-29 - 6.0.1
 
