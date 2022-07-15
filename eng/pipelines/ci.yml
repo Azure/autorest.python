@@ -22,7 +22,7 @@ variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
 parameters:
-  - TestProxy: true
+  - TestProxy@Azure/azure-sdk-tools: true
   - name: VerificationPackages
     type: object
     default:
