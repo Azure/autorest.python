@@ -11,8 +11,8 @@ pr:
 resources:
   repositories:
     - repository: azure-sdk-tools
-      type: git
-      name: internal/azure-sdk-tools
+      type: github
+      name: Azure/azure-sdk-tools
       ref: refs/heads/main
 
 variables:
