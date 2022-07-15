@@ -81,6 +81,7 @@ jobs:
           - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
             parameters:
               TestProxy: true
+              templateRoot: $(Build.SourcesDirectory)
           - script: |
               git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
             displayName: "Clone python repo"
