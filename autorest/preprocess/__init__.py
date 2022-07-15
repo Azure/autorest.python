@@ -5,12 +5,14 @@
 # --------------------------------------------------------------------------
 """The preprocessing autorest plugin.
 """
+import sys
 from typing import Callable, Dict, Any, List, Optional
 from .._utils import to_snake_case
 from .helpers import pad_reserved_words, add_redefined_builtin_info
 from .python_mappings import PadType
 
-from .. import YamlUpdatePlugin, PluginAutorest
+from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
+from .._utils import parse_args
 
 
 def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
@@ -231,10 +233,15 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         self.update_operation_groups(yaml_data)
 
 
-class PreProcessPluginAutorest(PluginAutorest, PreProcessPlugin):
+class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
     def get_options(self) -> Dict[str, Any]:
         options = {
             "version-tolerant": self._autorestapi.get_boolean_value("version-tolerant"),
             "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
         }
         return {k: v for k, v in options.items() if v is not None}
+
+if __name__ == "__main__":
+    # CADL pipeline will call this
+    args = parse_args()
+    PreProcessPlugin(output_folder=args.output_folder, cadl_file=args.cadl_file).process()

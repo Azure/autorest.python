@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-
+import argparse
 
 def to_snake_case(name: str) -> str:
     def replace_upper_characters(m) -> str:
@@ -33,3 +33,22 @@ def to_snake_case(name: str) -> str:
         return prefix + match_str
 
     return re.sub("[A-Z]+", replace_upper_characters, name)
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Run mypy against target folder. Add a local custom plugin to the path prior to execution. "
+    )
+    parser.add_argument(
+        "--output-folder",
+        dest="output_folder",
+        help="Output folder for generated SDK",
+        required=True,
+    )
+    parser.add_argument(
+        "--cadl-file",
+        dest="cadl_file",
+        help="Serialized cadl file",
+        required=True
+    )
+
+    return parser.parse_args()

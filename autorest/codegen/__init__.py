@@ -236,8 +236,9 @@ class CodeGenerator(Plugin):
         return options
 
     def get_yaml(self) -> Dict[str, Any]:
-        # cadl should call this one
-        raise NotImplementedError()
+        # cadl file doesn't have to be relative to output folder
+        with open(self.options["cadl_file"], "r") as fd:
+            return yaml.safe_load(fd.read())
 
     def get_serializer(self, code_model: CodeModel):
         return JinjaSerializer(code_model, output_folder=self.output_folder)

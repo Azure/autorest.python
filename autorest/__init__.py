@@ -23,9 +23,10 @@ class ReaderAndWriter:
         self,
         *,
         output_folder: Union[str, Path],
-        **kwargs: Any  # pylint: disable=unused-argument
+        **kwargs: Any
     ) -> None:
         self.output_folder = Path(output_folder)
+        self.options = kwargs
 
     def read_file(self, path: Union[str, Path]) -> str:
         """How does one read a file in cadl?"""
@@ -59,10 +60,6 @@ class Plugin(ReaderAndWriter, ABC):
     :param autorestapi: An autorest API instance
     """
 
-    def __init__(self, *, output_folder: Union[str, Path], **kwargs: Any) -> None:
-        super().__init__(output_folder=output_folder, **kwargs)
-        self.options: Dict[str, Any] = kwargs.pop("options", {})
-
     @abstractmethod
     def process(self) -> bool:
         """The plugin process.
@@ -91,15 +88,24 @@ class PluginAutorest(Plugin, ReaderAndWriterAutorest):
 class YamlUpdatePlugin(Plugin):
     """A plugin that update the YAML as input."""
 
+    def get_yaml(self) -> Dict[str, Any]:
+        # cadl file doesn't have to be relative to output folder
+        with open(self.options["cadl_file"], "r") as fd:
+            return yaml.safe_load(fd.read())
+
+    def write_yaml(self, yaml_string: str) -> None:
+        with open(self.options["cadl_file"], "w") as fd:
+            fd.write(yaml_string)
+
     def process(self) -> bool:
         # List the input file, should be only one
-        yaml_data = yaml.safe_load(self.read_file("code-model-v4-no-tags.yaml"))
+        yaml_data = self.get_yaml()
 
         self.update_yaml(yaml_data)
 
         yaml_string = yaml.safe_dump(yaml_data)
 
-        self.write_file("code-model-v4-no-tags.yaml", yaml_string)
+        self.write_yaml(yaml_string)
         return True
 
     @abstractmethod
@@ -115,6 +121,13 @@ class YamlUpdatePlugin(Plugin):
 class YamlUpdatePluginAutorest(  # pylint: disable=abstract-method
     YamlUpdatePlugin, PluginAutorest
 ):
+
+    def get_yaml(self) -> Dict[str, Any]:
+        return yaml.safe_load(self.read_file("code-model-v4-no-tags.yaml"))
+
+    def write_yaml(self, yaml_string: str) -> None:
+        self.write_file("code-model-v4-no-tags.yaml", yaml_string)
+
     def get_options(self) -> Dict[str, Any]:
         inputs = self._autorestapi.list_inputs()
         _LOGGER.debug("Possible Inputs: %s", inputs)
