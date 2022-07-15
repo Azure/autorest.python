@@ -80,7 +80,7 @@ jobs:
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
           - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
             parameters:
-              - TestProxy: true
+              TestProxy: true
           - script: |
               git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
             displayName: "Clone python repo"
