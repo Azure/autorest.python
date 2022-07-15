@@ -6,7 +6,7 @@
 import logging
 from pathlib import Path
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Union
+from typing import Any, Dict, Union, Optional
 
 import yaml
 
@@ -28,14 +28,20 @@ class ReaderAndWriter:
         self.output_folder = Path(output_folder)
         self.options = kwargs
 
-    def read_file(self, path: Union[str, Path]) -> str:
+    def read_file(self, path: Union[str, Path]) -> Optional[str]:
         """How does one read a file in cadl?"""
         # make path relative to output folder
-        with open(self.output_folder / Path(path), "r") as fd:
-            return fd.read()
+        try:
+            with open(self.output_folder / Path(path), "r") as fd:
+                return fd.read()
+        except FileNotFoundError:
+            return None
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """How does writing work in cadl?"""
+        file_folder = Path(filename).parent
+        if not Path.is_dir(self.output_folder / file_folder):
+            Path.mkdir(self.output_folder / file_folder, parents=True)
         with open(self.output_folder / Path(filename), "w") as fd:
             fd.write(file_content)
 

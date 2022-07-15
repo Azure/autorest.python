@@ -34,7 +34,7 @@ def to_snake_case(name: str) -> str:
 
     return re.sub("[A-Z]+", replace_upper_characters, name)
 
-def parse_args():
+def parse_args(need_cadl_file: bool = True):
     parser = argparse.ArgumentParser(
         description="Run mypy against target folder. Add a local custom plugin to the path prior to execution. "
     )
@@ -48,7 +48,7 @@ def parse_args():
         "--cadl-file",
         dest="cadl_file",
         help="Serialized cadl file",
-        required=True
+        required=need_cadl_file
     )
 
     return parser.parse_args()

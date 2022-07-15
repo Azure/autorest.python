@@ -4,20 +4,20 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-import sys
 from typing import Dict, Any, Union, cast
 from pathlib import Path
 import yaml
 
 
 from .. import Plugin, PluginAutorest
+from .._utils import parse_args
 from .models.client import Client, Config
 from .models.code_model import CodeModel
 from .models import build_type
 from .models.request_builder import get_request_builder
 from .models.operation_group import OperationGroup
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
-
+from ._utils import DEFAULT_HEADER_TEXT
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
@@ -163,7 +163,7 @@ class CodeGenerator(Plugin):
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
         azure_arm = self.options.get("azure-arm", False)
-        license_header = self.options["header-text"]
+        license_header = self.options.get("header-text", DEFAULT_HEADER_TEXT)
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
             license_header = (
@@ -355,20 +355,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             self._autorestapi, code_model, output_folder=self.output_folder
         )
 
-
-def main(yaml_model_file: str) -> None:
-    from ..jsonrpc.localapi import (  # pylint: disable=import-outside-toplevel
-        LocalAutorestAPI,
-    )
-
-    autorestapi = LocalAutorestAPI(reachable_files=[yaml_model_file])
-    code_generator = CodeGeneratorAutorest(
-        autorestapi=autorestapi,
-        output_folder=cast(str, autorestapi.get_value("output-folder")),
-    )
-    if not code_generator.process():
-        raise SystemExit("Process didn't finish gracefully")
-
-
 if __name__ == "__main__":
-    main(sys.argv[1])
+    # CADL pipeline will call this
+    args = parse_args()
+    CodeGenerator(output_folder=args.output_folder, cadl_file=args.cadl_file).process()
