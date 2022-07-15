@@ -8,6 +8,13 @@ pr:
     include:
       - autorestv3
 
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: git
+      name: Azure/azure-sdk-tools
+      ref: refs/heads/main
+
 variables:
   NodeVersion: "14.x"
   PythonVersion: "3.7"
@@ -52,6 +59,8 @@ jobs:
       vmImage: $(OSVmImage)
 
     steps:
+      - checkout: self
+      - checkout: azure-sdk-build-tools
       - task: NodeTool@0
         displayName: "Install Node.js $(NodeVersion)"
         inputs:
