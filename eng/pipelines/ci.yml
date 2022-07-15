@@ -22,7 +22,7 @@ variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
 parameters:
-  - TestProxy@Azure/azure-sdk-tools: true
+  - TestProxy: true
   - name: VerificationPackages
     type: object
     default:
@@ -60,7 +60,7 @@ jobs:
 
     steps:
       - checkout: self
-      - checkout: azure-sdk-build-tools
+      - checkout: azure-sdk-tools
       - task: NodeTool@0
         displayName: "Install Node.js $(NodeVersion)"
         inputs:
