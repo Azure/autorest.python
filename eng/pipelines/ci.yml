@@ -58,8 +58,6 @@ jobs:
       vmImage: $(OSVmImage)
 
     steps:
-      - checkout: self
-      - checkout: azure-sdk-tools
       - task: NodeTool@0
         displayName: "Install Node.js $(NodeVersion)"
         inputs:
@@ -88,6 +86,7 @@ jobs:
             workingDirectory: "$(Build.SourcesDirectory)/regenerated/"
 
           - ${{ each package in parameters.VerificationPackages }}:
+              - checkout: self
               - script: |
                   autorest ./swagger/README.md --use=$(Build.SourcesDirectory) --modelerfour.seal-single-value-enum-by-default
                 displayName: "Regenerate target package ${{ package.name }}"
@@ -96,6 +95,7 @@ jobs:
                 parameters:
                   TestProxy: true
                   templateRoot: azure-sdk-tools
+              - checkout: azure-sdk-tools
               - script: |
                   tox -e whl -c ../../../eng/tox/tox.ini
                 displayName: "Run tests for ${{ package.name }}"
