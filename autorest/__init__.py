@@ -23,14 +23,14 @@ class ReaderAndWriter:
         self.output_folder = Path(output_folder)
         self.options = kwargs
 
-    def read_file(self, path: Union[str, Path]) -> Optional[str]:
+    def read_file(self, path: Union[str, Path]) -> str:
         """How does one read a file in cadl?"""
         # make path relative to output folder
         try:
             with open(self.output_folder / Path(path), "r") as fd:
                 return fd.read()
         except FileNotFoundError:
-            return None
+            return ""
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """How does writing work in cadl?"""
