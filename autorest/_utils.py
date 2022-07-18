@@ -6,6 +6,7 @@
 import re
 import argparse
 
+
 def to_snake_case(name: str) -> str:
     def replace_upper_characters(m) -> str:
         match_str = m.group().lower()
@@ -34,6 +35,7 @@ def to_snake_case(name: str) -> str:
 
     return re.sub("[A-Z]+", replace_upper_characters, name)
 
+
 def parse_args(need_cadl_file: bool = True):
     parser = argparse.ArgumentParser(
         description="Run mypy against target folder. Add a local custom plugin to the path prior to execution. "
@@ -48,7 +50,7 @@ def parse_args(need_cadl_file: bool = True):
         "--cadl-file",
         dest="cadl_file",
         help="Serialized cadl file",
-        required=need_cadl_file
+        required=need_cadl_file,
     )
 
     return parser.parse_args()

@@ -19,6 +19,7 @@ from .models.operation_group import OperationGroup
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
 from ._utils import DEFAULT_HEADER_TEXT
 
+
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
     if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
@@ -354,6 +355,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
         return JinjaSerializerAutorest(
             self._autorestapi, code_model, output_folder=self.output_folder
         )
+
 
 if __name__ == "__main__":
     # CADL pipeline will call this

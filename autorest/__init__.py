@@ -19,12 +19,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ReaderAndWriter:
-    def __init__(
-        self,
-        *,
-        output_folder: Union[str, Path],
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, output_folder: Union[str, Path], **kwargs: Any) -> None:
         self.output_folder = Path(output_folder)
         self.options = kwargs
 
@@ -127,7 +122,6 @@ class YamlUpdatePlugin(Plugin):
 class YamlUpdatePluginAutorest(  # pylint: disable=abstract-method
     YamlUpdatePlugin, PluginAutorest
 ):
-
     def get_yaml(self) -> Dict[str, Any]:
         return yaml.safe_load(self.read_file("code-model-v4-no-tags.yaml"))
 

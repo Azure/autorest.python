@@ -5,7 +5,6 @@
 # --------------------------------------------------------------------------
 """The preprocessing autorest plugin.
 """
-import sys
 from typing import Callable, Dict, Any, List, Optional
 from .._utils import to_snake_case
 from .helpers import pad_reserved_words, add_redefined_builtin_info
@@ -241,7 +240,10 @@ class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
         }
         return {k: v for k, v in options.items() if v is not None}
 
+
 if __name__ == "__main__":
     # CADL pipeline will call this
     args = parse_args()
-    PreProcessPlugin(output_folder=args.output_folder, cadl_file=args.cadl_file).process()
+    PreProcessPlugin(
+        output_folder=args.output_folder, cadl_file=args.cadl_file
+    ).process()

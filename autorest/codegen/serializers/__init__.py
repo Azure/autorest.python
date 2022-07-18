@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Optional, Any, Union
+from typing import Dict, List, Optional, Any, Union, cast
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
@@ -135,7 +135,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             if self.read_file(namespace_path / Path("models.py")):
                 self.write_file(
                     namespace_path / Path("models.py"),
-                    self.read_file(namespace_path / Path("models.py")),
+                    cast(str, self.read_file(namespace_path / Path("models.py"))),
                 )
 
         if self.code_model.options["package_mode"]:

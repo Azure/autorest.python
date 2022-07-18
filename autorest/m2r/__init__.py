@@ -66,6 +66,7 @@ class M2RAutorest(YamlUpdatePluginAutorest, M2R):
     def get_options(self) -> Dict[str, Any]:
         return {}
 
+
 if __name__ == "__main__":
     # CADL pipeline will call this
     args = parse_args()
