@@ -6,7 +6,6 @@
 """An autorest MD to RST plugin.
 """
 import logging
-import sys
 from typing import Any, Dict, Set
 
 import m2r2

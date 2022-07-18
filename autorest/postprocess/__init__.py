@@ -66,7 +66,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             init_file = next(d for d in dir.iterdir() if d.name == "__init__.py")
             # we don't care about pkgutil inits, we skip over them
             file_content = self.read_file(init_file.relative_to(self.output_folder))
-            if not "pkgutil" in file_content:
+            if "pkgutil" not in file_content:
                 return dir, namespace
         except StopIteration:
             pass
