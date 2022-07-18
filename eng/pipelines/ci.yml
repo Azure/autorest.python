@@ -90,7 +90,8 @@ jobs:
 
           - ${{ each package in parameters.VerificationPackages }}:
               - script: |
-                  autorest ./swagger/README.md --use=. --modelerfour.seal-single-value-enum-by-default
+                  ls $(SourcesDirectory)
+                  autorest ./swagger/README.md --use=$(SourcesDirectory) --modelerfour.seal-single-value-enum-by-default
                 displayName: "Regenerate target package ${{ package.name }}"
                 workingDirectory: "$(SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
               - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
