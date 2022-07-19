@@ -127,7 +127,6 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
           searchFolder: "$(TestFolder)/azure/legacy"
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python
 
       - script: |
           cd $(TestFolder)/azure/version-tolerant
@@ -141,7 +140,6 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant azure"
           searchFolder: "$(TestFolder)/azure/version-tolerant"
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python
 
       - script: |
           cd $(TestFolder)/azure/version-tolerant
@@ -166,7 +164,6 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - legacy vanilla"
           searchFolder: "$(TestFolder)/vanilla/legacy"
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python
 
       - script: |
           cd $(TestFolder)/vanilla/version-tolerant
@@ -222,7 +219,6 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
           searchFolder: "$(TestFolder)/multiapi"
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python
 
       - script: |
           npm pack
