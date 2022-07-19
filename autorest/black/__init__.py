@@ -61,5 +61,4 @@ class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):
 if __name__ == "__main__":
     # CADL pipeline will call this
     args = parse_args(need_cadl_file=False)
-    black_plugin = BlackScriptPlugin(output_folder=args.output_folder)
     BlackScriptPlugin(output_folder=args.output_folder).process()
