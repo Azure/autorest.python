@@ -13,7 +13,7 @@ resources:
     - repository: azure-sdk-tools
       type: github
       endpoint: Azure
-      name: Azure/azure-sdk-tools
+      name: iscai-msft/azure-sdk-tools@get_test_proxy_autorest
 
 variables:
   NodeVersion: "14.x"
