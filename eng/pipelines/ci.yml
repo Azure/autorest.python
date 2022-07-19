@@ -97,6 +97,6 @@ jobs:
                 displayName: "Regenerate target package ${{ package.name }}"
                 workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
               - script: |
-                  curl http://localhost:5000/Info/Available
+                  tox -e whl -c ../../../eng/tox/tox.ini
                 displayName: "Run tests for ${{ package.name }}"
                 workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
