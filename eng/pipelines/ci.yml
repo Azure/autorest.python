@@ -75,16 +75,13 @@ jobs:
         displayName: "Use Python 3.7"
         inputs:
           versionSpec: 3.7
-
+      - workingDirectory: $(Build.SourcesDirectory)/autorest.python
       - script: |
-          cd $(Build.SourcesDirectory)/autorest.python
           pip install -r dev_requirements.txt
           npm install -g autorest
           npm install
         displayName: "Prepare Environment for Generation"
-
       - script: |
-          ls .
           pylint autorest
         displayName: 'Pylint'
       - script: |
