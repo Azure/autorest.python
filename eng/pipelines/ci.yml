@@ -14,13 +14,12 @@ resources:
       type: github
       endpoint: Azure
       name: Azure/azure-sdk-tools
-      branch: get_test_proxy_autorest
 
 variables:
   NodeVersion: "14.x"
   PythonVersion: "3.7"
-  TestFolder: "$(Build.SourcesDirectory)/test/"
-  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
+  TestFolder: "$(Build.SourcesDirectory)/autorest.python/test/"
+  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/autorest.python/coverage/"
   PROXY_URL: http://localhost:5000
   PROXY_MANUAL_START: true
 
@@ -28,6 +27,10 @@ parameters:
   - name: VerificationPackages
     type: object
     default:
+    - name: azure-messaging-webpubsubservice
+      service: webpubsub
+    - name: azure-storage-blob
+      service: storage
     - name: azure-storage-queue
       service: storage
     - name: azure-storage-file-datalake
@@ -79,6 +82,138 @@ jobs:
           npm install -g autorest
           npm install
         displayName: "Prepare Environment for Generation"
+
+      - script: |
+          pylint autorest
+        displayName: 'Pylint'
+      - script: |
+          mypy autorest
+        displayName: 'Mypy'
+      - script: |
+          black autorest
+        displayName: 'Black autorest repo'
+      - script: node ./eng/scripts/check-for-changed-files.js
+        displayName: Fail on black autorest diff
+      - script: |
+          pytest test/unittests
+        displayName: 'Unit tests'
+      - script: |
+          inv regenerate
+        displayName: 'Regenerate Code'
+      - script: node ./eng/scripts/check-for-changed-files.js
+        displayName: Fail on regeneration diff
+      - task: UsePythonVersion@0
+        displayName: 'Use Python $(PythonVersion)'
+        inputs:
+          versionSpec: $(PythonVersion)
+
+      - script: |
+          pip install pip==20.2
+          pip install tox coverage
+        displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
+      - script: |
+          cd $(TestFolder)/azure/legacy
+          tox -e ci
+        displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish legacy "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
+          searchFolder: "$(TestFolder)/azure/legacy"
+
+      - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: succeededOrFailed()
+      - task: PublishTestResults@2
+        condition: succeededOrFailed()
+        displayName: 'Publish version-tolerant "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant azure"
+          searchFolder: "$(TestFolder)/azure/version-tolerant"
+
+      - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
+      - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e mypy
+        displayName: 'Mypy version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+      - script: |
+          cd $(TestFolder)/vanilla/legacy
+          tox -e ci
+        displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish legacy "vanilla" Test Results'
+        condition: always()
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy vanilla"
+          searchFolder: "$(TestFolder)/vanilla/legacy"
+
+      - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: succeededOrFailed()
+      - task: PublishTestResults@2
+        displayName: 'Publish version-tolerant "vanilla" Test Results'
+        condition: succeededOrFailed()
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant vanilla"
+          searchFolder: "$(TestFolder)/vanilla/version-tolerant"
+
+      - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
+      - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e mypy
+        displayName: 'Mypy version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+      - script: |
+          cd $(TestFolder)/dpg/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant update "dpg" Tests - Python $(PythonVersion)'
+        condition: succeededOrFailed()
+      - script: |
+          cd $(TestFolder)/dpg/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "dpg" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
+      - script: |
+          cd $(TestFolder)/dpg/version-tolerant
+          tox -e mypy
+        displayName: 'Mypy version-tolerant "dpg" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+      - script: |
+          cd $(TestFolder)/multiapi
+          tox -e ci
+        displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish "multiapi" Test Results'
+        condition: always()
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
+          searchFolder: "$(TestFolder)/multiapi"
+
+      - script: |
+          npm pack
+          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+          cd ..
+          npm install $AbsolutePkgPath
+        displayName: "Test tarball"
+      - script: |
+          npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
+        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        displayName: "Publish coverage report to storage account"
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
           - script: |
