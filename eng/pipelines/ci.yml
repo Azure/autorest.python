@@ -84,6 +84,7 @@ jobs:
         displayName: "Prepare Environment for Generation"
 
       - script: |
+          ls .
           pylint autorest
         displayName: 'Pylint'
       - script: |
