@@ -22,14 +22,14 @@ variables:
   TestFolder: "$(Build.SourcesDirectory)/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
+env:
+  PROXY_URL: http://localhost:5000
+  PROXY_MANUAL_START: true
+
 parameters:
   - name: VerificationPackages
     type: object
     default:
-    - name: azure-messaging-webpubsubservice
-      service: webpubsub
-    - name: azure-storage-blob
-      service: storage
     - name: azure-storage-queue
       service: storage
     - name: azure-storage-file-datalake
