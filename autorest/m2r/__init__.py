@@ -11,6 +11,7 @@ from typing import Any, Dict, Set
 import m2r2
 
 from .. import YamlUpdatePluginAutorest, YamlUpdatePlugin
+from .._utils import parse_args
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -63,3 +64,9 @@ class M2R(YamlUpdatePlugin):  # pylint: disable=abstract-method
 class M2RAutorest(YamlUpdatePluginAutorest, M2R):
     def get_options(self) -> Dict[str, Any]:
         return {}
+
+
+if __name__ == "__main__":
+    # CADL pipeline will call this
+    args = parse_args()
+    M2R(output_folder=args.output_folder, cadl_file=args.cadl_file).process()

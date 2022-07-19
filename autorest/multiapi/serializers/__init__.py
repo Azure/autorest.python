@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, Union
 from jinja2 import PackageLoader, Environment
 
 from .import_serializer import FileImportSerializer
@@ -122,5 +122,7 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
 
 class MultiAPISerializerAutorest(MultiAPISerializer, ReaderAndWriterAutorest):
-    def __init__(self, autorestapi: AutorestAPI) -> None:
-        super().__init__(autorestapi=autorestapi)
+    def __init__(
+        self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]
+    ) -> None:
+        super().__init__(autorestapi=autorestapi, output_folder=output_folder)

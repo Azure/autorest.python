@@ -10,6 +10,7 @@ from typing import Any, Dict
 import black
 
 from .. import Plugin, PluginAutorest
+from .._utils import parse_args
 
 logging.getLogger("blib2to3").setLevel(logging.ERROR)
 
@@ -20,12 +21,12 @@ _BLACK_MODE.line_length = 120
 class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        output_folder_uri = self.options["outputFolderUri"]
-        if output_folder_uri.startswith("file:"):
-            output_folder_uri = output_folder_uri[5:]
-        if os.name == "nt" and output_folder_uri.startswith("///"):
-            output_folder_uri = output_folder_uri[3:]
-        self.output_folder = Path(output_folder_uri)
+        output_folder = self.options.get("output_folder", str(self.output_folder))
+        if output_folder.startswith("file:"):
+            output_folder = output_folder[5:]
+        if os.name == "nt" and output_folder.startswith("///"):
+            output_folder = output_folder[3:]
+        self.output_folder = Path(output_folder)
 
     def process(self) -> bool:
         # apply format_file on every file in the output folder
@@ -54,4 +55,10 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
 
 class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
-        return {"outputFolderUri": self._autorestapi.get_value("outputFolderUri")}
+        return {"output_folder": self._autorestapi.get_value("outputFolderUri")}
+
+
+if __name__ == "__main__":
+    # CADL pipeline will call this
+    args = parse_args(need_cadl_file=False)
+    BlackScriptPlugin(output_folder=args.output_folder).process()

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Optional, Any, Union
+from typing import Dict, List, Optional, Any, Union, cast
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
@@ -40,8 +40,10 @@ _REGENERATE_FILES = {"setup.py", "MANIFEST.in"}
 
 
 class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
-    def __init__(self, code_model: CodeModel, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(
+        self, code_model: CodeModel, *, output_folder: Union[str, Path], **kwargs: Any
+    ) -> None:
+        super().__init__(output_folder=output_folder, **kwargs)
         self.code_model = code_model
 
     @property
@@ -133,7 +135,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             if self.read_file(namespace_path / Path("models.py")):
                 self.write_file(
                     namespace_path / Path("models.py"),
-                    self.read_file(namespace_path / Path("models.py")),
+                    cast(str, self.read_file(namespace_path / Path("models.py"))),
                 )
 
         if self.code_model.options["package_mode"]:
@@ -479,5 +481,13 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
-    def __init__(self, autorestapi: AutorestAPI, code_model: CodeModel) -> None:
-        super().__init__(autorestapi=autorestapi, code_model=code_model)
+    def __init__(
+        self,
+        autorestapi: AutorestAPI,
+        code_model: CodeModel,
+        *,
+        output_folder: Union[str, Path],
+    ) -> None:
+        super().__init__(
+            autorestapi=autorestapi, code_model=code_model, output_folder=output_folder
+        )
