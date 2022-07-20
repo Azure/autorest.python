@@ -38,6 +38,7 @@
         "start.py",
         "venvtools.py",
         "run-python3.js",
-        "requirements.txt"
+        "requirements.txt",
+        "run_cadl.py"
     ]
 }
