@@ -1,6 +1,6 @@
 {
     "name": "@autorest/python",
-    "version": "6.1.0",
+    "version": "6.1.1",
     "description": "The Python extension for generators in AutoRest.",
     "scripts": {
         "prepare": "node run-python3.js prepare.py",
@@ -38,6 +38,7 @@
         "start.py",
         "venvtools.py",
         "run-python3.js",
-        "requirements.txt"
+        "requirements.txt",
+        "run_cadl.py"
     ]
 }
