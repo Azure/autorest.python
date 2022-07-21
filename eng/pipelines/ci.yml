@@ -101,6 +101,7 @@ jobs:
         displayName: 'Unit tests'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
+          ls
           inv regenerate
         displayName: 'Regenerate Code'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
