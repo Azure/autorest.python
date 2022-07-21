@@ -90,9 +90,9 @@ jobs:
         displayName: 'Mypy'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
-          ls
-          black $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/autorest
+          black autorest
         displayName: 'Black autorest repo'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on black autorest diff
       - script: |
