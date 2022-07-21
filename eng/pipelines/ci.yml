@@ -76,14 +76,11 @@ jobs:
         inputs:
           versionSpec: 3.7
       - script: |
-          pip install -r dev_requirements.txt
           npm install -g autorest
           cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
-          ls
+          pip install -r dev_requirements.txt
           npm install
-          ls
         displayName: "Prepare Environment for Generation"
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           pylint autorest
         displayName: 'Pylint'
