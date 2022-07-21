@@ -76,9 +76,10 @@ jobs:
         inputs:
           versionSpec: 3.7
       - script: |
-          cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
           pip install -r dev_requirements.txt
           npm install -g autorest
+          cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
+          ls
           npm install
           ls
         displayName: "Prepare Environment for Generation"
