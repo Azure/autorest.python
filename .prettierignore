@@ -316,4 +316,8 @@ shrinkwrap.json
 dist
 
 # MICROSOFT SECURITY.md
-/SECURITY.md
+SECURITY.md
+
+*.mypy_cache/
+*.yaml
+*.json
