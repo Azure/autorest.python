@@ -79,7 +79,7 @@ jobs:
           npm install -g pnpm
           echo "install autorest"
           npm install -g autorest
-          echp "pnpm instal"
+          echo "pnpm instal"
           pnpm install
           echo "pip install dev reqs"
           pip install $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/dev_requirements.txt
