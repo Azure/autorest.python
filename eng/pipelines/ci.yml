@@ -104,6 +104,7 @@ jobs:
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on regeneration diff
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
