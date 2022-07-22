@@ -1,0 +1,44 @@
+{
+  "name": "@azure-tools/python-codegen-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Monorepo for python codegen",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "watch": "tsc --build ./tsconfig.ws.json --watch",
+    "build": "pnpm -r run build",
+    "clean": "pnpm -r run clean",
+    "lint": "pnpm -r run lint",
+    "format": "npm run -s prettier -- --write",
+    "check-format": "npm run -s prettier -- --check",
+    "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=7.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/autorest.python.git"
+  },
+  "author": "Microsoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azure/autorest.python/issues"
+  },
+  "homepage": "https://github.com/Azure/autorest.python#readme",
+  "devDependencies": {
+    "@cadl-lang/prettier-plugin-cadl": "^0.5.12",
+    "eslint": "^8.19.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-unicorn": "^43.0.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
