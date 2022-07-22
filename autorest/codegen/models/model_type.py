@@ -255,7 +255,6 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
                     ImportType.LOCAL,
                 )
         if self.code_model.options["models_mode"]:
-            # todo: xml for dpg model
             if self.is_xml:
                 file_import.add_submodule_import(
                     "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"

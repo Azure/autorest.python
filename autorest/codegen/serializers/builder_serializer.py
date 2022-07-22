@@ -934,9 +934,14 @@ class _OperationSerializer(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
             elif self.code_model.options["models_mode"] == "dpg":
-                retval.append(
-                    f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
-                )
+                if isinstance(response.type, ModelType):
+                    retval.append(
+                        f"deserialized = _models.{response.type.name}(pipeline_response.http_response.json())"
+                    )
+                else:
+                    retval.append(
+                        f"deserialized = pipeline_response.http_response.json()"
+                    )
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"

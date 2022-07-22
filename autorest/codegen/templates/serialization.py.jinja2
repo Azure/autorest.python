@@ -48,7 +48,6 @@ import isodate
 from typing import Dict, Any, cast, TYPE_CHECKING
 
 from azure.core.exceptions import DeserializationError, SerializationError, raise_with_traceback
-from azure.core.serialization import Model as AzureCoreModel
 
 _BOM = codecs.BOM_UTF8.decode(encoding='utf-8')
 
@@ -1403,9 +1402,6 @@ class Deserializer(object):
         :return: Deserialized object.
         """
 
-        if isinstance(target_obj, type) and issubclass(target_obj, AzureCoreModel):
-            return target_obj(data) if data is not None else None
-
         # This is already a model, go recursive just in case
         if hasattr(data, "_attribute_map"):
             constants = [name for name, config in getattr(data, '_validation', {}).items()
@@ -1432,9 +1428,7 @@ class Deserializer(object):
 
         response, class_name = self._classify_target(target_obj, data)
 
-        if isinstance(response, type) and issubclass(response, AzureCoreModel):
-            return response(data) if data is not None else None
-        elif isinstance(response, basestring):
+        if isinstance(response, basestring):
             return self.deserialize_data(data, response)
         elif isinstance(response, type) and issubclass(response, Enum):
             return self.deserialize_enum(data, response)

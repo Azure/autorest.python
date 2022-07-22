@@ -162,10 +162,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             )
         if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(
-                "azure.core.serialization", "rest_field", ImportType.AZURECORE
+                ".._model_base", "rest_field", ImportType.LOCAL
             )
-            if isinstance(self.type, EnumType):
-                file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         return file_import
 
     @classmethod

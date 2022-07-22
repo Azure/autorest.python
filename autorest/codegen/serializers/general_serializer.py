@@ -120,3 +120,7 @@ class GeneralSerializer:
     def serialize_serialization_file(self) -> str:
         template = self.env.get_template("serialization.py.jinja2")
         return template.render(code_model=self.code_model)
+
+    def serialize_model_base_file(self) -> str:
+        template = self.env.get_template("model_base.py.jinja2")
+        return template.render(code_model=self.code_model)

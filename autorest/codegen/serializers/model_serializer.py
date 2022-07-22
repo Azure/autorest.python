@@ -45,11 +45,10 @@ class ModelSerializer:
         file_import = FileImport()
         if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(
-                "azure.core",
-                "serialization",
-                ImportType.AZURECORE,
+                "..",
+                "_model_base",
+                ImportType.LOCAL,
                 TypingSection.REGULAR,
-                "_serialization",
             )
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
@@ -60,9 +59,15 @@ class ModelSerializer:
             )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            init_line_parameters = model.properties if self.code_model.options["models_mode"] == "dpg" else [
-                p for p in model.properties if not p.readonly and not p.is_discriminator
-            ]
+            init_line_parameters = (
+                model.properties
+                if self.code_model.options["models_mode"] == "dpg"
+                else [
+                    p
+                    for p in model.properties
+                    if not p.readonly and not p.is_discriminator
+                ]
+            )
             for param in init_line_parameters:
                 file_import.merge(param.imports())
         return file_import
@@ -88,6 +93,8 @@ class ModelSerializer:
         basename = (
             "msrest.serialization.Model"
             if self.code_model.options["client_side_validation"]
+            else "_model_base.Model"
+            if self.code_model.options["models_mode"] == "dpg"
             else "_serialization.Model"
         )
         if model.parents:
@@ -97,11 +104,11 @@ class ModelSerializer:
     def declare_property(self, prop: Property) -> str:
         attribute_key = prop.rest_api_name.replace(".", "\\\\.")
         args = [f'name="{attribute_key}"']
-        if (prop.readonly):
-            args.append('readonly=True')
+        if prop.readonly:
+            args.append("readonly=True")
         if prop.client_default_value is not None:
-            args.append(f'default={prop.client_default_value_declaration}')
-        
+            args.append(f"default={prop.client_default_value_declaration}")
+
         return f'{prop.client_name}: {prop.type_annotation()} = rest_field({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
 
     @staticmethod
