@@ -22,11 +22,12 @@ steps:
       versionSpec: 3.7
 
   - script: |
-      cd $(Build.SourcesDirectory)/packages/autorest.python
-      pip install -r dev_requirements.txt
+      npm install -g pnpm
       npm install -g autorest
-      npm install
-    displayName: 'Prepare Environment for Generation'
+      pnpm install
+      pip install -r dev_requirements.txt
+    displayName: "Prepare Environment for Generation"
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       pylint autorest
