@@ -7,8 +7,8 @@ pool:
 
 variables:
   NodeVersion: '14.x'
-  TestFolder: '$(Build.SourcesDirectory)/test/'
-  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
+  TestFolder: '$(Build.SourcesDirectory)/packages/autorest.python/test/'
+  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.python/coverage/"
 
 steps:
   - task: NodeTool@0
@@ -22,23 +22,27 @@ steps:
       versionSpec: 3.7
 
   - script: |
-      cd $(Build.SourcesDirectory)
-      pip install -r dev_requirements.txt
+      npm install -g pnpm
       npm install -g autorest
-      npm install
-    displayName: 'Prepare Environment for Generation'
+      pnpm install
+      pip install -r dev_requirements.txt
+    displayName: "Prepare Environment for Generation"
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       pylint autorest
     displayName: 'Pylint'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       mypy autorest
     displayName: 'Mypy'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       pytest test/unittests
     displayName: 'Unit tests'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       pip install tox coverage==4.5.4

@@ -32,6 +32,6 @@ These documents are Python-specific, see [our main docs][main_docs] for more gen
 [python_migrate]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/migrate/readme.md
 [python_dev]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/developer/readme.md
 [main_dev]: https://github.com/Azure/autorest/tree/master/docs/developer/readme.md
-[sample]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/samples/readme.md
+[sample]: https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/samples/readme.md
 [faq]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/faq.md
 [troubleshooting]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/troubleshooting.md

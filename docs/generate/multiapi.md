@@ -73,4 +73,4 @@ And that's it! We've included the final config file in our [samples folder][samp
 
 <!-- LINKS -->
 [tags]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md#adding-tags-when-generating
-[samples]: ../samples/specification/multiapi/readme.md
+[samples]: https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/samples/specification/multiapi/readme.md
