@@ -551,7 +551,7 @@ def regenerate_samples(c, debug=False):
         "management": None,
         "multiapi": {
             "multiapi": True,
-            "python-sdks-folder": f'{cwd}/docs/samples/specification/multiapi'
+            "python-sdks-folder": f'{cwd}/samples/specification/multiapi'
         },
         "azure_key_credential": None,
         "directives": None,
@@ -560,7 +560,7 @@ def regenerate_samples(c, debug=False):
 
     cmds = []
     for sample, special_flags in sample_to_special_flags.items():
-        cmd =  f'autorest docs/samples/specification/{sample}/readme.md --use=.  '
+        cmd =  f'autorest samples/specification/{sample}/readme.md --use=.  '
         if special_flags:
             flag_strings = [
                 f"--{flag}={value}" for flag, value in special_flags.items()

@@ -5,7 +5,7 @@ Use the flag `--azure-arm` to specify you want to generate [management plane][mg
 ### Settings
 
 ``` yaml
-input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
+input-file: ../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
 namespace: azure.mgmt.sample
 package-name: azure-mgmt-sample
 license-header: MICROSOFT_MIT_NO_VERSION

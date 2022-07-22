@@ -5,7 +5,7 @@ Use the flags `--credential-default-policy-type` and `--credential-key-header-na
 ### Settings
 
 ``` yaml
-input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
+input-file: ../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
 namespace: azure.key.credential.sample
 package-name: azure-key-credential-sample
 license-header: MICROSOFT_MIT_NO_VERSION
