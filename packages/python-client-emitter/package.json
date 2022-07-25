@@ -1,5 +1,5 @@
 {
-  "name": "@cadl-tools/python-client-emitter",
+  "name": "@azure-tools/cadl-python-client-emitter",
   "version": "0.1.0",
   "author": "Microsoft Corporation",
   "description": "Cadl library for emitting OpenAPI 3.0 from the Cadl REST protocol binding",
@@ -52,10 +52,9 @@
   ],
   "peerDependencies": {
     "@cadl-lang/versioning": "~0.6.1",
-    "@cadl-lang/compiler": "~0.33.0",
-    "@cadl-lang/rest": "~0.15.1",
-    "@cadl-lang/openapi": "~0.10.1",
-    "@azure-tools/cadl-azure-core": "~0.5.0"
+    "@cadl-lang/compiler": "~0.34.0-dev.21",
+    "@cadl-lang/rest": "~0.16.0-dev.7",
+    "@azure-tools/cadl-azure-core": "~0.6.0-dev.3"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
@@ -65,9 +64,8 @@
     "@types/mocha": "~9.1.0",
     "@types/node": "~16.0.3",
     "@types/js-yaml": "~4.0.1",
-    "@cadl-lang/compiler": "~0.33.0",
-    "@cadl-lang/rest": "~0.15.1",
-    "@cadl-lang/openapi": "~0.10.1",
+    "@cadl-lang/compiler": "~0.34.0-dev.21",
+    "@cadl-lang/rest": "~0.16.0-dev.7",
     "@cadl-lang/versioning": "~0.6.1",
     "@cadl-lang/eslint-config-cadl": "~0.3.0",
     "eslint": "^8.12.0",
@@ -75,6 +73,6 @@
     "c8": "~7.11.0",
     "rimraf": "~3.0.2",
     "typescript": "~4.7.2",
-    "@azure-tools/cadl-azure-core": "~0.5.0"
+    "@azure-tools/cadl-azure-core": "~0.6.0-dev.3"
   }
 }

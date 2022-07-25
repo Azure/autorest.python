@@ -74,7 +74,7 @@ function getType(program: Program, type: Type): any {
 
 // To pass the yaml dump
 function getAddedOnVersion(p: Program, t: Type): string | undefined {
-  return getAddedOn(p, t)?.value;
+  return getAddedOn(p as any, t as any)?.value;
 }
 
 function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): Record<string, any> {
@@ -102,15 +102,9 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
   };
 }
 
-function emitRequestBody(
-  program: Program,
-  bodyType: Type,
-  params: HttpOperationParameters
-): Record<string, any> {
+function emitRequestBody(program: Program, bodyType: Type, params: HttpOperationParameters): Record<string, any> {
   const base = emitParamBase(program, params.bodyParameter ?? bodyType);
-  const contentTypeParam = params.parameters.find(
-    (p) => p.type === "header" && p.name === "content-type"
-  );
+  const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
   const contentTypes = contentTypeParam
     ? ignoreDiagnostics(getContentTypes(contentTypeParam.param))
     : ["application/json"];
@@ -129,7 +123,7 @@ function emitRequestBody(
 function emitParameter(
   program: Program,
   parameter: HttpOperationParameter,
-  implementation: string
+  implementation: string,
 ): Record<string, any> {
   const base = emitParamBase(program, parameter.param);
   const paramMap: Record<string, any> = {
@@ -145,10 +139,7 @@ function emitParameter(
   return { clientDefaultValue, ...base, ...paramMap };
 }
 
-function emitResponseHeaders(
-  program: Program,
-  headers?: Record<string, ModelTypeProperty>
-): Record<string, any>[] {
+function emitResponseHeaders(program: Program, headers?: Record<string, ModelTypeProperty>): Record<string, any>[] {
   const retval: Record<string, any>[] = [];
   if (!headers) {
     return retval;
@@ -165,7 +156,7 @@ function emitResponseHeaders(
 function emitResponse(
   program: Program,
   response: HttpOperationResponse,
-  innerResponse: HttpOperationResponseContent
+  innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
   // let type;
   // if (innerResponse.body?.type) {
