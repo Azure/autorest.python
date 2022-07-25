@@ -1,0 +1,16 @@
+{
+  "extends": "../../core/packages/tsconfig.json",
+  "references": [
+    { "path": "../../core/packages/compiler/tsconfig.json" },
+    { "path": "../../core/packages/rest/tsconfig.json" },
+    { "path": "../../core/packages/openapi/tsconfig.json" },
+    { "path": "../cadl-azure-core/tsconfig.json" }
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "tsBuildInfoFile": "temp/tsconfig.tsbuildinfo",
+    "types": ["node", "mocha"]
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}
