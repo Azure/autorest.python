@@ -18,7 +18,8 @@ from multiprocessing import Pool
 logging.getLogger().setLevel(logging.INFO)
 
 root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
-rfc_file_location = os.path.join(root_dir, "pylintrc")
+autorest_package_dir = Path(root_dir) / Path("packages/autorest.python")
+rfc_file_location = os.path.join(autorest_package_dir, "pylintrc")
 lint_plugin_path = os.path.join(root_dir, "scripts/pylint_custom_plugin")
 
 def _single_dir_pylint(mod):
@@ -70,7 +71,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    pkg_dir = Path(root_dir) / Path("test") / Path(args.test_folder) / Path(args.generator) / Path("Expected") / Path("AcceptanceTests")
+    pkg_dir = autorest_package_dir / Path("test") / Path(args.test_folder) / Path(args.generator) / Path("Expected") / Path("AcceptanceTests")
     dirs = [d for d in pkg_dir.iterdir() if d.is_dir()]
     if args.file_name:
         dirs = [d for d in dirs if d.stem.lower() == args.file_name.lower()]

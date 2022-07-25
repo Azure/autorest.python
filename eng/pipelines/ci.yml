@@ -8,11 +8,20 @@ pr:
     include:
       - autorestv3
 
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+
 variables:
   NodeVersion: "14.x"
   PythonVersion: "3.7"
-  TestFolder: "$(Build.SourcesDirectory)/test/"
-  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
+  TestFolder: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/"
+  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/coverage/"
+  PROXY_URL: http://localhost:5000
+  PROXY_MANUAL_START: true
 
 parameters:
   - name: VerificationPackages
@@ -37,10 +46,6 @@ jobs:
 
     strategy:
       matrix:
-        Windows_Python36:
-          OSName: "Windows"
-          OSVmImage: "MMS2019"
-          PythonVersion: "3.6"
         Linux_Python37:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
@@ -55,6 +60,12 @@ jobs:
       vmImage: $(OSVmImage)
 
     steps:
+      - checkout: self
+      - checkout: azure-sdk-tools
+      - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
+        parameters:
+          TestProxy: true
+          templateRoot: azure-sdk-tools
       - task: NodeTool@0
         displayName: "Install Node.js $(NodeVersion)"
         inputs:
@@ -64,32 +75,39 @@ jobs:
         displayName: "Use Python 3.7"
         inputs:
           versionSpec: 3.7
-
       - script: |
-          cd $(Build.SourcesDirectory)
-          pip install -r dev_requirements.txt
+          npm install -g pnpm
           npm install -g autorest
-          npm install
-        displayName: 'Prepare Environment for Generation'
+          pnpm install
+          pip install -r dev_requirements.txt
+        displayName: "Prepare Environment for Generation"
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           pylint autorest
         displayName: 'Pylint'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           mypy autorest
         displayName: 'Mypy'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           black autorest
         displayName: 'Black autorest repo'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on black autorest diff
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       - script: |
           pytest test/unittests
         displayName: 'Unit tests'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on regeneration diff
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
@@ -103,6 +121,7 @@ jobs:
           cd $(TestFolder)/azure/legacy
           tox -e ci
         displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - task: PublishTestResults@2
         condition: always()
         displayName: 'Publish legacy "azure" Test Results'
@@ -115,6 +134,7 @@ jobs:
           tox -e ci
         displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
         condition: succeededOrFailed()
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - task: PublishTestResults@2
         condition: succeededOrFailed()
         displayName: 'Publish version-tolerant "azure" Test Results'
@@ -127,17 +147,18 @@ jobs:
           tox -e lint
         displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
-
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           cd $(TestFolder)/azure/version-tolerant
           tox -e mypy
         displayName: 'Mypy version-tolerant "azure" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
-
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python
       - script: |
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - task: PublishTestResults@2
         displayName: 'Publish legacy "vanilla" Test Results'
         condition: always()
@@ -150,6 +171,7 @@ jobs:
           tox -e ci
         displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
         condition: succeededOrFailed()
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - task: PublishTestResults@2
         displayName: 'Publish version-tolerant "vanilla" Test Results'
         condition: succeededOrFailed()
@@ -162,32 +184,36 @@ jobs:
           tox -e lint
         displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
-
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           cd $(TestFolder)/vanilla/version-tolerant
           tox -e mypy
         displayName: 'Mypy version-tolerant "vanilla" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
-
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           cd $(TestFolder)/dpg/version-tolerant
           tox -e ci
         displayName: 'Execute version-tolerant update "dpg" Tests - Python $(PythonVersion)'
         condition: succeededOrFailed()
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           cd $(TestFolder)/dpg/version-tolerant
           tox -e lint
         displayName: 'Lint version-tolerant "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           cd $(TestFolder)/dpg/version-tolerant
           tox -e mypy
         displayName: 'Mypy version-tolerant "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           cd $(TestFolder)/multiapi
           tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - task: PublishTestResults@2
         displayName: 'Publish "multiapi" Test Results'
         condition: always()
@@ -201,30 +227,29 @@ jobs:
           cd ..
           npm install $AbsolutePkgPath
         displayName: "Test tarball"
-
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
-        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to storage account"
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
-        - script: |
-            git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
-          displayName: 'Clone python repo'
-
-        - script: |
-            pip install tox-monorepo
-          displayName: 'Prepare environment'
-          workingDirectory: '$(Build.SourcesDirectory)/regenerated/'
-
-        - ${{ each package in parameters.VerificationPackages }}:
           - script: |
-              autorest ./swagger/README.md --use=$(Build.SourcesDirectory) --modelerfour.seal-single-value-enum-by-default
-            displayName: 'Regenerate target package ${{ package.name }}'
-            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
+              git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
+            displayName: "Clone python repo"
 
           - script: |
-              tox -e whl -c ../../../eng/tox/tox.ini
-            displayName: 'Run tests for ${{ package.name }}'
-            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
+              pip install tox-monorepo
+            displayName: "Prepare environment"
+            workingDirectory: "$(Build.SourcesDirectory)/regenerated/"
+
+          - ${{ each package in parameters.VerificationPackages }}:
+              - script: |
+                  autorest ./swagger/README.md --use=$(Build.SourcesDirectory)/autorest.python/packages/autorest.python --modelerfour.seal-single-value-enum-by-default
+                displayName: "Regenerate target package ${{ package.name }}"
+                workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
+              - script: |
+                  tox -e whl -c ../../../eng/tox/tox.ini
+                displayName: "Run tests for ${{ package.name }}"
+                workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"

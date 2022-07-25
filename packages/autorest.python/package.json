@@ -1,0 +1,44 @@
+{
+    "name": "@autorest/python",
+    "version": "6.1.1",
+    "description": "The Python extension for generators in AutoRest.",
+    "scripts": {
+        "prepare": "node run-python3.js prepare.py",
+        "start": "node run-python3.js start.py",
+        "install": "node run-python3.js install.py",
+        "debug": "node run-python3.js start.py --debug"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Azure/autorest.python/tree/autorestv3"
+    },
+    "readme": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
+    "keywords": [
+        "autorest",
+        "python"
+    ],
+    "author": "Microsoft Corporation",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Azure/autorest.python/issues"
+    },
+    "homepage": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
+    "dependencies": {
+        "@autorest/system-requirements": "~1.0.0"
+    },
+    "devDependencies": {
+        "@microsoft.azure/autorest.testserver": "^3.3.31"
+    },
+    "files": [
+        "autorest/**/*.py",
+        "autorest/**/*.jinja2",
+        "setup.py",
+        "install.py",
+        "prepare.py",
+        "start.py",
+        "venvtools.py",
+        "run-python3.js",
+        "requirements.txt",
+        "run_cadl.py"
+    ]
+}
