@@ -30,20 +30,16 @@ import { dump } from "js-yaml";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import getAutorestPath from "../../get-autorest-python-path.cjs";
-
 export async function $onEmit(program: Program) {
   const yamlMap = createYamlEmitter(program);
   const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
   await program.host.writeFile(yamlPath, dump(yamlMap));
-  const autorestPath = getAutorestPath();
-  console.log(autorestPath);
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const root = resolve(__dirname, "..", "..");
 
   execFileSync(process.execPath, [
-    `${autorestPath}/run-python3.js`,
-    `${autorestPath}/run_cadl.py`,
+    `${root}/node_modules/@autorest/python/run-python3.js`,
+    `${root}/node_modules/@autorest/python/run_cadl.py`,
     `--output-folder=${program.compilerOptions.outputPath!}`,
     `--cadl-file=${yamlPath}`,
   ]);
