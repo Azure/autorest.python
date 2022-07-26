@@ -48,7 +48,8 @@
   "files": [
     "lib/*.cadl",
     "dist/**",
-    "!dist/test/**"
+    "!dist/test/**",
+    "get-autorest-python-path.cjs"
   ],
   "peerDependencies": {
     "@cadl-lang/versioning": "~0.6.1",
