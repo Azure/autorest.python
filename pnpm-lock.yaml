@@ -27,6 +27,41 @@ importers:
     devDependencies:
       '@microsoft.azure/autorest.testserver': 3.3.34
 
+  packages/cadl-python-emitter:
+    specifiers:
+      '@autorest/python': ~6.1.1
+      '@azure-tools/cadl-azure-core': ~0.6.0-dev.3
+      '@cadl-lang/compiler': ~0.34.0-dev.21
+      '@cadl-lang/eslint-config-cadl': ~0.3.0
+      '@cadl-lang/rest': ~0.16.0-dev.7
+      '@cadl-lang/versioning': ~0.6.1
+      '@types/js-yaml': ~4.0.1
+      '@types/mocha': ~9.1.0
+      '@types/node': ~16.0.3
+      c8: ~7.11.0
+      eslint: ^8.12.0
+      js-yaml: ~4.1.0
+      mocha: ~9.2.0
+      rimraf: ~3.0.2
+      typescript: ~4.7.2
+    dependencies:
+      '@autorest/python': link:../autorest.python
+      js-yaml: 4.1.0
+    devDependencies:
+      '@azure-tools/cadl-azure-core': 0.6.0-dev.3_if3iso2r63xulrdd675jd7rxdm
+      '@cadl-lang/compiler': 0.34.0-dev.24
+      '@cadl-lang/eslint-config-cadl': 0.3.0
+      '@cadl-lang/rest': 0.16.0-dev.9_mftlqztn5vyytmpv7nfgbru3i4
+      '@cadl-lang/versioning': 0.6.1
+      '@types/js-yaml': 4.0.5
+      '@types/mocha': 9.1.1
+      '@types/node': 16.0.3
+      c8: 7.11.3
+      eslint: 8.20.0
+      mocha: 9.2.2
+      rimraf: 3.0.2
+      typescript: 4.7.4
+
   packages/python-client-emitter:
     specifiers:
       '@autorest/python': ~6.1.1
