@@ -26,6 +26,7 @@ wheels/
 MANIFEST
 package-lock.json
 *coverage/
+temp/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
