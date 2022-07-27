@@ -53,9 +53,11 @@
   ],
   "peerDependencies": {
     "@cadl-lang/versioning": "~0.7.0-dev.1",
-    "@cadl-lang/compiler": "~0.34.0-dev.24",
+    "@cadl-lang/compiler": "~0.34.0-dev.25",
     "@cadl-lang/rest": "~0.16.0-dev.10",
-    "@azure-tools/cadl-azure-core": "~0.6.0-dev.3"
+    "@azure-tools/cadl-azure-core": "~0.6.0-dev.3",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
@@ -65,7 +67,7 @@
     "@types/mocha": "~9.1.0",
     "@types/node": "~16.0.3",
     "@types/js-yaml": "~4.0.1",
-    "@cadl-lang/compiler": "~0.34.0-dev.24",
+    "@cadl-lang/compiler": "~0.34.0-dev.25",
     "@cadl-lang/rest": "~0.16.0-dev.10",
     "@cadl-lang/versioning": "~0.7.0-dev.1",
     "@cadl-lang/eslint-config-cadl": "~0.3.0",

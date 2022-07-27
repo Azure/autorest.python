@@ -62,6 +62,14 @@ function getDocStr(program: Program, target: Type): string {
   return getDoc(program, target) ?? "";
 }
 
+function getOperationGroupName(program: Program, operation: OperationDetails): string {
+  let groupName = "";
+  if (capitalize(operation.container.name) !== capitalize(getServiceTitle(program).replace(/ /g, ""))) {
+    groupName = capitalize(operation.container.name);
+  }
+  return groupName;
+}
+
 function getType(program: Program, type: Type): any {
   const cached = typesMap.get(type);
   if (cached) {
@@ -158,17 +166,12 @@ function emitResponse(
   response: HttpOperationResponse,
   innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
-  // let type;
-  // if (innerResponse.body?.type) {
-  //   type = getType(program, response.type)
-  // } else {
-  //   type = undefined
-  // }
   return {
     headers: emitResponseHeaders(program, innerResponse.headers),
     statusCodes: [parseInt(response.statusCode)],
     addedApiVersion: getAddedOnVersion(program, response.type),
     discriminator: "basic",
+    type: getType(program, response.type),
   };
 }
 
@@ -201,7 +204,6 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
   } else {
     requestBody = emitRequestBody(program, operation.parameters.bodyType, operation.parameters);
   }
-
   return {
     name: camelToSnakeCase(operation.operation.name),
     description: getDocStr(program, operation.operation),
@@ -211,7 +213,7 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
     bodyParameter: requestBody,
     responses: responses,
     exceptions: exceptions,
-    groupName: capitalize(operation.container.name),
+    groupName: getOperationGroupName(program, operation),
     addedApiVersion: getAddedOnVersion(program, operation.operation),
     discriminator: "basic",
     isOverload: false,
@@ -423,8 +425,8 @@ function emitOperationGroups(program: Program): Record<string, any>[] {
       existingOperationGroup["operations"].push(emittedOperation);
     } else {
       const newOperationGroup = {
-        propertyName: capitalize(operation.container.name),
-        className: capitalize(operation.container.name),
+        propertyName: getOperationGroupName(program, operation),
+        className: getOperationGroupName(program, operation),
         operations: [emittedOperation],
       };
       operationGroups.push(newOperationGroup);
