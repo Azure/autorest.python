@@ -166,12 +166,16 @@ function emitResponse(
   response: HttpOperationResponse,
   innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
+  let type = undefined;
+  if (innerResponse.body?.type) {
+    type = getType(program, innerResponse.body.type)
+  }
   return {
     headers: emitResponseHeaders(program, innerResponse.headers),
     statusCodes: [parseInt(response.statusCode)],
     addedApiVersion: getAddedOnVersion(program, response.type),
     discriminator: "basic",
-    type: getType(program, response.type),
+    type: type,
   };
 }
 
@@ -190,7 +194,7 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
       const emittedResponse = emitResponse(program, response, innerResponse);
       if (isErrorModel(program, response.type)) {
         // * is valid status code in cadl but invalid for autorest.python
-        if (response.statusCode !== "*") {
+        if (response.statusCode === "*") {
           exceptions.push(emittedResponse);
         }
       } else {
