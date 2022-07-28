@@ -266,9 +266,9 @@ packages:
     resolution: {integrity: sha512-mluz7FIWnwu78Xtw6BB9AMggrX+Ov8+G8cU6fCLzO5H2r8HanlUR9qMGQT1t5IZCXaPRAmWbmGQS9zDJIZGyGw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.34.0-dev.17
-      '@cadl-lang/openapi': ~0.11.0-dev.2
-      '@cadl-lang/rest': ~0.16.0-dev.7
+      '@cadl-lang/compiler': ~0.33.0
+      '@cadl-lang/openapi': ~0.10.1
+      '@cadl-lang/rest': ~0.15.1
     dependencies:
       '@cadl-lang/compiler': 0.34.0-dev.25
       '@cadl-lang/rest': 0.16.0-dev.10_bk67zt4jfmhp62cb6vh5hc23fq
@@ -677,6 +677,7 @@ packages:
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.5
       yargs: 17.3.1
+    dev: true
 
   /@cadl-lang/eslint-config-cadl/0.3.0:
     resolution: {integrity: sha512-MrUuMtcgYD1lhMtjLa8thCfoRJ7z/PVxZrba8vvYrrJJiQCS+WIndG5zrgksOrm0QkIa3PnqB3FUoiuV0mpykw==}
@@ -715,8 +716,8 @@ packages:
       '@cadl-lang/compiler': ~0.33.0
       '@cadl-lang/rest': ~0.15.1
     dependencies:
-      '@cadl-lang/compiler': 0.34.0-dev.25
-      '@cadl-lang/rest': 0.16.0-dev.10_bk67zt4jfmhp62cb6vh5hc23fq
+      '@cadl-lang/compiler': 0.33.0
+      '@cadl-lang/rest': 0.15.1_@cadl-lang+compiler@0.33.0
     dev: false
 
   /@cadl-lang/openapi3/0.13.0_nac34iiw654i4j5dvlno6od42u:
@@ -740,6 +741,15 @@ packages:
       prettier: 2.7.1
     dev: true
 
+  /@cadl-lang/rest/0.15.1_@cadl-lang+compiler@0.33.0:
+    resolution: {integrity: sha512-J7gaLFri1huDzUPmndvg7JTJZ8dnQ9csl1PafGbvypjga5Ct9+YZcAInErMKFgnxJJ5NVnDz5auD3579eOCYWg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@cadl-lang/compiler': ~0.33.0
+    dependencies:
+      '@cadl-lang/compiler': 0.33.0
+    dev: false
+
   /@cadl-lang/rest/0.16.0-dev.10_bk67zt4jfmhp62cb6vh5hc23fq:
     resolution: {integrity: sha512-nuFZKCEB/jU/iUQqAZJucxcOX9tRwjdrZXZ8umLYVcSuhCqBqT7rXwLuCw2YsmOGr33YZ8DzfRDw0Lhw67B/jA==}
     engines: {node: '>=16.0.0'}
@@ -747,6 +757,14 @@ packages:
       '@cadl-lang/compiler': ~0.34.0-dev.24
     dependencies:
       '@cadl-lang/compiler': 0.34.0-dev.25
+    dev: true
+
+  /@cadl-lang/versioning/0.6.1:
+    resolution: {integrity: sha512-PfRn5WRjMInDpAs/JFzqmvkGJETiFbUCS1ey/ZGqxuIWN0u1HT/0R8echuEB3Efi4NSBwBKynd54xNDV/t2ajA==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@cadl-lang/compiler': 0.33.0
+    dev: false
 
   /@cadl-lang/versioning/0.6.1:
     resolution: {integrity: sha512-PfRn5WRjMInDpAs/JFzqmvkGJETiFbUCS1ey/ZGqxuIWN0u1HT/0R8echuEB3Efi4NSBwBKynd54xNDV/t2ajA==}
