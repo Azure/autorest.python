@@ -64,7 +64,8 @@ function getDocStr(program: Program, target: Type): string {
 
 function getOperationGroupName(program: Program, operation: OperationDetails): string {
   let groupName = "";
-  if (capitalize(operation.container.name) !== capitalize(getServiceTitle(program).replace(/ /g, ""))) {
+  const serviceNamespace = getServiceNamespace(program);
+  if (!serviceNamespace || capitalize(operation.container.name) !== capitalize(serviceNamespace.name)) {
     groupName = capitalize(operation.container.name);
   }
   return groupName;
@@ -77,6 +78,12 @@ function getType(program: Program, type: Type): any {
   }
   const newValue = emitType(program, type);
   typesMap.set(type, newValue);
+  if (type.kind === "Model") {
+    // need to do properties after insertion to avoid infinite recursion
+    for (const property of type.properties.values()) {
+      newValue.properties.push(emitProperty(program, property));
+    }
+  }
   return newValue;
 }
 
@@ -168,11 +175,17 @@ function emitResponse(
 ): Record<string, any> {
   let type = undefined;
   if (innerResponse.body?.type) {
-    type = getType(program, innerResponse.body.type)
+    type = getType(program, innerResponse.body.type);
+  }
+  const statusCodes = [];
+  if (response.statusCode === "*") {
+    statusCodes.push("default");
+  } else {
+    statusCodes.push(parseInt(response.statusCode));
   }
   return {
     headers: emitResponseHeaders(program, innerResponse.headers),
-    statusCodes: [parseInt(response.statusCode)],
+    statusCodes: statusCodes,
     addedApiVersion: getAddedOnVersion(program, response.type),
     discriminator: "basic",
     type: type,
@@ -333,9 +346,6 @@ function emitModel(program: Program, type: ModelType): Record<string, any> {
       //   discriminatorEntry.propertyName = discriminator.propertyName;
       // }
       const properties: Record<string, any>[] = [];
-      for (const property of type.properties.values()) {
-        properties.push(emitProperty(program, property));
-      }
       let baseModel = undefined;
       if (type.baseModel) {
         baseModel = emitModel(program, type.baseModel);
@@ -414,13 +424,17 @@ function capitalize(name: string): string {
   return name[0].toUpperCase() + name.slice(1);
 }
 
+function isPageable(operation: OperationDetails): boolean {
+  return true;
+}
+
 function emitOperationGroups(program: Program): Record<string, any>[] {
   const operationGroups: Record<string, any>[] = [];
   const allOperations = ignoreDiagnostics(getAllRoutes(program));
   for (const operation of allOperations) {
     let existingOperationGroup: Record<string, any> | undefined = undefined;
     for (const operationGroup of operationGroups) {
-      if (operationGroup["className"] === capitalize(operation.container.name)) {
+      if (operationGroup["className"] === getOperationGroupName(program, operation)) {
         existingOperationGroup = operationGroup;
       }
     }
