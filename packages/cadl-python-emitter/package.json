@@ -76,7 +76,6 @@
     "c8": "~7.11.0",
     "rimraf": "~3.0.2",
     "typescript": "~4.7.2",
-    "@azure-tools/cadl-azure-core": "~0.6.0-dev.3",
-    "@azure-tools/cadl-ranch-specs": "workspace:*"
+    "@azure-tools/cadl-azure-core": "~0.6.0-dev.3"
   }
 }
