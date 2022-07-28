@@ -192,6 +192,59 @@ function emitResponse(
   };
 }
 
+function getOperationEmitter(operation: OperationDetails) {
+  if (isPagingOperation(operation)) {
+    return emitPagingOperation;
+  }
+  return emitOperation;
+}
+
+function getItemName(operation: OperationDetails): string {
+  for (const response of operation.responses) {
+    for (const innerResponse of response.responses) {
+      if (innerResponse.body && innerResponse.body.type.kind == "Model") {
+        for (const property of innerResponse.body.type.properties.values()) {
+          for (const decorator of property.decorators) {
+            if (decorator.decorator.name === "$items") {
+              return property.name;
+            }
+          }
+        }
+      }
+    }
+  }
+  throw Error(`Can not find item name for pageable operation ${operation.operation.name}`);
+}
+
+function getContinuationTokenName(operation: OperationDetails): string {
+  for (const response of operation.responses) {
+    for (const innerResponse of response.responses) {
+      if (innerResponse.body && innerResponse.body.type.kind == "Model") {
+        for (const property of innerResponse.body.type.properties.values()) {
+          for (const decorator of property.decorators) {
+            if (decorator.decorator.name === "$nextLink") {
+              return property.name;
+            }
+          }
+        }
+      }
+    }
+  }
+  throw Error(`Can not find continuation token name for pageable operation ${operation.operation.name}`);
+}
+
+function addPagingInformation(operation: OperationDetails, emittedOperation: Record<string, any>) {
+  emittedOperation["discriminator"] = "paging";
+  emittedOperation["itemName"] = getItemName(operation);
+  emittedOperation["continuationTokenName"] = getContinuationTokenName(operation);
+}
+
+function emitPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
+  const emittedOperation = emitOperation(program, operation);
+  addPagingInformation(operation, emittedOperation);
+  return emittedOperation;
+}
+
 function emitOperation(program: Program, operation: OperationDetails): Record<string, any> {
   // Set up parameters for operation
   const parameters: Record<string, any>[] = [];
@@ -424,8 +477,19 @@ function capitalize(name: string): string {
   return name[0].toUpperCase() + name.slice(1);
 }
 
-function isPageable(operation: OperationDetails): boolean {
-  return true;
+function isPagingOperation(operation: OperationDetails): boolean {
+  for (const response of operation.responses) {
+    for (const innerResponse of response.responses) {
+      if (innerResponse.body && innerResponse.body.type.kind == "Model") {
+        for (const decorator of innerResponse.body.type.decorators) {
+          if (decorator.decorator.name == "$pagedResult") {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
 }
 
 function emitOperationGroups(program: Program): Record<string, any>[] {
@@ -438,7 +502,7 @@ function emitOperationGroups(program: Program): Record<string, any>[] {
         existingOperationGroup = operationGroup;
       }
     }
-    const emittedOperation = emitOperation(program, operation);
+    const emittedOperation = getOperationEmitter(operation)(program, operation);
     if (existingOperationGroup) {
       existingOperationGroup["operations"].push(emittedOperation);
     } else {
