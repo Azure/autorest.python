@@ -110,8 +110,10 @@ class ModelSerializer:
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
 
-        return (f'{prop.client_name}: {prop.type_annotation()} = '
-        'rest_field({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}')
+        return (
+            f"{prop.client_name}: {prop.type_annotation()} = "
+            'rest_field({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
+        )
 
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:
