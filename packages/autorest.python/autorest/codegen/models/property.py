@@ -8,7 +8,6 @@ from typing import Any, Dict, Optional, TYPE_CHECKING, List
 from .base_model import BaseModel
 from .constant_type import ConstantType
 from .base_type import BaseType
-from .enum_type import EnumType
 from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_description, add_to_pylint_disable
 
