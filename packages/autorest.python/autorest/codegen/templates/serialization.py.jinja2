@@ -1401,7 +1401,6 @@ class Deserializer(object):
         :raises: DeserializationError if deserialization fails.
         :return: Deserialized object.
         """
-
         # This is already a model, go recursive just in case
         if hasattr(data, "_attribute_map"):
             constants = [name for name, config in getattr(data, '_validation', {}).items()
