@@ -112,7 +112,7 @@ class ModelSerializer:
 
         return (
             f"{prop.client_name}: {prop.type_annotation()} = "
-            'rest_field({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
+            f'rest_field({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
         )
 
     @staticmethod
