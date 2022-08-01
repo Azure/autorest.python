@@ -22,7 +22,6 @@ except ImportError:
 
 # Now we have pip and Py >= 3.7, go to work
 
-import subprocess
 from pathlib import Path
 
 from venvtools import ExtendedEnvBuilder, python_run
@@ -45,6 +44,7 @@ def main():
         python_run(venv_context, "pip", ["install", "-U", "pip"])
         python_run(venv_context, "pip", ["install", "-r", "requirements.txt"])
         python_run(venv_context, "pip", ["install", "-e", str(_ROOT_DIR)])
+        python_run(venv_context, "pip", ["install", "-e", str(_ROOT_DIR / Path("node_modules/@azure-tools/python-generator"))])
 
 if __name__ == "__main__":
     main()

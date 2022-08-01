@@ -23,7 +23,7 @@ if not version:
     raise RuntimeError('Cannot find version information')
 
 setup(
-    name="generator",
+    name="python_generator",
     version=version,
     description='Microsoft Generator Plugins for Python',
     long_description=open('README.md', 'r').read(),
