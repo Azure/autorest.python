@@ -99,7 +99,11 @@ jobs:
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       - script: |
           pytest test/unittests
-        displayName: 'Unit tests'
+        displayName: 'Unit tests for Pygen'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/pygen/
+      - script: |
+          pytest test/unittests
+        displayName: 'Unit tests for Autorest.Python'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
           inv regenerate
