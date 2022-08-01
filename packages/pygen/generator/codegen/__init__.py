@@ -260,6 +260,7 @@ class CodeGenerator(Plugin):
 
         return True
 
+
 if __name__ == "__main__":
     # CADL pipeline will call this
     args = parse_args()

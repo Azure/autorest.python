@@ -6,10 +6,10 @@
 import logging
 from pathlib import Path
 import os
-from typing import Any, Dict
 import black
 
 from .._utils import parse_args
+from .. import Plugin
 
 logging.getLogger("blib2to3").setLevel(logging.ERROR)
 
@@ -50,6 +50,7 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
         except black.NothingChanged:
             pass
         self.write_file(file, file_content)
+
 
 if __name__ == "__main__":
     # CADL pipeline will call this

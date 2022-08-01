@@ -28,6 +28,7 @@ def main():
     requirements_path = _ROOT_DIR / 'dev_requirements.txt'
 
     python_run(venv_context, "pip", ["install", "-r", str(requirements_path)])
+    python_run(venv_context, "pip", ["install", "-e", str(_ROOT_DIR / Path("node_modules/@azure-tools/python-generator"))])
 
 if __name__ == "__main__":
     main()

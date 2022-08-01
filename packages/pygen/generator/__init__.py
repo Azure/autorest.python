@@ -39,6 +39,7 @@ class ReaderAndWriter:
         with open(self.output_folder / Path(filename), "w") as fd:
             fd.write(file_content)
 
+
 class Plugin(ReaderAndWriter, ABC):
     """A base class for a plugin."""
 
@@ -51,6 +52,7 @@ class Plugin(ReaderAndWriter, ABC):
         :raises Exception: Could raise any exception
         """
         raise NotImplementedError()
+
 
 class YamlUpdatePlugin(Plugin):
     """A plugin that update the YAML as input."""
