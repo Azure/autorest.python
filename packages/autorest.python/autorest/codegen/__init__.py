@@ -179,6 +179,8 @@ class CodeGenerator(Plugin):
         models_mode_default = (
             "none" if low_level_client or version_tolerant else "msrest"
         )
+        if self.options.get("cadl_file", None) is not None:
+            models_mode_default = "dpg"
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -339,7 +341,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
 
         if self._autorestapi.get_value("input-yaml"):
             input_yaml = self._autorestapi.get_value("input-yaml")
-            file_content = open(input_yaml, "r").read()
+            file_content = self._autorestapi.read_file(input_yaml)
         else:
             inputs = self._autorestapi.list_inputs()
             _LOGGER.debug("Possible Inputs: %s", inputs)
