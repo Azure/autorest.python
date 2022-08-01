@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
   "dependencies": {
     "@autorest/system-requirements": "~1.0.0",
-    "@azure-tools/python-generator": "~0.1.0"
+    "@azure-tools/python-generator": "workspace:*"
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.31"
