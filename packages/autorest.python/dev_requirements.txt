@@ -1,4 +1,5 @@
 -e .
+-e node_modules/@azure-tools/python-generator
 tox
 invoke
 colorama
