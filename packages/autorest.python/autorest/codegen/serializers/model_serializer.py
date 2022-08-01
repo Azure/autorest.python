@@ -91,14 +91,18 @@ class ModelSerializer:
 
     @staticmethod
     def get_properties_to_declare(model: ModelType) -> List[Property]:
-        return list(
-            {
-                p.client_name: p
-                for bm in model.parents or []
-                for p in model.properties
-                if p not in cast(ModelType, bm).properties
-            }.values()
-        )
+        if model.parents:
+            properties_to_declare = list(
+                {
+                    p.client_name: p
+                    for bm in model.parents
+                    for p in model.properties
+                    if p not in cast(ModelType, bm).properties
+                }.values()
+            )
+        else:
+            properties_to_declare = model.properties
+        return properties_to_declare
 
     def declare_model(self, model: ModelType) -> str:
         basename = (
