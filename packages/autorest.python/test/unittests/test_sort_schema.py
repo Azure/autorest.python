@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 
-from autorest.codegen.models import CodeModel, ModelType
+from generator.codegen.models import CodeModel, ModelType
 
 def get_code_model():
     return CodeModel(

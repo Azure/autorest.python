@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models import Parameter, AnyType, CodeModel, StringType
-from autorest.codegen.models.parameter_list import ParameterList
+from generator.codegen.models import Parameter, AnyType, CodeModel, StringType
+from generator.codegen.models.parameter_list import ParameterList
 
 def get_code_model():
     options = {

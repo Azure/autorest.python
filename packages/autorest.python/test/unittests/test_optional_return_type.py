@@ -5,12 +5,12 @@
 # --------------------------------------------------------------------------
 
 import pytest
-from autorest.codegen.models import (
+from generator.codegen.models import (
     Operation, LROOperation, PagingOperation, Response, ParameterList, CodeModel, RequestBuilder
 )
-from autorest.codegen.models.base_type import BaseType
-from autorest.codegen.models.parameter_list import RequestBuilderParameterList
-from autorest.codegen.models.primitive_types import StringType
+from generator.codegen.models.base_type import BaseType
+from generator.codegen.models.parameter_list import RequestBuilderParameterList
+from generator.codegen.models.primitive_types import StringType
 
 @pytest.fixture
 def code_model():
