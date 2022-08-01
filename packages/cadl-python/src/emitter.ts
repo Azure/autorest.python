@@ -415,6 +415,24 @@ function emitNumber(type: string, decorators: Array<any>): Record<string, any> {
   return { minimum, maximum, type };
 }
 
+function isReadOnly(decorators: DecoratorApplication[]) {
+  let hasRead = false;
+  let hasWrite = false;
+  for (const decorator of decorators) {
+    if (decorator.decorator.name === "$visibility") {
+      for (const arg of decorator.args) {
+        if (arg.value === "read") {
+          hasRead = true;
+        } else if (arg.value === "write") {
+          hasWrite = true;
+        }
+      }
+      break;
+    }
+  }
+  return hasRead && !hasWrite;
+}
+
 function emitProperty(program: Program, property: ModelTypeProperty): Record<string, any> {
   return {
     clientName: camelToSnakeCase(property.name),
@@ -423,6 +441,7 @@ function emitProperty(program: Program, property: ModelTypeProperty): Record<str
     optional: property.optional,
     description: getDocStr(program, property),
     addedApiVersion: getAddedOnVersion(program, property),
+    readonly: isReadOnly(property.decorators),
   };
 }
 
