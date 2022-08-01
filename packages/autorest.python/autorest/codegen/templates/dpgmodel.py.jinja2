@@ -27,8 +27,8 @@
     {% endif %}
     """
 
-    {% if model.properties %}
-        {% for p in model.properties %}
+    {% if serializer.get_properties_to_declare(model) %}
+        {% for p in serializer.get_properties_to_declare(model) %}
     {{ serializer.declare_property(p) }}
         {% endfor %}
     {% endif %}

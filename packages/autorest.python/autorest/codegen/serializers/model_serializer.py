@@ -89,6 +89,17 @@ class ModelSerializer:
             properties_to_initialize = model.properties
         return properties_to_initialize
 
+    @staticmethod
+    def get_properties_to_declare(model: ModelType) -> List[Property]:
+        return list(
+            {
+                p.client_name: p
+                for bm in model.parents or []
+                for p in model.properties
+                if p not in cast(ModelType, bm).properties
+            }.values()
+        )
+
     def declare_model(self, model: ModelType) -> str:
         basename = (
             "msrest.serialization.Model"
@@ -110,9 +121,10 @@ class ModelSerializer:
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
 
+        field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         return (
             f"{prop.client_name}: {prop.type_annotation()} = "
-            f'rest_field({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
+            f'{field}({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
         )
 
     @staticmethod
