@@ -27,7 +27,7 @@ importers:
     devDependencies:
       '@microsoft.azure/autorest.testserver': 3.3.34
 
-  packages/cadl-python-emitter:
+  packages/cadl-python:
     specifiers:
       '@autorest/python': ~6.1.1
       '@azure-tools/cadl-azure-core': ~0.6.0-dev.3
