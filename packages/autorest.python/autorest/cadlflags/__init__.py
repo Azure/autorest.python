@@ -30,6 +30,8 @@ class CadlFlags(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_credential(yaml_data)
         if self.options.get("namespace"):
             yaml_data["client"]["namespace"] = self.options["namespace"]
+        if self.options.get("title"):
+            yaml_data["client"]["name"] = self.options["title"]
 
     def get_credential_scopes_from_flags(self, auth_policy: str) -> List[str]:
         if self.options.get("azure-arm"):
