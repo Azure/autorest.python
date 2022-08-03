@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from pathlib import Path
+import json
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Union
 
@@ -21,7 +22,19 @@ _LOGGER = logging.getLogger(__name__)
 class ReaderAndWriter:
     def __init__(self, *, output_folder: Union[str, Path], **kwargs: Any) -> None:
         self.output_folder = Path(output_folder)
+        try:
+            with open(
+                Path(self.output_folder) / Path("..") / Path("python.json"), "r"
+            ) as fd:
+                python_json = json.load(fd)
+        except Exception:  # pylint: disable=broad-except
+            python_json = {}
         self.options = kwargs
+        if python_json:
+            _LOGGER.warning(
+                "Loading python.json file. This behavior will be depreacted"
+            )
+        self.options.update(python_json)
 
     def read_file(self, path: Union[str, Path]) -> str:
         """How does one read a file in cadl?"""

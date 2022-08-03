@@ -1,4 +1,5 @@
 import {
+  DecoratorApplication,
   EnumMemberType,
   EnumType,
   getDoc,
@@ -15,6 +16,7 @@ import {
   resolvePath,
   Type,
 } from "@cadl-lang/compiler";
+import { getDiscriminator } from "@cadl-lang/rest";
 import {
   getAllRoutes,
   getContentTypes,
@@ -57,6 +59,18 @@ function camelToSnakeCase(name: string): string {
 }
 
 const typesMap = new Map<Type, Record<string, any>>();
+const simpleTypesMap = new Map<string, Record<string, any>>();
+
+function isSimpleType(decorators: DecoratorApplication[]): boolean {
+  // these decorators can only work for simple type(int/string/float, etc)
+  const target_decorators = ["$maxLength", "$minLength", "$pattern", "$maxValue", "$minValue"];
+  for (const decorator of decorators) {
+    if (target_decorators.includes(decorator.decorator.name)) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function getDocStr(program: Program, target: Type): string {
   return getDoc(program, target) ?? "";
@@ -71,19 +85,60 @@ function getOperationGroupName(program: Program, operation: OperationDetails): s
   return groupName;
 }
 
-function getType(program: Program, type: Type): any {
-  const cached = typesMap.get(type);
-  if (cached) {
-    return cached;
-  }
-  const newValue = emitType(program, type);
-  typesMap.set(type, newValue);
-  if (type.kind === "Model") {
-    // need to do properties after insertion to avoid infinite recursion
-    for (const property of type.properties.values()) {
-      newValue.properties.push(emitProperty(program, property));
+function handleDiscriminator(program: Program, type: ModelType, model: Record<string, any>) {
+  const discriminator = getDiscriminator(program, type);
+  if (discriminator) {
+    let discriminatorProperty;
+    for (const childModel of type.derivedModels) {
+      const modelType = getType(program, childModel);
+      for (const property of modelType.properties) {
+        if (property.restApiName === discriminator.propertyName) {
+          modelType.discriminatorValue = property.type.value;
+          property.isDiscriminator = true;
+          model.discriminatedSubtypes[property.type.value] = modelType;
+          discriminatorProperty = property;
+        }
+      }
+    }
+    // it is not included in properties of cadl but needed by python codegen
+    if (discriminatorProperty) {
+      const propertyCopy = { ...discriminatorProperty };
+      propertyCopy.description = "";
+      model.properties.push(propertyCopy);
     }
   }
+}
+
+function getType(program: Program, type: Type, decorators: DecoratorApplication[] = []): any {
+  // don't cache simple type(string, int, etc) since decorators may change the result
+  const enableCache = !isSimpleType(decorators);
+  if (enableCache) {
+    const cached = typesMap.get(type);
+    if (cached) {
+      return cached;
+    }
+  }
+  let newValue = emitType(program, type, decorators);
+  if (enableCache) {
+    typesMap.set(type, newValue);
+    if (type.kind === "Model") {
+      // need to do properties after insertion to avoid infinite recursion
+      for (const property of type.properties.values()) {
+        newValue.properties.push(emitProperty(program, property));
+      }
+      // need to do discriminator outside `emitModel` to avoid infinite recursion
+      handleDiscriminator(program, type, newValue);
+    }
+  } else {
+    const key = dump(newValue, { sortKeys: true });
+    const value = simpleTypesMap.get(key);
+    if (value) {
+      newValue = value;
+    } else {
+      simpleTypesMap.set(key, newValue);
+    }
+  }
+
   return newValue;
 }
 
@@ -126,11 +181,17 @@ function emitRequestBody(program: Program, bodyType: Type, params: HttpOperation
   if (contentTypes.length !== 1) {
     throw Error("Currently only one kind of content-type!");
   }
+  let type;
+  if (params.bodyParameter) {
+    type = getType(program, params.bodyParameter.type, params.bodyParameter.decorators);
+  } else {
+    type = getType(program, bodyType);
+  }
   return {
     contentTypes,
+    type,
     restApiName: params.bodyParameter?.name ?? "body",
     location: "body",
-    type: getType(program, bodyType),
     ...base,
   };
 }
@@ -144,7 +205,7 @@ function emitParameter(
   const paramMap: Record<string, any> = {
     restApiName: parameter.name,
     location: parameter.type,
-    type: getType(program, parameter.param.type),
+    type: getType(program, parameter.param.type, parameter.param.decorators),
     implementation: implementation,
   };
   let clientDefaultValue = undefined;
@@ -161,7 +222,7 @@ function emitResponseHeaders(program: Program, headers?: Record<string, ModelTyp
   }
   for (const [key, value] of Object.entries(headers)) {
     retval.push({
-      type: emitType(program, value.type),
+      type: emitType(program, value.type, value.decorators),
       restApiName: key,
     });
   }
@@ -319,18 +380,72 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
 //   return mappings.length > 0 ? mappings.reduce((a, s) => ({ ...a, ...s }), {}) : undefined;
 // }
 
+function emitString(decorators: Array<any>): Record<string, any> {
+  let maxLength = undefined;
+  let minLength = undefined;
+  let pattern = undefined;
+  for (const decorator of decorators) {
+    if (decorator.decorator.name === "$maxLength") {
+      maxLength = decorator.args[0].value;
+    } else if (decorator.decorator.name === "$minLength") {
+      minLength = decorator.args[0].value;
+    } else if (decorator.decorator.name === "$pattern") {
+      pattern = decorator.args[0].value;
+    }
+  }
+  if (!(maxLength || minLength || pattern)) {
+    return KnownTypes.string;
+  }
+  return { minLength, maxLength, pattern, type: "string" };
+}
+
+function emitNumber(type: string, decorators: Array<any>): Record<string, any> {
+  let minimum = undefined;
+  let maximum = undefined;
+  for (const decorator of decorators) {
+    if (decorator.decorator.name === "$maxValue") {
+      maximum = decorator.args[0].value;
+    } else if (decorator.decorator.name === "$minValue") {
+      minimum = decorator.args[0].value;
+    }
+  }
+  if (!(maximum || minimum)) {
+    return { type };
+  }
+  return { minimum, maximum, type };
+}
+
+function isReadOnly(decorators: DecoratorApplication[]) {
+  let hasRead = false;
+  let hasWrite = false;
+  for (const decorator of decorators) {
+    if (decorator.decorator.name === "$visibility") {
+      for (const arg of decorator.args) {
+        if (arg.value === "read") {
+          hasRead = true;
+        } else if (arg.value === "write") {
+          hasWrite = true;
+        }
+      }
+      break;
+    }
+  }
+  return hasRead && !hasWrite;
+}
+
 function emitProperty(program: Program, property: ModelTypeProperty): Record<string, any> {
   return {
     clientName: camelToSnakeCase(property.name),
     restApiName: property.name,
-    type: getType(program, property.type),
+    type: getType(program, property.type, property.decorators),
     optional: property.optional,
     description: getDocStr(program, property),
     addedApiVersion: getAddedOnVersion(program, property),
+    readonly: isReadOnly(property.decorators),
   };
 }
 
-function emitModel(program: Program, type: ModelType): Record<string, any> {
+function emitModel(program: Program, type: ModelType, decorators: Array<any> = []): Record<string, any> {
   if (type.indexer) {
     if (isNeverType(type.indexer.key)) {
     } else {
@@ -367,12 +482,12 @@ function emitModel(program: Program, type: ModelType): Record<string, any> {
     case "uint16":
     case "uint32":
     case "uint64":
-      return { type: "integer" };
+      return emitNumber("integer", decorators);
     case "float32":
     case "float64":
-      return { type: "float" };
+      return emitNumber("float", decorators);
     case "string":
-      return KnownTypes.string;
+      return emitString(decorators);
     case "boolean":
       return { type: "boolean" };
     case "plainDate":
@@ -407,7 +522,7 @@ function emitModel(program: Program, type: ModelType): Record<string, any> {
         type: "model",
         name: type.name,
         description: getDocStr(program, type),
-        baseModels: [baseModel],
+        parents: baseModel ? [baseModel] : [],
         discriminatedSubtypes: {},
         properties: properties,
         addedApiVersion: getAddedOnVersion(program, type),
@@ -456,7 +571,7 @@ function constantType(value: any, valueType: string): Record<string, any> {
   return { type: "constant", value: value, valueType: { type: valueType } };
 }
 
-function emitType(program: Program, type: Type): Record<string, any> {
+function emitType(program: Program, type: Type, decorators: Array<any> = []): Record<string, any> {
   switch (type.kind) {
     case "Number":
       return constantType(type.value, intOrFloat(type.value));
@@ -465,7 +580,7 @@ function emitType(program: Program, type: Type): Record<string, any> {
     case "Boolean":
       return constantType(type.value, "boolean");
     case "Model":
-      return emitModel(program, type);
+      return emitModel(program, type, decorators);
     case "Enum":
       return emitEnum(program, type);
     default:
@@ -553,7 +668,7 @@ function createYamlEmitter(program: Program) {
       apiVersions: [],
     },
     operationGroups: emitOperationGroups(program),
-    types: [...typesMap.values(), ...Object.values(KnownTypes)],
+    types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
   };
   return codeModel;
 }
