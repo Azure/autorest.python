@@ -220,6 +220,19 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return None
 
     @property
+    def has_own_discriminator(self) -> bool:
+        discriminator = self.discriminator
+        if not discriminator:
+            return False
+        ancestors = self.parents[:]
+        while len(ancestors) > 0:
+            if discriminator == ancestors[0].discriminator:
+                return False
+            ancestors += ancestors[0].parents
+            ancestors.pop(0)
+        return True
+
+    @property
     def instance_check_template(self) -> str:
         if self.code_model.options["models_mode"] == "msrest":
             return "isinstance({}, msrest.Model)"

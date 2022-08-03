@@ -27,6 +27,9 @@
     {% endif %}
     """
 
+    {% if model.has_own_discriminator %}
+    __mapping__ = {}
+    {% endif %}
     {% if serializer.get_properties_to_declare(model) %}
         {% for p in serializer.get_properties_to_declare(model) %}
     {{ serializer.declare_property(p) }}
@@ -61,3 +64,6 @@
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+    {% if model.discriminator_value %}
+        {{ serializer.initialize_discriminator_property(model, model.discriminator) }}
+    {% endif %}

@@ -114,6 +114,11 @@ class ModelSerializer:
         )
         if model.parents:
             basename = ", ".join([cast(ModelType, m).name for m in model.parents])
+        if (
+            self.code_model.options["models_mode"] == "dpg"
+            and model.discriminator_value
+        ):
+            basename += f", discriminator='{model.discriminator_value}'"
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
@@ -127,7 +132,7 @@ class ModelSerializer:
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         return (
-            f"{prop.client_name}: {prop.type_annotation()} = "
+            f"{prop.client_name} = "
             f'{field}({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
         )
 
@@ -147,23 +152,24 @@ class ModelSerializer:
         init_args = []
         for prop in self.get_properties_to_initialize(model):
             if prop.is_discriminator:
-                discriminator_value = (
-                    f"'{model.discriminator_value}'"
-                    if model.discriminator_value
-                    else None
-                )
-                if not discriminator_value:
-                    typing = "Optional[str]"
-                else:
-                    typing = "str"
-                init_args.append(
-                    f"self.{prop.client_name} = {discriminator_value}  # type: {typing}"
-                )
+                init_args.append(self.initialize_discriminator_property(model, prop))
             elif prop.readonly:
                 init_args.append(f"self.{prop.client_name} = None")
             elif not prop.constant:
                 init_args.append(f"self.{prop.client_name} = {prop.client_name}")
         return init_args
+
+    def initialize_discriminator_property(
+        self, model: ModelType, prop: Property
+    ) -> str:
+        discriminator_value = (
+            f"'{model.discriminator_value}'" if model.discriminator_value else None
+        )
+        if not discriminator_value:
+            typing = "Optional[str]"
+        else:
+            typing = "str"
+        return f"self.{prop.client_name} = {discriminator_value}  # type: {typing}"
 
     @staticmethod
     def initialize_standard_property(prop: Property):

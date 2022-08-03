@@ -402,8 +402,31 @@ class Model(_MyMutableMapping):
 
         return super().__new__(cls)
 
+    def __init_subclass__(cls, /, discriminator=None):
+        if hasattr(cls, '__mapping__'):
+            cls.__mapping__[discriminator or cls.__name__] = cls
+    
+    @classmethod
+    def _get_discriminator(cls) -> typing.Optional[str]:
+        for v in cls.__dict__.values():
+            if isinstance(v, _RestField) and v._is_discriminator:
+                return v._rest_name
+        return None
+
+    @classmethod
+    def _deserialize(cls, data):
+        if not hasattr(cls, '__mapping__'):
+            return cls(data)
+        discriminator = cls._get_discriminator()
+        mapped_cls = cls.__mapping__.get(data.get(discriminator, None),cls)
+        if mapped_cls == cls:
+            return cls(data)
+        return mapped_cls.deserialize(data)
+
 def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typing.Any]], value: typing.Any):
     try:
+        if isintance(deserializer, Model):
+            return deserializer._deserialize(deserializer, value)
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e
