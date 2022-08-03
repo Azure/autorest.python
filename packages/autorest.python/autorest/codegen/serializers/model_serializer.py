@@ -159,9 +159,8 @@ class ModelSerializer:
                 init_args.append(f"self.{prop.client_name} = {prop.client_name}")
         return init_args
 
-    def initialize_discriminator_property(
-        self, model: ModelType, prop: Property
-    ) -> str:
+    @staticmethod
+    def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
         discriminator_value = (
             f"'{model.discriminator_value}'" if model.discriminator_value else None
         )

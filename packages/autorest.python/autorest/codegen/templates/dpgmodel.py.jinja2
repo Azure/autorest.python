@@ -27,7 +27,7 @@
     {% endif %}
     """
 
-    {% if model.has_own_discriminator %}
+    {% if model._has_own_discriminator %}
     __mapping__ = {}
     {% endif %}
     {% if serializer.get_properties_to_declare(model) %}

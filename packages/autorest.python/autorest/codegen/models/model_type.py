@@ -220,7 +220,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return None
 
     @property
-    def has_own_discriminator(self) -> bool:
+    def _has_own_discriminator(self) -> bool:
         discriminator = self.discriminator
         if not discriminator:
             return False
