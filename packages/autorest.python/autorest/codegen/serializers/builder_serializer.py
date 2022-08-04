@@ -939,7 +939,7 @@ class _OperationSerializer(
                 json_var = "pipeline_response.http_response.json()"
                 if isinstance(response.type, ModelType):
                     retval.append(
-                        f"deserialized = _models.{response.type.name}({json_var})"
+                        f"deserialized = _models.{response.type.name}._deserialize({json_var})"
                     )
                 else:
                     retval.append(f"deserialized = {json_var}")
