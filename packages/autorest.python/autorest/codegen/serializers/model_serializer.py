@@ -131,10 +131,11 @@ class ModelSerializer:
             args.append(f"default={prop.client_default_value_declaration}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        return (
-            f"{prop.client_name} = "
-            f'{field}({", ".join(args)}) # {" ".join(prop.description(is_operation_file=False).splitlines())}'
-        )
+        declaration = f'{prop.client_name} = {field}({", ".join(args)})'
+        comment = " ".join(prop.description(is_operation_file=False).splitlines())
+        if comment:
+            declaration += f" # {comment}"
+        return declaration
 
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:

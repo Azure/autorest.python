@@ -418,7 +418,7 @@ class Model(_MyMutableMapping):
         if not hasattr(cls, '__mapping__'):
             return cls(data)
         discriminator = cls._get_discriminator()
-        mapped_cls = cls.__mapping__.get(data.get(discriminator, None),cls)
+        mapped_cls = cls.__mapping__.get(data.get(discriminator),cls)
         if mapped_cls == cls:
             return cls(data)
         return mapped_cls.deserialize(data)
