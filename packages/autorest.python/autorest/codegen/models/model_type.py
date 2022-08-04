@@ -227,7 +227,10 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return False
         ancestors = self.parents[:]
         while len(ancestors) > 0:
-            if ancestors[0].discriminator and discriminator.name == ancestors[0].discriminator.name:
+            if (
+                ancestors[0].discriminator
+                and discriminator.client_name == ancestors[0].discriminator.client_name
+            ):
                 return False
             ancestors += ancestors[0].parents
             ancestors.pop(0)
