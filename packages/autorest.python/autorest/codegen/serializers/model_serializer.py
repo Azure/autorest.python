@@ -59,15 +59,9 @@ class ModelSerializer:
             )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            init_line_parameters = (
-                model.properties
-                if self.code_model.options["models_mode"] == "dpg"
-                else [
-                    p
-                    for p in model.properties
-                    if not p.readonly and not p.is_discriminator
-                ]
-            )
+            init_line_parameters = [
+                p for p in model.properties if not p.readonly and not p.is_discriminator
+            ]
             for param in init_line_parameters:
                 file_import.merge(param.imports())
         return file_import

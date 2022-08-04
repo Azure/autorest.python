@@ -237,7 +237,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         models_mode = self.code_model.options["models_mode"]
         if models_mode == "msrest":
             return "isinstance({}, msrest.Model)"
-        elif models_mode == "dpg":
+        if models_mode == "dpg":
             return "isinstance({}, _model_base.Model)"
         return "isinstance({}, MutableMapping)"
 
