@@ -63,6 +63,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         self._created_json_template_representation = False
         self.is_public: bool = self.yaml_data.get("isPublic", True)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
+        self.is_polymorphic: bool = self.yaml_data.get("isPolymorphic", False)
 
     @property
     def is_xml(self) -> bool:
@@ -226,7 +227,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return False
         ancestors = self.parents[:]
         while len(ancestors) > 0:
-            if discriminator == ancestors[0].discriminator:
+            if ancestors[0].discriminator and discriminator.name == ancestors[0].discriminator.name:
                 return False
             ancestors += ancestors[0].parents
             ancestors.pop(0)
