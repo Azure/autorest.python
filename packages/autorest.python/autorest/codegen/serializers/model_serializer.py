@@ -53,6 +53,9 @@ class ModelSerializer:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+            for model in self.code_model.model_types:
+                for p in model.properties:
+                    file_import.merge(p.import_rest_field())
         else:
             file_import.add_msrest_import(
                 self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
