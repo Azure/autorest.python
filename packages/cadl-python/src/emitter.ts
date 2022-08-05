@@ -87,10 +87,7 @@ function getDocStr(program: Program, target: Type): string {
 function getOperationGroupName(program: Program, operation: OperationDetails): string {
   let groupName = "";
   const serviceNamespace = getServiceNamespace(program);
-  if (
-    !serviceNamespace ||
-    capitalize(operation.container.name) !== capitalize(serviceNamespace.name)
-  ) {
+  if (!serviceNamespace || capitalize(operation.container.name) !== capitalize(serviceNamespace.name)) {
     groupName = capitalize(operation.container.name);
   }
   return groupName;
@@ -120,11 +117,7 @@ function handleDiscriminator(program: Program, type: ModelType, model: Record<st
   }
 }
 
-function getType(
-  program: Program,
-  type: Type,
-  modelTypeProperty: ModelTypeProperty | undefined = undefined
-): any {
+function getType(program: Program, type: Type, modelTypeProperty: ModelTypeProperty | undefined = undefined): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(program, modelTypeProperty);
   if (enableCache) {
@@ -187,15 +180,9 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
   };
 }
 
-function emitRequestBody(
-  program: Program,
-  bodyType: Type,
-  params: HttpOperationParameters
-): Record<string, any> {
+function emitRequestBody(program: Program, bodyType: Type, params: HttpOperationParameters): Record<string, any> {
   const base = emitParamBase(program, params.bodyParameter ?? bodyType);
-  const contentTypeParam = params.parameters.find(
-    (p) => p.type === "header" && p.name === "content-type"
-  );
+  const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
   const contentTypes = contentTypeParam
     ? ignoreDiagnostics(getContentTypes(contentTypeParam.param))
     : ["application/json"];
@@ -220,7 +207,7 @@ function emitRequestBody(
 function emitParameter(
   program: Program,
   parameter: HttpOperationParameter,
-  implementation: string
+  implementation: string,
 ): Record<string, any> {
   const base = emitParamBase(program, parameter.param);
   const paramMap: Record<string, any> = {
@@ -236,10 +223,7 @@ function emitParameter(
   return { clientDefaultValue, ...base, ...paramMap };
 }
 
-function emitResponseHeaders(
-  program: Program,
-  headers?: Record<string, ModelTypeProperty>
-): Record<string, any>[] {
+function emitResponseHeaders(program: Program, headers?: Record<string, ModelTypeProperty>): Record<string, any>[] {
   const retval: Record<string, any>[] = [];
   if (!headers) {
     return retval;
@@ -256,7 +240,7 @@ function emitResponseHeaders(
 function emitResponse(
   program: Program,
   response: HttpOperationResponse,
-  innerResponse: HttpOperationResponseContent
+  innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
   let type = undefined;
   if (innerResponse.body?.type) {
@@ -315,9 +299,7 @@ function getContinuationTokenName(operation: OperationDetails): string {
       }
     }
   }
-  throw Error(
-    `Can not find continuation token name for pageable operation ${operation.operation.name}`
-  );
+  throw Error(`Can not find continuation token name for pageable operation ${operation.operation.name}`);
 }
 
 function addPagingInformation(operation: OperationDetails, emittedOperation: Record<string, any>) {
@@ -406,10 +388,7 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
 //   return mappings.length > 0 ? mappings.reduce((a, s) => ({ ...a, ...s }), {}) : undefined;
 // }
 
-function emitString(
-  program: Program,
-  modelTypeProperty: ModelTypeProperty | undefined
-): Record<string, any> {
+function emitString(program: Program, modelTypeProperty: ModelTypeProperty | undefined): Record<string, any> {
   let maxLength = undefined;
   let minLength = undefined;
   let pattern = undefined;
@@ -427,7 +406,7 @@ function emitString(
 function emitNumber(
   type: string,
   program: Program,
-  modelTypeProperty: ModelTypeProperty | undefined
+  modelTypeProperty: ModelTypeProperty | undefined,
 ): Record<string, any> {
   let minimum = undefined;
   let maximum = undefined;
@@ -469,10 +448,7 @@ function getName(program: Program, type: ModelType): string {
     return friendlyName;
   } else {
     if (type.templateArguments && type.templateArguments.length > 0) {
-      return (
-        type.name +
-        type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("")
-      );
+      return type.name + type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("");
     } else {
       return type.name;
     }
@@ -482,7 +458,7 @@ function getName(program: Program, type: ModelType): string {
 function emitModel(
   program: Program,
   type: ModelType,
-  modelTypeProperty: ModelTypeProperty | undefined
+  modelTypeProperty: ModelTypeProperty | undefined,
 ): Record<string, any> {
   if (type.indexer) {
     if (isNeverType(type.indexer.key)) {
@@ -613,7 +589,7 @@ function constantType(value: any, valueType: string): Record<string, any> {
 function emitType(
   program: Program,
   type: Type,
-  modelTypeProperty: ModelTypeProperty | undefined = undefined
+  modelTypeProperty: ModelTypeProperty | undefined = undefined,
 ): Record<string, any> {
   switch (type.kind) {
     case "Number":
