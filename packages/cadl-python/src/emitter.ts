@@ -1,12 +1,18 @@
 import {
-  DecoratorApplication,
   EnumMemberType,
   EnumType,
   getDoc,
+  getFriendlyName,
   getIntrinsicModelName,
+  getMaxLength,
+  getMaxValue,
+  getMinLength,
+  getMinValue,
+  getPattern,
   getServiceNamespace,
   getServiceNamespaceString,
   getServiceTitle,
+  getVisibility,
   ignoreDiagnostics,
   isErrorModel,
   isNeverType,
@@ -61,12 +67,14 @@ function camelToSnakeCase(name: string): string {
 const typesMap = new Map<Type, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 
-function isSimpleType(decorators: DecoratorApplication[]): boolean {
+function isSimpleType(program: Program, modelTypeProperty: ModelTypeProperty | undefined): boolean {
   // these decorators can only work for simple type(int/string/float, etc)
-  const target_decorators = ["$maxLength", "$minLength", "$pattern", "$maxValue", "$minValue"];
-  for (const decorator of decorators) {
-    if (target_decorators.includes(decorator.decorator.name)) {
-      return true;
+  if (modelTypeProperty) {
+    const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
+    for (const func of funcs) {
+      if (func(program, modelTypeProperty)) {
+        return true;
+      }
     }
   }
   return false;
@@ -79,7 +87,10 @@ function getDocStr(program: Program, target: Type): string {
 function getOperationGroupName(program: Program, operation: OperationDetails): string {
   let groupName = "";
   const serviceNamespace = getServiceNamespace(program);
-  if (!serviceNamespace || capitalize(operation.container.name) !== capitalize(serviceNamespace.name)) {
+  if (
+    !serviceNamespace ||
+    capitalize(operation.container.name) !== capitalize(serviceNamespace.name)
+  ) {
     groupName = capitalize(operation.container.name);
   }
   return groupName;
@@ -109,16 +120,20 @@ function handleDiscriminator(program: Program, type: ModelType, model: Record<st
   }
 }
 
-function getType(program: Program, type: Type, decorators: DecoratorApplication[] = []): any {
+function getType(
+  program: Program,
+  type: Type,
+  modelTypeProperty: ModelTypeProperty | undefined = undefined
+): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
-  const enableCache = !isSimpleType(decorators);
+  const enableCache = !isSimpleType(program, modelTypeProperty);
   if (enableCache) {
     const cached = typesMap.get(type);
     if (cached) {
       return cached;
     }
   }
-  let newValue = emitType(program, type, decorators);
+  let newValue = emitType(program, type, modelTypeProperty);
   if (enableCache) {
     typesMap.set(type, newValue);
     if (type.kind === "Model") {
@@ -172,9 +187,15 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
   };
 }
 
-function emitRequestBody(program: Program, bodyType: Type, params: HttpOperationParameters): Record<string, any> {
+function emitRequestBody(
+  program: Program,
+  bodyType: Type,
+  params: HttpOperationParameters
+): Record<string, any> {
   const base = emitParamBase(program, params.bodyParameter ?? bodyType);
-  const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
+  const contentTypeParam = params.parameters.find(
+    (p) => p.type === "header" && p.name === "content-type"
+  );
   const contentTypes = contentTypeParam
     ? ignoreDiagnostics(getContentTypes(contentTypeParam.param))
     : ["application/json"];
@@ -183,7 +204,7 @@ function emitRequestBody(program: Program, bodyType: Type, params: HttpOperation
   }
   let type;
   if (params.bodyParameter) {
-    type = getType(program, params.bodyParameter.type, params.bodyParameter.decorators);
+    type = getType(program, params.bodyParameter.type, params.bodyParameter);
   } else {
     type = getType(program, bodyType);
   }
@@ -199,13 +220,13 @@ function emitRequestBody(program: Program, bodyType: Type, params: HttpOperation
 function emitParameter(
   program: Program,
   parameter: HttpOperationParameter,
-  implementation: string,
+  implementation: string
 ): Record<string, any> {
   const base = emitParamBase(program, parameter.param);
   const paramMap: Record<string, any> = {
     restApiName: parameter.name,
     location: parameter.type,
-    type: getType(program, parameter.param.type, parameter.param.decorators),
+    type: getType(program, parameter.param.type, parameter.param),
     implementation: implementation,
   };
   let clientDefaultValue = undefined;
@@ -215,14 +236,17 @@ function emitParameter(
   return { clientDefaultValue, ...base, ...paramMap };
 }
 
-function emitResponseHeaders(program: Program, headers?: Record<string, ModelTypeProperty>): Record<string, any>[] {
+function emitResponseHeaders(
+  program: Program,
+  headers?: Record<string, ModelTypeProperty>
+): Record<string, any>[] {
   const retval: Record<string, any>[] = [];
   if (!headers) {
     return retval;
   }
   for (const [key, value] of Object.entries(headers)) {
     retval.push({
-      type: emitType(program, value.type, value.decorators),
+      type: emitType(program, value.type, value),
       restApiName: key,
     });
   }
@@ -232,7 +256,7 @@ function emitResponseHeaders(program: Program, headers?: Record<string, ModelTyp
 function emitResponse(
   program: Program,
   response: HttpOperationResponse,
-  innerResponse: HttpOperationResponseContent,
+  innerResponse: HttpOperationResponseContent
 ): Record<string, any> {
   let type = undefined;
   if (innerResponse.body?.type) {
@@ -291,7 +315,9 @@ function getContinuationTokenName(operation: OperationDetails): string {
       }
     }
   }
-  throw Error(`Can not find continuation token name for pageable operation ${operation.operation.name}`);
+  throw Error(
+    `Can not find continuation token name for pageable operation ${operation.operation.name}`
+  );
 }
 
 function addPagingInformation(operation: OperationDetails, emittedOperation: Record<string, any>) {
@@ -380,18 +406,17 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
 //   return mappings.length > 0 ? mappings.reduce((a, s) => ({ ...a, ...s }), {}) : undefined;
 // }
 
-function emitString(decorators: Array<any>): Record<string, any> {
+function emitString(
+  program: Program,
+  modelTypeProperty: ModelTypeProperty | undefined
+): Record<string, any> {
   let maxLength = undefined;
   let minLength = undefined;
   let pattern = undefined;
-  for (const decorator of decorators) {
-    if (decorator.decorator.name === "$maxLength") {
-      maxLength = decorator.args[0].value;
-    } else if (decorator.decorator.name === "$minLength") {
-      minLength = decorator.args[0].value;
-    } else if (decorator.decorator.name === "$pattern") {
-      pattern = decorator.args[0].value;
-    }
+  if (modelTypeProperty) {
+    maxLength = getMaxLength(program, modelTypeProperty);
+    minLength = getMinLength(program, modelTypeProperty);
+    pattern = getPattern(program, modelTypeProperty);
   }
   if (!(maxLength || minLength || pattern)) {
     return KnownTypes.string;
@@ -399,53 +424,66 @@ function emitString(decorators: Array<any>): Record<string, any> {
   return { minLength, maxLength, pattern, type: "string" };
 }
 
-function emitNumber(type: string, decorators: Array<any>): Record<string, any> {
+function emitNumber(
+  type: string,
+  program: Program,
+  modelTypeProperty: ModelTypeProperty | undefined
+): Record<string, any> {
   let minimum = undefined;
   let maximum = undefined;
-  for (const decorator of decorators) {
-    if (decorator.decorator.name === "$maxValue") {
-      maximum = decorator.args[0].value;
-    } else if (decorator.decorator.name === "$minValue") {
-      minimum = decorator.args[0].value;
-    }
+  if (modelTypeProperty) {
+    minimum = getMinValue(program, modelTypeProperty);
+    maximum = getMaxValue(program, modelTypeProperty);
   }
+
   if (!(maximum || minimum)) {
     return { type };
   }
   return { minimum, maximum, type };
 }
 
-function isReadOnly(decorators: DecoratorApplication[]) {
-  let hasRead = false;
-  let hasWrite = false;
-  for (const decorator of decorators) {
-    if (decorator.decorator.name === "$visibility") {
-      for (const arg of decorator.args) {
-        if (arg.value === "read") {
-          hasRead = true;
-        } else if (arg.value === "write") {
-          hasWrite = true;
-        }
-      }
-      break;
-    }
+function isReadOnly(program: Program, type: ModelTypeProperty): boolean {
+  const visibility = getVisibility(program, type);
+  if (visibility) {
+    return !visibility.includes("write");
+  } else {
+    return false;
   }
-  return hasRead && !hasWrite;
 }
 
 function emitProperty(program: Program, property: ModelTypeProperty): Record<string, any> {
   return {
     clientName: camelToSnakeCase(property.name),
     restApiName: property.name,
-    type: getType(program, property.type, property.decorators),
+    type: getType(program, property.type, property),
     optional: property.optional,
     description: getDocStr(program, property),
     addedApiVersion: getAddedOnVersion(program, property),
-    readonly: isReadOnly(property.decorators),
+    readonly: isReadOnly(program, property),
   };
 }
 
-function emitModel(program: Program, type: ModelType, decorators: Array<any> = []): Record<string, any> {
+function getName(program: Program, type: ModelType): string {
+  const friendlyName = getFriendlyName(program, type);
+  if (friendlyName) {
+    return friendlyName;
+  } else {
+    if (type.templateArguments && type.templateArguments.length > 0) {
+      return (
+        type.name +
+        type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("")
+      );
+    } else {
+      return type.name;
+    }
+  }
+}
+
+function emitModel(
+  program: Program,
+  type: ModelType,
+  modelTypeProperty: ModelTypeProperty | undefined
+): Record<string, any> {
   if (type.indexer) {
     if (isNeverType(type.indexer.key)) {
     } else {
@@ -482,12 +520,12 @@ function emitModel(program: Program, type: ModelType, decorators: Array<any> = [
     case "uint16":
     case "uint32":
     case "uint64":
-      return emitNumber("integer", decorators);
+      return emitNumber("integer", program, modelTypeProperty);
     case "float32":
     case "float64":
-      return emitNumber("float", decorators);
+      return emitNumber("float", program, modelTypeProperty);
     case "string":
-      return emitString(decorators);
+      return emitString(program, modelTypeProperty);
     case "boolean":
       return { type: "boolean" };
     case "plainDate":
@@ -516,17 +554,18 @@ function emitModel(program: Program, type: ModelType, decorators: Array<any> = [
       const properties: Record<string, any>[] = [];
       let baseModel = undefined;
       if (type.baseModel) {
-        baseModel = emitModel(program, type.baseModel);
+        baseModel = getType(program, type.baseModel);
       }
+      const modelName = getName(program, type);
       return {
         type: "model",
-        name: type.name,
+        name: modelName,
         description: getDocStr(program, type),
         parents: baseModel ? [baseModel] : [],
         discriminatedSubtypes: {},
         properties: properties,
         addedApiVersion: getAddedOnVersion(program, type),
-        snakeCaseName: type.name,
+        snakeCaseName: camelToSnakeCase(modelName),
       };
   }
 }
@@ -571,7 +610,11 @@ function constantType(value: any, valueType: string): Record<string, any> {
   return { type: "constant", value: value, valueType: { type: valueType } };
 }
 
-function emitType(program: Program, type: Type, decorators: Array<any> = []): Record<string, any> {
+function emitType(
+  program: Program,
+  type: Type,
+  modelTypeProperty: ModelTypeProperty | undefined = undefined
+): Record<string, any> {
   switch (type.kind) {
     case "Number":
       return constantType(type.value, intOrFloat(type.value));
@@ -580,7 +623,7 @@ function emitType(program: Program, type: Type, decorators: Array<any> = []): Re
     case "Boolean":
       return constantType(type.value, "boolean");
     case "Model":
-      return emitModel(program, type, decorators);
+      return emitModel(program, type, modelTypeProperty);
     case "Enum":
       return emitEnum(program, type);
     default:
