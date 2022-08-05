@@ -542,6 +542,7 @@ function emitModel(
         properties: properties,
         addedApiVersion: getAddedOnVersion(program, type),
         snakeCaseName: camelToSnakeCase(modelName),
+        isPolymorphic: getDiscriminator(program, type) !== undefined,
       };
   }
 }
