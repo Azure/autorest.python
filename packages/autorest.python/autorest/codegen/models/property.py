@@ -29,6 +29,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.type = type
         self.optional: bool = self.yaml_data["optional"]
         self.readonly: bool = self.yaml_data.get("readonly", False)
+        self.is_polymorphic: bool = self.yaml_data.get("isPolymorphic", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
         self.client_default_value = yaml_data.get("clientDefaultValue", None)
         if self.client_default_value is None:

@@ -27,11 +27,11 @@
     {% endif %}
     """
 
-    {% if model.is_polymorphic %}
+    {% if model._is_polymorphic %}
     __mapping__ = {}
     {% endif %}
     {% if serializer.get_properties_to_declare(model) %}
-        {% for p in serializer.get_properties_to_declare(model) %}
+        {% for p in serializer.get_properties_to_declare(model) if not p.is_discriminator or p.is_polymorphic %}
     {{ serializer.declare_property(p) }}
         {% endfor %}
     {% endif %}
@@ -65,5 +65,5 @@
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
     {% if model.discriminator_value %}
-        {{ serializer.initialize_discriminator_property(model, model.discriminator) }}
+        {{ serializer.initialize_discriminator_property(model, model._discriminator_to_me) }}
     {% endif %}

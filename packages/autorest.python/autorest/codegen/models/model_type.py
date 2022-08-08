@@ -75,6 +75,10 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return self.name
         return "object"
 
+    @property
+    def _is_polymorphic(self) -> bool:
+        return any(p.is_polymorphic for p in self.properties)
+
     def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             is_operation_file = kwargs.pop("is_operation_file", False)
@@ -217,6 +221,17 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def discriminator(self) -> Optional[Property]:
         try:
             return next(p for p in self.properties if p.is_discriminator)
+        except StopIteration:
+            return None
+
+    @property
+    def _discriminator_to_me(self) -> Optional[Property]:
+        try:
+            return next(
+                p
+                for p in self.properties
+                if p.is_discriminator and p.type.value == self.discriminator_value
+            )
         except StopIteration:
             return None
 
