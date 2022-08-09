@@ -6,7 +6,6 @@
 # --------------------------------------------------------------------------
 """The modelerfour reformatter autorest plugin.
 """
-import re
 import copy
 import logging
 from typing import Callable, Dict, Any, Iterable, List, Optional, Set
