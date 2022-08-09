@@ -53,20 +53,23 @@ class ModelSerializer:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
-            for model in self.code_model.model_types:
-                for p in model.properties:
-                    file_import.merge(p.import_rest_field())
         else:
             file_import.add_msrest_import(
                 self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
             )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            init_line_parameters = [
-                p for p in model.properties if not p.readonly and not p.is_discriminator
-            ]
-            for param in init_line_parameters:
-                file_import.merge(param.imports())
+            if self.code_model.options["models_mode"] == "dpg":
+                for param in model.properties:
+                    file_import.merge(param.imports())
+            else:
+                init_line_parameters = [
+                    p
+                    for p in model.properties
+                    if not p.readonly and not p.is_discriminator
+                ]
+                for param in init_line_parameters:
+                    file_import.merge(param.imports())
         return file_import
 
     @staticmethod
@@ -128,7 +131,9 @@ class ModelSerializer:
             args.append(f"default={prop.client_default_value_declaration}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        declaration = f'{prop.client_name} = {field}({", ".join(args)})'
+        declaration = (
+            f'{prop.client_name}: {prop.type_annotation()} = {field}({", ".join(args)})'
+        )
         comment = " ".join(prop.description(is_operation_file=False).splitlines())
         if comment:
             declaration += f" # {comment}"

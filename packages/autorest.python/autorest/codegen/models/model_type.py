@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 
 from autorest.codegen.models.utils import add_to_pylint_disable
 from .base_type import BaseType
+from .constant_type import ConstantType
 from .property import Property
 from .imports import FileImport, ImportType, TypingSection
 
@@ -230,7 +231,9 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return next(
                 p
                 for p in self.properties
-                if p.is_discriminator and p.type.value == self.discriminator_value
+                if p.is_discriminator
+                and isinstance(p.type, ConstantType)
+                and p.type.value == self.discriminator_value
             )
         except StopIteration:
             return None

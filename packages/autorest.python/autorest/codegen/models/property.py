@@ -160,12 +160,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 TypingSection.TYPING,
                 alias="_models",
             )
-        return file_import
-
-    def import_rest_field(self) -> FileImport:
-        field = "rest_discriminator" if self.is_discriminator else "rest_field"
-        file_import = FileImport()
-        file_import.add_submodule_import(".._model_base", field, ImportType.LOCAL)
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import(
+                ".._model_base",
+                "rest_discriminator" if self.is_discriminator else "rest_field",
+                ImportType.LOCAL,
+            )
         return file_import
 
     @classmethod
