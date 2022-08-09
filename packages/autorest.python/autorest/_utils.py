@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Dict
 import re
 import argparse
 
@@ -54,3 +55,21 @@ def parse_args(need_cadl_file: bool = True):
     )
 
     return parser.parse_args()
+
+
+def get_body_type_for_description(body_parameter: Dict[str, Any]) -> str:
+    if body_parameter["type"]["type"] == "binary":
+        return "binary"
+    if body_parameter["type"]["type"] == "string":
+        return "string"
+    return "JSON"
+
+
+# used if we want to get a string / binary type etc
+KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
+    "string": {"type": "string"},
+    "binary": {"type": "binary"},
+    "anydict": {"type": "dict", "elementType": {"type": "any"}},
+}
+
+JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
