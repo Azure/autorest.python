@@ -314,7 +314,7 @@ class Parameter(_ParameterBase):
             return ParameterMethodLocation.POSITIONAL
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if self.rest_api_name == "Content-Type":
+        if self.rest_api_name.lower() == "content-type":
             if self.in_overload:
                 return ParameterMethodLocation.KEYWORD_ONLY
             return ParameterMethodLocation.KWARG

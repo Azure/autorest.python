@@ -95,7 +95,7 @@ class RequestBuilderParameter(Parameter):
     ) -> None:
         super().__init__(yaml_data, code_model, type)
         # we don't want any default content type behavior in request builder
-        if self.rest_api_name == "Content-Type":
+        if self.rest_api_name.lower() == "content-type":
             self.client_default_value = None
         if self.grouped_by and self.client_name[0] == "_":
             # we don't want hidden parameters for grouped by in request builders
