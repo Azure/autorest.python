@@ -32,6 +32,7 @@ def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, An
         }
         code_model["types"].append(body_parameter["type"])
 
+
 def add_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any]):
     overload = copy.deepcopy(yaml_data)
     overload["isOverload"] = True
@@ -100,6 +101,7 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param[
         "clientDefaultValue"
     ] = None  # make it none bc it will be overriden, we depend on default of overloads
+    content_type_param["optional"] = True
 
 
 def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:

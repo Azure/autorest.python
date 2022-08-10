@@ -815,7 +815,10 @@ class M4Reformatter(
                 continue
             if is_body(param):
                 continue
-            if param["language"]["default"].get("serializedName").lower() == "content-type":
+            if (
+                param["language"]["default"].get("serializedName").lower()
+                == "content-type"
+            ):
                 param = self._update_content_type_parameter(
                     param,
                     body_parameter,
