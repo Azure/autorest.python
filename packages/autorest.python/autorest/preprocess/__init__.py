@@ -337,11 +337,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         update_client(yaml_data["client"])
         self.update_operation_groups(yaml_data)
         update_types(yaml_data["types"])
-        yaml_data["operationGroups"] = sorted(
-            yaml_data["operationGroups"], key=lambda x: x["className"]
-        )
-        for og in yaml_data["operationGroups"]:
-            og["operations"] = sorted(og["operations"], key=lambda x: x["name"])
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
