@@ -468,7 +468,7 @@ class M4Reformatter(
                 group_name, yaml_data, body_type, content_types=content_types
             )
             for parameter in overload["parameters"]:
-                if parameter["restApiName"] == "Content-Type":
+                if parameter["restApiName"].lower() == "content-type":
                     parameter["clientDefaultValue"] = overload["bodyParameter"][
                         "defaultContentType"
                     ]
@@ -815,7 +815,10 @@ class M4Reformatter(
                 continue
             if is_body(param):
                 continue
-            if param["language"]["default"].get("serializedName") == "Content-Type":
+            if (
+                param["language"]["default"].get("serializedName").lower()
+                == "content-type"
+            ):
                 param = self._update_content_type_parameter(
                     param,
                     body_parameter,

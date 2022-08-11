@@ -23,7 +23,7 @@ def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, An
         and any(
             ct for ct in body_parameter.get("contentTypes", []) if JSON_REGEXP.match(ct)
         )
-        and not body_parameter["type"]["xmlMetadata"]
+        and not body_parameter["type"].get("xmlMetadata")
         and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
     ):
         body_parameter["type"] = {
@@ -60,7 +60,7 @@ def add_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any]):
 
     # update content type to be an overloads content type
     content_type_param = next(
-        p for p in overload["parameters"] if p["restApiName"] == "Content-Type"
+        p for p in overload["parameters"] if p["restApiName"].lower() == "content-type"
     )
     content_type_param["inOverload"] = True
     content_type_param["inDocstring"] = True
@@ -93,7 +93,7 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
             continue
         yaml_data["overloads"].append(add_overload(yaml_data, body_type))
     content_type_param = next(
-        p for p in yaml_data["parameters"] if p["restApiName"] == "Content-Type"
+        p for p in yaml_data["parameters"] if p["restApiName"].lower() == "content-type"
     )
     content_type_param["inOverload"] = False
     content_type_param["inOverriden"] = True
@@ -101,6 +101,7 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param[
         "clientDefaultValue"
     ] = None  # make it none bc it will be overriden, we depend on default of overloads
+    content_type_param["optional"] = True
 
 
 def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
