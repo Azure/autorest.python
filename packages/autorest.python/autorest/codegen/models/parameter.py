@@ -308,7 +308,7 @@ class Parameter(_ParameterBase):
 
     @property
     def is_content_type(self) -> bool:
-      return bool(self.rest_api_name) and self.rest_api_name.lower() == "content-type"
+        return bool(self.rest_api_name) and self.rest_api_name.lower() == "content-type"
 
     @property
     def method_location(self) -> ParameterMethodLocation:
