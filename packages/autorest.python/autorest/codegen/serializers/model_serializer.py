@@ -125,6 +125,9 @@ class ModelSerializer:
     def declare_property(prop: Property) -> str:
         attribute_key = prop.rest_api_name.replace(".", "\\\\.")
         args = [f'name="{attribute_key}"']
+        deserializer = prop.type.type_deserializer()
+        if deserializer:
+            args.append(f"type={deserializer}")
         if prop.readonly:
             args.append("readonly=True")
         if prop.client_default_value is not None:

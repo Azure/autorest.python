@@ -24,10 +24,8 @@ class RequestBuilderBodyParameter(BodyParameter):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        if (
-            isinstance(self.type, (BinaryType, StringType))
-            or any("xml" in ct for ct in self.content_types)
-            or self.code_model.options["models_mode"] == "dpg"
+        if isinstance(self.type, (BinaryType, StringType)) or any(
+            "xml" in ct for ct in self.content_types
         ):
             self.client_name = "content"
         else:

@@ -17,7 +17,9 @@ from datetime import datetime, date, time, timedelta
 from azure.core.utils._utils import _FixedOffset
 from collections.abc import MutableMapping
 from azure.core.exceptions import DeserializationError
+from azure.core.pipeline.transport import HttpResponse
 import copy
+from . import models as _models
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -428,15 +430,30 @@ class Model(_MyMutableMapping):
         mapped_cls = cls.__mapping__.get(data.get(discriminator),cls)
         if mapped_cls == cls:
             return cls(data)
-        return mapped_cls.deserialize(data)
+        return mapped_cls._deserialize(data)
+
 
 def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typing.Any]], value: typing.Any):
     try:
-        if isintance(deserializer, Model):
-            return deserializer._deserialize(deserializer, value)
+        if value is None:
+            return None
+        if isinstance(deserializer, list):
+            return [_deserialize(deserializer[0], x) for x in value]
+        if isinstance(deserializer, dict):
+            return {k: _deserialize(deserializer.values[0], value[k]) for k in value}
+        if isinstance(deserializer, type) and issubclass(deserializer, Model):
+            return deserializer._deserialize(value)
+        if isinstance(deserializer, str):
+            return _deserialize(eval(f"_models.{deserializer}"), value)
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e
+
+def _get_response(http_response: HttpResponse):
+    try:
+        return http_response.json()
+    except:
+        return http_response.content
 
 class _RestField:
     def __init__(

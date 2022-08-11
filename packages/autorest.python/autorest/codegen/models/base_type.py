@@ -111,6 +111,9 @@ class BaseType(BaseModel, ABC):
         """
         ...
 
+    def type_deserializer(self) -> Any:
+        return None
+
     @property
     def validation(self) -> Optional[Dict[str, Any]]:
         """Whether there's any validation constraints on this type.

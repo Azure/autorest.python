@@ -665,8 +665,6 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        elif self.code_model.options["models_mode"] == "dpg":
-            create_body_call = f"_{body_kwarg_name} = dumps({body_param.client_name}, cls=AzureJSONEncoder)"
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         if body_param.optional:
@@ -936,13 +934,9 @@ class _OperationSerializer(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
             elif self.code_model.options["models_mode"] == "dpg":
-                json_var = "pipeline_response.http_response.json()"
-                if isinstance(response.type, ModelType):
-                    retval.append(
-                        f"deserialized = _models.{response.type.name}._deserialize({json_var})"
-                    )
-                else:
-                    retval.append(f"deserialized = {json_var}")
+                retval.append(
+                    f"deserialized = _deserialize({response.type.type_deserializer()}, _get_response(pipeline_response.http_response))"
+                )
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"

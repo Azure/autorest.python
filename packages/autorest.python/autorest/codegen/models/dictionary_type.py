@@ -47,6 +47,9 @@ class DictionaryType(BaseType):
         """
         return f"Dict[str, {self.element_type.type_annotation(**kwargs)}]"
 
+    def type_deserializer(self) -> Any:
+        return f"{{'': {self.element_type.type_deserializer()}}}"
+
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")
 
