@@ -307,6 +307,10 @@ class Parameter(_ParameterBase):
         return self.type.xml_serialization_ctxt or ""
 
     @property
+    def is_content_type(self) -> bool:
+      return bool(self.rest_api_name) and self.rest_api_name.lower() == "content-type"
+
+    @property
     def method_location(self) -> ParameterMethodLocation:
         if not self.in_method_signature:
             raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
@@ -314,7 +318,7 @@ class Parameter(_ParameterBase):
             return ParameterMethodLocation.POSITIONAL
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if self.rest_api_name.lower() == "content-type":
+        if self.is_content_type:
             if self.in_overload:
                 return ParameterMethodLocation.KEYWORD_ONLY
             return ParameterMethodLocation.KWARG
