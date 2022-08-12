@@ -89,9 +89,6 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return self.name if is_operation_file else f'"{self.name}"'
         return "ET.Element" if self.is_xml else "JSON"
 
-    def type_deserializer(self) -> Any:
-        return f"'{self.name}'"
-
     def docstring_type(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             return f"~{self.code_model.namespace}.models.{self.name}"

@@ -19,7 +19,6 @@ from collections.abc import MutableMapping
 from azure.core.exceptions import DeserializationError
 from azure.core.pipeline.transport import HttpResponse
 import copy
-from . import models as _models
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -393,15 +392,21 @@ class Model(_MyMutableMapping):
 
     def __new__(cls, *args: typing.Any, **kwargs: typing.Any):
         # we know the last three classes in mro are going to be 'Model', 'dict', and 'object'
+        mros = cls.__mro__[:-3][::-1] # ignore model, dict, and object parents, and reverse the mro order
         attr_to_rest_field: typing.Dict[str, _RestField] = { # map attribute name to rest_field property
             k: v
-            for mro_class in cls.__mro__[:-3][::-1] # ignore model, dict, and object parents, and reverse the mro order
+            for mro_class in mros
             for k, v in mro_class.__dict__.items() if k[0] != "_" and hasattr(v, "_type")
+        }
+        annotations = {
+            k: v
+            for mro_class in mros
+            for k, v in mro_class.__annotations__.items()
         }
         for attr, rest_field in attr_to_rest_field.items():
             rest_field._module = cls.__module__
             if not rest_field._type:
-                rest_field._type = rest_field._get_deserialize_callable_from_annotation(cls.__annotations__.get(attr, None))
+                rest_field._type = rest_field._get_deserialize_callable_from_annotation(annotations.get(attr, None))
             if not rest_field._rest_name_input:
                 rest_field._rest_name_input = attr
         cls._attr_to_rest_field: typing.Dict[str, _RestField] = {
@@ -412,8 +417,9 @@ class Model(_MyMutableMapping):
         return super().__new__(cls)
 
     def __init_subclass__(cls, /, discriminator=None):
-        if hasattr(cls, '__mapping__'):
-            cls.__mapping__[discriminator or cls.__name__] = cls
+        for base in cls.__bases__:
+            if hasattr(base, '__mapping__'):
+                base.__mapping__[discriminator or cls.__name__] = cls
     
     @classmethod
     def _get_discriminator(cls) -> typing.Optional[str]:
@@ -437,19 +443,13 @@ def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typ
     try:
         if value is None:
             return None
-        if isinstance(deserializer, list):
-            return [_deserialize(deserializer[0], x) for x in value]
-        if isinstance(deserializer, dict):
-            return {k: _deserialize(deserializer.values[0], value[k]) for k in value}
         if isinstance(deserializer, type) and issubclass(deserializer, Model):
             return deserializer._deserialize(value)
-        if isinstance(deserializer, str):
-            return _deserialize(eval(f"_models.{deserializer}"), value)
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e
 
-def _get_response(http_response: HttpResponse):
+def _get_content(http_response: HttpResponse):
     try:
         return http_response.json()
     except:
@@ -617,7 +617,7 @@ class _RestField:
             if obj is None:
                 return obj
             try:
-                return annotation(obj)
+                return _deserialize(annotation, obj)
             except Exception:
                 pass
             return _deserialize(deserializer_from_mapping, obj)

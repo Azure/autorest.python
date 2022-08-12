@@ -934,8 +934,13 @@ class _OperationSerializer(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
             elif self.code_model.options["models_mode"] == "dpg":
+                deserializer = (
+                    None
+                    if not isinstance(response.type, ModelType)
+                    else f"_models.{response.type.name}"
+                )  # TODO: deserialize list and dict
                 retval.append(
-                    f"deserialized = _deserialize({response.type.type_deserializer()}, _get_response(pipeline_response.http_response))"
+                    f"deserialized = _deserialize({deserializer}, _get_content(response))"
                 )
             else:
                 deserialized_value = (
@@ -961,10 +966,15 @@ class _OperationSerializer(
             builder.default_error_deserialization
             and self.code_model.options["models_mode"]
         ):
-            retval.append(
-                f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
-                "pipeline_response)"
-            )
+            if self.code_model.options["models_mode"] == "dpg":
+                retval.append(
+                    f"    error = _deserialize({builder.default_error_deserialization},  _get_content(response))"
+                )
+            else:
+                retval.append(
+                    f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
+                    "pipeline_response)"
+                )
             error_model = ", model=error"
         retval.append(
             "    raise HttpResponseError(response=response{}{})".format(

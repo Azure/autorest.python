@@ -125,18 +125,13 @@ class ModelSerializer:
     def declare_property(prop: Property) -> str:
         attribute_key = prop.rest_api_name.replace(".", "\\\\.")
         args = [f'name="{attribute_key}"']
-        deserializer = prop.type.type_deserializer()
-        if deserializer:
-            args.append(f"type={deserializer}")
         if prop.readonly:
             args.append("readonly=True")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        declaration = (
-            f'{prop.client_name}: {prop.type_annotation()} = {field}({", ".join(args)})'
-        )
+        declaration = f'{prop.client_name}: {prop.type_annotation().replace("_models.", "")} = {field}({", ".join(args)})'
         comment = " ".join(prop.description(is_operation_file=False).splitlines())
         if comment:
             declaration += f" # {comment}"
