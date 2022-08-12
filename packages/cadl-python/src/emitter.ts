@@ -1,3 +1,4 @@
+import { getPagedResult } from "@azure-tools/cadl-azure-core";
 import {
   EnumMemberType,
   EnumType,
@@ -12,6 +13,7 @@ import {
   getServiceNamespace,
   getServiceNamespaceString,
   getServiceTitle,
+  getSummary,
   getVisibility,
   ignoreDiagnostics,
   isErrorModel,
@@ -75,6 +77,7 @@ function camelToSnakeCase(name: string): string {
 
 const typesMap = new Map<Type, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
+const endpointPathParameters: Record<string, any>[] = [];
 
 function isSimpleType(program: Program, modelTypeProperty: ModelTypeProperty | undefined): boolean {
   // these decorators can only work for simple type(int/string/float, etc)
@@ -220,13 +223,21 @@ function emitParameter(
   implementation: string,
 ): Record<string, any> {
   const base = emitParamBase(program, parameter.param);
+  let type = getType(program, parameter.param.type, parameter.param);
+  let clientDefaultValue = undefined;
+  if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
+    /// We don't want constant types for content types, so we make sure if it's
+    /// a constant, we make it not constant
+    clientDefaultValue = type["value"];
+    type = type["valueType"];
+  }
   const paramMap: Record<string, any> = {
     restApiName: parameter.name,
     location: parameter.type,
-    type: getType(program, parameter.param.type, parameter.param),
+    type: type,
     implementation: implementation,
   };
-  let clientDefaultValue = undefined;
+
   if (paramMap.type.type === "constant") {
     clientDefaultValue = paramMap.type.value;
   }
@@ -314,62 +325,37 @@ function emitResponse(
   };
 }
 
-function getOperationEmitter(operation: OperationDetails) {
-  if (isPagingOperation(operation)) {
-    return emitPagingOperation;
+function emitOperation(program: Program, operation: OperationDetails) {
+  if (getPagedResult(program, operation.operation)) {
+    return emitPagingOperation(program, operation);
   }
-  return emitOperation;
+  return emitBasicOperation(program, operation);
 }
 
-function getItemName(operation: OperationDetails): string {
-  for (const response of operation.responses) {
-    for (const innerResponse of response.responses) {
-      if (innerResponse.body && innerResponse.body.type.kind == "Model") {
-        for (const property of innerResponse.body.type.properties.values()) {
-          for (const decorator of property.decorators) {
-            if (decorator.decorator.name === "$items") {
-              return property.name;
-            }
-          }
-        }
-      }
-    }
-  }
-  throw Error(`Can not find item name for pageable operation ${operation.operation.name}`);
-}
-
-function getContinuationTokenName(operation: OperationDetails): string {
-  for (const response of operation.responses) {
-    for (const innerResponse of response.responses) {
-      if (innerResponse.body && innerResponse.body.type.kind == "Model") {
-        for (const property of innerResponse.body.type.properties.values()) {
-          for (const decorator of property.decorators) {
-            if (decorator.decorator.name === "$nextLink") {
-              return property.name;
-            }
-          }
-        }
-      }
-    }
-  }
-  throw Error(`Can not find continuation token name for pageable operation ${operation.operation.name}`);
-}
-
-function addPagingInformation(operation: OperationDetails, emittedOperation: Record<string, any>) {
+function addPagingInformation(program: Program, operation: OperationDetails, emittedOperation: Record<string, any>) {
   emittedOperation["discriminator"] = "paging";
-  emittedOperation["itemName"] = getItemName(operation);
-  emittedOperation["continuationTokenName"] = getContinuationTokenName(operation);
+  const pagedResult = getPagedResult(program, operation.operation);
+  if (pagedResult === undefined) {
+    throw Error("Trying to add paging information, but not paging metadata for this operation");
+  }
+  emittedOperation["itemName"] = pagedResult.itemsPath;
+  emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
 }
 
 function emitPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
-  const emittedOperation = emitOperation(program, operation);
-  addPagingInformation(operation, emittedOperation);
+  const emittedOperation = emitBasicOperation(program, operation);
+  addPagingInformation(program, operation, emittedOperation);
   return emittedOperation;
 }
 
-function emitOperation(program: Program, operation: OperationDetails): Record<string, any> {
+function emitBasicOperation(program: Program, operation: OperationDetails): Record<string, any> {
   // Set up parameters for operation
   const parameters: Record<string, any>[] = [];
+  if (endpointPathParameters) {
+    for (const param of endpointPathParameters) {
+      parameters.push(param);
+    }
+  }
   for (const param of operation.parameters.parameters) {
     parameters.push(emitParameter(program, param, "Method"));
   }
@@ -408,6 +394,7 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
   return {
     name: camelToSnakeCase(operation.operation.name),
     description: getDocStr(program, operation.operation),
+    summary: getSummary(program, operation.operation),
     url: operation.path,
     method: operation.verb.toUpperCase(),
     parameters: parameters,
@@ -422,33 +409,6 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
     apiVersions: [getAddedOnVersion(program, operation.operation)],
   };
 }
-
-// Return any string literal values for type
-// function getStringValues(type: Type): string[] {
-//   if (type.kind === "String") {
-//     return [type.value];
-//   } else if (type.kind === "Union") {
-//     return type.options.flatMap(getStringValues).filter((v) => v);
-//   }
-//   return [];
-// }
-
-// function getDiscriminatorMapping(
-//   program: Program,
-//   discriminator: any,
-//   childModels: readonly ModelType[]
-// ): Record<string, string> | undefined {
-//   const { propertyName } = discriminator;
-//   const getMapping = (t: ModelType): any => {
-//     const prop = t.properties?.get(propertyName);
-//     if (prop) {
-//       return getStringValues(prop.type).flatMap((v) => [{ [v]: getType(program, t) }]);
-//     }
-//     return undefined;
-//   };
-//   const mappings = childModels.flatMap(getMapping).filter((v) => v); // only defined values
-//   return mappings.length > 0 ? mappings.reduce((a, s) => ({ ...a, ...s }), {}) : undefined;
-// }
 
 function emitString(program: Program, modelTypeProperty: ModelTypeProperty | undefined): Record<string, any> {
   let maxLength = undefined;
@@ -493,6 +453,14 @@ function isReadOnly(program: Program, type: ModelTypeProperty): boolean {
 }
 
 function emitProperty(program: Program, property: ModelTypeProperty): Record<string, any> {
+  let clientDefaultValue = undefined;
+  const propertyDefaultKind = property.default?.kind;
+  if (
+    property.default &&
+    (propertyDefaultKind === "Number" || propertyDefaultKind === "String" || propertyDefaultKind == "Boolean")
+  ) {
+    clientDefaultValue = property.default.value;
+  }
   return {
     clientName: camelToSnakeCase(property.name),
     restApiName: property.name,
@@ -501,6 +469,7 @@ function emitProperty(program: Program, property: ModelTypeProperty): Record<str
     description: getDocStr(program, property),
     addedApiVersion: getAddedOnVersion(program, property),
     readonly: isReadOnly(program, property),
+    clientDefaultValue: clientDefaultValue,
   };
 }
 
@@ -673,21 +642,6 @@ function capitalize(name: string): string {
   return name[0].toUpperCase() + name.slice(1);
 }
 
-function isPagingOperation(operation: OperationDetails): boolean {
-  for (const response of operation.responses) {
-    for (const innerResponse of response.responses) {
-      if (innerResponse.body && innerResponse.body.type.kind == "Model") {
-        for (const decorator of innerResponse.body.type.decorators) {
-          if (decorator.decorator.name == "$pagedResult") {
-            return true;
-          }
-        }
-      }
-    }
-  }
-  return false;
-}
-
 function emitOperationGroups(program: Program): Record<string, any>[] {
   const operationGroups: Record<string, any>[] = [];
   const allOperations = ignoreDiagnostics(getAllRoutes(program));
@@ -698,7 +652,7 @@ function emitOperationGroups(program: Program): Record<string, any>[] {
         existingOperationGroup = operationGroup;
       }
     }
-    const emittedOperation = getOperationEmitter(operation)(program, operation);
+    const emittedOperation = emitOperation(program, operation);
     if (existingOperationGroup) {
       existingOperationGroup["operations"].push(emittedOperation);
     } else {
@@ -746,6 +700,7 @@ function emitGlobalParameters(program: Program, namespace: NamespaceType): Recor
         name: param.name,
         param: param,
       };
+      endpointPathParameters.push(emitParameter(program, serverParameter, "Client"));
       params.push(emitParameter(program, serverParameter, "Client"));
     }
     return params;
