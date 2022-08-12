@@ -55,6 +55,10 @@ class Response(BaseModel):
         self.type = type
         self.nullable = yaml_data.get("nullable")
 
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        if self.type:
+            self.type.get_polymorphic_subtypes(polymorphic_subtypes)
+
     def get_json_template_representation(self) -> Any:
         if not self.type:
             return None
@@ -136,6 +140,9 @@ class PagingResponse(Response):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
+
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        return self.item_type.get_polymorphic_subtypes(polymorphic_subtypes)
 
     def get_json_template_representation(self) -> Any:
         return self.item_type.get_json_template_representation()
