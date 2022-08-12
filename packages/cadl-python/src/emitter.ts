@@ -51,12 +51,14 @@ export async function $onEmit(program: Program) {
   const yamlMap = createYamlEmitter(program);
   const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
   await program.host.writeFile(yamlPath, dump(yamlMap));
+  const yamlPathOrigin = resolvePath(program.compilerOptions.outputPath!, "output-origin.yaml");
+  await program.host.writeFile(yamlPathOrigin, dump(yamlMap));
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const root = resolve(__dirname, "..", "..");
 
   execFileSync(process.execPath, [
-    `${root}/node_modules/@autorest/python/run-python3.js`,
-    `${root}/node_modules/@autorest/python/run_cadl.py`,
+    `D:\\dev1\\autorest.python\\packages\\autorest.python\\run-python3.js`,
+    `D:\\dev1\\autorest.python\\packages\\autorest.python\\run_cadl.py`,
     `--output-folder=${program.compilerOptions.outputPath!}`,
     `--cadl-file=${yamlPath}`,
   ]);
@@ -321,13 +323,13 @@ function getOperationEmitter(operation: OperationDetails) {
   return emitOperation;
 }
 
-function getItemName(operation: OperationDetails): string {
+function getPageName(operation: OperationDetails, name: string, error: string): string {
   for (const response of operation.responses) {
     for (const innerResponse of response.responses) {
       if (innerResponse.body && innerResponse.body.type.kind == "Model") {
         for (const property of innerResponse.body.type.properties.values()) {
           for (const decorator of property.decorators) {
-            if (decorator.decorator.name === "$items") {
+            if (decorator.decorator.name === name) {
               return property.name;
             }
           }
@@ -335,24 +337,15 @@ function getItemName(operation: OperationDetails): string {
       }
     }
   }
-  throw Error(`Can not find item name for pageable operation ${operation.operation.name}`);
+  throw Error(`Can not find ${error} name for pageable operation ${operation.operation.name}`);
+}
+
+function getItemName(operation: OperationDetails): string {
+  return getPageName(operation, "$items", "item")
 }
 
 function getContinuationTokenName(operation: OperationDetails): string {
-  for (const response of operation.responses) {
-    for (const innerResponse of response.responses) {
-      if (innerResponse.body && innerResponse.body.type.kind == "Model") {
-        for (const property of innerResponse.body.type.properties.values()) {
-          for (const decorator of property.decorators) {
-            if (decorator.decorator.name === "$nextLink") {
-              return property.name;
-            }
-          }
-        }
-      }
-    }
-  }
-  throw Error(`Can not find continuation token name for pageable operation ${operation.operation.name}`);
+  return getPageName(operation, "$nextLink", "continuation token")
 }
 
 function addPagingInformation(operation: OperationDetails, emittedOperation: Record<string, any>) {
