@@ -3,10 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import re
 from typing import TypeVar, Dict
-
-JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
 T = TypeVar("T")
 OrderedSet = Dict[T, None]

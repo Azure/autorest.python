@@ -691,7 +691,9 @@ class _OperationSerializer(
             if (
                 not body_param.default_content_type
                 and not next(
-                    p for p in builder.parameters if p.rest_api_name == "Content-Type"
+                    p
+                    for p in builder.parameters
+                    if p.rest_api_name.lower() == "content-type"
                 ).optional
             ):
                 content_types = "'" + "', '".join(body_param.content_types) + "'"

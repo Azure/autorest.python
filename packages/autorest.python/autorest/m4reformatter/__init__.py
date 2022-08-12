@@ -6,27 +6,24 @@
 # --------------------------------------------------------------------------
 """The modelerfour reformatter autorest plugin.
 """
-import re
 import copy
 import logging
 from typing import Callable, Dict, Any, Iterable, List, Optional, Set
 
-from .._utils import to_snake_case
+from .._utils import (
+    to_snake_case,
+    KNOWN_TYPES,
+    get_body_type_for_description,
+    JSON_REGEXP,
+)
 from .. import YamlUpdatePluginAutorest
 
-JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
+
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
 OAUTH_TYPE = "OAuth2"
 KEY_TYPE = "Key"
 
 _LOGGER = logging.getLogger(__name__)
-
-# used if we want to get a string / binary type etc
-KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
-    "string": {"type": "string"},
-    "binary": {"type": "binary"},
-    "anydict": {"type": "dict", "elementType": {"type": "any"}},
-}
 
 
 def is_body(yaml_data: Dict[str, Any]) -> bool:
@@ -329,14 +326,6 @@ def get_all_body_types(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     return list(seen_body_types.values())
 
 
-def get_body_type_for_description(body_parameter: Dict[str, Any]) -> str:
-    if body_parameter["type"]["type"] == "binary":
-        return "binary"
-    if body_parameter["type"]["type"] == "string":
-        return "string"
-    return "JSON"
-
-
 def add_lro_information(operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
     operation["discriminator"] = "lro"
     extensions = yaml_data["extensions"]
@@ -479,7 +468,7 @@ class M4Reformatter(
                 group_name, yaml_data, body_type, content_types=content_types
             )
             for parameter in overload["parameters"]:
-                if parameter["restApiName"] == "Content-Type":
+                if parameter["restApiName"].lower() == "content-type":
                     parameter["clientDefaultValue"] = overload["bodyParameter"][
                         "defaultContentType"
                     ]
@@ -557,23 +546,6 @@ class M4Reformatter(
             else None
         )
         content_types = None
-        if (  # pylint: disable=too-many-boolean-expressions
-            body_parameter
-            and body_parameter["type"]["type"] != "combined"
-            and yaml_data.get("requestMediaTypes")
-            and any(
-                ct for ct in yaml_data["requestMediaTypes"] if JSON_REGEXP.match(ct)
-            )
-            and body_parameter["type"]["type"] in ("model", "dict", "list")
-            and not body_parameter["type"]["xmlMetadata"]
-            and not body_parameter.get("flattened")
-            and not body_parameter.get("groupedBy")
-        ):
-            combined_type = update_types(
-                [body_parameter["type"], KNOWN_TYPES["binary"]]
-            )
-            body_parameter["type"] = combined_type
-            content_types = body_parameter["contentTypes"]
         operation = self._update_operation_helper(group_name, yaml_data, body_parameter)
         operation["overloads"] = self.update_overloads(
             group_name, yaml_data, body_parameter, content_types=content_types
@@ -843,7 +815,10 @@ class M4Reformatter(
                 continue
             if is_body(param):
                 continue
-            if param["language"]["default"].get("serializedName") == "Content-Type":
+            if (
+                param["language"]["default"].get("serializedName").lower()
+                == "content-type"
+            ):
                 param = self._update_content_type_parameter(
                     param,
                     body_parameter,

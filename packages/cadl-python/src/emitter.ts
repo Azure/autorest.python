@@ -18,6 +18,7 @@ import {
   isNeverType,
   ModelType,
   ModelTypeProperty,
+  NamespaceType,
   Program,
   resolvePath,
   Type,
@@ -26,10 +27,12 @@ import { getDiscriminator } from "@cadl-lang/rest";
 import {
   getAllRoutes,
   getContentTypes,
+  getServers,
   HttpOperationParameter,
   HttpOperationParameters,
   HttpOperationResponse,
   HttpOperationResponseContent,
+  HttpServer,
   OperationDetails,
 } from "@cadl-lang/rest/http";
 import { getAddedOn } from "@cadl-lang/versioning";
@@ -37,6 +40,12 @@ import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+
+interface HttpServerParameter {
+  type: "endpointPath";
+  name: string;
+  param: ModelTypeProperty;
+}
 
 export async function $onEmit(program: Program) {
   const yamlMap = createYamlEmitter(program);
@@ -110,7 +119,7 @@ function handleDiscriminator(program: Program, type: ModelType, model: Record<st
     }
     // it is not included in properties of cadl but needed by python codegen
     if (discriminatorProperty) {
-      const propertyCopy = { ...discriminatorProperty };
+      const propertyCopy = { ...discriminatorProperty, isPolymorphic: true };
       propertyCopy.description = "";
       model.properties.push(propertyCopy);
     }
@@ -180,7 +189,7 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
   };
 }
 
-function emitRequestBody(program: Program, bodyType: Type, params: HttpOperationParameters): Record<string, any> {
+function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperationParameters): Record<string, any> {
   const base = emitParamBase(program, params.bodyParameter ?? bodyType);
   const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
   const contentTypes = contentTypeParam
@@ -201,12 +210,13 @@ function emitRequestBody(program: Program, bodyType: Type, params: HttpOperation
     restApiName: params.bodyParameter?.name ?? "body",
     location: "body",
     ...base,
+    defaultContentType: contentTypes.includes("application/json") ? "application/json" : contentTypes[0],
   };
 }
 
 function emitParameter(
   program: Program,
-  parameter: HttpOperationParameter,
+  parameter: HttpOperationParameter | HttpServerParameter,
   implementation: string,
 ): Record<string, any> {
   const base = emitParamBase(program, parameter.param);
@@ -221,6 +231,49 @@ function emitParameter(
     clientDefaultValue = paramMap.type.value;
   }
   return { clientDefaultValue, ...base, ...paramMap };
+}
+
+function emitContentTypeParameter(
+  bodyParameter: Record<string, any>,
+  inOverload: boolean,
+  inOverriden: boolean,
+): Record<string, any> {
+  return {
+    checkClientInput: false,
+    clientDefaultValue: bodyParameter.defaultContentType,
+    clientName: "content_type",
+    delimiter: null,
+    description: `Body parameter Content-Type. Known values are: ${bodyParameter.contentTypes}.`,
+    implementation: "Method",
+    inDocstring: true,
+    inOverload: inOverload,
+    inOverriden: inOverriden,
+    location: "header",
+    optional: true,
+    restApiName: "Content-Type",
+    type: KnownTypes.string,
+  };
+}
+
+function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<string, any> {
+  return {
+    checkClientInput: false,
+    clientDefaultValue: "application/json",
+    clientName: "accept",
+    delimiter: null,
+    description: "Accept header.",
+    explode: false,
+    groupedBy: null,
+    implementation: "Method",
+    inDocstring: true,
+    inOverload: inOverload,
+    inOverriden: inOverriden,
+    location: "header",
+    optional: false,
+    restApiName: "Accept",
+    skipUrlEncoding: false,
+    type: ConstantTypes.applicationJson,
+  };
 }
 
 function emitResponseHeaders(program: Program, headers?: Record<string, ModelTypeProperty>): Record<string, any>[] {
@@ -324,9 +377,14 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
   // Set up responses for operation
   const responses: Record<string, any>[] = [];
   const exceptions: Record<string, any>[] = [];
+  const isOverload: boolean = false;
+  const isOverriden: boolean = false;
   for (const response of operation.responses) {
     for (const innerResponse of response.responses) {
       const emittedResponse = emitResponse(program, response, innerResponse);
+      if (emittedResponse["type"] && parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0) {
+        parameters.push(emitAcceptParameter(isOverload, isOverriden));
+      }
       if (isErrorModel(program, response.type)) {
         // * is valid status code in cadl but invalid for autorest.python
         if (response.statusCode === "*") {
@@ -337,11 +395,15 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
       }
     }
   }
-  let requestBody: Record<string, any> | undefined;
+
+  let bodyParameter: Record<string, any> | undefined;
   if (operation.parameters.bodyType === undefined) {
-    requestBody = undefined;
+    bodyParameter = undefined;
   } else {
-    requestBody = emitRequestBody(program, operation.parameters.bodyType, operation.parameters);
+    bodyParameter = emitBodyParameter(program, operation.parameters.bodyType, operation.parameters);
+    if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
+      parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
+    }
   }
   return {
     name: camelToSnakeCase(operation.operation.name),
@@ -349,7 +411,7 @@ function emitOperation(program: Program, operation: OperationDetails): Record<st
     url: operation.path,
     method: operation.verb.toUpperCase(),
     parameters: parameters,
-    bodyParameter: requestBody,
+    bodyParameter: bodyParameter,
     responses: responses,
     exceptions: exceptions,
     groupName: getOperationGroupName(program, operation),
@@ -486,7 +548,7 @@ function emitModel(
   const name = getIntrinsicModelName(program, type);
   switch (name) {
     case "bytes":
-      return { type: "base64" };
+      return { type: "byte-array", format: "byte" };
     case "int8":
     case "int16":
     case "int32":
@@ -542,7 +604,6 @@ function emitModel(
         properties: properties,
         addedApiVersion: getAddedOnVersion(program, type),
         snakeCaseName: camelToSnakeCase(modelName),
-        isPolymorphic: getDiscriminator(program, type) !== undefined,
       };
   }
 }
@@ -652,6 +713,59 @@ function emitOperationGroups(program: Program): Record<string, any>[] {
   return operationGroups;
 }
 
+function getServerHelper(program: Program, namespace: NamespaceType): HttpServer | undefined {
+  const servers = getServers(program, namespace);
+  if (servers === undefined) {
+    return undefined;
+  }
+  return servers[0];
+}
+
+function emitGlobalParameters(program: Program, namespace: NamespaceType): Record<string, any>[] {
+  const server = getServerHelper(program, namespace);
+  if (server === undefined) {
+    return [
+      {
+        optional: false,
+        description: "Service host",
+        clientName: "endpoint",
+        clientDefaultValue: null,
+        restApiName: "$host",
+        location: "path",
+        type: KnownTypes.string,
+        implementation: "Client",
+        inOverload: false,
+      },
+    ];
+  }
+  if (server.parameters) {
+    const params: Record<string, any>[] = [];
+    for (const param of server.parameters.values()) {
+      const serverParameter: HttpServerParameter = {
+        type: "endpointPath",
+        name: param.name,
+        param: param,
+      };
+      params.push(emitParameter(program, serverParameter, "Client"));
+    }
+    return params;
+  } else {
+    return [
+      {
+        optional: false,
+        description: "Service host",
+        clientName: "endpoint",
+        clientDefaultValue: server.url,
+        restApiName: "$host",
+        location: "path",
+        type: KnownTypes.string,
+        implementation: "Client",
+        inOverload: false,
+      },
+    ];
+  }
+}
+
 function createYamlEmitter(program: Program) {
   const serviceNamespace = getServiceNamespace(program);
   if (serviceNamespace === undefined) {
@@ -663,36 +777,42 @@ function createYamlEmitter(program: Program) {
   //   versions = [getServiceVersion(program)];
   // }
   const name = getServiceTitle(program).replace(/ /g, "");
+  const clientParameters = emitGlobalParameters(program, serviceNamespace);
   // Get types
+  const server = getServerHelper(program, serviceNamespace);
   const codeModel = {
     client: {
       name: name,
       description: "Service client",
       moduleName: camelToSnakeCase(name),
-      parameters: [
-        {
-          optional: false,
-          description: "Service host",
-          clientName: "endpoint",
-          clientDefaultValue: "http://localhost:3000",
-          restApiName: "$host",
-          location: "path",
-          type: KnownTypes.string,
-          implementation: "Client",
-          inOverload: false,
-        },
-      ],
+      parameters: clientParameters,
       security: {},
       namespace: getServiceNamespaceString(program),
-      url: "",
+      url: server ? server.url : "",
       apiVersions: [],
     },
     operationGroups: emitOperationGroups(program),
-    types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
+    types: [
+      ...typesMap.values(),
+      ...Object.values(KnownTypes),
+      ...simpleTypesMap.values(),
+      ...Object.values(ConstantTypes),
+    ],
   };
   return codeModel;
 }
 
 const KnownTypes = {
   string: { type: "string" },
+};
+
+const ConstantTypes = {
+  applicationJson: {
+    apiVersions: [],
+    clientDefaultValue: null,
+    type: "constant",
+    value: "application/json",
+    valueType: KnownTypes.string,
+    xmlMetadata: {},
+  },
 };
