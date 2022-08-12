@@ -131,7 +131,10 @@ class ModelSerializer:
             args.append(f"default={prop.client_default_value_declaration}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        declaration = f'{prop.client_name}: {prop.type_annotation().replace("_models.", "")} = {field}({", ".join(args)})'
+        declaration = (
+            f'{prop.client_name}: {prop.type_annotation().replace("_models.", "")} ='
+            f' {field}({", ".join(args)})'
+        )
         comment = " ".join(prop.description(is_operation_file=False).splitlines())
         if comment:
             declaration += f" # {comment}"
