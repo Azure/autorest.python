@@ -972,7 +972,7 @@ class _OperationSerializer(
         ):
             if self.code_model.options["models_mode"] == "dpg":
                 retval.append(
-                    f"    error = _deserialize({builder.default_error_deserialization},  response.content)"
+                    f"    error = _deserialize({builder.default_error_deserialization},  response.json())"
                 )
             else:
                 retval.append(

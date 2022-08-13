@@ -461,9 +461,6 @@ class Operation(OperationBase[Response]):
                 f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
             )
             file_import.add_submodule_import(
-                f"{relative_path}_model_base", "_get_content", ImportType.LOCAL
-            )
-            file_import.add_submodule_import(
                 f"{relative_path}_model_base", "AzureJSONEncoder", ImportType.LOCAL
             )
             file_import.add_submodule_import("json", "dumps", ImportType.STDLIB)
