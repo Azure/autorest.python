@@ -944,7 +944,7 @@ class _OperationSerializer(
                     else f"_models.{response.type.name}"
                 )  # TODO: deserialize list and dict
                 retval.append(
-                    f"deserialized = _deserialize({deserializer}, _get_content(response))"
+                    f"deserialized = _deserialize({deserializer}, response.json())"
                 )
             else:
                 deserialized_value = (
@@ -972,7 +972,7 @@ class _OperationSerializer(
         ):
             if self.code_model.options["models_mode"] == "dpg":
                 retval.append(
-                    f"    error = _deserialize({builder.default_error_deserialization},  _get_content(response))"
+                    f"    error = _deserialize({builder.default_error_deserialization},  response.content)"
                 )
             else:
                 retval.append(
