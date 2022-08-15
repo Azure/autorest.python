@@ -10,6 +10,7 @@ from .base_type import BaseType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .model_type import ModelType
 
 
 class CombinedType(BaseType):
@@ -81,6 +82,9 @@ class CombinedType(BaseType):
         raise ValueError(
             "You shouldn't get a JSON template representation of multiple types"
         )
+
+    def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+        raise ValueError("You shouldn't get polymorphic subtypes of multiple types")
 
     @property
     def instance_check_template(self) -> str:

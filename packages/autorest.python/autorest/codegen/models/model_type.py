@@ -61,6 +61,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             "discriminatorValue"
         )
         self._created_json_template_representation = False
+        self._got_polymorphic_subtypes = False
         self.is_public: bool = self.yaml_data.get("isPublic", True)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
 
@@ -167,9 +168,13 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
+
         is_polymorphic_subtype = (
             self.discriminator_value and not self.discriminated_subtypes
         )
+        if self._got_polymorphic_subtypes:
+            return
+        self._got_polymorphic_subtypes = True
         if (
             self.name not in (m.name for m in polymorphic_subtypes)
             and is_polymorphic_subtype
@@ -179,6 +184,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             discriminated_subtype.get_polymorphic_subtypes(polymorphic_subtypes)
         for property in self.properties:
             property.get_polymorphic_subtypes(polymorphic_subtypes)
+        self._got_polymorphic_subtypes = False
 
     @classmethod
     def from_yaml(
