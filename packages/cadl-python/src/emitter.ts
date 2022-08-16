@@ -28,8 +28,10 @@ import {
 import { getDiscriminator } from "@cadl-lang/rest";
 import {
   getAllRoutes,
+  getAuthentication,
   getContentTypes,
   getServers,
+  HttpAuth,
   HttpOperationParameter,
   HttpOperationParameters,
   HttpOperationResponse,
@@ -49,16 +51,23 @@ interface HttpServerParameter {
   param: ModelTypeProperty;
 }
 
+interface CredentialType {
+  kind: "Credential",
+  scheme: HttpAuth;
+}
+
 export async function $onEmit(program: Program) {
   const yamlMap = createYamlEmitter(program);
   const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
   await program.host.writeFile(yamlPath, dump(yamlMap));
+  const yamlPathOrigin = resolvePath(program.compilerOptions.outputPath!, "output-origin.yaml");
+  await program.host.writeFile(yamlPathOrigin, dump(yamlMap));
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const root = resolve(__dirname, "..", "..");
 
   execFileSync(process.execPath, [
-    `${root}/node_modules/@autorest/python/run-python3.js`,
-    `${root}/node_modules/@autorest/python/run_cadl.py`,
+    `D:\\dev1\\autorest.python\\packages\\autorest.python\\run-python3.js`,
+    `D:\\dev1\\autorest.python\\packages\\autorest.python\\run_cadl.py`,
     `--output-folder=${program.compilerOptions.outputPath!}`,
     `--cadl-file=${yamlPath}`,
   ]);
@@ -75,7 +84,7 @@ function camelToSnakeCase(name: string): string {
   return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
-const typesMap = new Map<Type, Record<string, any>>();
+const typesMap = new Map<Type | CredentialType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 
@@ -129,7 +138,7 @@ function handleDiscriminator(program: Program, type: ModelType, model: Record<st
   }
 }
 
-function getType(program: Program, type: Type, modelTypeProperty: ModelTypeProperty | undefined = undefined): any {
+function getType(program: Program, type: Type | CredentialType, modelTypeProperty: ModelTypeProperty | undefined = undefined): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(program, modelTypeProperty);
   if (enableCache) {
@@ -149,7 +158,7 @@ function getType(program: Program, type: Type, modelTypeProperty: ModelTypePrope
       // need to do discriminator outside `emitModel` to avoid infinite recursion
       handleDiscriminator(program, type, newValue);
     }
-  } else {
+  } else if (newValue) {
     const key = dump(newValue, { sortKeys: true });
     const value = simpleTypesMap.get(key);
     if (value) {
@@ -617,9 +626,32 @@ function constantType(value: any, valueType: string): Record<string, any> {
   return { type: "constant", value: value, valueType: { type: valueType } };
 }
 
+function emitCredential(auth: HttpAuth): Record<string, any> {
+  let credential_type: Record<string, any> = {};
+  if (auth.type === "oauth2") {
+    credential_type = {
+      type: "OAuth2",
+      policy: {
+        type: "BearerTokenCredentialPolicy",
+        credentialScopes: []
+      }
+    }
+    auth.flows.forEach(it => credential_type.policy.credentialScopes.push(...it.scopes));
+  } else if (auth.type === "apiKey") {
+    credential_type = {
+      type: "Key",
+      policy: {
+        type: "AzureKeyCredentialPolicy",
+        key: auth.name
+      }
+    }
+  }
+  return credential_type;
+}
+
 function emitType(
   program: Program,
-  type: Type,
+  type: Type | CredentialType,
   modelTypeProperty: ModelTypeProperty | undefined = undefined,
 ): Record<string, any> {
   switch (type.kind) {
@@ -633,6 +665,8 @@ function emitType(
       return emitModel(program, type, modelTypeProperty);
     case "Enum":
       return emitEnum(program, type);
+    case "Credential":
+      return emitCredential(type.scheme);
     default:
       throw Error(`Not supported ${type.kind}`);
   }
@@ -721,6 +755,36 @@ function emitGlobalParameters(program: Program, namespace: NamespaceType): Recor
   }
 }
 
+function emitCredentialParameter(program: Program, namespace: NamespaceType, params: Record<string, any>[]) {
+  const auth = getAuthentication(program, namespace);
+  if (!auth) {
+    return;
+  }
+  for (const option of auth.options) {
+    for (const scheme of option.schemes) {
+      const type: CredentialType = {
+        kind: "Credential",
+        scheme: scheme,
+      }
+      const credential_type = getType(program, type);
+      if (credential_type) {
+        params.push({
+          type: credential_type,
+          optional: false,
+          description: "Credential needed for the client to connect to Azure.",
+          clientName: "credential",
+          location: "other",
+          restApiName: "credential",
+          implementation: "Client",
+          skipUrlEncoding: true,
+          inOverload: false
+        })
+        return;
+      }
+    }
+  }
+}
+
 function createYamlEmitter(program: Program) {
   const serviceNamespace = getServiceNamespace(program);
   if (serviceNamespace === undefined) {
@@ -733,6 +797,7 @@ function createYamlEmitter(program: Program) {
   // }
   const name = getServiceTitle(program).replace(/ /g, "");
   const clientParameters = emitGlobalParameters(program, serviceNamespace);
+  emitCredentialParameter(program, serviceNamespace, clientParameters);
   // Get types
   const server = getServerHelper(program, serviceNamespace);
   const codeModel = {
