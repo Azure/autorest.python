@@ -22,7 +22,8 @@
     "target": "es2019",
     "lib": ["es2019"],
     "experimentalDecorators": true,
-    "newLine": "LF"
+    "newLine": "LF",
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }

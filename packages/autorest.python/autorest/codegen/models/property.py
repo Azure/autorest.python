@@ -110,14 +110,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         from .model_type import ModelType
 
         if isinstance(self.type, ModelType):
-            is_polymorphic_subtype = (
-                self.type.discriminator_value and not self.type.discriminated_subtypes
-            )
-            if (
-                self.type.name not in (m.name for m in polymorphic_subtypes)
-                and is_polymorphic_subtype
-            ):
-                polymorphic_subtypes.append(self.type)
+            self.type.get_polymorphic_subtypes(polymorphic_subtypes)
 
     @property
     def validation(self) -> Optional[Dict[str, Any]]:
