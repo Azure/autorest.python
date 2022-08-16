@@ -33,6 +33,22 @@ def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, An
         code_model["types"].append(body_parameter["type"])
 
 
+def update_overload_section(
+    overload: Dict[str, Any],
+    yaml_data: Dict[str, Any],
+    section: str,
+):
+    for overload_s, original_s in zip(overload[section], yaml_data[section]):
+        if overload_s.get("type"):
+            overload_s["type"] = original_s["type"]
+        if overload_s.get("headers"):
+            for overload_h, original_h in zip(
+                overload_s["headers"], original_s["headers"]
+            ):
+                if overload_h.get("type"):
+                    overload_h["type"] = original_h["type"]
+
+
 def add_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any]):
     overload = copy.deepcopy(yaml_data)
     overload["isOverload"] = True
@@ -43,20 +59,8 @@ def add_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any]):
     # for yaml sync, we need to make sure all of the responses, parameters, and exceptions' types have the same yaml id
     for overload_p, original_p in zip(overload["parameters"], yaml_data["parameters"]):
         overload_p["type"] = original_p["type"]
-
-    for overload_r, original_r in zip(overload["responses"], yaml_data["responses"]):
-        if overload_r.get("type"):
-            overload_r["type"] = original_r["type"]
-        if overload_r.get("headers"):
-            for overload_h, original_h in zip(
-                overload_r["headers"], original_r["headers"]
-            ):
-                if overload_h.get("type"):
-                    overload_h["type"] = original_h["type"]
-
-    for overload_e, original_e in zip(overload["exceptions"], yaml_data["exceptions"]):
-        if overload_e.get("type"):
-            overload_e["type"] = original_e["type"]
+    update_overload_section(overload, yaml_data, "responses")
+    update_overload_section(overload, yaml_data, "exceptions")
 
     # update content type to be an overloads content type
     content_type_param = next(
