@@ -726,10 +726,12 @@ class _OperationSerializer(
                 0
             ].parameters.body_parameter.default_content_type
             retval.append(f'content_type = content_type or "{default_content_type}"')
+        initiated = set()
         for overload in builder.overloads:
-            retval.append(
-                f"_{overload.request_builder.parameters.body_parameter.client_name} = None"
-            )
+            client_name = overload.request_builder.parameters.body_parameter.client_name
+            if client_name not in initiated:
+                retval.append(f"_{client_name} = None")
+                initiated.add(client_name)
         try:
             # if there is a binary overload, we do a binary check first.
             binary_overload = cast(

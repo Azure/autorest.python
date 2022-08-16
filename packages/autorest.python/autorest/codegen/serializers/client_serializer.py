@@ -125,23 +125,27 @@ class ClientSerializer:
             )
         else:
             client_models_value = "{}  # type: Dict[str, Any]"
-        if self.code_model.options["models_mode"]:
-            retval.append(f"client_models = {client_models_value}")
-        client_models_str = (
-            "client_models" if self.code_model.options["models_mode"] else ""
-        )
-        retval.append(f"self._serialize = Serializer({client_models_str})")
-        retval.append(f"self._deserialize = Deserializer({client_models_str})")
-        if not self.code_model.options["client_side_validation"]:
-            retval.append("self._serialize.client_side_validation = False")
+        is_dpg_model = self.code_model.options["models_mode"] == "dpg"
+        if not is_dpg_model:
+            is_msrest_model = self.code_model.options["models_mode"] == "msrest"
+            if is_msrest_model:
+                retval.append(f"client_models = {client_models_value}")
+            client_models_str = "client_models" if is_msrest_model else ""
+            retval.append(f"self._serialize = Serializer({client_models_str})")
+            retval.append(f"self._deserialize = Deserializer({client_models_str})")
+            if not self.code_model.options["client_side_validation"]:
+                retval.append("self._serialize.client_side_validation = False")
         operation_groups = [
             og for og in self.code_model.operation_groups if not og.is_mixin
         ]
+        serialize_params = (
+            "" if is_dpg_model else ", self._serialize, self._deserialize"
+        )
         for og in operation_groups:
             retval.extend(
                 [
                     f"self.{og.property_name} = {og.class_name}({og.mypy_ignore}{og.pylint_disable}",
-                    "    self._client, self._config, self._serialize, self._deserialize",
+                    f"    self._client, self._config{serialize_params}",
                     ")",
                 ]
             )

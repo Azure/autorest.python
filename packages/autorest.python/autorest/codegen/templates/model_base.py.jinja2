@@ -17,7 +17,6 @@ from datetime import datetime, date, time, timedelta
 from azure.core.utils._utils import _FixedOffset
 from collections.abc import MutableMapping
 from azure.core.exceptions import DeserializationError
-from azure.core.pipeline.transport import HttpResponse
 import copy
 
 _LOGGER = logging.getLogger(__name__)
