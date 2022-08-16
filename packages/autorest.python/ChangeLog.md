@@ -14,6 +14,7 @@
 **Bug Fixes**
 
 - Correctly document polymorphic page responses  #1389
+- Add `__version__` to `__init__.py` for multiapi  #1393
 
 ### 2022-07-20 - 6.1.1
 
