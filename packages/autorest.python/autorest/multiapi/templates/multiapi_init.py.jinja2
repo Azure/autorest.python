@@ -15,9 +15,8 @@ try:
     patch_sdk()
 except ImportError:
     pass
+
 from ._version import VERSION
-{% else %}
-from .._version import VERSION
-{% endif %}
 
 __version__ = VERSION
+{% endif %}
