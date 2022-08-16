@@ -399,7 +399,7 @@ class Model(_MyMutableMapping):
         }
         annotations = {
             k: v
-            for mro_class in mros
+            for mro_class in mros if hasattr(mro_class, '__annotations__') 
             for k, v in mro_class.__annotations__.items()
         }
         for attr, rest_field in attr_to_rest_field.items():
