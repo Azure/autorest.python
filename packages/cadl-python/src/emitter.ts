@@ -158,7 +158,7 @@ function getType(program: Program, type: Type | CredentialType, modelTypePropert
       // need to do discriminator outside `emitModel` to avoid infinite recursion
       handleDiscriminator(program, type, newValue);
     }
-  } else if (newValue) {
+  } else {
     const key = dump(newValue, { sortKeys: true });
     const value = simpleTypesMap.get(key);
     if (value) {
@@ -709,7 +709,7 @@ function getServerHelper(program: Program, namespace: NamespaceType): HttpServer
   return servers[0];
 }
 
-function emitGlobalParameters(program: Program, namespace: NamespaceType): Record<string, any>[] {
+function emitServerParams(program: Program, namespace: NamespaceType): Record<string, any>[] {
   const server = getServerHelper(program, namespace);
   if (server === undefined) {
     return [
@@ -755,34 +755,42 @@ function emitGlobalParameters(program: Program, namespace: NamespaceType): Recor
   }
 }
 
-function emitCredentialParameter(program: Program, namespace: NamespaceType, params: Record<string, any>[]) {
+function emitCredentialParam(program: Program, namespace: NamespaceType): Record<string, any> {
   const auth = getAuthentication(program, namespace);
-  if (!auth) {
-    return;
-  }
-  for (const option of auth.options) {
-    for (const scheme of option.schemes) {
-      const type: CredentialType = {
-        kind: "Credential",
-        scheme: scheme,
-      }
-      const credential_type = getType(program, type);
-      if (credential_type) {
-        params.push({
-          type: credential_type,
-          optional: false,
-          description: "Credential needed for the client to connect to Azure.",
-          clientName: "credential",
-          location: "other",
-          restApiName: "credential",
-          implementation: "Client",
-          skipUrlEncoding: true,
-          inOverload: false
-        })
-        return;
+  if (auth) {
+    for (const option of auth.options) {
+      for (const scheme of option.schemes) {
+        const type: CredentialType = {
+          kind: "Credential",
+          scheme: scheme,
+        }
+        const credential_type = getType(program, type);
+        if (credential_type) {
+          return {
+            type: credential_type,
+            optional: false,
+            description: "Credential needed for the client to connect to Azure.",
+            clientName: "credential",
+            location: "other",
+            restApiName: "credential",
+            implementation: "Client",
+            skipUrlEncoding: true,
+            inOverload: false
+          };
+        }
       }
     }
   }
+  return {}
+}
+
+function emitGlobalParameters(program: Program, serviceNamespace: NamespaceType): Record<string, any>[] {
+  const clientParameters = emitServerParams(program, serviceNamespace);
+  const credentialParam = emitCredentialParam(program, serviceNamespace);
+  if (credentialParam) {
+    clientParameters.push(credentialParam);
+  }
+  return clientParameters;
 }
 
 function createYamlEmitter(program: Program) {
@@ -797,7 +805,6 @@ function createYamlEmitter(program: Program) {
   // }
   const name = getServiceTitle(program).replace(/ /g, "");
   const clientParameters = emitGlobalParameters(program, serviceNamespace);
-  emitCredentialParameter(program, serviceNamespace, clientParameters);
   // Get types
   const server = getServerHelper(program, serviceNamespace);
   const codeModel = {
