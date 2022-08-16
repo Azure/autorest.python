@@ -25,7 +25,7 @@ importers:
     dependencies:
       '@autorest/system-requirements': 1.0.0
     devDependencies:
-      '@microsoft.azure/autorest.testserver': 3.3.35_pnujgi2x4hsmkhu4dsoc7zbd54
+      '@microsoft.azure/autorest.testserver': 3.3.35
 
   packages/cadl-python:
     specifiers:
@@ -33,7 +33,6 @@ importers:
       '@azure-tools/cadl-azure-core': ~0.6.0
       '@cadl-lang/compiler': ~0.34.0
       '@cadl-lang/eslint-config-cadl': ~0.3.0
-      '@cadl-lang/openapi': ~0.11.0
       '@cadl-lang/rest': ~0.16.0
       '@cadl-lang/versioning': ~0.7.0
       '@types/js-yaml': ~4.0.1
@@ -43,17 +42,15 @@ importers:
       eslint: ^8.12.0
       js-yaml: ~4.1.0
       mocha: ~9.2.0
-      prettier: ^2.7.1
       rimraf: ~3.0.2
       typescript: ~4.7.2
     dependencies:
       '@autorest/python': link:../autorest.python
       '@cadl-lang/compiler': 0.34.0
-      '@cadl-lang/openapi': 0.11.0_b4gh4y54qtrwf4tvxw5tu2myii
       js-yaml: 4.1.0
     devDependencies:
-      '@azure-tools/cadl-azure-core': 0.6.0_jwnjv33kln7n6m6w5v66qlatxq
-      '@cadl-lang/eslint-config-cadl': 0.3.0_prettier@2.7.1
+      '@azure-tools/cadl-azure-core': 0.6.0_b4gh4y54qtrwf4tvxw5tu2myii
+      '@cadl-lang/eslint-config-cadl': 0.3.0
       '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
       '@cadl-lang/versioning': 0.7.0
       '@types/js-yaml': 4.0.5
@@ -62,7 +59,6 @@ importers:
       c8: 7.11.3
       eslint: 8.22.0
       mocha: 9.2.2
-      prettier: 2.7.1
       rimraf: 3.0.2
       typescript: 4.7.4
 
@@ -85,7 +81,7 @@ packages:
       semver: 7.3.7
     dev: false
 
-  /@azure-tools/cadl-azure-core/0.6.0_jwnjv33kln7n6m6w5v66qlatxq:
+  /@azure-tools/cadl-azure-core/0.6.0_b4gh4y54qtrwf4tvxw5tu2myii:
     resolution: {integrity: sha512-IQVy1oAACCJAu4yJylEnZzdkc7P+5soqUsqe5+L1b0/WIKuBt8vgioESlE7LivX9BBNIPIMjmEKk5rcCZ7KTDQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -94,7 +90,6 @@ packages:
       '@cadl-lang/rest': ~0.16.0
     dependencies:
       '@cadl-lang/compiler': 0.34.0
-      '@cadl-lang/openapi': 0.11.0_b4gh4y54qtrwf4tvxw5tu2myii
       '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
     dev: true
 
@@ -527,7 +522,7 @@ packages:
       vscode-languageserver-textdocument: 1.0.5
       yargs: 17.3.1
 
-  /@cadl-lang/eslint-config-cadl/0.3.0_prettier@2.7.1:
+  /@cadl-lang/eslint-config-cadl/0.3.0:
     resolution: {integrity: sha512-MrUuMtcgYD1lhMtjLa8thCfoRJ7z/PVxZrba8vvYrrJJiQCS+WIndG5zrgksOrm0QkIa3PnqB3FUoiuV0mpykw==}
     dependencies:
       '@rushstack/eslint-patch': 1.1.0
@@ -535,22 +530,12 @@ packages:
       '@typescript-eslint/parser': 5.33.1_eu4wryayglld7gruoqkkdcu6su
       eslint: 8.22.0
       eslint-config-prettier: 8.5.0_eslint@8.22.0
-      eslint-plugin-prettier: 4.2.1_i2cojdczqdiurzgttlwdgf764e
+      eslint-plugin-prettier: 4.2.1_vlh76yp6mdwtk5bzp6objvozmi
       typescript: 4.5.5
     transitivePeerDependencies:
       - prettier
       - supports-color
     dev: true
-
-  /@cadl-lang/openapi/0.11.0_b4gh4y54qtrwf4tvxw5tu2myii:
-    resolution: {integrity: sha512-miVNnGNq1VOdirTEStKIi00AMxPi/C53bGizrdqBUS7ZJ1vDQR7pq9hbPNYX8K7qAjMMSrJQykZc0xTOB/Jlow==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@cadl-lang/compiler': ~0.34.0
-      '@cadl-lang/rest': ~0.16.0
-    dependencies:
-      '@cadl-lang/compiler': 0.34.0
-      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
 
   /@cadl-lang/prettier-plugin-cadl/0.5.14:
     resolution: {integrity: sha512-02ZKdt/8BPA3kzct+4lBQkTVAsq3cze6SMq5JD+ICui1MyoLsS2ICoqNBU6SaEsug+0mkOuvAZCia0V1v7L93Q==}
@@ -565,6 +550,7 @@ packages:
       '@cadl-lang/compiler': ~0.34.0
     dependencies:
       '@cadl-lang/compiler': 0.34.0
+    dev: true
 
   /@cadl-lang/versioning/0.7.0:
     resolution: {integrity: sha512-Wg0CyP47jZnv4hHaq8enUxhsqaJSQzYrlzQzg265CtZrUFzwlBAkqQVel8qeA6f/wljkkL5Se75Vt5tLE2kfhQ==}
@@ -867,7 +853,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@microsoft.azure/autorest.testserver/3.3.35_pnujgi2x4hsmkhu4dsoc7zbd54:
+  /@microsoft.azure/autorest.testserver/3.3.35:
     resolution: {integrity: sha512-SG4uvesf0IoXZMFPPK94cgS/AJxpcSqKFixdNdrJWFiPmkGKkTGJL2Tr3fztQZhViOAFdfkbT3Vg5WSBFBroxw==}
     engines: {node: '>=10'}
     hasBin: true
@@ -887,7 +873,7 @@ packages:
       request: 2.88.2
       request-promise-native: 1.0.9_request@2.88.2
       source-map-support: 0.5.21
-      ts-jest: 27.1.5_yimvri5xxiu7oetotjr3m5ivle
+      ts-jest: 27.1.5_jest@27.5.1
       underscore: 1.13.4
       winston: 3.8.1
       xml2js: 0.4.23
@@ -2224,7 +2210,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_i2cojdczqdiurzgttlwdgf764e:
+  /eslint-plugin-prettier/4.2.1_vlh76yp6mdwtk5bzp6objvozmi:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -2237,7 +2223,6 @@ packages:
     dependencies:
       eslint: 8.22.0
       eslint-config-prettier: 8.5.0_eslint@8.22.0
-      prettier: 2.7.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -5103,7 +5088,7 @@ packages:
     resolution: {integrity: sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==}
     dev: true
 
-  /ts-jest/27.1.5_yimvri5xxiu7oetotjr3m5ivle:
+  /ts-jest/27.1.5_jest@27.5.1:
     resolution: {integrity: sha512-Xv6jBQPoBEvBq/5i2TeSG9tt/nqkbpcurrEG1b+2yfBrcJelOZF9Ml6dmyMh7bcW9JyFbRYpR5rxROSlBLTZHA==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -5124,7 +5109,6 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@babel/core': 7.18.10
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 27.5.1
@@ -5133,7 +5117,6 @@ packages:
       lodash.memoize: 4.1.2
       make-error: 1.3.6
       semver: 7.3.7
-      typescript: 4.7.4
       yargs-parser: 20.2.9
     dev: true
 
@@ -5609,7 +5592,7 @@ packages:
       require-directory: 2.1.1
       string-width: 4.2.3
       y18n: 5.0.8
-      yargs-parser: 20.2.4
+      yargs-parser: 20.2.9
     dev: true
 
   /yargs/17.3.1:
