@@ -531,7 +531,7 @@ class _OperationSerializer(
             polymorphic_subtypes: List[ModelType] = []
             if not response.type:
                 continue
-            response.type.get_polymorphic_subtypes(polymorphic_subtypes)
+            response.get_polymorphic_subtypes(polymorphic_subtypes)
             if polymorphic_subtypes:
                 # we just assume one kind of polymorphic body for input
                 discriminator_name = cast(
