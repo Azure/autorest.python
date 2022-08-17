@@ -225,11 +225,14 @@ def _deserialize_time(attr: typing.Union[str, time]) -> time:
         return attr
     return isodate.parse_time(attr)
 
+def deserialize_bytes(attr):
+    return bytes(b64decode(attr))
 
 _DESERIALIZE_MAPPING = {
     datetime: _deserialize_datetime,
     date: _deserialize_date,
     time: _deserialize_time,
+    bytes: deserialize_bytes,
 }
 
 def _get_model(module_name: str, model_name: str):

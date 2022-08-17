@@ -1053,11 +1053,11 @@ class _OperationSerializer(
                 retval.append("    409: ResourceExistsError,")
             for excep in builder.non_default_errors:
                 error_model_str = ""
-                if (
-                    isinstance(excep.type, ModelType)
-                    and self.code_model.options["models_mode"]
-                ):
-                    error_model_str = f", model=self._deserialize(_models.{excep.type.serialization_type}, response)"
+                if isinstance(excep.type, ModelType):
+                    if self.code_model.options["models_mode"] == "msrest":
+                        error_model_str = f", model=self._deserialize(_models.{excep.type.serialization_type}, response)"
+                    elif self.code_model.options["models_mode"] == "dpg":
+                        error_model_str = f", model=_deserialize(_models.{excep.type.name}, response.json())"
                 error_format_str = (
                     ", error_format=ARMErrorFormat"
                     if self.code_model.options["azure_arm"]
@@ -1212,11 +1212,15 @@ class _PagingOperationSerializer(
             f"{'async ' if self.async_mode else ''}def extract_data(pipeline_response):"
         ]
         response = builder.responses[0]
-        deserialized = (
-            f'self._deserialize("{response.serialization_type}", pipeline_response)'
-            if self.code_model.options["models_mode"]
-            else "pipeline_response.http_response.json()"
-        )
+        deserialized = "pipeline_response.http_response.json()"
+        if self.code_model.options["models_mode"] == "msrest":
+            deserialized = (
+                f'self._deserialize("{response.serialization_type}", pipeline_response)'
+            )
+        elif self.code_model.options["models_mode"] == "dpg":
+            deserialized = (
+                f"_deserialize(_models.{response.type.name}, pipeline_response)"
+            )
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name
         list_of_elem = (

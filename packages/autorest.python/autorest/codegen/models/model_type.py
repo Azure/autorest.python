@@ -86,6 +86,12 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             is_operation_file = kwargs.pop("is_operation_file", False)
             if self.is_public:
                 retval = f"_models.{self.name}"
+                if self.code_model.options["models_mode"] == "dpg" and kwargs.pop(
+                    "is_body_parameter", False
+                ):
+                    retval += ", JSON"
+                    if not kwargs.pop("in_combined_type", False):
+                        retval = f"Union[{retval}]"
                 return retval if is_operation_file else f'"{retval}"'
             return self.name if is_operation_file else f'"{self.name}"'
         return "ET.Element" if self.is_xml else "JSON"

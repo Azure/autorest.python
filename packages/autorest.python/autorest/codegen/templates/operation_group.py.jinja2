@@ -28,10 +28,8 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        {% if code_model.options["models_mode"] != "dpg" %}
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-        {% endif %}
 {{ check_abstract_methods() }}
 {% elif operation_group.has_abstract_operations %}
 

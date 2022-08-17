@@ -108,13 +108,13 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             f"{self.code_model.client.name}Configuration",
             ImportType.LOCAL,
         )
-
-        file_import.add_msrest_import(
-            self.code_model,
-            ".." if async_mode else ".",
-            MsrestImportType.SerializerDeserializer,
-            TypingSection.REGULAR,
-        )
+        if self.code_model.options["models_mode"] != "dpg":
+            file_import.add_msrest_import(
+                self.code_model,
+                ".." if async_mode else ".",
+                MsrestImportType.SerializerDeserializer,
+                TypingSection.REGULAR,
+            )
 
         return file_import
 

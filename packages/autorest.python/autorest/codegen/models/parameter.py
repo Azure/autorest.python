@@ -130,6 +130,7 @@ class _ParameterBase(
 
     def type_annotation(self, **kwargs: Any) -> str:
         kwargs["is_operation_file"] = True
+        kwargs["is_body_parameter"] = isinstance(self, BodyParameter)
         type_annot = self.type.type_annotation(**kwargs)
         if self.optional and self.client_default_value is None:
             return f"Optional[{type_annot}]"
