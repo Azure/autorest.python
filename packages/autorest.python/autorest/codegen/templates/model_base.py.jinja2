@@ -226,7 +226,7 @@ def _deserialize_time(attr: typing.Union[str, time]) -> time:
     return isodate.parse_time(attr)
 
 def deserialize_bytes(attr):
-    return bytes(b64decode(attr))
+    return bytes(base64.b64decode(attr))
 
 _DESERIALIZE_MAPPING = {
     datetime: _deserialize_datetime,

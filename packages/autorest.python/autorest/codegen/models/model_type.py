@@ -288,7 +288,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
                     self.name,
                     ImportType.LOCAL,
                 )
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return file_import
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
