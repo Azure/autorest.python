@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-xx-xx - 6.1.2
+### 2022-08-16 - 6.1.2
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -14,6 +14,7 @@
 **Bug Fixes**
 
 - Correctly document polymorphic page responses  #1389
+- Add `__version__` to `__init__.py` for multiapi  #1393
 
 ### 2022-07-20 - 6.1.1
 
