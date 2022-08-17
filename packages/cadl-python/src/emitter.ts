@@ -753,7 +753,7 @@ function emitServerParams(program: Program, namespace: NamespaceType): Record<st
   }
 }
 
-function emitCredentialParam(program: Program, namespace: NamespaceType): Record<string, any> {
+function emitCredentialParam(program: Program, namespace: NamespaceType): Record<string, any> | undefined {
   const auth = getAuthentication(program, namespace);
   if (auth) {
     for (const option of auth.options) {
@@ -779,7 +779,7 @@ function emitCredentialParam(program: Program, namespace: NamespaceType): Record
       }
     }
   }
-  return {}
+  return undefined
 }
 
 function emitGlobalParameters(program: Program, serviceNamespace: NamespaceType): Record<string, any>[] {
