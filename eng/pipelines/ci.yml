@@ -290,9 +290,10 @@ jobs:
       - script: |
           npm install -g pnpm
           pnpm install
-          pip install -r dev_requirements.txt
+          pnpm run build
+          pip install -r packages/cadl-python/dev_requirements.txt
         displayName: "Prepare Environment for Generation"
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
