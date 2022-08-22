@@ -98,7 +98,12 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
 
     def docstring_type(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
-            return f"~{self.code_model.namespace}.models.{self.name}"
+            ret = f"~{self.code_model.namespace}.models.{self.name}"
+            if self.code_model.options["models_mode"] == "dpg" and kwargs.pop(
+                "is_body_parameter", False
+            ):
+                ret += " or JSON"
+            return ret
         return "ET.Element" if self.is_xml else "JSON"
 
     def description(self, *, is_operation_file: bool = False) -> str:

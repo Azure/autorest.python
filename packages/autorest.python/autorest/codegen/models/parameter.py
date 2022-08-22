@@ -140,6 +140,7 @@ class _ParameterBase(
         return self.type.docstring_text(**kwargs)
 
     def docstring_type(self, **kwargs: Any) -> str:
+        kwargs["is_body_parameter"] = isinstance(self, BodyParameter)
         return self.type.docstring_type(**kwargs)
 
     @property

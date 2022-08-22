@@ -36,6 +36,7 @@
         {% endfor %}
     {% endif %}
 
+    {% if model.is_public and serializer.init_line(model) %}
     @overload
     def __init__(
         self,
@@ -62,6 +63,7 @@
     def __init__(self, mapping: Mapping[str, Any], /):
         ...
 
+    {% endif %}
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
     {% if model.discriminator_value %}

@@ -154,6 +154,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         retval = self._response_docstring_helper("docstring_text", **kwargs)
         if not self.code_model.options["version_tolerant"]:
             retval += " or the result of cls(response)"
+        if self.code_model.options["models_mode"] == "dpg":
+            retval += ". This object is MutableMapping-compatible."
         return retval
 
     def response_docstring_type(self, **kwargs) -> str:
@@ -463,7 +465,7 @@ class Operation(OperationBase[Response]):
             file_import.add_submodule_import(
                 f"{relative_path}_model_base", "AzureJSONEncoder", ImportType.LOCAL
             )
-            file_import.add_submodule_import("json", "dumps", ImportType.STDLIB)
+            file_import.add_import("json", ImportType.STDLIB)
 
         return file_import
 
