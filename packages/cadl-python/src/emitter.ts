@@ -28,8 +28,10 @@ import {
 import { getDiscriminator } from "@cadl-lang/rest";
 import {
   getAllRoutes,
+  getAuthentication,
   getContentTypes,
   getServers,
+  HttpAuth,
   HttpOperationParameter,
   HttpOperationParameters,
   HttpOperationResponse,
@@ -47,6 +49,11 @@ interface HttpServerParameter {
   type: "endpointPath";
   name: string;
   param: ModelTypeProperty;
+}
+
+interface CredentialType {
+  kind: "Credential",
+  scheme: HttpAuth;
 }
 
 export async function $onEmit(program: Program) {
@@ -75,7 +82,7 @@ function camelToSnakeCase(name: string): string {
   return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
-const typesMap = new Map<Type, Record<string, any>>();
+const typesMap = new Map<Type | CredentialType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 
@@ -129,7 +136,7 @@ function handleDiscriminator(program: Program, type: ModelType, model: Record<st
   }
 }
 
-function getType(program: Program, type: Type, modelTypeProperty: ModelTypeProperty | undefined = undefined): any {
+function getType(program: Program, type: Type | CredentialType, modelTypeProperty: ModelTypeProperty | undefined = undefined): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(program, modelTypeProperty);
   if (enableCache) {
@@ -617,9 +624,32 @@ function constantType(value: any, valueType: string): Record<string, any> {
   return { type: "constant", value: value, valueType: { type: valueType } };
 }
 
+function emitCredential(auth: HttpAuth): Record<string, any> {
+  let credential_type: Record<string, any> = {};
+  if (auth.type === "oauth2") {
+    credential_type = {
+      type: "OAuth2",
+      policy: {
+        type: "BearerTokenCredentialPolicy",
+        credentialScopes: []
+      }
+    }
+    auth.flows.forEach(it => credential_type.policy.credentialScopes.push(...it.scopes));
+  } else if (auth.type === "apiKey") {
+    credential_type = {
+      type: "Key",
+      policy: {
+        type: "AzureKeyCredentialPolicy",
+        key: auth.name
+      }
+    }
+  }
+  return credential_type;
+}
+
 function emitType(
   program: Program,
-  type: Type,
+  type: Type | CredentialType,
   modelTypeProperty: ModelTypeProperty | undefined = undefined,
 ): Record<string, any> {
   switch (type.kind) {
@@ -633,6 +663,8 @@ function emitType(
       return emitModel(program, type, modelTypeProperty);
     case "Enum":
       return emitEnum(program, type);
+    case "Credential":
+      return emitCredential(type.scheme);
     default:
       throw Error(`Not supported ${type.kind}`);
   }
@@ -675,7 +707,7 @@ function getServerHelper(program: Program, namespace: NamespaceType): HttpServer
   return servers[0];
 }
 
-function emitGlobalParameters(program: Program, namespace: NamespaceType): Record<string, any>[] {
+function emitServerParams(program: Program, namespace: NamespaceType): Record<string, any>[] {
   const server = getServerHelper(program, namespace);
   if (server === undefined) {
     return [
@@ -719,6 +751,44 @@ function emitGlobalParameters(program: Program, namespace: NamespaceType): Recor
       },
     ];
   }
+}
+
+function emitCredentialParam(program: Program, namespace: NamespaceType): Record<string, any> | undefined {
+  const auth = getAuthentication(program, namespace);
+  if (auth) {
+    for (const option of auth.options) {
+      for (const scheme of option.schemes) {
+        const type: CredentialType = {
+          kind: "Credential",
+          scheme: scheme,
+        }
+        const credential_type = getType(program, type);
+        if (credential_type) {
+          return {
+            type: credential_type,
+            optional: false,
+            description: "Credential needed for the client to connect to Azure.",
+            clientName: "credential",
+            location: "other",
+            restApiName: "credential",
+            implementation: "Client",
+            skipUrlEncoding: true,
+            inOverload: false
+          };
+        }
+      }
+    }
+  }
+  return undefined
+}
+
+function emitGlobalParameters(program: Program, serviceNamespace: NamespaceType): Record<string, any>[] {
+  const clientParameters = emitServerParams(program, serviceNamespace);
+  const credentialParam = emitCredentialParam(program, serviceNamespace);
+  if (credentialParam) {
+    clientParameters.push(credentialParam);
+  }
+  return clientParameters;
 }
 
 function createYamlEmitter(program: Program) {
