@@ -263,7 +263,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 )
 
     def update_lro_paging_operation(
-        self, code_model: Dict[str, Any], yaml_data: Dict[str, Any], is_overload: bool = False
+        self,
+        code_model: Dict[str, Any],
+        yaml_data: Dict[str, Any],
+        is_overload: bool = False,
     ) -> None:
         self.update_lro_operation(code_model, yaml_data, is_overload=is_overload)
         self.update_paging_operation(code_model, yaml_data, is_overload=is_overload)
@@ -274,7 +277,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_lro_paging_operation(code_model, overload, is_overload=True)
 
     def update_lro_operation(
-        self, code_model: Dict[str, Any], yaml_data: Dict[str, Any], is_overload: bool = False
+        self,
+        code_model: Dict[str, Any],
+        yaml_data: Dict[str, Any],
+        is_overload: bool = False,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
         self._update_lro_operation_helper(yaml_data)
@@ -282,7 +288,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self._update_lro_operation_helper(overload)
 
     def update_paging_operation(
-        self, code_model: Dict[str, Any], yaml_data: Dict[str, Any], is_overload: bool = False,
+        self,
+        code_model: Dict[str, Any],
+        yaml_data: Dict[str, Any],
+        is_overload: bool = False,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
         if not yaml_data.get("pagerSync"):
