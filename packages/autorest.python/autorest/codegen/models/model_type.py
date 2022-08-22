@@ -72,16 +72,16 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     @property
     def serialization_type(self) -> str:
         if self.code_model.options["models_mode"]:
-            return self.name
+            return self.name if self.is_public else f"{self.code_model.models_filename}.{self.name}"
         return "object"
 
     def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             is_operation_file = kwargs.pop("is_operation_file", False)
-            if self.is_public:
-                retval = f"_models.{self.name}"
-                return retval if is_operation_file else f'"{retval}"'
-            return self.name if is_operation_file else f'"{self.name}"'
+            retval = f"_models.{self.name}"
+            if not self.is_public:
+                retval = f"{self.code_model.models_filename}.{retval}"
+            return retval if is_operation_file else f'"{retval}"'
         return "ET.Element" if self.is_xml else "JSON"
 
     def docstring_type(self, **kwargs: Any) -> str:
@@ -250,16 +250,9 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         relative_path = kwargs.pop("relative_path", None)
         if self.code_model.options["models_mode"] and relative_path:
             # add import for models in operations file
-            if self.is_public:
-                file_import.add_submodule_import(
-                    relative_path, "models", ImportType.LOCAL, alias="_models"
-                )
-            else:
-                file_import.add_submodule_import(
-                    f"{relative_path}models.{self.code_model.models_filename}",
-                    self.name,
-                    ImportType.LOCAL,
-                )
+            file_import.add_submodule_import(
+                relative_path, "models", ImportType.LOCAL, alias="_models"
+            )
         if self.code_model.options["models_mode"]:
             return file_import
         file_import.add_submodule_import(
