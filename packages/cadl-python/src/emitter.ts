@@ -665,6 +665,25 @@ function emitType(
       return emitEnum(program, type);
     case "Credential":
       return emitCredential(type.scheme);
+    case "Union":
+      const values: Record<string, any>[] = [];
+      for (const option of type.options) {
+        values.push({
+          "description": "",
+          "name": "n/a",
+          "value": emitType(program, option)["value"]
+        })
+      }
+      return {
+        "name": "MyEnum",
+        "snakeCaseName": "my_enum",
+        "description": "n/a",
+        "isPublic": false,
+        "type": "enum",
+        "valueType": emitType(program, type.options[0])["valueType"],
+        "values": values,
+        "xmlMetadata": {}
+      }
     default:
       throw Error(`Not supported ${type.kind}`);
   }
