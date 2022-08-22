@@ -291,6 +291,7 @@ jobs:
           npm install -g pnpm
           pnpm install
           pnpm run build
+          pnpm fix-version-mismatch
           pip install -r packages/cadl-python/dev_requirements.txt
         displayName: "Prepare Environment for Generation"
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
