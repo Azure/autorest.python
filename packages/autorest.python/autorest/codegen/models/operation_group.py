@@ -70,16 +70,22 @@ class OperationGroup(BaseModel):
         file_import = FileImport()
 
         relative_path = "..." if async_mode else ".."
-        for operation in self.operations:
-            file_import.merge(
-                operation.imports(async_mode, relative_path=relative_path)
-            )
+        models_imported = False
         # for multiapi
         if (
             self.code_model.model_types or self.code_model.enums
         ) and self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
+            )
+            models_imported = True
+        for operation in self.operations:
+            file_import.merge(
+                operation.imports(
+                    async_mode,
+                    relative_path=relative_path,
+                    models_imported=models_imported,
+                )
             )
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(".._vendor", "MixinABC", ImportType.LOCAL)

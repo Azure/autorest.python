@@ -288,8 +288,13 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
                     relative_path, "models", ImportType.LOCAL, alias="_models"
                 )
             else:
+                models_module = (
+                    "_models"
+                    if kwargs.pop("models_imported")
+                    else f"{relative_path}models"
+                )
                 file_import.add_submodule_import(
-                    f"{relative_path}models.{self.code_model.models_filename}",
+                    f"{models_module}.{self.code_model.models_filename}",
                     self.name,
                     ImportType.LOCAL,
                 )
