@@ -18,6 +18,7 @@ CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
 
 @task
 def regenerate(c):
+  raise ValueError("regen")
   specs = [
     s for s in CADL_RANCH_DIR.glob("**/*")
     if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.cadl")
