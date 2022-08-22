@@ -72,7 +72,11 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     @property
     def serialization_type(self) -> str:
         if self.code_model.options["models_mode"]:
-            return self.name if self.is_public else f"{self.code_model.models_filename}.{self.name}"
+            return (
+                self.name
+                if self.is_public
+                else f"{self.code_model.models_filename}.{self.name}"
+            )
         return "object"
 
     def type_annotation(self, **kwargs: Any) -> str:
