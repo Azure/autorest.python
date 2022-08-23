@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "dpgclient"
+PACKAGE_NAME = "resiliencyservicedriven2"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="DPGClient",
+    description="ResiliencyServiceDriven2",
     author_email="",
     url="",
     keywords="azure, azure sdk",
