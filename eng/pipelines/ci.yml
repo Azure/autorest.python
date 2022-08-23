@@ -289,9 +289,10 @@ jobs:
           versionSpec: 3.7
       - script: |
           npm install -g pnpm
+          npm install -g @cadl-lang/compiler
           pnpm install
           pnpm run build
-          pnpm fix-version-mismatch
+          pnpm check-version-mismatch
           pip install -r packages/cadl-python/dev_requirements.txt
         displayName: "Prepare Environment for Generation"
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
