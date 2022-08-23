@@ -10,7 +10,8 @@ import pytest
 from pathlib import Path
 
 def start_server_process():
-    os.chdir("../../node_modules/@azure-tools/cadl-ranch-specs")
+    path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
+    os.chdir(path.resolve())
     cmd = "pnpm run serve"
     if os.name == "nt":  # on windows, subprocess creation works without being in the shell
         return subprocess.Popen(cmd)
