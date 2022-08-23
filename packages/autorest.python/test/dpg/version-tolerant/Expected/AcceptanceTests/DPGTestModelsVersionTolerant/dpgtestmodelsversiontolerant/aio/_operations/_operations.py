@@ -32,7 +32,6 @@ from ..._operations._operations import (
     build_lro_request,
     build_post_model_request,
 )
-from ...models._models import ProductResult
 from .._vendor import MixinABC
 
 T = TypeVar("T")
@@ -205,7 +204,7 @@ class DPGClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[ProductResult]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models._models.ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -227,7 +226,7 @@ class DPGClientOperationsMixin(MixinABC):
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("_models.ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
