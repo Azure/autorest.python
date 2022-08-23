@@ -347,8 +347,6 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
                 raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
             file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        with open("output.yaml", "w") as fd:
-          fd.write(file_content)
 
         # Parse the received YAML
         return yaml.safe_load(file_content)
