@@ -10,7 +10,7 @@ import pytest
 from pathlib import Path
 
 def start_server_process():
-    os.chdir(f"{Path(os.path.dirname(__file__))}../../node_modules/@azure-tools/cadl-ranch-specs")
+    os.chdir("../../node_modules/@azure-tools/cadl-ranch-specs")
     cmd = "pnpm run serve"
     if os.name == "nt":  # on windows, subprocess creation works without being in the shell
         return subprocess.Popen(cmd)
@@ -22,9 +22,9 @@ def terminate_server_process(process):
     else:
         os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", autouse=True)
 def testserver():
-    """Start the Autorest testserver."""
+    """Start cadl ranch mock api tests"""
     server = start_server_process()
     yield
     terminate_server_process(server)
