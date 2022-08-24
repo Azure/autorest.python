@@ -53,7 +53,13 @@ def parse_args(need_cadl_file: bool = True):
         help="Serialized cadl file",
         required=need_cadl_file,
     )
-
+    parser.add_argument(
+        "--debug",
+        dest="debug",
+        help="Debug mode",
+        required=False,
+        action="store_true",
+    )
     return parser.parse_args()
 
 

@@ -17,13 +17,15 @@ PLUGIN_DIR = Path(os.path.dirname(__file__))
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
 
 @task
-def regenerate(c):
+def regenerate(c, name=None, debug=False):
   specs = [
     s for s in CADL_RANCH_DIR.glob("**/*")
     if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.cadl")
   ]
+  if name:
+    specs = [s for s in specs if name.lower() in s.stem.lower()]
   _run_cadl([
-    f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-path={PLUGIN_DIR}/test/generated/{spec.name}"
+    f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-path={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
     for spec in specs
   ])
 

@@ -303,3 +303,9 @@ jobs:
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on regeneration diff
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      - script: |
+          cd test/mock_api_tests
+          tox -e ci
+        displayName: 'Execute Mock API tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+
