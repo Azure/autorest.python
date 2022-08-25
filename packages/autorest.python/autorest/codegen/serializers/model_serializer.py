@@ -122,7 +122,7 @@ class ModelSerializer:
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
-    def declare_property(prop: Property) -> str:
+    def declare_property(prop: Property) -> List[str]:
         attribute_key = prop.rest_api_name.replace(".", "\\\\.")
         args = [f'name="{attribute_key}"']
         if prop.readonly:
@@ -131,14 +131,14 @@ class ModelSerializer:
             args.append(f"default={prop.client_default_value_declaration}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        declaration = (
+        ret = [
             f'{prop.client_name}: {prop.type_annotation().replace("_models.", "")} ='
             f' {field}({", ".join(args)})'
-        )
-        comment = " ".join(prop.description(is_operation_file=False).splitlines())
+        ]
+        comment = prop.description(is_operation_file=False).replace('"', '\\"')
         if comment:
-            declaration += f" # {comment}"
-        return declaration
+            ret.append(f'"""{comment}"""')
+        return ret
 
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:

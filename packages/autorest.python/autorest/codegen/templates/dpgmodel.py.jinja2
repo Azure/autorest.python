@@ -32,7 +32,9 @@
     {% endif %}
     {% if serializer.get_properties_to_declare(model) %}
         {% for p in serializer.get_properties_to_declare(model) if not p.is_discriminator or p.is_polymorphic %}
-    {{ serializer.declare_property(p) }}
+        {% for line in serializer.declare_property(p) %}
+    {{ line }}
+        {% endfor %}
         {% endfor %}
     {% endif %}
 
@@ -44,23 +46,14 @@
         {{ param_signature }}
         {% endfor %}
     ):
-        """
-    {% if model.properties %}
-        {% for p in model.properties %}
-            {% if p.is_input %}
-                {% for line in serializer.input_documentation_string(p) %}
-                    {% for doc_string in line.replace('\n', '\n ').split('\n') %}
-        {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n         ') }}
-                    {% endfor %}
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-        """
         ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any], /):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
         ...
 
     {% endif %}
