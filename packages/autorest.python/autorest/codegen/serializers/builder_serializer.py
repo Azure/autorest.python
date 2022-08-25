@@ -676,6 +676,25 @@ class _OperationSerializer(
             retval.append(create_body_call)
         return retval
 
+    def _prepare_params(self, builder: OperationType, is_paging: bool) -> List[str]:
+        retval = []
+        if is_paging:
+            return retval
+        if builder.parameters.grouped:
+            # request builders don't allow grouped parameters, so we group them before making the call
+            retval.extend(_serialize_grouped_body(builder))
+        if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
+            # unflatten before passing to request builder as well
+            retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
+        if builder.overloads:
+            # we are only dealing with two overloads. If there are three, we generate an abstract operation
+            retval.extend(self._initialize_overloads(builder))
+        elif builder.parameters.has_body:
+            # non-overloaded body
+            retval.extend(self._create_body_parameter(builder))
+        retval.append("")
+        return retval
+
     def _create_body_parameter(
         self,
         builder: OperationType,
@@ -883,21 +902,9 @@ class _OperationSerializer(
         request_builder: RequestBuilderType,
         template_url: Optional[str] = None,
         is_next_request: bool = False,
+        is_paging: bool = False,
     ) -> List[str]:
-        retval = []
-        if builder.parameters.grouped:
-            # request builders don't allow grouped parameters, so we group them before making the call
-            retval.extend(_serialize_grouped_body(builder))
-        if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
-            # unflatten before passing to request builder as well
-            retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
-        if builder.overloads:
-            # we are only dealing with two overloads. If there are three, we generate an abstract operation
-            retval.extend(self._initialize_overloads(builder))
-        elif builder.parameters.has_body:
-            # non-overloaded body
-            retval.extend(self._create_body_parameter(builder))
-        retval.append("")
+        retval = self._prepare_params(builder, is_paging)
         retval.extend(
             self._create_request_builder_call(
                 builder, request_builder, template_url, is_next_request
@@ -906,8 +913,12 @@ class _OperationSerializer(
         retval.extend(self._postprocess_http_request(builder, template_url))
         return retval
 
-    def call_request_builder(self, builder: OperationType) -> List[str]:
-        return self._call_request_builder_helper(builder, builder.request_builder)
+    def call_request_builder(
+        self, builder: OperationType, is_paging: bool = False
+    ) -> List[str]:
+        return self._call_request_builder_helper(
+            builder, builder.request_builder, is_paging=is_paging
+        )
 
     def response_headers_and_deserialization(
         self,
@@ -1168,10 +1179,14 @@ class _PagingOperationSerializer(
         return retval
 
     def _prepare_request_callback(self, builder: PagingOperationType) -> List[str]:
-        retval = ["def prepare_request(next_link=None):"]
+        retval = self._prepare_params(builder=builder, is_paging=False)
+        retval.append("def prepare_request(next_link=None):")
         retval.append("    if not next_link:")
         retval.extend(
-            [f"        {line}" for line in self.call_request_builder(builder)]
+            [
+                f"        {line}"
+                for line in self.call_request_builder(builder, is_paging=True)
+            ]
         )
         retval.append("")
         retval.append("    else:")
