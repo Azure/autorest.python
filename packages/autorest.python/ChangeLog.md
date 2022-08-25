@@ -14,6 +14,7 @@
 **Bug Fixes**
 
 - Fix generation failure for `format: password`  #1404
+- Fix shadowed `content_type` for pageable operation  #1407
 
 **Other Changes**
 
