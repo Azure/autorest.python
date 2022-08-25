@@ -584,7 +584,6 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         _json = None
         _content = None
-        _content = None
         if isinstance(message, (IO, bytes)):
             content_type = content_type or "application/octet-stream"
             _content = message
