@@ -41,7 +41,7 @@ class Message(_model_base.Model):
         ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
+    def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -73,7 +73,7 @@ class PostInput(_model_base.Model):
         ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
+    def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

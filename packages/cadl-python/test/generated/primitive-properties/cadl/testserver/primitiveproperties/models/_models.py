@@ -67,7 +67,7 @@ class Error(_model_base.Model):
         ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
+    def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -99,7 +99,7 @@ class ErrorResponse(_model_base.Model):
         ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
+    def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -136,7 +136,7 @@ class InnerError(_model_base.Model):
         ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
+    def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -214,7 +214,7 @@ class PrimitivePropertyModel(_model_base.Model):
         ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
+    def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

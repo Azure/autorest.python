@@ -425,7 +425,7 @@ class Model(_MyMutableMapping):
 
         return super().__new__(cls)
 
-    def __init_subclass__(cls, /, discriminator=None):
+    def __init_subclass__(cls, discriminator=None):
         for base in cls.__bases__:
             if hasattr(base, "__mapping__"):
                 base.__mapping__[discriminator or cls.__name__] = cls
