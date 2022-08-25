@@ -81,12 +81,15 @@ def build_get_single_pages_request(**kwargs: Any) -> HttpRequest:
 def build_get_single_pages_with_body_params_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/paging/single/getWithBodyParams")
 
     # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -713,26 +716,35 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages_with_body_params(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_single_pages_with_body_params(
+        self, name: Optional[str] = None, **kwargs: Any
+    ) -> Iterable["_models.Product"]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
+        :param name: Default value is None.
+        :type name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+        _parameters = _models.BodyParam(name=name)
+        _json = self._serialize.body(_parameters, "BodyParam")
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_single_pages_with_body_params_request(
+                    content_type=content_type,
+                    json=_json,
                     template_url=self.get_single_pages_with_body_params.metadata["url"],
                     headers=_headers,
                     params=_params,

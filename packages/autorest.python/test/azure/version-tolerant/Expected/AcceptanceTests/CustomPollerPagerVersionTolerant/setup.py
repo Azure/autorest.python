@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
-        "azure-mgmt-core<2.0.0,>=1.3.2",
+        "azure-mgmt-core<2.0.0,>=1.3.0",
     ],
     long_description="""\
     Long-running Operation for AutoRest.
