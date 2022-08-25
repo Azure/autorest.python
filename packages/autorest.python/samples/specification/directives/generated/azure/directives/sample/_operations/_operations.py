@@ -303,7 +303,6 @@ class PollingPagingExampleOperationsMixin(MixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 request = build_basic_paging_request(
                     headers=_headers,
                     params=_params,
