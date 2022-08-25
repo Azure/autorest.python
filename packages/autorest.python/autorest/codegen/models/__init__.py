@@ -140,6 +140,7 @@ TYPE_TO_OBJECT = {
     "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
+    "credential": StringType,
 }
 _LOGGER = logging.getLogger(__name__)
 

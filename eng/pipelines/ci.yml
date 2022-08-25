@@ -253,3 +253,59 @@ jobs:
                   tox -e whl -c ../../../eng/tox/tox.ini
                 displayName: "Run tests for ${{ package.name }}"
                 workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
+  - job: "Cadl_Python_CI"
+    displayName: "Run Cadl Python CI Checks"
+
+    strategy:
+      matrix:
+        Linux_Python37:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.7"
+        Linux_Python310:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.10"
+
+    pool:
+      name: azsdk-pool-mms-ubuntu-2004-general
+      vmImage: $(OSVmImage)
+
+    steps:
+      - checkout: self
+      - checkout: azure-sdk-tools
+      - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
+        parameters:
+          TestProxy: true
+          templateRoot: azure-sdk-tools
+      - task: NodeTool@0
+        displayName: "Install Node.js $(NodeVersion)"
+        inputs:
+          versionSpec: "$(NodeVersion)"
+
+      - task: UsePythonVersion@0
+        displayName: "Use Python 3.7"
+        inputs:
+          versionSpec: 3.7
+      - script: |
+          npm install -g pnpm
+          npm install -g @cadl-lang/compiler
+          pnpm install
+          pnpm run build
+          pnpm check-version-mismatch
+          pip install -r packages/cadl-python/dev_requirements.txt
+        displayName: "Prepare Environment for Generation"
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      - script: |
+          inv regenerate
+        displayName: 'Regenerate Code'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+      - script: node ./eng/scripts/check-for-changed-files.js
+        displayName: Fail on regeneration diff
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      - script: |
+          cd test/mock_api_tests
+          tox -e ci
+        displayName: 'Execute Mock API tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+

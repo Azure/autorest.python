@@ -52,34 +52,41 @@ steps:
       cd $(TestFolder)/azure/legacy
       tox -e ci
     displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       cd $(TestFolder)/azure/version-tolerant
       tox -e ci
     displayName: 'Execute version tolerant "azure" Tests - Python $(PythonVersion)'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       cd $(TestFolder)/vanilla/legacy
       tox -e ci
     displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       cd $(TestFolder)/vanilla/version-tolerant
       tox -e ci
     displayName: 'Execute version tolerant "vanilla" Tests - Python $(PythonVersion)'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       cd $(TestFolder)/dpg/version-tolerant
       tox -e ci
     displayName: 'Execute version tolerant "dpg" Tests - Python $(PythonVersion)'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       export RELEASE_VERSION=$(node -p -e "require('./package.json').version")
       npm pack
       npx publish-release --token $(azuresdk-github-pat) --repo autorest.python --owner azure --name "Autorest for Python v$RELEASE_VERSION" --tag v$RELEASE_VERSION --notes='Release version of Autorest for Python v5' --prerelease --editRelease false --assets autorest-python-$RELEASE_VERSION.tgz --target_commitish $(Build.SourceBranchName)
     displayName: 'Publish GitHub release'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
   - script: |
       echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
       npm publish --access public
     displayName: 'Publish to npm'
+    workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
