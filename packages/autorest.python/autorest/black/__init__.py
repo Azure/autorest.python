@@ -40,9 +40,10 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
 
     def format_file(self, full_path) -> None:
         file = full_path.relative_to(self.output_folder)
-        if not file.suffix == ".py":
-            return
         file_content = self.read_file(file)
+        if not file.suffix == ".py":
+            self.write_file(file, file_content)
+            return
         try:
             file_content = black.format_file_contents(
                 file_content, fast=True, mode=_BLACK_MODE
