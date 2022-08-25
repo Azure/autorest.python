@@ -677,9 +677,9 @@ class _OperationSerializer(
         return retval
 
     def _prepare_params(self, builder: OperationType, is_paging: bool) -> List[str]:
-        retval = []
         if is_paging:
-            return retval
+            return [""]
+        retval = []
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
             retval.extend(_serialize_grouped_body(builder))
