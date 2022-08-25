@@ -665,7 +665,7 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        if self.code_model.options["models_mode"] == "dpg":
+        elif self.code_model.options["models_mode"] == "dpg":
             create_body_call = f"_{body_kwarg_name} = json.dumps({body_param.client_name}, cls=AzureJSONEncoder)"
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"

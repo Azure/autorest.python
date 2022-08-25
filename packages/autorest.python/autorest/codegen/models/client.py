@@ -147,27 +147,29 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 ImportType.LOCAL,
             )
 
-        if self.code_model.model_types:
-            if self.code_model.options["models_mode"] == "msrest":
-                path_to_models = ".." if async_mode else "."
-                if len(self.code_model.model_types) != len(
-                    self.code_model.public_model_types
-                ):
-                    # this means we have hidden models. In that case, we import directly from the models
-                    # file, not the module, bc we don't expose the hidden models in the models module
+        if (
+            self.code_model.model_types
+            and self.code_model.options["models_mode"] == "msrest"
+        ):
+            path_to_models = ".." if async_mode else "."
+            if len(self.code_model.model_types) != len(
+                self.code_model.public_model_types
+            ):
+                # this means we have hidden models. In that case, we import directly from the models
+                # file, not the module, bc we don't expose the hidden models in the models module
 
-                    # Also in this case, we're in version tolerant, so python3 only is true
-                    file_import.add_submodule_import(
-                        f"{path_to_models}models",
-                        self.code_model.models_filename,
-                        ImportType.LOCAL,
-                        alias="models",
-                    )
-                else:
-                    file_import.add_submodule_import(
-                        path_to_models, "models", ImportType.LOCAL
-                    )
-        else:
+                # Also in this case, we're in version tolerant, so python3 only is true
+                file_import.add_submodule_import(
+                    f"{path_to_models}models",
+                    self.code_model.models_filename,
+                    ImportType.LOCAL,
+                    alias="models",
+                )
+            else:
+                file_import.add_submodule_import(
+                    path_to_models, "models", ImportType.LOCAL
+                )
+        elif not self.code_model.options["models_mode"] == "dpg":
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
             file_import.add_submodule_import(
