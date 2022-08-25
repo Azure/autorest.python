@@ -48,6 +48,7 @@ from ...operations._paging_operations import (
     build_get_paging_model_with_item_name_with_xms_client_name_request,
     build_get_single_pages_failure_request,
     build_get_single_pages_request,
+    build_get_single_pages_with_body_params_request,
     build_get_with_query_params_request,
     build_next_fragment_request,
     build_next_fragment_with_grouping_request,
@@ -98,6 +99,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata["url"],
                     headers=_headers,
@@ -161,6 +163,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata["url"],
                     headers=_headers,
@@ -224,6 +227,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata["url"],
                     headers=_headers,
@@ -269,6 +273,70 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
 
     @distributed_trace
+    def get_single_pages_with_body_params(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.packagemode.batch.paging.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_get_single_pages_with_body_params_request(
+                    template_url=self.get_single_pages_with_body_params.metadata["url"],
+                    headers=_headers,
+                    params=_params,
+                )
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)  # type: ignore
+                request.method = "GET"
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = self._deserialize("ProductResult", pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    get_single_pages_with_body_params.metadata = {"url": "/paging/single/getWithBodyParams"}  # type: ignore
+
+    @distributed_trace
     def first_response_empty(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
@@ -288,6 +356,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata["url"],
                     headers=_headers,
@@ -366,6 +435,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -441,6 +511,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
@@ -512,6 +583,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_duplicate_params_request(
                     filter=filter,
                     template_url=self.duplicate_params.metadata["url"],
@@ -579,6 +651,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_page_with_max_page_size_request(
                     maxpagesize=maxpagesize,
                     template_url=self.page_with_max_page_size.metadata["url"],
@@ -658,6 +731,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -741,6 +815,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
@@ -809,6 +884,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata["url"],
                     headers=_headers,
@@ -873,6 +949,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata["url"],
                     headers=_headers,
@@ -936,6 +1013,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata["url"],
                     headers=_headers,
@@ -999,6 +1077,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata["url"],
                     headers=_headers,
@@ -1062,6 +1141,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata["url"],
                     headers=_headers,
@@ -1131,6 +1211,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
@@ -1209,6 +1290,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=_tenant,
                     api_version=_api_version,
@@ -1358,6 +1440,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -1461,6 +1544,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_append_api_version_request(
                     api_version=api_version,
                     template_url=self.append_api_version.metadata["url"],
@@ -1527,6 +1611,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_replace_api_version_request(
                     api_version=api_version,
                     template_url=self.replace_api_version.metadata["url"],
@@ -1592,6 +1677,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"],
                     headers=_headers,

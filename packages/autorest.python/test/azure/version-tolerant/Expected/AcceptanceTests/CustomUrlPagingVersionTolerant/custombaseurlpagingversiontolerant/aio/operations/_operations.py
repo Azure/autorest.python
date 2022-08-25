@@ -86,6 +86,7 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_paging_get_pages_partial_url_request(
                     headers=_headers,
                     params=_params,
@@ -160,6 +161,7 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_paging_get_pages_partial_url_operation_request(
                     headers=_headers,
                     params=_params,

@@ -431,6 +431,7 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
+
                 request = build_test_lro_and_paging_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
