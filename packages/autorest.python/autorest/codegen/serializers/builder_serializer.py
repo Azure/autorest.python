@@ -944,7 +944,7 @@ class _OperationSerializer(
                     None
                     if not isinstance(response.type, ModelType)
                     else f"_models.{response.type.name}"
-                )  # TODO: deserialize list and dict
+                )
                 retval.append(
                     f"deserialized = _deserialize({deserializer}, response.json())"
                 )
@@ -1216,9 +1216,12 @@ class _PagingOperationSerializer(
                 f'self._deserialize("{response.serialization_type}", pipeline_response)'
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            deserialized = (
-                f"_deserialize(_models.{response.type.name}, pipeline_response)"
+            deserializer = (
+                f"_models.{response.type.name}"
+                if isinstance(response.type, ModelType)
+                else None
             )
+            deserialized = f"_deserialize({deserializer}, pipeline_response)"
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name
         list_of_elem = (
