@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -15,10 +15,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import MultiInterfaceClientConfiguration
 from .operations import CatsOperations, DogsOperations
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class MultiInterfaceClient:  # pylint: disable=client-accepts-api-version-keyword

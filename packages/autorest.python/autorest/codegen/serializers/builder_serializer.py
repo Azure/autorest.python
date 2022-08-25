@@ -1050,7 +1050,10 @@ class _OperationSerializer(
                 error_model_str = ""
                 if isinstance(excep.type, ModelType):
                     if self.code_model.options["models_mode"] == "msrest":
-                        error_model_str = f", model=self._deserialize(_models.{excep.type.serialization_type}, response)"
+                        error_model_str = (
+                            f", model=self._deserialize("
+                            f"_models.{excep.type.serialization_type}, response)"
+                        )
                     elif self.code_model.options["models_mode"] == "dpg":
                         error_model_str = f", model=_deserialize(_models.{excep.type.name}, response.json())"
                 error_format_str = (
