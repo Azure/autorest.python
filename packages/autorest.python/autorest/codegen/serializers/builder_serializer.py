@@ -708,7 +708,9 @@ class _OperationSerializer(
             retval.extend(self._serialize_body_parameter(builder))
         return retval
 
-    def _initialize_overloads(self, builder: OperationType, is_paging: bool=False) -> List[str]:
+    def _initialize_overloads(
+        self, builder: OperationType, is_paging: bool = False
+    ) -> List[str]:
         retval: List[str] = []
         # For paging, we put body parameter in local place outside `prepare_request`
         if is_paging:
