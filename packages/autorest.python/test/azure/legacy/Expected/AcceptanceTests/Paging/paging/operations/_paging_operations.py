@@ -736,11 +736,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _parameters = _models.BodyParam(name=name)
-        _json = self._serialize.body(_parameters, "BodyParam")
 
         def prepare_request(next_link=None):
             if not next_link:
+                _parameters = _models.BodyParam(name=name)
+                _json = self._serialize.body(_parameters, "BodyParam")
 
                 request = build_get_single_pages_with_body_params_request(
                     content_type=content_type,
@@ -878,14 +878,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_options is not None:
-            _maxresults = paging_get_multiple_pages_options.maxresults
-            _timeout = paging_get_multiple_pages_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
+                _maxresults = None
+                _timeout = None
+                if paging_get_multiple_pages_options is not None:
+                    _maxresults = paging_get_multiple_pages_options.maxresults
+                    _timeout = paging_get_multiple_pages_options.timeout
 
                 request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
@@ -1174,14 +1174,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _maxresults = None
-        _timeout = None
-        if paging_get_odata_multiple_pages_options is not None:
-            _maxresults = paging_get_odata_multiple_pages_options.maxresults
-            _timeout = paging_get_odata_multiple_pages_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
+                _maxresults = None
+                _timeout = None
+                if paging_get_odata_multiple_pages_options is not None:
+                    _maxresults = paging_get_odata_multiple_pages_options.maxresults
+                    _timeout = paging_get_odata_multiple_pages_options.timeout
 
                 request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
@@ -1256,16 +1256,16 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _maxresults = None
-        _offset = None
-        _timeout = None
-        if paging_get_multiple_pages_with_offset_options is not None:
-            _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-            _offset = paging_get_multiple_pages_with_offset_options.offset
-            _timeout = paging_get_multiple_pages_with_offset_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
+                _maxresults = None
+                _offset = None
+                _timeout = None
+                if paging_get_multiple_pages_with_offset_options is not None:
+                    _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+                    _offset = paging_get_multiple_pages_with_offset_options.offset
+                    _timeout = paging_get_multiple_pages_with_offset_options.timeout
 
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
@@ -1733,14 +1733,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _api_version = None
-        _tenant = None
-        if custom_parameter_group is not None:
-            _api_version = custom_parameter_group.api_version
-            _tenant = custom_parameter_group.tenant
 
         def prepare_request(next_link=None):
             if not next_link:
+                _api_version = None
+                _tenant = None
+                if custom_parameter_group is not None:
+                    _api_version = custom_parameter_group.api_version
+                    _tenant = custom_parameter_group.tenant
 
                 request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=_tenant,
@@ -1881,14 +1881,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_lro_options is not None:
-            _maxresults = paging_get_multiple_pages_lro_options.maxresults
-            _timeout = paging_get_multiple_pages_lro_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
+                _maxresults = None
+                _timeout = None
+                if paging_get_multiple_pages_lro_options is not None:
+                    _maxresults = paging_get_multiple_pages_lro_options.maxresults
+                    _timeout = paging_get_multiple_pages_lro_options.timeout
 
                 request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,

@@ -292,8 +292,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_single_pages_with_body_params(self, parameters: Union[JSON, IO], **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
-        :param parameters: put any non-null value to pass the test. Is either a model type or a IO
-         type. Required.
+        :param parameters: put {'name': 'body'} to pass the test. Is either a model type or a IO type.
+         Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

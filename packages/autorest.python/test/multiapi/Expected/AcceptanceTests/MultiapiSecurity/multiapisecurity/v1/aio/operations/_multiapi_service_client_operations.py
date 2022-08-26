@@ -351,14 +351,14 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _maxresults = None
-        _timeout = None
-        if test_lro_and_paging_options is not None:
-            _maxresults = test_lro_and_paging_options.maxresults
-            _timeout = test_lro_and_paging_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
+                _maxresults = None
+                _timeout = None
+                if test_lro_and_paging_options is not None:
+                    _maxresults = test_lro_and_paging_options.maxresults
+                    _timeout = test_lro_and_paging_options.timeout
 
                 request = build_test_lro_and_paging_request(
                     client_request_id=client_request_id,
