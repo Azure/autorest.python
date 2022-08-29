@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "optionalproperties"
+PACKAGE_NAME = "modelspropertytypes"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="OptionalProperties",
+    description="ModelsPropertyTypes",
     author_email="",
     url="",
     keywords="azure, azure sdk",
