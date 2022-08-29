@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "outputbasicclient"
+PACKAGE_NAME = "outputbasic"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="OutputBasicClient",
+    description="OutputBasic",
     author_email="",
     url="",
     keywords="azure, azure sdk",
