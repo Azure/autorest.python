@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from ._models_py3 import BodyParam
 from ._models_py3 import CustomParameterGroup
 from ._models_py3 import OdataProductResult
 from ._models_py3 import OperationResult
@@ -25,6 +26,7 @@ from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "BodyParam",
     "CustomParameterGroup",
     "OdataProductResult",
     "OperationResult",

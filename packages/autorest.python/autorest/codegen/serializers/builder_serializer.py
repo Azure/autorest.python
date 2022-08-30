@@ -710,8 +710,13 @@ class _OperationSerializer(
             retval.extend(self._serialize_body_parameter(builder))
         return retval
 
-    def _initialize_overloads(self, builder: OperationType) -> List[str]:
+    def _initialize_overloads(
+        self, builder: OperationType, is_paging: bool = False
+    ) -> List[str]:
         retval: List[str] = []
+        # For paging, we put body parameter in local place outside `prepare_request`
+        if is_paging:
+            return retval
         same_content_type = (
             len(
                 set(
@@ -887,6 +892,7 @@ class _OperationSerializer(
         request_builder: RequestBuilderType,
         template_url: Optional[str] = None,
         is_next_request: bool = False,
+        is_paging: bool = False,
     ) -> List[str]:
         retval = []
         if builder.parameters.grouped:
@@ -897,7 +903,7 @@ class _OperationSerializer(
             retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
         if builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
-            retval.extend(self._initialize_overloads(builder))
+            retval.extend(self._initialize_overloads(builder, is_paging=is_paging))
         elif builder.parameters.has_body:
             # non-overloaded body
             retval.extend(self._create_body_parameter(builder))
@@ -910,8 +916,12 @@ class _OperationSerializer(
         retval.extend(self._postprocess_http_request(builder, template_url))
         return retval
 
-    def call_request_builder(self, builder: OperationType) -> List[str]:
-        return self._call_request_builder_helper(builder, builder.request_builder)
+    def call_request_builder(
+        self, builder: OperationType, is_paging: bool = False
+    ) -> List[str]:
+        return self._call_request_builder_helper(
+            builder, builder.request_builder, is_paging=is_paging
+        )
 
     def response_headers_and_deserialization(
         self,
@@ -1132,6 +1142,8 @@ class _PagingOperationSerializer(
     def decorators(self, builder: PagingOperationType) -> List[str]:
         """Decorators for the method"""
         retval: List[str] = []
+        if builder.is_overload:
+            return ["@overload"]
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append("@distributed_trace")
         return retval
@@ -1184,10 +1196,14 @@ class _PagingOperationSerializer(
         return retval
 
     def _prepare_request_callback(self, builder: PagingOperationType) -> List[str]:
-        retval = ["def prepare_request(next_link=None):"]
+        retval = self._initialize_overloads(builder)
+        retval.append("def prepare_request(next_link=None):")
         retval.append("    if not next_link:")
         retval.extend(
-            [f"        {line}" for line in self.call_request_builder(builder)]
+            [
+                f"        {line}"
+                for line in self.call_request_builder(builder, is_paging=True)
+            ]
         )
         retval.append("")
         retval.append("    else:")

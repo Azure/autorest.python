@@ -16,6 +16,26 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
+class BodyParam(_serialization.Model):
+    """BodyParam.
+
+    :ivar name:
+    :vartype name: str
+    """
+
+    _attribute_map = {
+        "name": {"key": "name", "type": "str"},
+    }
+
+    def __init__(self, *, name: Optional[str] = None, **kwargs):
+        """
+        :keyword name:
+        :paramtype name: str
+        """
+        super().__init__(**kwargs)
+        self.name = name
+
+
 class CustomParameterGroup(_serialization.Model):
     """Parameter group.
 
