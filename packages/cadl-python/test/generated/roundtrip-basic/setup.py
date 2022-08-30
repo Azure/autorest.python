@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "roundtripbasicclient"
+PACKAGE_NAME = "roundtripbasic"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="RoundTripBasicClient",
+    description="RoundTripBasic",
     author_email="",
     url="",
     keywords="azure, azure sdk",

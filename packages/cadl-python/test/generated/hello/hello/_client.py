@@ -12,8 +12,8 @@ from typing import Any, TYPE_CHECKING
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import HelloClientConfiguration
-from ._operations import HelloClientOperationsMixin
+from ._configuration import HelloConfiguration
+from ._operations import HelloOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -21,12 +21,12 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class HelloClient(HelloClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class Hello(HelloOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = HelloClientConfiguration(**kwargs)
+        self._config = HelloConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -60,7 +60,7 @@ class HelloClient(HelloClientOperationsMixin):  # pylint: disable=client-accepts
         self._client.close()
 
     def __enter__(self):
-        # type: () -> HelloClient
+        # type: () -> Hello
         self._client.__enter__()
         return self
 
