@@ -726,11 +726,12 @@ class _OperationSerializer(
                 0
             ].parameters.body_parameter.default_content_type
             retval.append(f'content_type = content_type or "{default_content_type}"')
-        for client_name in {
+        client_names = [
             overload.request_builder.parameters.body_parameter.client_name
             for overload in builder.overloads
-        }:
-            retval.append(f"_{client_name} = None")
+        ]
+        for v in sorted(set(client_names), key=lambda x: client_names.index(x)):
+            retval.append(f"_{v} = None")
         try:
             # if there is a binary overload, we do a binary check first.
             binary_overload = cast(
