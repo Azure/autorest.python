@@ -90,7 +90,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             retval = f"_models.{self.name}"
             if not self.is_public:
                 retval = f"{self.code_model.models_filename}.{retval}"
-            if self.code_model.options["models_mode"] == "dpg" and kwargs.pop(
+            if self.code_model.options["models_mode"] == "json" and kwargs.pop(
                 "is_body_parameter", False
             ):
                 retval += ", JSON"
@@ -102,7 +102,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def docstring_type(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             ret = f"~{self.code_model.namespace}.models.{self.name}"
-            if self.code_model.options["models_mode"] == "dpg" and kwargs.pop(
+            if self.code_model.options["models_mode"] == "json" and kwargs.pop(
                 "is_body_parameter", False
             ):
                 ret += " or JSON"
@@ -262,7 +262,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         models_mode = self.code_model.options["models_mode"]
         if models_mode == "msrest":
             return "isinstance({}, msrest.Model)"
-        if models_mode == "dpg":
+        if models_mode == "json":
             return "isinstance({}, _model_base.Model)"
         return "isinstance({}, MutableMapping)"
 

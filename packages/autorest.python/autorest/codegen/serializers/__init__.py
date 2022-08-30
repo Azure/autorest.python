@@ -427,7 +427,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 namespace_path / Path("_serialization.py"),
                 general_serializer.serialize_serialization_file(),
             )
-        if self.code_model.options["models_mode"] == "dpg":
+        if self.code_model.options["models_mode"] == "json":
             self.write_file(
                 namespace_path / Path("_model_base.py"),
                 general_serializer.serialize_model_base_file(),

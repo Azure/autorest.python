@@ -665,7 +665,7 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        elif self.code_model.options["models_mode"] == "dpg":
+        elif self.code_model.options["models_mode"] == "json":
             create_body_call = f"_{body_kwarg_name} = json.dumps({body_param.client_name}, cls=AzureJSONEncoder)"
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
@@ -938,7 +938,7 @@ class _OperationSerializer(
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
-            elif self.code_model.options["models_mode"] == "dpg":
+            elif self.code_model.options["models_mode"] == "json":
                 deserializer = (
                     None
                     if not isinstance(response.type, ModelType)
@@ -1053,7 +1053,7 @@ class _OperationSerializer(
                             f", model=self._deserialize("
                             f"_models.{excep.type.serialization_type}, response)"
                         )
-                    elif self.code_model.options["models_mode"] == "dpg":
+                    elif self.code_model.options["models_mode"] == "json":
                         error_model_str = f", model=_deserialize(_models.{excep.type.name}, response.json())"
                 error_format_str = (
                     ", error_format=ARMErrorFormat"
@@ -1214,7 +1214,7 @@ class _PagingOperationSerializer(
             deserialized = (
                 f'self._deserialize("{response.serialization_type}", pipeline_response)'
             )
-        elif self.code_model.options["models_mode"] == "dpg":
+        elif self.code_model.options["models_mode"] == "json":
             deserializer = (
                 f"_models.{response.type.name}"
                 if isinstance(response.type, ModelType)
