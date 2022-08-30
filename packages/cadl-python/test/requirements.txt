@@ -3,10 +3,7 @@ requests==2.20.0
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.24.0
--e ./generated/collections-basic
--e ./generated/collections-models
 -e ./generated/dev-driven
--e ./generated/enum-properties
 -e ./generated/extensible-enums
 -e ./generated/hello
 -e ./generated/inheritance
@@ -15,7 +12,7 @@ azure-core==1.24.0
 -e ./generated/nested-models
 -e ./generated/optional-properties
 -e ./generated/output-basic
--e ./generated/primitive-properties
+-e ./generated/property-types
 -e ./generated/readonly-properties
 -e ./generated/roundtrip-basic
 -e ./generated/srv-driven-1

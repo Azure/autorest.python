@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "inputbasicclient"
+PACKAGE_NAME = "inputbasic"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="InputBasicClient",
+    description="InputBasic",
     author_email="",
     url="",
     keywords="azure, azure sdk",

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 from urllib.parse import parse_qs, urljoin, urlparse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -48,6 +48,7 @@ from ...operations._operations import (
     build_paging_get_paging_model_with_item_name_with_xms_client_name_request,
     build_paging_get_single_pages_failure_request,
     build_paging_get_single_pages_request,
+    build_paging_get_single_pages_with_body_params_request,
     build_paging_get_with_query_params_request,
     build_paging_next_fragment_request,
     build_paging_next_fragment_with_grouping_request,
@@ -288,6 +289,151 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncCustomPager(get_next, extract_data)
+
+    @overload
+    def get_single_pages_with_body_params(
+        self, parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncIterable[JSON]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param parameters: put {'name': 'body'} to pass the test. Required.
+        :type parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "name": "str"  # Optional.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+
+    @overload
+    def get_single_pages_with_body_params(
+        self, parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncIterable[JSON]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param parameters: put {'name': 'body'} to pass the test. Required.
+        :type parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+
+    @distributed_trace
+    def get_single_pages_with_body_params(self, parameters: Union[JSON, IO], **kwargs: Any) -> AsyncIterable[JSON]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param parameters: put {'name': 'body'} to pass the test. Is either a model type or a IO type.
+         Required.
+        :type parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+        content_type = content_type or "application/json"
+        _json = None
+        _content = None
+        if isinstance(parameters, (IO, bytes)):
+            _content = parameters
+        else:
+            _json = parameters
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_paging_get_single_pages_with_body_params_request(
+                    content_type=content_type,
+                    json=_json,
+                    content=_content,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def first_response_empty(self, **kwargs: Any) -> AsyncIterable[JSON]:
