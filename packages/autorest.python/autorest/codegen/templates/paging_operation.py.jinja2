@@ -1,5 +1,8 @@
 {% import 'operation_tools.jinja2' as op_tools with context %}
 {# actual template starts here #}
+{% if operation.overloads and operation.public %}
+{{ op_tools.generate_overloads(operation_serializer, operation) }}
+{% endif %}
 {{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
 {% if operation.public %}
     {{ op_tools.description(operation, operation_serializer) | indent }}{% endif %}

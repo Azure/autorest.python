@@ -1126,6 +1126,8 @@ class _PagingOperationSerializer(
     def decorators(self, builder: PagingOperationType) -> List[str]:
         """Decorators for the method"""
         retval: List[str] = []
+        if builder.is_overload:
+            return ["@overload"]
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append("@distributed_trace")
         return retval
