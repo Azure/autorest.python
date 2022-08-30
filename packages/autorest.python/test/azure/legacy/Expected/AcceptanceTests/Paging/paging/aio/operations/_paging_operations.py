@@ -47,6 +47,7 @@ from ...operations._paging_operations import (
     build_get_paging_model_with_item_name_with_xms_client_name_request,
     build_get_single_pages_failure_request,
     build_get_single_pages_request,
+    build_get_single_pages_with_body_params_request,
     build_get_with_query_params_request,
     build_next_fragment_request,
     build_next_fragment_with_grouping_request,
@@ -269,6 +270,79 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
+
+    @distributed_trace
+    def get_single_pages_with_body_params(
+        self, name: Optional[str] = None, **kwargs: Any
+    ) -> AsyncIterable["_models.Product"]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param name: Default value is None.
+        :type name: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either Product or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+                _parameters = _models.BodyParam(name=name)
+                _json = self._serialize.body(_parameters, "BodyParam")
+
+                request = build_get_single_pages_with_body_params_request(
+                    content_type=content_type,
+                    json=_json,
+                    template_url=self.get_single_pages_with_body_params.metadata["url"],
+                    headers=_headers,
+                    params=_params,
+                )
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urlparse(next_link)
+                _next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest("GET", urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)  # type: ignore
+                request.method = "GET"
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = self._deserialize("ProductResult", pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    get_single_pages_with_body_params.metadata = {"url": "/paging/single/getWithBodyParams"}  # type: ignore
 
     @distributed_trace
     def first_response_empty(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
