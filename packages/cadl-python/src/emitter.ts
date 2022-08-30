@@ -347,7 +347,7 @@ function emitResponse(
     let type = undefined;
     if (innerResponse.body?.type) {
         // temporary logic. It can be removed after compiler optimize the response
-        const candidate = ["ResourceOkResponse", "ResourceCreatedResponse"];
+        const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
         const originType = innerResponse.body.type as ModelType;
         if (innerResponse.body.type.kind == "Model" && candidate.find(e => e === originType.name)) {
             const modelType = getEffectiveSchemaType(program, originType);
