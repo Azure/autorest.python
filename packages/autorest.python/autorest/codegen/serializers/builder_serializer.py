@@ -969,6 +969,8 @@ class _OperationSerializer(
             builder.default_error_deserialization
             and self.code_model.options["models_mode"]
         ):
+            if builder.has_stream_response:
+                retval.append("    pipeline_response.http_response.body()")
             retval.append(
                 f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
                 "pipeline_response)"

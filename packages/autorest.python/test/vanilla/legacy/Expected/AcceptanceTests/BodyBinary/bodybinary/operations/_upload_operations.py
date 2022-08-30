@@ -21,6 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -68,6 +69,8 @@ class UploadOperations:
         :class:`~bodybinary.BinaryWithContentTypeApplicationJson`'s
         :attr:`upload` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)

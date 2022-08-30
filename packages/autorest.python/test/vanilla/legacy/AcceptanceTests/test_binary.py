@@ -25,7 +25,8 @@
 # --------------------------------------------------------------------------
 import pytest
 import json
-from bodybinary import BinaryWithContentTypeApplicationJson
+from bodybinary import BinaryWithContentTypeApplicationJson, models
+from azure.core.exceptions import HttpResponseError
 
 @pytest.fixture
 def client():
@@ -38,3 +39,8 @@ def test_upload_file(client):
 
 def test_upload_binary(client):
     client.upload.binary(b"Hello, world!")
+
+def test_download_error(client):
+    with pytest.raises(HttpResponseError) as ex:
+        client.download.error_stream()
+    assert isinstance(ex.value.model, models.Error)
