@@ -60,5 +60,5 @@
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
     {% if model.discriminator_value %}
-        {{ serializer.initialize_discriminator_property(model, model.get_discriminator_property()) }}
+        {{ serializer.initialize_discriminator_property(model, model.discriminator_property) }}
     {% endif %}

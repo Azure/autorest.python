@@ -33,7 +33,9 @@ def _get_properties(type: "ModelType", properties: List[Property]) -> List[Prope
     return properties
 
 
-class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
+class ModelType(
+    BaseType
+):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Represents a class ready to be serialized in Python.
 
     :param str name: The name of the class.
@@ -245,7 +247,8 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         except StopIteration:
             return None
 
-    def get_discriminator_property(self) -> Optional[Property]:
+    @property
+    def discriminator_property(self) -> Optional[Property]:
         try:
             return next(
                 p

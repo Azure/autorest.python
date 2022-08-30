@@ -122,8 +122,26 @@ class ModelSerializer:
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
-    def declare_property(prop: Property) -> List[str]:
-        attribute_key = prop.rest_api_name.replace(".", "\\\\.")
+    def _escape_dot(s: str):
+        return s.replace(".", "\\\\.")
+
+    @staticmethod
+    def declare_msrest_attribute_map(prop: Property) -> str:
+        if prop.flattened_names:
+            attribute_key = ".".join(
+                ModelSerializer._escape_dot(n) for n in prop.flattened_names
+            )
+        else:
+            attribute_key = ModelSerializer._escape_dot(prop.rest_api_name)
+        if prop.type.xml_serialization_ctxt:
+            xml_metadata = f", 'xml': {{{prop.type.xml_serialization_ctxt}}}"
+        else:
+            xml_metadata = ""
+        return f'"{prop.client_name}": {{"key": "{attribute_key}", "type": "{prop.serialization_type}"{xml_metadata}}},'
+
+    @staticmethod
+    def declare_json_property(prop: Property) -> List[str]:
+        attribute_key = ModelSerializer._escape_dot(prop.rest_api_name)
         args = [f'name="{attribute_key}"']
         if prop.readonly:
             args.append("readonly=True")

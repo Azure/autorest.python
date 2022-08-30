@@ -125,20 +125,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         retval.update(self.type.validation or {})
         return retval or None
 
-    @property
-    def attribute_map(self) -> str:
-        if self.flattened_names:
-            attribute_key = ".".join(
-                n.replace(".", "\\\\.") for n in self.flattened_names
-            )
-        else:
-            attribute_key = self.rest_api_name.replace(".", "\\\\.")
-        if self.type.xml_serialization_ctxt:
-            xml_metadata = f", 'xml': {{{self.type.xml_serialization_ctxt}}}"
-        else:
-            xml_metadata = ""
-        return f'"{self.client_name}": {{"key": "{attribute_key}", "type": "{self.serialization_type}"{xml_metadata}}},'
-
     def imports(self) -> FileImport:
         from .model_type import ModelType
 

@@ -38,7 +38,7 @@
     _attribute_map = {
         {% if model.properties %}
             {% for p in model.properties %}
-        {{ p.attribute_map }}
+        {{ serializer.declare_msrest_attribute_map(p) }}
             {% endfor %}
         {% endif %}
     }
