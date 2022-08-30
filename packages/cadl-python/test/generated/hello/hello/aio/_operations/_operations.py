@@ -29,7 +29,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HelloClientOperationsMixin(MixinABC):
+class HelloOperationsMixin(MixinABC):
     @distributed_trace_async
     async def world(self, **kwargs: Any) -> str:
         """world.

@@ -42,7 +42,7 @@ _SERIALIZER.client_side_validation = False
 
 def build_params_head_no_params_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    _url = "/serviceDriven1/parameters"
+    _url = "/resilency/servicedriven1/parameters"
 
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
@@ -54,7 +54,7 @@ def build_params_get_required_request(*, parameter: str, **kwargs: Any) -> HttpR
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/serviceDriven1/parameters"
+    _url = "/resilency/servicedriven1/parameters"
 
     # Construct parameters
     _params["parameter"] = _SERIALIZER.query("parameter", parameter, "str")
@@ -74,7 +74,7 @@ def build_params_put_required_optional_request(
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/serviceDriven1/parameters"
+    _url = "/resilency/servicedriven1/parameters"
 
     # Construct parameters
     _params["requiredParam"] = _SERIALIZER.query("required_param", required_param, "str")
@@ -95,7 +95,7 @@ def build_params_post_parameters_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/serviceDriven1/parameters/{contentTypePath}"
+    _url = "/resilency/servicedriven1/parameters/{contentTypePath}"
     path_format_arguments = {
         "contentTypePath": _SERIALIZER.url("content_type_path", content_type_path, "str"),
     }
@@ -117,7 +117,7 @@ def build_params_get_optional_request(*, optional_param: Optional[str] = None, *
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/serviceDriven1/moreParameters"
+    _url = "/resilency/servicedriven1/moreParameters"
 
     # Construct parameters
     if optional_param is not None:

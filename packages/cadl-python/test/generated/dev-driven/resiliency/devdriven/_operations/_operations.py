@@ -46,7 +46,7 @@ def build_get_model_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/customization/model/{mode}"
+    _url = "/resilency/devdriven/customization/model/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -66,7 +66,7 @@ def build_post_model_request(mode: Union[str, "_models.Mode"], **kwargs: Any) ->
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/customization/model/{mode}"
+    _url = "/resilency/devdriven/customization/model/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -88,7 +88,7 @@ def build_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/"
+    _url = "/resilency/devdriven"
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str", min_length=1)
@@ -105,7 +105,7 @@ def build_lro_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> HttpRe
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/customization/lro/{mode}"
+    _url = "/resilency/devdriven/customization/lro/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
