@@ -969,11 +969,17 @@ class _OperationSerializer(
             builder.default_error_deserialization
             and self.code_model.options["models_mode"]
         ):
-            if builder.has_stream_response:
-                retval.append("    pipeline_response.http_response.body()")
+            # still going to use pipeline_response so we don't double deserialize in most cases
+            # for streamed responses, we want to have the deserializer do the deserializing for us, so passing
+            # the http_response, which doesn't have cached deserialization.
+            response = (
+                "pipeline_response.http_response"
+                if builder.has_stream_response
+                else "pipeline_response"
+            )
             retval.append(
                 f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
-                "pipeline_response)"
+                f"{response})"
             )
             error_model = ", model=error"
         retval.append(
