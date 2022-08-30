@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "readonlypropertiesclient"
+PACKAGE_NAME = "readonlyproperties"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="ReadonlyPropertiesClient",
+    description="ReadonlyProperties",
     author_email="",
     url="",
     keywords="azure, azure sdk",

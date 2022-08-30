@@ -13,20 +13,20 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import HelloClientConfiguration
-from ._operations import HelloClientOperationsMixin
+from ._configuration import HelloConfiguration
+from ._operations import HelloOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
 
-class HelloClient(HelloClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class Hello(HelloOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = HelloClientConfiguration(**kwargs)
+        self._config = HelloConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -58,7 +58,7 @@ class HelloClient(HelloClientOperationsMixin):  # pylint: disable=client-accepts
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "HelloClient":
+    async def __aenter__(self) -> "Hello":
         await self._client.__aenter__()
         return self
 

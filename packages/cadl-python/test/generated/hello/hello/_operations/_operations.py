@@ -45,7 +45,7 @@ def build_world_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class HelloClientOperationsMixin(MixinABC):
+class HelloOperationsMixin(MixinABC):
     @distributed_trace
     def world(self, **kwargs: Any) -> str:
         """world.
