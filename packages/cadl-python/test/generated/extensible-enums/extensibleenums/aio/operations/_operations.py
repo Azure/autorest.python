@@ -56,7 +56,7 @@ class StringOperations:
     async def get_known_value(self, **kwargs: Any) -> Union[str, "_models.DaysOfWeekExtensibleEnum"]:
         """get_known_value.
 
-        :return: DaysOfWeekExtensibleEnum. This object is MutableMapping-compatible.
+        :return: DaysOfWeekExtensibleEnum
         :rtype: str or ~extensibleenums.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -95,7 +95,7 @@ class StringOperations:
     async def get_unknown_value(self, **kwargs: Any) -> Union[str, "_models.DaysOfWeekExtensibleEnum"]:
         """get_unknown_value.
 
-        :return: DaysOfWeekExtensibleEnum. This object is MutableMapping-compatible.
+        :return: DaysOfWeekExtensibleEnum
         :rtype: str or ~extensibleenums.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -142,7 +142,7 @@ class StringOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -190,7 +190,7 @@ class StringOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """

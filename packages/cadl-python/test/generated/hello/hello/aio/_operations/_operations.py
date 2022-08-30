@@ -34,7 +34,7 @@ class HelloClientOperationsMixin(MixinABC):
     async def world(self, **kwargs: Any) -> str:
         """world.
 
-        :return: str. This object is MutableMapping-compatible.
+        :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """

@@ -100,7 +100,7 @@ class ModelCollectionPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -116,7 +116,7 @@ class ModelCollectionPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -133,7 +133,7 @@ class ModelCollectionPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -178,7 +178,7 @@ class ModelCollectionPropertiesClientOperationsMixin(MixinABC):
     def get_collection_model(self, **kwargs: Any) -> _models.ModelCollectionModel:
         """get_collection_model.
 
-        :return: ModelCollectionModel. This object is MutableMapping-compatible.
+        :return: ModelCollectionModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.modelcollectionproperties.models.ModelCollectionModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -224,7 +224,7 @@ class ModelCollectionPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelCollectionModel. This object is MutableMapping-compatible.
+        :return: ModelCollectionModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.modelcollectionproperties.models.ModelCollectionModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -240,7 +240,7 @@ class ModelCollectionPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelCollectionModel. This object is MutableMapping-compatible.
+        :return: ModelCollectionModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.modelcollectionproperties.models.ModelCollectionModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -257,7 +257,7 @@ class ModelCollectionPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: ModelCollectionModel. This object is MutableMapping-compatible.
+        :return: ModelCollectionModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.modelcollectionproperties.models.ModelCollectionModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """

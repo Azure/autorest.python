@@ -65,7 +65,6 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         self._got_polymorphic_subtypes = False
         self.is_public: bool = self.yaml_data.get("isPublic", True)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
-        self.is_polymorphic: bool = self.yaml_data.get("isPolymorphic", False)
 
     @property
     def is_xml(self) -> bool:
@@ -246,8 +245,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         except StopIteration:
             return None
 
-    @property
-    def _discriminator_to_me(self) -> Optional[Property]:
+    def get_discriminator_property(self) -> Optional[Property]:
         try:
             return next(
                 p

@@ -49,7 +49,7 @@ class InputBasicClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -65,7 +65,7 @@ class InputBasicClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -81,7 +81,7 @@ class InputBasicClientOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: None. This object is MutableMapping-compatible.
+        :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """

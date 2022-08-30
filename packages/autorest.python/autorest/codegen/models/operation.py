@@ -154,8 +154,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         retval = self._response_docstring_helper("docstring_text", **kwargs)
         if not self.code_model.options["version_tolerant"]:
             retval += " or the result of cls(response)"
-        if self.code_model.options["models_mode"] == "dpg":
-            retval += ". This object is MutableMapping-compatible."
+        if (
+            self.code_model.options["models_mode"] == "dpg"
+            and self.responses
+            and isinstance(self.responses[0].type, ModelType)
+        ):
+            retval += ". This object is compatible with MutableMapping"
         return retval
 
     def response_docstring_type(self, **kwargs) -> str:

@@ -140,7 +140,7 @@ class ClientSerializer:
             retval.extend(
                 [
                     f"self.{og.property_name} = {og.class_name}({og.mypy_ignore}{og.pylint_disable}",
-                    f"    self._client, self._config, self._serialize, self._deserialize",
+                    "    self._client, self._config, self._serialize, self._deserialize",
                     ")",
                 ]
             )

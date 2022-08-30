@@ -62,7 +62,7 @@ class DogsOperations:
     async def get_dogs(self, **kwargs: Any) -> _models.Dog:
         """get_dogs.
 
-        :return: Dog. This object is MutableMapping-compatible.
+        :return: Dog. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -108,7 +108,7 @@ class DogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Dog. This object is MutableMapping-compatible.
+        :return: Dog. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -122,7 +122,7 @@ class DogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Dog. This object is MutableMapping-compatible.
+        :return: Dog. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -136,7 +136,7 @@ class DogsOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: Dog. This object is MutableMapping-compatible.
+        :return: Dog. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -203,7 +203,7 @@ class CatsOperations:
     async def get_cats(self, **kwargs: Any) -> _models.Cat:
         """get_cats.
 
-        :return: Cat. This object is MutableMapping-compatible.
+        :return: Cat. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -249,7 +249,7 @@ class CatsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Cat. This object is MutableMapping-compatible.
+        :return: Cat. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -263,7 +263,7 @@ class CatsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Cat. This object is MutableMapping-compatible.
+        :return: Cat. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -277,7 +277,7 @@ class CatsOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: Cat. This object is MutableMapping-compatible.
+        :return: Cat. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """

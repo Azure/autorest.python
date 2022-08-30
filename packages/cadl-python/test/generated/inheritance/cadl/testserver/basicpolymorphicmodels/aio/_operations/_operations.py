@@ -49,7 +49,7 @@ class InheritanceClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: BaseClass. This object is MutableMapping-compatible.
+        :return: BaseClass. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -63,7 +63,7 @@ class InheritanceClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: BaseClass. This object is MutableMapping-compatible.
+        :return: BaseClass. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -77,7 +77,7 @@ class InheritanceClientOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: BaseClass. This object is MutableMapping-compatible.
+        :return: BaseClass. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -138,7 +138,7 @@ class InheritanceClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. This object is MutableMapping-compatible.
+        :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -154,7 +154,7 @@ class InheritanceClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. This object is MutableMapping-compatible.
+        :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -171,7 +171,7 @@ class InheritanceClientOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. This object is MutableMapping-compatible.
+        :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """

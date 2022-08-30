@@ -130,7 +130,6 @@ class _ParameterBase(
 
     def type_annotation(self, **kwargs: Any) -> str:
         kwargs["is_operation_file"] = True
-        kwargs["is_body_parameter"] = isinstance(self, BodyParameter)
         type_annot = self.type.type_annotation(**kwargs)
         if self.optional and self.client_default_value is None:
             return f"Optional[{type_annot}]"
@@ -140,7 +139,6 @@ class _ParameterBase(
         return self.type.docstring_text(**kwargs)
 
     def docstring_type(self, **kwargs: Any) -> str:
-        kwargs["is_body_parameter"] = isinstance(self, BodyParameter)
         return self.type.docstring_type(**kwargs)
 
     @property
@@ -229,6 +227,14 @@ class BodyParameter(_BodyParameterBase):
             code_model=code_model,
             type=code_model.lookup_type(id(yaml_data["type"])),
         )
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        kwargs["is_body_parameter"] = True
+        return super().type_annotation(**kwargs)
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        kwargs["is_body_parameter"] = True
+        return super().docstring_type(**kwargs)
 
 
 EntryBodyParameterType = TypeVar(

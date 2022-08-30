@@ -45,7 +45,7 @@ class ReadonlyPropertiesClientOperationsMixin(MixinABC):
     async def get_optional_property_model(self, **kwargs: Any) -> _models.OutputModel:
         """get_optional_property_model.
 
-        :return: OutputModel. This object is MutableMapping-compatible.
+        :return: OutputModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.readonlyproperties.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -91,7 +91,7 @@ class ReadonlyPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: RoundTripModel. This object is MutableMapping-compatible.
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.readonlyproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -107,7 +107,7 @@ class ReadonlyPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: RoundTripModel. This object is MutableMapping-compatible.
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.readonlyproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -123,7 +123,7 @@ class ReadonlyPropertiesClientOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: RoundTripModel. This object is MutableMapping-compatible.
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~cadl.testserver.readonlyproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
