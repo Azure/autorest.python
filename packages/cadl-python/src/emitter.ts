@@ -30,6 +30,9 @@ import {
     getAllRoutes,
     getAuthentication,
     getContentTypes,
+    getHeaderFieldName,
+    getPathParamName,
+    getQueryParamName,
     getServers,
     HttpAuth,
     HttpOperationParameter,
@@ -37,6 +40,7 @@ import {
     HttpOperationResponse,
     HttpOperationResponseContent,
     HttpServer,
+    isStatusCode,
     OperationDetails,
 } from "@cadl-lang/rest/http";
 import { getAddedOn } from "@cadl-lang/versioning";
@@ -140,6 +144,18 @@ function handleDiscriminator(program: Program, type: ModelType, model: Record<st
     }
 }
 
+function getEffectiveSchemaType(program: Program, type: ModelType): ModelType {
+    function isSchemaProperty(property: ModelTypeProperty) {
+        const headerInfo = getHeaderFieldName(program, property);
+        const queryInfo = getQueryParamName(program, property);
+        const pathInfo = getPathParamName(program, property);
+        const statusCodeinfo = isStatusCode(program, property);
+        return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
+    }
+
+    return program.checker.getEffectiveModelType(type, isSchemaProperty);
+}
+
 function getType(
     program: Program,
     type: Type | CredentialType,
@@ -207,7 +223,7 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
     };
 }
 
-function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperationParameters): Record<string, any> {
+function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperationParameters, operation: OperationDetails): Record<string, any> {
     const base = emitParamBase(program, params.bodyParameter ?? bodyType);
     const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
     const contentTypes = contentTypeParam
@@ -222,6 +238,13 @@ function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperati
     } else {
         type = getType(program, bodyType);
     }
+
+    // avoid anonymous model type
+    if (type && !type.name) {
+        type.name = operation.container.name + operation.operation.name[0].toUpperCase() + operation.operation.name.slice(1) + "Request";
+        type.snakeCaseName = camelToSnakeCase(type.name);
+    }
+
     return {
         contentTypes,
         type,
@@ -323,7 +346,15 @@ function emitResponse(
 ): Record<string, any> {
     let type = undefined;
     if (innerResponse.body?.type) {
-        type = getType(program, innerResponse.body.type);
+        // temporary logic. It can be removed after compiler optimize the response
+        const candidate = ["ResourceOkResponse", "ResourceCreatedResponse"];
+        const originType = innerResponse.body.type as ModelType;
+        if (innerResponse.body.type.kind == "Model" && candidate.find(e => e === originType.name)) {
+            const modelType = getEffectiveSchemaType(program, originType);
+            type = getType(program, modelType);
+        } else {
+            type = getType(program, innerResponse.body.type);
+        }
     }
     const statusCodes = [];
     if (response.statusCode === "*") {
@@ -404,7 +435,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
     if (operation.parameters.bodyType === undefined) {
         bodyParameter = undefined;
     } else {
-        bodyParameter = emitBodyParameter(program, operation.parameters.bodyType, operation.parameters);
+        bodyParameter = emitBodyParameter(program, operation.parameters.bodyType, operation.parameters, operation);
         if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
@@ -590,7 +621,7 @@ function emitModel(
                 discriminatedSubtypes: {},
                 properties: properties,
                 addedApiVersion: getAddedOnVersion(program, type),
-                snakeCaseName: camelToSnakeCase(modelName),
+                snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
             };
     }
 }
@@ -831,7 +862,7 @@ function createYamlEmitter(program: Program) {
     // if (versions.length === 0 && getServiceVersion(program)) {
     //   versions = [getServiceVersion(program)];
     // }
-    const name = getServiceTitle(program).replace(/ /g, "");
+    const name = getServiceTitle(program).replace(/ /g, "").replace(/-/g, "");
     const clientParameters = emitGlobalParameters(program, serviceNamespace);
     // Get types
     const server = getServerHelper(program, serviceNamespace);
