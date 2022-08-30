@@ -4,7 +4,7 @@
 
 {{ imports }}
 {% for model in code_model.model_types %}
-{% if code_model.options["models_mode"] == "json" %}
+{% if code_model.options["models_mode"] == "dpg" %}
 {% include "json_model.py.jinja2" %}
 {% else %}
 {% include "msrest_model.py.jinja2" %}

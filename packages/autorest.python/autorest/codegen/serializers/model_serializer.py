@@ -43,7 +43,7 @@ class ModelSerializer:
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        if self.code_model.options["models_mode"] == "json":
+        if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(
                 "..",
                 "_model_base",
@@ -59,7 +59,7 @@ class ModelSerializer:
             )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            if self.code_model.options["models_mode"] == "json":
+            if self.code_model.options["models_mode"] == "dpg":
                 for param in model.properties:
                     file_import.merge(param.imports())
             else:
@@ -109,13 +109,13 @@ class ModelSerializer:
             "msrest.serialization.Model"
             if self.code_model.options["client_side_validation"]
             else "_model_base.Model"
-            if self.code_model.options["models_mode"] == "json"
+            if self.code_model.options["models_mode"] == "dpg"
             else "_serialization.Model"
         )
         if model.parents:
             basename = ", ".join([cast(ModelType, m).name for m in model.parents])
         if (
-            self.code_model.options["models_mode"] == "json"
+            self.code_model.options["models_mode"] == "dpg"
             and model.discriminator_value
         ):
             basename += f", discriminator='{model.discriminator_value}'"

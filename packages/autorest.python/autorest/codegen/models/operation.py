@@ -155,7 +155,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if not self.code_model.options["version_tolerant"]:
             retval += " or the result of cls(response)"
         if (
-            self.code_model.options["models_mode"] == "json"
+            self.code_model.options["models_mode"] == "dpg"
             and self.responses
             and isinstance(self.responses[0].type, ModelType)
         ):
@@ -461,7 +461,7 @@ class Operation(OperationBase[Response]):
             and not self.code_model.options["models_mode"]
         ):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
-        if self.code_model.options["models_mode"] == "json":
+        if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."
             file_import.add_submodule_import(
                 f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL

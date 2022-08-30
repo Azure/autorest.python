@@ -32,7 +32,7 @@
     {% endif %}
     {% if serializer.get_properties_to_declare(model) %}
         {% for p in serializer.get_properties_to_declare(model) if not p.is_discriminator or p.is_polymorphic %}
-        {% for line in serializer.declare_property(p) %}
+        {% for line in serializer.declare_json_property(p) %}
     {{ line }}
         {% endfor %}
         {% endfor %}

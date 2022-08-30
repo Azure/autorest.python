@@ -27,7 +27,7 @@ class RequestBuilderBodyParameter(BodyParameter):
         if (
             isinstance(self.type, (BinaryType, StringType))
             or any("xml" in ct for ct in self.content_types)
-            or self.code_model.options["models_mode"] == "json"
+            or self.code_model.options["models_mode"] == "dpg"
         ):
             self.client_name = "content"
         else:
