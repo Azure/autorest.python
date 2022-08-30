@@ -290,6 +290,65 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncCustomPager(get_next, extract_data)
 
+    @overload
+    def get_single_pages_with_body_params(
+        self, parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncIterable[JSON]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param parameters: put {'name': 'body'} to pass the test. Required.
+        :type parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "name": "str"  # Optional.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+
+    @overload
+    def get_single_pages_with_body_params(
+        self, parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncIterable[JSON]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param parameters: put {'name': 'body'} to pass the test. Required.
+        :type parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+
     @distributed_trace
     def get_single_pages_with_body_params(self, parameters: Union[JSON, IO], **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
