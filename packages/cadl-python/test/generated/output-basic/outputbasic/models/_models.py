@@ -23,70 +23,6 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
-class Cat(_model_base.Model):
-    """Simple model.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar name: Name. Required.
-    :vartype name: str
-    """
-
-    name: str = rest_field(name="name")
-    """Name. Required. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        name: str,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class Dog(_model_base.Model):
-    """Simple model.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar name: Name. Required.
-    :vartype name: str
-    """
-
-    name: str = rest_field(name="name")
-    """Name. Required. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        name: str,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
 class Error(_model_base.Model):
     """The error object.
 
@@ -100,10 +36,10 @@ class Error(_model_base.Model):
     :vartype target: str
     :ivar details: An array of details about specific errors that led to this reported error.
      Required.
-    :vartype details: list[~cadl.testserver.multiinterfaceclient.models.Error]
+    :vartype details: list[~outputbasic.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
      the error.
-    :vartype innererror: ~cadl.testserver.multiinterfaceclient.models.InnerError
+    :vartype innererror: ~outputbasic.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -147,7 +83,7 @@ class ErrorResponse(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar error: The error object. Required.
-    :vartype error: ~cadl.testserver.multiinterfaceclient.models.Error
+    :vartype error: ~outputbasic.models.Error
     """
 
     error: "Error" = rest_field(name="error")
@@ -181,7 +117,7 @@ class InnerError(_model_base.Model):
     :ivar code: One of a server-defined set of error codes. Required.
     :vartype code: str
     :ivar innererror: Inner error.
-    :vartype innererror: ~cadl.testserver.multiinterfaceclient.models.InnerError
+    :vartype innererror: ~outputbasic.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -195,6 +131,43 @@ class InnerError(_model_base.Model):
         *,
         code: str,
         innererror: Optional["_models.InnerError"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class OutputModel(_model_base.Model):
+    """Output Model.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar required_string: Required string, illustrating a reference type property. Required.
+    :vartype required_string: str
+    :ivar required_int: Required int, illustrating a value type property. Required.
+    :vartype required_int: int
+    """
+
+    required_string: str = rest_field(name="requiredString")
+    """Required string, illustrating a reference type property. Required. """
+    required_int: int = rest_field(name="requiredInt")
+    """Required int, illustrating a value type property. Required. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        required_string: str,
+        required_int: int,
     ):
         ...
 

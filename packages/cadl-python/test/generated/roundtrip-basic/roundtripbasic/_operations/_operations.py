@@ -65,12 +65,12 @@ class RoundTripBasicOperationsMixin(MixinABC):
         """get_model.
 
         :param input: Required.
-        :type input: ~cadl.testserver.roundtripbasic.models.RoundTripModel or JSON
+        :type input: ~roundtripbasic.models.RoundTripModel or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: RoundTripModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.roundtripbasic.models.RoundTripModel
+        :rtype: ~roundtripbasic.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -84,7 +84,7 @@ class RoundTripBasicOperationsMixin(MixinABC):
          Default value is "application/json".
         :paramtype content_type: str
         :return: RoundTripModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.roundtripbasic.models.RoundTripModel
+        :rtype: ~roundtripbasic.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -93,12 +93,12 @@ class RoundTripBasicOperationsMixin(MixinABC):
         """get_model.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.roundtripbasic.models.RoundTripModel or JSON or IO
+        :type input: ~roundtripbasic.models.RoundTripModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: RoundTripModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.roundtripbasic.models.RoundTripModel
+        :rtype: ~roundtripbasic.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

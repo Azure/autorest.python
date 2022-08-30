@@ -45,7 +45,7 @@ class InputBasicOperationsMixin(MixinABC):
         """get_model.
 
         :param input: Required.
-        :type input: ~cadl.testserver.inputbasic.models.InputModel or JSON
+        :type input: ~inputbasic.models.InputModel or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -77,7 +77,7 @@ class InputBasicOperationsMixin(MixinABC):
         """get_model.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.inputbasic.models.InputModel or JSON or IO
+        :type input: ~inputbasic.models.InputModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

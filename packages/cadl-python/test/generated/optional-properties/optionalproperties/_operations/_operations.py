@@ -93,7 +93,7 @@ class OptionalPropertiesOperationsMixin(MixinABC):
         """send_optional_property_model.
 
         :param input: Required.
-        :type input: ~cadl.testserver.optionalproperties.models.InputModel or JSON
+        :type input: ~optionalproperties.models.InputModel or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -125,7 +125,7 @@ class OptionalPropertiesOperationsMixin(MixinABC):
         """send_optional_property_model.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.optionalproperties.models.InputModel or JSON or IO
+        :type input: ~optionalproperties.models.InputModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -175,7 +175,7 @@ class OptionalPropertiesOperationsMixin(MixinABC):
         """get_optional_property_model.
 
         :return: OutputModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.optionalproperties.models.OutputModel
+        :rtype: ~optionalproperties.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -216,12 +216,12 @@ class OptionalPropertiesOperationsMixin(MixinABC):
         """set_optional_property_model.
 
         :param input: Required.
-        :type input: ~cadl.testserver.optionalproperties.models.RoundTripModel or JSON
+        :type input: ~optionalproperties.models.RoundTripModel or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: RoundTripModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.optionalproperties.models.RoundTripModel
+        :rtype: ~optionalproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -237,7 +237,7 @@ class OptionalPropertiesOperationsMixin(MixinABC):
          Default value is "application/json".
         :paramtype content_type: str
         :return: RoundTripModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.optionalproperties.models.RoundTripModel
+        :rtype: ~optionalproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -248,12 +248,12 @@ class OptionalPropertiesOperationsMixin(MixinABC):
         """set_optional_property_model.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.optionalproperties.models.RoundTripModel or JSON or IO
+        :type input: ~optionalproperties.models.RoundTripModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: RoundTripModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.optionalproperties.models.RoundTripModel
+        :rtype: ~optionalproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

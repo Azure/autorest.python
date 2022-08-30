@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -21,6 +21,70 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+
+
+class Cat(_model_base.Model):
+    """Simple model.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Name. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field(name="name")
+    """Name. Required. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class Dog(_model_base.Model):
+    """Simple model.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Name. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field(name="name")
+    """Name. Required. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class Error(_model_base.Model):
@@ -36,10 +100,10 @@ class Error(_model_base.Model):
     :vartype target: str
     :ivar details: An array of details about specific errors that led to this reported error.
      Required.
-    :vartype details: list[~cadl.testserver.enumpropertiesbasic.models.Error]
+    :vartype details: list[~multiinterfaceclient.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
      the error.
-    :vartype innererror: ~cadl.testserver.enumpropertiesbasic.models.InnerError
+    :vartype innererror: ~multiinterfaceclient.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -83,7 +147,7 @@ class ErrorResponse(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar error: The error object. Required.
-    :vartype error: ~cadl.testserver.enumpropertiesbasic.models.Error
+    :vartype error: ~multiinterfaceclient.models.Error
     """
 
     error: "Error" = rest_field(name="error")
@@ -117,7 +181,7 @@ class InnerError(_model_base.Model):
     :ivar code: One of a server-defined set of error codes. Required.
     :vartype code: str
     :ivar innererror: Inner error.
-    :vartype innererror: ~cadl.testserver.enumpropertiesbasic.models.InnerError
+    :vartype innererror: ~multiinterfaceclient.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -131,123 +195,6 @@ class InnerError(_model_base.Model):
         *,
         code: str,
         innererror: Optional["_models.InnerError"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class InputModel(_model_base.Model):
-    """Input model with enum properties.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar day: Required standard enum value. Required. Known values are: "Monday", "Tuesday",
-     "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-    :vartype day: str or ~cadl.testserver.enumpropertiesbasic.models.DayOfTheWeek
-    :ivar language: Required string enum value. Required. Known values are: "English", "Spanish",
-     "Mandarin", and "Undocumented".
-    :vartype language: str or ~cadl.testserver.enumpropertiesbasic.models.TranslationLanguage
-    """
-
-    day: Union[str, "DayOfTheWeek"] = rest_field(name="Day")
-    """Required standard enum value. Required. Known values are: \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", and \"Sunday\"."""
-    language: Union[str, "TranslationLanguage"] = rest_field(name="Language")
-    """Required string enum value. Required. Known values are: \"English\", \"Spanish\", \"Mandarin\", and \"Undocumented\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        day: Union[str, "_models.DayOfTheWeek"],
-        language: Union[str, "_models.TranslationLanguage"],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class OutputModel(_model_base.Model):
-    """Output model with enum properties.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar day: Required standard enum value. Required. Known values are: "Monday", "Tuesday",
-     "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-    :vartype day: str or ~cadl.testserver.enumpropertiesbasic.models.DayOfTheWeek
-    :ivar language: Required string enum value. Required. Known values are: "English", "Spanish",
-     "Mandarin", and "Undocumented".
-    :vartype language: str or ~cadl.testserver.enumpropertiesbasic.models.TranslationLanguage
-    """
-
-    day: Union[str, "DayOfTheWeek"] = rest_field(name="Day")
-    """Required standard enum value. Required. Known values are: \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", and \"Sunday\"."""
-    language: Union[str, "TranslationLanguage"] = rest_field(name="Language")
-    """Required string enum value. Required. Known values are: \"English\", \"Spanish\", \"Mandarin\", and \"Undocumented\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        day: Union[str, "_models.DayOfTheWeek"],
-        language: Union[str, "_models.TranslationLanguage"],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class RoundTripModel(_model_base.Model):
-    """Round-trip model with enum properties.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar day: Required standard enum value. Required. Known values are: "Monday", "Tuesday",
-     "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-    :vartype day: str or ~cadl.testserver.enumpropertiesbasic.models.DayOfTheWeek
-    :ivar language: Required string enum value. Required. Known values are: "English", "Spanish",
-     "Mandarin", and "Undocumented".
-    :vartype language: str or ~cadl.testserver.enumpropertiesbasic.models.TranslationLanguage
-    """
-
-    day: Union[str, "DayOfTheWeek"] = rest_field(name="Day")
-    """Required standard enum value. Required. Known values are: \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", and \"Sunday\"."""
-    language: Union[str, "TranslationLanguage"] = rest_field(name="Language")
-    """Required string enum value. Required. Known values are: \"English\", \"Spanish\", \"Mandarin\", and \"Undocumented\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        day: Union[str, "_models.DayOfTheWeek"],
-        language: Union[str, "_models.TranslationLanguage"],
     ):
         ...
 

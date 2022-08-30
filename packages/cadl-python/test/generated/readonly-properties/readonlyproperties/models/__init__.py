@@ -9,6 +9,8 @@
 from ._models import Error
 from ._models import ErrorResponse
 from ._models import InnerError
+from ._models import OutputModel
+from ._models import ReadonlyModel
 from ._models import RoundTripModel
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
@@ -18,6 +20,8 @@ __all__ = [
     "Error",
     "ErrorResponse",
     "InnerError",
+    "OutputModel",
+    "ReadonlyModel",
     "RoundTripModel",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])

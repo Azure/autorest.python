@@ -6,31 +6,50 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from ._models import BooleanProperty
+from ._models import BytesProperty
+from ._models import CollectionsIntProperty
+from ._models import CollectionsModelProperty
+from ._models import CollectionsStringProperty
+from ._models import DatetimeProperty
+from ._models import DurationProperty
+from ._models import EnumProperty
 from ._models import Error
 from ._models import ErrorResponse
+from ._models import ExtensibleEnumProperty
+from ._models import FloatProperty
 from ._models import InnerError
-from ._models import InputModel
-from ._models import NestedInputOnlyModel
-from ._models import NestedOutputOnlyModel
-from ._models import NestedRoundTripOnlyModel
-from ._models import NestedRoundTripSharedModel
-from ._models import OutputModel
-from ._models import RoundTripModel
+from ._models import InnerModel
+from ._models import IntProperty
+from ._models import ModelProperty
+from ._models import StringProperty
+
+from ._enums import InnerEnum
+from ._enums import InnerExtensibleEnum
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "BooleanProperty",
+    "BytesProperty",
+    "CollectionsIntProperty",
+    "CollectionsModelProperty",
+    "CollectionsStringProperty",
+    "DatetimeProperty",
+    "DurationProperty",
+    "EnumProperty",
     "Error",
     "ErrorResponse",
+    "ExtensibleEnumProperty",
+    "FloatProperty",
     "InnerError",
-    "InputModel",
-    "NestedInputOnlyModel",
-    "NestedOutputOnlyModel",
-    "NestedRoundTripOnlyModel",
-    "NestedRoundTripSharedModel",
-    "OutputModel",
-    "RoundTripModel",
+    "InnerModel",
+    "IntProperty",
+    "ModelProperty",
+    "StringProperty",
+    "InnerEnum",
+    "InnerExtensibleEnum",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

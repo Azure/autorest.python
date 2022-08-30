@@ -123,7 +123,7 @@ class DogsOperations:
         """get_dogs.
 
         :return: Dog. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
+        :rtype: ~multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -164,12 +164,12 @@ class DogsOperations:
         """set_dogs.
 
         :param input: Required.
-        :type input: ~cadl.testserver.multiinterfaceclient.models.Dog or JSON
+        :type input: ~multiinterfaceclient.models.Dog or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: Dog. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
+        :rtype: ~multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -183,7 +183,7 @@ class DogsOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: Dog. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
+        :rtype: ~multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -192,12 +192,12 @@ class DogsOperations:
         """set_dogs.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.multiinterfaceclient.models.Dog or JSON or IO
+        :type input: ~multiinterfaceclient.models.Dog or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: Dog. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Dog
+        :rtype: ~multiinterfaceclient.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -264,7 +264,7 @@ class CatsOperations:
         """get_cats.
 
         :return: Cat. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
+        :rtype: ~multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -305,12 +305,12 @@ class CatsOperations:
         """set_cats.
 
         :param input: Required.
-        :type input: ~cadl.testserver.multiinterfaceclient.models.Cat or JSON
+        :type input: ~multiinterfaceclient.models.Cat or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: Cat. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
+        :rtype: ~multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -324,7 +324,7 @@ class CatsOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: Cat. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
+        :rtype: ~multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -333,12 +333,12 @@ class CatsOperations:
         """set_cats.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.multiinterfaceclient.models.Cat or JSON or IO
+        :type input: ~multiinterfaceclient.models.Cat or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: Cat. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.multiinterfaceclient.models.Cat
+        :rtype: ~multiinterfaceclient.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

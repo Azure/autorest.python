@@ -60,7 +60,7 @@ class OutputBasicOperationsMixin(MixinABC):
         """get_model.
 
         :return: OutputModel. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.outputbasic.models.OutputModel
+        :rtype: ~outputbasic.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

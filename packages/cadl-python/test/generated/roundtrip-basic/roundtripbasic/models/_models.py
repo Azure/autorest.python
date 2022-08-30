@@ -36,10 +36,10 @@ class Error(_model_base.Model):
     :vartype target: str
     :ivar details: An array of details about specific errors that led to this reported error.
      Required.
-    :vartype details: list[~cadl.testserver.outputbasic.models.Error]
+    :vartype details: list[~roundtripbasic.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
      the error.
-    :vartype innererror: ~cadl.testserver.outputbasic.models.InnerError
+    :vartype innererror: ~roundtripbasic.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -83,7 +83,7 @@ class ErrorResponse(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar error: The error object. Required.
-    :vartype error: ~cadl.testserver.outputbasic.models.Error
+    :vartype error: ~roundtripbasic.models.Error
     """
 
     error: "Error" = rest_field(name="error")
@@ -117,7 +117,7 @@ class InnerError(_model_base.Model):
     :ivar code: One of a server-defined set of error codes. Required.
     :vartype code: str
     :ivar innererror: Inner error.
-    :vartype innererror: ~cadl.testserver.outputbasic.models.InnerError
+    :vartype innererror: ~roundtripbasic.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -146,8 +146,8 @@ class InnerError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class OutputModel(_model_base.Model):
-    """Output Model.
+class RoundTripModel(_model_base.Model):
+    """Round-trip Model.
 
     All required parameters must be populated in order to send to Azure.
 

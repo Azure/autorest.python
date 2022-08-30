@@ -11,7 +11,7 @@ import sys
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
-from .._model_base import rest_field
+from .._model_base import rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -21,6 +21,140 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+
+
+class BaseClass(_model_base.Model):
+    """Example base type.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar base_class_property: An example property. Required.
+    :vartype base_class_property: str
+    """
+
+    base_class_property: str = rest_field(name="baseClassProperty")
+    """An example property. Required. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        base_class_property: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class BaseClassWithDiscriminator(BaseClass):
+    """Example base class that has a discriminator property.
+
+    You probably want to use the sub-classes and not this class directly. Known sub-classes are:
+    DerivedFromBaseClassWithDiscriminatorA, DerivedFromBaseClassWithDiscriminatorB
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar base_class_property: An example property. Required.
+    :vartype base_class_property: str
+    :ivar discriminator_property: Required. Default value is "B".
+    :vartype discriminator_property: str
+    """
+
+    __mapping__ = {}
+    discriminator_property: str = rest_discriminator(name="discriminatorProperty")
+    """Required. Default value is \"B\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        base_class_property: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class DerivedFromBaseClassWithDiscriminatorA(BaseClassWithDiscriminator, discriminator="A"):
+    """DerivedFromBaseClassWithDiscriminatorA.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar base_class_property: An example property. Required.
+    :vartype base_class_property: str
+    :ivar discriminator_property: Required. Default value is "A".
+    :vartype discriminator_property: str
+    """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        base_class_property: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.discriminator_property = "A"  # type: str
+
+
+class DerivedFromBaseClassWithDiscriminatorB(BaseClassWithDiscriminator, discriminator="B"):
+    """DerivedFromBaseClassWithDiscriminatorB.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar base_class_property: An example property. Required.
+    :vartype base_class_property: str
+    :ivar discriminator_property: Required. Default value is "B".
+    :vartype discriminator_property: str
+    """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        base_class_property: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.discriminator_property = "B"  # type: str
 
 
 class Error(_model_base.Model):
@@ -36,10 +170,10 @@ class Error(_model_base.Model):
     :vartype target: str
     :ivar details: An array of details about specific errors that led to this reported error.
      Required.
-    :vartype details: list[~cadl.testserver.collectionpropertiesbasic.models.Error]
+    :vartype details: list[~basicpolymorphicmodels.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
      the error.
-    :vartype innererror: ~cadl.testserver.collectionpropertiesbasic.models.InnerError
+    :vartype innererror: ~basicpolymorphicmodels.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -83,7 +217,7 @@ class ErrorResponse(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar error: The error object. Required.
-    :vartype error: ~cadl.testserver.collectionpropertiesbasic.models.Error
+    :vartype error: ~basicpolymorphicmodels.models.Error
     """
 
     error: "Error" = rest_field(name="error")
@@ -117,7 +251,7 @@ class InnerError(_model_base.Model):
     :ivar code: One of a server-defined set of error codes. Required.
     :vartype code: str
     :ivar innererror: Inner error.
-    :vartype innererror: ~cadl.testserver.collectionpropertiesbasic.models.InnerError
+    :vartype innererror: ~basicpolymorphicmodels.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -146,108 +280,23 @@ class InnerError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InputModel(_model_base.Model):
-    """Input model with collection properties.
+class ModelWithPolymorphicProperty(_model_base.Model):
+    """Illustrates case where a basic model has polymorphic properties.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar required_string_list: Required collection of strings, illustrating a collection of
-     reference types. Required.
-    :vartype required_string_list: list[str]
-    :ivar required_int_list: Required collection of ints, illustrating a collection of value types.
-     Required.
-    :vartype required_int_list: list[int]
+    :ivar polymorphic_property: Example polymorphic type property. Required.
+    :vartype polymorphic_property: ~basicpolymorphicmodels.models.BaseClassWithDiscriminator
     """
 
-    required_string_list: List[str] = rest_field(name="requiredStringList")
-    """Required collection of strings, illustrating a collection of reference types. Required. """
-    required_int_list: List[int] = rest_field(name="requiredIntList")
-    """Required collection of ints, illustrating a collection of value types. Required. """
+    polymorphic_property: "BaseClassWithDiscriminator" = rest_field(name="polymorphicProperty")
+    """Example polymorphic type property. Required. """
 
     @overload
     def __init__(
         self,
         *,
-        required_string_list: List[str],
-        required_int_list: List[int],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class OutputModel(_model_base.Model):
-    """Output model with collection properties.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar required_string_list: Required collection of strings, illustrating a collection of
-     reference types. Required.
-    :vartype required_string_list: list[str]
-    :ivar required_int_list: Required collection of ints, illustrating a collection of value types.
-     Required.
-    :vartype required_int_list: list[int]
-    """
-
-    required_string_list: List[str] = rest_field(name="requiredStringList")
-    """Required collection of strings, illustrating a collection of reference types. Required. """
-    required_int_list: List[int] = rest_field(name="requiredIntList")
-    """Required collection of ints, illustrating a collection of value types. Required. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        required_string_list: List[str],
-        required_int_list: List[int],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class RoundTripModel(_model_base.Model):
-    """Round-trip model with collection properties.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar required_string_list: Required collection of strings, illustrating a collection of
-     reference types. Required.
-    :vartype required_string_list: list[str]
-    :ivar required_int_list: Required collection of ints, illustrating a collection of value types.
-     Required.
-    :vartype required_int_list: list[int]
-    """
-
-    required_string_list: List[str] = rest_field(name="requiredStringList")
-    """Required collection of strings, illustrating a collection of reference types. Required. """
-    required_int_list: List[int] = rest_field(name="requiredIntList")
-    """Required collection of ints, illustrating a collection of value types. Required. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        required_string_list: List[str],
-        required_int_list: List[int],
+        polymorphic_property: "_models.BaseClassWithDiscriminator",
     ):
         ...
 

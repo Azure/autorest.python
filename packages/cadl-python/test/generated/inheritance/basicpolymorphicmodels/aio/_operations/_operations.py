@@ -45,12 +45,12 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         """set_value.
 
         :param input: Required.
-        :type input: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass or JSON
+        :type input: ~basicpolymorphicmodels.models.BaseClass or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: BaseClass. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass
+        :rtype: ~basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -64,7 +64,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
          Default value is "application/json".
         :paramtype content_type: str
         :return: BaseClass. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass
+        :rtype: ~basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -73,12 +73,12 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         """set_value.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass or JSON or IO
+        :type input: ~basicpolymorphicmodels.models.BaseClass or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: BaseClass. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.basicpolymorphicmodels.models.BaseClass
+        :rtype: ~basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -133,13 +133,12 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         """set_value_with_polymorphic_property.
 
         :param input: Required.
-        :type input: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty or
-         JSON
+        :type input: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty
+        :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -155,7 +154,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
          Default value is "application/json".
         :paramtype content_type: str
         :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty
+        :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -166,13 +165,12 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         """set_value_with_polymorphic_property.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty or
-         JSON or IO
+        :type input: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
-        :rtype: ~cadl.testserver.basicpolymorphicmodels.models.ModelWithPolymorphicProperty
+        :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

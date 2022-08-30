@@ -6,27 +6,31 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import BaseClass
-from ._models import BaseClassWithDiscriminator
-from ._models import DerivedFromBaseClassWithDiscriminatorA
-from ._models import DerivedFromBaseClassWithDiscriminatorB
 from ._models import Error
 from ._models import ErrorResponse
 from ._models import InnerError
-from ._models import ModelWithPolymorphicProperty
+from ._models import InputModel
+from ._models import NestedInputOnlyModel
+from ._models import NestedOutputOnlyModel
+from ._models import NestedRoundTripOnlyModel
+from ._models import NestedRoundTripSharedModel
+from ._models import OutputModel
+from ._models import RoundTripModel
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BaseClass",
-    "BaseClassWithDiscriminator",
-    "DerivedFromBaseClassWithDiscriminatorA",
-    "DerivedFromBaseClassWithDiscriminatorB",
     "Error",
     "ErrorResponse",
     "InnerError",
-    "ModelWithPolymorphicProperty",
+    "InputModel",
+    "NestedInputOnlyModel",
+    "NestedOutputOnlyModel",
+    "NestedRoundTripOnlyModel",
+    "NestedRoundTripSharedModel",
+    "OutputModel",
+    "RoundTripModel",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

@@ -36,10 +36,10 @@ class Error(_model_base.Model):
     :vartype target: str
     :ivar details: An array of details about specific errors that led to this reported error.
      Required.
-    :vartype details: list[~cadl.testserver.modelcollectionproperties.models.Error]
+    :vartype details: list[~inputbasic.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
      the error.
-    :vartype innererror: ~cadl.testserver.modelcollectionproperties.models.InnerError
+    :vartype innererror: ~inputbasic.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -83,7 +83,7 @@ class ErrorResponse(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar error: The error object. Required.
-    :vartype error: ~cadl.testserver.modelcollectionproperties.models.Error
+    :vartype error: ~inputbasic.models.Error
     """
 
     error: "Error" = rest_field(name="error")
@@ -117,7 +117,7 @@ class InnerError(_model_base.Model):
     :ivar code: One of a server-defined set of error codes. Required.
     :vartype code: str
     :ivar innererror: Inner error.
-    :vartype innererror: ~cadl.testserver.modelcollectionproperties.models.InnerError
+    :vartype innererror: ~inputbasic.models.InnerError
     """
 
     code: str = rest_field(name="code")
@@ -146,60 +146,21 @@ class InnerError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelCollectionModel(_model_base.Model):
-    """Simple model with model collection properties.
+class InputModel(_model_base.Model):
+    """Input Model.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar required_model_collection: Required collection of models. Required.
-    :vartype required_model_collection:
-     list[~cadl.testserver.modelcollectionproperties.models.SimpleModel]
-    :ivar optional_model_collection: Optional collection of models.
-    :vartype optional_model_collection:
-     list[~cadl.testserver.modelcollectionproperties.models.SimpleModel]
-    """
-
-    required_model_collection: List["SimpleModel"] = rest_field(name="requiredModelCollection")
-    """Required collection of models. Required. """
-    optional_model_collection: Optional[List["SimpleModel"]] = rest_field(name="optionalModelCollection")
-    """Optional collection of models. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        required_model_collection: List["_models.SimpleModel"],
-        optional_model_collection: Optional[List["_models.SimpleModel"]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class SimpleModel(_model_base.Model):
-    """Simple model that will appear in a collection.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar required_string: Required string. Required.
+    :ivar required_string: Required string, illustrating a reference type property. Required.
     :vartype required_string: str
-    :ivar required_int: Required int. Required.
+    :ivar required_int: Required int, illustrating a value type property. Required.
     :vartype required_int: int
     """
 
     required_string: str = rest_field(name="requiredString")
-    """Required string. Required. """
+    """Required string, illustrating a reference type property. Required. """
     required_int: int = rest_field(name="requiredInt")
-    """Required int. Required. """
+    """Required int, illustrating a value type property. Required. """
 
     @overload
     def __init__(
