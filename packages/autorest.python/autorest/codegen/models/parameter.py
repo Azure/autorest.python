@@ -228,6 +228,14 @@ class BodyParameter(_BodyParameterBase):
             type=code_model.lookup_type(id(yaml_data["type"])),
         )
 
+    def type_annotation(self, **kwargs: Any) -> str:
+        kwargs["is_body_parameter"] = True
+        return super().type_annotation(**kwargs)
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        kwargs["is_body_parameter"] = True
+        return super().docstring_type(**kwargs)
+
 
 EntryBodyParameterType = TypeVar(
     "EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"]
