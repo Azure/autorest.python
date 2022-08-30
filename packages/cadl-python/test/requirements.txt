@@ -12,6 +12,7 @@ azure-core==1.24.0
 -e ./generated/nested-models
 -e ./generated/optional-properties
 -e ./generated/output-basic
+-e ./generated/property-optional
 -e ./generated/property-types
 -e ./generated/readonly-properties
 -e ./generated/roundtrip-basic
