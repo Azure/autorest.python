@@ -778,7 +778,8 @@ class Serializer(object):
         """
         if data is None:
             raise ValueError("No value for given attribute")
-
+        if isinstance(data, str):
+            return data
         try:
             if data_type in self.basic_types.values():
                 return self.serialize_basic(data, data_type, **kwargs)
