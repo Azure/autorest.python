@@ -348,22 +348,6 @@ class TestComplex(object):
             )
         client.polymorphism.put_valid(request)
 
-    def test_polymorphism_put_valid_missing_required(self, client):
-        bad_request = Salmon(length=1,
-            iswild=True,
-            location="alaska",
-            species="king",
-            siblings = [
-                Shark(length=20,
-                      birthday=isodate.parse_datetime("2012-01-05T01:00:00Z"),
-                      age=6, species="predator"),
-                Sawshark(length=10, birthday=None, age=105, species="dangerous",
-                         picture=bytearray([255, 255, 255, 255, 254]))]
-            )
-
-        with pytest.raises(ValidationError):
-            client.polymorphism.put_valid_missing_required(bad_request)
-
     # COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
 
     def test_polymorphismrecursive_get_and_put_valid(self, client):
@@ -495,7 +479,7 @@ class TestComplex(object):
         # PUT basic/valid
         basic_result = Basic(id=2, name='abc', color="Magenta")
         client.basic.put_valid(basic_result)
-        
+
         # it shall raise exception since we override api_version
         with pytest.raises(AssertionError):
             client.basic.put_valid(basic_result, api_version="2016-02-29")

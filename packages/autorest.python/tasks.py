@@ -181,7 +181,6 @@ _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
     'Url',
     'RequiredOptional',
     'CustomBaseUri',
-    'BodyComplex',
     'AzureParameterGrouping',
     'AzureSpecials'
 ]

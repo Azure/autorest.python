@@ -108,7 +108,7 @@ class RawDeserializer:
                 except NameError:
                     pass
 
-                return ET.fromstring(data_as_str)
+                return ET.fromstring(data_as_str)  # nosec
             except ET.ParseError:
                 # It might be because the server has an issue, and returned JSON with
                 # content-type XML....
@@ -827,7 +827,7 @@ class Serializer(object):
             return custom_serializer(data)
         if data_type == "str":
             return cls.serialize_unicode(data)
-        return eval(data_type)(data)
+        return eval(data_type)(data)  # nosec
 
     @classmethod
     def serialize_unicode(cls, data):
@@ -1505,7 +1505,7 @@ class Deserializer(object):
         try:
             return self(target_obj, data, content_type=content_type)
         except:
-            _LOGGER.warning(
+            _LOGGER.debug(
                 "Ran into a deserialization error. Ignoring since this is failsafe deserialization", exc_info=True
             )
             return None
@@ -1730,7 +1730,7 @@ class Deserializer(object):
 
         if data_type == "str":
             return self.deserialize_unicode(attr)
-        return eval(data_type)(attr)
+        return eval(data_type)(attr)  # nosec
 
     @staticmethod
     def deserialize_unicode(data):
