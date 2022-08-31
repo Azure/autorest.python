@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -15,10 +15,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 from ._operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 from ._serialization import Deserializer, Serializer
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class AutoRestResourceFlatteningTestService(

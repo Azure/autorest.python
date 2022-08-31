@@ -169,7 +169,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 file_import.add_submodule_import(
                     path_to_models, "models", ImportType.LOCAL
                 )
-        elif not self.code_model.options["models_mode"] == "dpg":
+        elif self.code_model.options["models_mode"] == "msrest":
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
             file_import.add_submodule_import(

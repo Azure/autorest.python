@@ -105,13 +105,12 @@ class ModelSerializer:
         return properties_to_declare
 
     def declare_model(self, model: ModelType) -> str:
-        basename = (
-            "msrest.serialization.Model"
-            if self.code_model.options["client_side_validation"]
-            else "_model_base.Model"
-            if self.code_model.options["models_mode"] == "dpg"
-            else "_serialization.Model"
-        )
+        if self.code_model.options["client_side_validation"]:
+            basename = "msrest.serialization.Model"
+        elif self.code_model.options["models_mode"] == "dpg":
+            basename = "_model_base.Model"
+        else:
+            basename = "_serialization.Model"
         if model.parents:
             basename = ", ".join([cast(ModelType, m).name for m in model.parents])
         if (
@@ -122,41 +121,8 @@ class ModelSerializer:
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
-    def _escape_dot(s: str):
+    def escape_dot(s: str):
         return s.replace(".", "\\\\.")
-
-    @staticmethod
-    def declare_msrest_attribute_map(prop: Property) -> str:
-        if prop.flattened_names:
-            attribute_key = ".".join(
-                ModelSerializer._escape_dot(n) for n in prop.flattened_names
-            )
-        else:
-            attribute_key = ModelSerializer._escape_dot(prop.rest_api_name)
-        if prop.type.xml_serialization_ctxt:
-            xml_metadata = f", 'xml': {{{prop.type.xml_serialization_ctxt}}}"
-        else:
-            xml_metadata = ""
-        return f'"{prop.client_name}": {{"key": "{attribute_key}", "type": "{prop.serialization_type}"{xml_metadata}}},'
-
-    @staticmethod
-    def declare_json_property(prop: Property) -> List[str]:
-        attribute_key = ModelSerializer._escape_dot(prop.rest_api_name)
-        args = [f'name="{attribute_key}"']
-        if prop.readonly:
-            args.append("readonly=True")
-        if prop.client_default_value is not None:
-            args.append(f"default={prop.client_default_value_declaration}")
-
-        field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        ret = [
-            f'{prop.client_name}: {prop.type_annotation().replace("_models.", "")} ='
-            f' {field}({", ".join(args)})'
-        ]
-        comment = prop.description(is_operation_file=False).replace('"', '\\"')
-        if comment:
-            ret.append(f'"""{comment}"""')
-        return ret
 
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:
@@ -239,3 +205,38 @@ class ModelSerializer:
                     )
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
+
+class MsrestModelSerializer(ModelSerializer):
+    @staticmethod
+    def declare_property(prop: Property) -> str:
+        if prop.flattened_names:
+            attribute_key = ".".join(
+                ModelSerializer.escape_dot(n) for n in prop.flattened_names
+            )
+        else:
+            attribute_key = ModelSerializer.escape_dot(prop.rest_api_name)
+        if prop.type.xml_serialization_ctxt:
+            xml_metadata = f", 'xml': {{{prop.type.xml_serialization_ctxt}}}"
+        else:
+            xml_metadata = ""
+        return f'"{prop.client_name}": {{"key": "{attribute_key}", "type": "{prop.serialization_type}"{xml_metadata}}},'
+
+class DpgModelSerializer(ModelSerializer):
+    @staticmethod
+    def declare_property(prop: Property) -> List[str]:
+        attribute_key = ModelSerializer.escape_dot(prop.rest_api_name)
+        args = [f'name="{attribute_key}"']
+        if prop.readonly:
+            args.append("readonly=True")
+        if prop.client_default_value is not None:
+            args.append(f"default={prop.client_default_value_declaration}")
+
+        field = "rest_discriminator" if prop.is_discriminator else "rest_field"
+        ret = [
+            f'{prop.client_name}: {prop.type_annotation().replace("_models.", "")} ='
+            f' {field}({", ".join(args)})'
+        ]
+        comment = prop.description(is_operation_file=False).replace('"', '\\"')
+        if comment:
+            ret.append(f'"""{comment}"""')
+        return ret
