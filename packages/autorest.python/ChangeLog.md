@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-08-XX - 6.1.4
+### 2022-08-31 - 6.1.4
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,7 @@
 
 - Fix generation failure for `format: password`  #1404
 - Fix `content_type` error when paging with body  #1407
+- Fix excessive warning level logging in vendored `failsafe_deserialize`  #1419
 
 **Other Changes**
 
