@@ -206,6 +206,7 @@ class ModelSerializer:
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
 
+
 class MsrestModelSerializer(ModelSerializer):
     @staticmethod
     def declare_property(prop: Property) -> str:
@@ -220,6 +221,7 @@ class MsrestModelSerializer(ModelSerializer):
         else:
             xml_metadata = ""
         return f'"{prop.client_name}": {{"key": "{attribute_key}", "type": "{prop.serialization_type}"{xml_metadata}}},'
+
 
 class DpgModelSerializer(ModelSerializer):
     @staticmethod

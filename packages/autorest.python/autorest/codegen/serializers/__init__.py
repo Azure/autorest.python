@@ -16,7 +16,7 @@ from ..models import TokenCredentialType
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .model_init_serializer import ModelInitSerializer
-from .model_serializer import ModelSerializer, DpgModelSerializer, MsrestModelSerializer
+from .model_serializer import DpgModelSerializer, MsrestModelSerializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
@@ -215,7 +215,11 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     ) -> None:
         # Write the models folder
         models_path = namespace_path / Path("models")
-        serializer = DpgModelSerializer if self.code_model.options["models_mode"]=="dpg" else MsrestModelSerializer
+        serializer = (
+            DpgModelSerializer
+            if self.code_model.options["models_mode"] == "dpg"
+            else MsrestModelSerializer
+        )
         if self.code_model.model_types:
             self.write_file(
                 models_path / Path(f"{self.code_model.models_filename}.py"),
