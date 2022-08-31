@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._multiapi_service_client import MultiapiServiceClient
-__all__ = ['MultiapiServiceClient']
+
+__all__ = ["MultiapiServiceClient"]

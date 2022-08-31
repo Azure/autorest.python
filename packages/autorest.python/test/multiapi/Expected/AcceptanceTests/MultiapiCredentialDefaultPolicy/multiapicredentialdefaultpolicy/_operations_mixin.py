@@ -18,11 +18,8 @@ from . import models as _models
 
 
 class MultiapiServiceClientOperationsMixin(object):
-
     def begin_test_lro(
-        self,
-        product: Optional[Union[_models.Product, IO]] = None,
-        **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
@@ -43,8 +40,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        api_version = self._get_api_version('begin_test_lro')
-        if api_version == '1.0.0':
+        api_version = self._get_api_version("begin_test_lro")
+        if api_version == "1.0.0":
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise ValueError("API version {} does not have operation 'begin_test_lro'".format(api_version))
@@ -83,8 +80,8 @@ class MultiapiServiceClientOperationsMixin(object):
          ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapicredentialdefaultpolicy.v1.models.Product]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        api_version = self._get_api_version('begin_test_lro_and_paging')
-        if api_version == '1.0.0':
+        api_version = self._get_api_version("begin_test_lro_and_paging")
+        if api_version == "1.0.0":
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise ValueError("API version {} does not have operation 'begin_test_lro_and_paging'".format(api_version))
@@ -116,12 +113,12 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        api_version = self._get_api_version('test_different_calls')
-        if api_version == '1.0.0':
+        api_version = self._get_api_version("test_different_calls")
+        if api_version == "1.0.0":
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
-        elif api_version == '2.0.0':
+        elif api_version == "2.0.0":
             from .v2.operations import MultiapiServiceClientOperationsMixin as OperationClass
-        elif api_version == '3.0.0':
+        elif api_version == "3.0.0":
             from .v3.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise ValueError("API version {} does not have operation 'test_different_calls'".format(api_version))
@@ -131,13 +128,12 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test_different_calls(greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs)
+        return mixin_instance.test_different_calls(
+            greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs
+        )
 
     def test_one(  # pylint: disable=inconsistent-return-statements
-        self,
-        id: int,
-        message: Optional[str] = None,
-        **kwargs: Any
+        self, id: int, message: Optional[str] = None, **kwargs: Any
     ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
@@ -150,10 +146,10 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        api_version = self._get_api_version('test_one')
-        if api_version == '1.0.0':
+        api_version = self._get_api_version("test_one")
+        if api_version == "1.0.0":
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
-        elif api_version == '2.0.0':
+        elif api_version == "2.0.0":
             from .v2.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise ValueError("API version {} does not have operation 'test_one'".format(api_version))
@@ -165,10 +161,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return mixin_instance.test_one(id, message, **kwargs)
 
-    def test_paging(
-        self,
-        **kwargs: Any
-    ) -> Iterable["_models.ModelThree"]:
+    def test_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -176,8 +169,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~azure.core.paging.ItemPaged[~multiapicredentialdefaultpolicy.v3.models.ModelThree]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        api_version = self._get_api_version('test_paging')
-        if api_version == '3.0.0':
+        api_version = self._get_api_version("test_paging")
+        if api_version == "3.0.0":
             from .v3.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise ValueError("API version {} does not have operation 'test_paging'".format(api_version))

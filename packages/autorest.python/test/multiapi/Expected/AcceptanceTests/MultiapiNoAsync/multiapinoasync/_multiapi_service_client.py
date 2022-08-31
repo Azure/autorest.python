@@ -23,12 +23,14 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
+
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."
         Will be removed in final version of multiapi azure-core based client
         """
         pass
+
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin, _SDKClient):
     """Service client for multiapi client testing.
@@ -52,32 +54,31 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
-    DEFAULT_API_VERSION = '3.0.0'
+    DEFAULT_API_VERSION = "3.0.0"
     _PROFILE_TAG = "multiapinoasync.MultiapiServiceClient"
-    LATEST_PROFILE = ProfileDefinition({
-        _PROFILE_TAG: {
-            None: DEFAULT_API_VERSION,
-            'begin_test_lro': '1.0.0',
-            'begin_test_lro_and_paging': '1.0.0',
-            'test_one': '2.0.0',
-        }},
-        _PROFILE_TAG + " latest"
+    LATEST_PROFILE = ProfileDefinition(
+        {
+            _PROFILE_TAG: {
+                None: DEFAULT_API_VERSION,
+                "begin_test_lro": "1.0.0",
+                "begin_test_lro_and_paging": "1.0.0",
+                "test_one": "2.0.0",
+            }
+        },
+        _PROFILE_TAG + " latest",
     )
 
     def __init__(
         self,
         credential: "TokenCredential",
-        api_version=None, # type: Optional[str]
+        api_version=None,  # type: Optional[str]
         base_url: str = "http://localhost:3000",
-        profile=KnownProfiles.default, # type: KnownProfiles
+        profile=KnownProfiles.default,  # type: KnownProfiles
         **kwargs  # type: Any
     ):
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
-        super(MultiapiServiceClient, self).__init__(
-            api_version=api_version,
-            profile=profile
-        )
+        super(MultiapiServiceClient, self).__init__(api_version=api_version, profile=profile)
 
     @classmethod
     def _models_dict(cls, api_version):
@@ -87,18 +88,21 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def models(cls, api_version=DEFAULT_API_VERSION):
         """Module depends on the API version:
 
-           * 1.0.0: :mod:`v1.models<multiapinoasync.v1.models>`
-           * 2.0.0: :mod:`v2.models<multiapinoasync.v2.models>`
-           * 3.0.0: :mod:`v3.models<multiapinoasync.v3.models>`
+        * 1.0.0: :mod:`v1.models<multiapinoasync.v1.models>`
+        * 2.0.0: :mod:`v2.models<multiapinoasync.v2.models>`
+        * 3.0.0: :mod:`v3.models<multiapinoasync.v3.models>`
         """
-        if api_version == '1.0.0':
+        if api_version == "1.0.0":
             from .v1 import models
+
             return models
-        elif api_version == '2.0.0':
+        elif api_version == "2.0.0":
             from .v2 import models
+
             return models
-        elif api_version == '3.0.0':
+        elif api_version == "3.0.0":
             from .v3 import models
+
             return models
         raise ValueError("API version {} is not available".format(api_version))
 
@@ -106,41 +110,53 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def operation_group_one(self):
         """Instance depends on the API version:
 
-           * 1.0.0: :class:`OperationGroupOneOperations<multiapinoasync.v1.operations.OperationGroupOneOperations>`
-           * 2.0.0: :class:`OperationGroupOneOperations<multiapinoasync.v2.operations.OperationGroupOneOperations>`
-           * 3.0.0: :class:`OperationGroupOneOperations<multiapinoasync.v3.operations.OperationGroupOneOperations>`
+        * 1.0.0: :class:`OperationGroupOneOperations<multiapinoasync.v1.operations.OperationGroupOneOperations>`
+        * 2.0.0: :class:`OperationGroupOneOperations<multiapinoasync.v2.operations.OperationGroupOneOperations>`
+        * 3.0.0: :class:`OperationGroupOneOperations<multiapinoasync.v3.operations.OperationGroupOneOperations>`
         """
-        api_version = self._get_api_version('operation_group_one')
-        if api_version == '1.0.0':
+        api_version = self._get_api_version("operation_group_one")
+        if api_version == "1.0.0":
             from .v1.operations import OperationGroupOneOperations as OperationClass
-        elif api_version == '2.0.0':
+        elif api_version == "2.0.0":
             from .v2.operations import OperationGroupOneOperations as OperationClass
-        elif api_version == '3.0.0':
+        elif api_version == "3.0.0":
             from .v3.operations import OperationGroupOneOperations as OperationClass
         else:
             raise ValueError("API version {} does not have operation group 'operation_group_one'".format(api_version))
-        return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
+        return OperationClass(
+            self._client,
+            self._config,
+            Serializer(self._models_dict(api_version)),
+            Deserializer(self._models_dict(api_version)),
+        )
 
     @property
     def operation_group_two(self):
         """Instance depends on the API version:
 
-           * 2.0.0: :class:`OperationGroupTwoOperations<multiapinoasync.v2.operations.OperationGroupTwoOperations>`
-           * 3.0.0: :class:`OperationGroupTwoOperations<multiapinoasync.v3.operations.OperationGroupTwoOperations>`
+        * 2.0.0: :class:`OperationGroupTwoOperations<multiapinoasync.v2.operations.OperationGroupTwoOperations>`
+        * 3.0.0: :class:`OperationGroupTwoOperations<multiapinoasync.v3.operations.OperationGroupTwoOperations>`
         """
-        api_version = self._get_api_version('operation_group_two')
-        if api_version == '2.0.0':
+        api_version = self._get_api_version("operation_group_two")
+        if api_version == "2.0.0":
             from .v2.operations import OperationGroupTwoOperations as OperationClass
-        elif api_version == '3.0.0':
+        elif api_version == "3.0.0":
             from .v3.operations import OperationGroupTwoOperations as OperationClass
         else:
             raise ValueError("API version {} does not have operation group 'operation_group_two'".format(api_version))
-        return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
+        return OperationClass(
+            self._client,
+            self._config,
+            Serializer(self._models_dict(api_version)),
+            Deserializer(self._models_dict(api_version)),
+        )
 
     def close(self):
         self._client.close()
+
     def __enter__(self):
         self._client.__enter__()
         return self
+
     def __exit__(self, *exc_details):
         self._client.__exit__(*exc_details)

@@ -15,12 +15,7 @@ from .. import models as _models
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
-
-    async def test(  # pylint: disable=inconsistent-return-statements
-        self,
-        id: int,
-        **kwargs: Any
-    ) -> None:
+    async def test(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
         version of 2.0.0 to pass.
 
@@ -31,10 +26,10 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        api_version = self._get_api_version('test')
-        if api_version == '1.0.0':
+        api_version = self._get_api_version("test")
+        if api_version == "1.0.0":
             from ..v1.aio.operations import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
-        elif api_version == '2.0.0':
+        elif api_version == "2.0.0":
             from ..v2.aio.operations import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
         else:
             raise ValueError("API version {} does not have operation 'test'".format(api_version))

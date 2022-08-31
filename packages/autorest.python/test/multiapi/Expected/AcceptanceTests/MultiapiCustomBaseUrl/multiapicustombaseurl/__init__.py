@@ -7,10 +7,12 @@
 # --------------------------------------------------------------------------
 
 from ._multiapi_custom_base_url_service_client import MultiapiCustomBaseUrlServiceClient
-__all__ = ['MultiapiCustomBaseUrlServiceClient']
+
+__all__ = ["MultiapiCustomBaseUrlServiceClient"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass
