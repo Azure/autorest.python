@@ -40,4 +40,3 @@ if __name__ == "__main__":
     python_run(venv_context, "autorest.preprocess.__init__", command=sys.argv[1:])
     python_run(venv_context, "autorest.cadlflags.__init__", command=sys.argv[1:])
     python_run(venv_context, "autorest.codegen.__init__", command=sys.argv[1:])
-    python_run(venv_context, "autorest.black.__init__", command=sys.argv[1:])

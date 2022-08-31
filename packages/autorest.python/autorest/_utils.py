@@ -3,9 +3,25 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Union
+from pathlib import Path
 import re
 import argparse
+import black
+
+_BLACK_MODE = black.Mode()
+_BLACK_MODE.line_length = 120
+
+
+def format_file(
+    file: Union[Path, str], file_content: str, enable_format: bool = True
+) -> str:
+    if not enable_format or Path(file).suffix != ".py":
+        return file_content
+    try:
+        return black.format_file_contents(file_content, fast=True, mode=_BLACK_MODE)
+    except black.NothingChanged:
+        return file_content
 
 
 def to_snake_case(name: str) -> str:

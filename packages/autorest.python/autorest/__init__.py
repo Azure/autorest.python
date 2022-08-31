@@ -13,6 +13,7 @@ import yaml
 
 from .jsonrpc import AutorestAPI
 from ._version import VERSION
+from ._utils import format_file
 
 
 __version__ = VERSION
@@ -35,6 +36,7 @@ class ReaderAndWriter:
                 "Loading python.json file. This behavior will be depreacted"
             )
         self.options.update(python_json)
+        self._black = python_json.get("black", True)
 
     def read_file(self, path: Union[str, Path]) -> str:
         """How does one read a file in cadl?"""
@@ -47,6 +49,7 @@ class ReaderAndWriter:
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """How does writing work in cadl?"""
+        file_content = format_file(filename, file_content, self._black)
         file_folder = Path(filename).parent
         if not Path.is_dir(self.output_folder / file_folder):
             Path.mkdir(self.output_folder / file_folder, parents=True)
@@ -60,11 +63,13 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
     ) -> None:
         super().__init__(output_folder=output_folder)
         self._autorestapi = autorestapi
+        self._black = autorestapi.get_boolean_value("black", True)
 
     def read_file(self, path: Union[str, Path]) -> str:
         return self._autorestapi.read_file(path)
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
+        file_content = format_file(filename, file_content, self._black)
         return self._autorestapi.write_file(filename, file_content)
 
 

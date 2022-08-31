@@ -23,11 +23,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
-```yaml !$(multiapiscript) && !$(multiclientscript)
-# default values for version tolerant and black
-black: true
-```
-
 ```yaml !$(low-level-client)
 version-tolerant: true
 ```
@@ -116,26 +111,6 @@ pipeline:
     scope: scope-multiapiscript/emitter
 
 scope-multiapiscript/emitter:
-  input-artifact: python-files
-  output-uri-expr: $key
-
-output-artifact: python-files
-```
-
-# Black script pipeline
-
-```yaml $(black)
-pipeline:
-  python/black:
-    scope: black
-    input: python/codegen
-    output-artifact: python-files
-
-  python/black/emitter:
-    input: black
-    scope: scope-black/emitter
-
-scope-black/emitter:
   input-artifact: python-files
   output-uri-expr: $key
 

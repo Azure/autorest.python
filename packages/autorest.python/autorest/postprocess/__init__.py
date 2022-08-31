@@ -8,25 +8,10 @@ from pathlib import Path
 import os
 import shutil
 from venv import EnvBuilder
-import black
 from .venvtools import ExtendedEnvBuilder, python_run
 
 from .. import Plugin, PluginAutorest
-
-_BLACK_MODE = black.Mode()
-_BLACK_MODE.line_length = 120
-
-
-def format_file(file: Path, file_content: str) -> str:
-    if not file.suffix == ".py":
-        return file_content
-    try:
-        file_content = black.format_file_contents(
-            file_content, fast=True, mode=_BLACK_MODE
-        )
-    except black.NothingChanged:
-        pass
-    return file_content
+from .._utils import format_file
 
 
 class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
@@ -196,7 +181,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             file_content = file_content.replace(
                 "__all__ = [", f"__all__ = [\n{added_objs_all}", 1
             )
-        formatted_file = format_file(file, file_content)
+        formatted_file = format_file(file, file_content, self._black)
         self.write_file(file, formatted_file)
 
 
