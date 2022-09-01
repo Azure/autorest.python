@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import cast, List
+from abc import ABC, abstractmethod
 from jinja2 import Environment
 from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
@@ -26,10 +27,14 @@ def _documentation_string(
     return retval
 
 
-class ModelSerializer:
+class _ModelSerializer(ABC):
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
         self.env = env
+
+    @abstractmethod
+    def imports(self) -> FileImport:
+        ...
 
     def serialize(self) -> str:
         # Generate the models
@@ -40,37 +45,6 @@ class ModelSerializer:
             str=str,
             serializer=self,
         )
-
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        if self.code_model.options["models_mode"] == "dpg":
-            file_import.add_submodule_import(
-                "..",
-                "_model_base",
-                ImportType.LOCAL,
-                TypingSection.REGULAR,
-            )
-            file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
-            file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
-            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
-        else:
-            file_import.add_msrest_import(
-                self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
-            )
-        for model in self.code_model.model_types:
-            file_import.merge(model.imports(is_operation_file=False))
-            if self.code_model.options["models_mode"] == "dpg":
-                for param in model.properties:
-                    file_import.merge(param.imports())
-            else:
-                init_line_parameters = [
-                    p
-                    for p in model.properties
-                    if not p.readonly and not p.is_discriminator
-                ]
-                for param in init_line_parameters:
-                    file_import.merge(param.imports())
-        return file_import
 
     @staticmethod
     def get_properties_to_initialize(model: ModelType) -> List[Property]:
@@ -104,21 +78,9 @@ class ModelSerializer:
             properties_to_declare = model.properties
         return properties_to_declare
 
+    @abstractmethod
     def declare_model(self, model: ModelType) -> str:
-        if self.code_model.options["client_side_validation"]:
-            basename = "msrest.serialization.Model"
-        elif self.code_model.options["models_mode"] == "dpg":
-            basename = "_model_base.Model"
-        else:
-            basename = "_serialization.Model"
-        if model.parents:
-            basename = ", ".join([cast(ModelType, m).name for m in model.parents])
-        if (
-            self.code_model.options["models_mode"] == "dpg"
-            and model.discriminator_value
-        ):
-            basename += f", discriminator='{model.discriminator_value}'"
-        return f"class {model.name}({basename}):{model.pylint_disable}"
+        ...
 
     @staticmethod
     def escape_dot(s: str):
@@ -207,15 +169,39 @@ class ModelSerializer:
         return ", ".join(properties_to_pass_to_super)
 
 
-class MsrestModelSerializer(ModelSerializer):
+class MsrestModelSerializer(_ModelSerializer):
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_msrest_import(
+            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+        )
+        for model in self.code_model.model_types:
+            file_import.merge(model.imports(is_operation_file=False))
+            init_line_parameters = [
+                p for p in model.properties if not p.readonly and not p.is_discriminator
+            ]
+            for param in init_line_parameters:
+                file_import.merge(param.imports())
+        return file_import
+
+    def declare_model(self, model: ModelType) -> str:
+        basename = (
+            "msrest.serialization.Model"
+            if self.code_model.options["client_side_validation"]
+            else "_serialization.Model"
+        )
+        if model.parents:
+            basename = ", ".join([cast(ModelType, m).name for m in model.parents])
+        return f"class {model.name}({basename}):{model.pylint_disable}"
+
     @staticmethod
     def declare_property(prop: Property) -> str:
         if prop.flattened_names:
             attribute_key = ".".join(
-                ModelSerializer.escape_dot(n) for n in prop.flattened_names
+                _ModelSerializer.escape_dot(n) for n in prop.flattened_names
             )
         else:
-            attribute_key = ModelSerializer.escape_dot(prop.rest_api_name)
+            attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
         if prop.type.xml_serialization_ctxt:
             xml_metadata = f", 'xml': {{{prop.type.xml_serialization_ctxt}}}"
         else:
@@ -223,10 +209,36 @@ class MsrestModelSerializer(ModelSerializer):
         return f'"{prop.client_name}": {{"key": "{attribute_key}", "type": "{prop.serialization_type}"{xml_metadata}}},'
 
 
-class DpgModelSerializer(ModelSerializer):
+class DpgModelSerializer(_ModelSerializer):
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_submodule_import(
+            "..",
+            "_model_base",
+            ImportType.LOCAL,
+            TypingSection.REGULAR,
+        )
+        file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
+        file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
+        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+
+        for model in self.code_model.model_types:
+            file_import.merge(model.imports(is_operation_file=False))
+            for param in model.properties:
+                file_import.merge(param.imports())
+        return file_import
+
+    def declare_model(self, model: ModelType) -> str:
+        basename = "_model_base.Model"
+        if model.parents:
+            basename = ", ".join([cast(ModelType, m).name for m in model.parents])
+        if model.discriminator_value:
+            basename += f", discriminator='{model.discriminator_value}'"
+        return f"class {model.name}({basename}):{model.pylint_disable}"
+
     @staticmethod
     def declare_property(prop: Property) -> List[str]:
-        attribute_key = ModelSerializer.escape_dot(prop.rest_api_name)
+        attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
         args = [f'name="{attribute_key}"']
         if prop.readonly:
             args.append("readonly=True")
