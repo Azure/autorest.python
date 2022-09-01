@@ -778,8 +778,7 @@ class Serializer(object):
         """
         if data is None:
             raise ValueError("No value for given attribute")
-        if isinstance(data, str):
-            return data
+
         try:
             if data_type in self.basic_types.values():
                 return self.serialize_basic(data, data_type, **kwargs)
@@ -823,6 +822,9 @@ class Serializer(object):
         :param data: Object to be serialized.
         :param str data_type: Type of object in the iterable.
         """
+        if isinstance(data, str):
+            # we trust users if they pass in pre-serialized inputs
+            return data
         custom_serializer = cls._get_custom_serializers(data_type, **kwargs)
         if custom_serializer:
             return custom_serializer(data)
@@ -870,7 +872,8 @@ class Serializer(object):
         :rtype: list, str
         """
         if isinstance(data, str):
-            raise SerializationError("Refuse str type as a valid iter type.")
+            # we trust users if they pass in pre-serialized inputs
+            return data
 
         serialization_ctxt = kwargs.get("serialization_ctxt", {})
         is_xml = kwargs.get("is_xml", False)
@@ -921,6 +924,9 @@ class Serializer(object):
          not be None or empty.
         :rtype: dict
         """
+        if isinstance(attr, str):
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         serialization_ctxt = kwargs.get("serialization_ctxt", {})
         serialized = {}
         for key, value in attr.items():
@@ -952,7 +958,7 @@ class Serializer(object):
         """
         if attr is None:
             return None
-        if isinstance(attr, ET.Element):
+        if isinstance(attr, (str, ET.Element)):
             return attr
         obj_type = type(attr)
         if obj_type in self.basic_types:
@@ -1018,6 +1024,9 @@ class Serializer(object):
         :param attr: Object to be serialized.
         :rtype: str
         """
+        if isinstance(attr, str):
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         return b64encode(attr).decode()
 
     @staticmethod
@@ -1027,6 +1036,9 @@ class Serializer(object):
         :param attr: Object to be serialized.
         :rtype: str
         """
+        if isinstance(attr, str):
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         encoded = b64encode(attr).decode("ascii")
         return encoded.strip("=").replace("+", "-").replace("/", "_")
 
@@ -1037,6 +1049,9 @@ class Serializer(object):
         :param attr: Object to be serialized.
         :rtype: float
         """
+        if isinstance(attr, str):
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         return float(attr)
 
     @staticmethod
@@ -1046,6 +1061,9 @@ class Serializer(object):
         :param attr: Object to be serialized.
         :rtype: int/long
         """
+        if isinstance(attr, str):
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         return _long_type(attr)
 
     @staticmethod
@@ -1056,7 +1074,8 @@ class Serializer(object):
         :rtype: str
         """
         if isinstance(attr, str):
-            attr = isodate.parse_date(attr)
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         t = "{:04}-{:02}-{:02}".format(attr.year, attr.month, attr.day)
         return t
 
@@ -1068,7 +1087,8 @@ class Serializer(object):
         :rtype: str
         """
         if isinstance(attr, str):
-            attr = isodate.parse_time(attr)
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         t = "{:02}:{:02}:{:02}".format(attr.hour, attr.minute, attr.second)
         if attr.microsecond:
             t += ".{:02}".format(attr.microsecond)
@@ -1082,7 +1102,8 @@ class Serializer(object):
         :rtype: str
         """
         if isinstance(attr, str):
-            attr = isodate.parse_duration(attr)
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         return isodate.duration_isoformat(attr)
 
     @staticmethod
@@ -1093,6 +1114,9 @@ class Serializer(object):
         :rtype: str
         :raises: TypeError if format invalid.
         """
+        if isinstance(attr, str):
+            # we trust users if they pass in pre-serialized inputs
+            return attr
         try:
             if not attr.tzinfo:
                 _LOGGER.warning("Datetime with no tzinfo will be considered UTC.")
@@ -1119,7 +1143,7 @@ class Serializer(object):
         :raises: SerializationError if format invalid.
         """
         if isinstance(attr, str):
-            attr = isodate.parse_datetime(attr)
+            return attr
         try:
             if not attr.tzinfo:
                 _LOGGER.warning("Datetime with no tzinfo will be considered UTC.")
@@ -1150,7 +1174,7 @@ class Serializer(object):
         :rtype: int
         :raises: SerializationError if format invalid
         """
-        if isinstance(attr, int):
+        if isinstance(attr, (str, int)):
             return attr
         try:
             if not attr.tzinfo:
