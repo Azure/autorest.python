@@ -980,12 +980,17 @@ class _OperationSerializer(
         error_model = ""
         if (
             builder.default_error_deserialization
-            and self.code_model.options["models_mode"] == "msrest"
+            and self.code_model.options["models_mode"]
         ):
-            retval.append(
-                f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
-                "pipeline_response)"
-            )
+            if self.code_model.options["models_mode"] == "dpg":
+                retval.append(
+                    f"    error = _deserialize({builder.default_error_deserialization},  response.json())"
+                )
+            else:
+                retval.append(
+                    f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
+                    "pipeline_response)"
+                )
             error_model = ", model=error"
         retval.append(
             "    raise HttpResponseError(response=response{}{})".format(

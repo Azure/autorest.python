@@ -102,7 +102,8 @@ class ReadonlyPropertiesOperationsMixin(MixinABC):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = _deserialize(_models.OutputModel, response.json())
 
@@ -190,7 +191,8 @@ class ReadonlyPropertiesOperationsMixin(MixinABC):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = _deserialize(_models.RoundTripModel, response.json())
 
