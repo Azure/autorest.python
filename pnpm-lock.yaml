@@ -225,7 +225,7 @@ importers:
       rimraf: ~3.0.2
       typescript: ^4.7.4
     dependencies:
-      '@autorest/python': link:../autorest.python
+      '@autorest/python': 6.1.4
       '@cadl-lang/compiler': 0.34.0
       js-yaml: 4.1.0
     devDependencies:
@@ -247,6 +247,13 @@ importers:
       typescript: 4.7.4
 
 packages:
+
+  /@autorest/python/6.1.4:
+    resolution: {integrity: sha512-KbqpMzapfbwBzPgDheFkLEhSJNMAgr/a2zh8LRh6NlG6GPrYRp6e7sx5SL+nrLehYuz1KUsXRIP/VDNXODJ8yQ==}
+    requiresBuild: true
+    dependencies:
+      '@autorest/system-requirements': 1.0.0
+    dev: false
 
   /@autorest/system-requirements/1.0.0:
     resolution: {integrity: sha512-d+lN/hfUNlOOpdCS72Kh9uJHcKxikriaHqtWLfh4jpcjzggdnmSM78XTa41PtgQ0YUzaNfiiGAsLEPE2HUDk4Q==}
