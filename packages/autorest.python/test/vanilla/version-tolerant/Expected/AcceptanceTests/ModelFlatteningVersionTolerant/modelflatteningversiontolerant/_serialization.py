@@ -822,14 +822,14 @@ class Serializer(object):
         :param data: Object to be serialized.
         :param str data_type: Type of object in the iterable.
         """
+        if data_type == "str":
+            return cls.serialize_unicode(data)
         if isinstance(data, str):
             # we trust users if they pass in pre-serialized inputs
             return data
         custom_serializer = cls._get_custom_serializers(data_type, **kwargs)
         if custom_serializer:
             return custom_serializer(data)
-        if data_type == "str":
-            return cls.serialize_unicode(data)
         return eval(data_type)(data)  # nosec
 
     @classmethod
