@@ -95,9 +95,7 @@ class ModelType(
             if self.code_model.options["models_mode"] == "dpg" and kwargs.pop(
                 "is_body_parameter", False
             ):
-                retval += ", JSON"
-                if not kwargs.pop("in_combined_type", False):
-                    retval = f"Union[{retval}]"
+                retval = f"Union[{retval}, JSON]"
             return retval if is_operation_file else f'"{retval}"'
         return "ET.Element" if self.is_xml else "JSON"
 

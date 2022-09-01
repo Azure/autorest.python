@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
-
+import re
 from autorest.codegen.models.imports import FileImport, ImportType
 from .base_type import BaseType
 
@@ -67,10 +67,11 @@ class CombinedType(BaseType):
         Special case for enum, for instance: Union[str, "EnumName"]
         """
         kwargs["is_operation_file"] = True
-        kwargs["in_combined_type"] = True
-        return (
-            f'Union[{", ".join(type.type_annotation(**kwargs) for type in self.types)}]'
-        )
+        inside_types = [type.type_annotation(**kwargs) for type in self.types]
+
+        # If the inside types has been a Union, peel first and then re-union
+        pattern = re.compile("Union\[.*\]")
+        return f'Union[{", ".join(map(lambda x: x[6: -1] if pattern.match(x) else x, inside_types))}]'
 
     def get_json_template_representation(
         self,
