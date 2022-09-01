@@ -70,7 +70,7 @@ class CombinedType(BaseType):
         inside_types = [type.type_annotation(**kwargs) for type in self.types]
 
         # If the inside types has been a Union, peel first and then re-union
-        pattern = re.compile("Union\[.*\]")
+        pattern = re.compile(r"Union\[.*\]")
         return f'Union[{", ".join(map(lambda x: x[6: -1] if pattern.match(x) else x, inside_types))}]'
 
     def get_json_template_representation(
