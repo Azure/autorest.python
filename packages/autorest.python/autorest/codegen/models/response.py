@@ -234,10 +234,10 @@ class LROResponse(Response):
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return f"{self.get_poller(kwargs.pop('async_mode'))}[{super().type_annotation(**kwargs)}]"
+        return f"{self.get_poller(kwargs.get('async_mode'))}[{super().type_annotation(**kwargs)}]"
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{super().docstring_type(**kwargs)}]"
+        return f"~{self.get_poller_path(kwargs.get('async_mode'))}[{super().docstring_type(**kwargs)}]"
 
     def docstring_text(self, **kwargs) -> str:
         super_text = super().docstring_text(**kwargs)
@@ -297,11 +297,11 @@ class LROResponse(Response):
 class LROPagingResponse(LROResponse, PagingResponse):
     def type_annotation(self, **kwargs: Any) -> str:
         paging_type_annotation = PagingResponse.type_annotation(self, **kwargs)
-        return f"{self.get_poller(kwargs.pop('async_mode'))}[{paging_type_annotation}]"
+        return f"{self.get_poller(kwargs.get('async_mode'))}[{paging_type_annotation}]"
 
     def docstring_type(self, **kwargs: Any) -> str:
         paging_docstring_type = PagingResponse.docstring_type(self, **kwargs)
-        return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{paging_docstring_type}]"
+        return f"~{self.get_poller_path(kwargs.get('async_mode'))}[{paging_docstring_type}]"
 
     def docstring_text(self, **kwargs) -> str:
         base_description = (
