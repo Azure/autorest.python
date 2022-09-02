@@ -1505,14 +1505,8 @@ class Deserializer(object):
         try:
             return self(target_obj, data, content_type=content_type)
         except:
-<<<<<<< HEAD
-            _LOGGER.warning(
-                "Ran into a deserialization error. Ignoring since this is failsafe deserialization", exc_info=True
-=======
             _LOGGER.debug(
-                "Ran into a deserialization error. Ignoring since this is failsafe deserialization",
-				exc_info=True
->>>>>>> 62f80234db917c7d076065739c1bd6eb13efc3cd
+                "Ran into a deserialization error. Ignoring since this is failsafe deserialization", exc_info=True
             )
             return None
 
