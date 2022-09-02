@@ -104,6 +104,16 @@ class TestPaging(object):
         assert items[0].properties.name == "Product"
 
     @pytest.mark.asyncio
+    async def test_get_single_pages_with_body_params(self, client):
+        pages = client.paging.get_single_pages_with_body_params(name="body")
+        items = []
+        async for item in pages:
+            items.append(item)
+        assert len(items) == 1
+        assert items[0].properties.id == 1
+        assert items[0].properties.name == "Product"
+
+    @pytest.mark.asyncio
     async def test_get_multiple_pages(self, client):
         pages = client.paging.get_multiple_pages()
         items = []
