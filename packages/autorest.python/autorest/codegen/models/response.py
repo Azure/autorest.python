@@ -170,7 +170,7 @@ class PagingResponse(Response):
 
     def _imports_shared(self, **kwargs: Any) -> FileImport:
         file_import = super()._imports_shared(**kwargs)
-        async_mode = kwargs.get("async_mode")
+        async_mode = kwargs.get("async_mode", False)
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
@@ -234,16 +234,14 @@ class LROResponse(Response):
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return f"{self.get_poller(kwargs.get('async_mode'))}[{super().type_annotation(**kwargs)}]"
+        return f"{self.get_poller(kwargs.get('async_mode', False))}[{super().type_annotation(**kwargs)}]"
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.get_poller_path(kwargs.get('async_mode'))}[{super().docstring_type(**kwargs)}]"
+        return f"~{self.get_poller_path(kwargs.get('async_mode', False))}[{super().docstring_type(**kwargs)}]"
 
     def docstring_text(self, **kwargs) -> str:
         super_text = super().docstring_text(**kwargs)
-        base_description = (
-            f"An instance of {self.get_poller(kwargs.get('async_mode'))} that returns "
-        )
+        base_description = f"An instance of {self.get_poller(kwargs.get('async_mode', False))} that returns "
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + super_text
@@ -297,11 +295,11 @@ class LROResponse(Response):
 class LROPagingResponse(LROResponse, PagingResponse):
     def type_annotation(self, **kwargs: Any) -> str:
         paging_type_annotation = PagingResponse.type_annotation(self, **kwargs)
-        return f"{self.get_poller(kwargs.get('async_mode'))}[{paging_type_annotation}]"
+        return f"{self.get_poller(kwargs.get('async_mode', False))}[{paging_type_annotation}]"
 
     def docstring_type(self, **kwargs: Any) -> str:
         paging_docstring_type = PagingResponse.docstring_type(self, **kwargs)
-        return f"~{self.get_poller_path(kwargs.get('async_mode'))}[{paging_docstring_type}]"
+        return f"~{self.get_poller_path(kwargs.get('async_mode', False))}[{paging_docstring_type}]"
 
     def docstring_text(self, **kwargs) -> str:
         base_description = (
