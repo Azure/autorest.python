@@ -246,7 +246,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": 200,  # Default value is 200. The status code. Required.
                     "value": [
                         {
                             "received": "str"  # Required. Known values are: "raw" and
