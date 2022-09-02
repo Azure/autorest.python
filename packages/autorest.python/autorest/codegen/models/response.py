@@ -170,7 +170,7 @@ class PagingResponse(Response):
 
     def _imports_shared(self, **kwargs: Any) -> FileImport:
         file_import = super()._imports_shared(**kwargs)
-        async_mode = kwargs.pop("async_mode")
+        async_mode = kwargs.get("async_mode")
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
@@ -179,7 +179,7 @@ class PagingResponse(Response):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
-        async_mode = kwargs.pop("async_mode")
+        async_mode = kwargs.get("async_mode")
         if async_mode:
             file_import.add_submodule_import(
                 "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
@@ -242,7 +242,7 @@ class LROResponse(Response):
     def docstring_text(self, **kwargs) -> str:
         super_text = super().docstring_text(**kwargs)
         base_description = (
-            f"An instance of {self.get_poller(kwargs.pop('async_mode'))} that returns "
+            f"An instance of {self.get_poller(kwargs.get('async_mode'))} that returns "
         )
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
