@@ -374,7 +374,7 @@ def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
     if not swagger_name:
         regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.AZURE)
-        regenerate_mixed_api_version_legacy(c, swagger_group=_SwaggerGroup.AZURE)
+        regenerate_custom_poller_pager_legacy(c, debug)
 
 @task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
