@@ -34,11 +34,8 @@
 
 - Fix generation failure for `format: password`  #1404
 - Fix `content_type` error when paging with body  #1407
-<<<<<<< HEAD
 - Fix `--clear-output-folder` when `--black=true`  #1410
-=======
 - Fix excessive warning level logging in vendored `failsafe_deserialize`  #1419
->>>>>>> 62f80234db917c7d076065739c1bd6eb13efc3cd
 
 **Other Changes**
 
