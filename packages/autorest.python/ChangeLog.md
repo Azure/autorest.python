@@ -34,13 +34,11 @@
 
 - Fix generation failure for `format: password`  #1404
 - Fix `content_type` error when paging with body  #1407
-- Fix `--clear-output-folder` when `--black=true`  #1410
 - Fix excessive warning level logging in vendored `failsafe_deserialize`  #1419
 
 **Other Changes**
 
 - Upgrade min dependency for `azure-mgmt-core` to `1.3.2`  #1404
-- Add support of `--black=true` for `--multiapi` and `--multiclient`  #1410
 
 ### 2022-08-22 - 6.1.3
 
