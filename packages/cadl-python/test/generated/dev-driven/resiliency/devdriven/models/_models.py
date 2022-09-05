@@ -23,6 +23,43 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
+class CustomPageProduct(_model_base.Model):
+    """Paged collection of Product items.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: The Product items on this page. Required.
+    :vartype value: list[~resiliency.devdriven.models.Product]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["Product"] = rest_field(name="value")
+    """The Product items on this page. Required. """
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Product"],
+        next_link: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
 class Error(_model_base.Model):
     """The error object.
 
@@ -230,49 +267,6 @@ class LROProduct(Product):
         *,
         received: Union[str, "_models.Mode"],
         provisioning_state: str,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class ResourceOkResponseCustomPage(_model_base.Model):
-    """ResourceOkResponseCustomPage.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar status_code: The status code. Required. Default value is 200.
-    :vartype status_code: int
-    :ivar value: The Product items on this page. Required.
-    :vartype value: list[~resiliency.devdriven.models.Product]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    status_code: int = rest_field(name="statusCode")
-    """The status code. Required. Default value is 200."""
-    value: List["Product"] = rest_field(name="value")
-    """The Product items on this page. Required. """
-    next_link: Optional[str] = rest_field(name="nextLink")
-    """The link to the next page of items. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        value: List["_models.Product"],
-        next_link: Optional[str] = None,
     ):
         ...
 

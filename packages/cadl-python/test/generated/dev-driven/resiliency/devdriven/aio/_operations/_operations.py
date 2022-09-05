@@ -198,32 +198,15 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         return deserialized
 
     @distributed_trace_async
-    async def get_pages(self, *, api_version: str, **kwargs: Any) -> _models.ResourceOkResponseCustomPage:
+    async def get_pages(self, *, api_version: str, **kwargs: Any) -> _models.CustomPageProduct:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str
-        :return: ResourceOkResponseCustomPage. This object is compatible with MutableMapping
-        :rtype: ~resiliency.devdriven.models.ResourceOkResponseCustomPage
+        :return: CustomPageProduct. This object is compatible with MutableMapping
+        :rtype: ~resiliency.devdriven.models.CustomPageProduct
         :raises ~azure.core.exceptions.HttpResponseError:
-<<<<<<< HEAD
-=======
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        {
-                            "received": "str"  # Required. Known values are: "raw" and
-                              "model".
-                        }
-                    ],
-                    "nextLink": "str"  # Optional. The link to the next page of items.
-                }
->>>>>>> autorestv3
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -231,7 +214,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ResourceOkResponseCustomPage]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CustomPageProduct]
 
         request = build_get_pages_request(
             api_version=api_version,
@@ -251,7 +234,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = _deserialize(_models.ResourceOkResponseCustomPage, response.json())
+        deserialized = _deserialize(_models.CustomPageProduct, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
