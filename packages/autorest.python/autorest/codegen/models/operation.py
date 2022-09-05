@@ -291,27 +291,22 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(self.parameters.body_parameter.type.imports(**kwargs))
 
         # Exceptions
-        file_import.add_submodule_import(
-            "azure.core.exceptions", "map_error", ImportType.AZURECORE
-        )
+        errors = [
+            "map_error",
+            "HttpResponseError",
+            "ClientAuthenticationError",
+            "ResourceNotFoundError",
+            "ResourceExistsError",
+            "ResourceExistsError",
+        ]
+        for error in errors:
+            file_import.add_submodule_import(
+                "azure.core.exceptions", error, ImportType.AZURECORE
+            )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
                 "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
             )
-        file_import.add_submodule_import(
-            "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
-        )
-        file_import.add_submodule_import(
-            "azure.core.exceptions",
-            "ClientAuthenticationError",
-            ImportType.AZURECORE,
-        )
-        file_import.add_submodule_import(
-            "azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE
-        )
-        file_import.add_submodule_import(
-            "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
-        )
 
         if self.has_kwargs_to_pop_with_default(
             self.parameters.kwargs_to_pop, ParameterLocation.HEADER
