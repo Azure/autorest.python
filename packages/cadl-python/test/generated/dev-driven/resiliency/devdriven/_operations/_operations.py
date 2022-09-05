@@ -283,6 +283,23 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: ResourceOkResponseCustomPage. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.ResourceOkResponseCustomPage
         :raises ~azure.core.exceptions.HttpResponseError:
+<<<<<<< HEAD
+=======
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        {
+                            "received": "str"  # Required. Known values are: "raw" and
+                              "model".
+                        }
+                    ],
+                    "nextLink": "str"  # Optional. The link to the next page of items.
+                }
+>>>>>>> autorestv3
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
