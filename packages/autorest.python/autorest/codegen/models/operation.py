@@ -297,7 +297,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "ClientAuthenticationError",
             "ResourceNotFoundError",
             "ResourceExistsError",
-            "ResourceExistsError",
+            "ResourceNotModifiedError",
         ]
         for error in errors:
             file_import.add_submodule_import(
