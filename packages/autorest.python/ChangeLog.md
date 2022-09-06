@@ -13,10 +13,12 @@
 
 **Bug Fixes**
 
+- Fix `api_version` error when there are multi different `api-version`(not multiapi)   #1429
 - Fix `--clear-output-folder` when `--black=true`  #1410
 
 **Other Changes**
 
+- Default `304` errors to throw `azure.core.exception.ResourceNotFoundError`s  #1415
 - Add support of `--black=true` for `--multiapi` and `--multiclient`  #1410
 
 ### 2022-08-31 - 6.1.4
