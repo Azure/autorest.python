@@ -374,6 +374,7 @@ def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
     if not swagger_name:
         regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.AZURE)
+        regenerate_mixed_api_version_legacy(c, debug)
 
 @task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
@@ -533,6 +534,14 @@ def regenerate_custom_poller_pager_legacy(c, debug=False):
     cwd = os.getcwd()
     cmd = (
         f'autorest test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+    )
+    _run_autorest([cmd], debug=debug)
+
+@task
+def regenerate_mixed_api_version_legacy(c, debug=False):
+    cwd = os.getcwd()
+    cmd = (
+        f'autorest test/azure/legacy/specification/mixedapiversion/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
 

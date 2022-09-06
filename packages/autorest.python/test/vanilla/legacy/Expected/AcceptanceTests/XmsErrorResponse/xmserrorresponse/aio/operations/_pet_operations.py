@@ -13,6 +13,7 @@ from azure.core.exceptions import (
     HttpResponseError,
     ResourceExistsError,
     ResourceNotFoundError,
+    ResourceNotModifiedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -65,6 +66,7 @@ class PetOperations:
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
+            304: ResourceNotModifiedError,
             400: HttpResponseError,
             404: lambda response: ResourceNotFoundError(
                 response=response, model=self._deserialize(_models.NotFoundErrorBase, response)
@@ -123,6 +125,7 @@ class PetOperations:
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
+            304: ResourceNotModifiedError,
             500: lambda response: HttpResponseError(
                 response=response, model=self._deserialize(_models.PetActionError, response)
             ),
@@ -182,6 +185,7 @@ class PetOperations:
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
+            304: ResourceNotModifiedError,
             500: lambda response: HttpResponseError(
                 response=response, model=self._deserialize(_models.PetActionError, response)
             ),

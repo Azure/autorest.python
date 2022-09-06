@@ -13,7 +13,12 @@
 
 **Bug Fixes**
 
-- Fix type annotation exception for `lro/lro-paging`  #1425
+- Fix `api_version` error when there are multi different `api-version`(not multiapi)   #1429
+- Fix generator raising `KeyError` in corner case when generating an LRO-paging operation  #1425
+
+**Other Changes**
+
+- Default `304` errors to throw `azure.core.exception.ResourceNotFoundError`s  #1415
 
 ### 2022-08-31 - 6.1.4
 
