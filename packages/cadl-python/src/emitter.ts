@@ -13,6 +13,7 @@ import {
     getServiceNamespace,
     getServiceNamespaceString,
     getServiceTitle,
+    getServiceVersion,
     getSummary,
     getVisibility,
     ignoreDiagnostics,
@@ -60,10 +61,19 @@ interface CredentialType {
     scheme: HttpAuth;
 }
 
+interface ConstantType {
+    kind: "Constant";
+    value: string;
+}
+
+declare type CustomizedType = CredentialType | ConstantType;
+
 export async function $onEmit(program: Program) {
     const yamlMap = createYamlEmitter(program);
     const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
     await program.host.writeFile(yamlPath, dump(yamlMap));
+    const yamlPathOrigin = resolvePath(program.compilerOptions.outputPath!, "output-origin.yaml");
+    await program.host.writeFile(yamlPathOrigin, dump(yamlMap));
     const __dirname = dirname(fileURLToPath(import.meta.url));
     const root = resolve(__dirname, "..", "..");
     const commandArgs = [
@@ -90,7 +100,7 @@ function camelToSnakeCase(name: string): string {
     return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
-const typesMap = new Map<Type | CredentialType, Record<string, any>>();
+const typesMap = new Map<Type | CustomizedType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 
@@ -158,7 +168,7 @@ function getEffectiveSchemaType(program: Program, type: ModelType): ModelType {
 
 function getType(
     program: Program,
-    type: Type | CredentialType,
+    type: Type | CustomizedType,
     modelTypeProperty: ModelTypeProperty | undefined = undefined,
 ): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
@@ -279,6 +289,16 @@ function emitParameter(
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
+    if (parameter.name === "api-version") {
+        clientDefaultValue = getServiceVersion(program);
+        const apiVersionType: ConstantType = {
+            kind: "Constant",
+            value: getServiceVersion(program),
+        }
+        paramMap.type = getType(program, apiVersionType);
+        paramMap.implementation = "Client";
+        paramMap.in_docstring = false;
+    }
     return { clientDefaultValue, ...base, ...paramMap };
 }
 
@@ -304,7 +324,11 @@ function emitContentTypeParameter(
     };
 }
 
-function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<string, any> {
+function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden: boolean): Record<string, any> {
+    const type: ConstantType = {
+        kind: "Constant",
+        value: "application/json",
+    }
     return {
         checkClientInput: false,
         clientDefaultValue: "application/json",
@@ -321,7 +345,7 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
         optional: false,
         restApiName: "Accept",
         skipUrlEncoding: false,
-        type: ConstantTypes.applicationJson,
+        type: getType(program, type),
     };
 }
 
@@ -418,7 +442,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
                 emittedResponse["type"] &&
                 parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
             ) {
-                parameters.push(emitAcceptParameter(isOverload, isOverriden));
+                parameters.push(emitAcceptParameter(program, isOverload, isOverriden));
             }
             if (isErrorModel(program, response.type)) {
                 // * is valid status code in cadl but invalid for autorest.python
@@ -689,9 +713,20 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
     return credential_type;
 }
 
+function emitConstant(constant: ConstantType): Record<string, any> {
+    return {
+        apiVersions: [],
+        clientDefaultValue: null,
+        type: "constant",
+        value: constant.value,
+        valueType: KnownTypes.string,
+        xmlMetadata: {},
+    }
+}
+
 function emitType(
     program: Program,
-    type: Type | CredentialType,
+    type: Type | CustomizedType,
     modelTypeProperty: ModelTypeProperty | undefined = undefined,
 ): Record<string, any> {
     switch (type.kind) {
@@ -707,6 +742,8 @@ function emitType(
             return emitEnum(program, type);
         case "Credential":
             return emitCredential(type.scheme);
+        case "Constant":
+            return emitConstant(type);
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
@@ -843,11 +880,40 @@ function emitCredentialParam(program: Program, namespace: NamespaceType): Record
     return undefined;
 }
 
+function emitApiVersionParam(program: Program): Record<string, any> | undefined {
+    const version = getServiceVersion(program);
+    if (version) {
+        const type: ConstantType = {
+            kind: "Constant",
+            value: version,
+        };
+        return {
+            clientName: "api_version",
+            clientDefaultValue: version,
+            description: "Api Version",
+            implementation: "Client",
+            location: "query",
+            restApiName: "api-version",
+            skipUrlEncoding: false,
+            optional: false,
+            inDocString: true,
+            inOverload: false,
+            inOverridden: false,
+            type: getType(program, type),
+        }
+    }
+    return undefined;
+}
+
 function emitGlobalParameters(program: Program, serviceNamespace: NamespaceType): Record<string, any>[] {
     const clientParameters = emitServerParams(program, serviceNamespace);
     const credentialParam = emitCredentialParam(program, serviceNamespace);
+    const apiVersionParam = emitApiVersionParam(program);
     if (credentialParam) {
         clientParameters.push(credentialParam);
+    }
+    if (apiVersionParam) {
+        clientParameters.push(apiVersionParam);
     }
     return clientParameters;
 }
@@ -882,7 +948,6 @@ function createYamlEmitter(program: Program) {
             ...typesMap.values(),
             ...Object.values(KnownTypes),
             ...simpleTypesMap.values(),
-            ...Object.values(ConstantTypes),
         ],
     };
     return codeModel;
@@ -890,15 +955,4 @@ function createYamlEmitter(program: Program) {
 
 const KnownTypes = {
     string: { type: "string" },
-};
-
-const ConstantTypes = {
-    applicationJson: {
-        apiVersions: [],
-        clientDefaultValue: null,
-        type: "constant",
-        value: "application/json",
-        valueType: KnownTypes.string,
-        xmlMetadata: {},
-    },
 };
