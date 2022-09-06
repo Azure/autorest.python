@@ -14,6 +14,7 @@ from azure.core.exceptions import (
     HttpResponseError,
     ResourceExistsError,
     ResourceNotFoundError,
+    ResourceNotModifiedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -137,7 +138,12 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -257,7 +263,12 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -320,7 +331,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": 200,  # Default value is 200. The status code. Required.
                     "value": [
                         {
                             "received": "str"  # Required. Known values are: "raw" and
@@ -330,7 +340,12 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
                     "nextLink": "str"  # Optional. The link to the next page of items.
                 }
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -387,7 +402,12 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}

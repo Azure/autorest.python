@@ -28,3 +28,4 @@ msrest==0.7.1
 -e ./Expected/AcceptanceTests/PackageModeBatch
 -e ./Expected/AcceptanceTests/SecurityAadSwagger
 -e ./Expected/AcceptanceTests/SecurityKeySwagger
+-e ./Expected/AcceptanceTests/MixedApiVersion
