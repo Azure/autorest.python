@@ -11,9 +11,13 @@
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 
-**New Features**
+**Bug Fixes**
 
-- Add `304` which means `ResourceNotModifiedError` in default `error_map`  #1415
+- Fix `api_version` error when there are multi different `api-version`(not multiapi)   #1429
+
+**Other Changes**
+
+- Default `304` errors to throw `azure.core.exception.ResourceNotFoundError`s  #1415
 
 ### 2022-08-31 - 6.1.4
 
