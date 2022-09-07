@@ -1490,7 +1490,7 @@ class DurationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "2020-02-20 00:00:00"  # Property. Required.
+                    "property": "1 day, 0:00:00"  # Property. Required.
                 }
         """
         error_map = {
@@ -1552,7 +1552,7 @@ class DurationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "2020-02-20 00:00:00"  # Property. Required.
+                    "property": "1 day, 0:00:00"  # Property. Required.
                 }
         """
 

@@ -24,32 +24,34 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
-    build_boolean_get_request,
-    build_boolean_put_request,
-    build_bytes_get_request,
-    build_bytes_put_request,
-    build_collections_int_get_request,
-    build_collections_int_put_request,
-    build_collections_model_get_request,
-    build_collections_model_put_request,
-    build_collections_string_get_request,
-    build_collections_string_put_request,
-    build_datetime_get_request,
-    build_datetime_put_request,
-    build_duration_get_request,
-    build_duration_put_request,
-    build_enum_get_request,
-    build_enum_put_request,
-    build_extensible_enum_get_request,
-    build_extensible_enum_put_request,
-    build_float_get_request,
-    build_float_put_request,
-    build_int_get_request,
-    build_int_put_request,
-    build_model_get_request,
-    build_model_put_request,
-    build_string_get_request,
-    build_string_put_request,
+    build_bytes_get_all_request,
+    build_bytes_get_default_request,
+    build_bytes_put_all_request,
+    build_bytes_put_default_request,
+    build_collections_byte_get_all_request,
+    build_collections_byte_get_default_request,
+    build_collections_byte_put_all_request,
+    build_collections_byte_put_default_request,
+    build_collections_model_get_all_request,
+    build_collections_model_get_default_request,
+    build_collections_model_put_all_request,
+    build_collections_model_put_default_request,
+    build_datetime_get_all_request,
+    build_datetime_get_default_request,
+    build_datetime_put_all_request,
+    build_datetime_put_default_request,
+    build_duration_get_all_request,
+    build_duration_get_default_request,
+    build_duration_put_all_request,
+    build_duration_put_default_request,
+    build_required_and_optional_get_all_request,
+    build_required_and_optional_get_required_only_request,
+    build_required_and_optional_put_all_request,
+    build_required_and_optional_put_required_only_request,
+    build_string_get_all_request,
+    build_string_get_default_request,
+    build_string_put_all_request,
+    build_string_put_default_request,
 )
 
 if sys.version_info >= (3, 9):
@@ -61,14 +63,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class BooleanOperations:
+class StringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`boolean` attribute.
+        :class:`~models.property.optional.aio.ModelsPropertyOptional`'s
+        :attr:`string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -79,8 +81,8 @@ class BooleanOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
+    async def get_all(self, **kwargs: Any) -> JSON:
+        """Get models that will return all properties in the model.
 
         :return: JSON object
         :rtype: JSON
@@ -91,7 +93,7 @@ class BooleanOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": bool  # Property. Required.
+                    "property": "str"  # Optional. Property.
                 }
         """
         error_map = {
@@ -107,7 +109,62 @@ class BooleanOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_boolean_get_request(
+        request = build_string_get_all_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def get_default(self, **kwargs: Any) -> JSON:
+        """Get models that will return the default object.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Optional. Property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_string_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -134,10 +191,10 @@ class BooleanOperations:
         return cast(JSON, deserialized)
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: JSON
@@ -153,15 +210,15 @@ class BooleanOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bool  # Property. Required.
+                    "property": "str"  # Optional. Property.
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: IO
@@ -174,8 +231,10 @@ class BooleanOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -208,7 +267,7 @@ class BooleanOperations:
         else:
             _json = body
 
-        request = build_boolean_put_request(
+        request = build_string_put_all_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -230,84 +289,11 @@ class BooleanOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-
-class StringOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`string` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
-
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "str"  # Property. Required.
-                }
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
-
-        request = build_string_get_request(
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
-
-        return cast(JSON, deserialized)
-
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: JSON
@@ -323,15 +309,15 @@ class StringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Property. Required.
+                    "property": "str"  # Optional. Property.
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: IO
@@ -344,8 +330,10 @@ class StringOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -378,7 +366,7 @@ class StringOperations:
         else:
             _json = body
 
-        request = build_string_put_request(
+        request = build_string_put_default_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -407,7 +395,7 @@ class BytesOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.optional.aio.ModelsPropertyOptional`'s
         :attr:`bytes` attribute.
     """
 
@@ -419,8 +407,8 @@ class BytesOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
+    async def get_all(self, **kwargs: Any) -> JSON:
+        """Get models that will return all properties in the model.
 
         :return: JSON object
         :rtype: JSON
@@ -431,7 +419,7 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": bytes("bytes", encoding="utf-8")  # Property. Required.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
         error_map = {
@@ -447,7 +435,62 @@ class BytesOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_bytes_get_request(
+        request = build_bytes_get_all_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def get_default(self, **kwargs: Any) -> JSON:
+        """Get models that will return the default object.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_bytes_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -474,10 +517,10 @@ class BytesOperations:
         return cast(JSON, deserialized)
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: JSON
@@ -493,15 +536,15 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bytes("bytes", encoding="utf-8")  # Property. Required.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: IO
@@ -514,8 +557,10 @@ class BytesOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -548,7 +593,7 @@ class BytesOperations:
         else:
             _json = body
 
-        request = build_bytes_put_request(
+        request = build_bytes_put_all_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -570,84 +615,11 @@ class BytesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-
-class IntOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`int` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
-
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 0  # Property. Required.
-                }
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
-
-        request = build_int_get_request(
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
-
-        return cast(JSON, deserialized)
-
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: JSON
@@ -663,15 +635,15 @@ class IntOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Property. Required.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: IO
@@ -684,8 +656,10 @@ class IntOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -718,177 +692,7 @@ class IntOperations:
         else:
             _json = body
 
-        request = build_int_put_request(
-            content_type=content_type,
-            json=_json,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [204]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-
-class FloatOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`float` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
-
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 0.0  # Property. Required.
-                }
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
-
-        request = build_float_get_request(
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
-
-        return cast(JSON, deserialized)
-
-    @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 0.0  # Property. Required.
-                }
-        """
-
-    @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
-
-        :param body: Is either a model type or a IO type. Required.
-        :type body: JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
-            _json = body
-
-        request = build_float_put_request(
+        request = build_bytes_put_default_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -917,7 +721,7 @@ class DatetimeOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.optional.aio.ModelsPropertyOptional`'s
         :attr:`datetime` attribute.
     """
 
@@ -929,8 +733,8 @@ class DatetimeOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
+    async def get_all(self, **kwargs: Any) -> JSON:
+        """Get models that will return all properties in the model.
 
         :return: JSON object
         :rtype: JSON
@@ -941,7 +745,7 @@ class DatetimeOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "2020-02-20 00:00:00"  # Property. Required.
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
         error_map = {
@@ -957,7 +761,62 @@ class DatetimeOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_datetime_get_request(
+        request = build_datetime_get_all_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def get_default(self, **kwargs: Any) -> JSON:
+        """Get models that will return the default object.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_datetime_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -984,10 +843,10 @@ class DatetimeOperations:
         return cast(JSON, deserialized)
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: JSON
@@ -1003,15 +862,15 @@ class DatetimeOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "2020-02-20 00:00:00"  # Property. Required.
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: IO
@@ -1024,8 +883,10 @@ class DatetimeOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -1058,7 +919,106 @@ class DatetimeOperations:
         else:
             _json = body
 
-        request = build_datetime_put_request(
+        request = build_datetime_put_all_request(
+            content_type=content_type,
+            json=_json,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @overload
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
+        """
+
+    @overload
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
+
+        :param body: Is either a model type or a IO type. Required.
+        :type body: JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        content_type = content_type or "application/json"
+        _json = None
+        _content = None
+        if isinstance(body, (IO, bytes)):
+            _content = body
+        else:
+            _json = body
+
+        request = build_datetime_put_default_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1087,7 +1047,7 @@ class DurationOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.optional.aio.ModelsPropertyOptional`'s
         :attr:`duration` attribute.
     """
 
@@ -1099,8 +1059,8 @@ class DurationOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
+    async def get_all(self, **kwargs: Any) -> JSON:
+        """Get models that will return all properties in the model.
 
         :return: JSON object
         :rtype: JSON
@@ -1111,7 +1071,7 @@ class DurationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "1 day, 0:00:00"  # Property. Required.
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
         error_map = {
@@ -1127,7 +1087,62 @@ class DurationOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_duration_get_request(
+        request = build_duration_get_all_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def get_default(self, **kwargs: Any) -> JSON:
+        """Get models that will return the default object.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_duration_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -1154,10 +1169,10 @@ class DurationOperations:
         return cast(JSON, deserialized)
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: JSON
@@ -1173,15 +1188,15 @@ class DurationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "1 day, 0:00:00"  # Property. Required.
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: IO
@@ -1194,8 +1209,10 @@ class DurationOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -1228,7 +1245,7 @@ class DurationOperations:
         else:
             _json = body
 
-        request = build_duration_put_request(
+        request = build_duration_put_all_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1250,85 +1267,11 @@ class DurationOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-
-class EnumOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`enum` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
-
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
-                }
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
-
-        request = build_enum_get_request(
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
-
-        return cast(JSON, deserialized)
-
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: JSON
@@ -1344,16 +1287,15 @@ class EnumOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: IO
@@ -1366,8 +1308,10 @@ class EnumOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -1400,7 +1344,7 @@ class EnumOperations:
         else:
             _json = body
 
-        request = build_enum_put_request(
+        request = build_duration_put_default_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1423,14 +1367,14 @@ class EnumOperations:
             return cls(pipeline_response, None, {})
 
 
-class ExtensibleEnumOperations:
+class CollectionsByteOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`extensible_enum` attribute.
+        :class:`~models.property.optional.aio.ModelsPropertyOptional`'s
+        :attr:`collections_byte` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1441,354 +1385,8 @@ class ExtensibleEnumOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
-
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
-                }
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
-
-        request = build_extensible_enum_get_request(
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
-
-        return cast(JSON, deserialized)
-
-    @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
-                }
-        """
-
-    @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
-
-        :param body: Is either a model type or a IO type. Required.
-        :type body: JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
-            _json = body
-
-        request = build_extensible_enum_put_request(
-            content_type=content_type,
-            json=_json,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [204]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-
-class ModelOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`model` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
-
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": {
-                        "property": "str"  # Required string property. Required.
-                    }
-                }
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
-
-        request = build_model_get_request(
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
-
-        return cast(JSON, deserialized)
-
-    @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": {
-                        "property": "str"  # Required string property. Required.
-                    }
-                }
-        """
-
-    @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
-
-        :param body: Is either a model type or a IO type. Required.
-        :type body: JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
-            _json = body
-
-        request = build_model_put_request(
-            content_type=content_type,
-            json=_json,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [204]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-
-class CollectionsStringOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`collections_string` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
+    async def get_all(self, **kwargs: Any) -> JSON:
+        """Get models that will return all properties in the model.
 
         :return: JSON object
         :rtype: JSON
@@ -1800,7 +1398,7 @@ class CollectionsStringOperations:
                 # response body for status code(s): 200
                 response == {
                     "property": [
-                        "str"  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
@@ -1817,7 +1415,64 @@ class CollectionsStringOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_collections_string_get_request(
+        request = build_collections_byte_get_all_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def get_default(self, **kwargs: Any) -> JSON:
+        """Get models that will return the default object.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_collections_byte_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -1844,10 +1499,10 @@ class CollectionsStringOperations:
         return cast(JSON, deserialized)
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: JSON
@@ -1864,16 +1519,16 @@ class CollectionsStringOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": [
-                        "str"  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: IO
@@ -1886,8 +1541,10 @@ class CollectionsStringOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -1920,7 +1577,7 @@ class CollectionsStringOperations:
         else:
             _json = body
 
-        request = build_collections_string_put_request(
+        request = build_collections_byte_put_all_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1942,86 +1599,11 @@ class CollectionsStringOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-
-class CollectionsIntOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
-        :attr:`collections_int` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
-
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": [
-                        0  # Property. Required.
-                    ]
-                }
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
-
-        request = build_collections_int_get_request(
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
-
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
-
-        return cast(JSON, deserialized)
-
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: JSON
@@ -2038,16 +1620,16 @@ class CollectionsIntOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": [
-                        0  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with default properties.
 
         :param body: Required.
         :type body: IO
@@ -2060,8 +1642,10 @@ class CollectionsIntOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -2094,7 +1678,7 @@ class CollectionsIntOperations:
         else:
             _json = body
 
-        request = build_collections_int_put_request(
+        request = build_collections_byte_put_default_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -2123,7 +1707,7 @@ class CollectionsModelOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.optional.aio.ModelsPropertyOptional`'s
         :attr:`collections_model` attribute.
     """
 
@@ -2135,8 +1719,8 @@ class CollectionsModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> JSON:
-        """get.
+    async def get_all(self, **kwargs: Any) -> JSON:
+        """Get models that will return all properties in the model.
 
         :return: JSON object
         :rtype: JSON
@@ -2148,9 +1732,7 @@ class CollectionsModelOperations:
                 # response body for status code(s): 200
                 response == {
                     "property": [
-                        {
-                            "property": "str"  # Required string property. Required.
-                        }
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
@@ -2167,7 +1749,64 @@ class CollectionsModelOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_collections_model_get_request(
+        request = build_collections_model_get_all_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def get_default(self, **kwargs: Any) -> JSON:
+        """Get models that will return the default object.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_collections_model_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -2194,10 +1833,10 @@ class CollectionsModelOperations:
         return cast(JSON, deserialized)
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: JSON
@@ -2214,18 +1853,16 @@ class CollectionsModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": [
-                        {
-                            "property": "str"  # Required string property. Required.
-                        }
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put a body with all properties present.
 
         :param body: Required.
         :type body: IO
@@ -2238,8 +1875,10 @@ class CollectionsModelOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[JSON, IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
 
         :param body: Is either a model type or a IO type. Required.
         :type body: JSON or IO
@@ -2272,7 +1911,438 @@ class CollectionsModelOperations:
         else:
             _json = body
 
-        request = build_collections_model_put_request(
+        request = build_collections_model_put_all_request(
+            content_type=content_type,
+            json=_json,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @overload
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
+        """
+
+    @overload
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with default properties.
+
+        :param body: Is either a model type or a IO type. Required.
+        :type body: JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        content_type = content_type or "application/json"
+        _json = None
+        _content = None
+        if isinstance(body, (IO, bytes)):
+            _content = body
+        else:
+            _json = body
+
+        request = build_collections_model_put_default_request(
+            content_type=content_type,
+            json=_json,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+
+class RequiredAndOptionalOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~models.property.optional.aio.ModelsPropertyOptional`'s
+        :attr:`required_and_optional` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get_all(self, **kwargs: Any) -> JSON:
+        """Get models that will return all properties in the model.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_required_and_optional_get_all_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def get_required_only(self, **kwargs: Any) -> JSON:
+        """Get models that will return only the required properties.
+
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
+        request = build_required_and_optional_get_required_only_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @overload
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
+        """
+
+    @overload
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with all properties present.
+
+        :param body: Is either a model type or a IO type. Required.
+        :type body: JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        content_type = content_type or "application/json"
+        _json = None
+        _content = None
+        if isinstance(body, (IO, bytes)):
+            _content = body
+        else:
+            _json = body
+
+        request = build_required_and_optional_put_all_request(
+            content_type=content_type,
+            json=_json,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @overload
+    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with only required properties.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
+        """
+
+    @overload
+    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put a body with only required properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with only required properties.
+
+        :param body: Is either a model type or a IO type. Required.
+        :type body: JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        content_type = content_type or "application/json"
+        _json = None
+        _content = None
+        if isinstance(body, (IO, bytes)):
+            _content = body
+        else:
+            _json = body
+
+        request = build_required_and_optional_put_required_only_request(
             content_type=content_type,
             json=_json,
             content=_content,
