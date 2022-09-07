@@ -61,13 +61,6 @@ interface CredentialType {
     scheme: HttpAuth;
 }
 
-interface ConstantType {
-    kind: "Constant";
-    value: string;
-}
-
-declare type CustomizedType = CredentialType | ConstantType;
-
 export async function $onEmit(program: Program) {
     const yamlMap = createYamlEmitter(program);
     const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
@@ -100,7 +93,7 @@ function camelToSnakeCase(name: string): string {
     return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
-const typesMap = new Map<Type | CustomizedType, Record<string, any>>();
+const typesMap = new Map<Type | CredentialType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 
@@ -168,7 +161,7 @@ function getEffectiveSchemaType(program: Program, type: ModelType): ModelType {
 
 function getType(
     program: Program,
-    type: Type | CustomizedType,
+    type: Type | CredentialType,
     modelTypeProperty: ModelTypeProperty | undefined = undefined,
 ): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
@@ -289,13 +282,9 @@ function emitParameter(
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
-    if (parameter.name === "api-version") {
+    if (parameter.name === "api-version" && getServiceVersion(program)) {
         clientDefaultValue = getServiceVersion(program);
-        const apiVersionType: ConstantType = {
-            kind: "Constant",
-            value: getServiceVersion(program),
-        }
-        paramMap.type = getType(program, apiVersionType);
+        paramMap.type = getConstantType(getServiceVersion(program));
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
     }
@@ -728,7 +717,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
 
 function emitType(
     program: Program,
-    type: Type | CustomizedType,
+    type: Type | CredentialType,
     modelTypeProperty: ModelTypeProperty | undefined = undefined,
 ): Record<string, any> {
     switch (type.kind) {
