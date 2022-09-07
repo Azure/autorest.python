@@ -324,11 +324,24 @@ function emitContentTypeParameter(
     };
 }
 
-function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden: boolean): Record<string, any> {
-    const type: ConstantType = {
-        kind: "Constant",
-        value: "application/json",
+function getConstantType(key: string): Record<string, any> {
+    const cache = simpleTypesMap.get(key);
+    if (cache) {
+        return cache;
     }
+    const type = {
+        apiVersions: [],
+        clientDefaultValue: null,
+        type: "constant",
+        value: key,
+        valueType: KnownTypes.string,
+        xmlMetadata: {},
+    }
+    simpleTypesMap.set(key, type);
+    return type;
+}
+
+function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden: boolean): Record<string, any> {
     return {
         checkClientInput: false,
         clientDefaultValue: "application/json",
@@ -345,7 +358,7 @@ function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden:
         optional: false,
         restApiName: "Accept",
         skipUrlEncoding: false,
-        type: getType(program, type),
+        type: getConstantType("application/json"),
     };
 }
 
@@ -713,17 +726,6 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
     return credential_type;
 }
 
-function emitConstant(constant: ConstantType): Record<string, any> {
-    return {
-        apiVersions: [],
-        clientDefaultValue: null,
-        type: "constant",
-        value: constant.value,
-        valueType: KnownTypes.string,
-        xmlMetadata: {},
-    }
-}
-
 function emitType(
     program: Program,
     type: Type | CustomizedType,
@@ -742,8 +744,6 @@ function emitType(
             return emitEnum(program, type);
         case "Credential":
             return emitCredential(type.scheme);
-        case "Constant":
-            return emitConstant(type);
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
@@ -883,10 +883,6 @@ function emitCredentialParam(program: Program, namespace: NamespaceType): Record
 function emitApiVersionParam(program: Program): Record<string, any> | undefined {
     const version = getServiceVersion(program);
     if (version) {
-        const type: ConstantType = {
-            kind: "Constant",
-            value: version,
-        };
         return {
             clientName: "api_version",
             clientDefaultValue: version,
@@ -899,7 +895,7 @@ function emitApiVersionParam(program: Program): Record<string, any> | undefined 
             inDocString: true,
             inOverload: false,
             inOverridden: false,
-            type: getType(program, type),
+            type: getConstantType(version),
         }
     }
     return undefined;
