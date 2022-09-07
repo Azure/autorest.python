@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-09-XX - 6.1.5
+### 2022-09-06 - 6.1.5
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -14,6 +14,7 @@
 **Bug Fixes**
 
 - Fix `api_version` error when there are multi different `api-version`(not multiapi)   #1429
+- Fix generator raising `KeyError` in corner case when generating an LRO-paging operation  #1425
 - Fix `--clear-output-folder` when `--black=true`  #1410
 
 **Other Changes**
