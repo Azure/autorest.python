@@ -14,6 +14,7 @@
 **Bug Fixes**
 
 - Fix `api_version` error when there are multi different `api-version`(not multiapi)   #1429
+- Fix generator raising `KeyError` in corner case when generating an LRO-paging operation  #1425
 
 **Other Changes**
 
