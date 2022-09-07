@@ -1408,7 +1408,14 @@ class DeploymentsOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def list(self, project_name: str, *, api_version: str, **kwargs: Any) -> JSON:
+    def list(
+        self,
+        project_name: str,
+        *,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        **kwargs: Any
+    ) -> Iterable[JSON]:
         """Lists the existing deployments.
 
         :param project_name: Required.
