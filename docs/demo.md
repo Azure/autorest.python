@@ -37,7 +37,7 @@ assert project["createdDateTime"] == "2022-09-12T00:00:00Z"
 
 ### POST
 
-Here we are looking at accepting a body as input and passing it to the service. This function is not actually in the QnA authoring cadl, but is more to demonstrate what an input body would look like
+Here we are looking at accepting a body as input and passing it to the service. This function is not actually in the authoring cadl, but is more to demonstrate what an input body would look like
 
 ```cadl
 @doc("Create a project.")
