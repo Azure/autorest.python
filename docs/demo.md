@@ -132,9 +132,9 @@ for project in projects:
 
 - LRO:
 - Multiple input body types: https://github.com/microsoft/cadl/issues/756
-- Skip URL encoding: Way to skip or specify to urlencode a parameter
-- Sidecar support: Add support for sidecar client definition for complex clients
-- Client and subclient
+- Skip URL encoding: Way to skip or specify to urlencode a parameter https://github.com/microsoft/cadl/issues/851
+- Sidecar support: Add support for sidecar client definition for complex clients https://github.com/microsoft/cadl/issues/218
+- Client and subclient: https://github.com/microsoft/cadl/issues/799
 
 ## Added Feature: Models
 
