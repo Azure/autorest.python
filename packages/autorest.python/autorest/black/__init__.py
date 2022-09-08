@@ -30,16 +30,10 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
 
     def process(self) -> bool:
         # apply format_file on every file in the output folder
-        list(
-            map(
-                self.format_file,
-                [f for f in self.output_folder.glob("**/*") if f.is_file()],
-            )
-        )
+        list(map(self.format_file, [Path(f) for f in self.list_file()]))
         return True
 
-    def format_file(self, full_path) -> None:
-        file = full_path.relative_to(self.output_folder)
+    def format_file(self, file: Path) -> None:
         file_content = self.read_file(file)
         if not file.suffix == ".py":
             self.write_file(file, file_content)

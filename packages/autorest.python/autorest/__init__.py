@@ -7,7 +7,7 @@ import logging
 from pathlib import Path
 import json
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Union
+from typing import Any, Dict, Union, List
 
 import yaml
 
@@ -22,6 +22,7 @@ _LOGGER = logging.getLogger(__name__)
 class ReaderAndWriter:
     def __init__(self, *, output_folder: Union[str, Path], **kwargs: Any) -> None:
         self.output_folder = Path(output_folder)
+        self._list_file: List[str] = []
         try:
             with open(
                 Path(self.output_folder) / Path("..") / Path("python.json"), "r"
@@ -47,11 +48,15 @@ class ReaderAndWriter:
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """How does writing work in cadl?"""
+        self._list_file.append(str(filename))
         file_folder = Path(filename).parent
         if not Path.is_dir(self.output_folder / file_folder):
             Path.mkdir(self.output_folder / file_folder, parents=True)
         with open(self.output_folder / Path(filename), "w") as fd:
             fd.write(file_content)
+
+    def list_file(self) -> List[str]:
+        return self._list_file
 
 
 class ReaderAndWriterAutorest(ReaderAndWriter):
@@ -66,6 +71,9 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         return self._autorestapi.write_file(filename, file_content)
+
+    def list_file(self) -> List[str]:
+        return self._autorestapi.list_inputs()
 
 
 class Plugin(ReaderAndWriter, ABC):
