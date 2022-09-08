@@ -128,7 +128,7 @@ for project in projects:
   print(project["createdDateTime"])
 ```
 
-### Known Cadl Issues for Parity (Changlong)
+### Known Cadl Issues for Parity (Yuchao)
 
 - LRO:
 - Multiple input body types: https://github.com/microsoft/cadl/issues/756
