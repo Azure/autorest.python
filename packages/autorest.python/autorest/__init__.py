@@ -48,7 +48,6 @@ class ReaderAndWriter:
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """How does writing work in cadl?"""
-        self._list_file.append(str(filename))
         file_folder = Path(filename).parent
         if not Path.is_dir(self.output_folder / file_folder):
             Path.mkdir(self.output_folder / file_folder, parents=True)
@@ -56,7 +55,7 @@ class ReaderAndWriter:
             fd.write(file_content)
 
     def list_file(self) -> List[str]:
-        return self._list_file
+        return [str(f) for f in self.output_folder.glob("**/*") if f.is_file()]
 
 
 class ReaderAndWriterAutorest(ReaderAndWriter):
