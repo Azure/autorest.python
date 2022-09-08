@@ -3,6 +3,7 @@ requests==2.20.0
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.24.0
+-e ./generated/api-key
 -e ./generated/dev-driven
 -e ./generated/extensible-enums
 -e ./generated/hello
@@ -10,6 +11,7 @@ azure-core==1.24.0
 -e ./generated/input-basic
 -e ./generated/interfaces
 -e ./generated/nested-models
+-e ./generated/oauth2
 -e ./generated/optional-properties
 -e ./generated/output-basic
 -e ./generated/property-optional
