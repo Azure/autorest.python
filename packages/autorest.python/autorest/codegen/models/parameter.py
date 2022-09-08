@@ -82,6 +82,7 @@ class _ParameterBase(
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
         self.check_client_input: bool = self.yaml_data.get("checkClientInput", False)
+        self.added_on: Optional[str] = self.yaml_data.get("addedOn")
 
     @property
     def constant(self) -> bool:

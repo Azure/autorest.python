@@ -172,6 +172,20 @@ def _get_json_response_template_to_status_codes(
         retval[response_json].extend(status_codes)
     return retval
 
+def _api_version_validation(builder: OperationType) -> str:
+    retval: List[str] = []
+    if builder.added_on:
+        retval.append(f'    method_added_on="{builder.added_on}",')
+    params_added_on = {
+        p.added_on: p.client_name
+        for p in builder.parameters if p.added_on
+    }
+    if params_added_on:
+        retval.append(f"    params_added_on={params_added_on},")
+    if retval:
+        retval_str = '\n'.join(retval)
+        return f"@api_version_validation(\n{retval_str}\n)"
+    return ""
 
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
@@ -590,8 +604,10 @@ class _OperationSerializer(
 
     def decorators(self, builder: OperationType) -> List[str]:
         """Decorators for the method"""
-        super_decorators = super().decorators(builder)
-        return super_decorators
+        retval = super().decorators(builder)
+        if _api_version_validation(builder):
+            retval.append(_api_version_validation(builder))
+        return retval
 
     def param_description(
         self, builder: OperationType
@@ -1138,6 +1154,8 @@ class _PagingOperationSerializer(
             return ["@overload"]
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append("@distributed_trace")
+        if _api_version_validation(builder):
+            retval.append(_api_version_validation(builder))
         return retval
 
     def call_next_link_request_builder(self, builder: PagingOperationType) -> List[str]:
