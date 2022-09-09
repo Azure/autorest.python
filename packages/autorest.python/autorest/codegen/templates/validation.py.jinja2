@@ -25,7 +25,7 @@ def api_version_validation(**kwargs):
                 parameter: api_version
                 for api_version, parameters in params_added_on.items()
                 for parameter in parameters
-                if parameter in kwargs and api_version < client_api_version
+                if parameter in kwargs and api_version > client_api_version
             }
             if unsupported:
                 raise ValueError("".join([

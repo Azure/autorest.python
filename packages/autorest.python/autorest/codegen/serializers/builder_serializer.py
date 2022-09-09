@@ -176,12 +176,12 @@ def _api_version_validation(builder: OperationType) -> str:
     retval: List[str] = []
     if builder.added_on:
         retval.append(f'    method_added_on="{builder.added_on}",')
-    params_added_on = {
-        p.added_on: p.client_name
-        for p in builder.parameters if p.added_on
-    }
+    params_added_on = defaultdict(list)
+    for parameter in builder.parameters:
+        if parameter.added_on:
+            params_added_on[parameter.added_on].append(parameter.client_name)
     if params_added_on:
-        retval.append(f"    params_added_on={params_added_on},")
+        retval.append(f"    params_added_on={dict(params_added_on)},")
     if retval:
         retval_str = '\n'.join(retval)
         return f"@api_version_validation(\n{retval_str}\n)"

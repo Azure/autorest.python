@@ -62,7 +62,7 @@ class ParamsOperations:
 
     @distributed_trace_async
     @api_version_validation(
-        params_added_on={"1.1.0": "new_parameter"},
+        params_added_on={"1.1.0": ["new_parameter"]},
     )
     async def head_no_params(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> bool:
         """Head request, no params.
@@ -110,7 +110,7 @@ class ParamsOperations:
 
     @distributed_trace_async
     @api_version_validation(
-        params_added_on={"1.1.0": "new_parameter"},
+        params_added_on={"1.1.0": ["new_parameter"]},
     )
     async def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
         """Get true Boolean value on path.
@@ -176,7 +176,7 @@ class ParamsOperations:
 
     @distributed_trace_async
     @api_version_validation(
-        params_added_on={"1.1.0": "new_parameter"},
+        params_added_on={"1.1.0": ["new_parameter"]},
     )
     async def put_required_optional(
         self,
@@ -431,7 +431,7 @@ class ParamsOperations:
 
     @distributed_trace_async
     @api_version_validation(
-        params_added_on={"1.1.0": "new_parameter"},
+        params_added_on={"1.1.0": ["new_parameter"]},
     )
     async def get_optional(
         self, *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
