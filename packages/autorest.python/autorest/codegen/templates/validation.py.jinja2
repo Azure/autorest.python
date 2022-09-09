@@ -17,8 +17,8 @@ def api_version_validation(**kwargs):
 
             if method_added_on > client_api_version:
                 raise ValueError(
-                    f"'{client.__class__.__name__}.{func.__name__}' is not available in API version "
-                    f"{client_api_version}. Use service API version {method_added_on} or newer."
+                    f"'{func.__name__}' is not available in API version "
+                    f"{client_api_version}. Pass service API version {method_added_on} or newer to your client."
                 )
 
             unsupported = {

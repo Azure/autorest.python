@@ -16,15 +16,15 @@ def api_version_validation(**kwargs):
         def wrapper(*args, **kwargs):
             try:
                 # this assumes the client has an _api_version attribute
-                client = args[0]
-                client_api_version = client._config.api_version  # pylint: disable=protected-access
+                config = args[1]
+                client_api_version = config.api_version  # pylint: disable=protected-access
             except AttributeError:
                 return func(*args, **kwargs)
 
             if method_added_on > client_api_version:
                 raise ValueError(
-                    f"'{client.__class__.__name__}.{func.__name__}' is not available in API version "
-                    f"{client_api_version}. Use service API version {method_added_on} or newer."
+                    f"'{func.__name__}' is not available in API version "
+                    f"{client_api_version}. Pass service API version {method_added_on} or newer to your client."
                 )
 
             unsupported = {
