@@ -13,7 +13,6 @@ import {
     getServiceNamespace,
     getServiceNamespaceString,
     getServiceTitle,
-    getServiceVersion,
     getSummary,
     getVisibility,
     ignoreDiagnostics,
@@ -44,7 +43,7 @@ import {
     isStatusCode,
     OperationDetails,
 } from "@cadl-lang/rest/http";
-import { getAddedOn } from "@cadl-lang/versioning";
+import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import { dirname, resolve } from "path";
@@ -65,8 +64,6 @@ export async function $onEmit(program: Program) {
     const yamlMap = createYamlEmitter(program);
     const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
     await program.host.writeFile(yamlPath, dump(yamlMap));
-    const yamlPathOrigin = resolvePath(program.compilerOptions.outputPath!, "output-origin.yaml");
-    await program.host.writeFile(yamlPathOrigin, dump(yamlMap));
     const __dirname = dirname(fileURLToPath(import.meta.url));
     const root = resolve(__dirname, "..", "..");
     const commandArgs = [
@@ -96,6 +93,7 @@ function camelToSnakeCase(name: string): string {
 const typesMap = new Map<Type | CredentialType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
+const apiVersions: string[] = [];
 
 function isSimpleType(program: Program, modelTypeProperty: ModelTypeProperty | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
@@ -282,9 +280,10 @@ function emitParameter(
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
-    if (parameter.name === "api-version" && getServiceVersion(program)) {
-        clientDefaultValue = getServiceVersion(program);
-        paramMap.type = getConstantType(getServiceVersion(program));
+    if (parameter.name === "api-version" && apiVersions) {
+        // Hack: just choose latest api version until we can correctly mark a client's api version
+        clientDefaultValue = apiVersions[apiVersions.length - 1];
+        paramMap.type = getConstantType(clientDefaultValue);
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
     }
@@ -870,7 +869,10 @@ function emitCredentialParam(program: Program, namespace: NamespaceType): Record
 }
 
 function emitApiVersionParam(program: Program): Record<string, any> | undefined {
-    const version = getServiceVersion(program);
+    if (!apiVersions) {
+        return undefined;
+    }
+    const version = apiVersions[apiVersions.length - 1];
     if (version) {
         return {
             clientName: "api_version",
@@ -903,16 +905,23 @@ function emitGlobalParameters(program: Program, serviceNamespace: NamespaceType)
     return clientParameters;
 }
 
+function getApiVersions(program: Program, namespace: NamespaceType) {
+    const versions = getVersions(program, namespace)[1];
+    if (versions === undefined) {
+        return;
+    }
+    for (const version of versions.getVersions()) {
+        apiVersions.push(version.value)
+    }
+}
+
 function createYamlEmitter(program: Program) {
     const serviceNamespace = getServiceNamespace(program);
     if (serviceNamespace === undefined) {
         throw Error("Can not emit yaml for a namespace that doesn't exist.");
     }
 
-    // let [_, versions] = getVersions(program, serviceNamespace);
-    // if (versions.length === 0 && getServiceVersion(program)) {
-    //   versions = [getServiceVersion(program)];
-    // }
+    getApiVersions(program, serviceNamespace);
     const name = getServiceTitle(program).replace(/ /g, "").replace(/-/g, "");
     const clientParameters = emitGlobalParameters(program, serviceNamespace);
     // Get types
