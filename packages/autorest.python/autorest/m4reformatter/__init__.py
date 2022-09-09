@@ -426,6 +426,10 @@ class M4Reformatter(
 ):  # pylint: disable=too-many-public-methods
     """Add Python naming information."""
 
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.check_client_input: bool = False
+
     @property
     def azure_arm(self) -> bool:
         return bool(self._autorestapi.get_boolean_value("azure-arm"))
@@ -802,7 +806,7 @@ class M4Reformatter(
                 param["inDocstring"] = False
                 if self.legacy:
                     param["implementation"] = "Method"
-                    param["checkClientInput"] = True
+                    param["checkClientInput"] = self.check_client_input
             if has_flattened_body and param.get("targetProperty"):
                 retval.append(self.update_flattened_parameter(param, body_parameter))
                 continue
@@ -935,6 +939,8 @@ class M4Reformatter(
 
                 client_name = "base_url" if self.legacy else "endpoint"
                 global_parameter["language"]["default"]["description"] = "Service URL."
+            elif name == "api_version":
+                self.check_client_input = True
             global_params.append(
                 self.update_parameter(
                     global_parameter, override_client_name=client_name

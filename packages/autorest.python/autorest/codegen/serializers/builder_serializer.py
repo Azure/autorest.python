@@ -1043,6 +1043,8 @@ class _OperationSerializer(
                 retval.append("    404: ResourceNotFoundError,")
             if not 409 in builder.non_default_error_status_codes:
                 retval.append("    409: ResourceExistsError,")
+            if not 304 in builder.non_default_error_status_codes:
+                retval.append("    304: ResourceNotModifiedError,")
             for excep in builder.non_default_errors:
                 error_model_str = ""
                 if (
@@ -1071,6 +1073,11 @@ class _OperationSerializer(
                             "    409: lambda response: ResourceExistsError(response=response"
                             f"{error_model_str}{error_format_str}),"
                         )
+                    elif status_code == 304:
+                        retval.append(
+                            "    304: lambda response: ResourceNotModifiedError(response=response"
+                            f"{error_model_str}{error_format_str}),"
+                        )
                     elif not error_model_str and not error_format_str:
                         retval.append(f"    {status_code}: HttpResponseError,")
                     else:
@@ -1080,7 +1087,8 @@ class _OperationSerializer(
                         )
         else:
             retval.append(
-                "    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError"
+                "    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, "
+                "304: ResourceNotModifiedError"
             )
         retval.append("}")
         retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")

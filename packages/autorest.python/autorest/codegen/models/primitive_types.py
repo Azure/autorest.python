@@ -122,13 +122,13 @@ class BinaryIteratorType(PrimitiveType):
         return "IO"
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return "AsyncIterator[bytes]" if kwargs.pop("async_mode") else "Iterator[bytes]"
+        return "AsyncIterator[bytes]" if kwargs.get("async_mode") else "Iterator[bytes]"
 
     def type_annotation(self, **kwargs: Any) -> str:
         return self.docstring_type(**kwargs)
 
     def docstring_text(self, **kwargs: Any) -> str:
-        iterator = "Async iterator" if kwargs.pop("async_mode") else "Iterator"
+        iterator = "Async iterator" if kwargs.get("async_mode") else "Iterator"
         return f"{iterator} of the response bytes"
 
     @property
@@ -137,7 +137,7 @@ class BinaryIteratorType(PrimitiveType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        iterator = "AsyncIterator" if kwargs.pop("async_mode") else "Iterator"
+        iterator = "AsyncIterator" if kwargs.get("async_mode") else "Iterator"
         file_import.add_submodule_import("typing", iterator, ImportType.STDLIB)
         return file_import
 
