@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from autorest.codegen.models import code_model
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models.imports import MsrestImportType
@@ -119,4 +120,8 @@ class GeneralSerializer:
 
     def serialize_serialization_file(self) -> str:
         template = self.env.get_template("serialization.py.jinja2")
+        return template.render(code_model=self.code_model)
+
+    def serialize_validation_file(self) -> str:
+        template = self.env.get_template("validation.py.jinja2")
         return template.render(code_model=self.code_model)

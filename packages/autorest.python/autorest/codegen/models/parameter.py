@@ -153,6 +153,10 @@ class _ParameterBase(
         )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        if self.added_on:
+            file_import.add_submodule_import(
+                f"{'.' if async_mode else ''}.._validation", "api_version_validation", ImportType.LOCAL
+            )
         return file_import
 
     @property
