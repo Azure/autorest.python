@@ -280,7 +280,7 @@ function emitParameter(
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
-    if (parameter.name === "api-version" && apiVersions) {
+    if (parameter.name === "api-version" && apiVersions.length) {
         // Hack: just choose latest api version until we can correctly mark a client's api version
         clientDefaultValue = apiVersions[apiVersions.length - 1];
         paramMap.type = getConstantType(clientDefaultValue);
@@ -869,7 +869,7 @@ function emitCredentialParam(program: Program, namespace: NamespaceType): Record
 }
 
 function emitApiVersionParam(program: Program): Record<string, any> | undefined {
-    if (!apiVersions) {
+    if (!apiVersions.length) {
         return undefined;
     }
     const version = apiVersions[apiVersions.length - 1];
