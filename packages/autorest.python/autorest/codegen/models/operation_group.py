@@ -66,6 +66,11 @@ class OperationGroup(BaseModel):
             return "  # type: ignore"
         return ""
 
+    @property
+    def need_validation(self) -> bool:
+        """Whether any of its operations need validation"""
+        return any(o for o in self.operations if o.need_validation)
+
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
 

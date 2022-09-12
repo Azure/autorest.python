@@ -34,7 +34,7 @@ class AuthenticationOAuth2Configuration(Configuration):  # pylint: disable=too-m
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
-        self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
+        self.credential_scopes = kwargs.pop("credential_scopes", [{"value": "https://security.microsoft.com/.default"}])
         kwargs.setdefault("sdk_moniker", "authenticationoauth2/{}".format(VERSION))
         self._configure(**kwargs)
 

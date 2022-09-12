@@ -33,17 +33,10 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_valid_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
     # Construct URL
     _url = "/authentication/api-key/valid"
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 def build_invalid_request(**kwargs: Any) -> HttpRequest:

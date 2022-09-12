@@ -209,6 +209,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
+        if self.added_on:
+            file_import.add_submodule_import(
+                f"{'.' if async_mode else ''}.._validation",
+                "api_version_validation",
+                ImportType.LOCAL,
+            )
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
@@ -243,6 +249,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             and kwarg.location == location
             for kwarg in kwargs_to_pop
         )
+
+    @property
+    def need_validation(self) -> bool:
+        """Whether we need parameter / operation validation. For API version."""
+        return bool(self.added_on) or any(p for p in self.parameters if p.added_on)
 
     def get_request_builder_import(
         self,

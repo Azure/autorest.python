@@ -23,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ..._validation import api_version_validation
 from ...operations._operations import (
     build_params_delete_parameters_request,
     build_params_get_new_operation_request,
@@ -60,6 +61,9 @@ class ParamsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
     async def head_no_params(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> bool:
         """Head request, no params.
          Initially has no query parameters. After evolution, a new optional query parameter is added.
@@ -105,6 +109,9 @@ class ParamsOperations:
         return 200 <= response.status_code <= 299
 
     @distributed_trace_async
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
     async def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
         """Get true Boolean value on path.
          Initially only has one required Query Parameter. After evolution, a new optional query
@@ -168,6 +175,9 @@ class ParamsOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace_async
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
     async def put_required_optional(
         self,
         *,
@@ -375,6 +385,9 @@ class ParamsOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace_async
+    @api_version_validation(
+        method_added_on="1.1.0",
+    )
     async def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Delete something.
          Initially the path exists but there is no delete method. After evolution this is a new method
@@ -417,6 +430,9 @@ class ParamsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
     async def get_optional(
         self, *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> JSON:
@@ -482,6 +498,9 @@ class ParamsOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace_async
+    @api_version_validation(
+        method_added_on="1.1.0",
+    )
     async def get_new_operation(self, **kwargs: Any) -> JSON:
         """I'm a new operation.
          Initially neither path or method exist for this operation. After evolution, this is a new
