@@ -44,7 +44,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven/customization/model/{mode}"
+    _url = "/resiliency/devdriven/customization/model/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -64,7 +64,7 @@ def build_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven/customization/model/{mode}"
+    _url = "/resiliency/devdriven/customization/model/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -86,7 +86,7 @@ def build_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven"
+    _url = "/resiliency/devdriven"
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str", min_length=1)
@@ -103,7 +103,7 @@ def build_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven/customization/lro/{mode}"
+    _url = "/resiliency/devdriven/customization/lro/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -318,7 +318,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
     @distributed_trace
     def get_pages(self, *, api_version: str, **kwargs: Any) -> JSON:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
-        following growup.
+        following group.
 
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str

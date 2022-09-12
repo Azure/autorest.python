@@ -244,7 +244,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
     @distributed_trace_async
     async def get_pages(self, *, api_version: str, **kwargs: Any) -> JSON:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
-        following growup.
+        following group.
 
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str
