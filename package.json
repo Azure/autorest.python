@@ -33,17 +33,17 @@
   },
   "homepage": "https://github.com/Azure/autorest.python#readme",
   "devDependencies": {
-    "@cadl-lang/prettier-plugin-cadl": "^0.5.13",
+    "@cadl-lang/prettier-plugin-cadl": "^0.5.15",
     "eslint": "^8.20.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-unicorn": "^43.0.2",
     "prettier": "^2.7.1",
-    "typescript": "^4.7.4",
+    "typescript": "^4.8.3",
     "syncpack": "^8.2.4"
   },
   "peerDependencies": {
     "prettier": "^2.7.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.3"
   },
   "syncpack": {
     "workspace": false
