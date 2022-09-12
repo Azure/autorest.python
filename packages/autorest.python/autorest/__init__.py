@@ -37,7 +37,7 @@ class ReaderAndWriter:
         self.options.update(python_json)
 
     def read_file(self, path: Union[str, Path]) -> str:
-        """How does one read a file in cadl?"""
+        """Directly reading from disk"""
         # make path relative to output folder
         try:
             with open(self.output_folder / Path(path), "r") as fd:
@@ -46,7 +46,7 @@ class ReaderAndWriter:
             return ""
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
-        """How does writing work in cadl?"""
+        """Directly writing to disk"""
         file_folder = Path(filename).parent
         if not Path.is_dir(self.output_folder / file_folder):
             Path.mkdir(self.output_folder / file_folder, parents=True)

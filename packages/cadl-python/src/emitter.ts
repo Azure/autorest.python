@@ -203,13 +203,13 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
     let optional: boolean;
     let name: string;
     let description: string = "";
-    let addedApiVersion: string | undefined;
+    let addedOn: string | undefined;
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
         name = parameter.name;
         description = getDocStr(program, parameter);
-        addedApiVersion = getAddedOnVersion(program, parameter);
+        addedOn = getAddedOnVersion(program, parameter);
     } else {
         optional = false;
         name = "body";
@@ -218,7 +218,7 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
     return {
         optional,
         description,
-        addedApiVersion,
+        addedOn,
         clientName: camelToSnakeCase(name),
         inOverload: false,
     };
@@ -390,7 +390,7 @@ function emitResponse(
     return {
         headers: emitResponseHeaders(program, innerResponse.headers),
         statusCodes: statusCodes,
-        addedApiVersion: getAddedOnVersion(program, response.type),
+        addedOn: getAddedOnVersion(program, response.type),
         discriminator: "basic",
         type: type,
     };
@@ -476,7 +476,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
         responses: responses,
         exceptions: exceptions,
         groupName: getOperationGroupName(program, operation),
-        addedApiVersion: getAddedOnVersion(program, operation.operation),
+        addedOn: getAddedOnVersion(program, operation.operation),
         discriminator: "basic",
         isOverload: false,
         overloads: [],
@@ -541,7 +541,7 @@ function emitProperty(program: Program, property: ModelTypeProperty): Record<str
         type: getType(program, property.type, property),
         optional: property.optional,
         description: getDocStr(program, property),
-        addedApiVersion: getAddedOnVersion(program, property),
+        addedOn: getAddedOnVersion(program, property),
         readonly: isReadOnly(program, property),
         clientDefaultValue: clientDefaultValue,
     };
@@ -645,7 +645,7 @@ function emitModel(
                 parents: baseModel ? [baseModel] : [],
                 discriminatedSubtypes: {},
                 properties: properties,
-                addedApiVersion: getAddedOnVersion(program, type),
+                addedOn: getAddedOnVersion(program, type),
                 snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
             };
     }

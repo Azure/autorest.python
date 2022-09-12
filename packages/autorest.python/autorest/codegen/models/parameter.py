@@ -82,6 +82,7 @@ class _ParameterBase(
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
         self.check_client_input: bool = self.yaml_data.get("checkClientInput", False)
+        self.added_on: Optional[str] = self.yaml_data.get("addedOn")
 
     @property
     def constant(self) -> bool:
@@ -152,6 +153,12 @@ class _ParameterBase(
         )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        if self.added_on:
+            file_import.add_submodule_import(
+                f"{'.' if async_mode else ''}.._validation",
+                "api_version_validation",
+                ImportType.LOCAL,
+            )
         return file_import
 
     @property
