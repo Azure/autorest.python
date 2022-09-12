@@ -31,7 +31,9 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-class BaseBuilder(Generic[ParameterListType], BaseModel):
+class BaseBuilder(
+    Generic[ParameterListType], BaseModel
+):  # pylint: disable=too-many-instance-attributes
     """Base class for Operations and Request Builders"""
 
     def __init__(

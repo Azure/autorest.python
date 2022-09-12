@@ -172,6 +172,7 @@ def _get_json_response_template_to_status_codes(
         retval[response_json].extend(status_codes)
     return retval
 
+
 def _api_version_validation(builder: OperationType) -> str:
     retval: List[str] = []
     if builder.added_on:
@@ -183,9 +184,10 @@ def _api_version_validation(builder: OperationType) -> str:
     if params_added_on:
         retval.append(f"    params_added_on={dict(params_added_on)},")
     if retval:
-        retval_str = '\n'.join(retval)
+        retval_str = "\n".join(retval)
         return f"@api_version_validation(\n{retval_str}\n)"
     return ""
+
 
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
