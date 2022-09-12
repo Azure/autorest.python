@@ -43,7 +43,7 @@ import {
     isStatusCode,
     OperationDetails,
 } from "@cadl-lang/rest/http";
-import { getAddedOn } from "@cadl-lang/versioning";
+import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import { dirname, resolve } from "path";
@@ -93,6 +93,7 @@ function camelToSnakeCase(name: string): string {
 const typesMap = new Map<Type | CredentialType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
+const apiVersions: string[] = [];
 
 function isSimpleType(program: Program, modelTypeProperty: ModelTypeProperty | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
@@ -279,6 +280,13 @@ function emitParameter(
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
+    if (parameter.name === "api-version" && apiVersions.length) {
+        // Hack: just choose latest api version until we can correctly mark a client's api version
+        clientDefaultValue = apiVersions[apiVersions.length - 1];
+        paramMap.type = getConstantType(clientDefaultValue);
+        paramMap.implementation = "Client";
+        paramMap.in_docstring = false;
+    }
     return { clientDefaultValue, ...base, ...paramMap };
 }
 
@@ -304,7 +312,24 @@ function emitContentTypeParameter(
     };
 }
 
-function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<string, any> {
+function getConstantType(key: string): Record<string, any> {
+    const cache = simpleTypesMap.get(key);
+    if (cache) {
+        return cache;
+    }
+    const type = {
+        apiVersions: [],
+        clientDefaultValue: null,
+        type: "constant",
+        value: key,
+        valueType: KnownTypes.string,
+        xmlMetadata: {},
+    }
+    simpleTypesMap.set(key, type);
+    return type;
+}
+
+function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden: boolean): Record<string, any> {
     return {
         checkClientInput: false,
         clientDefaultValue: "application/json",
@@ -321,7 +346,7 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
         optional: false,
         restApiName: "Accept",
         skipUrlEncoding: false,
-        type: ConstantTypes.applicationJson,
+        type: getConstantType("application/json"),
     };
 }
 
@@ -418,7 +443,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
                 emittedResponse["type"] &&
                 parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
             ) {
-                parameters.push(emitAcceptParameter(isOverload, isOverriden));
+                parameters.push(emitAcceptParameter(program, isOverload, isOverriden));
             }
             if (isErrorModel(program, response.type)) {
                 // * is valid status code in cadl but invalid for autorest.python
@@ -843,13 +868,51 @@ function emitCredentialParam(program: Program, namespace: NamespaceType): Record
     return undefined;
 }
 
+function emitApiVersionParam(program: Program): Record<string, any> | undefined {
+    if (!apiVersions.length) {
+        return undefined;
+    }
+    const version = apiVersions[apiVersions.length - 1];
+    if (version) {
+        return {
+            clientName: "api_version",
+            clientDefaultValue: version,
+            description: "Api Version",
+            implementation: "Client",
+            location: "query",
+            restApiName: "api-version",
+            skipUrlEncoding: false,
+            optional: false,
+            inDocString: true,
+            inOverload: false,
+            inOverridden: false,
+            type: getConstantType(version),
+        }
+    }
+    return undefined;
+}
+
 function emitGlobalParameters(program: Program, serviceNamespace: NamespaceType): Record<string, any>[] {
     const clientParameters = emitServerParams(program, serviceNamespace);
     const credentialParam = emitCredentialParam(program, serviceNamespace);
+    const apiVersionParam = emitApiVersionParam(program);
     if (credentialParam) {
         clientParameters.push(credentialParam);
     }
+    if (apiVersionParam) {
+        clientParameters.push(apiVersionParam);
+    }
     return clientParameters;
+}
+
+function getApiVersions(program: Program, namespace: NamespaceType) {
+    const versions = getVersions(program, namespace)[1];
+    if (versions === undefined) {
+        return;
+    }
+    for (const version of versions.getVersions()) {
+        apiVersions.push(version.value)
+    }
 }
 
 function createYamlEmitter(program: Program) {
@@ -858,10 +921,7 @@ function createYamlEmitter(program: Program) {
         throw Error("Can not emit yaml for a namespace that doesn't exist.");
     }
 
-    // let [_, versions] = getVersions(program, serviceNamespace);
-    // if (versions.length === 0 && getServiceVersion(program)) {
-    //   versions = [getServiceVersion(program)];
-    // }
+    getApiVersions(program, serviceNamespace);
     const name = getServiceTitle(program).replace(/ /g, "").replace(/-/g, "");
     const clientParameters = emitGlobalParameters(program, serviceNamespace);
     // Get types
@@ -882,7 +942,6 @@ function createYamlEmitter(program: Program) {
             ...typesMap.values(),
             ...Object.values(KnownTypes),
             ...simpleTypesMap.values(),
-            ...Object.values(ConstantTypes),
         ],
     };
     return codeModel;
@@ -890,15 +949,4 @@ function createYamlEmitter(program: Program) {
 
 const KnownTypes = {
     string: { type: "string" },
-};
-
-const ConstantTypes = {
-    applicationJson: {
-        apiVersions: [],
-        clientDefaultValue: null,
-        type: "constant",
-        value: "application/json",
-        valueType: KnownTypes.string,
-        xmlMetadata: {},
-    },
 };
