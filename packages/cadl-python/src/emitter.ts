@@ -746,7 +746,7 @@ function emitType(
             return emitCredential(type.scheme);
         case "Union":
             const values: Record<string, any>[] = [];
-            for (const option of type.options) {
+            for (const option of type.variants.values()) {
                 values.push({
                     description: "",
                     name: "n/a",
