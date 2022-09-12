@@ -624,7 +624,7 @@ class ParamsOperations:
     )
     def get_new_operation(self, **kwargs: Any) -> JSON:
         """I'm a new operation.
-         Initiallty neither path or method exist for this operation. After evolution, this is a new
+         Initially neither path or method exist for this operation. After evolution, this is a new
         method in a new path.
 
         :return: JSON object
