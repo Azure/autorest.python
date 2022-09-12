@@ -708,7 +708,12 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
                 credentialScopes: [],
             },
         };
-        auth.flows.forEach((it) => credential_type.policy.credentialScopes.push(...it.scopes));
+        for (const flow of auth.flows) {
+            for (const scope of flow.scopes) {
+                credential_type.policy.credentialScopes.push(scope.value);
+            }
+            credential_type.policy.credentialScopes.push()
+        }
     } else if (auth.type === "apiKey") {
         credential_type = {
             type: "Key",
