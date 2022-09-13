@@ -2,7 +2,7 @@
   "name": "@azure-tools/cadl-python",
   "version": "0.1.0",
   "author": "Microsoft Corporation",
-  "description": "Cadl library for emitting OpenAPI 3.0 from the Cadl REST protocol binding",
+  "description": "Cadl emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
   "readme": "https://github.com/Azure/autorest.python/packages/cadl-python/README.md",
   "license": "MIT",
