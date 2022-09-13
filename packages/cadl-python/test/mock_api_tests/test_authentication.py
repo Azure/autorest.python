@@ -8,6 +8,7 @@ from azure.core.credentials import AzureKeyCredential, AccessToken
 from azure.core.exceptions import HttpResponseError
 from authentication.apikey import AuthenticationApiKey
 from authentication.oauth2 import AuthenticationOAuth2
+import json
 
 @pytest.fixture
 def api_key_client():
@@ -38,6 +39,7 @@ def test_api_key_invalid(api_key_client):
         api_key_client.invalid()
     assert ex.value.status_code == 403
     assert ex.value.reason == "Forbidden"
+    raise ValueError(ex.value)
     assert ex.value.error.code == "InvalidApiKey"
 
 def test_oauth2_valid(oauth2_client):
