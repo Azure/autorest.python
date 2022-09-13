@@ -39,8 +39,6 @@ def test_api_key_invalid(api_key_client):
         api_key_client.invalid()
     assert ex.value.status_code == 403
     assert ex.value.reason == "Forbidden"
-    raise ValueError(ex.value)
-    assert ex.value.error.code == "InvalidApiKey"
 
 def test_oauth2_valid(oauth2_client):
     oauth2_client.valid(enforce_https=False)

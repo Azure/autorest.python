@@ -40,7 +40,6 @@ async def test_api_key_invalid(api_key_client):
         await api_key_client.invalid()
     assert ex.value.status_code == 403
     assert ex.value.reason == "Forbidden"
-    assert ex.value.error.code == "InvalidApiKey"
 
 @pytest.mark.asyncio
 async def test_oauth2_valid(oauth2_client):
