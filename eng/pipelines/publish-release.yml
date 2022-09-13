@@ -7,7 +7,7 @@ pool:
 
 variables:
     NodeVersion: "14.x"
-    AutorestTestFolder: "$(Build.SourcesDirectory)/packages/cadl-python/test/"
+    AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
 
 steps:
     - script: npm install -g pnpm
@@ -31,19 +31,16 @@ steps:
           cd $(AutorestTestFolder)/azure/version-tolerant
           tox -e ci
       displayName: Execute Autorest Azure Version Tolerant Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
     - script: |
           cd $(AutorestTestFolder)/vanilla/version-tolerant
           tox -e ci
       displayName: Execute Autorest Vanilla Version Tolerant Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
     - script: |
           cd $(AutorestTestFolder)/dpg/version-tolerant
           tox -e ci
       displayName: Execute Autorest DPG Version Tolerant Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
     - script: |
           cd test/mock_api_tests
