@@ -1,0 +1,55 @@
+# This is a manual pipeline, don't trigger automatically
+trigger: none
+pr: none
+
+pool:
+    vmImage: "ubuntu-latest"
+
+variables:
+    NodeVersion: "14.x"
+    AutorestTestFolder: "$(Build.SourcesDirectory)/packages/cadl-python/test/"
+
+steps:
+    - script: npm install -g pnpm
+      displayName: Install PNPM
+
+    - script: pnpm install
+      displayName: Install dependencies
+
+    - script: pnpm run build
+      displayName: Build
+
+    - script: pip install -r packages/autorest.python/dev_requirements.txt
+      displayName: Install Autorest Python dev requirements
+
+    - script: pip install -r packages/cadl-python/dev_requirements.txt
+      displayName: Install Cadl dev requirements
+
+    - script: |
+          cd $(AutorestTestFolder)/azure/version-tolerant
+          tox -e ci
+      displayName: Execute Autorest Azure Version Tolerant Tests
+      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
+
+    - script: |
+          cd $(AutorestTestFolder)/vanilla/version-tolerant
+          tox -e ci
+      displayName: Execute Autorest Vanilla Version Tolerant Tests
+      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
+
+    - script: |
+          cd $(AutorestTestFolder)/dpg/version-tolerant
+          tox -e ci
+      displayName: Execute Autorest DPG Version Tolerant Tests
+      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
+
+    - script: |
+          cd test/mock_api_tests
+          tox -e ci
+      displayName: Execute Cadl Tests
+      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
+
+    - script: |
+          pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+          NPM_AUTH_TOKEN="$(azure-sdk-npm-token)" pnpm -r publish --access public --no-git-checks
+      displayName: Publish packages
