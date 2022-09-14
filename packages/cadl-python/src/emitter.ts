@@ -754,10 +754,11 @@ function emitType(
                     value: value,
                 });
             }
+            const enumName = modelTypeProperty? capitalize(modelTypeProperty.name) + "Type": "MyEnum";
             return {
-                name: "MyEnum",
-                snakeCaseName: "my_enum",
-                description: "n/a",
+                name: enumName,
+                snakeCaseName: camelToSnakeCase(enumName),
+                description: modelTypeProperty? `Type of ${modelTypeProperty.name}.`: "n/a",
                 isPublic: false,
                 type: "enum",
                 valueType: emitType(program, type.options[0])["valueType"],

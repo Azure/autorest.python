@@ -101,7 +101,9 @@ def build_params_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_params_post_parameters_request(content_type_path: Union[str, "_models.MyEnum"], **kwargs: Any) -> HttpRequest:
+def build_params_post_parameters_request(
+    content_type_path: Union[str, "_models.ContentTypePathType"], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -354,7 +356,7 @@ class ParamsOperations:
     @overload
     def post_parameters(
         self,
-        content_type_path: Union[str, "_models.MyEnum"],
+        content_type_path: Union[str, "_models.ContentTypePathType"],
         parameter: Union[_models.PostInput, JSON],
         *,
         content_type: str = "application/json",
@@ -363,7 +365,7 @@ class ParamsOperations:
         """POST a JSON or a JPEG.
 
         :param content_type_path: Known values are: "json" and "jpeg". Required.
-        :type content_type_path: str or ~resiliency.servicedriven2.models.MyEnum
+        :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON
@@ -378,7 +380,7 @@ class ParamsOperations:
     @overload
     def post_parameters(
         self,
-        content_type_path: Union[str, "_models.MyEnum"],
+        content_type_path: Union[str, "_models.ContentTypePathType"],
         parameter: IO,
         *,
         content_type: str = "application/json",
@@ -387,7 +389,7 @@ class ParamsOperations:
         """POST a JSON or a JPEG.
 
         :param content_type_path: Known values are: "json" and "jpeg". Required.
-        :type content_type_path: str or ~resiliency.servicedriven2.models.MyEnum
+        :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
@@ -402,14 +404,14 @@ class ParamsOperations:
     @distributed_trace
     def post_parameters(
         self,
-        content_type_path: Union[str, "_models.MyEnum"],
+        content_type_path: Union[str, "_models.ContentTypePathType"],
         parameter: Union[_models.PostInput, JSON, IO],
         **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
 
         :param content_type_path: Known values are: "json" and "jpeg". Required.
-        :type content_type_path: str or ~resiliency.servicedriven2.models.MyEnum
+        :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Is either a model type or a IO type. Required.
         :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON or IO

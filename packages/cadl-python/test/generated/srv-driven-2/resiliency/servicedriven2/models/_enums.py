@@ -10,8 +10,8 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class MyEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """n/a."""
+class ContentTypePathType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of contentTypePath."""
 
     json = "json"
     jpeg = "jpeg"
