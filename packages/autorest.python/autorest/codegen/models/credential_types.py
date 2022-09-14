@@ -159,18 +159,18 @@ class TokenCredentialType(
     """Type of a token credential. Used by BearerAuth and ARMChallenge policies"""
 
     def type_annotation(self, **kwargs: Any) -> str:  # pylint: disable=no-self-use
-        if kwargs.pop("async_mode"):
+        if kwargs.get("async_mode"):
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
     def docstring_type(self, **kwargs: Any) -> str:  # pylint: disable=no-self-use
-        if kwargs.pop("async_mode"):
+        if kwargs.get("async_mode"):
             return "~azure.core.credentials_async.AsyncTokenCredential"
         return "~azure.core.credentials.TokenCredential"
 
     def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=no-self-use
         file_import = FileImport()
-        if kwargs.pop("async_mode"):
+        if kwargs.get("async_mode"):
             file_import.add_submodule_import(
                 "azure.core.credentials_async",
                 "AsyncTokenCredential",

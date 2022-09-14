@@ -15,6 +15,7 @@ from azure.core.exceptions import (
     HttpResponseError,
     ResourceExistsError,
     ResourceNotFoundError,
+    ResourceNotModifiedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -23,8 +24,12 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+<<<<<<< HEAD
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
+=======
+from ..._validation import api_version_validation
+>>>>>>> autorestv3
 from ...operations._operations import (
     build_params_delete_parameters_request,
     build_params_get_new_operation_request,
@@ -62,6 +67,9 @@ class ParamsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
     async def head_no_params(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> bool:
         """Head request, no params.
          Initially has no query parameters. After evolution, a new optional query parameter is added.
@@ -72,7 +80,12 @@ class ParamsOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -102,9 +115,16 @@ class ParamsOperations:
         return 200 <= response.status_code <= 299
 
     @distributed_trace_async
+<<<<<<< HEAD
     async def get_required(
         self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> _models.Message:
+=======
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
+    async def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
+>>>>>>> autorestv3
         """Get true Boolean value on path.
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
@@ -117,7 +137,12 @@ class ParamsOperations:
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -151,6 +176,9 @@ class ParamsOperations:
         return deserialized
 
     @distributed_trace_async
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
     async def put_required_optional(
         self,
         *,
@@ -172,7 +200,12 @@ class ParamsOperations:
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -275,7 +308,12 @@ class ParamsOperations:
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -318,6 +356,9 @@ class ParamsOperations:
         return deserialized
 
     @distributed_trace_async
+    @api_version_validation(
+        method_added_on="1.1.0",
+    )
     async def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Delete something.
          Initially the path exists but there is no delete method. After evolution this is a new method
@@ -327,7 +368,12 @@ class ParamsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -355,6 +401,9 @@ class ParamsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
+    @api_version_validation(
+        params_added_on={"1.1.0": ["new_parameter"]},
+    )
     async def get_optional(
         self, *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> _models.Message:
@@ -370,7 +419,12 @@ class ParamsOperations:
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -404,16 +458,28 @@ class ParamsOperations:
         return deserialized
 
     @distributed_trace_async
+<<<<<<< HEAD
     async def get_new_operation(self, **kwargs: Any) -> _models.Message:
+=======
+    @api_version_validation(
+        method_added_on="1.1.0",
+    )
+    async def get_new_operation(self, **kwargs: Any) -> JSON:
+>>>>>>> autorestv3
         """I'm a new operation.
-         Initiallty neither path or method exist for this operation. After evolution, this is a new
+         Initially neither path or method exist for this operation. After evolution, this is a new
         method in a new path.
 
         :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}

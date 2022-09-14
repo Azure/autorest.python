@@ -1,5 +1,25 @@
 # Release History
 
+### 2022-09-06 - 6.1.5
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.4`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+
+**Bug Fixes**
+
+- Fix `api_version` error when there are multi different `api-version`(not multiapi)   #1429
+- Fix generator raising `KeyError` in corner case when generating an LRO-paging operation  #1425
+
+**Other Changes**
+
+- Default `304` errors to throw `azure.core.exception.ResourceNotFoundError`s  #1415
+
 ### 2022-08-31 - 6.1.4
 
 | Library                                                                 | Min Version |

@@ -8,15 +8,21 @@
 # --------------------------------------------------------------------------
 import json
 import sys
+<<<<<<< HEAD
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+=======
+from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+>>>>>>> autorestv3
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
     ResourceExistsError,
     ResourceNotFoundError,
+    ResourceNotModifiedError,
     map_error,
 )
+from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -46,7 +52,7 @@ def build_get_model_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven/customization/model/{mode}"
+    _url = "/resiliency/devdriven/customization/model/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -66,7 +72,7 @@ def build_post_model_request(mode: Union[str, "_models.Mode"], **kwargs: Any) ->
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven/customization/model/{mode}"
+    _url = "/resiliency/devdriven/customization/model/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -88,7 +94,7 @@ def build_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven"
+    _url = "/resiliency/devdriven/products"
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str", min_length=1)
@@ -105,7 +111,7 @@ def build_lro_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> HttpRe
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resilency/devdriven/customization/lro/{mode}"
+    _url = "/resiliency/devdriven/customization/lro/{mode}"
     path_format_arguments = {
         "mode": _SERIALIZER.url("mode", mode, "str"),
     }
@@ -131,8 +137,25 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
+<<<<<<< HEAD
+=======
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "key": "str",  # Required.
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+>>>>>>> autorestv3
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -188,6 +211,23 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
+<<<<<<< HEAD
+=======
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "hello": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "key": "str",  # Required.
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+>>>>>>> autorestv3
         """
 
     @overload
@@ -209,6 +249,18 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
+<<<<<<< HEAD
+=======
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "key": "str",  # Required.
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+>>>>>>> autorestv3
         """
 
     @distributed_trace
@@ -230,8 +282,25 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
+<<<<<<< HEAD
+=======
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "key": "str",  # Required.
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+>>>>>>> autorestv3
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -274,37 +343,59 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         return deserialized
 
     @distributed_trace
+<<<<<<< HEAD
     def get_pages(self, *, api_version: str, **kwargs: Any) -> _models.CustomPageProduct:
+=======
+    def get_pages(self, *, api_version: str, **kwargs: Any) -> Iterable[JSON]:
+>>>>>>> autorestv3
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
-        following growup.
+        following group.
 
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str
+<<<<<<< HEAD
         :return: CustomPageProduct. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.CustomPageProduct
         :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+=======
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
 
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "key": "str",  # Required.
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+>>>>>>> autorestv3
+        """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.CustomPageProduct]
 
-        request = build_get_pages_request(
-            api_version=api_version,
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
+        def prepare_request(next_link=None):
+            if not next_link:
 
-        response = pipeline_response.http_response
+                request = build_get_pages_request(
+                    api_version=api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)  # type: ignore
 
+<<<<<<< HEAD
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
@@ -316,6 +407,36 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
+=======
+            else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
+
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["value"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return ItemPaged(get_next, extract_data)
+>>>>>>> autorestv3
 
     @distributed_trace
     def lro(self, mode: Union[str, "_models.Mode"], **kwargs: Any) -> _models.LROProduct:
@@ -329,8 +450,26 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: LROProduct. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.LROProduct
         :raises ~azure.core.exceptions.HttpResponseError:
+<<<<<<< HEAD
+=======
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "key": "str",  # Required.
+                    "provisioningState": "str",  # Required.
+                    "received": "str"  # Required. Known values are: "raw" and "model".
+                }
+>>>>>>> autorestv3
         """
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}

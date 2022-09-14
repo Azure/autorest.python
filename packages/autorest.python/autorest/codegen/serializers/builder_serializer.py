@@ -173,6 +173,22 @@ def _get_json_response_template_to_status_codes(
     return retval
 
 
+def _api_version_validation(builder: OperationType) -> str:
+    retval: List[str] = []
+    if builder.added_on:
+        retval.append(f'    method_added_on="{builder.added_on}",')
+    params_added_on = defaultdict(list)
+    for parameter in builder.parameters:
+        if parameter.added_on:
+            params_added_on[parameter.added_on].append(parameter.client_name)
+    if params_added_on:
+        retval.append(f"    params_added_on={dict(params_added_on)},")
+    if retval:
+        retval_str = "\n".join(retval)
+        return f"@api_version_validation(\n{retval_str}\n)"
+    return ""
+
+
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         self.code_model = code_model
@@ -590,8 +606,10 @@ class _OperationSerializer(
 
     def decorators(self, builder: OperationType) -> List[str]:
         """Decorators for the method"""
-        super_decorators = super().decorators(builder)
-        return super_decorators
+        retval = super().decorators(builder)
+        if _api_version_validation(builder):
+            retval.append(_api_version_validation(builder))
+        return retval
 
     def param_description(
         self, builder: OperationType
@@ -1061,6 +1079,8 @@ class _OperationSerializer(
                 retval.append("    404: ResourceNotFoundError,")
             if not 409 in builder.non_default_error_status_codes:
                 retval.append("    409: ResourceExistsError,")
+            if not 304 in builder.non_default_error_status_codes:
+                retval.append("    304: ResourceNotModifiedError,")
             for excep in builder.non_default_errors:
                 error_model_str = ""
                 if isinstance(excep.type, ModelType):
@@ -1092,6 +1112,11 @@ class _OperationSerializer(
                             "    409: lambda response: ResourceExistsError(response=response"
                             f"{error_model_str}{error_format_str}),"
                         )
+                    elif status_code == 304:
+                        retval.append(
+                            "    304: lambda response: ResourceNotModifiedError(response=response"
+                            f"{error_model_str}{error_format_str}),"
+                        )
                     elif not error_model_str and not error_format_str:
                         retval.append(f"    {status_code}: HttpResponseError,")
                     else:
@@ -1101,7 +1126,8 @@ class _OperationSerializer(
                         )
         else:
             retval.append(
-                "    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError"
+                "    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, "
+                "304: ResourceNotModifiedError"
             )
         retval.append("}")
         retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
@@ -1151,6 +1177,8 @@ class _PagingOperationSerializer(
             return ["@overload"]
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append("@distributed_trace")
+        if _api_version_validation(builder):
+            retval.append(_api_version_validation(builder))
         return retval
 
     def call_next_link_request_builder(self, builder: PagingOperationType) -> List[str]:
