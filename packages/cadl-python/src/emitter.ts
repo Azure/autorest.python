@@ -403,11 +403,30 @@ function emitResponse(
     };
 }
 
-function emitOperation(program: Program, operation: OperationDetails) {
-    if (getPagedResult(program, operation.operation)) {
+function isLro(program: Program, operation: OperationDetails): boolean {
+    for (const decorator of operation.operation.decorators) {
+        if (decorator.decorator.name === "$pollingOperation") {
+            return true;
+        }
+    }
+    return false;
+}
+
+function emitOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const lro = isLro(program, operation);
+    const paging = getPagedResult(program, operation.operation);
+    if (lro && paging) {
+        return emitLroPagingOperation(program, operation);
+    } else if (paging) {
         return emitPagingOperation(program, operation);
+    } else if (lro) {
+        return emitLroOperation(program, operation);
     }
     return emitBasicOperation(program, operation);
+}
+
+function addLroInformation(emittedOperation: Record<string, any>) {
+    emittedOperation["discriminator"] = "lro";
 }
 
 function addPagingInformation(program: Program, operation: OperationDetails, emittedOperation: Record<string, any>) {
@@ -418,6 +437,20 @@ function addPagingInformation(program: Program, operation: OperationDetails, emi
     }
     emittedOperation["itemName"] = pagedResult.itemsPath;
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+}
+
+function emitLroPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation);
+    addLroInformation(emittedOperation);
+    addPagingInformation(program, operation, emittedOperation);
+    emittedOperation["discriminator"] = "lropaging";
+    return emittedOperation;
+}
+
+function emitLroOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation);
+    addLroInformation(emittedOperation);
+    return emittedOperation;
 }
 
 function emitPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
