@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
@@ -155,129 +155,6 @@ class DerivedFromBaseClassWithDiscriminatorB(BaseClassWithDiscriminator, discrim
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.discriminator_property = "B"  # type: str
-
-
-class Error(_model_base.Model):
-    """The error object.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar code: One of a server-defined set of error codes. Required.
-    :vartype code: str
-    :ivar message: A human-readable representation of the error. Required.
-    :vartype message: str
-    :ivar target: The target of the error.
-    :vartype target: str
-    :ivar details: An array of details about specific errors that led to this reported error.
-     Required.
-    :vartype details: list[~basicpolymorphicmodels.models.Error]
-    :ivar innererror: An object containing more specific information than the current object about
-     the error.
-    :vartype innererror: ~basicpolymorphicmodels.models.InnerError
-    """
-
-    code: str = rest_field(name="code")
-    """One of a server-defined set of error codes. Required. """
-    message: str = rest_field(name="message")
-    """A human-readable representation of the error. Required. """
-    target: Optional[str] = rest_field(name="target")
-    """The target of the error. """
-    details: List["Error"] = rest_field(name="details")
-    """An array of details about specific errors that led to this reported error. Required. """
-    innererror: Optional["InnerError"] = rest_field(name="innererror")
-    """An object containing more specific information than the current object about the error. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        code: str,
-        message: str,
-        details: List["_models.Error"],
-        target: Optional[str] = None,
-        innererror: Optional["_models.InnerError"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class ErrorResponse(_model_base.Model):
-    """A response containing error details.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar error: The error object. Required.
-    :vartype error: ~basicpolymorphicmodels.models.Error
-    """
-
-    error: "Error" = rest_field(name="error")
-    """The error object. Required. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        error: "_models.Error",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class InnerError(_model_base.Model):
-    """An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar code: One of a server-defined set of error codes. Required.
-    :vartype code: str
-    :ivar innererror: Inner error.
-    :vartype innererror: ~basicpolymorphicmodels.models.InnerError
-    """
-
-    code: str = rest_field(name="code")
-    """One of a server-defined set of error codes. Required. """
-    innererror: Optional["InnerError"] = rest_field(name="innererror")
-    """Inner error. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        code: str,
-        innererror: Optional["_models.InnerError"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
 
 class ModelWithPolymorphicProperty(_model_base.Model):

@@ -8,11 +8,7 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-<<<<<<< HEAD
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
-=======
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
->>>>>>> autorestv3
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -62,18 +58,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
-<<<<<<< HEAD
-=======
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "key": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
->>>>>>> autorestv3
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -136,23 +120,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
-<<<<<<< HEAD
-=======
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "hello": "str"  # Required.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "key": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
->>>>>>> autorestv3
         """
 
     @overload
@@ -174,18 +141,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
-<<<<<<< HEAD
-=======
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "key": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
->>>>>>> autorestv3
         """
 
     @distributed_trace_async
@@ -207,18 +162,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: Product. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
-<<<<<<< HEAD
-=======
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "key": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
->>>>>>> autorestv3
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -267,41 +210,21 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
         return deserialized
 
-<<<<<<< HEAD
-    @distributed_trace_async
-    async def get_pages(self, *, api_version: str, **kwargs: Any) -> _models.CustomPageProduct:
-=======
     @distributed_trace
-    def get_pages(self, *, api_version: str, **kwargs: Any) -> AsyncIterable[JSON]:
->>>>>>> autorestv3
+    def get_pages(self, *, api_version: str, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following group.
 
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str
-<<<<<<< HEAD
-        :return: CustomPageProduct. This object is compatible with MutableMapping
-        :rtype: ~resiliency.devdriven.models.CustomPageProduct
+        :return: An iterator like instance of Product. This object is compatible with MutableMapping
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~resiliency.devdriven.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
-=======
-        :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "key": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
->>>>>>> autorestv3
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CustomPageProduct]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models._models.CustomPageProduct]
 
         error_map = {
             401: ClientAuthenticationError,
@@ -321,19 +244,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
                 )
                 request.url = self._client.format_url(request.url)  # type: ignore
 
-<<<<<<< HEAD
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = _deserialize(_models.CustomPageProduct, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-=======
             else:
                 request = HttpRequest("GET", next_link)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -341,11 +251,11 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = deserialized["value"]
+            deserialized = _deserialize(_models.CustomPageProduct, pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+            return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -357,12 +267,12 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error)
 
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
->>>>>>> autorestv3
 
     @distributed_trace_async
     async def lro(self, mode: Union[str, "_models.Mode"], **kwargs: Any) -> _models.LROProduct:
@@ -376,19 +286,6 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         :return: LROProduct. This object is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.LROProduct
         :raises ~azure.core.exceptions.HttpResponseError:
-<<<<<<< HEAD
-=======
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "key": "str",  # Required.
-                    "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
->>>>>>> autorestv3
         """
         error_map = {
             401: ClientAuthenticationError,

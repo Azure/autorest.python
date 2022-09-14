@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -16,14 +16,9 @@ from ._configuration import AuthenticationOAuth2Configuration
 from ._operations import AuthenticationOAuth2OperationsMixin
 from ._serialization import Deserializer, Serializer
 
-<<<<<<< HEAD:packages/cadl-python/test/generated/optional-properties/optionalproperties/_client.py
-=======
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
-
     from azure.core.credentials import TokenCredential
->>>>>>> autorestv3:packages/cadl-python/test/generated/oauth2/authentication/oauth2/_client.py
 
 
 class AuthenticationOAuth2(AuthenticationOAuth2OperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

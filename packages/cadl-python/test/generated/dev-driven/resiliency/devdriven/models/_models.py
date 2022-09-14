@@ -39,23 +39,6 @@ class CustomPageProduct(_model_base.Model):
     next_link: Optional[str] = rest_field(name="nextLink")
     """The link to the next page of items. """
 
-    @overload
-    def __init__(
-        self,
-        *,
-        value: List["_models.Product"],
-        next_link: Optional[str] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -220,10 +203,14 @@ class Product(_model_base.Model):
 
     All required parameters must be populated in order to send to Azure.
 
+    :ivar key: Required.
+    :vartype key: str
     :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~resiliency.devdriven.models.Mode
     """
 
+    key: str = rest_field(name="key")
+    """Required. """
     received: Union[str, "Mode"] = rest_field(name="received")
     """Required. Known values are: \"raw\" and \"model\"."""
 
@@ -231,6 +218,7 @@ class Product(_model_base.Model):
     def __init__(
         self,
         *,
+        key: str,
         received: Union[str, "_models.Mode"],
     ):
         ...
@@ -252,6 +240,8 @@ class LROProduct(Product):
 
     All required parameters must be populated in order to send to Azure.
 
+    :ivar key: Required.
+    :vartype key: str
     :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~resiliency.devdriven.models.Mode
     :ivar provisioning_state: Required.
@@ -265,6 +255,7 @@ class LROProduct(Product):
     def __init__(
         self,
         *,
+        key: str,
         received: Union[str, "_models.Mode"],
         provisioning_state: str,
     ):

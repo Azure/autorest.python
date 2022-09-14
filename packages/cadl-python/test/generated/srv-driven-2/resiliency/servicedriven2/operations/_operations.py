@@ -233,14 +233,10 @@ class ParamsOperations:
         return 200 <= response.status_code <= 299
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> _models.Message:
-=======
     @api_version_validation(
         params_added_on={"1.1.0": ["new_parameter"]},
     )
-    def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
->>>>>>> autorestv3
+    def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> _models.Message:
         """Get true Boolean value on path.
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
@@ -574,14 +570,10 @@ class ParamsOperations:
         return deserialized
 
     @distributed_trace
-<<<<<<< HEAD
-    def get_new_operation(self, **kwargs: Any) -> _models.Message:
-=======
     @api_version_validation(
         method_added_on="1.1.0",
     )
-    def get_new_operation(self, **kwargs: Any) -> JSON:
->>>>>>> autorestv3
+    def get_new_operation(self, **kwargs: Any) -> _models.Message:
         """I'm a new operation.
          Initially neither path or method exist for this operation. After evolution, this is a new
         method in a new path.

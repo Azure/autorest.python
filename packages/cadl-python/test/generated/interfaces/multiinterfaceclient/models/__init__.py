@@ -8,9 +8,6 @@
 
 from ._models import Cat
 from ._models import Dog
-from ._models import Error
-from ._models import ErrorResponse
-from ._models import InnerError
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -18,9 +15,6 @@ from ._patch import patch_sdk as _patch_sdk
 __all__ = [
     "Cat",
     "Dog",
-    "Error",
-    "ErrorResponse",
-    "InnerError",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

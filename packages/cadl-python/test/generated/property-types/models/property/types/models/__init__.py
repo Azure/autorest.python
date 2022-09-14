@@ -14,11 +14,8 @@ from ._models import CollectionsStringProperty
 from ._models import DatetimeProperty
 from ._models import DurationProperty
 from ._models import EnumProperty
-from ._models import Error
-from ._models import ErrorResponse
 from ._models import ExtensibleEnumProperty
 from ._models import FloatProperty
-from ._models import InnerError
 from ._models import InnerModel
 from ._models import IntProperty
 from ._models import ModelProperty
@@ -39,11 +36,8 @@ __all__ = [
     "DatetimeProperty",
     "DurationProperty",
     "EnumProperty",
-    "Error",
-    "ErrorResponse",
     "ExtensibleEnumProperty",
     "FloatProperty",
-    "InnerError",
     "InnerModel",
     "IntProperty",
     "ModelProperty",

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, List, Mapping, Optional, overload
+from typing import Any, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -20,126 +20,29 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
-class InputModel(_model_base.Model):
-    """Input model with optional properties.
+class InvalidAuth(_model_base.Model):
+    """InvalidAuth.
 
-    :ivar optional_string: Optional string, illustrating an optional reference type property.
-    :vartype optional_string: str
-    :ivar optional_int: Optional int, illustrating an optional value type property.
-    :vartype optional_int: int
-    :ivar optional_string_list: Optional string collection.
-    :vartype optional_string_list: list[str]
-    :ivar optional_int_list: Optional int collection.
-    :vartype optional_int_list: list[int]
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar _: Required. Default value is 403.
+    :vartype _: int
+    :ivar error: Required.
+    :vartype error: str
     """
 
-    optional_string: Optional[str] = rest_field(name="optionalString")
-    """Optional string, illustrating an optional reference type property. """
-    optional_int: Optional[int] = rest_field(name="optionalInt")
-    """Optional int, illustrating an optional value type property. """
-    optional_string_list: Optional[List[str]] = rest_field(name="optionalStringList")
-    """Optional string collection. """
-    optional_int_list: Optional[List[int]] = rest_field(name="optionalIntList")
-    """Optional int collection. """
+    _: int = rest_field(name="_")
+    """Required. Default value is 403."""
+    error: str = rest_field(name="error")
+    """Required. """
 
     @overload
     def __init__(
         self,
         *,
-        optional_string: Optional[str] = None,
-        optional_int: Optional[int] = None,
-        optional_string_list: Optional[List[str]] = None,
-        optional_int_list: Optional[List[int]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class OutputModel(_model_base.Model):
-    """Output model with optional properties.
-
-    :ivar optional_string: Optional string, illustrating an optional reference type property.
-    :vartype optional_string: str
-    :ivar optional_int: Optional int, illustrating an optional value type property.
-    :vartype optional_int: int
-    :ivar optional_string_list: Optional string collection.
-    :vartype optional_string_list: list[str]
-    :ivar optional_int_list: Optional int collection.
-    :vartype optional_int_list: list[int]
-    """
-
-    optional_string: Optional[str] = rest_field(name="optionalString")
-    """Optional string, illustrating an optional reference type property. """
-    optional_int: Optional[int] = rest_field(name="optionalInt")
-    """Optional int, illustrating an optional value type property. """
-    optional_string_list: Optional[List[str]] = rest_field(name="optionalStringList")
-    """Optional string collection. """
-    optional_int_list: Optional[List[int]] = rest_field(name="optionalIntList")
-    """Optional int collection. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        optional_string: Optional[str] = None,
-        optional_int: Optional[int] = None,
-        optional_string_list: Optional[List[str]] = None,
-        optional_int_list: Optional[List[int]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class RoundTripModel(_model_base.Model):
-    """Round-trip model with optional properties.
-
-    :ivar optional_string: Optional string, illustrating an optional reference type property.
-    :vartype optional_string: str
-    :ivar optional_int: Optional int, illustrating an optional value type property.
-    :vartype optional_int: int
-    :ivar optional_string_list: Optional string collection.
-    :vartype optional_string_list: list[str]
-    :ivar optional_int_list: Optional int collection.
-    :vartype optional_int_list: list[int]
-    """
-
-    optional_string: Optional[str] = rest_field(name="optionalString")
-    """Optional string, illustrating an optional reference type property. """
-    optional_int: Optional[int] = rest_field(name="optionalInt")
-    """Optional int, illustrating an optional value type property. """
-    optional_string_list: Optional[List[str]] = rest_field(name="optionalStringList")
-    """Optional string collection. """
-    optional_int_list: Optional[List[int]] = rest_field(name="optionalIntList")
-    """Optional int collection. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        optional_string: Optional[str] = None,
-        optional_int: Optional[int] = None,
-        optional_string_list: Optional[List[str]] = None,
-        optional_int_list: Optional[List[int]] = None,
+        error: str,
     ):
         ...
 
