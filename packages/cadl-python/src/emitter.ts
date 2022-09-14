@@ -113,6 +113,15 @@ function getDocStr(program: Program, target: Type): string {
     return getDoc(program, target) ?? "";
 }
 
+function isLro(program: Program, operation: OperationDetails): boolean {
+    for (const decorator of operation.operation.decorators) {
+        if (decorator.decorator.name === "$pollingOperation") {
+            return true;
+        }
+    }
+    return false;
+}
+
 function getOperationGroupName(program: Program, operation: OperationDetails): string {
     let groupName = "";
     const serviceNamespace = getServiceNamespace(program);
@@ -401,15 +410,6 @@ function emitResponse(
         discriminator: "basic",
         type: type,
     };
-}
-
-function isLro(program: Program, operation: OperationDetails): boolean {
-    for (const decorator of operation.operation.decorators) {
-        if (decorator.decorator.name === "$pollingOperation") {
-            return true;
-        }
-    }
-    return false;
 }
 
 function emitOperation(program: Program, operation: OperationDetails): Record<string, any> {
