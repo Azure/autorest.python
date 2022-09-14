@@ -428,6 +428,12 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 general_serializer.serialize_serialization_file(),
             )
 
+        if any(og for og in self.code_model.operation_groups if og.need_validation):
+            self.write_file(
+                namespace_path / Path("_validation.py"),
+                general_serializer.serialize_validation_file(),
+            )
+
         # Write the config file
         if self.code_model.request_builders:
             self.write_file(

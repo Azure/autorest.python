@@ -7,8 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -20,6 +21,7 @@ from azure.core.exceptions import (
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
@@ -59,6 +61,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
+                    "key": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -132,6 +135,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
+                    "key": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -159,6 +163,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
+                    "key": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -186,6 +191,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
+                    "key": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
@@ -241,15 +247,15 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def get_pages(self, *, api_version: str, **kwargs: Any) -> JSON:
+    @distributed_trace
+    def get_pages(self, *, api_version: str, **kwargs: Any) -> AsyncIterable[JSON]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
-        following growup.
+        following group.
 
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str
-        :return: JSON object
-        :rtype: JSON
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -257,15 +263,15 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "value": [
-                        {
-                            "received": "str"  # Required. Known values are: "raw" and
-                              "model".
-                        }
-                    ],
-                    "nextLink": "str"  # Optional. The link to the next page of items.
+                    "key": "str",  # Required.
+                    "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -274,37 +280,44 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        def prepare_request(next_link=None):
+            if not next_link:
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+                request = build_get_pages_request(
+                    api_version=api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-        request = build_get_pages_request(
-            api_version=api_version,
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)  # type: ignore
+            else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
+            return request
 
-        response = pipeline_response.http_response
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["value"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
 
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
 
-        if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
 
-        return cast(JSON, deserialized)
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace_async
     async def lro(self, mode: str, **kwargs: Any) -> JSON:
@@ -324,6 +337,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response == {
+                    "key": "str",  # Required.
                     "provisioningState": "str",  # Required.
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }

@@ -19,11 +19,17 @@ class ResiliencyServiceDriven2Configuration(Configuration):  # pylint: disable=t
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :keyword api_version: Api Version. Default value is "1.1.0". Note that overriding this default
+     value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, **kwargs: Any) -> None:
         super(ResiliencyServiceDriven2Configuration, self).__init__(**kwargs)
+        api_version = kwargs.pop("api_version", "1.1.0")  # type: str
 
+        self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "resiliencyservicedriven2/{}".format(VERSION))
         self._configure(**kwargs)
 
