@@ -747,10 +747,11 @@ function emitType(
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
+                const value = emitType(program, option)["value"]
                 values.push({
                     description: "",
-                    name: "n/a",
-                    value: emitType(program, option)["value"],
+                    name: camelToSnakeCase(value),
+                    value: value,
                 });
             }
             return {

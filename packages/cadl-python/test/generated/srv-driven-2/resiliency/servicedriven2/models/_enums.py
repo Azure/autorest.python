@@ -13,5 +13,5 @@ from azure.core import CaseInsensitiveEnumMeta
 class MyEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """n/a."""
 
-    n / a = "json"
-    n / a = "jpeg"
+    json = "json"
+    jpeg = "jpeg"
