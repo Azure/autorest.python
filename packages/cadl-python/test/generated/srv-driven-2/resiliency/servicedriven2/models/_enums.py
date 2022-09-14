@@ -13,5 +13,5 @@ from azure.core import CaseInsensitiveEnumMeta
 class ContentTypePathType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of contentTypePath."""
 
-    json = "json"
-    jpeg = "jpeg"
+    JSON = "json"
+    JPEG = "jpeg"

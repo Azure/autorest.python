@@ -750,7 +750,7 @@ function emitType(
                 const value = emitType(program, option)["value"]
                 values.push({
                     description: "",
-                    name: camelToSnakeCase(value),
+                    name: camelToSnakeCase(value).toUpperCase(),
                     value: value,
                 });
             }
