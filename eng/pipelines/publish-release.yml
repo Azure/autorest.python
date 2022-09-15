@@ -19,41 +19,12 @@ steps:
     - script: pnpm run build
       displayName: Build
 
-    - script: pip install -r dev_requirements.txt
-      displayName: Install Autorest Python dev requirements
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
-
-    - script: pip install -r dev_requirements.txt
-      displayName: Install Cadl dev requirements
-      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python
-
-    - script: |
-          cd $(AutorestTestFolder)/azure/version-tolerant
-          tox -e ci
-      displayName: Execute Autorest Azure Version Tolerant Tests
-
-    - script: |
-          cd $(AutorestTestFolder)/vanilla/version-tolerant
-          tox -e ci
-      displayName: Execute Autorest Vanilla Version Tolerant Tests
-
-    - script: |
-          cd $(AutorestTestFolder)/dpg/version-tolerant
-          tox -e ci
-      displayName: Execute Autorest DPG Version Tolerant Tests
-
-    - script: |
-          cd test/mock_api_tests
-          tox -e ci
-      displayName: Execute Cadl Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
-
     - script: |
           npm pack
           AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
           cd ../..
           echo $AbsolutePkgPath
-          npm install $AbsolutePkgPath
+          npm install $AbsolutePkgPath --loglevel verbose
       displayName: Test Autorest tarball
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
