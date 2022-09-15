@@ -308,4 +308,7 @@ jobs:
           tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+      - script: cadl-ranch check-coverage http/
+        displayName: 'Check Coverage'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
 
