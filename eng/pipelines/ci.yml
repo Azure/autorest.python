@@ -312,4 +312,5 @@ jobs:
       - script: cadl-ranch check-coverage http/
         displayName: 'Check Coverage'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+        continueOnError: true
 
