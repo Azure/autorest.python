@@ -290,6 +290,7 @@ jobs:
       - script: |
           npm install -g pnpm
           npm install -g @cadl-lang/compiler
+          npm install -g @azure-tools/cadl-ranch
           pnpm install
           pnpm run build
           pnpm check-version-mismatch
@@ -308,4 +309,10 @@ jobs:
           tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+      - script: cadl-ranch check-coverage http/
+        displayName: 'Check Coverage'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+        continueOnError: true
+      - publish: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
+        artifact: CoverageReport
 
