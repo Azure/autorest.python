@@ -13,7 +13,6 @@ license-header: MICROSOFT_MIT_NO_VERSION
 package-version: 1.0.0b1
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
-clear-output-folder: true
 black: true
 vanilla: true
 package-mode: dataplane
