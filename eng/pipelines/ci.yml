@@ -290,6 +290,7 @@ jobs:
       - script: |
           npm install -g pnpm
           npm install -g @cadl-lang/compiler
+          npm install -g @azure-tools/cadl-ranch
           pnpm install
           pnpm run build
           pnpm check-version-mismatch
