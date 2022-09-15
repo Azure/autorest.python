@@ -19,11 +19,13 @@ steps:
     - script: pnpm run build
       displayName: Build
 
-    - script: pip install -r packages/autorest.python/dev_requirements.txt
+    - script: pip install -r dev_requirements.txt
       displayName: Install Autorest Python dev requirements
+      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
-    - script: pip install -r packages/cadl-python/dev_requirements.txt
+    - script: pip install -r dev_requirements.txt
       displayName: Install Cadl dev requirements
+      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
 
     - script: |
           cd $(AutorestTestFolder)/azure/version-tolerant
