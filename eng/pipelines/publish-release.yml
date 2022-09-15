@@ -7,7 +7,7 @@ pool:
 
 variables:
     NodeVersion: "14.x"
-    AutorestTestFolder: "$(Build.SourcesDirectory)/packages/cadl-python/test/"
+    AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
 
 steps:
     - script: npm install -g pnpm
