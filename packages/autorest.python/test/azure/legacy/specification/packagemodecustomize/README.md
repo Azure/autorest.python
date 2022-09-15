@@ -13,7 +13,6 @@ add-credentials: true
 package-version: 0.1.0
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
-clear-output-folder: true
 black: true
 package-mode: test/azure/legacy/specification/packagemodecustomize/template
 version-tolerant: false
