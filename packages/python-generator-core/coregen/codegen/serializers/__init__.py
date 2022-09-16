@@ -6,12 +6,9 @@
 from typing import Dict, List, Optional, Any, Union, cast
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
-from autorest.codegen.models.operation_group import OperationGroup
-from autorest.codegen.models.request_builder import OverloadedRequestBuilder
 
-from ... import ReaderAndWriter, ReaderAndWriterAutorest
-from ...jsonrpc import AutorestAPI
-from ..models import CodeModel, OperationGroup, RequestBuilder
+from ... import ReaderAndWriter
+from ..models import CodeModel, OperationGroup, RequestBuilder, OverloadedRequestBuilder
 from ..models import TokenCredentialType
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
@@ -54,7 +51,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     def serialize(self) -> None:
         env = Environment(
-            loader=PackageLoader("autorest.codegen", "templates"),
+            loader=PackageLoader("coregen.codegen", "templates"),
             keep_trailing_newline=True,
             line_statement_prefix="##",
             line_comment_prefix="###",
@@ -184,7 +181,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         out_path = out_path / Path("../" * (self.code_model.namespace.count(".") + 1))
         if self.code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
             env = Environment(
-                loader=PackageLoader("autorest.codegen", "templates"),
+                loader=PackageLoader("coregen.codegen", "templates"),
                 undefined=StrictUndefined,
             )
             package_files = _PACKAGE_FILES
@@ -483,17 +480,4 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         metadata_serializer = MetadataSerializer(self.code_model, env)
         self.write_file(
             namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
-        )
-
-
-class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
-    def __init__(
-        self,
-        autorestapi: AutorestAPI,
-        code_model: CodeModel,
-        *,
-        output_folder: Union[str, Path],
-    ) -> None:
-        super().__init__(
-            autorestapi=autorestapi, code_model=code_model, output_folder=output_folder
         )

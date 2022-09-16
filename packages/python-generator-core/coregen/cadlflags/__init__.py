@@ -6,7 +6,7 @@
 import logging
 from typing import Any, Dict, List
 from .. import YamlUpdatePlugin
-from .._utils import parse_args
+from ..utils import parse_args
 
 _LOGGER = logging.getLogger(__name__)
 

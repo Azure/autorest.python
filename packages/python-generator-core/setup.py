@@ -11,7 +11,7 @@ import re
 from setuptools import setup, find_packages
 
 # Version extraction inspired from 'requests'
-with open(os.path.join('autorest', '_version.py'), 'r') as fd:
+with open(os.path.join('coregen', '_version.py'), 'r') as fd:
     version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
 
@@ -19,9 +19,9 @@ if not version:
     raise RuntimeError('Cannot find version information')
 
 setup(
-    name="autorest",
+    name="coregen",
     version=version,
-    description='Microsoft Autorest Plugins for Python',
+    description='Microsoft Generator Plugins for Python',
     long_description=open('README.md', 'r').read(),
     long_description_content_type='text/markdown',
     license='MIT License',

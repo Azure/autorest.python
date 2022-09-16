@@ -1,0 +1,32 @@
+{
+    "name": "@azure-tools/python-generator-core",
+    "version": "0.1.0",
+    "description": "Python generator core for Azure SDK code.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Azure/autorest.python/tree/autorestv3"
+    },
+    "readme": "https://github.com/Azure/autorest.python/blob/autorestv3/packages/python-generator-core/README.md",
+    "keywords": [
+        "generator",
+        "python"
+    ],
+    "author": "Microsoft Corporation",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Azure/autorest.python/issues"
+    },
+    "homepage": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
+    "files": [
+        "generator/**/*.py",
+        "generator/**/*.jinja2",
+        "setup.py",
+        "install.py",
+        "prepare.py",
+        "start.py",
+        "venvtools.py",
+        "run-python3.js",
+        "requirements.txt",
+        "run.py"
+    ]
+}

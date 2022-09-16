@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 
-from autorest.preprocess.helpers import pad_reserved_words
-from autorest.preprocess.python_mappings import PadType
+from coregen.preprocess.helpers import pad_reserved_words
+from coregen.preprocess.python_mappings import PadType
 
 def test_escaped_reserved_words():
     expected_conversion_model = {
