@@ -66,17 +66,6 @@ class _ModelSerializer(ABC):
     def super_call(self, model: ModelType):
         return f"super().__init__({self.properties_to_pass_to_super(model)})"
 
-    def initialize_properties(self, model: ModelType) -> List[str]:
-        init_args = []
-        for prop in self.get_properties_to_initialize(model):
-            if prop.is_discriminator:
-                init_args.append(self.initialize_discriminator_property(model, prop))
-            elif prop.readonly:
-                init_args.append(f"self.{prop.client_name} = None")
-            elif not prop.constant:
-                init_args.append(f"self.{prop.client_name} = {prop.client_name}")
-        return init_args
-
     @staticmethod
     def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
         discriminator_value = (
@@ -179,6 +168,17 @@ class MsrestModelSerializer(_ModelSerializer):
             properties_to_initialize = model.properties
         return properties_to_initialize
 
+    def initialize_properties(self, model: ModelType) -> List[str]:
+        init_args = []
+        for prop in self.get_properties_to_initialize(model):
+            if prop.is_discriminator:
+                init_args.append(self.initialize_discriminator_property(model, prop))
+            elif prop.readonly:
+                init_args.append(f"self.{prop.client_name} = None")
+            elif not prop.constant:
+                init_args.append(f"self.{prop.client_name} = {prop.client_name}")
+        return init_args
+
     @staticmethod
     def declare_property(prop: Property) -> str:
         if prop.flattened_names:
@@ -245,7 +245,7 @@ class DpgModelSerializer(_ModelSerializer):
         attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
         args = []
         if prop.client_name != attribute_key:
-            f'name="{attribute_key}"'
+            args.append(f'name="{attribute_key}"')
         if prop.readonly:
             args.append("readonly=True")
         if prop.client_default_value is not None:

@@ -36,7 +36,7 @@ class CustomPageProduct(_model_base.Model):
 
     value: List["_models.Product"] = rest_field()
     """The Product items on this page. Required. """
-    next_link: Optional[str] = rest_field()
+    next_link: Optional[str] = rest_field(name="nextLink")
     """The link to the next page of items. """
 
     def __init__(self, *args, **kwargs):
@@ -248,7 +248,7 @@ class LROProduct(Product):
     :vartype provisioning_state: str
     """
 
-    provisioning_state: str = rest_field()
+    provisioning_state: str = rest_field(name="provisioningState")
     """Required. """
 
     @overload

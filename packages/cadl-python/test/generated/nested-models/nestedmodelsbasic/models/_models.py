@@ -34,9 +34,9 @@ class InputModel(_model_base.Model):
     :vartype nested_shared_model: ~nestedmodelsbasic.models.NestedRoundTripSharedModel
     """
 
-    nested_input_model: "_models.NestedInputOnlyModel" = rest_field()
+    nested_input_model: "_models.NestedInputOnlyModel" = rest_field(name="NestedInputModel")
     """Required nested input model. Required. """
-    nested_shared_model: "_models.NestedRoundTripSharedModel" = rest_field()
+    nested_shared_model: "_models.NestedRoundTripSharedModel" = rest_field(name="NestedSharedModel")
     """Required nested shared model. Required. """
 
     @overload
@@ -77,13 +77,13 @@ class NestedInputOnlyModel(_model_base.Model):
     :vartype required_int_list: list[int]
     """
 
-    required_string: str = rest_field()
+    required_string: str = rest_field(name="requiredString")
     """Required string, illustrating a reference type property. Required. """
-    required_int: int = rest_field()
+    required_int: int = rest_field(name="requiredInt")
     """Required int, illustrating a value type property. Required. """
-    required_string_list: List[str] = rest_field()
+    required_string_list: List[str] = rest_field(name="requiredStringList")
     """Required collection of strings, illustrating a collection of reference types. Required. """
-    required_int_list: List[int] = rest_field()
+    required_int_list: List[int] = rest_field(name="requiredIntList")
     """Required collection of ints, illustrating a collection of value types. Required. """
 
     @overload
@@ -126,13 +126,13 @@ class NestedOutputOnlyModel(_model_base.Model):
     :vartype required_int_list: list[int]
     """
 
-    required_string: str = rest_field()
+    required_string: str = rest_field(name="requiredString")
     """Required string, illustrating a reference type property. Required. """
-    required_int: int = rest_field()
+    required_int: int = rest_field(name="requiredInt")
     """Required int, illustrating a value type property. Required. """
-    required_string_list: List[str] = rest_field()
+    required_string_list: List[str] = rest_field(name="requiredStringList")
     """Required collection of strings, illustrating a collection of reference types. Required. """
-    required_int_list: List[int] = rest_field()
+    required_int_list: List[int] = rest_field(name="requiredIntList")
     """Required collection of ints, illustrating a collection of value types. Required. """
 
     @overload
@@ -175,13 +175,13 @@ class NestedRoundTripOnlyModel(_model_base.Model):
     :vartype required_int_list: list[int]
     """
 
-    required_string: str = rest_field()
+    required_string: str = rest_field(name="requiredString")
     """Required string, illustrating a reference type property. Required. """
-    required_int: int = rest_field()
+    required_int: int = rest_field(name="requiredInt")
     """Required int, illustrating a value type property. Required. """
-    required_string_list: List[str] = rest_field()
+    required_string_list: List[str] = rest_field(name="requiredStringList")
     """Required collection of strings, illustrating a collection of reference types. Required. """
-    required_int_list: List[int] = rest_field()
+    required_int_list: List[int] = rest_field(name="requiredIntList")
     """Required collection of ints, illustrating a collection of value types. Required. """
 
     @overload
@@ -224,13 +224,13 @@ class NestedRoundTripSharedModel(_model_base.Model):
     :vartype required_int_list: list[int]
     """
 
-    required_string: str = rest_field()
+    required_string: str = rest_field(name="requiredString")
     """Required string, illustrating a reference type property. Required. """
-    required_int: int = rest_field()
+    required_int: int = rest_field(name="requiredInt")
     """Required int, illustrating a value type property. Required. """
-    required_string_list: List[str] = rest_field()
+    required_string_list: List[str] = rest_field(name="requiredStringList")
     """Required collection of strings, illustrating a collection of reference types. Required. """
-    required_int_list: List[int] = rest_field()
+    required_int_list: List[int] = rest_field(name="requiredIntList")
     """Required collection of ints, illustrating a collection of value types. Required. """
 
     @overload
@@ -267,9 +267,9 @@ class OutputModel(_model_base.Model):
     :vartype nested_shared_model: ~nestedmodelsbasic.models.NestedRoundTripSharedModel
     """
 
-    nested_output_model: "_models.NestedOutputOnlyModel" = rest_field()
+    nested_output_model: "_models.NestedOutputOnlyModel" = rest_field(name="NestedOutputModel")
     """Required nested output model. Required. """
-    nested_shared_model: "_models.NestedRoundTripSharedModel" = rest_field()
+    nested_shared_model: "_models.NestedRoundTripSharedModel" = rest_field(name="NestedSharedModel")
     """Required nested shared model. Required. """
 
     @overload
@@ -304,9 +304,9 @@ class RoundTripModel(_model_base.Model):
     :vartype nested_shared_model: ~nestedmodelsbasic.models.NestedRoundTripSharedModel
     """
 
-    nested_round_trip_model: "_models.NestedRoundTripOnlyModel" = rest_field()
+    nested_round_trip_model: "_models.NestedRoundTripOnlyModel" = rest_field(name="NestedRoundTripModel")
     """Required nested round-trip model. Required. """
-    nested_shared_model: "_models.NestedRoundTripSharedModel" = rest_field()
+    nested_shared_model: "_models.NestedRoundTripSharedModel" = rest_field(name="NestedSharedModel")
     """Required nested shared model. Required. """
 
     @overload

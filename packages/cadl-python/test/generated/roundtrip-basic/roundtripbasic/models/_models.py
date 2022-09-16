@@ -31,9 +31,9 @@ class RoundTripModel(_model_base.Model):
     :vartype required_int: int
     """
 
-    required_string: str = rest_field()
+    required_string: str = rest_field(name="requiredString")
     """Required string, illustrating a reference type property. Required. """
-    required_int: int = rest_field()
+    required_int: int = rest_field(name="requiredInt")
     """Required int, illustrating a value type property. Required. """
 
     @overload

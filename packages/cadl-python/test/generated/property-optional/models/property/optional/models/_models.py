@@ -152,9 +152,9 @@ class RequiredAndOptionalProperty(_model_base.Model):
     :vartype required_property: int
     """
 
-    optional_property: Optional[str] = rest_field()
+    optional_property: Optional[str] = rest_field(name="optionalProperty")
     """optional string property. """
-    required_property: int = rest_field()
+    required_property: int = rest_field(name="requiredProperty")
     """required int property. Required. """
 
     @overload
