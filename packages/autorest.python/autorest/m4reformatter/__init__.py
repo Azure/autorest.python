@@ -931,9 +931,12 @@ class M4Reformatter(
         self, yaml_data: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
         global_params: List[Dict[str, Any]] = []
+        existed_params: Set[str] = set()
         for global_parameter in yaml_data:
             client_name: Optional[str] = None
             name = global_parameter["language"]["default"]["name"]
+            if name in existed_params:
+                continue
             if name == "$host":
                 # I am the non-parameterized endpoint. Modify name based off of flag
 
@@ -946,6 +949,7 @@ class M4Reformatter(
                     global_parameter, override_client_name=client_name
                 )
             )
+            existed_params.add(name)
         return global_params
 
     def get_token_credential(self, credential_scopes: List[str]) -> Dict[str, Any]:
