@@ -13,17 +13,22 @@ steps:
     - script: npm install -g pnpm
       displayName: Install PNPM
 
+    - script: npm install -g @azure-tools/cadl-ranch
+      displayName: Install cadl ranch
+
     - script: pnpm install
       displayName: Install dependencies
 
     - script: pnpm run build
       displayName: Build
 
-    - script: pip install -r packages/autorest.python/dev_requirements.txt
+    - script: pip install -r dev_requirements.txt
       displayName: Install Autorest Python dev requirements
+      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
-    - script: pip install -r packages/cadl-python/dev_requirements.txt
+    - script: pip install -r dev_requirements.txt
       displayName: Install Cadl dev requirements
+      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
 
     - script: |
           cd $(AutorestTestFolder)/azure/version-tolerant
