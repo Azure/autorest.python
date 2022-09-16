@@ -12,7 +12,7 @@ from pathlib import Path
 def start_server_process():
     path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
     os.chdir(path.resolve())
-    cmd = "pnpm run serve"
+    cmd = "cadl-ranch serve ./http"
     if os.name == "nt":  # on windows, subprocess creation works without being in the shell
         return subprocess.Popen(cmd)
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid) #On linux, have to set shell=True
