@@ -26,16 +26,16 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     :param str namespace: The namespace of our module
     :param schemas: The list of schemas we are going to serialize in the models files. Maps their yaml
      id to our created ModelType.
-    :type schemas: dict[int, ~autorest.models.ModelType]
+    :type schemas: dict[int, ~codegen.models.ModelType]
     :param sorted_schemas: Our schemas in order by inheritance and alphabet
-    :type sorted_schemas: list[~autorest.models.ModelType]
+    :type sorted_schemas: list[~codegen.models.ModelType]
     :param enums: The enums, if any, we are going to serialize. Maps their yaml id to our created EnumType.
-    :type enums: Dict[int, ~autorest.models.EnumType]
+    :type enums: Dict[int, ~codegen.models.EnumType]
     :param primitives: List of schemas we've created that are not EnumSchemas or ObjectSchemas. Maps their
      yaml id to our created schemas.
-    :type primitives: Dict[int, ~autorest.models.BaseType]
+    :type primitives: Dict[int, ~codegen.models.BaseType]
     :param operation_groups: The operation groups we are going to serialize
-    :type operation_groups: list[~autorest.models.OperationGroup]
+    :type operation_groups: list[~codegen.models.OperationGroup]
     :param package_dependency: All the dependencies needed in setup.py
     :type package_dependency: Dict[str, str]
     """
@@ -64,7 +64,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
         :param int schema_id: The yaml id of the schema
         :return: If created, we return the created schema, otherwise, we throw.
-        :rtype: ~autorest.models.BaseType
+        :rtype: ~codegen.models.BaseType
         :raises: KeyError if schema is not found
         """
         try:

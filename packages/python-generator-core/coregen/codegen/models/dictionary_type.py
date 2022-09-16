@@ -18,7 +18,7 @@ class DictionaryType(BaseType):
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     :param element_type: The type of the value for the dictionary
-    :type element_type: ~autorest.models.BaseType
+    :type element_type: ~codegen.models.BaseType
     """
 
     def __init__(
@@ -104,7 +104,7 @@ class DictionaryType(BaseType):
         :type yaml_data: dict[str, Any]
 
         :return: A created DictionaryType
-        :rtype: ~autorest.models.DictionaryType
+        :rtype: ~codegen.models.DictionaryType
         """
         element_schema: Dict[str, Any] = yaml_data["elementType"]
 

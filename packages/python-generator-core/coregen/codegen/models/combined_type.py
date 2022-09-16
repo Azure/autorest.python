@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
-from autorest.codegen.models.imports import FileImport, ImportType
+from .imports import FileImport, ImportType
 from .base_type import BaseType
 
 if TYPE_CHECKING:

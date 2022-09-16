@@ -6,7 +6,7 @@
 from collections import OrderedDict
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 
-from autorest.codegen.models.utils import add_to_pylint_disable
+from .utils import add_to_pylint_disable
 from .base_type import BaseType
 from .property import Property
 from .imports import FileImport, ImportType, TypingSection

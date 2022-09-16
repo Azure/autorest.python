@@ -68,8 +68,8 @@ export async function $onEmit(program: Program) {
     const __dirname = dirname(fileURLToPath(import.meta.url));
     const root = resolve(__dirname, "..", "..");
     const commandArgs = [
-        `${root}/node_modules/@autorest/python/run-python3.js`,
-        `${root}/node_modules/@autorest/python/run_cadl.py`,
+        `${root}/node_modules/@azure-tools/python-generator-core/run-python3.js`,
+        `${root}/node_modules/@azure-tools/python-generator-core/run.py`,
         `--output-folder=${program.compilerOptions.outputPath!}`,
         `--cadl-file=${yamlPath}`,
     ];

@@ -38,8 +38,7 @@
   "files": [
     "lib/*.cadl",
     "dist/**",
-    "!dist/test/**",
-    "get-autorest-python-path.cjs"
+    "!dist/test/**"
   ],
   "peerDependencies": {
     "@cadl-lang/versioning": "~0.8.0",
@@ -48,7 +47,7 @@
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
-    "@autorest/python": "~6.1.1",
+    "@azure-tools/python-generator-core": "workspace:*",
     "@cadl-lang/compiler": "~0.35.0"
   },
   "devDependencies": {

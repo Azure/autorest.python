@@ -37,7 +37,7 @@ class EnumValue(BaseModel):
         :type yaml_data: dict[str, Any]
 
         :return: A created EnumValue
-        :rtype: ~autorest.models.EnumValue
+        :rtype: ~codegen.models.EnumValue
         """
         return cls(
             yaml_data=yaml_data,
@@ -52,9 +52,9 @@ class EnumType(BaseType):
     :type yaml_data: dict[str, Any]
     :param str description: The description of this enum
     :param str name: The name of the enum.
-    :type element_type: ~autorest.models.PrimitiveType
+    :type element_type: ~codegen.models.PrimitiveType
     :param values: List of the values for this enum
-    :type values: list[~autorest.models.EnumValue]
+    :type values: list[~codegen.models.EnumValue]
     """
 
     def __init__(
@@ -155,7 +155,7 @@ class EnumType(BaseType):
         :type yaml_data: dict[str, Any]
 
         :return: A created EnumType
-        :rtype: ~autorest.models.EnumType
+        :rtype: ~codegen.models.EnumType
         """
         from . import build_type
 

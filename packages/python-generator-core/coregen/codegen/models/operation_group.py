@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Dict, List, Any, TYPE_CHECKING
 
-from autorest.codegen.models.utils import OrderedSet
+from .utils import OrderedSet
 
 from .base_model import BaseModel
 from .operation import OperationBase, get_operation

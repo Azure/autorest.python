@@ -22,7 +22,7 @@ class ConstantType(BaseType):
     :type yaml_data: dict[str, Any]
     :param str value: The actual value of this constant.
     :param schema: The schema for the value of this constant.
-    :type schema: ~autorest.models.PrimitiveType
+    :type schema: ~codegen.models.PrimitiveType
     """
 
     def __init__(
@@ -87,7 +87,7 @@ class ConstantType(BaseType):
         :type yaml_data: dict[str, Any]
 
         :return: A created ConstantType
-        :rtype: ~autorest.models.ConstantType
+        :rtype: ~codegen.models.ConstantType
         """
         from . import build_type
 

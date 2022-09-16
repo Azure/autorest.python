@@ -56,9 +56,7 @@ class ReaderAndWriter:
         return [str(f) for f in self.output_folder.glob("**/*") if f.is_file()]
 
 class Plugin(ReaderAndWriter, ABC):
-    """A base class for autorest plugin.
-
-    :param autorestapi: An autorest API instance
+    """A base class for a plugin.
     """
 
     @abstractmethod
@@ -67,7 +65,7 @@ class Plugin(ReaderAndWriter, ABC):
 
         :rtype: bool
         :returns: True if everything's ok, False optherwise
-        :raises Exception: Could raise any exception, stacktrace will be sent to autorest API
+        :raises Exception: Could raise any exception
         """
         raise NotImplementedError()
 
@@ -99,6 +97,6 @@ class YamlUpdatePlugin(Plugin):
         """The code-model-v4-no-tags yaml model tree.
 
         :rtype: updated yaml
-        :raises Exception: Could raise any exception, stacktrace will be sent to autorest API
+        :raises Exception: Could raise any exception
         """
         raise NotImplementedError()

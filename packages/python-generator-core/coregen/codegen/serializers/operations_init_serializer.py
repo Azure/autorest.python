@@ -6,8 +6,7 @@
 from typing import List
 from jinja2 import Environment
 
-from autorest.codegen.models.operation_group import OperationGroup
-from ..models import CodeModel
+from ..models import CodeModel, OperationGroup
 
 
 class OperationsInitSerializer:

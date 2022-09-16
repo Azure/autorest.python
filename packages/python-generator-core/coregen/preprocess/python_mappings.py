@@ -99,7 +99,7 @@ RESERVED_WORDS = {
     PadType.METHOD: [*_always_reserved],
     PadType.PARAMETER: [
         "self",
-        # these are kwargs we've reserved for our autorest generated operations
+        # these are kwargs we've reserved for our generated operations
         "content_type",
         "accept",
         "cls",
