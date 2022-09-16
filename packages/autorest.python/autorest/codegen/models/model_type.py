@@ -92,20 +92,12 @@ class ModelType(
             retval = f"_models.{self.name}"
             if not self.is_public:
                 retval = f"{self.code_model.models_filename}.{retval}"
-            if self.code_model.options["models_mode"] == "dpg" and kwargs.pop(
-                "is_body_parameter", False
-            ):
-                retval = f"Union[{retval}, JSON]"
             return retval if is_operation_file else f'"{retval}"'
         return "ET.Element" if self.is_xml else "JSON"
 
     def docstring_type(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
             ret = f"~{self.code_model.namespace}.models.{self.name}"
-            if self.code_model.options["models_mode"] == "dpg" and kwargs.pop(
-                "is_body_parameter", False
-            ):
-                ret += " or JSON"
             return ret
         return "ET.Element" if self.is_xml else "JSON"
 
