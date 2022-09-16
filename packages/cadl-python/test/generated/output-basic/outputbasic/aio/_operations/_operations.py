@@ -42,7 +42,7 @@ class OutputBasicOperationsMixin(MixinABC):
     async def get_model(self, **kwargs: Any) -> _models.OutputModel:
         """get_model.
 
-        :return: OutputModel. The OutputModel is compatible with MutableMapping
+        :return: OutputModel. This object is compatible with MutableMapping
         :rtype: ~outputbasic.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """

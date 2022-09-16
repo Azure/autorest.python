@@ -63,7 +63,7 @@ def build_string_get_unknown_value_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_put_known_value_request(
-    *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
+    *, content: Union[str, "_models.DaysOfWeekExtensibleEnum"], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -79,7 +79,7 @@ def build_string_put_known_value_request(
 
 
 def build_string_put_unknown_value_request(
-    *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
+    *, content: Union[str, "_models.DaysOfWeekExtensibleEnum"], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -112,7 +112,7 @@ class StringOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
+    def get_known_value(self, **kwargs: Any) -> Union[str, "_models.DaysOfWeekExtensibleEnum"]:
         """get_known_value.
 
         :return: DaysOfWeekExtensibleEnum
@@ -130,7 +130,7 @@ class StringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.DaysOfWeekExtensibleEnum"]]
 
         request = build_string_get_known_value_request(
             headers=_headers,
@@ -156,7 +156,7 @@ class StringOperations:
         return deserialized
 
     @distributed_trace
-    def get_unknown_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
+    def get_unknown_value(self, **kwargs: Any) -> Union[str, "_models.DaysOfWeekExtensibleEnum"]:
         """get_unknown_value.
 
         :return: DaysOfWeekExtensibleEnum
@@ -174,7 +174,7 @@ class StringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.DaysOfWeekExtensibleEnum"]]
 
         request = build_string_get_unknown_value_request(
             headers=_headers,
@@ -201,7 +201,7 @@ class StringOperations:
 
     @distributed_trace
     def put_known_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
+        self, body: Union[str, "_models.DaysOfWeekExtensibleEnum"], **kwargs: Any
     ) -> None:
         """put_known_value.
 
@@ -254,7 +254,7 @@ class StringOperations:
 
     @distributed_trace
     def put_unknown_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
+        self, body: Union[str, "_models.DaysOfWeekExtensibleEnum"], **kwargs: Any
     ) -> None:
         """put_unknown_value.
 

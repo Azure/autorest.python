@@ -453,7 +453,7 @@ class StringOperations:
     def get_all(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return all properties in the model.
 
-        :return: StringProperty. The StringProperty is compatible with MutableMapping
+        :return: StringProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -497,7 +497,7 @@ class StringOperations:
     def get_default(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return the default object.
 
-        :return: StringProperty. The StringProperty is compatible with MutableMapping
+        :return: StringProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -737,7 +737,7 @@ class BytesOperations:
     def get_all(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return all properties in the model.
 
-        :return: BytesProperty. The BytesProperty is compatible with MutableMapping
+        :return: BytesProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -781,7 +781,7 @@ class BytesOperations:
     def get_default(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return the default object.
 
-        :return: BytesProperty. The BytesProperty is compatible with MutableMapping
+        :return: BytesProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1021,7 +1021,7 @@ class DatetimeOperations:
     def get_all(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return all properties in the model.
 
-        :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
+        :return: DatetimeProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1065,7 +1065,7 @@ class DatetimeOperations:
     def get_default(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return the default object.
 
-        :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
+        :return: DatetimeProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1305,7 +1305,7 @@ class DurationOperations:
     def get_all(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return all properties in the model.
 
-        :return: DurationProperty. The DurationProperty is compatible with MutableMapping
+        :return: DurationProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1349,7 +1349,7 @@ class DurationOperations:
     def get_default(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return the default object.
 
-        :return: DurationProperty. The DurationProperty is compatible with MutableMapping
+        :return: DurationProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1589,7 +1589,7 @@ class CollectionsByteOperations:
     def get_all(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return all properties in the model.
 
-        :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
+        :return: CollectionsByteProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1633,7 +1633,7 @@ class CollectionsByteOperations:
     def get_default(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return the default object.
 
-        :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
+        :return: CollectionsByteProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1881,7 +1881,7 @@ class CollectionsModelOperations:
     def get_all(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return all properties in the model.
 
-        :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
+        :return: CollectionsByteProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1925,7 +1925,7 @@ class CollectionsModelOperations:
     def get_default(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return the default object.
 
-        :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
+        :return: CollectionsByteProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2173,8 +2173,7 @@ class RequiredAndOptionalOperations:
     def get_all(self, **kwargs: Any) -> _models.RequiredAndOptionalProperty:
         """Get models that will return all properties in the model.
 
-        :return: RequiredAndOptionalProperty. The RequiredAndOptionalProperty is compatible with
-         MutableMapping
+        :return: RequiredAndOptionalProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2218,8 +2217,7 @@ class RequiredAndOptionalOperations:
     def get_required_only(self, **kwargs: Any) -> _models.RequiredAndOptionalProperty:
         """Get models that will return only the required properties.
 
-        :return: RequiredAndOptionalProperty. The RequiredAndOptionalProperty is compatible with
-         MutableMapping
+        :return: RequiredAndOptionalProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """

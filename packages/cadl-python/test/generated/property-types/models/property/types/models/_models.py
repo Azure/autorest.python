@@ -257,14 +257,14 @@ class EnumProperty(_model_base.Model):
     :vartype property: str or ~models.property.types.models.InnerEnum
     """
 
-    property: Union[str, _models.InnerEnum] = rest_field()
+    property: Union[str, "_models.InnerEnum"] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, _models.InnerEnum],
+        property: Union[str, "_models.InnerEnum"],
     ):
         ...
 
@@ -289,14 +289,14 @@ class ExtensibleEnumProperty(_model_base.Model):
     :vartype property: str or ~models.property.types.models.InnerExtensibleEnum
     """
 
-    property: Union[str, _models.InnerExtensibleEnum] = rest_field()
+    property: Union[str, "_models.InnerExtensibleEnum"] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, _models.InnerExtensibleEnum],
+        property: Union[str, "_models.InnerExtensibleEnum"],
     ):
         ...
 

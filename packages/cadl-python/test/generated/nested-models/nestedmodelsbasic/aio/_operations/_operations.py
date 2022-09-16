@@ -136,7 +136,7 @@ class NestedModelsBasicOperationsMixin(MixinABC):
     async def get_nested_model(self, **kwargs: Any) -> _models.OutputModel:
         """get_nested_model.
 
-        :return: OutputModel. The OutputModel is compatible with MutableMapping
+        :return: OutputModel. This object is compatible with MutableMapping
         :rtype: ~nestedmodelsbasic.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -187,7 +187,7 @@ class NestedModelsBasicOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~nestedmodelsbasic.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -203,7 +203,7 @@ class NestedModelsBasicOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~nestedmodelsbasic.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -219,7 +219,7 @@ class NestedModelsBasicOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~nestedmodelsbasic.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """

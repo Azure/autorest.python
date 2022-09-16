@@ -46,7 +46,7 @@ class ReadonlyPropertiesOperationsMixin(MixinABC):
     async def get_optional_property_model(self, **kwargs: Any) -> _models.OutputModel:
         """get_optional_property_model.
 
-        :return: OutputModel. The OutputModel is compatible with MutableMapping
+        :return: OutputModel. This object is compatible with MutableMapping
         :rtype: ~readonlyproperties.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -97,7 +97,7 @@ class ReadonlyPropertiesOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~readonlyproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -113,7 +113,7 @@ class ReadonlyPropertiesOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~readonlyproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -129,7 +129,7 @@ class ReadonlyPropertiesOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :return: RoundTripModel. This object is compatible with MutableMapping
         :rtype: ~readonlyproperties.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """

@@ -211,7 +211,7 @@ class Product(_model_base.Model):
 
     key: str = rest_field()
     """Required. """
-    received: Union[str, _models.Mode] = rest_field()
+    received: Union[str, "_models.Mode"] = rest_field()
     """Required. Known values are: \"raw\" and \"model\"."""
 
     @overload
@@ -219,7 +219,7 @@ class Product(_model_base.Model):
         self,
         *,
         key: str,
-        received: Union[str, _models.Mode],
+        received: Union[str, "_models.Mode"],
     ):
         ...
 
@@ -256,7 +256,7 @@ class LROProduct(Product):
         self,
         *,
         key: str,
-        received: Union[str, _models.Mode],
+        received: Union[str, "_models.Mode"],
         provisioning_state: str,
     ):
         ...

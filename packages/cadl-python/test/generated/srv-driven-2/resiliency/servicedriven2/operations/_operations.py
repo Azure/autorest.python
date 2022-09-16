@@ -102,7 +102,7 @@ def build_params_put_required_optional_request(
 
 
 def build_params_post_parameters_request(
-    content_type_path: Union[str, _models.ContentTypePathType], **kwargs: Any
+    content_type_path: Union[str, "_models.ContentTypePathType"], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -247,7 +247,7 @@ class ParamsOperations:
         :paramtype parameter: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
-        :return: Message. The Message is compatible with MutableMapping
+        :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -310,7 +310,7 @@ class ParamsOperations:
         :paramtype optional_param: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
-        :return: Message. The Message is compatible with MutableMapping
+        :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -356,7 +356,7 @@ class ParamsOperations:
     @overload
     def post_parameters(
         self,
-        content_type_path: Union[str, _models.ContentTypePathType],
+        content_type_path: Union[str, "_models.ContentTypePathType"],
         parameter: Union[_models.PostInput, JSON],
         *,
         content_type: str = "application/json",
@@ -372,7 +372,7 @@ class ParamsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Message. The Message is compatible with MutableMapping
+        :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -380,7 +380,7 @@ class ParamsOperations:
     @overload
     def post_parameters(
         self,
-        content_type_path: Union[str, _models.ContentTypePathType],
+        content_type_path: Union[str, "_models.ContentTypePathType"],
         parameter: IO,
         *,
         content_type: str = "application/json",
@@ -396,7 +396,7 @@ class ParamsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Message. The Message is compatible with MutableMapping
+        :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -404,7 +404,7 @@ class ParamsOperations:
     @distributed_trace
     def post_parameters(
         self,
-        content_type_path: Union[str, _models.ContentTypePathType],
+        content_type_path: Union[str, "_models.ContentTypePathType"],
         parameter: Union[_models.PostInput, JSON, IO],
         **kwargs: Any
     ) -> _models.Message:
@@ -418,7 +418,7 @@ class ParamsOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: Message. The Message is compatible with MutableMapping
+        :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -529,7 +529,7 @@ class ParamsOperations:
         :paramtype optional_param: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
-        :return: Message. The Message is compatible with MutableMapping
+        :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -580,7 +580,7 @@ class ParamsOperations:
          Initially neither path or method exist for this operation. After evolution, this is a new
         method in a new path.
 
-        :return: Message. The Message is compatible with MutableMapping
+        :return: Message. This object is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """

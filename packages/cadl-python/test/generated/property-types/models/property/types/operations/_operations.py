@@ -425,7 +425,7 @@ class BooleanOperations:
     def get(self, **kwargs: Any) -> _models.BooleanProperty:
         """get.
 
-        :return: BooleanProperty. The BooleanProperty is compatible with MutableMapping
+        :return: BooleanProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.BooleanProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -576,7 +576,7 @@ class StringOperations:
     def get(self, **kwargs: Any) -> _models.StringProperty:
         """get.
 
-        :return: StringProperty. The StringProperty is compatible with MutableMapping
+        :return: StringProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -727,7 +727,7 @@ class BytesOperations:
     def get(self, **kwargs: Any) -> _models.BytesProperty:
         """get.
 
-        :return: BytesProperty. The BytesProperty is compatible with MutableMapping
+        :return: BytesProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -878,7 +878,7 @@ class IntOperations:
     def get(self, **kwargs: Any) -> _models.IntProperty:
         """get.
 
-        :return: IntProperty. The IntProperty is compatible with MutableMapping
+        :return: IntProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.IntProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1029,7 +1029,7 @@ class FloatOperations:
     def get(self, **kwargs: Any) -> _models.FloatProperty:
         """get.
 
-        :return: FloatProperty. The FloatProperty is compatible with MutableMapping
+        :return: FloatProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.FloatProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1180,7 +1180,7 @@ class DatetimeOperations:
     def get(self, **kwargs: Any) -> _models.DatetimeProperty:
         """get.
 
-        :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
+        :return: DatetimeProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1331,7 +1331,7 @@ class DurationOperations:
     def get(self, **kwargs: Any) -> _models.DurationProperty:
         """get.
 
-        :return: DurationProperty. The DurationProperty is compatible with MutableMapping
+        :return: DurationProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1482,7 +1482,7 @@ class EnumOperations:
     def get(self, **kwargs: Any) -> _models.EnumProperty:
         """get.
 
-        :return: EnumProperty. The EnumProperty is compatible with MutableMapping
+        :return: EnumProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.EnumProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1633,7 +1633,7 @@ class ExtensibleEnumOperations:
     def get(self, **kwargs: Any) -> _models.ExtensibleEnumProperty:
         """get.
 
-        :return: ExtensibleEnumProperty. The ExtensibleEnumProperty is compatible with MutableMapping
+        :return: ExtensibleEnumProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.ExtensibleEnumProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1788,7 +1788,7 @@ class ModelOperations:
     def get(self, **kwargs: Any) -> _models.ModelProperty:
         """get.
 
-        :return: ModelProperty. The ModelProperty is compatible with MutableMapping
+        :return: ModelProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.ModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1939,8 +1939,7 @@ class CollectionsStringOperations:
     def get(self, **kwargs: Any) -> _models.CollectionsStringProperty:
         """get.
 
-        :return: CollectionsStringProperty. The CollectionsStringProperty is compatible with
-         MutableMapping
+        :return: CollectionsStringProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.CollectionsStringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2095,7 +2094,7 @@ class CollectionsIntOperations:
     def get(self, **kwargs: Any) -> _models.CollectionsIntProperty:
         """get.
 
-        :return: CollectionsIntProperty. The CollectionsIntProperty is compatible with MutableMapping
+        :return: CollectionsIntProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.CollectionsIntProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2250,8 +2249,7 @@ class CollectionsModelOperations:
     def get(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """get.
 
-        :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
-         MutableMapping
+        :return: CollectionsModelProperty. This object is compatible with MutableMapping
         :rtype: ~models.property.types.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
