@@ -13,6 +13,9 @@ steps:
     - script: npm install -g pnpm
       displayName: Install PNPM
 
+    - script: npm install -g @azure-tools/cadl-ranch
+      displayName: Install cadl ranch
+
     - script: pnpm install
       displayName: Install dependencies
 
