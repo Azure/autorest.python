@@ -87,7 +87,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: BaseClass. This object is compatible with MutableMapping
+        :return: BaseClass. The BaseClass is compatible with MutableMapping
         :rtype: ~basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -101,7 +101,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: BaseClass. This object is compatible with MutableMapping
+        :return: BaseClass. The BaseClass is compatible with MutableMapping
         :rtype: ~basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -115,7 +115,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: BaseClass. This object is compatible with MutableMapping
+        :return: BaseClass. The BaseClass is compatible with MutableMapping
         :rtype: ~basicpolymorphicmodels.models.BaseClass
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -180,7 +180,8 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
+        :return: ModelWithPolymorphicProperty. The ModelWithPolymorphicProperty is compatible with
+         MutableMapping
         :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -196,7 +197,8 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
+        :return: ModelWithPolymorphicProperty. The ModelWithPolymorphicProperty is compatible with
+         MutableMapping
         :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -212,7 +214,8 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. This object is compatible with MutableMapping
+        :return: ModelWithPolymorphicProperty. The ModelWithPolymorphicProperty is compatible with
+         MutableMapping
         :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """

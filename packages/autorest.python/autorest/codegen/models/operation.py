@@ -157,7 +157,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.code_model.options["models_mode"] == "dpg" and any(
             isinstance(r.type, ModelType) for r in self.responses
         ):
-            retval += ". This object is compatible with MutableMapping"
+            r = next(r for r in self.responses if isinstance(r.type, ModelType))
+            type_name = getattr(r, "item_type", getattr(r, "type")).docstring_text(
+                **kwargs
+            )
+            retval += f". The {type_name} is compatible with MutableMapping"
         return retval
 
     def response_docstring_type(self, **kwargs) -> str:
