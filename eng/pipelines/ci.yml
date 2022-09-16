@@ -301,6 +301,7 @@ jobs:
 
       - script: pnpm check-format
         displayName: Check formatting
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
       - script: inv regenerate
         displayName: 'Regenerate Code'
