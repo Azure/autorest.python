@@ -298,6 +298,10 @@ jobs:
         displayName: "Prepare Environment for Generation"
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       - script: |
+          npx prettier **/*.ts --write
+        displayName: 'Prettier cadl-python'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+      - script: |
           inv regenerate
         displayName: 'Regenerate Code'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
