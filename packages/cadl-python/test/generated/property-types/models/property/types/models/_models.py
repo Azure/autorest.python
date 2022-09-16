@@ -33,7 +33,7 @@ class BooleanProperty(_model_base.Model):
     :vartype property: bool
     """
 
-    property: bool = rest_field(name="property")
+    property: bool = rest_field()
     """Property. Required. """
 
     @overload
@@ -65,7 +65,7 @@ class BytesProperty(_model_base.Model):
     :vartype property: bytes
     """
 
-    property: bytes = rest_field(name="property")
+    property: bytes = rest_field()
     """Property. Required. """
 
     @overload
@@ -97,7 +97,7 @@ class CollectionsIntProperty(_model_base.Model):
     :vartype property: list[int]
     """
 
-    property: List[int] = rest_field(name="property")
+    property: List[int] = rest_field()
     """Property. Required. """
 
     @overload
@@ -129,7 +129,7 @@ class CollectionsModelProperty(_model_base.Model):
     :vartype property: list[~models.property.types.models.InnerModel]
     """
 
-    property: List["InnerModel"] = rest_field(name="property")
+    property: List["_models.InnerModel"] = rest_field()
     """Property. Required. """
 
     @overload
@@ -161,7 +161,7 @@ class CollectionsStringProperty(_model_base.Model):
     :vartype property: list[str]
     """
 
-    property: List[str] = rest_field(name="property")
+    property: List[str] = rest_field()
     """Property. Required. """
 
     @overload
@@ -193,7 +193,7 @@ class DatetimeProperty(_model_base.Model):
     :vartype property: ~datetime.datetime
     """
 
-    property: datetime.datetime = rest_field(name="property")
+    property: datetime.datetime = rest_field()
     """Property. Required. """
 
     @overload
@@ -225,7 +225,7 @@ class DurationProperty(_model_base.Model):
     :vartype property: ~datetime.timedelta
     """
 
-    property: datetime.timedelta = rest_field(name="property")
+    property: datetime.timedelta = rest_field()
     """Property. Required. """
 
     @overload
@@ -257,14 +257,14 @@ class EnumProperty(_model_base.Model):
     :vartype property: str or ~models.property.types.models.InnerEnum
     """
 
-    property: Union[str, "InnerEnum"] = rest_field(name="property")
+    property: Union[str, _models.InnerEnum] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerEnum"],
+        property: Union[str, _models.InnerEnum],
     ):
         ...
 
@@ -289,14 +289,14 @@ class ExtensibleEnumProperty(_model_base.Model):
     :vartype property: str or ~models.property.types.models.InnerExtensibleEnum
     """
 
-    property: Union[str, "InnerExtensibleEnum"] = rest_field(name="property")
+    property: Union[str, _models.InnerExtensibleEnum] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerExtensibleEnum"],
+        property: Union[str, _models.InnerExtensibleEnum],
     ):
         ...
 
@@ -321,7 +321,7 @@ class FloatProperty(_model_base.Model):
     :vartype property: float
     """
 
-    property: float = rest_field(name="property")
+    property: float = rest_field()
     """Property. Required. """
 
     @overload
@@ -353,7 +353,7 @@ class InnerModel(_model_base.Model):
     :vartype property: str
     """
 
-    property: str = rest_field(name="property")
+    property: str = rest_field()
     """Required string property. Required. """
 
     @overload
@@ -385,7 +385,7 @@ class IntProperty(_model_base.Model):
     :vartype property: int
     """
 
-    property: int = rest_field(name="property")
+    property: int = rest_field()
     """Property. Required. """
 
     @overload
@@ -417,7 +417,7 @@ class ModelProperty(_model_base.Model):
     :vartype property: ~models.property.types.models.InnerModel
     """
 
-    property: "InnerModel" = rest_field(name="property")
+    property: "_models.InnerModel" = rest_field()
     """Property. Required. """
 
     @overload
@@ -449,7 +449,7 @@ class StringProperty(_model_base.Model):
     :vartype property: str
     """
 
-    property: str = rest_field(name="property")
+    property: str = rest_field()
     """Property. Required. """
 
     @overload

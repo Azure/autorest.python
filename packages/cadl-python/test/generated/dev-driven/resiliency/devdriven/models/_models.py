@@ -34,9 +34,9 @@ class CustomPageProduct(_model_base.Model):
     :vartype next_link: str
     """
 
-    value: List["Product"] = rest_field(name="value")
+    value: List["_models.Product"] = rest_field()
     """The Product items on this page. Required. """
-    next_link: Optional[str] = rest_field(name="nextLink")
+    next_link: Optional[str] = rest_field()
     """The link to the next page of items. """
 
     def __init__(self, *args, **kwargs):
@@ -62,15 +62,15 @@ class Error(_model_base.Model):
     :vartype innererror: ~resiliency.devdriven.models.InnerError
     """
 
-    code: str = rest_field(name="code")
+    code: str = rest_field()
     """One of a server-defined set of error codes. Required. """
-    message: str = rest_field(name="message")
+    message: str = rest_field()
     """A human-readable representation of the error. Required. """
-    target: Optional[str] = rest_field(name="target")
+    target: Optional[str] = rest_field()
     """The target of the error. """
-    details: List["Error"] = rest_field(name="details")
+    details: List["_models.Error"] = rest_field()
     """An array of details about specific errors that led to this reported error. Required. """
-    innererror: Optional["InnerError"] = rest_field(name="innererror")
+    innererror: Optional["_models.InnerError"] = rest_field()
     """An object containing more specific information than the current object about the error. """
 
     @overload
@@ -106,7 +106,7 @@ class ErrorResponse(_model_base.Model):
     :vartype error: ~resiliency.devdriven.models.Error
     """
 
-    error: "Error" = rest_field(name="error")
+    error: "_models.Error" = rest_field()
     """The error object. Required. """
 
     @overload
@@ -140,9 +140,9 @@ class InnerError(_model_base.Model):
     :vartype innererror: ~resiliency.devdriven.models.InnerError
     """
 
-    code: str = rest_field(name="code")
+    code: str = rest_field()
     """One of a server-defined set of error codes. Required. """
-    innererror: Optional["InnerError"] = rest_field(name="innererror")
+    innererror: Optional["_models.InnerError"] = rest_field()
     """Inner error. """
 
     @overload
@@ -175,7 +175,7 @@ class Input(_model_base.Model):
     :vartype hello: str
     """
 
-    hello: str = rest_field(name="hello")
+    hello: str = rest_field()
     """Required. """
 
     @overload
@@ -209,9 +209,9 @@ class Product(_model_base.Model):
     :vartype received: str or ~resiliency.devdriven.models.Mode
     """
 
-    key: str = rest_field(name="key")
+    key: str = rest_field()
     """Required. """
-    received: Union[str, "Mode"] = rest_field(name="received")
+    received: Union[str, _models.Mode] = rest_field()
     """Required. Known values are: \"raw\" and \"model\"."""
 
     @overload
@@ -219,7 +219,7 @@ class Product(_model_base.Model):
         self,
         *,
         key: str,
-        received: Union[str, "_models.Mode"],
+        received: Union[str, _models.Mode],
     ):
         ...
 
@@ -248,7 +248,7 @@ class LROProduct(Product):
     :vartype provisioning_state: str
     """
 
-    provisioning_state: str = rest_field(name="provisioningState")
+    provisioning_state: str = rest_field()
     """Required. """
 
     @overload
@@ -256,7 +256,7 @@ class LROProduct(Product):
         self,
         *,
         key: str,
-        received: Union[str, "_models.Mode"],
+        received: Union[str, _models.Mode],
         provisioning_state: str,
     ):
         ...

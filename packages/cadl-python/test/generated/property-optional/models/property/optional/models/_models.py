@@ -28,7 +28,7 @@ class BytesProperty(_model_base.Model):
     :vartype property: bytes
     """
 
-    property: Optional[bytes] = rest_field(name="property")
+    property: Optional[bytes] = rest_field()
     """Property. """
 
     @overload
@@ -58,7 +58,7 @@ class CollectionsByteProperty(_model_base.Model):
     :vartype property: list[bytes]
     """
 
-    property: Optional[List[bytes]] = rest_field(name="property")
+    property: Optional[List[bytes]] = rest_field()
     """Property. """
 
     @overload
@@ -88,7 +88,7 @@ class DatetimeProperty(_model_base.Model):
     :vartype property: ~datetime.datetime
     """
 
-    property: Optional[datetime.datetime] = rest_field(name="property")
+    property: Optional[datetime.datetime] = rest_field()
     """Property. """
 
     @overload
@@ -118,7 +118,7 @@ class DurationProperty(_model_base.Model):
     :vartype property: ~datetime.datetime
     """
 
-    property: Optional[datetime.datetime] = rest_field(name="property")
+    property: Optional[datetime.datetime] = rest_field()
     """Property. """
 
     @overload
@@ -152,9 +152,9 @@ class RequiredAndOptionalProperty(_model_base.Model):
     :vartype required_property: int
     """
 
-    optional_property: Optional[str] = rest_field(name="optionalProperty")
+    optional_property: Optional[str] = rest_field()
     """optional string property. """
-    required_property: int = rest_field(name="requiredProperty")
+    required_property: int = rest_field()
     """required int property. Required. """
 
     @overload
@@ -185,7 +185,7 @@ class StringProperty(_model_base.Model):
     :vartype property: str
     """
 
-    property: Optional[str] = rest_field(name="property")
+    property: Optional[str] = rest_field()
     """Property. """
 
     @overload

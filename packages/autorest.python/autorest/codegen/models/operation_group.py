@@ -82,7 +82,7 @@ class OperationGroup(BaseModel):
         # for multiapi
         if (
             self.code_model.model_types or self.code_model.enums
-        ) and self.code_model.options["models_mode"]:
+        ) and self.code_model.options["models_mode"] == "msrest":
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )

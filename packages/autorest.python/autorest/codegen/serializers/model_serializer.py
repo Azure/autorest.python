@@ -46,38 +46,6 @@ class _ModelSerializer(ABC):
             serializer=self,
         )
 
-    @staticmethod
-    def get_properties_to_initialize(model: ModelType) -> List[Property]:
-        if model.parents:
-            properties_to_initialize = list(
-                {
-                    p.client_name: p
-                    for bm in model.parents
-                    for p in model.properties
-                    if p not in cast(ModelType, bm).properties
-                    or p.is_discriminator
-                    or p.constant
-                }.values()
-            )
-        else:
-            properties_to_initialize = model.properties
-        return properties_to_initialize
-
-    @staticmethod
-    def get_properties_to_declare(model: ModelType) -> List[Property]:
-        if model.parents:
-            properties_to_declare = list(
-                {
-                    p.client_name: p
-                    for bm in model.parents
-                    for p in model.properties
-                    if p not in cast(ModelType, bm).properties
-                }.values()
-            )
-        else:
-            properties_to_declare = model.properties
-        return properties_to_declare
-
     @abstractmethod
     def declare_model(self, model: ModelType) -> str:
         ...
@@ -195,6 +163,23 @@ class MsrestModelSerializer(_ModelSerializer):
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
+    def get_properties_to_initialize(model: ModelType) -> List[Property]:
+        if model.parents:
+            properties_to_initialize = list(
+                {
+                    p.client_name: p
+                    for bm in model.parents
+                    for p in model.properties
+                    if p not in cast(ModelType, bm).properties
+                    or p.is_discriminator
+                    or p.constant
+                }.values()
+            )
+        else:
+            properties_to_initialize = model.properties
+        return properties_to_initialize
+
+    @staticmethod
     def declare_property(prop: Property) -> str:
         if prop.flattened_names:
             attribute_key = ".".join(
@@ -237,9 +222,30 @@ class DpgModelSerializer(_ModelSerializer):
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
+    def get_properties_to_initialize(model: ModelType) -> List[Property]:
+        if model.parents:
+            properties_to_declare = [
+                p
+                for bm in model.parents
+                for p in model.properties
+                if p not in cast(ModelType, bm).properties
+            ]
+
+        else:
+            properties_to_declare = model.properties
+        return [
+            p
+            for p in properties_to_declare
+            if (not p.is_discriminator or p.is_polymorphic)
+            and p.client_name != "_"  # "_" is anonymous property we won't generate
+        ]
+
+    @staticmethod
     def declare_property(prop: Property) -> List[str]:
         attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
-        args = [f'name="{attribute_key}"']
+        args = []
+        if prop.client_name != attribute_key:
+            f'name="{attribute_key}"'
         if prop.readonly:
             args.append("readonly=True")
         if prop.client_default_value is not None:
@@ -247,7 +253,7 @@ class DpgModelSerializer(_ModelSerializer):
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         ret = [
-            f'{prop.client_name}: {prop.type_annotation().replace("_models.", "")} ='
+            f"{prop.client_name}: {prop.type_annotation()} ="
             f' {field}({", ".join(args)})'
         ]
         comment = prop.description(is_operation_file=False).replace('"', '\\"')

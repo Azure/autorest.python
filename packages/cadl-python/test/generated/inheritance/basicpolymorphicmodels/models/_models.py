@@ -32,7 +32,7 @@ class BaseClass(_model_base.Model):
     :vartype base_class_property: str
     """
 
-    base_class_property: str = rest_field(name="baseClassProperty")
+    base_class_property: str = rest_field()
     """An example property. Required. """
 
     @overload
@@ -70,7 +70,7 @@ class BaseClassWithDiscriminator(BaseClass):
     """
 
     __mapping__ = {}
-    discriminator_property: str = rest_discriminator(name="discriminatorProperty")
+    discriminator_property: str = rest_discriminator()
     """Required. Default value is \"B\"."""
 
     @overload
@@ -166,7 +166,7 @@ class ModelWithPolymorphicProperty(_model_base.Model):
     :vartype polymorphic_property: ~basicpolymorphicmodels.models.BaseClassWithDiscriminator
     """
 
-    polymorphic_property: "BaseClassWithDiscriminator" = rest_field(name="polymorphicProperty")
+    polymorphic_property: "_models.BaseClassWithDiscriminator" = rest_field()
     """Example polymorphic type property. Required. """
 
     @overload

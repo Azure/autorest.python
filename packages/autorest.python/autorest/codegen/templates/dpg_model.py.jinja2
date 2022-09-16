@@ -27,16 +27,14 @@
     {% endif %}
     """
 
-    {% if model._is_polymorphic %}
+    {% if model.is_polymorphic %}
     __mapping__ = {}
     {% endif %}
-    {% if serializer.get_properties_to_declare(model) %}
-        {% for p in serializer.get_properties_to_declare(model) if not p.is_discriminator or p.is_polymorphic %}
+    {% for p in serializer.get_properties_to_initialize(model)%}
         {% for line in serializer.declare_property(p) %}
     {{ line }}
         {% endfor %}
-        {% endfor %}
-    {% endif %}
+    {% endfor %}
 
     {% if model.is_public and serializer.init_line(model) %}
     @overload

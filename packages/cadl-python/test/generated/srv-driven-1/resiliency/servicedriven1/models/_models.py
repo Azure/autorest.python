@@ -29,7 +29,7 @@ class Message(_model_base.Model):
     :vartype message: str
     """
 
-    message: str = rest_field(name="message")
+    message: str = rest_field()
     """Required. """
 
     @overload
@@ -61,7 +61,7 @@ class PostInput(_model_base.Model):
     :vartype url: str
     """
 
-    url: str = rest_field(name="url")
+    url: str = rest_field()
     """Required. """
 
     @overload

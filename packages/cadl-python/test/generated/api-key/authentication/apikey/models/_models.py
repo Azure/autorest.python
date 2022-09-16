@@ -33,9 +33,7 @@ class InvalidAuth(_model_base.Model):
     :vartype error: str
     """
 
-    _: int = rest_field(name="_")
-    """Required. Default value is 403."""
-    error: str = rest_field(name="error")
+    error: str = rest_field()
     """Required. """
 
     @overload

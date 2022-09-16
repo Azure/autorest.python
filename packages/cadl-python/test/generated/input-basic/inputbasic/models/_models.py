@@ -31,9 +31,9 @@ class InputModel(_model_base.Model):
     :vartype required_int: int
     """
 
-    required_string: str = rest_field(name="requiredString")
+    required_string: str = rest_field()
     """Required string, illustrating a reference type property. Required. """
-    required_int: int = rest_field(name="requiredInt")
+    required_int: int = rest_field()
     """Required int, illustrating a value type property. Required. """
 
     @overload

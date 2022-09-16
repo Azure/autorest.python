@@ -55,25 +55,25 @@ class OutputModel(_model_base.Model):
     :vartype optional_readonly_int_list: list[int]
     """
 
-    required_readonly_string: str = rest_field(name="requiredReadonlyString", readonly=True)
+    required_readonly_string: str = rest_field(readonly=True)
     """Required string, illustrating a readonly reference type property. Required. """
-    required_readonly_int: int = rest_field(name="requiredReadonlyInt", readonly=True)
+    required_readonly_int: int = rest_field(readonly=True)
     """Required int, illustrating a readonly value type property. Required. """
-    optional_readonly_string: Optional[str] = rest_field(name="optionalReadonlyString", readonly=True)
+    optional_readonly_string: Optional[str] = rest_field(readonly=True)
     """Optional string, illustrating a readonly reference type property. """
-    optional_readonly_int: Optional[int] = rest_field(name="optionalReadonlyInt", readonly=True)
+    optional_readonly_int: Optional[int] = rest_field(readonly=True)
     """Optional int, illustrating a readonly value type property. """
-    required_readonly_model: "ReadonlyModel" = rest_field(name="requiredReadonlyModel", readonly=True)
+    required_readonly_model: "_models.ReadonlyModel" = rest_field(readonly=True)
     """Required readonly model. Required. """
-    optional_readonly_model: Optional["ReadonlyModel"] = rest_field(name="optionalReadonlyModel", readonly=True)
+    optional_readonly_model: Optional["_models.ReadonlyModel"] = rest_field(readonly=True)
     """Optional readonly model. """
-    required_readonly_string_list: List[str] = rest_field(name="requiredReadonlyStringList", readonly=True)
+    required_readonly_string_list: List[str] = rest_field(readonly=True)
     """Required readonly string collection. Required. """
-    required_readonly_int_list: List[int] = rest_field(name="requiredReadonlyIntList", readonly=True)
+    required_readonly_int_list: List[int] = rest_field(readonly=True)
     """Required readonly int collection. Required. """
-    optional_readonly_string_list: Optional[List[str]] = rest_field(name="optionalReadonlyStringList", readonly=True)
+    optional_readonly_string_list: Optional[List[str]] = rest_field(readonly=True)
     """Optional readonly string collection. """
-    optional_readonly_int_list: Optional[List[int]] = rest_field(name="optionalReadonlyIntList", readonly=True)
+    optional_readonly_int_list: Optional[List[int]] = rest_field(readonly=True)
     """Optional readonly int collection. """
 
     def __init__(self, *args, **kwargs):
@@ -89,7 +89,7 @@ class ReadonlyModel(_model_base.Model):
     :vartype required_string: str
     """
 
-    required_string: str = rest_field(name="requiredString")
+    required_string: str = rest_field()
     """Required string. Required. """
 
     @overload
@@ -144,25 +144,25 @@ class RoundTripModel(_model_base.Model):
     :vartype optional_readonly_int_list: list[int]
     """
 
-    required_readonly_string: str = rest_field(name="requiredReadonlyString", readonly=True)
+    required_readonly_string: str = rest_field(readonly=True)
     """Required string, illustrating a readonly reference type property. Required. """
-    required_readonly_int: int = rest_field(name="requiredReadonlyInt", readonly=True)
+    required_readonly_int: int = rest_field(readonly=True)
     """Required int, illustrating a readonly value type property. Required. """
-    optional_readonly_string: Optional[str] = rest_field(name="optionalReadonlyString", readonly=True)
+    optional_readonly_string: Optional[str] = rest_field(readonly=True)
     """Optional string, illustrating a readonly reference type property. """
-    optional_readonly_int: Optional[int] = rest_field(name="optionalReadonlyInt", readonly=True)
+    optional_readonly_int: Optional[int] = rest_field(readonly=True)
     """Optional int, illustrating a readonly value type property. """
-    required_readonly_model: "ReadonlyModel" = rest_field(name="requiredReadonlyModel", readonly=True)
+    required_readonly_model: "_models.ReadonlyModel" = rest_field(readonly=True)
     """Required readonly model. Required. """
-    optional_readonly_model: Optional["ReadonlyModel"] = rest_field(name="optionalReadonlyModel", readonly=True)
+    optional_readonly_model: Optional["_models.ReadonlyModel"] = rest_field(readonly=True)
     """Optional readonly model. """
-    required_readonly_string_list: List[str] = rest_field(name="requiredReadonlyStringList", readonly=True)
+    required_readonly_string_list: List[str] = rest_field(readonly=True)
     """Required readonly string collection. Required. """
-    required_readonly_int_list: List[int] = rest_field(name="requiredReadonlyIntList", readonly=True)
+    required_readonly_int_list: List[int] = rest_field(readonly=True)
     """Required readonly int collection. Required. """
-    optional_readonly_string_list: Optional[List[str]] = rest_field(name="optionalReadonlyStringList", readonly=True)
+    optional_readonly_string_list: Optional[List[str]] = rest_field(readonly=True)
     """Optional readonly string collection. """
-    optional_readonly_int_list: Optional[List[int]] = rest_field(name="optionalReadonlyIntList", readonly=True)
+    optional_readonly_int_list: Optional[List[int]] = rest_field(readonly=True)
     """Optional readonly int collection. """
 
     def __init__(self, *args, **kwargs):

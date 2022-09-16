@@ -29,7 +29,7 @@ class Cat(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field(name="name")
+    name: str = rest_field()
     """Name. Required. """
 
     @overload
@@ -61,7 +61,7 @@ class Dog(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field(name="name")
+    name: str = rest_field()
     """Name. Required. """
 
     @overload

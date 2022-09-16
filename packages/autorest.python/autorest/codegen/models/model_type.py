@@ -83,7 +83,7 @@ class ModelType(
         return "object"
 
     @property
-    def _is_polymorphic(self) -> bool:
+    def is_polymorphic(self) -> bool:
         return any(p.is_polymorphic for p in self.properties)
 
     def type_annotation(self, **kwargs: Any) -> str:

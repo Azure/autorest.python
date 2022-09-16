@@ -197,7 +197,7 @@ class ParamsOperations:
 
         :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
-        :return: Message. This object is compatible with MutableMapping
+        :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven1.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -249,7 +249,7 @@ class ParamsOperations:
         :paramtype required_param: str
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :return: Message. This object is compatible with MutableMapping
+        :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven1.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -306,7 +306,7 @@ class ParamsOperations:
         :keyword content_type_path: Default value is "json". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype content_type_path: str
-        :return: Message. This object is compatible with MutableMapping
+        :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven1.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -326,7 +326,7 @@ class ParamsOperations:
         :keyword content_type_path: Default value is "json". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype content_type_path: str
-        :return: Message. This object is compatible with MutableMapping
+        :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven1.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -344,7 +344,7 @@ class ParamsOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: Message. This object is compatible with MutableMapping
+        :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven1.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -404,7 +404,7 @@ class ParamsOperations:
 
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :return: Message. This object is compatible with MutableMapping
+        :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven1.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
         """
