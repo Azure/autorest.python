@@ -43,6 +43,10 @@ parameters:
 jobs:
   - job: "AutoRest_Python_CI"
     displayName: "Run AutoRest CI Checks"
+    trigger:
+        paths:
+            include:
+                - autorest.python/packages/autorest.python/
 
     strategy:
       matrix:
@@ -255,6 +259,10 @@ jobs:
                 workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
   - job: "Cadl_Python_CI"
     displayName: "Run Cadl Python CI Checks"
+    trigger:
+        paths:
+            include:
+                - autorest.python/packages/cadl-python/
 
     strategy:
       matrix:
