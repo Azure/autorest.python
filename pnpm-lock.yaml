@@ -35,10 +35,10 @@ importers:
 
   packages/cadl-python:
     specifiers:
-      '@autorest/python': ~6.1.1
       '@azure-tools/cadl-azure-core': ~0.7.0
       '@azure-tools/cadl-ranch-expect': ~0.1.9
       '@azure-tools/cadl-ranch-specs': ~0.1.11
+      '@azure-tools/python-generator-core': workspace:*
       '@cadl-lang/compiler': ~0.35.0
       '@cadl-lang/eslint-config-cadl': ~0.4.1
       '@cadl-lang/openapi': ~0.12.0
@@ -55,7 +55,7 @@ importers:
       rimraf: ~3.0.2
       typescript: ^4.8.3
     dependencies:
-      '@autorest/python': link:../autorest.python
+      '@azure-tools/python-generator-core': link:../python-generator-core
       '@cadl-lang/compiler': 0.35.0
       js-yaml: 4.1.0
     devDependencies:
