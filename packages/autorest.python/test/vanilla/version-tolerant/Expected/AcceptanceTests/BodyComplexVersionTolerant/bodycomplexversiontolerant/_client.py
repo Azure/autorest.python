@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -25,10 +25,6 @@ from .operations import (
     PrimitiveOperations,
     ReadonlypropertyOperations,
 )
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class AutoRestComplexTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
