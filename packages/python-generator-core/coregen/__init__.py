@@ -55,9 +55,9 @@ class ReaderAndWriter:
     def list_file(self) -> List[str]:
         return [str(f) for f in self.output_folder.glob("**/*") if f.is_file()]
 
+
 class Plugin(ReaderAndWriter, ABC):
-    """A base class for a plugin.
-    """
+    """A base class for a plugin."""
 
     @abstractmethod
     def process(self) -> bool:
@@ -68,6 +68,7 @@ class Plugin(ReaderAndWriter, ABC):
         :raises Exception: Could raise any exception
         """
         raise NotImplementedError()
+
 
 class YamlUpdatePlugin(Plugin):
     """A plugin that update the YAML as input."""

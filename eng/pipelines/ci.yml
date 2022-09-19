@@ -333,3 +333,82 @@ jobs:
         displayName: Test tarball
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
 
+  - job: "Python_Generator_Core_CI"
+    displayName: "Run Python Generator COre CI Checks"
+
+    strategy:
+      matrix:
+        Linux_Python37:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.7"
+        Linux_Python310:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.10"
+
+    pool:
+      name: azsdk-pool-mms-ubuntu-2004-general
+      vmImage: $(OSVmImage)
+
+    steps:
+      - checkout: self
+      - checkout: azure-sdk-tools
+      - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
+        parameters:
+          TestProxy: true
+          templateRoot: azure-sdk-tools
+      - task: NodeTool@0
+        displayName: "Install Node.js $(NodeVersion)"
+        inputs:
+          versionSpec: "$(NodeVersion)"
+
+      - task: UsePythonVersion@0
+        displayName: "Use Python 3.7"
+        inputs:
+          versionSpec: 3.7
+
+      - script: |
+          npm install -g pnpm
+          pnpm install
+          pnpm run build
+          pnpm check-version-mismatch
+          pip install -r packages/python-generator-core/dev_requirements.txt
+        displayName: "Prepare Environment for Generation"
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
+      - script: |
+          pylint coregen
+        displayName: Pylint
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/python-generator-core/
+
+      - script: |
+          mypy coregen
+        displayName: Mypy
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/python-generator-core/
+      - script: |
+          black coregen
+        displayName: Black
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/python-generator-core/
+      - script: node ./eng/scripts/check-for-changed-files.js
+        displayName: Fail on black diff
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      - script: |
+          pytest test/unittests
+        displayName: Unit tests
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/python-generator-core/
+
+      - script: |
+          cd test/mock_api_tests
+          tox -e ci
+        displayName: 'Execute Mock API tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+
+      - script: |
+          npm pack
+          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+          cd ../../..
+          npm install $AbsolutePkgPath
+        displayName: Test tarball
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+

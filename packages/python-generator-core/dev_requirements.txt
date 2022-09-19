@@ -2,3 +2,6 @@ invoke
 colorama
 debugpy
 tox
+mypy
+black
+pylint

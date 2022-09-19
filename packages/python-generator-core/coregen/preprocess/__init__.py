@@ -351,6 +351,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         self.update_operation_groups(yaml_data)
         update_types(yaml_data["types"])
 
+
 if __name__ == "__main__":
     # CADL pipeline will call this
     args = parse_args()

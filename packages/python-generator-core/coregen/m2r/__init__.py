@@ -12,6 +12,7 @@ import m2r2
 from .. import YamlUpdatePlugin
 from ..utils import parse_args
 
+
 class MyRender(m2r2.RestRenderer):
     """Redefine the concept of inline HTML in the renderer, we don't want to define a new format
     in the description/summary.
@@ -54,6 +55,7 @@ class M2R(YamlUpdatePlugin):  # pylint: disable=abstract-method
             return m2r2.convert(string_to_convert, renderer=MyRender()).strip()
         except Exception:  # pylint: disable=broad-except
             return string_to_convert
+
 
 if __name__ == "__main__":
     # CADL pipeline will call this

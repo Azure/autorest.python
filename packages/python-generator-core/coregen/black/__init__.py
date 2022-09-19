@@ -45,6 +45,7 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
             pass
         self.write_file(file, file_content)
 
+
 if __name__ == "__main__":
     # CADL pipeline will call this
     args = parse_args(need_cadl_file=False)
