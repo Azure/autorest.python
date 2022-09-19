@@ -748,18 +748,18 @@ function emitType(
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
-                const value = emitType(program, option)["value"]
+                const value = emitType(program, option)["value"];
                 values.push({
                     description: "",
                     name: camelToSnakeCase(value).toUpperCase(),
                     value: value,
                 });
             }
-            const enumName = modelTypeProperty? capitalize(modelTypeProperty.name) + "Type": "MyEnum";
+            const enumName = modelTypeProperty ? capitalize(modelTypeProperty.name) + "Type" : "MyEnum";
             return {
                 name: enumName,
                 snakeCaseName: camelToSnakeCase(enumName),
-                description: modelTypeProperty? `Type of ${modelTypeProperty.name}.`: "n/a",
+                description: modelTypeProperty ? `Type of ${modelTypeProperty.name}.` : "n/a",
                 isPublic: false,
                 type: "enum",
                 valueType: emitType(program, type.options[0])["valueType"],
