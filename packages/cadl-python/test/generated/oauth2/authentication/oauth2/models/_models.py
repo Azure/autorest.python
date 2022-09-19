@@ -23,12 +23,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 class InvalidAuth(_model_base.Model):
     """InvalidAuth.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar _: Required. Default value is 403.
-    :vartype _: int
     :ivar error: Required.
     :vartype error: str
     """
