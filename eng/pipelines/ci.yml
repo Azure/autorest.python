@@ -399,16 +399,9 @@ jobs:
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/python-generator-core/
 
       - script: |
-          cd test/mock_api_tests
-          tox -e ci
-        displayName: 'Execute Mock API tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
-
-      - script: |
           npm pack
           AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
           cd ../../..
           npm install $AbsolutePkgPath
         displayName: Test tarball
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
-
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/python-generator-core/
