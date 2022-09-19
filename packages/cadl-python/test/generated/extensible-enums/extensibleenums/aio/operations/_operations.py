@@ -91,7 +91,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = _deserialize(None, response.json())
+            deserialized = response.json()
         else:
             deserialized = None
 
@@ -138,7 +138,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = _deserialize(None, response.json())
+            deserialized = response.json()
         else:
             deserialized = None
 

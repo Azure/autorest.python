@@ -74,12 +74,10 @@ class ModelType(
 
     @property
     def serialization_type(self) -> str:
-        if self.code_model.options["models_mode"]:
-            return (
-                self.name
-                if self.is_public
-                else f"{self.code_model.models_filename}.{self.name}"
-            )
+        if self.code_model.options["models_mode"] == "msrest":
+            return f"{'' if self.is_public else (self.code_model.models_filename + '.')}{self.name}"
+        if self.code_model.options["models_mode"] == "dpg":
+            return f"{'' if self.is_public else '_models.'}_models.{self.name}"
         return "object"
 
     @property

@@ -68,7 +68,7 @@ class HelloOperationsMixin(MixinABC):
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = _deserialize(None, response.json())
+            deserialized = response.json()
         else:
             deserialized = None
 

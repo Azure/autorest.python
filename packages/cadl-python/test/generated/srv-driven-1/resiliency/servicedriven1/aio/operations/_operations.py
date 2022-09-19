@@ -144,10 +144,7 @@ class ParamsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = _deserialize(_models.Message, response.json())
-        else:
-            deserialized = None
+        deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -200,10 +197,7 @@ class ParamsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = _deserialize(_models.Message, response.json())
-        else:
-            deserialized = None
+        deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -308,10 +302,7 @@ class ParamsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = _deserialize(_models.Message, response.json())
-        else:
-            deserialized = None
+        deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -360,10 +351,7 @@ class ParamsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = _deserialize(_models.Message, response.json())
-        else:
-            deserialized = None
+        deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})

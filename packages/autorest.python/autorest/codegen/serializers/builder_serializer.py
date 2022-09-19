@@ -967,18 +967,12 @@ class _OperationSerializer(
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
-            elif self.code_model.options["models_mode"] == "dpg":
-                deserializer = (
-                    None
-                    if not isinstance(response.type, ModelType)
-                    else f"_models.{response.type.name}"
-                )
-                retval.append(f"if response.content:")
+            elif self.code_model.options["models_mode"] == "dpg" and isinstance(
+                response.type, ModelType
+            ):
                 retval.append(
-                    f"    deserialized = _deserialize({deserializer}, response.json())"
+                    f"deserialized = _deserialize({response.serialization_type}, response.json())"
                 )
-                retval.append("else:")
-                retval.append(f"    deserialized = None")
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"
@@ -1268,12 +1262,9 @@ class _PagingOperationSerializer(
                 f'self._deserialize("{response.serialization_type}", pipeline_response)'
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            deserializer = (
-                f"_models.{response.type.name}"
-                if isinstance(response.type, ModelType)
-                else None
+            deserialized = (
+                f"_deserialize({response.serialization_type}, pipeline_response)"
             )
-            deserialized = f"_deserialize({deserializer}, pipeline_response)"
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name
         list_of_elem = (

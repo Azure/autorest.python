@@ -164,10 +164,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = _deserialize(_models.Product, response.json())
-        else:
-            deserialized = None
+        deserialized = _deserialize(_models.Product, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -281,10 +278,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = _deserialize(_models.Product, response.json())
-        else:
-            deserialized = None
+        deserialized = _deserialize(_models.Product, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -332,7 +326,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = _deserialize(_models.CustomPageProduct, pipeline_response)
+            deserialized = _deserialize(_models._models.CustomPageProduct, pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -398,10 +392,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = _deserialize(_models.LROProduct, response.json())
-        else:
-            deserialized = None
+        deserialized = _deserialize(_models.LROProduct, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
