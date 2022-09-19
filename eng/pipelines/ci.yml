@@ -16,7 +16,7 @@ resources:
       name: Azure/azure-sdk-tools
 
 variables:
-  NodeVersion: "14.x"
+  NodeVersion: "16.x"
   PythonVersion: "3.7"
   TestFolder: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/coverage/"
