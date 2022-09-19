@@ -12,11 +12,10 @@
     "build": "pnpm -r run build",
     "clean": "pnpm -r run clean",
     "lint": "pnpm -r run lint",
-    "format": "npm run -s prettier -- --write",
-    "check-format": "npm run -s prettier -- --check",
+    "format": "npx prettier **/*.ts --write",
+    "check-format": "npx prettier **/*.ts --check",
     "check-version-mismatch": "syncpack list-mismatches",
-    "fix-version-mismatch": "syncpack fix-mismatches",
-    "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
+    "fix-version-mismatch": "syncpack fix-mismatches"
   },
   "engines": {
     "node": ">=16.0.0",
