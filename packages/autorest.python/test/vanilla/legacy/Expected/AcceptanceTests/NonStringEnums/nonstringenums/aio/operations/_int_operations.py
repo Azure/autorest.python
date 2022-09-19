@@ -48,7 +48,7 @@ class IntOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs: Any) -> str:
+    async def put(self, input: Optional[Union[int, _models.IntEnum]] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
         :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
@@ -108,7 +108,7 @@ class IntOperations:
     put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Union[int, "_models.IntEnum"]:
+    async def get(self, **kwargs: Any) -> Union[int, _models.IntEnum]:
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -127,7 +127,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[int, "_models.IntEnum"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Union[int, _models.IntEnum]]
 
         request = build_get_request(
             template_url=self.get.metadata["url"],

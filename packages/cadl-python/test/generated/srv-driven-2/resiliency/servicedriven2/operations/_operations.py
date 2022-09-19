@@ -102,7 +102,7 @@ def build_params_put_required_optional_request(
 
 
 def build_params_post_parameters_request(
-    content_type_path: Union[str, "_models.ContentTypePathType"], **kwargs: Any
+    content_type_path: Union[str, _models.ContentTypePathType], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -356,7 +356,7 @@ class ParamsOperations:
     @overload
     def post_parameters(
         self,
-        content_type_path: Union[str, "_models.ContentTypePathType"],
+        content_type_path: Union[str, _models.ContentTypePathType],
         parameter: Union[_models.PostInput, JSON],
         *,
         content_type: str = "application/json",
@@ -380,7 +380,7 @@ class ParamsOperations:
     @overload
     def post_parameters(
         self,
-        content_type_path: Union[str, "_models.ContentTypePathType"],
+        content_type_path: Union[str, _models.ContentTypePathType],
         parameter: IO,
         *,
         content_type: str = "application/json",
@@ -404,7 +404,7 @@ class ParamsOperations:
     @distributed_trace
     def post_parameters(
         self,
-        content_type_path: Union[str, "_models.ContentTypePathType"],
+        content_type_path: Union[str, _models.ContentTypePathType],
         parameter: Union[_models.PostInput, JSON, IO],
         **kwargs: Any
     ) -> _models.Message:

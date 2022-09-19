@@ -42,7 +42,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_model_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> HttpRequest:
+def build_get_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -61,7 +61,7 @@ def build_get_model_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> HttpRequest:
+def build_post_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -101,7 +101,7 @@ def build_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_lro_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> HttpRequest:
+def build_lro_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -122,7 +122,7 @@ def build_lro_request(mode: Union[str, "_models.Mode"], **kwargs: Any) -> HttpRe
 
 class ResiliencyDevDrivenOperationsMixin(MixinABC):
     @distributed_trace
-    def get_model(self, mode: Union[str, "_models.Mode"], **kwargs: Any) -> _models.Product:
+    def get_model(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.Product:
         """Get models that you will either return to end users as a raw body, or with a model added during
         grow up.
 
@@ -174,7 +174,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
     @overload
     def post_model(
         self,
-        mode: Union[str, "_models.Mode"],
+        mode: Union[str, _models.Mode],
         input: Union[_models.Input, JSON],
         *,
         content_type: str = "application/json",
@@ -199,7 +199,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
     @overload
     def post_model(
-        self, mode: Union[str, "_models.Mode"], input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -220,7 +220,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
     @distributed_trace
     def post_model(
-        self, mode: Union[str, "_models.Mode"], input: Union[_models.Input, JSON, IO], **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -350,7 +350,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def lro(self, mode: Union[str, "_models.Mode"], **kwargs: Any) -> _models.LROProduct:
+    def lro(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.LROProduct:
         """Long running put request that will either return to end users a final payload of a raw body, or
         a final payload of a model after the SDK has grown up.
 

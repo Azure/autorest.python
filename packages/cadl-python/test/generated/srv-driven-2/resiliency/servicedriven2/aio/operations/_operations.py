@@ -235,7 +235,7 @@ class ParamsOperations:
     @overload
     async def post_parameters(
         self,
-        content_type_path: Union[str, "_models.ContentTypePathType"],
+        content_type_path: Union[str, _models.ContentTypePathType],
         parameter: Union[_models.PostInput, JSON],
         *,
         content_type: str = "application/json",
@@ -259,7 +259,7 @@ class ParamsOperations:
     @overload
     async def post_parameters(
         self,
-        content_type_path: Union[str, "_models.ContentTypePathType"],
+        content_type_path: Union[str, _models.ContentTypePathType],
         parameter: IO,
         *,
         content_type: str = "application/json",
@@ -283,7 +283,7 @@ class ParamsOperations:
     @distributed_trace_async
     async def post_parameters(
         self,
-        content_type_path: Union[str, "_models.ContentTypePathType"],
+        content_type_path: Union[str, _models.ContentTypePathType],
         parameter: Union[_models.PostInput, JSON, IO],
         **kwargs: Any
     ) -> _models.Message:

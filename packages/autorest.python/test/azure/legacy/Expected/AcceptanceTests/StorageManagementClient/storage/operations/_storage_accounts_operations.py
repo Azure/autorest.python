@@ -1176,7 +1176,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        key_name: Optional[Union[str, "_models.KeyName"]] = None,
+        key_name: Optional[Union[str, _models.KeyName]] = None,
         **kwargs: Any
     ) -> _models.StorageAccountKeys:
         """Regenerates the access keys for the specified storage account.

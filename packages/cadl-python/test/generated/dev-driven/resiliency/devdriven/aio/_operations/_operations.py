@@ -47,7 +47,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ResiliencyDevDrivenOperationsMixin(MixinABC):
     @distributed_trace_async
-    async def get_model(self, mode: Union[str, "_models.Mode"], **kwargs: Any) -> _models.Product:
+    async def get_model(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.Product:
         """Get models that you will either return to end users as a raw body, or with a model added during
         grow up.
 
@@ -99,7 +99,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
     @overload
     async def post_model(
         self,
-        mode: Union[str, "_models.Mode"],
+        mode: Union[str, _models.Mode],
         input: Union[_models.Input, JSON],
         *,
         content_type: str = "application/json",
@@ -124,7 +124,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
     @overload
     async def post_model(
-        self, mode: Union[str, "_models.Mode"], input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -145,7 +145,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
 
     @distributed_trace_async
     async def post_model(
-        self, mode: Union[str, "_models.Mode"], input: Union[_models.Input, JSON, IO], **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -275,7 +275,7 @@ class ResiliencyDevDrivenOperationsMixin(MixinABC):
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace_async
-    async def lro(self, mode: Union[str, "_models.Mode"], **kwargs: Any) -> _models.LROProduct:
+    async def lro(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.LROProduct:
         """Long running put request that will either return to end users a final payload of a raw body, or
         a final payload of a model after the SDK has grown up.
 
