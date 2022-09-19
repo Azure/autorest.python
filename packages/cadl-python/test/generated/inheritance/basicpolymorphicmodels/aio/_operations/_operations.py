@@ -121,7 +121,10 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.BaseClass, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.BaseClass, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -221,7 +224,10 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.ModelWithPolymorphicProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.ModelWithPolymorphicProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

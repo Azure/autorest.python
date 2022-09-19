@@ -118,7 +118,10 @@ class BooleanOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.BooleanProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.BooleanProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -269,7 +272,10 @@ class StringOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.StringProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.StringProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -420,7 +426,10 @@ class BytesOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.BytesProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.BytesProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -571,7 +580,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.IntProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.IntProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -722,7 +734,10 @@ class FloatOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.FloatProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.FloatProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -873,7 +888,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.DatetimeProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.DatetimeProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1024,7 +1042,10 @@ class DurationOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.DurationProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.DurationProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1175,7 +1196,10 @@ class EnumOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.EnumProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.EnumProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1326,7 +1350,10 @@ class ExtensibleEnumOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.ExtensibleEnumProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.ExtensibleEnumProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1481,7 +1508,10 @@ class ModelOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.ModelProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.ModelProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1633,7 +1663,10 @@ class CollectionsStringOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.CollectionsStringProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.CollectionsStringProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1788,7 +1821,10 @@ class CollectionsIntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.CollectionsIntProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.CollectionsIntProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1944,7 +1980,10 @@ class CollectionsModelOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.CollectionsModelProperty, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.CollectionsModelProperty, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

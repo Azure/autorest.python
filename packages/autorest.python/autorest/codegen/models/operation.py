@@ -471,13 +471,17 @@ class Operation(OperationBase[Response]):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."
-            file_import.add_submodule_import(
-                f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
-            )
-            file_import.add_submodule_import(
-                f"{relative_path}_model_base", "AzureJSONEncoder", ImportType.LOCAL
-            )
-            file_import.add_import("json", ImportType.STDLIB)
+            if self.parameters.has_body:
+                file_import.add_submodule_import(
+                    f"{relative_path}_model_base", "AzureJSONEncoder", ImportType.LOCAL
+                )
+                file_import.add_import("json", ImportType.STDLIB)
+            if self.default_error_deserialization or any(
+                [r.type for r in self.responses]
+            ):
+                file_import.add_submodule_import(
+                    f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
+                )
 
         return file_import
 

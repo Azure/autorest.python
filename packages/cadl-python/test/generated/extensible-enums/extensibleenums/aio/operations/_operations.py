@@ -90,7 +90,10 @@ class StringOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(None, response.json())
+        if response.content:
+            deserialized = _deserialize(None, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -134,7 +137,10 @@ class StringOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(None, response.json())
+        if response.content:
+            deserialized = _deserialize(None, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

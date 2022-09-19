@@ -973,9 +973,12 @@ class _OperationSerializer(
                     if not isinstance(response.type, ModelType)
                     else f"_models.{response.type.name}"
                 )
+                retval.append(f"if response.content:")
                 retval.append(
-                    f"deserialized = _deserialize({deserializer}, response.json())"
+                    f"    deserialized = _deserialize({deserializer}, response.json())"
                 )
+                retval.append("else:")
+                retval.append(f"    deserialized = None")
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"

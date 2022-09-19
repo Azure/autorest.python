@@ -213,7 +213,10 @@ class NestedModelsBasicOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.OutputModel, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.OutputModel, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -304,7 +307,10 @@ class NestedModelsBasicOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.RoundTripModel, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.RoundTripModel, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

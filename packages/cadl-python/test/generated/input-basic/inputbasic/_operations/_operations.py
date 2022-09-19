@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
+from .._model_base import AzureJSONEncoder
 from .._serialization import Serializer
 from .._vendor import MixinABC
 

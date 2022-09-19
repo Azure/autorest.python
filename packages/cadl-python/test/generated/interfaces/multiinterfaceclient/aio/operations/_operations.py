@@ -96,7 +96,10 @@ class DogsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Dog, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.Dog, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -185,7 +188,10 @@ class DogsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Dog, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.Dog, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -247,7 +253,10 @@ class CatsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Cat, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.Cat, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -336,7 +345,10 @@ class CatsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Cat, response.json())
+        if response.content:
+            deserialized = _deserialize(_models.Cat, response.json())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
