@@ -97,8 +97,7 @@ class ModelType(
 
     def docstring_type(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
-            ret = f"~{self.code_model.namespace}.models.{self.name}"
-            return ret
+            return f"~{self.code_model.namespace}.models.{self.name}"
         return "ET.Element" if self.is_xml else "JSON"
 
     def description(self, *, is_operation_file: bool = False) -> str:
