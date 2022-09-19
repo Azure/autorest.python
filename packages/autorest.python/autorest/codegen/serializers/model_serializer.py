@@ -233,11 +233,12 @@ class DpgModelSerializer(_ModelSerializer):
 
         else:
             properties_to_declare = model.properties
+        if any(p for p in properties_to_declare if p.client_name == "_"):
+            raise ValueError("We do not generate anonymous properties")
         return [
             p
             for p in properties_to_declare
             if (not p.is_discriminator or p.is_polymorphic)
-            and p.client_name != "_"  # "_" is anonymous property we won't generate
         ]
 
     @staticmethod
