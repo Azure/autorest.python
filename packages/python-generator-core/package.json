@@ -21,12 +21,9 @@
         "generator/**/*.py",
         "generator/**/*.jinja2",
         "setup.py",
-        "install.py",
-        "prepare.py",
-        "start.py",
-        "venvtools.py",
         "run-python3.js",
         "requirements.txt",
+        "dev_requirements.txt",
         "run.py"
     ]
 }

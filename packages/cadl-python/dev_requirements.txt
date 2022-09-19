@@ -1,4 +1,0 @@
-invoke
-colorama
-debugpy
-tox

@@ -20,7 +20,7 @@ if __name__ == "__main__":
     venv_context = env_builder.ensure_directories(venv_path)
 
     # run m2r
-    python_run(venv_context, "generator.m2r.__init__", command=sys.argv[1:])
-    python_run(venv_context, "generator.preprocess.__init__", command=sys.argv[1:])
-    python_run(venv_context, "generator.codegen.__init__", command=sys.argv[1:])
-    python_run(venv_context, "generator.black.__init__", command=sys.argv[1:])
+    python_run(venv_context, "coregen.m2r.__init__", command=sys.argv[1:])
+    python_run(venv_context, "coregen.preprocess.__init__", command=sys.argv[1:])
+    python_run(venv_context, "coregen.codegen.__init__", command=sys.argv[1:])
+    python_run(venv_context, "coregen.black.__init__", command=sys.argv[1:])
