@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 
 from .utils import add_to_pylint_disable
 from .base_type import BaseType
+from .constant_type import ConstantType
 from .property import Property
 from .imports import FileImport, ImportType, TypingSection
 
@@ -32,7 +33,9 @@ def _get_properties(type: "ModelType", properties: List[Property]) -> List[Prope
     return properties
 
 
-class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
+class ModelType(
+    BaseType
+):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Represents a class ready to be serialized in Python.
 
     :param str name: The name of the class.
@@ -71,13 +74,15 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
 
     @property
     def serialization_type(self) -> str:
-        if self.code_model.options["models_mode"]:
-            return (
-                self.name
-                if self.is_public
-                else f"{self.code_model.models_filename}.{self.name}"
-            )
+        if self.code_model.options["models_mode"] == "msrest":
+            return f"{'' if self.is_public else (self.code_model.models_filename + '.')}{self.name}"
+        if self.code_model.options["models_mode"] == "dpg":
+            return f"{'' if self.is_public else '_models.'}_models.{self.name}"
         return "object"
+
+    @property
+    def is_polymorphic(self) -> bool:
+        return any(p.is_polymorphic for p in self.properties)
 
     def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"]:
@@ -230,9 +235,25 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return None
 
     @property
+    def discriminator_property(self) -> Optional[Property]:
+        try:
+            return next(
+                p
+                for p in self.properties
+                if p.is_discriminator
+                and isinstance(p.type, ConstantType)
+                and p.type.value == self.discriminator_value
+            )
+        except StopIteration:
+            return None
+
+    @property
     def instance_check_template(self) -> str:
-        if self.code_model.options["models_mode"]:
+        models_mode = self.code_model.options["models_mode"]
+        if models_mode == "msrest":
             return "isinstance({}, msrest.Model)"
+        if models_mode == "dpg":
+            return "isinstance({}, _model_base.Model)"
         return "isinstance({}, MutableMapping)"
 
     @property
@@ -257,7 +278,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return file_import
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL

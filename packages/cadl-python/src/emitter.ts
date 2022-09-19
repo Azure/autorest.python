@@ -183,6 +183,9 @@ function getType(
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
+                if (isStatusCode(program, property)) {
+                    continue;
+                }
                 newValue.properties.push(emitProperty(program, property));
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
@@ -748,16 +751,18 @@ function emitType(
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
+                const value = emitType(program, option)["value"];
                 values.push({
                     description: "",
-                    name: "n/a",
-                    value: emitType(program, option)["value"],
+                    name: camelToSnakeCase(value).toUpperCase(),
+                    value: value,
                 });
             }
+            const enumName = modelTypeProperty ? capitalize(modelTypeProperty.name) + "Type" : "MyEnum";
             return {
-                name: "MyEnum",
-                snakeCaseName: "my_enum",
-                description: "n/a",
+                name: enumName,
+                snakeCaseName: camelToSnakeCase(enumName),
+                description: modelTypeProperty ? `Type of ${modelTypeProperty.name}.` : "n/a",
                 isPublic: false,
                 type: "enum",
                 valueType: emitType(program, type.options[0])["valueType"],

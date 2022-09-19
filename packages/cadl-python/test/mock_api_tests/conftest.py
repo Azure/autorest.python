@@ -13,9 +13,9 @@ def start_server_process():
     path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
     os.chdir(path.resolve())
     cmd = "cadl-ranch serve ./http"
-    if os.name == "nt":  # on windows, subprocess creation works without being in the shell
-        return subprocess.Popen(cmd)
-    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid) #On linux, have to set shell=True
+    if os.name == "nt":
+        return subprocess.Popen(cmd, shell=True)
+    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
 
 def terminate_server_process(process):
     if os.name == 'nt':

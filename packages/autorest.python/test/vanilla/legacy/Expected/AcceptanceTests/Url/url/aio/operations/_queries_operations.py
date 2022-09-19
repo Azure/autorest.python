@@ -1062,7 +1062,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
+        self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
@@ -1114,7 +1114,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def enum_null(  # pylint: disable=inconsistent-return-statements
-        self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
+        self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 

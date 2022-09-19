@@ -4,19 +4,17 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Union
+from typing import Dict, Any, Union, cast
 from pathlib import Path
 import yaml
 
+_LOGGER = logging.getLogger(__name__)
 
 from ..jsonrpc import AutorestAPI
 from .. import PluginAutorest, ReaderAndWriterAutorest
 from coregen.codegen import CodeGenerator
 from coregen.codegen.serializers import JinjaSerializer
 from coregen.codegen.models import CodeModel
-
-_LOGGER = logging.getLogger(__name__)
-
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
     def __init__(
@@ -29,6 +27,7 @@ class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
         super().__init__(
             autorestapi=autorestapi, code_model=code_model, output_folder=output_folder
         )
+
 
 class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
@@ -48,15 +47,20 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
                 "this to False because we no longer reformat initial query parameters into next "
                 "calls unless explicitly defined in the service definition."
             )
+        version_tolerant = self._autorestapi.get_boolean_value(
+            "version-tolerant", True
+        )
+        low_level_client = self._autorestapi.get_boolean_value(
+            "low-level-client", False
+        )
+        models_mode_default = (
+            "none" if low_level_client or version_tolerant else "msrest"
+        )
         options = {
             "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
             "header-text": self._autorestapi.get_value("header-text"),
-            "low-level-client": self._autorestapi.get_boolean_value(
-                "low-level-client", False
-            ),
-            "version-tolerant": self._autorestapi.get_boolean_value(
-                "version-tolerant", True
-            ),
+            "low-level-client": low_level_client,
+            "version-tolerant": version_tolerant,
             "show-operations": self._autorestapi.get_boolean_value("show-operations"),
             "python3-only": self._autorestapi.get_boolean_value("python3-only"),
             "head-as-boolean": self._autorestapi.get_boolean_value(
@@ -78,7 +82,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             "tracing": self._autorestapi.get_boolean_value("trace"),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic-examples": self._autorestapi.get_value("polymorphic-examples"),
-            "models-mode": self._autorestapi.get_value("models-mode"),
+            "models-mode": self._autorestapi.get_value("models-mode") or models_mode_default,
             "builders-visibility": self._autorestapi.get_value("builders-visibility"),
             "show-send-request": self._autorestapi.get_boolean_value(
                 "show-send-request"

@@ -1764,7 +1764,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     put_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
-    async def get_enum_valid(self, **kwargs: Any) -> List[Union[str, "_models.FooEnum"]]:
+    async def get_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.FooEnum]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1783,7 +1783,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, "_models.FooEnum"]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, _models.FooEnum]]]
 
         request = build_get_enum_valid_request(
             template_url=self.get_enum_valid.metadata["url"],
@@ -1815,7 +1815,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Union[str, "_models.FooEnum"]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: List[Union[str, _models.FooEnum]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1849,7 +1849,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[Union[str, "_models.FooEnum"]], IO], **kwargs: Any
+        self, array_body: Union[List[Union[str, _models.FooEnum]], IO], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1913,7 +1913,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     put_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
-    async def get_string_enum_valid(self, **kwargs: Any) -> List[Union[str, "_models.Enum0"]]:
+    async def get_string_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.Enum0]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1932,7 +1932,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, "_models.Enum0"]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, _models.Enum0]]]
 
         request = build_get_string_enum_valid_request(
             template_url=self.get_string_enum_valid.metadata["url"],
@@ -1964,7 +1964,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Union[str, "_models.Enum1"]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: List[Union[str, _models.Enum1]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1998,7 +1998,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[Union[str, "_models.Enum1"]], IO], **kwargs: Any
+        self, array_body: Union[List[Union[str, _models.Enum1]], IO], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 

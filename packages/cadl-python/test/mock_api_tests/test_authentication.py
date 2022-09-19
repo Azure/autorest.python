@@ -8,7 +8,6 @@ from azure.core.credentials import AzureKeyCredential, AccessToken
 from azure.core.exceptions import HttpResponseError
 from authentication.apikey import AuthenticationApiKey
 from authentication.oauth2 import AuthenticationOAuth2
-import json
 
 @pytest.fixture
 def api_key_client():

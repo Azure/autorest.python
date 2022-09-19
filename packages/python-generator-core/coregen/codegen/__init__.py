@@ -44,9 +44,9 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "or 'embedded'"
         )
 
-    if options["models_mode"] not in ["msrest", "none"]:
+    if options["models_mode"] not in ["msrest", "dpg", "none"]:
         raise ValueError(
-            "--models-mode can only be 'msrest' or 'none'. "
+            "--models-mode can only be 'msrest', 'dpg' or 'none'. "
             "Pass in 'msrest' if you want msrest models, or "
             "'none' if you don't want any."
         )
@@ -162,7 +162,7 @@ class CodeGenerator(Plugin):
         return code_model
 
     def _build_code_model_options(self) -> Dict[str, Any]:
-        """Build an options dict from the user input while running."""
+        """Build an options dict from the user input while running autorest."""
         azure_arm = self.options.get("azure-arm", False)
         license_header = self.options.get("header-text", DEFAULT_HEADER_TEXT)
         if license_header:
@@ -176,9 +176,6 @@ class CodeGenerator(Plugin):
         low_level_client = cast(bool, self.options.get("low-level-client", False))
         version_tolerant = cast(bool, self.options.get("version-tolerant", True))
         show_operations = self.options.get("show-operations", not low_level_client)
-        models_mode_default = (
-            "none" if low_level_client or version_tolerant else "msrest"
-        )
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -194,7 +191,7 @@ class CodeGenerator(Plugin):
             "tracing": self.options.get("tracing", show_operations),
             "multiapi": self.options.get("multiapi", False),
             "polymorphic_examples": self.options.get("polymorphic-examples", 5),
-            "models_mode": self.options.get("models-mode", models_mode_default).lower(),
+            "models_mode": self.options.get("models-mode", "dpg").lower(),
             "builders_visibility": self.options.get("builders-visibility"),
             "show_operations": show_operations,
             "show_send_request": self.options.get(
