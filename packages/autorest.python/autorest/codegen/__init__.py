@@ -4,17 +4,19 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Union, cast
+from typing import Dict, Any, Union
 from pathlib import Path
 import yaml
 
-_LOGGER = logging.getLogger(__name__)
-
-from ..jsonrpc import AutorestAPI
-from .. import PluginAutorest, ReaderAndWriterAutorest
 from coregen.codegen import CodeGenerator
 from coregen.codegen.serializers import JinjaSerializer
 from coregen.codegen.models import CodeModel
+
+
+from ..jsonrpc import AutorestAPI
+from .. import PluginAutorest, ReaderAndWriterAutorest
+
+_LOGGER = logging.getLogger(__name__)
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
     def __init__(

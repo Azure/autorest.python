@@ -48,7 +48,7 @@ class PluginAutorest(Plugin, ReaderAndWriterAutorest):
         """Get the options bag using the AutorestAPI that we send to the parent plugin"""
 
 
-class YamlUpdatePluginAutorest(
+class YamlUpdatePluginAutorest(  # pylint: disable=abstract-method
     YamlUpdatePlugin, PluginAutorest
 ):
     def get_yaml(self) -> Dict[str, Any]:
