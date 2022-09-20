@@ -22,12 +22,10 @@ importers:
 
   packages/autorest.python:
     specifiers:
-      '@autorest/system-requirements': ~1.0.0
       '@azure-tools/python-generator-core': workspace:*
       '@microsoft.azure/autorest.testserver': ^3.3.38
       typescript: ^4.8.3
     dependencies:
-      '@autorest/system-requirements': 1.0.0
       '@azure-tools/python-generator-core': link:../python-generator-core
     devDependencies:
       '@microsoft.azure/autorest.testserver': 3.3.38
@@ -80,15 +78,6 @@ importers:
     specifiers: {}
 
 packages:
-
-  /@autorest/system-requirements/1.0.0:
-    resolution: {integrity: sha512-d+lN/hfUNlOOpdCS72Kh9uJHcKxikriaHqtWLfh4jpcjzggdnmSM78XTa41PtgQ0YUzaNfiiGAsLEPE2HUDk4Q==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      '@azure/logger': 1.0.3
-      command-exists: 1.2.9
-      semver: 7.3.7
-    dev: false
 
   /@azure-tools/cadl-azure-core/0.7.0_hwxydnmfmbbljm4krsocnj5vz4:
     resolution: {integrity: sha512-rl94XppY4Z6Eg9W/h9MEHo/mITQWsA32uSrtGh0nhGMOVAoQwp0OU0vIivI4oGNdc0tfnFYKUXoFAfEJcrCEBw==}
@@ -247,6 +236,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       tslib: 2.4.0
+    dev: true
 
   /@azure/storage-blob/12.11.0:
     resolution: {integrity: sha512-na+FisoARuaOWaHWpmdtk3FeuTWf2VWamdJ9/TJJzj5ZdXPLC3juoDgFs6XVuJIoK30yuBpyFBEDXVRK4pB7Tg==}
@@ -1073,10 +1063,6 @@ packages:
     dependencies:
       delayed-stream: 1.0.0
     dev: true
-
-  /command-exists/1.2.9:
-    resolution: {integrity: sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==}
-    dev: false
 
   /commander/9.3.0:
     resolution: {integrity: sha512-hv95iU5uXPbK83mjrJKuZyFM/LBAoCV/XhVGkS5Je6tl7sxr6A0ITMw5WoRV46/UaJ46Nllm3Xt7IaJhXTIkzw==}
@@ -2588,6 +2574,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: true
 
   /make-dir/3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -3285,6 +3272,7 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
 
   /send/0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
@@ -3946,6 +3934,7 @@ packages:
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+    dev: true
 
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}

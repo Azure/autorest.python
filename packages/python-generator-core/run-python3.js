@@ -18,8 +18,7 @@ const tryPython = async (requirement, command, additionalArgs = []) => {
     try {
         const result = await (0, exec_cmd_1.execute)(command, [...additionalArgs, "-c", PRINT_PYTHON_VERSION_SCRIPT]);
         return (0, version_1.validateVersionRequirement)(resolution, result.stdout.trim(), requirement);
-    }
-    catch (e) {
+    } catch (e) {
         return {
             error: true,
             ...resolution,
@@ -43,10 +42,19 @@ const createPythonErrorMessage = (requirement, errors) => {
     };
 };
 
+/**
+ * Returns the path to the executable as asked in the requirement.
+ * @param requirement System requirement definition.
+ * @returns If the requirement provide an environment variable for the path returns the value of that environment variable. undefined otherwise.
+ */
+const getExecutablePath = (requirement) =>
+    requirement.environmentVariable && process.env[requirement.environmentVariable];
+
 const resolvePythonRequirement = async (requirement) => {
     var _a;
     // Hardcoding AUTOREST_PYTHON_EXE is for backward compatibility
-    const path = (_a = (0, common_1.getExecutablePath)(requirement)) !== null && _a !== void 0 ? _a : process.env["AUTOREST_PYTHON_EXE"];
+    const path =
+        (_a = (0, getExecutablePath)(requirement)) !== null && _a !== void 0 ? _a : process.env["AUTOREST_PYTHON_EXE"];
     if (path) {
         return await tryPython(requirement, path);
     }
@@ -56,23 +64,20 @@ const resolvePythonRequirement = async (requirement) => {
         const pyResult = await tryPython(requirement, "py", ["-3"]);
         if ("error" in pyResult) {
             errors.push(pyResult);
-        }
-        else {
+        } else {
             return pyResult;
         }
     }
     const python3Result = await tryPython(requirement, "python3");
     if ("error" in python3Result) {
         errors.push(python3Result);
-    }
-    else {
+    } else {
         return python3Result;
     }
     const pythonResult = await tryPython(requirement, "python");
     if ("error" in pythonResult) {
         errors.push(pythonResult);
-    }
-    else {
+    } else {
         return pythonResult;
     }
     return createPythonErrorMessage(requirement, errors);
