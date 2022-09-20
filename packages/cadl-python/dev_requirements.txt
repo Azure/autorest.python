@@ -1,0 +1,1 @@
+-r ./node_modules/@azure-tools/python-generator-core/dev_requirements.txt

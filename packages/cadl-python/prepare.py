@@ -26,7 +26,7 @@ def main():
     env_builder = venv.EnvBuilder(with_pip=True)
     venv_context = env_builder.ensure_directories(venv_path)
 
-    python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/node_modules/@azure-tools/python-generator-core/dev_requirements.txt"])
+    python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/dev_requirements.txt"])
 
 if __name__ == "__main__":
     main()
