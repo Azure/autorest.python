@@ -322,7 +322,7 @@ jobs:
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
         continueOnError: true
 
-      - task: PublishCoverage
+      - task: PublishBuildArtifacts@1
         inputs:
             pathToPublish:  $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
             ArtifactName: cadl-ranch-coverage-python.json
