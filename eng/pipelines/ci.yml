@@ -324,6 +324,7 @@ jobs:
 
       - publish: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
         artifact: CoverageReport
+        name: cadl-ranch-coverage-python.json
 
       - script: |
           npm pack
