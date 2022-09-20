@@ -12,11 +12,10 @@
     "build": "pnpm -r run build",
     "clean": "pnpm -r run clean",
     "lint": "pnpm -r run lint",
-    "format": "npm run -s prettier -- --write",
-    "check-format": "npm run -s prettier -- --check",
+    "format": "npx prettier **/*.ts --write",
+    "check-format": "npx prettier **/*.ts --check",
     "check-version-mismatch": "syncpack list-mismatches",
-    "fix-version-mismatch": "syncpack fix-mismatches",
-    "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
+    "fix-version-mismatch": "syncpack fix-mismatches"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -34,7 +33,7 @@
   "homepage": "https://github.com/Azure/autorest.python#readme",
   "devDependencies": {
     "@cadl-lang/prettier-plugin-cadl": "^0.5.15",
-    "eslint": "^8.20.0",
+    "eslint": "^8.23.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-unicorn": "^43.0.2",
     "prettier": "^2.7.1",

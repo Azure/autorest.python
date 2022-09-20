@@ -224,7 +224,7 @@ jobs:
       - script: |
           npm pack
           AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
-          cd ..
+          cd ../../..
           npm install $AbsolutePkgPath
         displayName: "Test tarball"
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
@@ -287,25 +287,49 @@ jobs:
         displayName: "Use Python 3.7"
         inputs:
           versionSpec: 3.7
+
       - script: |
           npm install -g pnpm
           npm install -g @cadl-lang/compiler
+          npm install -g @azure-tools/cadl-ranch
           pnpm install
           pnpm run build
           pnpm check-version-mismatch
           pip install -r packages/cadl-python/dev_requirements.txt
         displayName: "Prepare Environment for Generation"
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      - script: |
-          inv regenerate
+
+      - script: pnpm check-format
+        displayName: Check formatting
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
+      - script: inv regenerate
         displayName: 'Regenerate Code'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+
       - script: node ./eng/scripts/check-for-changed-files.js
         displayName: Fail on regeneration diff
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
       - script: |
           cd test/mock_api_tests
           tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
+
+      - script: cadl-ranch check-coverage http/
+        displayName: 'Check Coverage'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+        continueOnError: true
+
+      - publish: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
+        artifact: CoverageReport
+
+      - script: |
+          npm pack
+          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+          cd ../../..
+          npm install $AbsolutePkgPath
+        displayName: Test tarball
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
 

@@ -4,5 +4,9 @@
 
 {{ imports }}
 {% for model in code_model.model_types %}
-{% include "model.py.jinja2" %}
+{% if code_model.options["models_mode"] == "dpg" %}
+{% include "model_dpg.py.jinja2" %}
+{% else %}
+{% include "model_msrest.py.jinja2" %}
+{% endif %}
 {% endfor %}

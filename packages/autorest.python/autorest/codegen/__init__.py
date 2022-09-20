@@ -44,9 +44,9 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "or 'embedded'"
         )
 
-    if options["models_mode"] not in ["msrest", "none"]:
+    if options["models_mode"] not in ["msrest", "dpg", "none"]:
         raise ValueError(
-            "--models-mode can only be 'msrest' or 'none'. "
+            "--models-mode can only be 'msrest', 'dpg' or 'none'. "
             "Pass in 'msrest' if you want msrest models, or "
             "'none' if you don't want any."
         )
@@ -179,6 +179,8 @@ class CodeGenerator(Plugin):
         models_mode_default = (
             "none" if low_level_client or version_tolerant else "msrest"
         )
+        if self.options.get("cadl_file") is not None:
+            models_mode_default = "dpg"
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,

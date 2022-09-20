@@ -167,10 +167,10 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
     if (type.kind === "Model" && !type.name) {
         const effective = getEffectiveModelType(program, type, isSchemaProperty);
         if (effective.name) {
-          return effective;
+            return effective;
         }
-      }
-      return type;
+    }
+    return type;
 }
 
 function getType(
@@ -192,6 +192,9 @@ function getType(
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
+                if (isStatusCode(program, property)) {
+                    continue;
+                }
                 newValue.properties.push(emitProperty(program, property));
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
@@ -240,7 +243,12 @@ function emitParamBase(program: Program, parameter: ModelProperty | Type): Recor
     };
 }
 
-function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperationParameters, operation: OperationDetails): Record<string, any> {
+function emitBodyParameter(
+    program: Program,
+    bodyType: Type,
+    params: HttpOperationParameters,
+    operation: OperationDetails,
+): Record<string, any> {
     const base = emitParamBase(program, params.bodyParameter ?? bodyType);
     const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
     const contentTypes = contentTypeParam
@@ -258,7 +266,11 @@ function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperati
 
     // avoid anonymous model type
     if (type && !type.name) {
-        type.name = operation.container.name + operation.operation.name[0].toUpperCase() + operation.operation.name.slice(1) + "Request";
+        type.name =
+            operation.container.name +
+            operation.operation.name[0].toUpperCase() +
+            operation.operation.name.slice(1) +
+            "Request";
         type.snakeCaseName = camelToSnakeCase(type.name);
     }
 
@@ -340,7 +352,7 @@ function getConstantType(key: string): Record<string, any> {
         value: key,
         valueType: KnownTypes.string,
         xmlMetadata: {},
-    }
+    };
     simpleTypesMap.set(key, type);
     return type;
 }
@@ -390,7 +402,7 @@ function emitResponse(
         // temporary logic. It can be removed after compiler optimize the response
         const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
         const originType = innerResponse.body.type as Model;
-        if (innerResponse.body.type.kind == "Model" && candidate.find(e => e === originType.name)) {
+        if (innerResponse.body.type.kind == "Model" && candidate.find((e) => e === originType.name)) {
             const modelType = getEffectiveSchemaType(program, originType);
             type = getType(program, modelType);
         } else {
@@ -539,11 +551,7 @@ function emitString(program: Program, modelTypeProperty: ModelProperty | undefin
     return { minLength, maxLength, pattern, type: "string" };
 }
 
-function emitNumber(
-    type: string,
-    program: Program,
-    modelTypeProperty: ModelProperty | undefined,
-): Record<string, any> {
+function emitNumber(type: string, program: Program, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
     let minimum = undefined;
     let maximum = undefined;
     if (modelTypeProperty) {
@@ -600,11 +608,7 @@ function getName(program: Program, type: Model): string {
     }
 }
 
-function emitModel(
-    program: Program,
-    type: Model,
-    modelTypeProperty: ModelProperty | undefined,
-): Record<string, any> {
+function emitModel(program: Program, type: Model, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
     if (type.indexer) {
         if (isNeverType(type.indexer.key)) {
         } else {
@@ -745,7 +749,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
             for (const scope of flow.scopes) {
                 credential_type.policy.credentialScopes.push(scope.value);
             }
-            credential_type.policy.credentialScopes.push()
+            credential_type.policy.credentialScopes.push();
         }
     } else if (auth.type === "apiKey") {
         credential_type = {
@@ -780,16 +784,18 @@ function emitType(
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
+                const value = emitType(program, option)["value"];
                 values.push({
                     description: "",
-                    name: "n/a",
-                    value: emitType(program, option)["value"],
+                    name: camelToSnakeCase(value).toUpperCase(),
+                    value: value,
                 });
             }
+            const enumName = modelTypeProperty ? capitalize(modelTypeProperty.name) + "Type" : "MyEnum";
             return {
-                name: "MyEnum",
-                snakeCaseName: "my_enum",
-                description: "n/a",
+                name: enumName,
+                snakeCaseName: camelToSnakeCase(enumName),
+                description: modelTypeProperty ? `Type of ${modelTypeProperty.name}.` : "n/a",
                 isPublic: false,
                 type: "enum",
                 valueType: emitType(program, type.options[0])["valueType"],
@@ -932,7 +938,7 @@ function emitApiVersionParam(program: Program): Record<string, any> | undefined 
             inOverload: false,
             inOverridden: false,
             type: getConstantType(version),
-        }
+        };
     }
     return undefined;
 }
@@ -956,7 +962,7 @@ function getApiVersions(program: Program, namespace: Namespace) {
         return;
     }
     for (const version of versions.getVersions()) {
-        apiVersions.push(version.value)
+        apiVersions.push(version.value);
     }
 }
 
@@ -983,11 +989,7 @@ function createYamlEmitter(program: Program) {
             apiVersions: [],
         },
         operationGroups: emitOperationGroups(program),
-        types: [
-            ...typesMap.values(),
-            ...Object.values(KnownTypes),
-            ...simpleTypesMap.values(),
-        ],
+        types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
     };
     return codeModel;
 }

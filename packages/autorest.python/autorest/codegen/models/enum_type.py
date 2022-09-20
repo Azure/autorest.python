@@ -107,10 +107,12 @@ class EnumType(BaseType):
         :rtype: str
         """
         if self.code_model.options["models_mode"]:
-            return (
-                f"Union[{self.value_type.type_annotation(**kwargs)},"
-                f' "_models.{self.name}"]'
-            )
+            model_name = f"_models.{self.name}"
+            # we don't need quoted annotation in operation files, and need it in model folder files.
+            if not kwargs.get("is_operation_file", False):
+                model_name = f'"{model_name}"'
+
+            return f"Union[{self.value_type.type_annotation(**kwargs)}, {model_name}]"
         return self.value_type.type_annotation(**kwargs)
 
     def get_declaration(self, value: Any) -> str:

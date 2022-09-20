@@ -398,7 +398,7 @@ def build_string_null_request(*, string_query: Optional[str] = None, **kwargs: A
 
 
 def build_enum_valid_request(
-    *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
+    *, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -418,9 +418,7 @@ def build_enum_valid_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_enum_null_request(
-    *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
-) -> HttpRequest:
+def build_enum_null_request(*, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -1702,7 +1700,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
+        self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
@@ -1754,7 +1752,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def enum_null(  # pylint: disable=inconsistent-return-statements
-        self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
+        self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 
