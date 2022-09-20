@@ -6,12 +6,12 @@
 //
 // Invoke it like so: "node run-python3.js script.py"
 
-const cp = require("child_process");
-const extension = require("@autorest/system-requirements");
+import { execSync } from "child_process";
+import {patchPythonPath} from "@autorest/system-requirements"
 
 async function runPython3(scriptName, ...args) {
-  const command = await extension.patchPythonPath(["python", scriptName, ...args], { version: ">=3.7", environmentVariable: "AUTOREST_PYTHON_EXE" });
-  cp.execSync(command.join(" "), {
+  const command = await patchPythonPath(["python", scriptName, ...args], { version: ">=3.7", environmentVariable: "AUTOREST_PYTHON_EXE" });
+  execSync(command.join(" "), {
     stdio: [0, 1, 2]
   });
 }

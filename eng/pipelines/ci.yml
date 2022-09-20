@@ -334,7 +334,7 @@ jobs:
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
 
   - job: "Python_Generator_Core_CI"
-    displayName: "Run Python Generator COre CI Checks"
+    displayName: "Run Python Generator Core CI Checks"
 
     strategy:
       matrix:
