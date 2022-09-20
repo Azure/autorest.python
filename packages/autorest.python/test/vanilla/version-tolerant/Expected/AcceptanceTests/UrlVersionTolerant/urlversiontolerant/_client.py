@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Optional
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -15,10 +15,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import AutoRestUrlTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyword

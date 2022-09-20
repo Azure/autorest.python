@@ -29,6 +29,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.type = type
         self.optional: bool = self.yaml_data["optional"]
         self.readonly: bool = self.yaml_data.get("readonly", False)
+        self.is_polymorphic: bool = self.yaml_data.get("isPolymorphic", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
         self.client_default_value = yaml_data.get("clientDefaultValue", None)
         if self.client_default_value is None:
@@ -45,7 +46,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def description(self, *, is_operation_file: bool) -> str:
         from .model_type import ModelType
 
-        description = self.yaml_data["description"]
+        description = self.yaml_data.get("description", "")
         if not (self.optional or self.client_default_value):
             description = add_to_description(description, "Required.")
         # don't want model type documentation as part of property doc
@@ -124,20 +125,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         retval.update(self.type.validation or {})
         return retval or None
 
-    @property
-    def attribute_map(self) -> str:
-        if self.flattened_names:
-            attribute_key = ".".join(
-                n.replace(".", "\\\\.") for n in self.flattened_names
-            )
-        else:
-            attribute_key = self.rest_api_name.replace(".", "\\\\.")
-        if self.type.xml_serialization_ctxt:
-            xml_metadata = f", 'xml': {{{self.type.xml_serialization_ctxt}}}"
-        else:
-            xml_metadata = ""
-        return f'"{self.client_name}": {{"key": "{attribute_key}", "type": "{self.serialization_type}"{xml_metadata}}},'
-
     def imports(self) -> FileImport:
         from .model_type import ModelType
 
@@ -151,6 +138,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 ImportType.LOCAL,
                 TypingSection.TYPING,
                 alias="_models",
+            )
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import(
+                ".._model_base",
+                "rest_discriminator" if self.is_discriminator else "rest_field",
+                ImportType.LOCAL,
             )
         return file_import
 

@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
+from models.property.optional import models
 from models.property.optional.aio import ModelsPropertyOptional
 
 @pytest.fixture
@@ -22,13 +23,31 @@ async def client():
 ]
 )
 @pytest.mark.asyncio
-async def test(client, og_name, val):
+async def test_json(client, og_name, val):
     body = {"property": val}
     og_group = getattr(client, og_name)
     assert await og_group.get_all() == body
     assert await og_group.get_default() == {}
     await og_group.put_all(body)
     await og_group.put_default({})
+
+@pytest.mark.parametrize(
+"og_name,model,val", [
+    ("string", models.StringProperty, "hello"),
+    ("bytes", models.BytesProperty, "aGVsbG8sIHdvcmxkIQ=="),
+    ("datetime", models.DatetimeProperty, "2022-08-26T18:38:00Z"),
+    ("duration", models.DurationProperty, "P123DT22H14M12.011S"),
+    ("collections_byte", models.CollectionsByteProperty, ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]),
+]
+)
+@pytest.mark.asyncio
+async def test_model(client, og_name, model, val):
+    body = model(property=val)
+    og_group = getattr(client, og_name)
+    assert await og_group.get_all() == body
+    assert await og_group.get_default() == {} == model()
+    await og_group.put_all(body)
+    await og_group.put_default(model())
 
 @pytest.mark.asyncio
 async def test_required_and_optional(client):

@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any
 import pytest
+from models.property.types import models
 from models.property.types.aio import ModelsPropertyTypes
 
 @pytest.fixture
@@ -32,6 +33,30 @@ async def client():
 )
 async def test(client, og_name, val):
     body = {"property": val}
+    og_group = getattr(client, og_name)
+    assert await og_group.get() == body
+    await og_group.put(body)
+
+@pytest.mark.parametrize(
+"og_name,model,val", [
+    ("boolean", models.BooleanProperty, True),
+    ("string", models.StringProperty, "hello"),
+    ("bytes", models.BytesProperty, "aGVsbG8sIHdvcmxkIQ=="),
+    ("int", models.IntProperty, 42),
+    ("float", models.FloatProperty, 42.42),
+    ("datetime", models.DatetimeProperty, "2022-08-26T18:38:00Z"),
+    ("duration", models.DurationProperty, "P123DT22H14M12.011S"),
+    ("enum", models.EnumProperty, "ValueOne"),
+    ("extensible_enum", models.ExtensibleEnumProperty, "UnknownValue"),
+    ("model", models.ModelProperty, {'property': 'hello'}),
+    ("collections_string", models.CollectionsStringProperty, ['hello', 'world']),
+    ("collections_int", models.CollectionsIntProperty, [1, 2]),
+    ("collections_model", models.CollectionsModelProperty, [{'property': 'hello'}, {'property': 'world'}]),
+]
+)
+@pytest.mark.asyncio
+async def test_model(client, og_name, model, val):
+    body = model(property=val)
     og_group = getattr(client, og_name)
     assert await og_group.get() == body
     await og_group.put(body)
