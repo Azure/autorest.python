@@ -3,10 +3,10 @@
     "version": "6.1.6",
     "description": "The Python extension for generators in AutoRest.",
     "scripts": {
-        "prepare": "node node_modules/@azure-tools/python-generator-core/run-python3.js prepare.py",
-        "start": "node node_modules/@azure-tools/python-generator-core/run-python3.js start.py",
-        "install": "node node_modules/@azure-tools/python-generator-core/run-python3.js install.py",
-        "debug": "node node_modules/@azure-tools/python-generator-core/run-python3.js start.py --debug"
+        "prepare": "node run-python3.js prepare.py",
+        "start": "node run-python3.js start.py",
+        "install": "node run-python3.js install.py",
+        "debug": "node run-python3.js start.py --debug"
     },
     "repository": {
         "type": "git",
@@ -24,7 +24,8 @@
     },
     "homepage": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
     "dependencies": {
-        "@azure-tools/python-generator-core": "workspace:*"
+        "@azure-tools/python-generator-core": "workspace:*",
+        "@autorest/system-requirements": "~1.0.0"
     },
     "devDependencies": {
         "@microsoft.azure/autorest.testserver": "^3.3.38",

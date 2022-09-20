@@ -34,8 +34,8 @@
         "test-official": "c8 mocha --forbid-only",
         "lint": "eslint . --ext .ts --max-warnings=0",
         "lint:fix": "eslint . --fix --ext .ts",
-        "install": "node node_modules/@azure-tools/python-generator-core/run-python3.js install.py",
-        "prepare": "node node_modules/@azure-tools/python-generator-core/run-python3.js prepare.py"
+        "install": "node run-python3.js install.py",
+        "prepare": "node run-python3.js prepare.py"
     },
     "files": [
         "lib/*.cadl",
@@ -53,7 +53,8 @@
     "dependencies": {
         "js-yaml": "~4.1.0",
         "@azure-tools/python-generator-core": "workspace:*",
-        "@cadl-lang/compiler": "~0.35.0"
+        "@cadl-lang/compiler": "~0.35.0",
+        "@autorest/system-requirements": "~1.0.0"
     },
     "devDependencies": {
         "@types/mocha": "~9.1.0",
