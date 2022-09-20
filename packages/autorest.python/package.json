@@ -38,6 +38,8 @@
         "install.py",
         "prepare.py",
         "start.py",
-        "requirements.txt"
+        "requirements.txt",
+        "run-python3.js",
+        "venvtools.py"
     ]
 }

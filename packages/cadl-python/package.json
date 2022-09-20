@@ -43,7 +43,8 @@
         "!dist/test/**",
         "install.py",
         "prepare.py",
-        "run.py"
+        "run.py",
+        "run-python3.js"
     ],
     "peerDependencies": {
         "@cadl-lang/versioning": "~0.8.0",
