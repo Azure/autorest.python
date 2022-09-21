@@ -256,7 +256,7 @@ function emitBodyParameter(
     }
 
     // avoid anonymous model type
-    if (type && !type.name) {
+    if (type && type.type === "model" && !type.name) {
         type.name =
             operation.container.name +
             operation.operation.name[0].toUpperCase() +
