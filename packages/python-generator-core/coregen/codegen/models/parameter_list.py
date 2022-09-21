@@ -407,7 +407,7 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
         ]
 
 
-class _ClientGlobalParameterList(
+class _ClientGlobalParameterList(  # pylint: disable=abstract-method
     # pylint: disable=unsubscriptable-object
     _ParameterListBase[ParameterType, BodyParameter]
 ):

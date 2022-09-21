@@ -1,3 +1,4 @@
+# pylint: disable=unknown-optional-value
 [MASTER]
 ignore-patterns=test_*,conftest,setup
 reports=no
@@ -11,7 +12,7 @@ ignore=_generated,samples,examples,test,tests,doc,.tox
 # cyclic-import: because of https://github.com/PyCQA/pylint/issues/850
 # too-many-arguments: Due to the nature of the CLI many commands have large arguments set which reflect in large arguments set in corresponding methods.
 # Let's black deal with bad-continuation
-disable=useless-object-inheritance,missing-docstring,locally-disabled,fixme,cyclic-import,too-many-arguments,invalid-name,duplicate-code,too-few-public-methods,bad-continuation,check-docstrings,consider-using-f-string,super-with-arguments,redefined-builtin,import-outside-toplevel,client-suffix-needed
+disable=useless-object-inheritance,missing-docstring,locally-disabled,fixme,cyclic-import,too-many-arguments,invalid-name,duplicate-code,too-few-public-methods,check-docstrings,consider-using-f-string,super-with-arguments,redefined-builtin,import-outside-toplevel,client-suffix-needed
 
 [FORMAT]
 max-line-length=120
@@ -39,14 +40,3 @@ min-similarity-lines=10
 
 # The invalid-name checker must be **enabled** for these hints to be used.
 include-naming-hint=yes
-
-module-name-hint=lowercase (keep short; underscores are discouraged)
-const-name-hint=UPPER_CASE_WITH_UNDERSCORES
-class-name-hint=CapitalizedWords
-class-attribute-name-hint=lower_case_with_underscores
-attr-name-hint=lower_case_with_underscores
-method-name-hint=lower_case_with_underscores
-function-name-hint=lower_case_with_underscores
-argument-name-hint=lower_case_with_underscores
-variable-name-hint=lower_case_with_underscores
-inlinevar-name-hint=lower_case_with_underscores (short is OK)
