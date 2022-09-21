@@ -225,7 +225,7 @@ jobs:
           pnpm pack
           AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
           cd ../../..
-          pnpm install $AbsolutePkgPath
+          npm install $AbsolutePkgPath
         displayName: "Test tarball"
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
       - script: |
@@ -329,7 +329,7 @@ jobs:
           pnpm pack
           AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
           cd ../../..
-          pnpm install $AbsolutePkgPath
+          npm install $AbsolutePkgPath
         displayName: Test tarball
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
 
@@ -403,6 +403,6 @@ jobs:
           pnpm pack
           AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
           cd ../../..
-          pnpm install $AbsolutePkgPath
+          npm install $AbsolutePkgPath
         displayName: Test tarball
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/python-generator-core/
