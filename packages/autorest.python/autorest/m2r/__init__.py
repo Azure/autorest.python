@@ -9,6 +9,7 @@ from typing import Any, Dict
 from coregen.m2r import M2R
 from .. import YamlUpdatePluginAutorest
 
+
 class M2RAutorest(YamlUpdatePluginAutorest, M2R):
     def get_options(self) -> Dict[str, Any]:
         return {}

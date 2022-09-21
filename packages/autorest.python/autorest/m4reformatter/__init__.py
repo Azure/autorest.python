@@ -10,7 +10,7 @@ import copy
 import logging
 from typing import Callable, Dict, Any, Iterable, List, Optional, Set
 
-from coregen.utils  import (
+from coregen.utils import (
     to_snake_case,
     KNOWN_TYPES,
     get_body_type_for_description,

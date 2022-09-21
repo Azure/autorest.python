@@ -9,6 +9,7 @@ from typing import Any, Dict
 from coregen.preprocess import PreProcessPlugin
 from .. import YamlUpdatePluginAutorest
 
+
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
     def get_options(self) -> Dict[str, Any]:
         options = {

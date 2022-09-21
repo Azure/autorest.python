@@ -18,6 +18,7 @@ from ._version import VERSION
 __version__ = VERSION
 _LOGGER = logging.getLogger(__name__)
 
+
 class ReaderAndWriterAutorest(ReaderAndWriter):
     def __init__(
         self, *, output_folder: Union[str, Path], autorestapi: AutorestAPI
@@ -33,6 +34,7 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
 
     def list_file(self) -> List[str]:
         return self._autorestapi.list_inputs()
+
 
 class PluginAutorest(Plugin, ReaderAndWriterAutorest):
     """For our Autorest plugins, we want to take autorest api as input as options, then pass it to the Plugin"""

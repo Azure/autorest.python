@@ -18,6 +18,7 @@ from .. import PluginAutorest, ReaderAndWriterAutorest
 
 _LOGGER = logging.getLogger(__name__)
 
+
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
     def __init__(
         self,
@@ -49,9 +50,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
                 "this to False because we no longer reformat initial query parameters into next "
                 "calls unless explicitly defined in the service definition."
             )
-        version_tolerant = self._autorestapi.get_boolean_value(
-            "version-tolerant", True
-        )
+        version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", True)
         low_level_client = self._autorestapi.get_boolean_value(
             "low-level-client", False
         )
@@ -84,7 +83,8 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             "tracing": self._autorestapi.get_boolean_value("trace"),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic-examples": self._autorestapi.get_value("polymorphic-examples"),
-            "models-mode": self._autorestapi.get_value("models-mode") or models_mode_default,
+            "models-mode": self._autorestapi.get_value("models-mode")
+            or models_mode_default,
             "builders-visibility": self._autorestapi.get_value("builders-visibility"),
             "show-send-request": self._autorestapi.get_boolean_value(
                 "show-send-request"
