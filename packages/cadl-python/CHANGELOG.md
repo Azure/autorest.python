@@ -1,6 +1,12 @@
 # Release History
 
-## 2022-xx-xx - 0.2.0
+## 2022-09-21 - 0.2.1
+
+**New Features**
+
+- Generate DPG models as default  #1345
+
+## 2022-09-21 - 0.2.0
 
 **New Features**
 
