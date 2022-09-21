@@ -373,6 +373,7 @@ jobs:
           pnpm install
           pnpm run build
           pnpm check-version-mismatch
+          pip install -e packages/python-generator-core/
           pip install -r packages/python-generator-core/dev_requirements.txt
         displayName: "Prepare Environment for Generation"
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/
