@@ -69,8 +69,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         """
         try:
             return next(type for id, type in self.types_map.items() if id == schema_id)
-        except StopIteration:
-            raise KeyError(f"Couldn't find schema with id {schema_id}")
+        except StopIteration as ex:
+            raise KeyError(f"Couldn't find schema with id {schema_id}") from ex
 
     @property
     def credential(self) -> Optional[Parameter]:
@@ -107,8 +107,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 for rb in self.request_builders
                 if id(rb.yaml_data) == request_builder_id
             )
-        except StopIteration:
-            raise KeyError(f"No request builder with id {request_builder_id} found.")
+        except StopIteration as ex:
+            raise KeyError(
+                f"No request builder with id {request_builder_id} found."
+            ) from ex
 
     @property
     def model_types(self) -> List[ModelType]:
@@ -241,11 +243,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def has_lro_operations(self) -> bool:
         """Are there any LRO operations in this SDK?"""
         return any(
-            [
-                operation.operation_type in ("lro", "lropaging")
-                for operation_group in self.operation_groups
-                for operation in operation_group.operations
-            ]
+            operation.operation_type in ("lro", "lropaging")
+            for operation_group in self.operation_groups
+            for operation in operation_group.operations
         )
 
     @property

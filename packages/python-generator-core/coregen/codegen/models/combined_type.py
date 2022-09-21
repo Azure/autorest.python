@@ -38,7 +38,6 @@ class CombinedType(BaseType):
         If list: '[str]'
         If dict: '{str}'
         """
-        ...
 
     @property
     def client_default_value(self) -> Any:

@@ -204,23 +204,20 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     @abstractmethod
     def _function_def(self) -> str:
         """The def keyword for the builder we're serializing, i.e. 'def' or 'async def'"""
-        ...
 
     @property
     @abstractmethod
     def _call_method(self) -> str:
         """How to call network calls. Await if we have to await network calls"""
-        ...
 
     @property
     @abstractmethod
     def serializer_name(self) -> str:
-        ...
+        """Name of the serializer"""
 
     @abstractmethod
     def response_docstring(self, builder: BuilderType) -> List[str]:
         """Response portion of the docstring"""
-        ...
 
     def decorators(self, builder: BuilderType) -> List[str]:
         """Decorators for the method"""
@@ -259,9 +256,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             )
         )
 
-    def description_and_summary(  # pylint: disable=no-self-use
-        self, builder: BuilderType
-    ) -> List[str]:
+    def description_and_summary(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         description_list.append(
             f"{ builder.summary.strip() if builder.summary else builder.description.strip() }"
@@ -281,9 +276,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             template += self._json_input_example_template(builder)
         return template
 
-    def param_description(  # pylint: disable=no-self-use
-        self, builder: BuilderType
-    ) -> List[str]:
+    def param_description(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
             if not param.in_docstring:
@@ -441,11 +434,11 @@ class RequestBuilderSerializer(
 
     def response_docstring(self, builder: RequestBuilderType) -> List[str]:
         response_str = (
-            f":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
+            ":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
-        rtype_str = f":rtype: ~azure.core.rest.HttpRequest"
+        rtype_str = ":rtype: ~azure.core.rest.HttpRequest"
         return [response_str, rtype_str]
 
     def pop_kwargs_from_signature(self, builder: RequestBuilderType) -> List[str]:
@@ -611,9 +604,7 @@ class _OperationSerializer(
             retval.append(_api_version_validation(builder))
         return retval
 
-    def param_description(
-        self, builder: OperationType
-    ) -> List[str]:  # pylint: disable=no-self-use
+    def param_description(self, builder: OperationType) -> List[str]:
         description_list = super().param_description(builder)
         if not self.code_model.options["version_tolerant"]:
             description_list.append(
@@ -876,7 +867,7 @@ class _OperationSerializer(
             retval.append(f"    template_url={template_url},")
         retval.append("    headers=_headers,")
         retval.append("    params=_params,")
-        retval.append(f")")
+        retval.append(")")
         return retval
 
     def _postprocess_http_request(
@@ -979,10 +970,10 @@ class _OperationSerializer(
                     if response.type.is_xml
                     else "response.json()"
                 )
-                retval.append(f"if response.content:")
+                retval.append("if response.content:")
                 retval.append(f"    deserialized = {deserialized_value}")
                 retval.append("else:")
-                retval.append(f"    deserialized = None")
+                retval.append("    deserialized = None")
         return retval
 
     def handle_error_response(self, builder: OperationType) -> List[str]:

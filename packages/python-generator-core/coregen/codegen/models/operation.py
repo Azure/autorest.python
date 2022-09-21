@@ -378,8 +378,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
         if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
             file_import.add_submodule_import(
-                f"azure.core.tracing.decorator",
-                f"distributed_trace",
+                "azure.core.tracing.decorator",
+                "distributed_trace",
                 ImportType.AZURECORE,
             )
         file_import.merge(
@@ -394,10 +394,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     ) -> ResponseType:
         try:
             return next(r for r in self.responses if status_code in r.status_codes)
-        except StopIteration:
+        except StopIteration as ex:
             raise ValueError(
                 f"Incorrect status code {status_code}, operation {self.name}"
-            )
+            ) from ex
 
     @property
     def success_status_codes(self) -> List[Union[str, int]]:
@@ -415,7 +415,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             basename == "operations"
             or self.code_model.options["combine_operation_files"]
         ):
-            return f"_operations"
+            return "_operations"
         return f"_{basename}_operations"
 
     @property
@@ -459,8 +459,8 @@ class Operation(OperationBase[Response]):
             return file_import
         if async_mode:
             file_import.add_submodule_import(
-                f"azure.core.tracing.decorator_async",
-                f"distributed_trace_async",
+                "azure.core.tracing.decorator_async",
+                "distributed_trace_async",
                 ImportType.AZURECORE,
             )
         if (
@@ -477,7 +477,7 @@ class Operation(OperationBase[Response]):
                 )
                 file_import.add_import("json", ImportType.STDLIB)
             if self.default_error_deserialization or any(
-                [r.type for r in self.responses]
+                r.type for r in self.responses
             ):
                 file_import.add_submodule_import(
                     f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL

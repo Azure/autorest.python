@@ -211,7 +211,7 @@ class ClientSerializer:
     def _rest_request_example(self, async_mode: bool) -> List[str]:
         retval = [">>> from azure.core.rest import HttpRequest"]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
-        retval.append(f"<HttpRequest [GET], url: 'https://www.example.org/'>")
+        retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
         retval.extend(self._example_make_call(async_mode))
         return retval
 
@@ -226,9 +226,9 @@ class ClientSerializer:
         retval.append(
             "For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request"
         )
-        retval.append(f"")
+        retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(f":type request: ~azure.core.rest.HttpRequest")
+        retval.append(":type request: ~azure.core.rest.HttpRequest")
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )

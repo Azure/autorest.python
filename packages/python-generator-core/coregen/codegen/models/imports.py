@@ -192,15 +192,15 @@ class FileImport:
         retval: Dict[
             TypingSection,
             Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
-        ] = dict()
+        ] = {}
         for i in self.imports:
             name_import: Optional[Union[str, Tuple[str, str]]] = None
             if i.submodule_name:
                 name_import = (
                     (i.submodule_name, i.alias) if i.alias else i.submodule_name
                 )
-            retval.setdefault(i.typing_section, dict()).setdefault(
-                i.import_type, dict()
+            retval.setdefault(i.typing_section, {}).setdefault(
+                i.import_type, {}
             ).setdefault(i.module_name, set()).add(name_import)
         return retval
 

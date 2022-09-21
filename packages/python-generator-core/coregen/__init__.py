@@ -23,7 +23,9 @@ class ReaderAndWriter:
         self._list_file: List[str] = []
         try:
             with open(
-                Path(self.output_folder) / Path("..") / Path("python.json"), "r"
+                Path(self.output_folder) / Path("..") / Path("python.json"),
+                "r",
+                encoding="utf-8",
             ) as fd:
                 python_json = json.load(fd)
         except Exception:  # pylint: disable=broad-except
@@ -39,7 +41,7 @@ class ReaderAndWriter:
         """Directly reading from disk"""
         # make path relative to output folder
         try:
-            with open(self.output_folder / Path(path), "r") as fd:
+            with open(self.output_folder / Path(path), "r", encoding="utf-8") as fd:
                 return fd.read()
         except FileNotFoundError:
             return ""
@@ -49,7 +51,7 @@ class ReaderAndWriter:
         file_folder = Path(filename).parent
         if not Path.is_dir(self.output_folder / file_folder):
             Path.mkdir(self.output_folder / file_folder, parents=True)
-        with open(self.output_folder / Path(filename), "w") as fd:
+        with open(self.output_folder / Path(filename), "w", encoding="utf-8") as fd:
             fd.write(file_content)
 
     def list_file(self) -> List[str]:
@@ -75,11 +77,11 @@ class YamlUpdatePlugin(Plugin):
 
     def get_yaml(self) -> Dict[str, Any]:
         # cadl file doesn't have to be relative to output folder
-        with open(self.options["cadl_file"], "r") as fd:
+        with open(self.options["cadl_file"], "r", encoding="utf-8") as fd:
             return yaml.safe_load(fd.read())
 
     def write_yaml(self, yaml_string: str) -> None:
-        with open(self.options["cadl_file"], "w") as fd:
+        with open(self.options["cadl_file"], "w", encoding="utf-8") as fd:
             fd.write(yaml_string)
 
     def process(self) -> bool:

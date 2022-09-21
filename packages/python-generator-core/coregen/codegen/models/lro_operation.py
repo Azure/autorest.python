@@ -70,11 +70,11 @@ class LROOperationBase(OperationBase[LROResponseType]):
                 response = next(
                     r for r in responses_with_bodies if 200 in r.status_codes
                 )
-            except StopIteration:
+            except StopIteration as ex:
                 raise ValueError(
-                    f"Your swagger is invalid because you have multiple response schemas for LRO"
+                    "Your swagger is invalid because you have multiple response schemas for LRO"
                     + f" method {self.name} and none of them have a 200 status code."
-                )
+                ) from ex
 
         elif num_response_schemas:
             response = responses_with_bodies[0]
@@ -124,8 +124,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
             return file_import
         if async_mode:
             file_import.add_submodule_import(
-                f"azure.core.tracing.decorator_async",
-                f"distributed_trace_async",
+                "azure.core.tracing.decorator_async",
+                "distributed_trace_async",
                 ImportType.AZURECORE,
             )
         file_import.add_submodule_import(

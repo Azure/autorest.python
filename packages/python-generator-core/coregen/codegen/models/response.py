@@ -46,12 +46,12 @@ class Response(BaseModel):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         *,
-        headers: List[ResponseHeader] = [],
+        headers: Optional[List[ResponseHeader]] = None,
         type: Optional[BaseType] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.status_codes: List[Union[int, str]] = yaml_data["statusCodes"]
-        self.headers = headers
+        self.headers = headers or []
         self.type = type
         self.nullable = yaml_data.get("nullable")
 

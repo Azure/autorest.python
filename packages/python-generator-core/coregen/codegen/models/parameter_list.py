@@ -115,7 +115,6 @@ class _ParameterListBase(
     @abstractmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ParameterType]:
         """Callable for creating parameters"""
-        ...
 
     @staticmethod
     @abstractmethod
@@ -123,7 +122,6 @@ class _ParameterListBase(
         [Dict[str, Any], "CodeModel"], BodyParameterType
     ]:
         """Callable for creating body parameters"""
-        ...
 
     @property
     def grouped(self) -> List[Union[ParameterType, BodyParameterType]]:
@@ -208,7 +206,6 @@ class _ParameterListBase(
     @abstractmethod
     def implementation(self) -> str:
         """Whether this is a client or a method parameter"""
-        ...
 
     @property
     def unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
@@ -339,8 +336,6 @@ class _ParameterList(
 class ParameterList(_ParameterList):
     """ParameterList is the parameter list for Operation classes"""
 
-    ...
-
 
 class _RequestBuilderParameterList(
     _ParameterListBase[  # pylint: disable=unsubscriptable-object
@@ -396,8 +391,6 @@ class _RequestBuilderParameterList(
 
 class RequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for Request Builder"""
-
-    ...
 
 
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):

@@ -73,7 +73,7 @@ class DictionaryType(BaseType):
         description: Optional[str] = None,
     ) -> Any:
         return {
-            f'"str"': self.element_type.get_json_template_representation(
+            '"str"': self.element_type.get_json_template_representation(
                 optional=optional,
                 client_default_value_declaration=client_default_value_declaration,
                 description=description,
