@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
-    "@autorest/python": "~6.1.7",
+    "@autorest/python": "workspace:*",
     "@cadl-lang/compiler": "~0.35.0"
   },
   "devDependencies": {
