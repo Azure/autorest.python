@@ -4,7 +4,8 @@
 
 **New Features**
 
-- Generate DPG models as default  #1345
+- Bump dependency to ensure DPG models are generated  #1463
+- Do not fail on description key errors for non-model anonymous body parameters  #1463
 
 ## 2022-09-21 - 0.2.0
 
