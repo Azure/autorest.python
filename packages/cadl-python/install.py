@@ -43,7 +43,7 @@ def main():
         venv_context = env_builder.context
 
         python_run(venv_context, "pip", ["install", "-U", "pip"])
-        python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/requirements.txt"])
+        python_run(venv_context, "pip", ["install", "-r", f"requirements.txt"])
 
 if __name__ == "__main__":
     main()
