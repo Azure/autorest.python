@@ -47,8 +47,6 @@ import {
 import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
-import { dirname, resolve } from "path";
-import { fileURLToPath } from "url";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -65,8 +63,7 @@ export async function $onEmit(program: Program) {
     const yamlMap = createYamlEmitter(program);
     const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
     await program.host.writeFile(yamlPath, dump(yamlMap));
-    const __dirname = dirname(fileURLToPath(import.meta.url));
-    const root = resolve(__dirname, "..", "..");
+    const root = process.cwd();
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
