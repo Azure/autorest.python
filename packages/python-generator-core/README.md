@@ -1,6 +1,6 @@
 # Core Python Generator
 
-Core Python generator. Can only be used in conjunction with the Cadl emitter or the Autorest Python generator.
+Core Python generator. Can only be used in conjunction with the [Cadl emitter](https://github.com/Azure/autorest.python/blob/autorestv3/packages/cadl-python/README.md) or the [Autorest Python](https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/README.md) generator.
 
 # Contributing
 
