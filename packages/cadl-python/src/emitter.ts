@@ -173,6 +173,14 @@ function getType(
         if (cached) {
             return cached;
         }
+        if (type.kind === "Model") {
+            const modelName = getName(program, type);
+            for (const key of typesMap.keys()) {
+                if (key.kind === "Model" && getName(program, key) === modelName) {
+                    return typesMap.get(key);
+                }
+            }
+        }
     }
     let newValue = emitType(program, type, modelTypeProperty);
     if (enableCache) {
