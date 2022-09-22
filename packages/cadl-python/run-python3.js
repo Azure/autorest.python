@@ -7,10 +7,9 @@
 // Invoke it like so: "node run-python3.js script.py"
 
 import { execSync } from "child_process";
-import {patchPythonPath} from "@autorest/system-requirements"
 
 async function runPython3(scriptName, ...args) {
-  const command = await patchPythonPath(["python", scriptName, ...args], { version: ">=3.7", environmentVariable: "AUTOREST_PYTHON_EXE" });
+  const command = ["python3", scriptName, ...args];
   execSync(command.join(" "), {
     stdio: [0, 1, 2]
   });
