@@ -10,6 +10,7 @@ from jinja2 import Environment
 from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
+from ..models.constant_type import ConstantType
 
 
 def _documentation_string(
@@ -275,6 +276,6 @@ class DpgModelSerializer(_ModelSerializer):
                 )
             elif prop.constant:
                 init_args.append(
-                    f"self.{prop.client_name} = {prop.type.get_declaration()}"
+                    f"self.{prop.client_name} = {cast(ConstantType, prop.type).get_declaration()}"
                 )
         return init_args
