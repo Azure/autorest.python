@@ -23,7 +23,7 @@ importers:
   packages/autorest.python:
     specifiers:
       '@autorest/system-requirements': ~1.0.0
-      '@azure-tools/python-generator-core': workspace:~
+      '@azure-tools/python-generator-core': workspace:*
       '@microsoft.azure/autorest.testserver': ^3.3.38
       typescript: ^4.8.3
     dependencies:
@@ -35,11 +35,10 @@ importers:
 
   packages/cadl-python:
     specifiers:
-      '@autorest/system-requirements': ~1.0.0
       '@azure-tools/cadl-azure-core': ~0.7.0
       '@azure-tools/cadl-ranch-expect': ~0.1.9
       '@azure-tools/cadl-ranch-specs': ~0.1.11
-      '@azure-tools/python-generator-core': workspace:~
+      '@azure-tools/python-generator-core': workspace:*
       '@cadl-lang/compiler': ~0.35.0
       '@cadl-lang/eslint-config-cadl': ~0.4.1
       '@cadl-lang/openapi': ~0.12.0
@@ -56,7 +55,6 @@ importers:
       rimraf: ~3.0.2
       typescript: ^4.8.3
     dependencies:
-      '@autorest/system-requirements': 1.0.0
       '@azure-tools/python-generator-core': link:../python-generator-core
       '@cadl-lang/compiler': 0.35.0
       js-yaml: 4.1.0
