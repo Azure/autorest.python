@@ -9,7 +9,7 @@
 import { execSync } from "child_process";
 
 async function runPython3(scriptName, ...args) {
-  const command = ["python3", scriptName, ...args];
+  const command = ["python", scriptName, ...args];
   execSync(command.join(" "), {
     stdio: [0, 1, 2]
   });
