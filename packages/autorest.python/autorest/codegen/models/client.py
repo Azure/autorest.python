@@ -100,9 +100,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             file_import.add_submodule_import(
                 "azure.core", self.pipeline_class(async_mode), ImportType.AZURECORE
             )
-
-        for gp in self.parameters:
-            file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
             "._configuration",
             f"{self.code_model.client.name}Configuration",
@@ -180,6 +177,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
+        for gp in self.parameters:
+            file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
             "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
         )

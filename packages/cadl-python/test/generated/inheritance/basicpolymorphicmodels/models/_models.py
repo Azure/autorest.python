@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, TYPE_CHECKING, overload
+from typing import Any, Literal, Mapping, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
@@ -65,12 +65,82 @@ class BaseClassWithDiscriminator(BaseClass):
 
     :ivar base_class_property: An example property. Required.
     :vartype base_class_property: str
-    :ivar discriminator_property: Required. Default value is "B".
+    :ivar discriminator_property: Required.
     :vartype discriminator_property: str
     """
 
     __mapping__ = {}
     discriminator_property: str = rest_discriminator(name="discriminatorProperty")
+    """Required. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        base_class_property: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.discriminator_property = None  # type: Optional[str]
+
+
+class DerivedFromBaseClassWithDiscriminatorA(BaseClassWithDiscriminator, discriminator="A"):
+    """DerivedFromBaseClassWithDiscriminatorA.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar base_class_property: An example property. Required.
+    :vartype base_class_property: str
+    :ivar discriminator_property: Required. Default value is "A".
+    :vartype discriminator_property: str
+    """
+
+    discriminator_property: Literal["A"] = rest_discriminator(name="discriminatorProperty")
+    """Required. Default value is \"A\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        base_class_property: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.discriminator_property = "A"  # type: Literal["A"]
+
+
+class DerivedFromBaseClassWithDiscriminatorB(BaseClassWithDiscriminator, discriminator="B"):
+    """DerivedFromBaseClassWithDiscriminatorB.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar base_class_property: An example property. Required.
+    :vartype base_class_property: str
+    :ivar discriminator_property: Required. Default value is "B".
+    :vartype discriminator_property: str
+    """
+
+    discriminator_property: Literal["B"] = rest_discriminator(name="discriminatorProperty")
     """Required. Default value is \"B\"."""
 
     @overload
@@ -91,70 +161,7 @@ class BaseClassWithDiscriminator(BaseClass):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-
-class DerivedFromBaseClassWithDiscriminatorA(BaseClassWithDiscriminator, discriminator="A"):
-    """DerivedFromBaseClassWithDiscriminatorA.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar base_class_property: An example property. Required.
-    :vartype base_class_property: str
-    :ivar discriminator_property: Required. Default value is "A".
-    :vartype discriminator_property: str
-    """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        base_class_property: str,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.discriminator_property = "A"  # type: str
-
-
-class DerivedFromBaseClassWithDiscriminatorB(BaseClassWithDiscriminator, discriminator="B"):
-    """DerivedFromBaseClassWithDiscriminatorB.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar base_class_property: An example property. Required.
-    :vartype base_class_property: str
-    :ivar discriminator_property: Required. Default value is "B".
-    :vartype discriminator_property: str
-    """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        base_class_property: str,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.discriminator_property = "B"  # type: str
+        self.discriminator_property = "B"  # type: Literal["B"]
 
 
 class ModelWithPolymorphicProperty(_model_base.Model):

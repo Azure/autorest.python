@@ -6,7 +6,7 @@
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_type import BaseType
-from .imports import FileImport
+from .imports import FileImport, ImportType
 from .utils import add_to_description
 
 if TYPE_CHECKING:
@@ -75,6 +75,8 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
+        if self.code_model.options["models_mode"] == "dpg":
+            return f"Literal[{self.value_type.get_declaration(self.value)}]"
         return self.value_type.type_annotation(**kwargs)
 
     @classmethod
@@ -115,6 +117,8 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import("typing", "Literal", ImportType.STDLIB)
         return file_import
 
     @property

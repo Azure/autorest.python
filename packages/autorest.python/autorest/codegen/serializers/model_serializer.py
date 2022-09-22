@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import cast, List
 from abc import ABC, abstractmethod
+
 from jinja2 import Environment
 from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
@@ -67,14 +68,14 @@ class _ModelSerializer(ABC):
         return f"super().__init__({self.properties_to_pass_to_super(model)})"
 
     @staticmethod
-    def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
+    def initialize_discriminator_property(
+        model: ModelType, prop: Property, typing: str = "str"
+    ) -> str:
         discriminator_value = (
             f"'{model.discriminator_value}'" if model.discriminator_value else None
         )
         if not discriminator_value:
             typing = "Optional[str]"
-        else:
-            typing = "str"
         return f"self.{prop.client_name} = {discriminator_value}  # type: {typing}"
 
     @staticmethod
@@ -222,24 +223,25 @@ class DpgModelSerializer(_ModelSerializer):
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
-    def get_properties_to_initialize(model: ModelType) -> List[Property]:
+    def get_properties_to_declare(model: ModelType) -> List[Property]:
         if model.parents:
+            parent_properties = [
+                p for bm in model.parents for p in cast(ModelType, bm).properties
+            ]
             properties_to_declare = [
                 p
-                for bm in model.parents
                 for p in model.properties
-                if p not in cast(ModelType, bm).properties
+                if not any(
+                    p.client_name == pp.client_name
+                    and p.type_annotation() == pp.type_annotation()
+                    for pp in parent_properties
+                )
             ]
-
         else:
             properties_to_declare = model.properties
         if any(p for p in properties_to_declare if p.client_name == "_"):
             raise ValueError("We do not generate anonymous properties")
-        return [
-            p
-            for p in properties_to_declare
-            if (not p.is_discriminator or p.is_polymorphic)
-        ]
+        return properties_to_declare
 
     @staticmethod
     def declare_property(prop: Property) -> List[str]:
@@ -261,3 +263,18 @@ class DpgModelSerializer(_ModelSerializer):
         if comment:
             ret.append(f'"""{comment}"""')
         return ret
+
+    def initialize_properties(self, model: ModelType) -> List[str]:
+        init_args = []
+        for prop in self.get_properties_to_declare(model):
+            if prop.is_discriminator:
+                init_args.append(
+                    self.initialize_discriminator_property(
+                        model, prop, prop.type_annotation()
+                    )
+                )
+            elif prop.constant:
+                init_args.append(
+                    f"self.{prop.client_name} = {prop.type.get_declaration()}"
+                )
+        return init_args
