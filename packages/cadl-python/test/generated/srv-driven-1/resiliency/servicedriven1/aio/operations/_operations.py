@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,

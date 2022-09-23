@@ -130,6 +130,7 @@ class FileImport:
     def add_version_import(
         self, name: str, version_import: Mapping[Optional[Tuple[int, int]], ImportModel]
     ):
+        self.add_import("sys", ImportType.STDLIB)
         self.version_imports[name] = version_import
 
     def add_import(

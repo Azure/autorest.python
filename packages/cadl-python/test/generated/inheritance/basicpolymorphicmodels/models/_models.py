@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Literal, Mapping, TYPE_CHECKING, overload
+from typing import Any, Mapping, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field

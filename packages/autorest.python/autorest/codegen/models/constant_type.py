@@ -118,7 +118,6 @@ class ConstantType(BaseType):
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
         if self.code_model.options["models_mode"] == "dpg":
-            file_import.add_submodule_import("typing", "Literal", ImportType.STDLIB)
             file_import.add_version_import(
                 "Literal",
                 {
