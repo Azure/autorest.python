@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -16,16 +16,15 @@ from ._configuration import ResiliencyServiceDriven2Configuration
 from ._serialization import Deserializer, Serializer
 from .operations import ParamsOperations
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
-
 
 class ResiliencyServiceDriven2:  # pylint: disable=client-accepts-api-version-keyword
     """Service client.
 
     :ivar params: ParamsOperations operations
     :vartype params: resiliency.servicedriven2.operations.ParamsOperations
+    :keyword api_version: Api Version. Default value is "1.1.0". Note that overriding this default
+     value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential

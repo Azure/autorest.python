@@ -173,6 +173,22 @@ def _get_json_response_template_to_status_codes(
     return retval
 
 
+def _api_version_validation(builder: OperationType) -> str:
+    retval: List[str] = []
+    if builder.added_on:
+        retval.append(f'    method_added_on="{builder.added_on}",')
+    params_added_on = defaultdict(list)
+    for parameter in builder.parameters:
+        if parameter.added_on:
+            params_added_on[parameter.added_on].append(parameter.client_name)
+    if params_added_on:
+        retval.append(f"    params_added_on={dict(params_added_on)},")
+    if retval:
+        retval_str = "\n".join(retval)
+        return f"@api_version_validation(\n{retval_str}\n)"
+    return ""
+
+
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         self.code_model = code_model
@@ -590,8 +606,10 @@ class _OperationSerializer(
 
     def decorators(self, builder: OperationType) -> List[str]:
         """Decorators for the method"""
-        super_decorators = super().decorators(builder)
-        return super_decorators
+        retval = super().decorators(builder)
+        if _api_version_validation(builder):
+            retval.append(_api_version_validation(builder))
+        return retval
 
     def param_description(
         self, builder: OperationType
@@ -656,7 +674,7 @@ class _OperationSerializer(
         ser_ctxt_name = "serialization_ctxt"
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             is_xml_cmd = ", is_xml=True" if send_xml else ""
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
@@ -665,6 +683,8 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
+        elif self.code_model.options["models_mode"] == "dpg":
+            create_body_call = f"_{body_kwarg_name} = json.dumps({body_param.client_name}, cls=AzureJSONEncoder)"
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         if body_param.optional:
@@ -729,10 +749,12 @@ class _OperationSerializer(
                 0
             ].parameters.body_parameter.default_content_type
             retval.append(f'content_type = content_type or "{default_content_type}"')
-        for overload in builder.overloads:
-            retval.append(
-                f"_{overload.request_builder.parameters.body_parameter.client_name} = None"
-            )
+        client_names = [
+            overload.request_builder.parameters.body_parameter.client_name
+            for overload in builder.overloads
+        ]
+        for v in sorted(set(client_names), key=client_names.index):
+            retval.append(f"_{v} = None")
         try:
             # if there is a binary overload, we do a binary check first.
             binary_overload = cast(
@@ -941,9 +963,15 @@ class _OperationSerializer(
                 )
             )
         elif response.type:
-            if self.code_model.options["models_mode"]:
+            if self.code_model.options["models_mode"] == "msrest":
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
+                )
+            elif self.code_model.options["models_mode"] == "dpg" and isinstance(
+                response.type, ModelType
+            ):
+                retval.append(
+                    f"deserialized = _deserialize({response.serialization_type}, response.json())"
                 )
             else:
                 deserialized_value = (
@@ -969,10 +997,15 @@ class _OperationSerializer(
             builder.default_error_deserialization
             and self.code_model.options["models_mode"]
         ):
-            retval.append(
-                f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
-                "pipeline_response)"
-            )
+            if self.code_model.options["models_mode"] == "dpg":
+                retval.append(
+                    f"    error = _deserialize({builder.default_error_deserialization},  response.json())"
+                )
+            else:
+                retval.append(
+                    f"    error = self._deserialize.failsafe_deserialize({builder.default_error_deserialization}, "
+                    "pipeline_response)"
+                )
             error_model = ", model=error"
         retval.append(
             "    raise HttpResponseError(response=response{}{})".format(
@@ -1047,11 +1080,14 @@ class _OperationSerializer(
                 retval.append("    304: ResourceNotModifiedError,")
             for excep in builder.non_default_errors:
                 error_model_str = ""
-                if (
-                    isinstance(excep.type, ModelType)
-                    and self.code_model.options["models_mode"]
-                ):
-                    error_model_str = f", model=self._deserialize(_models.{excep.type.serialization_type}, response)"
+                if isinstance(excep.type, ModelType):
+                    if self.code_model.options["models_mode"] == "msrest":
+                        error_model_str = (
+                            f", model=self._deserialize("
+                            f"_models.{excep.type.serialization_type}, response)"
+                        )
+                    elif self.code_model.options["models_mode"] == "dpg":
+                        error_model_str = f", model=_deserialize(_models.{excep.type.name}, response.json())"
                 error_format_str = (
                     ", error_format=ARMErrorFormat"
                     if self.code_model.options["azure_arm"]
@@ -1138,6 +1174,8 @@ class _PagingOperationSerializer(
             return ["@overload"]
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append("@distributed_trace")
+        if _api_version_validation(builder):
+            retval.append(_api_version_validation(builder))
         return retval
 
     def call_next_link_request_builder(self, builder: PagingOperationType) -> List[str]:
@@ -1218,11 +1256,15 @@ class _PagingOperationSerializer(
             f"{'async ' if self.async_mode else ''}def extract_data(pipeline_response):"
         ]
         response = builder.responses[0]
-        deserialized = (
-            f'self._deserialize("{response.serialization_type}", pipeline_response)'
-            if self.code_model.options["models_mode"]
-            else "pipeline_response.http_response.json()"
-        )
+        deserialized = "pipeline_response.http_response.json()"
+        if self.code_model.options["models_mode"] == "msrest":
+            deserialized = (
+                f'self._deserialize("{response.serialization_type}", pipeline_response)'
+            )
+        elif self.code_model.options["models_mode"] == "dpg":
+            deserialized = (
+                f"_deserialize({response.serialization_type}, pipeline_response)"
+            )
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name
         list_of_elem = (

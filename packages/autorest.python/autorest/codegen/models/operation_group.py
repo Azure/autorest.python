@@ -66,6 +66,11 @@ class OperationGroup(BaseModel):
             return "  # type: ignore"
         return ""
 
+    @property
+    def need_validation(self) -> bool:
+        """Whether any of its operations need validation"""
+        return any(o for o in self.operations if o.need_validation)
+
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
@@ -75,13 +80,12 @@ class OperationGroup(BaseModel):
                 operation.imports(async_mode, relative_path=relative_path)
             )
         # for multiapi
-        if not self.code_model.options["version_tolerant"]:
-            if (
-                self.code_model.model_types or self.code_model.enums
-            ) and self.code_model.options["models_mode"]:
-                file_import.add_submodule_import(
-                    relative_path, "models", ImportType.LOCAL, alias="_models"
-                )
+        if (
+            self.code_model.model_types or self.code_model.enums
+        ) and self.code_model.options["models_mode"] == "msrest":
+            file_import.add_submodule_import(
+                relative_path, "models", ImportType.LOCAL, alias="_models"
+            )
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(".._vendor", "MixinABC", ImportType.LOCAL)
         if self.has_abstract_operations:

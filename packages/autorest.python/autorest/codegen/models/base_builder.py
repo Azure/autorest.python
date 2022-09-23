@@ -31,7 +31,9 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-class BaseBuilder(Generic[ParameterListType], BaseModel):
+class BaseBuilder(
+    Generic[ParameterListType], BaseModel
+):  # pylint: disable=too-many-instance-attributes
     """Base class for Operations and Request Builders"""
 
     def __init__(
@@ -56,6 +58,7 @@ class BaseBuilder(Generic[ParameterListType], BaseModel):
         self.group_name: str = yaml_data["groupName"]
         self.is_overload: bool = yaml_data["isOverload"]
         self.api_versions: List[str] = yaml_data["apiVersions"]
+        self.added_on: Optional[str] = yaml_data.get("addedOn")
 
         if code_model.options["version_tolerant"] and yaml_data.get("abstract"):
             _LOGGER.warning(

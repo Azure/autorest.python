@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import abc
 from enum import Enum, auto
+import re
 
 from typing import (
     Dict,
@@ -21,6 +22,8 @@ from .imports import FileImport, ImportType
 from .base_model import BaseModel
 from .base_type import BaseType
 from .constant_type import ConstantType
+from .model_type import ModelType
+from .combined_type import CombinedType
 from .utils import add_to_description
 
 if TYPE_CHECKING:
@@ -82,6 +85,7 @@ class _ParameterBase(
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
         self.check_client_input: bool = self.yaml_data.get("checkClientInput", False)
+        self.added_on: Optional[str] = self.yaml_data.get("addedOn")
 
     @property
     def constant(self) -> bool:
@@ -152,6 +156,12 @@ class _ParameterBase(
         )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        if self.added_on:
+            file_import.add_submodule_import(
+                f"{'.' if async_mode else ''}.._validation",
+                "api_version_validation",
+                ImportType.LOCAL,
+            )
         return file_import
 
     @property
@@ -227,6 +237,40 @@ class BodyParameter(_BodyParameterBase):
             code_model=code_model,
             type=code_model.lookup_type(id(yaml_data["type"])),
         )
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        annotation = super().type_annotation(**kwargs)
+        model_seq = BodyParameter.get_model_seq(self.type)
+        if self.code_model.options["models_mode"] == "dpg" and model_seq >= 0:
+            pattern = re.compile(r"Union\[.*\]")
+            union_content = (
+                annotation[6:-1] if pattern.match(annotation) else annotation
+            )
+            items = union_content.split(", ")
+            items.insert(model_seq + 1, "JSON")
+            annotation = f'Union[{", ".join(items)}]'
+        return annotation
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        docstring = super().docstring_type(**kwargs)
+        model_seq = BodyParameter.get_model_seq(self.type)
+        if self.code_model.options["models_mode"] == "dpg" and model_seq >= 0:
+            items = docstring.split(" or ")
+            items.insert(model_seq + 1, "JSON")
+            docstring = " or ".join(items)
+        return docstring
+
+    @staticmethod
+    def get_model_seq(t: BaseType):
+        if isinstance(t, ModelType):
+            return 0
+        if isinstance(t, CombinedType):
+            sub_num = len(t.types)
+            for i in range(sub_num):
+                sub_seq = BodyParameter.get_model_seq(t.types[i])
+                if sub_seq >= 0:
+                    return i + sub_seq
+        return -1
 
 
 EntryBodyParameterType = TypeVar(

@@ -12,7 +12,6 @@ package-mode: mgmtplane
 package-name: azure-packagemode-batch
 package-pprint-name: Azure Package Mode Batch Mgmt Plane
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeBatch
-clear-output-folder: true
 version-tolerant: false
 ```
 

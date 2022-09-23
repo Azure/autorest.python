@@ -125,11 +125,10 @@ class ClientSerializer:
             )
         else:
             client_models_value = "{}  # type: Dict[str, Any]"
-        if self.code_model.options["models_mode"]:
+        is_msrest_model = self.code_model.options["models_mode"] == "msrest"
+        if is_msrest_model:
             retval.append(f"client_models = {client_models_value}")
-        client_models_str = (
-            "client_models" if self.code_model.options["models_mode"] else ""
-        )
+        client_models_str = "client_models" if is_msrest_model else ""
         retval.append(f"self._serialize = Serializer({client_models_str})")
         retval.append(f"self._deserialize = Deserializer({client_models_str})")
         if not self.code_model.options["client_side_validation"]:

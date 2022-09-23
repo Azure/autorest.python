@@ -154,6 +154,14 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         retval = self._response_docstring_helper("docstring_text", **kwargs)
         if not self.code_model.options["version_tolerant"]:
             retval += " or the result of cls(response)"
+        if self.code_model.options["models_mode"] == "dpg" and any(
+            isinstance(r.type, ModelType) for r in self.responses
+        ):
+            r = next(r for r in self.responses if isinstance(r.type, ModelType))
+            type_name = getattr(r, "item_type", getattr(r, "type")).docstring_text(
+                **kwargs
+            )
+            retval += f". The {type_name} is compatible with MutableMapping"
         return retval
 
     def response_docstring_type(self, **kwargs) -> str:
@@ -209,6 +217,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
+        if self.added_on:
+            file_import.add_submodule_import(
+                f"{'.' if async_mode else ''}.._validation",
+                "api_version_validation",
+                ImportType.LOCAL,
+            )
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
@@ -243,6 +257,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             and kwarg.location == location
             for kwarg in kwargs_to_pop
         )
+
+    @property
+    def need_validation(self) -> bool:
+        """Whether we need parameter / operation validation. For API version."""
+        return bool(self.added_on) or any(p for p in self.parameters if p.added_on)
 
     def get_request_builder_import(
         self,
@@ -450,6 +469,19 @@ class Operation(OperationBase[Response]):
             and not self.code_model.options["models_mode"]
         ):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
+        if self.code_model.options["models_mode"] == "dpg":
+            relative_path = "..." if async_mode else ".."
+            if self.parameters.has_body:
+                file_import.add_submodule_import(
+                    f"{relative_path}_model_base", "AzureJSONEncoder", ImportType.LOCAL
+                )
+                file_import.add_import("json", ImportType.STDLIB)
+            if self.default_error_deserialization or any(
+                [r.type for r in self.responses]
+            ):
+                file_import.add_submodule_import(
+                    f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
+                )
 
         return file_import
 

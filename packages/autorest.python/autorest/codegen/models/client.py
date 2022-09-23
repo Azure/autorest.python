@@ -108,7 +108,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             f"{self.code_model.client.name}Configuration",
             ImportType.LOCAL,
         )
-
         file_import.add_msrest_import(
             self.code_model,
             ".." if async_mode else ".",
@@ -148,7 +147,10 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 ImportType.LOCAL,
             )
 
-        if self.code_model.model_types and self.code_model.options["models_mode"]:
+        if (
+            self.code_model.model_types
+            and self.code_model.options["models_mode"] == "msrest"
+        ):
             path_to_models = ".." if async_mode else "."
             if len(self.code_model.model_types) != len(
                 self.code_model.public_model_types
@@ -167,7 +169,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 file_import.add_submodule_import(
                     path_to_models, "models", ImportType.LOCAL
                 )
-        else:
+        elif self.code_model.options["models_mode"] == "msrest":
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
             file_import.add_submodule_import(

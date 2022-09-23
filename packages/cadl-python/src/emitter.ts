@@ -1,7 +1,7 @@
 import { getPagedResult } from "@azure-tools/cadl-azure-core";
 import {
-    EnumMemberType,
-    EnumType,
+    EnumMember,
+    Enum,
     getDoc,
     getFriendlyName,
     getIntrinsicModelName,
@@ -18,12 +18,13 @@ import {
     ignoreDiagnostics,
     isErrorModel,
     isNeverType,
-    ModelType,
-    ModelTypeProperty,
-    NamespaceType,
+    Model,
+    ModelProperty,
+    Namespace,
     Program,
     resolvePath,
     Type,
+    getEffectiveModelType,
 } from "@cadl-lang/compiler";
 import { getDiscriminator } from "@cadl-lang/rest";
 import {
@@ -43,16 +44,14 @@ import {
     isStatusCode,
     OperationDetails,
 } from "@cadl-lang/rest/http";
-import { getAddedOn } from "@cadl-lang/versioning";
+import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
-import { dirname, resolve } from "path";
-import { fileURLToPath } from "url";
 
 interface HttpServerParameter {
     type: "endpointPath";
     name: string;
-    param: ModelTypeProperty;
+    param: ModelProperty;
 }
 
 interface CredentialType {
@@ -64,8 +63,7 @@ export async function $onEmit(program: Program) {
     const yamlMap = createYamlEmitter(program);
     const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
     await program.host.writeFile(yamlPath, dump(yamlMap));
-    const __dirname = dirname(fileURLToPath(import.meta.url));
-    const root = resolve(__dirname, "..", "..");
+    const root = process.cwd();
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
@@ -93,8 +91,9 @@ function camelToSnakeCase(name: string): string {
 const typesMap = new Map<Type | CredentialType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
+const apiVersions: string[] = [];
 
-function isSimpleType(program: Program, modelTypeProperty: ModelTypeProperty | undefined): boolean {
+function isSimpleType(program: Program, modelTypeProperty: ModelProperty | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
     if (modelTypeProperty) {
         const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
@@ -120,7 +119,7 @@ function getOperationGroupName(program: Program, operation: OperationDetails): s
     return groupName;
 }
 
-function handleDiscriminator(program: Program, type: ModelType, model: Record<string, any>) {
+function handleDiscriminator(program: Program, type: Model, model: Record<string, any>) {
     const discriminator = getDiscriminator(program, type);
     if (discriminator) {
         let discriminatorProperty;
@@ -144,8 +143,8 @@ function handleDiscriminator(program: Program, type: ModelType, model: Record<st
     }
 }
 
-function getEffectiveSchemaType(program: Program, type: ModelType): ModelType {
-    function isSchemaProperty(property: ModelTypeProperty) {
+function getEffectiveSchemaType(program: Program, type: Model): Model {
+    function isSchemaProperty(property: ModelProperty) {
         const headerInfo = getHeaderFieldName(program, property);
         const queryInfo = getQueryParamName(program, property);
         const pathInfo = getPathParamName(program, property);
@@ -153,13 +152,19 @@ function getEffectiveSchemaType(program: Program, type: ModelType): ModelType {
         return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
     }
 
-    return program.checker.getEffectiveModelType(type, isSchemaProperty);
+    if (type.kind === "Model" && !type.name) {
+        const effective = getEffectiveModelType(program, type, isSchemaProperty);
+        if (effective.name) {
+            return effective;
+        }
+    }
+    return type;
 }
 
 function getType(
     program: Program,
     type: Type | CredentialType,
-    modelTypeProperty: ModelTypeProperty | undefined = undefined,
+    modelTypeProperty: ModelProperty | undefined = undefined,
 ): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const enableCache = !isSimpleType(program, modelTypeProperty);
@@ -168,6 +173,14 @@ function getType(
         if (cached) {
             return cached;
         }
+        if (type.kind === "Model") {
+            const modelName = getName(program, type);
+            for (const key of typesMap.keys()) {
+                if (key.kind === "Model" && getName(program, key) === modelName) {
+                    return typesMap.get(key);
+                }
+            }
+        }
     }
     let newValue = emitType(program, type, modelTypeProperty);
     if (enableCache) {
@@ -175,6 +188,9 @@ function getType(
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
+                if (isStatusCode(program, property)) {
+                    continue;
+                }
                 newValue.properties.push(emitProperty(program, property));
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
@@ -198,17 +214,17 @@ function getAddedOnVersion(p: Program, t: Type): string | undefined {
     return getAddedOn(p as any, t as any)?.value;
 }
 
-function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): Record<string, any> {
+function emitParamBase(program: Program, parameter: ModelProperty | Type): Record<string, any> {
     let optional: boolean;
     let name: string;
     let description: string = "";
-    let addedApiVersion: string | undefined;
+    let addedOn: string | undefined;
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
         name = parameter.name;
         description = getDocStr(program, parameter);
-        addedApiVersion = getAddedOnVersion(program, parameter);
+        addedOn = getAddedOnVersion(program, parameter);
     } else {
         optional = false;
         name = "body";
@@ -217,13 +233,18 @@ function emitParamBase(program: Program, parameter: ModelTypeProperty | Type): R
     return {
         optional,
         description,
-        addedApiVersion,
+        addedOn,
         clientName: camelToSnakeCase(name),
         inOverload: false,
     };
 }
 
-function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperationParameters, operation: OperationDetails): Record<string, any> {
+function emitBodyParameter(
+    program: Program,
+    bodyType: Type,
+    params: HttpOperationParameters,
+    operation: OperationDetails,
+): Record<string, any> {
     const base = emitParamBase(program, params.bodyParameter ?? bodyType);
     const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
     const contentTypes = contentTypeParam
@@ -240,8 +261,12 @@ function emitBodyParameter(program: Program, bodyType: Type, params: HttpOperati
     }
 
     // avoid anonymous model type
-    if (type && !type.name) {
-        type.name = operation.container.name + operation.operation.name[0].toUpperCase() + operation.operation.name.slice(1) + "Request";
+    if (type && type.type === "model" && !type.name) {
+        type.name =
+            operation.container.name +
+            operation.operation.name[0].toUpperCase() +
+            operation.operation.name.slice(1) +
+            "Request";
         type.snakeCaseName = camelToSnakeCase(type.name);
     }
 
@@ -279,6 +304,13 @@ function emitParameter(
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
+    if (parameter.name === "api-version" && apiVersions.length) {
+        // Hack: just choose latest api version until we can correctly mark a client's api version
+        clientDefaultValue = apiVersions[apiVersions.length - 1];
+        paramMap.type = getConstantType(clientDefaultValue);
+        paramMap.implementation = "Client";
+        paramMap.in_docstring = false;
+    }
     return { clientDefaultValue, ...base, ...paramMap };
 }
 
@@ -304,7 +336,24 @@ function emitContentTypeParameter(
     };
 }
 
-function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<string, any> {
+function getConstantType(key: string): Record<string, any> {
+    const cache = simpleTypesMap.get(key);
+    if (cache) {
+        return cache;
+    }
+    const type = {
+        apiVersions: [],
+        clientDefaultValue: null,
+        type: "constant",
+        value: key,
+        valueType: KnownTypes.string,
+        xmlMetadata: {},
+    };
+    simpleTypesMap.set(key, type);
+    return type;
+}
+
+function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden: boolean): Record<string, any> {
     return {
         checkClientInput: false,
         clientDefaultValue: "application/json",
@@ -321,11 +370,11 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
         optional: false,
         restApiName: "Accept",
         skipUrlEncoding: false,
-        type: ConstantTypes.applicationJson,
+        type: getConstantType("application/json"),
     };
 }
 
-function emitResponseHeaders(program: Program, headers?: Record<string, ModelTypeProperty>): Record<string, any>[] {
+function emitResponseHeaders(program: Program, headers?: Record<string, ModelProperty>): Record<string, any>[] {
     const retval: Record<string, any>[] = [];
     if (!headers) {
         return retval;
@@ -348,8 +397,8 @@ function emitResponse(
     if (innerResponse.body?.type) {
         // temporary logic. It can be removed after compiler optimize the response
         const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
-        const originType = innerResponse.body.type as ModelType;
-        if (innerResponse.body.type.kind == "Model" && candidate.find(e => e === originType.name)) {
+        const originType = innerResponse.body.type as Model;
+        if (innerResponse.body.type.kind == "Model" && candidate.find((e) => e === originType.name)) {
             const modelType = getEffectiveSchemaType(program, originType);
             type = getType(program, modelType);
         } else {
@@ -365,7 +414,7 @@ function emitResponse(
     return {
         headers: emitResponseHeaders(program, innerResponse.headers),
         statusCodes: statusCodes,
-        addedApiVersion: getAddedOnVersion(program, response.type),
+        addedOn: getAddedOnVersion(program, response.type),
         discriminator: "basic",
         type: type,
     };
@@ -418,7 +467,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
                 emittedResponse["type"] &&
                 parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
             ) {
-                parameters.push(emitAcceptParameter(isOverload, isOverriden));
+                parameters.push(emitAcceptParameter(program, isOverload, isOverriden));
             }
             if (isErrorModel(program, response.type)) {
                 // * is valid status code in cadl but invalid for autorest.python
@@ -451,7 +500,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
         responses: responses,
         exceptions: exceptions,
         groupName: getOperationGroupName(program, operation),
-        addedApiVersion: getAddedOnVersion(program, operation.operation),
+        addedOn: getAddedOnVersion(program, operation.operation),
         discriminator: "basic",
         isOverload: false,
         overloads: [],
@@ -459,7 +508,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
     };
 }
 
-function emitString(program: Program, modelTypeProperty: ModelTypeProperty | undefined): Record<string, any> {
+function emitString(program: Program, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
     let maxLength = undefined;
     let minLength = undefined;
     let pattern = undefined;
@@ -474,11 +523,7 @@ function emitString(program: Program, modelTypeProperty: ModelTypeProperty | und
     return { minLength, maxLength, pattern, type: "string" };
 }
 
-function emitNumber(
-    type: string,
-    program: Program,
-    modelTypeProperty: ModelTypeProperty | undefined,
-): Record<string, any> {
+function emitNumber(type: string, program: Program, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
     let minimum = undefined;
     let maximum = undefined;
     if (modelTypeProperty) {
@@ -492,7 +537,7 @@ function emitNumber(
     return { minimum, maximum, type };
 }
 
-function isReadOnly(program: Program, type: ModelTypeProperty): boolean {
+function isReadOnly(program: Program, type: ModelProperty): boolean {
     const visibility = getVisibility(program, type);
     if (visibility) {
         return !visibility.includes("write");
@@ -501,7 +546,7 @@ function isReadOnly(program: Program, type: ModelTypeProperty): boolean {
     }
 }
 
-function emitProperty(program: Program, property: ModelTypeProperty): Record<string, any> {
+function emitProperty(program: Program, property: ModelProperty): Record<string, any> {
     let clientDefaultValue = undefined;
     const propertyDefaultKind = property.default?.kind;
     if (
@@ -516,13 +561,13 @@ function emitProperty(program: Program, property: ModelTypeProperty): Record<str
         type: getType(program, property.type, property),
         optional: property.optional,
         description: getDocStr(program, property),
-        addedApiVersion: getAddedOnVersion(program, property),
+        addedOn: getAddedOnVersion(program, property),
         readonly: isReadOnly(program, property),
         clientDefaultValue: clientDefaultValue,
     };
 }
 
-function getName(program: Program, type: ModelType): string {
+function getName(program: Program, type: Model): string {
     const friendlyName = getFriendlyName(program, type);
     if (friendlyName) {
         return friendlyName;
@@ -535,11 +580,7 @@ function getName(program: Program, type: ModelType): string {
     }
 }
 
-function emitModel(
-    program: Program,
-    type: ModelType,
-    modelTypeProperty: ModelTypeProperty | undefined,
-): Record<string, any> {
+function emitModel(program: Program, type: Model, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
     if (type.indexer) {
         if (isNeverType(type.indexer.key)) {
         } else {
@@ -620,7 +661,7 @@ function emitModel(
                 parents: baseModel ? [baseModel] : [],
                 discriminatedSubtypes: {},
                 properties: properties,
-                addedApiVersion: getAddedOnVersion(program, type),
+                addedOn: getAddedOnVersion(program, type),
                 snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
             };
     }
@@ -637,9 +678,9 @@ function enumName(name: string): string {
     return camelToSnakeCase(name).toUpperCase();
 }
 
-function emitEnum(program: Program, type: EnumType): Record<string, any> {
+function emitEnum(program: Program, type: Enum): Record<string, any> {
     const enumValues = [];
-    for (const m of type.members) {
+    for (const m of type.members.values()) {
         enumValues.push({
             name: enumName(m.name),
             value: m.value ?? m.name,
@@ -651,10 +692,10 @@ function emitEnum(program: Program, type: EnumType): Record<string, any> {
         type: "enum",
         name: type.name,
         description: getDocStr(program, type),
-        valueType: { type: enumMemberType(type.members[0]) },
+        valueType: { type: enumMemberType(type.members.values().next().value) },
         values: enumValues,
     };
-    function enumMemberType(member: EnumMemberType) {
+    function enumMemberType(member: EnumMember) {
         if (typeof member.value === "number") {
             return intOrFloat(member.value);
         }
@@ -676,7 +717,12 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
                 credentialScopes: [],
             },
         };
-        auth.flows.forEach((it) => credential_type.policy.credentialScopes.push(...it.scopes));
+        for (const flow of auth.flows) {
+            for (const scope of flow.scopes) {
+                credential_type.policy.credentialScopes.push(scope.value);
+            }
+            credential_type.policy.credentialScopes.push();
+        }
     } else if (auth.type === "apiKey") {
         credential_type = {
             type: "Key",
@@ -692,7 +738,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
 function emitType(
     program: Program,
     type: Type | CredentialType,
-    modelTypeProperty: ModelTypeProperty | undefined = undefined,
+    modelTypeProperty: ModelProperty | undefined = undefined,
 ): Record<string, any> {
     switch (type.kind) {
         case "Number":
@@ -710,16 +756,18 @@ function emitType(
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
+                const value = emitType(program, option)["value"];
                 values.push({
                     description: "",
-                    name: "n/a",
-                    value: emitType(program, option)["value"],
+                    name: camelToSnakeCase(value).toUpperCase(),
+                    value: value,
                 });
             }
+            const enumName = modelTypeProperty ? capitalize(modelTypeProperty.name) + "Type" : "MyEnum";
             return {
-                name: "MyEnum",
-                snakeCaseName: "my_enum",
-                description: "n/a",
+                name: enumName,
+                snakeCaseName: camelToSnakeCase(enumName),
+                description: modelTypeProperty ? `Type of ${modelTypeProperty.name}.` : "n/a",
                 isPublic: false,
                 type: "enum",
                 valueType: emitType(program, type.options[0])["valueType"],
@@ -760,7 +808,7 @@ function emitOperationGroups(program: Program): Record<string, any>[] {
     return operationGroups;
 }
 
-function getServerHelper(program: Program, namespace: NamespaceType): HttpServer | undefined {
+function getServerHelper(program: Program, namespace: Namespace): HttpServer | undefined {
     const servers = getServers(program, namespace);
     if (servers === undefined) {
         return undefined;
@@ -768,7 +816,7 @@ function getServerHelper(program: Program, namespace: NamespaceType): HttpServer
     return servers[0];
 }
 
-function emitServerParams(program: Program, namespace: NamespaceType): Record<string, any>[] {
+function emitServerParams(program: Program, namespace: Namespace): Record<string, any>[] {
     const server = getServerHelper(program, namespace);
     if (server === undefined) {
         return [
@@ -814,7 +862,7 @@ function emitServerParams(program: Program, namespace: NamespaceType): Record<st
     }
 }
 
-function emitCredentialParam(program: Program, namespace: NamespaceType): Record<string, any> | undefined {
+function emitCredentialParam(program: Program, namespace: Namespace): Record<string, any> | undefined {
     const auth = getAuthentication(program, namespace);
     if (auth) {
         for (const option of auth.options) {
@@ -843,13 +891,51 @@ function emitCredentialParam(program: Program, namespace: NamespaceType): Record
     return undefined;
 }
 
-function emitGlobalParameters(program: Program, serviceNamespace: NamespaceType): Record<string, any>[] {
+function emitApiVersionParam(program: Program): Record<string, any> | undefined {
+    if (!apiVersions.length) {
+        return undefined;
+    }
+    const version = apiVersions[apiVersions.length - 1];
+    if (version) {
+        return {
+            clientName: "api_version",
+            clientDefaultValue: version,
+            description: "Api Version",
+            implementation: "Client",
+            location: "query",
+            restApiName: "api-version",
+            skipUrlEncoding: false,
+            optional: false,
+            inDocString: true,
+            inOverload: false,
+            inOverridden: false,
+            type: getConstantType(version),
+        };
+    }
+    return undefined;
+}
+
+function emitGlobalParameters(program: Program, serviceNamespace: Namespace): Record<string, any>[] {
     const clientParameters = emitServerParams(program, serviceNamespace);
     const credentialParam = emitCredentialParam(program, serviceNamespace);
+    const apiVersionParam = emitApiVersionParam(program);
     if (credentialParam) {
         clientParameters.push(credentialParam);
     }
+    if (apiVersionParam) {
+        clientParameters.push(apiVersionParam);
+    }
     return clientParameters;
+}
+
+function getApiVersions(program: Program, namespace: Namespace) {
+    const versions = getVersions(program, namespace)[1];
+    if (versions === undefined) {
+        return;
+    }
+    for (const version of versions.getVersions()) {
+        apiVersions.push(version.value);
+    }
 }
 
 function createYamlEmitter(program: Program) {
@@ -858,10 +944,7 @@ function createYamlEmitter(program: Program) {
         throw Error("Can not emit yaml for a namespace that doesn't exist.");
     }
 
-    // let [_, versions] = getVersions(program, serviceNamespace);
-    // if (versions.length === 0 && getServiceVersion(program)) {
-    //   versions = [getServiceVersion(program)];
-    // }
+    getApiVersions(program, serviceNamespace);
     const name = getServiceTitle(program).replace(/ /g, "").replace(/-/g, "");
     const clientParameters = emitGlobalParameters(program, serviceNamespace);
     // Get types
@@ -878,27 +961,11 @@ function createYamlEmitter(program: Program) {
             apiVersions: [],
         },
         operationGroups: emitOperationGroups(program),
-        types: [
-            ...typesMap.values(),
-            ...Object.values(KnownTypes),
-            ...simpleTypesMap.values(),
-            ...Object.values(ConstantTypes),
-        ],
+        types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
     };
     return codeModel;
 }
 
 const KnownTypes = {
     string: { type: "string" },
-};
-
-const ConstantTypes = {
-    applicationJson: {
-        apiVersions: [],
-        clientDefaultValue: null,
-        type: "constant",
-        value: "application/json",
-        valueType: KnownTypes.string,
-        xmlMetadata: {},
-    },
 };

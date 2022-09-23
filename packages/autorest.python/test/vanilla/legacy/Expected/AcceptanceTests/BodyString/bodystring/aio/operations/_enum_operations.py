@@ -57,7 +57,7 @@ class EnumOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_not_expandable(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_not_expandable(self, **kwargs: Any) -> Union[str, _models.Colors]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -76,7 +76,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.Colors]]
 
         request = build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"],
@@ -108,7 +108,7 @@ class EnumOperations:
 
     @distributed_trace_async
     async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
-        self, string_body: Union[str, "_models.Colors"], **kwargs: Any
+        self, string_body: Union[str, _models.Colors], **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -163,7 +163,7 @@ class EnumOperations:
     put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_referenced(self, **kwargs: Any) -> Union[str, _models.Colors]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -182,7 +182,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.Colors]]
 
         request = build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"],
@@ -214,7 +214,7 @@ class EnumOperations:
 
     @distributed_trace_async
     async def put_referenced(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: Union[str, "_models.Colors"], **kwargs: Any
+        self, enum_string_body: Union[str, _models.Colors], **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 

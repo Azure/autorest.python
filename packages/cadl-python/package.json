@@ -1,8 +1,8 @@
 {
   "name": "@azure-tools/cadl-python",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "author": "Microsoft Corporation",
-  "description": "Cadl library for emitting OpenAPI 3.0 from the Cadl REST protocol binding",
+  "description": "Cadl emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
   "readme": "https://github.com/Azure/autorest.python/packages/cadl-python/README.md",
   "license": "MIT",
@@ -21,16 +21,6 @@
   "exports": {
     ".": "./dist/src/index.js",
     "./testing": "./dist/src/testing/index.js"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/src/index.d.ts"
-      ],
-      "testing": [
-        "./dist/src/testing/index.d.ts"
-      ]
-    }
   },
   "cadlMain": "dist/src/index.js",
   "engines": {
@@ -52,31 +42,31 @@
     "get-autorest-python-path.cjs"
   ],
   "peerDependencies": {
-    "@cadl-lang/versioning": "~0.7.0",
-    "@cadl-lang/rest": "~0.16.0",
-    "@azure-tools/cadl-azure-core": "~0.6.0"
+    "@cadl-lang/versioning": "~0.8.0",
+    "@cadl-lang/rest": "~0.17.0",
+    "@azure-tools/cadl-azure-core": "~0.7.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
-    "@autorest/python": "~6.1.1",
-    "@cadl-lang/compiler": "~0.34.0"
+    "@autorest/python": "workspace:*",
+    "@cadl-lang/compiler": "~0.35.0"
   },
   "devDependencies": {
     "@types/mocha": "~9.1.0",
-    "@types/node": "~16.0.3",
+    "@types/node": "^18.7.16",
     "@types/js-yaml": "~4.0.1",
-    "@cadl-lang/rest": "~0.16.0",
-    "@cadl-lang/versioning": "~0.7.0",
-    "@cadl-lang/eslint-config-cadl": "~0.4.0",
-    "eslint": "^8.20.0",
+    "@cadl-lang/rest": "~0.17.0",
+    "@cadl-lang/versioning": "~0.8.0",
+    "@cadl-lang/eslint-config-cadl": "~0.4.1",
+    "eslint": "^8.23.1",
     "mocha": "~9.2.0",
     "c8": "~7.11.0",
     "rimraf": "~3.0.2",
     "typescript": "^4.7.4",
-    "@azure-tools/cadl-azure-core": "~0.6.0",
+    "@azure-tools/cadl-azure-core": "~0.7.0",
     "@azure-tools/cadl-ranch-specs": "workspace:*",
-    "@azure-tools/cadl-ranch-expect": "~0.1.8",
-    "@cadl-lang/openapi": "~0.11.0",
+    "@azure-tools/cadl-ranch-expect": "~0.1.9",
+    "@cadl-lang/openapi": "~0.12.0",
     "prettier": "^2.7.1"
   }
 }
