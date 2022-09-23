@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-09-23 - 0.2.2
+
+**New Features**
+
+- Correctly filter out duplicate models  #1466
+
 ## 2022-09-22 - 0.2.1
 
 **New Features**
