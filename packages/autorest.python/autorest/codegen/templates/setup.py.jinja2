@@ -91,9 +91,11 @@ setup(
         {% else %}
         "{{ dependency_azure_core }}",
         {% endif %}
+        {% if extra_depends is defined %}
         {%- for extra_depend in extra_depends %}
             "{{ extra_depend }}",
         {%- endfor %}
+        {% endif %}
     ],
     {% if package_mode %}
     python_requires=">=3.7",
