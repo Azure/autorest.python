@@ -6,7 +6,7 @@
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_type import BaseType
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, ImportModel, TypingSection
 from .utils import add_to_description
 
 if TYPE_CHECKING:
@@ -119,6 +119,23 @@ class ConstantType(BaseType):
         file_import.merge(self.value_type.imports(**kwargs))
         if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import("typing", "Literal", ImportType.STDLIB)
+            file_import.add_version_import(
+                "Literal",
+                {
+                    (3, 8): ImportModel(
+                        TypingSection.REGULAR,
+                        ImportType.STDLIB,
+                        "typing",
+                        submodule_name="Literal",
+                    ),
+                    None: ImportModel(
+                        TypingSection.REGULAR,
+                        ImportType.STDLIB,
+                        "typing_extensions",
+                        submodule_name="Literal",
+                    ),
+                },
+            )
         return file_import
 
     @property

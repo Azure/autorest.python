@@ -74,19 +74,20 @@ class TypeDefinition:
         self,
         sync_definition: str,
         async_definition: str,
-        version_imports: Mapping[Optional[Tuple[int, int]], ImportModel] = None,
     ):
-        # version_imports: a map of "python version -> ImportModel".
-        #                  The python version is in form of (major, minor), for instance (3, 9) stands for py3.9.
-        #                  If the python version is None, it's a default ImportModel.
         self.sync_definition = sync_definition
         self.async_definition = async_definition
-        self.version_imports = version_imports
 
 
 class FileImport:
     def __init__(self, imports: List[ImportModel] = None) -> None:
         self.imports = imports or []
+        # version_imports: a map of "module name" --> "python version -> ImportModel".
+        #                  The python version is in form of (major, minor), for instance (3, 9) stands for py3.9.
+        #                  If the python version is None, it's a default ImportModel.
+        self.version_imports: Dict[
+            str, Mapping[Optional[Tuple[int, int]], ImportModel]
+        ] = {}
         # has sync and async type definitions
         self.type_definitions: Dict[str, TypeDefinition] = {}
 
@@ -126,6 +127,11 @@ class FileImport:
             )
         )
 
+    def add_version_import(
+        self, name: str, version_import: Mapping[Optional[Tuple[int, int]], ImportModel]
+    ):
+        self.version_imports[name] = version_import
+
     def add_import(
         self,
         module_name: str,
@@ -148,24 +154,22 @@ class FileImport:
         type_name: str,
         type_value: str,
         async_type_value: Optional[str] = None,
-        version_imports: Mapping[Optional[Tuple[int, int]], ImportModel] = None,
     ):
         self.type_definitions[type_name] = TypeDefinition(
-            type_value, async_type_value or type_value, version_imports
+            type_value, async_type_value or type_value
         )
 
     def merge(self, file_import: "FileImport") -> None:
         """Merge the given file import format."""
         for i in file_import.imports:
             self._append_import(i)
+        self.version_imports.update(file_import.version_imports)
         self.type_definitions.update(file_import.type_definitions)
 
     def define_mutable_mapping_type(self) -> None:
         """Helper function for defining the mutable mapping type"""
-        self.define_mypy_type(
-            "JSON",
-            "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
-            None,
+        self.add_version_import(
+            "MutableMapping",
             {
                 (3, 9): ImportModel(
                     TypingSection.CONDITIONAL,
@@ -180,6 +184,10 @@ class FileImport:
                     submodule_name="MutableMapping",
                 ),
             },
+        )
+        self.define_mypy_type(
+            "JSON",
+            "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
         )
         self.add_submodule_import("typing", "Any", ImportType.STDLIB)
 

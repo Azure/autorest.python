@@ -13,6 +13,11 @@ from azure.core.pipeline import policies
 
 from ._version import VERSION
 
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ResiliencyServiceDriven2Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for ResiliencyServiceDriven2.

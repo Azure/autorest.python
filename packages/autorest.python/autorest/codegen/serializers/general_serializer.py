@@ -115,6 +115,11 @@ class GeneralSerializer:
         params = {}
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
+        params["extra_depends"] = []
+        if self.code_model.options["models_mode"] == "dpg":
+            params["extra_depends"].append(
+                f"typing_extensions>=4.3.0; python_version<'3.8.0'"
+            )
         return template.render(code_model=self.code_model, **params)
 
     def serialize_serialization_file(self) -> str:
