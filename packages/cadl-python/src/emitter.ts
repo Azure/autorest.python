@@ -25,6 +25,9 @@ import {
     resolvePath,
     Type,
     getEffectiveModelType,
+    EmitOptionsFor,
+    JSONSchemaType,
+    createCadlLibrary,
 } from "@cadl-lang/compiler";
 import { getDiscriminator } from "@cadl-lang/rest";
 import {
@@ -59,21 +62,51 @@ interface CredentialType {
     scheme: HttpAuth;
 }
 
-export async function $onEmit(program: Program) {
+export interface EmitterOptions {
+    "basic-setup-py": boolean;
+    "package-version": string;
+    "package-name": string;
+    "output-path": string;
+}
+
+const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+        "basic-setup-py": { type: "boolean", nullable: true },
+        "package-version": { type: "string", nullable: true },
+        "package-name": { type: "string", nullable: true },
+        "output-path": { type: "string", nullable: true },
+    },
+    required: [],
+};
+
+export const $lib = createCadlLibrary({
+    name: "MyEmitter",
+    diagnostics: {},
+    emitter: {
+        options: EmitterOptionsSchema,
+    },
+});
+
+export async function $onEmit(program: Program, options: EmitterOptions) {
     const yamlMap = createYamlEmitter(program);
     const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
     await program.host.writeFile(yamlPath, dump(yamlMap));
     const root = process.cwd();
+    const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
     const commandArgs = [
         `${root}/run-python3.js`,
         `${root}/run.py`,
-        `--output-folder=${program.compilerOptions.outputPath!}`,
+        `--output-folder=${outputFolder}`,
         `--cadl-file=${yamlPath}`,
     ];
+    for (const [key, value] of Object.entries(options)) {
+        commandArgs.push(`--${key}=${value}`);
+    }
     if (program.compilerOptions.diagnosticLevel === "debug") {
         commandArgs.push("--debug");
     }
-
     execFileSync(process.execPath, commandArgs);
 }
 

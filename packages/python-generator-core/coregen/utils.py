@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 import re
 import argparse
 
@@ -37,7 +37,9 @@ def to_snake_case(name: str) -> str:
     return re.sub("[A-Z]+", replace_upper_characters, name)
 
 
-def parse_args(need_cadl_file: bool = True):
+def parse_args(
+    need_cadl_file: bool = True,
+) -> Tuple[argparse.Namespace, Dict[str, Any]]:
     parser = argparse.ArgumentParser(
         description="Run mypy against target folder. Add a local custom plugin to the path prior to execution. "
     )
@@ -60,7 +62,24 @@ def parse_args(need_cadl_file: bool = True):
         required=False,
         action="store_true",
     )
-    return parser.parse_args()
+    args, unknown_args = parser.parse_known_args()
+
+    def _get_value(value: Any) -> Any:
+        if value == "true":
+            return True
+        if value == "false":
+            return False
+        try:
+            return int(value)
+        except ValueError:
+            pass
+        return value
+
+    unknown_args_ret = {
+        ua.strip("--").split("=")[0]: _get_value(ua.strip("--").split("=")[1])
+        for ua in unknown_args
+    }
+    return args, unknown_args_ret
 
 
 def get_body_type_for_description(body_parameter: Dict[str, Any]) -> str:

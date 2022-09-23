@@ -11,3 +11,5 @@ from .. import PluginAutorest
 class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
         return {"output_folder": self._autorestapi.get_value("outputFolderUri")}
+<<<<<<< HEAD
+=======

@@ -130,3 +130,5 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
         return JinjaSerializerAutorest(
             self._autorestapi, code_model, output_folder=self.output_folder
         )
+<<<<<<< HEAD
+=======

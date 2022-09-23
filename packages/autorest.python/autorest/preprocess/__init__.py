@@ -17,3 +17,5 @@ class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
             "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
         }
         return {k: v for k, v in options.items() if v is not None}
+<<<<<<< HEAD
+=======
