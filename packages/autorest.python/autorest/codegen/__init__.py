@@ -361,7 +361,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
 
 if __name__ == "__main__":
     # CADL pipeline will call this
-    args, options = parse_args()
+    args, unknown_args = parse_args()
     CodeGenerator(
-        output_folder=args.output_folder, cadl_file=args.cadl_file, **options
+        output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args
     ).process()
