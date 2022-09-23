@@ -108,7 +108,7 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
         if not code_model.client.client_side_validation:
             codegen_env = Environment(
-                loader=PackageLoader("autorest.codegen", "templates"),
+                loader=PackageLoader("coregen.codegen", "templates"),
                 keep_trailing_newline=True,
                 line_statement_prefix="##",
                 line_comment_prefix="###",
