@@ -69,14 +69,14 @@ class _ModelSerializer(ABC):
         return f"super().__init__({self.properties_to_pass_to_super(model)})"
 
     @staticmethod
-    def initialize_discriminator_property(
-        model: ModelType, prop: Property, typing: str = "str"
-    ) -> str:
+    def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
         discriminator_value = (
             f"'{model.discriminator_value}'" if model.discriminator_value else None
         )
         if not discriminator_value:
             typing = "Optional[str]"
+        else:
+            typing = "str"
         return f"self.{prop.client_name} = {discriminator_value}  # type: {typing}"
 
     @staticmethod
@@ -268,14 +268,8 @@ class DpgModelSerializer(_ModelSerializer):
     def initialize_properties(self, model: ModelType) -> List[str]:
         init_args = []
         for prop in self.get_properties_to_declare(model):
-            if prop.is_discriminator:
+            if prop.constant or prop.is_discriminator:
                 init_args.append(
-                    self.initialize_discriminator_property(
-                        model, prop, prop.type_annotation()
-                    )
-                )
-            elif prop.constant:
-                init_args.append(
-                    f"self.{prop.client_name} = {cast(ConstantType, prop.type).get_declaration()}"
+                    f"self.{prop.client_name} = {cast(ConstantType, prop.type).get_declaration()}   # type: {prop.type_annotation()}"
                 )
         return init_args

@@ -136,10 +136,12 @@ function handleDiscriminator(program: Program, type: Model, model: Record<string
         }
         // it is not included in properties of cadl but needed by python codegen
         if (discriminatorProperty) {
+            const discriminatorType = {...discriminatorProperty.type}
+            discriminatorType.value = null
             const propertyCopy = {
                 ...discriminatorProperty,
                 isPolymorphic: true,
-                type: discriminatorProperty.type.valueType,
+                type: discriminatorType,
             };
             propertyCopy.description = "";
             model.properties.push(propertyCopy);

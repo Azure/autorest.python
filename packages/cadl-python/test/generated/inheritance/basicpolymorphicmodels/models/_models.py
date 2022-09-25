@@ -69,13 +69,13 @@ class BaseClassWithDiscriminator(BaseClass):
 
     :ivar base_class_property: An example property. Required.
     :vartype base_class_property: str
-    :ivar discriminator_property: Required.
+    :ivar discriminator_property: Required. Default value is None.
     :vartype discriminator_property: str
     """
 
     __mapping__ = {}
-    discriminator_property: str = rest_discriminator(name="discriminatorProperty")
-    """Required. """
+    discriminator_property: Literal[None] = rest_discriminator(name="discriminatorProperty")
+    """Required. Default value is None."""
 
     @overload
     def __init__(
@@ -95,7 +95,7 @@ class BaseClassWithDiscriminator(BaseClass):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.discriminator_property = None  # type: Optional[str]
+        self.discriminator_property = None  # type: Literal[None]
 
 
 class DerivedFromBaseClassWithDiscriminatorA(BaseClassWithDiscriminator, discriminator="A"):

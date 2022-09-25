@@ -76,7 +76,7 @@ class ConstantType(BaseType):
 
     def type_annotation(self, **kwargs: Any) -> str:
         if self.code_model.options["models_mode"] == "dpg":
-            return f"Literal[{self.value_type.get_declaration(self.value)}]"
+            return f"Literal[{self.get_declaration()}]"
         return self.value_type.type_annotation(**kwargs)
 
     @classmethod
