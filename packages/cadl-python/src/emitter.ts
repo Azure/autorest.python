@@ -90,10 +90,9 @@ export const $lib = createCadlLibrary({
 
 export async function $onEmit(program: Program, options: EmitterOptions) {
     const yamlMap = createYamlEmitter(program);
-    const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
-    await program.host.writeFile(yamlPath, dump(yamlMap));
     const root = process.cwd();
     const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
+    const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
@@ -108,6 +107,7 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
+        await program.host.writeFile(yamlPath, dump(yamlMap));
         execFileSync(process.execPath, commandArgs);
     }
 }
