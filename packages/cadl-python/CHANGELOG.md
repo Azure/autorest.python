@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-09-26 - 0.2.5
+
+**Bug Fixes**
+
+- Do not `output.yaml` if `noEmit` is specified  #1471
+
 ## 2022-09-26 - 0.2.4
 
 **Bug Fixes**
