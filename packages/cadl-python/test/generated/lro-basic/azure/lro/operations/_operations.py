@@ -162,6 +162,7 @@ class PollingSuccessOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
             if response.content:
                 deserialized = response.json()
             else:
