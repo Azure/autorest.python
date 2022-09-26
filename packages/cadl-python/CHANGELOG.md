@@ -1,5 +1,23 @@
 # Release History
 
+## 2022-09-26 - 0.2.5
+
+**Bug Fixes**
+
+- Do not `output.yaml` if `noEmit` is specified  #1471
+
+## 2022-09-26 - 0.2.4
+
+**Bug Fixes**
+
+- Do not emit SDK if `noEmit` is specified  #1470
+
+## 2022-09-23 - 0.2.3
+
+**Other Changes**
+
+- Accept parameters passed in `cadl-project.yaml`  #1467
+
 ## 2022-09-23 - 0.2.2
 
 **New Features**
