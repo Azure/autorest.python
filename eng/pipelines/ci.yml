@@ -343,7 +343,7 @@ jobs:
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
         - script: |
-            cadl-ranch upload-coverage --generatorName python --version=$(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
-            echo $(node -p -e "require('../../../package.json').version")
+            echo $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
+            cadl-ranch upload-coverage --generatorName python --generatorVersion=$(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
           displayName: Upload coverage
           workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
