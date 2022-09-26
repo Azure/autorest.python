@@ -25,7 +25,6 @@ import {
     resolvePath,
     Type,
     getEffectiveModelType,
-    EmitOptionsFor,
     JSONSchemaType,
     createCadlLibrary,
 } from "@cadl-lang/compiler";
@@ -107,7 +106,9 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     if (program.compilerOptions.diagnosticLevel === "debug") {
         commandArgs.push("--debug");
     }
-    execFileSync(process.execPath, commandArgs);
+    if (!program.compilerOptions.noEmit && !program.hasError()) {
+        execFileSync(process.execPath, commandArgs);
+    }
 }
 
 function camelToSnakeCase(name: string): string {
