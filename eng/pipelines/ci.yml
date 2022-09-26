@@ -347,4 +347,3 @@ jobs:
             echo $(node -p -e "require('../../../package.json').version")
           displayName: Upload coverage
           workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
-          continueOnError: true
