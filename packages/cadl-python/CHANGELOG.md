@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-09-23 - 0.2.4
+
+**Bug Fixes**
+
+- Do not emit SDK if `noEmit` is specified
+
 ## 2022-09-23 - 0.2.3
 
 **Other Changes**
