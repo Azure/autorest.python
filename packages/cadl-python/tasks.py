@@ -17,6 +17,15 @@ PLUGIN_DIR = Path(os.path.dirname(__file__))
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
 
 @task
+def regenerate_dev_driven_customized(c, debug):
+  return (
+    f"cadl compile {CADL_RANCH_DIR}/http/resiliency/dev-driven  "
+    f"--emit={PLUGIN_DIR}/dist/src/index.js "
+    f"--output-path={PLUGIN_DIR}/test/generated/dev-driven-customized{' --debug' if debug else ''} "
+    f"--package-name=dev-driven-customized"
+  )
+
+@task
 def regenerate(c, name=None, debug=False):
   specs = [
     s for s in CADL_RANCH_DIR.glob("**/*")
@@ -24,10 +33,15 @@ def regenerate(c, name=None, debug=False):
   ]
   if name:
     specs = [s for s in specs if name.lower() in s.stem.lower()]
-  _run_cadl([
+
+  cmds = [
     f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-path={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
     for spec in specs
-  ])
+  ]
+  if not name:
+    cmds.append(_regenerate_dev_driven_customized(debug))
+
+  _run_cadl(cmds)
 
 def _run_cadl(cmds):
   if len(cmds) == 1:
