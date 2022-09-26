@@ -13,5 +13,3 @@ from .. import YamlUpdatePluginAutorest
 class M2RAutorest(YamlUpdatePluginAutorest, M2R):
     def get_options(self) -> Dict[str, Any]:
         return {}
-<<<<<<< HEAD
-=======
