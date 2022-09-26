@@ -340,9 +340,3 @@ jobs:
           npm install $AbsolutePkgPath
         displayName: Test tarball
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
-
-      - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
-        - script: |
-            cadl-ranch upload-coverage --generatorName python --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
-          displayName: Upload coverage
-          workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs

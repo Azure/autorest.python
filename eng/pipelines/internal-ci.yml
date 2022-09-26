@@ -1,0 +1,14 @@
+trigger:
+  branches:
+    include:
+      - autorestv3
+
+steps:
+    - task: AzureCLI@2
+      displayName: Upload scenario manifest
+      inputs:
+        azureSubscription: "Azure SDK Playground"
+        scriptType: "bash"
+        scriptLocation: "inlineScript"
+        inlineScript: cadl-ranch upload-coverage --generatorName python --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
+        workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
