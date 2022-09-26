@@ -4,13 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from lro.basic import LroBasic
+from azure.lro import AzureLro
 
 @pytest.fixture
 def client():
-    with LroBasic() as client:
+    with AzureLro() as client:
         yield client
 
 def test_lro_basic_put(client):
     result = client.begin_create(polling_interval=0).result()
-    assert result == "Successful"
+    assert result == "Test for polling succeed"

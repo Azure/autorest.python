@@ -17,53 +17,41 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
-from azure.core.polling import LROPoller, NoPolling, PollingMethod
-from azure.core.polling.base_polling import LROBasePolling
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
+from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
+from azure.core.tracing.decorator_async import distributed_trace_async
 
-from .._serialization import Serializer
-from .._vendor import MixinABC
+from ..._model_base import _deserialize
+from ...operations._operations import (
+    build_polling_success_create_request,
+    build_polling_success_get_request,
+    build_polling_success_polling_request,
+)
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-def build_create_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+class PollingSuccessOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    accept = _headers.pop("Accept", "application/json")
+        Instead, you should access the following operations through
+        :class:`~azure.lro.aio.AzureLro`'s
+        :attr:`polling_success` attribute.
+    """
 
-    # Construct URL
-    _url = "/lro/basic/put"
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-def build_read_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/lro/basic/put"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-class LroBasicOperationsMixin(MixinABC):
-    def _create_initial(self, **kwargs: Any) -> str:
+    async def _create_initial(self, **kwargs: Any) -> str:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -77,13 +65,13 @@ class LroBasicOperationsMixin(MixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_create_request(
+        request = build_polling_success_create_request(
             headers=_headers,
             params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -99,40 +87,39 @@ class LroBasicOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(str, deserialized)
+        return deserialized
 
-    @distributed_trace
-    def begin_create(self, **kwargs: Any) -> LROPoller[str]:
+    @distributed_trace_async
+    async def begin_create(self, **kwargs: Any) -> AsyncLROPoller[str]:
         """Test for basic lro of put.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
+        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
+         for this operation to not poll, or pass in your own initialized polling object for a personal
          polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns str
-        :rtype: ~azure.core.polling.LROPoller[str]
+        :return: An instance of AsyncLROPoller that returns str
+        :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._create_initial(  # type: ignore
+            raw_result = await self._create_initial(  # type: ignore
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             if response.content:
                 deserialized = response.json()
             else:
@@ -142,23 +129,25 @@ class LroBasicOperationsMixin(MixinABC):
             return deserialized
 
         if polling is True:
-            polling_method = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))  # type: PollingMethod
+            polling_method = cast(
+                AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs)
+            )  # type: AsyncPollingMethod
         elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    @distributed_trace
-    def read(self, **kwargs: Any) -> str:
-        """Test for get.
+    @distributed_trace_async
+    async def polling(self, **kwargs: Any) -> str:
+        """The polling url.
 
         :return: str
         :rtype: str
@@ -177,13 +166,13 @@ class LroBasicOperationsMixin(MixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_read_request(
+        request = build_polling_success_polling_request(
             headers=_headers,
             params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -199,6 +188,53 @@ class LroBasicOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(str, deserialized)
+        return deserialized
+
+    @distributed_trace_async
+    async def get(self, **kwargs: Any) -> str:
+        """The final url.
+
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+
+        request = build_polling_success_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
