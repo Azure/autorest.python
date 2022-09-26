@@ -25,7 +25,6 @@ import {
     resolvePath,
     Type,
     getEffectiveModelType,
-    EmitOptionsFor,
     JSONSchemaType,
     createCadlLibrary,
 } from "@cadl-lang/compiler";
@@ -91,10 +90,9 @@ export const $lib = createCadlLibrary({
 
 export async function $onEmit(program: Program, options: EmitterOptions) {
     const yamlMap = createYamlEmitter(program);
-    const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
-    await program.host.writeFile(yamlPath, dump(yamlMap));
     const root = process.cwd();
     const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
+    const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/run-python3.js`,
         `${root}/run.py`,
@@ -107,7 +105,11 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     if (program.compilerOptions.diagnosticLevel === "debug") {
         commandArgs.push("--debug");
     }
-    execFileSync(process.execPath, commandArgs);
+    if (!program.compilerOptions.noEmit && !program.hasError()) {
+        // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
+        await program.host.writeFile(yamlPath, dump(yamlMap));
+        execFileSync(process.execPath, commandArgs);
+    }
 }
 
 function camelToSnakeCase(name: string): string {
