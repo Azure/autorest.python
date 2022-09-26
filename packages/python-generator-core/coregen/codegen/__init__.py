@@ -260,5 +260,7 @@ class CodeGenerator(Plugin):
 
 if __name__ == "__main__":
     # CADL pipeline will call this
-    args = parse_args()
-    CodeGenerator(output_folder=args.output_folder, cadl_file=args.cadl_file).process()
+    args, additional_args = parse_args()
+    CodeGenerator(
+        output_folder=args.output_folder, cadl_file=args.cadl_file, **additional_args
+    ).process()

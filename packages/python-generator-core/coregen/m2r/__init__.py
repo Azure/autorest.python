@@ -59,5 +59,7 @@ class M2R(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
 if __name__ == "__main__":
     # CADL pipeline will call this
-    args = parse_args()
-    M2R(output_folder=args.output_folder, cadl_file=args.cadl_file).process()
+    args, additional_args = parse_args()
+    M2R(
+        output_folder=args.output_folder, cadl_file=args.cadl_file, **additional_args
+    ).process()

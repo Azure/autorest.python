@@ -48,5 +48,5 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
 
 if __name__ == "__main__":
     # CADL pipeline will call this
-    args = parse_args(need_cadl_file=False)
-    BlackScriptPlugin(output_folder=args.output_folder).process()
+    args, additional_args = parse_args(need_cadl_file=False)
+    BlackScriptPlugin(output_folder=args.output_folder, **additional_args).process()
