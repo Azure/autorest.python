@@ -33,7 +33,7 @@ importers:
 
   packages/cadl-python:
     specifiers:
-      '@autorest/python': ~6.1.1
+      '@autorest/python': workspace:^
       '@azure-tools/cadl-azure-core': ~0.7.0
       '@azure-tools/cadl-ranch-expect': ~0.1.9
       '@azure-tools/cadl-ranch-specs': ~0.1.11

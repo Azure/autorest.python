@@ -25,6 +25,9 @@ import {
     resolvePath,
     Type,
     getEffectiveModelType,
+    EmitOptionsFor,
+    JSONSchemaType,
+    createCadlLibrary,
 } from "@cadl-lang/compiler";
 import { getDiscriminator } from "@cadl-lang/rest";
 import {
@@ -47,8 +50,6 @@ import {
 import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
-import { dirname, resolve } from "path";
-import { fileURLToPath } from "url";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -61,22 +62,51 @@ interface CredentialType {
     scheme: HttpAuth;
 }
 
-export async function $onEmit(program: Program) {
+export interface EmitterOptions {
+    "basic-setup-py": boolean;
+    "package-version": string;
+    "package-name": string;
+    "output-path": string;
+}
+
+const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+        "basic-setup-py": { type: "boolean", nullable: true },
+        "package-version": { type: "string", nullable: true },
+        "package-name": { type: "string", nullable: true },
+        "output-path": { type: "string", nullable: true },
+    },
+    required: [],
+};
+
+export const $lib = createCadlLibrary({
+    name: "MyEmitter",
+    diagnostics: {},
+    emitter: {
+        options: EmitterOptionsSchema,
+    },
+});
+
+export async function $onEmit(program: Program, options: EmitterOptions) {
     const yamlMap = createYamlEmitter(program);
     const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
     await program.host.writeFile(yamlPath, dump(yamlMap));
-    const __dirname = dirname(fileURLToPath(import.meta.url));
-    const root = resolve(__dirname, "..", "..");
+    const root = process.cwd();
+    const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
-        `--output-folder=${program.compilerOptions.outputPath!}`,
+        `--output-folder=${outputFolder}`,
         `--cadl-file=${yamlPath}`,
     ];
+    for (const [key, value] of Object.entries(options)) {
+        commandArgs.push(`--${key}=${value}`);
+    }
     if (program.compilerOptions.diagnosticLevel === "debug") {
         commandArgs.push("--debug");
     }
-
     execFileSync(process.execPath, commandArgs);
 }
 
@@ -185,6 +215,14 @@ function getType(
         if (cached) {
             return cached;
         }
+        if (type.kind === "Model") {
+            const modelName = getName(program, type);
+            for (const key of typesMap.keys()) {
+                if (key.kind === "Model" && getName(program, key) === modelName) {
+                    return typesMap.get(key);
+                }
+            }
+        }
     }
     let newValue = emitType(program, type, modelTypeProperty);
     if (enableCache) {
@@ -265,7 +303,7 @@ function emitBodyParameter(
     }
 
     // avoid anonymous model type
-    if (type && !type.name) {
+    if (type && type.type === "model" && !type.name) {
         type.name =
             operation.container.name +
             operation.operation.name[0].toUpperCase() +
