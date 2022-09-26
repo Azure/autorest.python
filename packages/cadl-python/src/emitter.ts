@@ -107,6 +107,7 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
+        // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
         execFileSync(process.execPath, commandArgs);
     }
 }
