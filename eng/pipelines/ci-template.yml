@@ -1,24 +1,11 @@
 parameters:
-    - name: installAutorest
-      type: boolean
-      default: false
-    - name: installCadl
-      type: boolean
-      default: false
-    - name: installCadlRanch
-      type: boolean
-      default: false
-    - name: folderName
-      type: string
-    - name: pythonCodeChecks
-      type: boolean
-      default: false
-    - name: pythonFolderName
-      type: string
-      default: ""
-    - name: regenerate
-      type: boolean
-      default: false
+    installAutorest: false
+    installCadl: false
+    installCadlRanch: false
+    folderName: ""
+    pythonCodeChecks: false
+    pythonFolderName: ""
+    regenerate: false
 
 steps:
     - checkout: self
