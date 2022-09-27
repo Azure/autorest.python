@@ -186,12 +186,12 @@ jobs:
 
       - script: tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/test/mock_api_tests
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
 
       - script: cadl-ranch check-coverage http/
         displayName: Check Coverage
-        workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
         continueOnError: true
 
-      - publish: $(Build.SourcesDirectory)/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-python.json
+      - publish: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-python.json
         artifact: CoverageReport
