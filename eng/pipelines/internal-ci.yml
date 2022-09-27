@@ -11,6 +11,9 @@ resources:
       endpoint: Azure
       name: Azure/azure-sdk-tools
 
+variables:
+  PythonVersion: "3.10"
+
 steps:
     - template: ci-template.yml
       parameters:
