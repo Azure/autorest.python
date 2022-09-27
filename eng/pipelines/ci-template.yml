@@ -80,12 +80,12 @@ steps:
 
     - script: pytest test/unittests
       displayName: Unit tests
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.pythonFolderName}}/
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: inv regenerate
       displayName: "Regenerate Code"
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.pythonFolderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
@@ -104,4 +104,4 @@ steps:
           cd ../..
           pnpm install $AbsolutePkgPath --verbose
       displayName: Test tarball
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.pythonFolderName}}/
