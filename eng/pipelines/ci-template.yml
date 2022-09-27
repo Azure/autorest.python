@@ -104,4 +104,4 @@ steps:
           cd ../..
           pnpm install $AbsolutePkgPath --verbose
       displayName: Test tarball
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.pythonFolderName}}/
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
