@@ -58,17 +58,17 @@ steps:
       displayName: Pip install dev requirements
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pylint $(parameters.pythonFolderName)
+    - script: pylint ${{parameters.pythonFolderName}}
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: mypy $(parameters.pythonFolderName)
+    - script: mypy ${{parameters.pythonFolderName}}
       displayName: Mypy
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: black $(parameters.pythonFolderName)
+    - script: black ${{parameters.pythonFolderName}}
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
@@ -85,7 +85,7 @@ steps:
 
     - script: inv regenerate
       displayName: "Regenerate Code"
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.pythonFolderName}}/
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
