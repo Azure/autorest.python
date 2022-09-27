@@ -340,4 +340,3 @@ jobs:
           npm install $AbsolutePkgPath
         displayName: Test tarball
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
-
