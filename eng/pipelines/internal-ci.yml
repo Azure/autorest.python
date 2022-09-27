@@ -4,48 +4,47 @@ trigger:
       - autorestv3
 
 steps:
-    steps:
-      - task: NodeTool@0
-        displayName: "Install Node.js $(NodeVersion)"
-        inputs:
-          versionSpec: "$(NodeVersion)"
+    - task: NodeTool@0
+      displayName: "Install Node.js $(NodeVersion)"
+      inputs:
+        versionSpec: "$(NodeVersion)"
 
-      - task: UsePythonVersion@0
-        displayName: "Use Python 3.7"
-        inputs:
-          versionSpec: 3.7
+    - task: UsePythonVersion@0
+      displayName: "Use Python 3.7"
+      inputs:
+        versionSpec: 3.7
 
-      - script: |
-          npm install -g pnpm
-          npm install -g @cadl-lang/compiler
-          npm install -g @azure-tools/cadl-ranch
-          pnpm install
-          pnpm run build
-          pnpm check-version-mismatch
-          pip install -r packages/cadl-python/dev_requirements.txt
-        displayName: "Prepare Environment for Generation"
+    - script: |
+        npm install -g pnpm
+        npm install -g @cadl-lang/compiler
+        npm install -g @azure-tools/cadl-ranch
+        pnpm install
+        pnpm run build
+        pnpm check-version-mismatch
+        pip install -r packages/cadl-python/dev_requirements.txt
+      displayName: "Prepare Environment for Generation"
 
-      - script: pnpm check-format
-        displayName: Check formatting
+    - script: pnpm check-format
+      displayName: Check formatting
 
-      - script: inv regenerate
-        displayName: 'Regenerate Code'
-        workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
+    - script: inv regenerate
+      displayName: 'Regenerate Code'
+      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
 
-      - script: node ./eng/scripts/check-for-changed-files.js
-        displayName: Fail on regeneration diff
+    - script: node ./eng/scripts/check-for-changed-files.js
+      displayName: Fail on regeneration diff
 
-      - script: |
-          cd test/mock_api_tests
-          tox -e ci
-        displayName: 'Execute Mock API tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
+    - script: |
+        cd test/mock_api_tests
+        tox -e ci
+      displayName: 'Execute Mock API tests - Python $(PythonVersion)'
+      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
 
-      - task: AzureCLI@2
-        displayName: Upload scenario manifest
-        inputs:
-            azureSubscription: "Azure SDK Playground"
-            scriptType: "bash"
-            scriptLocation: "inlineScript"
-            inlineScript: cadl-ranch upload-coverage --generatorName python --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
-            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+    - task: AzureCLI@2
+      displayName: Upload scenario manifest
+      inputs:
+        azureSubscription: "Azure SDK Playground"
+        scriptType: "bash"
+        scriptLocation: "inlineScript"
+        inlineScript: cadl-ranch upload-coverage --generatorName python --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
+        workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
