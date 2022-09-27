@@ -4,6 +4,13 @@ trigger:
       - autorestv3
 pr: none
 
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+
 steps:
     - template: ci-template.yml
       parameters:
