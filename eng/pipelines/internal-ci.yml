@@ -2,6 +2,7 @@ trigger:
   branches:
     include:
       - autorestv3
+pr: none
 
 steps:
     - template: ci-template.yml
