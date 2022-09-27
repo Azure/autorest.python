@@ -28,15 +28,15 @@ steps:
 
     - script: npm install -g autorest
       displayName: Install autorest
-      condition: and(succeeded(), eq(parameters.installAutorest, 'true'))
+      condition: and(succeeded(), ${{ parameters.installAutorest }})
 
     - script: npm install -g @cadl-lang/compiler
       displayName: Install Cadl
-      condition: and(succeeded(), eq(parameters.installCadl, 'true'))
+      condition: and(succeeded(), ${{ parameters.installCadl }})
 
     - script: npm install -g @azure-tools/cadl-ranch
       displayName: Install Cadl Ranch
-      condition: and(succeeded(), eq(parameters.installCadlRanch, 'true'))
+      condition: and(succeeded(), ${{ parameters.installCadlRanch }})
 
     - script: pnpm install
       displayName: Pnpm install
@@ -61,37 +61,37 @@ steps:
     - script: pylint $(parameters.pythonFolderName)
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${parameters.folderName}
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: mypy $(parameters.pythonFolderName)
       displayName: Mypy
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${parameters.folderName}
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: black $(parameters.pythonFolderName)
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${parameters.folderName}
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on black autorest diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: pytest test/unittests
       displayName: Unit tests
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: inv regenerate
       displayName: "Regenerate Code"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
-      condition: and(succeeded(), eq(parameters.regenerate, 'true'))
+      condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), eq(parameters.regenerate, 'true'))
+      condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - task: UsePythonVersion@0
       displayName: "Use Python $(PythonVersion)"
