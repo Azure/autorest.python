@@ -38,28 +38,28 @@ parameters:
     - name: azure-ai-language-questionanswering
       service: cognitivelanguage
 
+strategy:
+    matrix:
+    Windows_Python37:
+        OSName: "Windows"
+        OSVmImage: "MMS2019"
+        PythonVersion: "3.7"
+    Linux_Python37:
+        OSName: "Linux"
+        OSVmImage: "MMSUbuntu20.04"
+        PythonVersion: "3.7"
+    Linux_Python310:
+        OSName: "Linux"
+        OSVmImage: "MMSUbuntu20.04"
+        PythonVersion: "3.10"
+
+pool:
+    name: azsdk-pool-mms-ubuntu-2004-general
+    vmImage: $(OSVmImage)
+
 jobs:
   - job: "AutoRest_Python_CI"
     displayName: "Run AutoRest CI Checks"
-
-    strategy:
-      matrix:
-        Windows_Python37:
-          OSName: "Windows"
-          OSVmImage: "MMS2019"
-          PythonVersion: "3.7"
-        Linux_Python37:
-          OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.7"
-        Linux_Python310:
-          OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.10"
-
-    pool:
-      name: azsdk-pool-mms-ubuntu-2004-general
-      vmImage: $(OSVmImage)
 
     steps:
       - template: ci-template.yml
@@ -156,25 +156,6 @@ jobs:
                 workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
   - job: "Cadl_Python_CI"
     displayName: "Run Cadl Python CI Checks"
-
-    strategy:
-      matrix:
-        Windows_Python37:
-          OSName: "Windows"
-          OSVmImage: "MMS2019"
-          PythonVersion: "3.7"
-        Linux_Python37:
-          OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.7"
-        Linux_Python310:
-          OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.10"
-
-    pool:
-      name: azsdk-pool-mms-ubuntu-2004-general
-      vmImage: $(OSVmImage)
 
     steps:
       - template: ci-template.yml
