@@ -19,6 +19,7 @@ from ._operations import ModelOperations
 from ._operations import CollectionsStringOperations
 from ._operations import CollectionsIntOperations
 from ._operations import CollectionsModelOperations
+from ._operations import DictionaryStringOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
@@ -38,6 +39,7 @@ __all__ = [
     "CollectionsStringOperations",
     "CollectionsIntOperations",
     "CollectionsModelOperations",
+    "DictionaryStringOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

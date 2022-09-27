@@ -6,25 +6,27 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import BytesProperty
-from ._models import CollectionsByteProperty
-from ._models import CollectionsModelProperty
-from ._models import DatetimeProperty
-from ._models import DurationProperty
-from ._models import RequiredAndOptionalProperty
-from ._models import StringProperty
+from ._models import Cat
+from ._models import Fish
+from ._models import GoblinShark
+from ._models import Pet
+from ._models import Salmon
+from ._models import SawShark
+from ._models import Shark
+from ._models import Siamese
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BytesProperty",
-    "CollectionsByteProperty",
-    "CollectionsModelProperty",
-    "DatetimeProperty",
-    "DurationProperty",
-    "RequiredAndOptionalProperty",
-    "StringProperty",
+    "Cat",
+    "Fish",
+    "GoblinShark",
+    "Pet",
+    "Salmon",
+    "SawShark",
+    "Shark",
+    "Siamese",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

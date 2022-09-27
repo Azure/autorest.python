@@ -9,7 +9,7 @@
 
 import datetime
 import sys
-from typing import Any, List, Mapping, TYPE_CHECKING, Union, overload
+from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -201,6 +201,38 @@ class DatetimeProperty(_model_base.Model):
         self,
         *,
         property: datetime.datetime,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class DictionaryStringProperty(_model_base.Model):
+    """Model with dictionary string properties.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar property: Property. Required.
+    :vartype property: dict[str, str]
+    """
+
+    property: Dict[str, str] = rest_field()
+    """Property. Required. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Dict[str, str],
     ):
         ...
 

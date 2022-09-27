@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "modelsinheritance"
+PACKAGE_NAME = "dictionary"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="ModelsInheritance",
+    description="Dictionary",
     author_email="",
     url="",
     keywords="azure, azure sdk",
