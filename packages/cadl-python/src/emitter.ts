@@ -187,11 +187,9 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
         return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
     }
 
-    if (type.kind === "Model" && !type.name) {
-        const effective = getEffectiveModelType(program, type, isSchemaProperty);
-        if (effective.name) {
-            return effective;
-        }
+    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    if (effective.name) {
+        return effective;
     }
     return type;
 }
