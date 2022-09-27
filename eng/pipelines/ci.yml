@@ -91,7 +91,7 @@ jobs:
       - script: tox -e mypy
         displayName: 'Mypy version-tolerant "azure" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/test/azure/version-tolerant
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
 
       - script: tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
