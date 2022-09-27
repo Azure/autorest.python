@@ -5,9 +5,9 @@ trigger:
 
 steps:
     - task: NodeTool@0
-      displayName: "Install Node.js $(NodeVersion)"
+      displayName: "Install Node.js 16.x"
       inputs:
-        versionSpec: "$(NodeVersion)"
+        versionSpec: "16.x"
 
     - task: UsePythonVersion@0
       displayName: "Use Python 3.7"
