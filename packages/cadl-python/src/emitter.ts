@@ -620,10 +620,9 @@ function emitModel(program: Program, type: Model, modelTypeProperty: ModelProper
         if (isNeverType(type.indexer.key)) {
         } else {
             const name = getIntrinsicModelName(program, type.indexer.key);
-            const elementType = type.indexer.value!
+            const elementType = type.indexer.value!;
             if (name === "string") {
                 if (elementType.kind === "Intrinsic") {
-
                 }
                 return { type: "dict", elementType: getType(program, type.indexer.value!) };
             } else if (name === "integer") {
@@ -793,7 +792,7 @@ function emitType(
         case "Credential":
             return emitCredential(type.scheme);
         case "Intrinsic":
-            return {"type": "any"}
+            return { type: "any" };
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
