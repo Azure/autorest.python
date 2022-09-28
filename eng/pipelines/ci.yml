@@ -45,8 +45,8 @@ jobs:
     trigger:
       paths:
         include:
-        - packages/autorest.python/
-        - ./
+        - ../packages/autorest.python/
+        - ../.
 
     strategy:
       matrix:
@@ -166,8 +166,8 @@ jobs:
     trigger:
       paths:
         include:
-        - packages/cadl-python/
-        - ./
+        - ../packages/cadl-python/
+        - ../.
 
     strategy:
       matrix:
