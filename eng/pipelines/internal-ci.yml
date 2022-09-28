@@ -1,0 +1,35 @@
+trigger:
+  branches:
+    include:
+      - autorestv3
+pr: none
+
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+
+variables:
+  PythonVersion: "3.10"
+
+steps:
+    - template: ci-template.yml
+      parameters:
+          installCadl: true
+          installCadlRanch: true
+          folderName: "cadl-python"
+          regenerate: true
+    - script: tox -e ci
+      displayName: Mock Api Tests
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
+
+    - task: AzureCLI@2
+      displayName: Upload scenario manifest
+      inputs:
+        azureSubscription: "Azure SDK Playground"
+        scriptType: "bash"
+        scriptLocation: "inlineScript"
+        inlineScript: cadl-ranch upload-coverage --coverageFile ./cadl-ranch-coverage-python.json --generatorName python --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs

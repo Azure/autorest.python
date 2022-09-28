@@ -39,6 +39,8 @@ from ...operations._operations import (
     build_collections_string_put_request,
     build_datetime_get_request,
     build_datetime_put_request,
+    build_dictionary_string_get_request,
+    build_dictionary_string_put_request,
     build_duration_get_request,
     build_duration_put_request,
     build_enum_get_request,
@@ -2024,6 +2026,162 @@ class CollectionsModelOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
         request = build_collections_model_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+
+class DictionaryStringOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :attr:`dictionary_string` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get(self, **kwargs: Any) -> _models.DictionaryStringProperty:
+        """get.
+
+        :return: DictionaryStringProperty. The DictionaryStringProperty is compatible with
+         MutableMapping
+        :rtype: ~models.property.types.models.DictionaryStringProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryStringProperty]
+
+        request = build_dictionary_string_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = _deserialize(_models.DictionaryStringProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self,
+        body: Union[_models.DictionaryStringProperty, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: ~models.property.types.models.DictionaryStringProperty or JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.DictionaryStringProperty, JSON, IO], **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Is either a model type or a IO type. Required.
+        :type body: ~models.property.types.models.DictionaryStringProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IO, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)
+
+        request = build_dictionary_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

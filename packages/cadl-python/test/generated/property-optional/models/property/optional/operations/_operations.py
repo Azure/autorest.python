@@ -1878,11 +1878,12 @@ class CollectionsModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_all(self, **kwargs: Any) -> _models.CollectionsByteProperty:
+    def get_all(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return all properties in the model.
 
-        :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
-        :rtype: ~models.property.optional.models.CollectionsByteProperty
+        :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
+         MutableMapping
+        :rtype: ~models.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1896,7 +1897,7 @@ class CollectionsModelOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CollectionsByteProperty]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CollectionsModelProperty]
 
         request = build_collections_model_get_all_request(
             headers=_headers,
@@ -1914,7 +1915,7 @@ class CollectionsModelOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.CollectionsByteProperty, response.json())
+        deserialized = _deserialize(_models.CollectionsModelProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1922,11 +1923,12 @@ class CollectionsModelOperations:
         return deserialized
 
     @distributed_trace
-    def get_default(self, **kwargs: Any) -> _models.CollectionsByteProperty:
+    def get_default(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return the default object.
 
-        :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
-        :rtype: ~models.property.optional.models.CollectionsByteProperty
+        :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
+         MutableMapping
+        :rtype: ~models.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1940,7 +1942,7 @@ class CollectionsModelOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CollectionsByteProperty]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CollectionsModelProperty]
 
         request = build_collections_model_get_default_request(
             headers=_headers,
@@ -1958,7 +1960,7 @@ class CollectionsModelOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.CollectionsByteProperty, response.json())
+        deserialized = _deserialize(_models.CollectionsModelProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1968,7 +1970,7 @@ class CollectionsModelOperations:
     @overload
     def put_all(  # pylint: disable=inconsistent-return-statements
         self,
-        body: Union[_models.CollectionsByteProperty, JSON],
+        body: Union[_models.CollectionsModelProperty, JSON],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -1976,7 +1978,7 @@ class CollectionsModelOperations:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: ~models.property.optional.models.CollectionsByteProperty or JSON
+        :type body: ~models.property.optional.models.CollectionsModelProperty or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2003,12 +2005,12 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is either a model type or a IO type. Required.
-        :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
+        :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2061,7 +2063,7 @@ class CollectionsModelOperations:
     @overload
     def put_default(  # pylint: disable=inconsistent-return-statements
         self,
-        body: Union[_models.CollectionsByteProperty, JSON],
+        body: Union[_models.CollectionsModelProperty, JSON],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2069,7 +2071,7 @@ class CollectionsModelOperations:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: ~models.property.optional.models.CollectionsByteProperty or JSON
+        :type body: ~models.property.optional.models.CollectionsModelProperty or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2096,12 +2098,12 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Is either a model type or a IO type. Required.
-        :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
+        :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

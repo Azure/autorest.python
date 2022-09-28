@@ -145,6 +145,15 @@ function getDocStr(program: Program, target: Type): string {
     return getDoc(program, target) ?? "";
 }
 
+function isLro(program: Program, operation: OperationDetails): boolean {
+    for (const decorator of operation.operation.decorators) {
+        if (decorator.decorator.name === "$pollingOperation") {
+            return true;
+        }
+    }
+    return false;
+}
+
 function getOperationGroupName(program: Program, operation: OperationDetails): string {
     let groupName = "";
     const serviceNamespace = getServiceNamespace(program);
@@ -187,11 +196,9 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
         return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
     }
 
-    if (type.kind === "Model" && !type.name) {
-        const effective = getEffectiveModelType(program, type, isSchemaProperty);
-        if (effective.name) {
-            return effective;
-        }
+    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    if (effective.name) {
+        return effective;
     }
     return type;
 }
@@ -455,11 +462,21 @@ function emitResponse(
     };
 }
 
-function emitOperation(program: Program, operation: OperationDetails) {
-    if (getPagedResult(program, operation.operation)) {
+function emitOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const lro = isLro(program, operation);
+    const paging = getPagedResult(program, operation.operation);
+    if (lro && paging) {
+        return emitLroPagingOperation(program, operation);
+    } else if (paging) {
         return emitPagingOperation(program, operation);
+    } else if (lro) {
+        return emitLroOperation(program, operation);
     }
     return emitBasicOperation(program, operation);
+}
+
+function addLroInformation(emittedOperation: Record<string, any>) {
+    emittedOperation["discriminator"] = "lro";
 }
 
 function addPagingInformation(program: Program, operation: OperationDetails, emittedOperation: Record<string, any>) {
@@ -470,6 +487,20 @@ function addPagingInformation(program: Program, operation: OperationDetails, emi
     }
     emittedOperation["itemName"] = pagedResult.itemsPath;
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+}
+
+function emitLroPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation);
+    addLroInformation(emittedOperation);
+    addPagingInformation(program, operation, emittedOperation);
+    emittedOperation["discriminator"] = "lropaging";
+    return emittedOperation;
+}
+
+function emitLroOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation);
+    addLroInformation(emittedOperation);
+    return emittedOperation;
 }
 
 function emitPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
@@ -620,7 +651,10 @@ function emitModel(program: Program, type: Model, modelTypeProperty: ModelProper
         if (isNeverType(type.indexer.key)) {
         } else {
             const name = getIntrinsicModelName(program, type.indexer.key);
+            const elementType = type.indexer.value!;
             if (name === "string") {
+                if (elementType.kind === "Intrinsic") {
+                }
                 return { type: "dict", elementType: getType(program, type.indexer.value!) };
             } else if (name === "integer") {
                 return { type: "list", elementType: getType(program, type.indexer.value!) };
@@ -788,6 +822,8 @@ function emitType(
             return emitEnum(program, type);
         case "Credential":
             return emitCredential(type.scheme);
+        case "Intrinsic":
+            return { type: "any" };
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
