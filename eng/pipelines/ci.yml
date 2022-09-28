@@ -16,7 +16,6 @@ resources:
       name: Azure/azure-sdk-tools
 
 variables:
-  NodeVersion: "16.x"
   PythonVersion: "3.7"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/coverage/"
   PROXY_URL: http://localhost:5000
@@ -43,16 +42,34 @@ jobs:
   - job: Autorest_Python_CI
     displayName: Run Autorest Python CI Checks
 
-    extends:
-      template: ci-template.yml
-      parameters:
-        installAutorest: true
-        folderName: "autorest.python"
-        pythonCodeChecks: true
-        pythonFolderName: "autorest"
-        regenerate: true
+    strategy:
+      matrix:
+        Windows_Python37:
+          OSName: "Windows"
+          OSVmImage: "MMS2019"
+          PythonVersion: "3.7"
+        Linux_Python37:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.7"
+        Linux_Python310:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.10"
+
+    pool:
+      name: azsdk-pool-mms-ubuntu-2004-general
+      vmImage: $(OSVmImage)
 
     steps:
+      - template: ci-template.yml
+        parameters:
+            installAutorest: true
+            folderName: "autorest.python"
+            pythonCodeChecks: true
+            pythonFolderName: autorest
+            regenerate: true
+
       - script: |
           pip install pip==20.2
           pip install tox coverage
@@ -64,7 +81,7 @@ jobs:
 
       - script: tox -e ci
         displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/azure/version-tolerant
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/legacy
 
       - script: tox -e lint
         displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
@@ -110,7 +127,7 @@ jobs:
 
       - script: tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi/
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
 
       - script: |
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
@@ -140,21 +157,39 @@ jobs:
   - job: "Cadl_Python_CI"
     displayName: "Run Cadl Python CI Checks"
 
-    extends:
-      template: ci-template.yml
-      parameters:
-        instalCadl: true
-        installCadlRanch: true
-        folderName: "cadl-python"
-        regenerate: true
+    strategy:
+      matrix:
+        Windows_Python37:
+          OSName: "Windows"
+          OSVmImage: "MMS2019"
+          PythonVersion: "3.7"
+        Linux_Python37:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.7"
+        Linux_Python310:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.10"
+
+    pool:
+      name: azsdk-pool-mms-ubuntu-2004-general
+      vmImage: $(OSVmImage)
 
     steps:
+      - template: ci-template.yml
+        parameters:
+            installCadl: true
+            installCadlRanch: true
+            folderName: "cadl-python"
+            regenerate: true
+
       - script: tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
 
       - script: cadl-ranch check-coverage http/
-        displayName: 'Check Coverage'
+        displayName: Check Coverage
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
         continueOnError: true
 
@@ -164,10 +199,29 @@ jobs:
   - job: "Python_Generator_Core_CI"
     displayName: "Run Python Generator Core CI Checks"
 
-    extends:
-      template: ci-template.yml
-      parameters:
-        instalCadl: true
-        folderName: "python-generator-core"
-        pythonCodeChecks: true
-        pythonFolderName: "coregen"
+    strategy:
+      matrix:
+        Windows_Python37:
+          OSName: "Windows"
+          OSVmImage: "MMS2019"
+          PythonVersion: "3.7"
+        Linux_Python37:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.7"
+        Linux_Python310:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.10"
+
+    pool:
+      name: azsdk-pool-mms-ubuntu-2004-general
+      vmImage: $(OSVmImage)
+
+    steps:
+      - template: ci-template.yml
+        parameters:
+            installCadl: true
+            folderName: "python-generator-core"
+            pythonCodeChecks: true
+            pythonFolderName: coregen

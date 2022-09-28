@@ -12,6 +12,7 @@ from ._models import CollectionsIntProperty
 from ._models import CollectionsModelProperty
 from ._models import CollectionsStringProperty
 from ._models import DatetimeProperty
+from ._models import DictionaryStringProperty
 from ._models import DurationProperty
 from ._models import EnumProperty
 from ._models import ExtensibleEnumProperty
@@ -34,6 +35,7 @@ __all__ = [
     "CollectionsModelProperty",
     "CollectionsStringProperty",
     "DatetimeProperty",
+    "DictionaryStringProperty",
     "DurationProperty",
     "EnumProperty",
     "ExtensibleEnumProperty",

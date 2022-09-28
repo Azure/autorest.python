@@ -1,75 +1,42 @@
-strategy:
-    matrix:
-    Windows_Python37:
-        OSName: "Windows"
-        OSVmImage: "MMS2019"
-        PythonVersion: "3.7"
-    Linux_Python37:
-        OSName: "Linux"
-        OSVmImage: "MMSUbuntu20.04"
-        PythonVersion: "3.7"
-    Linux_Python310:
-        OSName: "Linux"
-        OSVmImage: "MMSUbuntu20.04"
-        PythonVersion: "3.10"
-
-pool:
-    name: azsdk-pool-mms-ubuntu-2004-general
-    vmImage: $(OSVmImage)
-
 parameters:
-    - name: installAutorest
-      type: boolean
-      default: false
-    - name: installCadl
-      type: boolean
-      default: false
-    - name: installCadlRanch
-      type: boolean
-      default: false
-    - name: folderName
-      type: string
-    - name: pythonCodeChecks
-      type: boolean
-      default: false
-    - name: pythonFolderName
-      type: string
-      default: ""
-    - name: regenerate
-      type: boolean
-      default: false
-
+    installAutorest: false
+    installCadl: false
+    installCadlRanch: false
+    folderName: ""
+    pythonCodeChecks: false
+    pythonFolderName: ""
+    regenerate: false
 
 steps:
     - checkout: self
     - checkout: azure-sdk-tools
     - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
       parameters:
-        TestProxy: true
-        templateRoot: azure-sdk-tools
+          TestProxy: true
+          templateRoot: azure-sdk-tools
     - task: NodeTool@0
-      displayName: "Install Node.js $(NodeVersion)"
+      displayName: "Install Node.js 16.x"
       inputs:
-        versionSpec: "16.x"
+          versionSpec: "16.x"
     - task: UsePythonVersion@0
       displayName: "Use Python 3.7"
       inputs:
-        versionSpec: 3.7
+          versionSpec: 3.7
 
     - script: npm install -g pnpm
       displayName: Install pnpm
 
     - script: npm install -g autorest
       displayName: Install autorest
-      condition: and(succeeded(), eq(parameters.installAutorest, 'true'))
+      condition: and(succeeded(), ${{ parameters.installAutorest }})
 
     - script: npm install -g @cadl-lang/compiler
       displayName: Install Cadl
-      condition: and(succeeded(), eq(parameters.installCadl, 'true'))
+      condition: and(succeeded(), ${{ parameters.installCadl }})
 
     - script: npm install -g @azure-tools/cadl-ranch
       displayName: Install Cadl Ranch
-      condition: and(succeeded(), eq(parameters.installCadlRanch, 'true'))
+      condition: and(succeeded(), ${{ parameters.installCadlRanch }})
 
     - script: pnpm install
       displayName: Pnpm install
@@ -89,53 +56,52 @@ steps:
 
     - script: pip install -r dev_requirements.txt
       displayName: Pip install dev requirements
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${parameters.folderName}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pylint $(parameters.pythonFolderName)
+    - script: pylint ${{parameters.pythonFolderName}}
       displayName: Pylint
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${parameters.folderName}
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: mypy $(parameters.pythonFolderName)
+    - script: mypy ${{parameters.pythonFolderName}}
       displayName: Mypy
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${parameters.folderName}
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: black $(parameters.pythonFolderName)
+    - script: black ${{parameters.pythonFolderName}}
       displayName: Black
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${parameters.folderName}
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
-
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on black autorest diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: pytest test/unittests
       displayName: Unit tests
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
-      condition: and(succeeded(), eq(parameters.pythonCodeChecks, 'true'))
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: inv regenerate
-      displayName: 'Regenerate Code'
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
-      condition: and(succeeded(), eq(parameters.regenerate, 'true'))
+      displayName: "Regenerate Code"
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+      condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), eq(parameters.regenerate, 'true'))
+      condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - task: UsePythonVersion@0
-      displayName: 'Use Python $(PythonVersion)'
+      displayName: "Use Python $(PythonVersion)"
       inputs:
-        versionSpec: $(PythonVersion)
+          versionSpec: $(PythonVersion)
 
     - script: |
-        pnpm pack
-        AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
-        cd ../..
-        pnpm install $AbsolutePkgPath --verbose
+          pnpm pack
+          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+          cd ../..
+          pnpm install $AbsolutePkgPath -w --verbose
       displayName: Test tarball
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/$(parameters.pythonFolderName)/
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/

@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-09-XX - 0.3.0
+
+**New Features**
+
+- Basic support for LRO  #1442
+
 ## 2022-09-26 - 0.2.5
 
 **Bug Fixes**

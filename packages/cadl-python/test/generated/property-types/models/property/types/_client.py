@@ -21,6 +21,7 @@ from .operations import (
     CollectionsModelOperations,
     CollectionsStringOperations,
     DatetimeOperations,
+    DictionaryStringOperations,
     DurationOperations,
     EnumOperations,
     ExtensibleEnumOperations,
@@ -60,6 +61,8 @@ class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword
     :vartype collections_int: models.property.types.operations.CollectionsIntOperations
     :ivar collections_model: CollectionsModelOperations operations
     :vartype collections_model: models.property.types.operations.CollectionsModelOperations
+    :ivar dictionary_string: DictionaryStringOperations operations
+    :vartype dictionary_string: models.property.types.operations.DictionaryStringOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -85,6 +88,9 @@ class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword
         )
         self.collections_int = CollectionsIntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.collections_model = CollectionsModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_string = DictionaryStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

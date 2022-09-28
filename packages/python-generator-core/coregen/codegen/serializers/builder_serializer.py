@@ -1431,6 +1431,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
                 retval.append("    response_headers = {}")
             if (
                 not self.code_model.options["models_mode"]
+                or self.code_model.options["models_mode"] == "dpg"
                 or builder.lro_response.headers
             ):
                 retval.append("    response = pipeline_response.http_response")
