@@ -1,10 +1,22 @@
 # Release History
 
-## 2022-09-XX - 0.2.4
+## 2022-09-XX - 0.2.6
 
 **New Features**
 
 - Basic support for LRO  #1442
+
+## 2022-09-26 - 0.2.5
+
+**Bug Fixes**
+
+- Do not `output.yaml` if `noEmit` is specified  #1471
+
+## 2022-09-26 - 0.2.4
+
+**Bug Fixes**
+
+- Do not emit SDK if `noEmit` is specified  #1470
 
 ## 2022-09-23 - 0.2.3
 

@@ -37,6 +37,7 @@ def test_json(client, og_name, val):
     ("datetime", models.DatetimeProperty, "2022-08-26T18:38:00Z"),
     ("duration", models.DurationProperty, "P123DT22H14M12.011S"),
     ("collections_byte", models.CollectionsByteProperty, ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]),
+    ("collections_model", models.CollectionsModelProperty, [models.StringProperty(property="hello"), models.StringProperty(property="world")]),
 ]
 )
 def test_model(client, og_name, model, val):

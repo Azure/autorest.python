@@ -25,7 +25,6 @@ import {
     resolvePath,
     Type,
     getEffectiveModelType,
-    EmitOptionsFor,
     JSONSchemaType,
     createCadlLibrary,
 } from "@cadl-lang/compiler";
@@ -91,10 +90,9 @@ export const $lib = createCadlLibrary({
 
 export async function $onEmit(program: Program, options: EmitterOptions) {
     const yamlMap = createYamlEmitter(program);
-    const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
-    await program.host.writeFile(yamlPath, dump(yamlMap));
     const root = process.cwd();
     const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
+    const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
@@ -107,7 +105,11 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     if (program.compilerOptions.diagnosticLevel === "debug") {
         commandArgs.push("--debug");
     }
-    execFileSync(process.execPath, commandArgs);
+    if (!program.compilerOptions.noEmit && !program.hasError()) {
+        // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
+        await program.host.writeFile(yamlPath, dump(yamlMap));
+        execFileSync(process.execPath, commandArgs);
+    }
 }
 
 function camelToSnakeCase(name: string): string {
@@ -194,11 +196,9 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
         return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
     }
 
-    if (type.kind === "Model" && !type.name) {
-        const effective = getEffectiveModelType(program, type, isSchemaProperty);
-        if (effective.name) {
-            return effective;
-        }
+    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    if (effective.name) {
+        return effective;
     }
     return type;
 }
@@ -651,7 +651,10 @@ function emitModel(program: Program, type: Model, modelTypeProperty: ModelProper
         if (isNeverType(type.indexer.key)) {
         } else {
             const name = getIntrinsicModelName(program, type.indexer.key);
+            const elementType = type.indexer.value!;
             if (name === "string") {
+                if (elementType.kind === "Intrinsic") {
+                }
                 return { type: "dict", elementType: getType(program, type.indexer.value!) };
             } else if (name === "integer") {
                 return { type: "list", elementType: getType(program, type.indexer.value!) };
@@ -819,6 +822,8 @@ function emitType(
             return emitEnum(program, type);
         case "Credential":
             return emitCredential(type.scheme);
+        case "Intrinsic":
+            return { type: "any" };
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {
