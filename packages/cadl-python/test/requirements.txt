@@ -19,3 +19,4 @@ azure-core==1.24.0
 -e ./generated/roundtrip-basic
 -e ./generated/srv-driven-1
 -e ./generated/srv-driven-2
+-e ./generated/lro-basic
