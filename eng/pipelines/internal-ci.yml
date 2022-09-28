@@ -2,43 +2,28 @@ trigger:
   branches:
     include:
       - autorestv3
+pr: none
+
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+
+variables:
+  PythonVersion: "3.10"
 
 steps:
-    - task: NodeTool@0
-      displayName: "Install Node.js 16.x"
-      inputs:
-        versionSpec: "16.x"
-
-    - task: UsePythonVersion@0
-      displayName: "Use Python 3.7"
-      inputs:
-        versionSpec: 3.7
-
-    - script: |
-        npm install -g pnpm
-        npm install -g @cadl-lang/compiler
-        npm install -g @azure-tools/cadl-ranch
-        pnpm install
-        pnpm run build
-        pnpm check-version-mismatch
-        pip install -r packages/cadl-python/dev_requirements.txt
-      displayName: "Prepare Environment for Generation"
-
-    - script: pnpm check-format
-      displayName: Check formatting
-
-    - script: inv regenerate
-      displayName: 'Regenerate Code'
-      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
-
-    - script: node ./eng/scripts/check-for-changed-files.js
-      displayName: Fail on regeneration diff
-
-    - script: |
-        cd test/mock_api_tests
-        tox -e ci
-      displayName: 'Execute Mock API tests - Python $(PythonVersion)'
-      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
+    - template: ci-template.yml
+      parameters:
+          installCadl: true
+          installCadlRanch: true
+          folderName: "cadl-python"
+          regenerate: true
+    - script: tox -e ci
+      displayName: Mock Api Tests
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
 
     - task: AzureCLI@2
       displayName: Upload scenario manifest
@@ -47,4 +32,4 @@ steps:
         scriptType: "bash"
         scriptLocation: "inlineScript"
         inlineScript: cadl-ranch upload-coverage --coverageFile ./cadl-ranch-coverage-python.json --generatorName python --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
-        workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs

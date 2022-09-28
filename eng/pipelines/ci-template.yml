@@ -1,0 +1,107 @@
+parameters:
+    installAutorest: false
+    installCadl: false
+    installCadlRanch: false
+    folderName: ""
+    pythonCodeChecks: false
+    pythonFolderName: ""
+    regenerate: false
+
+steps:
+    - checkout: self
+    - checkout: azure-sdk-tools
+    - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
+      parameters:
+          TestProxy: true
+          templateRoot: azure-sdk-tools
+    - task: NodeTool@0
+      displayName: "Install Node.js 16.x"
+      inputs:
+          versionSpec: "16.x"
+    - task: UsePythonVersion@0
+      displayName: "Use Python 3.7"
+      inputs:
+          versionSpec: 3.7
+
+    - script: npm install -g pnpm
+      displayName: Install pnpm
+
+    - script: npm install -g autorest
+      displayName: Install autorest
+      condition: and(succeeded(), ${{ parameters.installAutorest }})
+
+    - script: npm install -g @cadl-lang/compiler
+      displayName: Install Cadl
+      condition: and(succeeded(), ${{ parameters.installCadl }})
+
+    - script: npm install -g @azure-tools/cadl-ranch
+      displayName: Install Cadl Ranch
+      condition: and(succeeded(), ${{ parameters.installCadlRanch }})
+
+    - script: pnpm install
+      displayName: Pnpm install
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
+    - script: pnpm run build
+      displayName: Build project
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
+    - script: pnpm check-version-mismatch
+      displayName: Check version mismatch
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
+    - script: pnpm check-format
+      displayName: Check formatting
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
+    - script: pip install -r dev_requirements.txt
+      displayName: Pip install dev requirements
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+
+    - script: pylint ${{parameters.pythonFolderName}}
+      displayName: Pylint
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+
+    - script: mypy ${{parameters.pythonFolderName}}
+      displayName: Mypy
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+
+    - script: black ${{parameters.pythonFolderName}}
+      displayName: Black
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+
+    - script: node ./eng/scripts/check-for-changed-files.js
+      displayName: Fail on black autorest diff
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+
+    - script: pytest test/unittests
+      displayName: Unit tests
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+
+    - script: inv regenerate
+      displayName: "Regenerate Code"
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+      condition: and(succeeded(), ${{ parameters.regenerate }})
+
+    - script: node ./eng/scripts/check-for-changed-files.js
+      displayName: Fail on regeneration diff
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.regenerate }})
+
+    - task: UsePythonVersion@0
+      displayName: "Use Python $(PythonVersion)"
+      inputs:
+          versionSpec: $(PythonVersion)
+
+    - script: |
+          pnpm pack
+          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+          cd ../..
+          pnpm install $AbsolutePkgPath -w --verbose
+      displayName: Test tarball
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
