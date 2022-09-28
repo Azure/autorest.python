@@ -45,8 +45,8 @@ jobs:
     trigger:
       paths:
         include:
-        - $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/
-        - $(Build.SourcesDirectory)/autorest.python/eng/
+        - packages/autorest.python/
+        - ./
 
     strategy:
       matrix:
@@ -166,8 +166,8 @@ jobs:
     trigger:
       paths:
         include:
-        - $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/
-        - $(Build.SourcesDirectory)/autorest.python/eng/
+        - packages/cadl-python/
+        - ./
 
     strategy:
       matrix:
