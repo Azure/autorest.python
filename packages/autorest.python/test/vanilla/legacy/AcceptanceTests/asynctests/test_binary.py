@@ -26,6 +26,7 @@
 import pytest
 import json
 from bodybinary.aio import BinaryWithContentTypeApplicationJson
+from azure.core.exceptions import HttpResponseError
 
 @pytest.fixture
 async def client():
@@ -40,3 +41,8 @@ async def test_upload_file(client):
 @pytest.mark.asyncio
 async def test_upload_binary(client):
     await client.upload.binary(b"Hello, world!")
+
+@pytest.mark.asyncio
+async def test_error(client):
+    with pytest.raises(HttpResponseError):
+        await client.download.error_stream()
