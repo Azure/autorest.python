@@ -107,7 +107,7 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
 
         return AsyncItemPaged(get_next, extract_data)
 
-    test_paging.metadata = {"url": "/multiapi/paging"}  # type: ignore
+    test_paging.metadata = {"url": "/multiapi/paging/1"}  # type: ignore
 
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
