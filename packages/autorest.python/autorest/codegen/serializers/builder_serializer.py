@@ -1263,9 +1263,7 @@ class _PagingOperationSerializer(
                 if isinstance(response.type, ModelType) and response.type.is_public
                 else response.serialization_type
             )
-            deserialized = (
-                f'self._deserialize({deserialize_type}, pipeline_response)'
-            )
+            deserialized = f"self._deserialize({deserialize_type}, pipeline_response)"
         elif self.code_model.options["models_mode"] == "dpg":
             deserialized = (
                 f"_deserialize({response.serialization_type}, pipeline_response)"
