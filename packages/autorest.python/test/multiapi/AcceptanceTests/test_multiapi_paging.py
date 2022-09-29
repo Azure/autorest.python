@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from multiapipaging import AutoRestPagingTestService
+from azure.core.exceptions import HttpResponseError
 
 @pytest.fixture
 def client():
@@ -32,7 +33,5 @@ def client():
         yield client
 
 def test_append_api_version(client):
-    pages = list(client.paging.append_api_version())
-    assert len(pages) == 1
-    assert pages[0].properties.id == 1
-    assert pages[0].properties.name == "Product"
+    with pytest.raises(HttpResponseError):
+        list(client.paging.append_api_version())
