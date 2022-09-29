@@ -1258,9 +1258,12 @@ class _PagingOperationSerializer(
         response = builder.responses[0]
         deserialized = "pipeline_response.http_response.json()"
         if self.code_model.options["models_mode"] == "msrest":
-            deserialized = (
-                f'self._deserialize("{response.serialization_type}", pipeline_response)'
-            )
+            deserialize_type = response.serialization_type
+            pylint_disable = "  # pylint: disable=protected-access"
+            if isinstance(response.type, ModelType) and response.type.is_public:
+                deserialize_type = f'"{response.serialization_type}"'
+                pylint_disable = ""
+            deserialized = f"self._deserialize(\n    {deserialize_type}, pipeline_response{pylint_disable}\n)"
         elif self.code_model.options["models_mode"] == "dpg":
             deserialized = (
                 f"_deserialize({response.serialization_type}, pipeline_response)"
