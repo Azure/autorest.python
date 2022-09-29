@@ -1258,8 +1258,13 @@ class _PagingOperationSerializer(
         response = builder.responses[0]
         deserialized = "pipeline_response.http_response.json()"
         if self.code_model.options["models_mode"] == "msrest":
+            deserialize_type = (
+                f"{response.serialization_type}"
+                if isinstance(response.type, ModelType) and response.type.is_public
+                else response.serialization_type
+            )
             deserialized = (
-                f'self._deserialize("{response.serialization_type}", pipeline_response)'
+                f'self._deserialize({deserialize_type}, pipeline_response)'
             )
         elif self.code_model.options["models_mode"] == "dpg":
             deserialized = (

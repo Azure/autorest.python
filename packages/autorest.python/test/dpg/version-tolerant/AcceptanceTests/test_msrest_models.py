@@ -36,6 +36,7 @@ def test_paging(client: DPGClient):
         models.ProductResult
 
     pages = list(client.get_pages(mode="model"))
-    assert len(pages) == 1
+    assert len(pages) == 2
+    assert pages[0].added_in_customization == "bonjour!"
 
 
