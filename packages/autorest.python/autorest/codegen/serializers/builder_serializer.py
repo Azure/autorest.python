@@ -1259,7 +1259,7 @@ class _PagingOperationSerializer(
         deserialized = "pipeline_response.http_response.json()"
         if self.code_model.options["models_mode"] == "msrest":
             deserialize_type = (
-                f"{response.serialization_type}"
+                f'"{response.serialization_type}"'
                 if isinstance(response.type, ModelType) and response.type.is_public
                 else response.serialization_type
             )
