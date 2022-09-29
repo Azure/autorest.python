@@ -41,7 +41,7 @@ def build_test_paging_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = kwargs.pop("template_url", "/multiapi/paging")
+    _url = kwargs.pop("template_url", "/multiapi/paging/1")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -147,7 +147,7 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
 
         return ItemPaged(get_next, extract_data)
 
-    test_paging.metadata = {"url": "/multiapi/paging"}  # type: ignore
+    test_paging.metadata = {"url": "/multiapi/paging/1"}  # type: ignore
 
     @distributed_trace
     def test_different_calls(  # pylint: disable=inconsistent-return-statements
