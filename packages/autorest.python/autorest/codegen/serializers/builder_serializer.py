@@ -1212,8 +1212,13 @@ class _PagingOperationSerializer(
             retval.append(
                 "_next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))"
             )
+            version_name = (
+                "api_version"
+                if self.code_model.options["multiapi"]
+                else api_version_param.full_client_name
+            )
             retval.append(
-                f'_next_request_params["api-version"] = {api_version_param.full_client_name}'
+                f'_next_request_params["api-version"] = {version_name}'
             )
             query_str = ", params=_next_request_params"
             next_link_str = "urljoin(next_link, _parsed_next_link.path)"

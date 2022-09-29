@@ -499,6 +499,8 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapicustombaseurl/README.md",
         # create multiapi client with security definition (package-name=multapisecurity)
         "test/multiapi/specification/multiapisecurity/README.md",
+        # create multiapi client to test paging (package-name=multapipaging)
+        "test/multiapi/specification/multiapipaging/README.md",
     ]
 
     cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]

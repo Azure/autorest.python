@@ -14,3 +14,4 @@ async_generator;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/MultiapiDataPlane
 -e ./Expected/AcceptanceTests/MultiapiCustomBaseUrl
 -e ./Expected/AcceptanceTests/MultiapiSecurity
+-e ./Expected/AcceptanceTests/MultiapiPaging
