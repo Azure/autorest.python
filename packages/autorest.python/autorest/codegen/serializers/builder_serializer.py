@@ -1217,9 +1217,7 @@ class _PagingOperationSerializer(
                 if self.code_model.options["multiapi"]
                 else api_version_param.full_client_name
             )
-            retval.append(
-                f'_next_request_params["api-version"] = {version_name}'
-            )
+            retval.append(f'_next_request_params["api-version"] = {version_name}')
             query_str = ", params=_next_request_params"
             next_link_str = "urljoin(next_link, _parsed_next_link.path)"
         except StopIteration:

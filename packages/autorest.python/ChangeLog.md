@@ -1,5 +1,20 @@
 # Release History
 
+### 2022-09-XX - 6.1.9
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+
+**Bug Fixes**
+
+- Fix `api_version` error for paging operation of multiapi package #1484
+
 ### 2022-09-23 - 6.1.8
 
 | Library                                                                 | Min Version |
