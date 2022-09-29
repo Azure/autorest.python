@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import BinaryWithContentTypeApplicationJsonConfiguration
-from .operations import UploadOperations
+from .operations import DownloadOperations, UploadOperations
 
 
 class BinaryWithContentTypeApplicationJson:  # pylint: disable=client-accepts-api-version-keyword
@@ -22,6 +22,8 @@ class BinaryWithContentTypeApplicationJson:  # pylint: disable=client-accepts-ap
 
     :ivar upload: UploadOperations operations
     :vartype upload: bodybinaryversiontolerant.aio.operations.UploadOperations
+    :ivar download: DownloadOperations operations
+    :vartype download: bodybinaryversiontolerant.aio.operations.DownloadOperations
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -36,6 +38,7 @@ class BinaryWithContentTypeApplicationJson:  # pylint: disable=client-accepts-ap
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.upload = UploadOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.download = DownloadOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
