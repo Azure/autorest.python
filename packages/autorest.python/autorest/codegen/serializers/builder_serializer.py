@@ -1201,27 +1201,25 @@ class _PagingOperationSerializer(
         retval: List[str] = []
         query_str = ""
         next_link_str = "next_link"
-        try:
-            api_version_param = next(
-                p
-                for p in self.code_model.client.parameters
-                if p.rest_api_name == "api-version"
-            )
-            retval.append("# make call to next link with the client's api-version")
-            retval.append("_parsed_next_link = urlparse(next_link)")
-            retval.append(
-                "_next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))"
-            )
-            version_name = (
-                "api_version"
-                if self.code_model.options["multiapi"]
-                else api_version_param.full_client_name
-            )
-            retval.append(f'_next_request_params["api-version"] = {version_name}')
-            query_str = ", params=_next_request_params"
-            next_link_str = "urljoin(next_link, _parsed_next_link.path)"
-        except StopIteration:
-            pass
+        if not self.code_model.options["multiapi"]:
+            try:
+                api_version_param = next(
+                    p
+                    for p in self.code_model.client.parameters
+                    if p.rest_api_name == "api-version"
+                )
+                retval.append("# make call to next link with the client's api-version")
+                retval.append("_parsed_next_link = urlparse(next_link)")
+                retval.append(
+                    "_next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))"
+                )
+                retval.append(
+                    f'_next_request_params["api-version"] = {api_version_param.full_client_name}'
+                )
+                query_str = ", params=_next_request_params"
+                next_link_str = "urljoin(next_link, _parsed_next_link.path)"
+            except StopIteration:
+                pass
 
         retval.append(f'request = HttpRequest("GET", {next_link_str}{query_str})')
         retval.extend(self._postprocess_http_request(builder, "request.url"))
