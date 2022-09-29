@@ -24,17 +24,18 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from dpgtestmodelsversiontolerant import DPGClient, models
+from dpgtestmodelsversiontolerant import aio, models
 
 @pytest.fixture
-def client():
-    with DPGClient() as client:
+async def client():
+    async with aio.DPGClient() as client:
         yield client
 
-def test_paging(client: DPGClient):
+@pytest.mark.asyncio
+async def test_paging(client):
     with pytest.raises(AttributeError):
         models.ProductResult
 
-    pages = list(client.get_pages(mode="model"))
+    pages = [i async for i in client.get_pages(mode="model")]
     assert len(pages) == 2
     assert pages[0].received == "model"
