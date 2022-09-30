@@ -242,7 +242,9 @@ class DPGClientOperationsMixin(MixinABC):
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("_models.ProductResult", pipeline_response)
+            deserialized = self._deserialize(
+                _models._models.ProductResult, pipeline_response  # pylint: disable=protected-access
+            )
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)

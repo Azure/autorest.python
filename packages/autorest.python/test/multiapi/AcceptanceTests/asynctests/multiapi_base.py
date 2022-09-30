@@ -191,7 +191,15 @@ class NotTested(object):
             items = []
             async for item in pages:
                 items.append(item)
-            assert len(items) == 1
+            assert len(items) == 2
+            assert isinstance(items[0], namespace_models.ModelThree)
+            assert items[0].optional_property == "paged"
+
+        @pytest.mark.asyncio
+        async def test_operation_group_paging(self, default_client, namespace_models):
+            pages = default_client.operation_group_one.test_operation_group_paging()
+            items = [i async for i in pages]
+            assert len(items) == 2
             assert isinstance(items[0], namespace_models.ModelThree)
             assert items[0].optional_property == "paged"
 
