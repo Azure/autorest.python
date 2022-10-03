@@ -24,22 +24,17 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-import json
-from bodybinary import BinaryWithContentTypeApplicationJson
-from azure.core.exceptions import HttpResponseError
+from dpgtestmodelsversiontolerant import DPGClient, models
 
 @pytest.fixture
 def client():
-    with BinaryWithContentTypeApplicationJson() as client:
+    with DPGClient() as client:
         yield client
 
+def test_paging(client: DPGClient):
+    with pytest.raises(AttributeError):
+        models.ProductResult
 
-def test_upload_file(client):
-    client.upload.file(json.dumps({"more": "cowbell"}))
-
-def test_upload_binary(client):
-    client.upload.binary(b"Hello, world!")
-
-def test_error(client):
-    with pytest.raises(HttpResponseError):
-        client.download.error_stream()
+    pages = list(client.get_pages(mode="model"))
+    assert len(pages) == 2
+    assert pages[0].received == "model"
