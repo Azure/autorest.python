@@ -131,11 +131,13 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             f for f in folders if f.stem in ["operations", "_operations"]
         ]
         for operations_folder in operations_folders:
-            aio = ".aio" if operations_folder.parent.stem == "aio" else ""
+            sub_namespace = ".".join(
+                str(operations_folder.relative_to(self.base_folder)).split(os.sep)
+            )
             self.fix_imports_in_init(
                 generated_file_name="_operations",
                 folder_path=operations_folder,
-                namespace=f"{self.namespace}{aio}.{operations_folder.stem}",
+                namespace=f"{self.namespace}.{sub_namespace}",
             )
         shutil.rmtree(f"{str(self.output_folder)}/.temp_folder")
         return True
