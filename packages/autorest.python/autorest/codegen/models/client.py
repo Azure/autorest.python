@@ -101,7 +101,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 "azure.core", self.pipeline_class(async_mode), ImportType.AZURECORE
             )
 
-        for gp in self.parameters.positional + self.parameters.keyword_only:
+        for gp in self.parameters:
             file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
             "._configuration",
