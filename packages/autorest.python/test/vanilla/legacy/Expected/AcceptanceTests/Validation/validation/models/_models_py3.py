@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import List, Optional, TYPE_CHECKING
 
 import msrest.serialization
@@ -14,6 +15,10 @@ import msrest.serialization
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class ChildProduct(msrest.serialization.Model):
@@ -172,7 +177,7 @@ class Product(msrest.serialization.Model):
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
-        const_string_as_enum: Optional[str] = None,
+        const_string_as_enum: Optional[Literal["constant_string_as_enum"]] = None,
         **kwargs
     ):
         """

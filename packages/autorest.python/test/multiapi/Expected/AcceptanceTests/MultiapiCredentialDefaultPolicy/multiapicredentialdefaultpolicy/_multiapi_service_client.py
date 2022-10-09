@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import Any, Optional
 
 from azure.core.credentials import AzureKeyCredential

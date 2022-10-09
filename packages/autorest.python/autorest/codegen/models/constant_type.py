@@ -75,7 +75,7 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"] == "dpg":
+        if self.code_model.options["models_mode"]:
             return f"Literal[{self.get_declaration()}]"
         return self.value_type.type_annotation(**kwargs)
 
@@ -117,7 +117,7 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
-        if self.code_model.options["models_mode"] == "dpg":
+        if self.code_model.options["models_mode"]:
             file_import.add_version_import(
                 "Literal",
                 {

@@ -7,9 +7,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import Optional
 
 import msrest.serialization
+
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class Error(msrest.serialization.Model):
@@ -78,7 +84,9 @@ class Grouper(msrest.serialization.Model):
         "grouped_parameter": {"key": "groupedParameter", "type": "str"},
     }
 
-    def __init__(self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, grouped_constant: Optional[Literal["foo"]] = None, grouped_parameter: Optional[str] = None, **kwargs
+    ):
         """
         :keyword grouped_constant: A grouped parameter that is a constant. Default value is "foo".
         :paramtype grouped_constant: str

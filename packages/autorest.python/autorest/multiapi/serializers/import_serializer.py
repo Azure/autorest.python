@@ -14,7 +14,7 @@ def _serialize_package(
     buffer = []
     if None in module_list:
         buffer.append(f"import {package_name}")
-    if module_list != {None}:
+    if set(module_list) != {None}:
         buffer.append(
             "from {} import {}".format(
                 package_name,

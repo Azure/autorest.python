@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
@@ -16,6 +17,11 @@ from .. import models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
+
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-keyword

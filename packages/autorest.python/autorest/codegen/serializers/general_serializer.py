@@ -116,7 +116,7 @@ class GeneralSerializer:
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
         params["extra_depencies"] = []
-        if self.code_model.options["models_mode"] == "dpg":
+        if self.code_model.options["models_mode"]:
             params["extra_depencies"].append(
                 f"typing_extensions>=4.3.0; python_version<'3.8.0'"
             )

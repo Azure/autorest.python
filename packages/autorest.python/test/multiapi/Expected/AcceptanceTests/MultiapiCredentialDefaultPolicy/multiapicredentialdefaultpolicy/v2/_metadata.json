@@ -10,8 +10,8 @@
         "azure_arm": true,
         "has_lro_operations": false,
         "client_side_validation": false,
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.mgmt.core\": [\"ARMPipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \".._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.mgmt.core\": [\"AsyncARMPipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"..._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}}"
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.mgmt.core\": [\"ARMPipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"stdlib\": {\"sys\": [null]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \".._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.mgmt.core\": [\"AsyncARMPipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"stdlib\": {\"sys\": [null]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"..._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}}"
     },
     "global_parameters": {
         "sync": {
@@ -81,16 +81,16 @@
         "credential_scopes": null,
         "credential_call_sync": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
         "credential_call_async": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
-        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
-        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\", \"AsyncARMChallengeAuthenticationPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}, \"stdlib\": {\"sys\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\", \"AsyncARMChallengeAuthenticationPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}, \"stdlib\": {\"sys\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations",
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\".\": [[\"models\", \"_models\"]]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"], \"sys\": [null]}, \"local\": {\".\": [[\"models\", \"_models\"]]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"], \"sys\": [null]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
         "operations": {
             "test_one" : {
                 "sync": {

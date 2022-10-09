@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any
 
 from msrest import Deserializer, Serializer
@@ -27,6 +28,11 @@ from .operations import (
     PrimitiveOperations,
     ReadonlypropertyOperations,
 )
+
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestComplexTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes

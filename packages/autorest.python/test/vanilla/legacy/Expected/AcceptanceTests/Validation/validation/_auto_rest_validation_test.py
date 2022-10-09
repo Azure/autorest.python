@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any
 
 from msrest import Deserializer, Serializer
@@ -17,6 +18,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models
 from ._configuration import AutoRestValidationTestConfiguration
 from .operations import AutoRestValidationTestOperationsMixin
+
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestValidationTest(
