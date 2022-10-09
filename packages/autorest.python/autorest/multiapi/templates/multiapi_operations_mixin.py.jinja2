@@ -29,6 +29,7 @@ class {{ code_model.client.name }}OperationsMixin(object):
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config
+        mixin_instance._config.api_version = api_version
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         {% if not code_model.client.client_side_validation %}
         mixin_instance._serialize.client_side_validation = False

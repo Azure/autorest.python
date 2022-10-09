@@ -8,6 +8,7 @@
 
 from ._models import BytesProperty
 from ._models import CollectionsByteProperty
+from ._models import CollectionsModelProperty
 from ._models import DatetimeProperty
 from ._models import DurationProperty
 from ._models import RequiredAndOptionalProperty
@@ -19,6 +20,7 @@ from ._patch import patch_sdk as _patch_sdk
 __all__ = [
     "BytesProperty",
     "CollectionsByteProperty",
+    "CollectionsModelProperty",
     "DatetimeProperty",
     "DurationProperty",
     "RequiredAndOptionalProperty",

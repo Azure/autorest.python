@@ -25,6 +25,8 @@ import {
     resolvePath,
     Type,
     getEffectiveModelType,
+    JSONSchemaType,
+    createCadlLibrary,
 } from "@cadl-lang/compiler";
 import { getDiscriminator } from "@cadl-lang/rest";
 import {
@@ -59,22 +61,55 @@ interface CredentialType {
     scheme: HttpAuth;
 }
 
-export async function $onEmit(program: Program) {
+export interface EmitterOptions {
+    "basic-setup-py": boolean;
+    "package-version": string;
+    "package-name": string;
+    "output-path": string;
+}
+
+const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+        "basic-setup-py": { type: "boolean", nullable: true },
+        "package-version": { type: "string", nullable: true },
+        "package-name": { type: "string", nullable: true },
+        "output-path": { type: "string", nullable: true },
+    },
+    required: [],
+};
+
+export const $lib = createCadlLibrary({
+    name: "MyEmitter",
+    diagnostics: {},
+    emitter: {
+        options: EmitterOptionsSchema,
+    },
+});
+
+export async function $onEmit(program: Program, options: EmitterOptions) {
     const yamlMap = createYamlEmitter(program);
-    const yamlPath = resolvePath(program.compilerOptions.outputPath!, "output.yaml");
-    await program.host.writeFile(yamlPath, dump(yamlMap));
     const root = process.cwd();
+    const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
+    const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
-        `--output-folder=${program.compilerOptions.outputPath!}`,
+        `--output-folder=${outputFolder}`,
         `--cadl-file=${yamlPath}`,
     ];
+    for (const [key, value] of Object.entries(options)) {
+        commandArgs.push(`--${key}=${value}`);
+    }
     if (program.compilerOptions.diagnosticLevel === "debug") {
         commandArgs.push("--debug");
     }
-
-    execFileSync(process.execPath, commandArgs);
+    if (!program.compilerOptions.noEmit && !program.hasError()) {
+        // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
+        await program.host.writeFile(yamlPath, dump(yamlMap));
+        execFileSync(process.execPath, commandArgs);
+    }
 }
 
 function camelToSnakeCase(name: string): string {
@@ -108,6 +143,15 @@ function isSimpleType(program: Program, modelTypeProperty: ModelProperty | undef
 
 function getDocStr(program: Program, target: Type): string {
     return getDoc(program, target) ?? "";
+}
+
+function isLro(program: Program, operation: OperationDetails): boolean {
+    for (const decorator of operation.operation.decorators) {
+        if (decorator.decorator.name === "$pollingOperation") {
+            return true;
+        }
+    }
+    return false;
 }
 
 function getOperationGroupName(program: Program, operation: OperationDetails): string {
@@ -158,11 +202,9 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
         return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
     }
 
-    if (type.kind === "Model" && !type.name) {
-        const effective = getEffectiveModelType(program, type, isSchemaProperty);
-        if (effective.name) {
-            return effective;
-        }
+    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    if (effective.name) {
+        return effective;
     }
     return type;
 }
@@ -178,6 +220,14 @@ function getType(
         const cached = typesMap.get(type);
         if (cached) {
             return cached;
+        }
+        if (type.kind === "Model") {
+            const modelName = getName(program, type);
+            for (const key of typesMap.keys()) {
+                if (key.kind === "Model" && getName(program, key) === modelName) {
+                    return typesMap.get(key);
+                }
+            }
         }
     }
     let newValue = emitType(program, type, modelTypeProperty);
@@ -418,11 +468,21 @@ function emitResponse(
     };
 }
 
-function emitOperation(program: Program, operation: OperationDetails) {
-    if (getPagedResult(program, operation.operation)) {
+function emitOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const lro = isLro(program, operation);
+    const paging = getPagedResult(program, operation.operation);
+    if (lro && paging) {
+        return emitLroPagingOperation(program, operation);
+    } else if (paging) {
         return emitPagingOperation(program, operation);
+    } else if (lro) {
+        return emitLroOperation(program, operation);
     }
     return emitBasicOperation(program, operation);
+}
+
+function addLroInformation(emittedOperation: Record<string, any>) {
+    emittedOperation["discriminator"] = "lro";
 }
 
 function addPagingInformation(program: Program, operation: OperationDetails, emittedOperation: Record<string, any>) {
@@ -433,6 +493,20 @@ function addPagingInformation(program: Program, operation: OperationDetails, emi
     }
     emittedOperation["itemName"] = pagedResult.itemsPath;
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+}
+
+function emitLroPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation);
+    addLroInformation(emittedOperation);
+    addPagingInformation(program, operation, emittedOperation);
+    emittedOperation["discriminator"] = "lropaging";
+    return emittedOperation;
+}
+
+function emitLroOperation(program: Program, operation: OperationDetails): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation);
+    addLroInformation(emittedOperation);
+    return emittedOperation;
 }
 
 function emitPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
@@ -583,7 +657,10 @@ function emitModel(program: Program, type: Model, modelTypeProperty: ModelProper
         if (isNeverType(type.indexer.key)) {
         } else {
             const name = getIntrinsicModelName(program, type.indexer.key);
+            const elementType = type.indexer.value!;
             if (name === "string") {
+                if (elementType.kind === "Intrinsic") {
+                }
                 return { type: "dict", elementType: getType(program, type.indexer.value!) };
             } else if (name === "integer") {
                 return { type: "list", elementType: getType(program, type.indexer.value!) };
@@ -751,6 +828,8 @@ function emitType(
             return emitEnum(program, type);
         case "Credential":
             return emitCredential(type.scheme);
+        case "Intrinsic":
+            return { type: "any" };
         case "Union":
             const values: Record<string, any>[] = [];
             for (const option of type.options) {

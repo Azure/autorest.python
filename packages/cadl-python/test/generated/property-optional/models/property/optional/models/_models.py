@@ -81,6 +81,36 @@ class CollectionsByteProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class CollectionsModelProperty(_model_base.Model):
+    """Model with collection models properties.
+
+    :ivar property: Property.
+    :vartype property: list[~models.property.optional.models.StringProperty]
+    """
+
+    property: Optional[List["_models.StringProperty"]] = rest_field()
+    """Property. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[List["_models.StringProperty"]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
 class DatetimeProperty(_model_base.Model):
     """Model with a datetime property.
 
@@ -115,17 +145,17 @@ class DurationProperty(_model_base.Model):
     """Model with a duration property.
 
     :ivar property: Property.
-    :vartype property: ~datetime.datetime
+    :vartype property: ~datetime.timedelta
     """
 
-    property: Optional[datetime.datetime] = rest_field()
+    property: Optional[datetime.timedelta] = rest_field()
     """Property. """
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[datetime.datetime] = None,
+        property: Optional[datetime.timedelta] = None,
     ):
         ...
 

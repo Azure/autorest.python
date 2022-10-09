@@ -124,5 +124,7 @@ class CadlFlags(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
 if __name__ == "__main__":
     # CADL pipeline will call this
-    args = parse_args()
-    CadlFlags(output_folder=args.output_folder, cadl_file=args.cadl_file).process()
+    args, unknown_args = parse_args()
+    CadlFlags(
+        output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args
+    ).process()
