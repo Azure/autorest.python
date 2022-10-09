@@ -155,7 +155,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             k: None for k in customized_objects_str.split(",")
         }.keys()  # filter out duplicates
         file = (folder_path / "__init__.py").relative_to(self.output_folder)
-        file_content = self.read_file(file)
+        file_content = self.read_file(file).replace("\r\n", "\n")
         added_objs = []
         for obj in customized_objects:
             if f" import {obj}\n" in file_content:
