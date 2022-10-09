@@ -20,6 +20,10 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
@@ -100,15 +104,15 @@ class Fish(_model_base.Model):
 
     :ivar age: Required.
     :vartype age: int
-    :ivar kind: Required. Default value is "salmon".
+    :ivar kind: Required. Default value is None.
     :vartype kind: str
     """
 
     __mapping__ = {}
     age: int = rest_field()
     """Required. """
-    kind: str = rest_discriminator()
-    """Required. Default value is \"salmon\"."""
+    kind: Literal[None] = rest_discriminator()
+    """Required. Default value is None."""
 
     @overload
     def __init__(
@@ -128,6 +132,7 @@ class Fish(_model_base.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.kind = None  # type: Literal[None]
 
 
 class Shark(Fish, discriminator="shark"):
@@ -142,12 +147,52 @@ class Shark(Fish, discriminator="shark"):
     :vartype age: int
     :ivar kind: Required. Default value is "shark".
     :vartype kind: str
-    :ivar sharktype: Required. Default value is "goblin".
+    :ivar sharktype: Required. Default value is None.
     :vartype sharktype: str
     """
 
     __mapping__ = {}
-    sharktype: str = rest_discriminator()
+    kind: Literal["shark"] = rest_discriminator()
+    """Required. Default value is \"shark\"."""
+    sharktype: Literal[None] = rest_discriminator()
+    """Required. Default value is None."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        age: int,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+        ...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.kind = "shark"  # type: Literal["shark"]
+        self.sharktype = None  # type: Literal[None]
+
+
+class GoblinShark(Shark, discriminator="goblin"):
+    """The third level model GoblinShark in polymorphic multiple levels inheritance.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar age: Required.
+    :vartype age: int
+    :ivar kind: Required. Default value is "shark".
+    :vartype kind: str
+    :ivar sharktype: Required. Default value is "goblin".
+    :vartype sharktype: str
+    """
+
+    sharktype: Literal["goblin"] = rest_discriminator()
     """Required. Default value is \"goblin\"."""
 
     @overload
@@ -168,41 +213,7 @@ class Shark(Fish, discriminator="shark"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.kind = "shark"  # type: str
-
-
-class GoblinShark(Shark, discriminator="goblin"):
-    """The third level model GoblinShark in polymorphic multiple levels inheritance.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar age: Required.
-    :vartype age: int
-    :ivar kind: Required. Default value is "shark".
-    :vartype kind: str
-    :ivar sharktype: Required. Default value is "goblin".
-    :vartype sharktype: str
-    """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        age: int,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.sharktype = "goblin"  # type: str
+        self.sharktype = "goblin"  # type: Literal["goblin"]
 
 
 class Salmon(Fish, discriminator="salmon"):
@@ -222,6 +233,8 @@ class Salmon(Fish, discriminator="salmon"):
     :vartype partner: ~models.inheritance.models.Fish
     """
 
+    kind: Literal["salmon"] = rest_discriminator()
+    """Required. Default value is \"salmon\"."""
     friends: Optional[List["_models.Fish"]] = rest_field()
     hate: Optional[Dict[str, "_models.Fish"]] = rest_field()
     partner: Optional["_models.Fish"] = rest_field()
@@ -247,7 +260,7 @@ class Salmon(Fish, discriminator="salmon"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.kind = "salmon"  # type: str
+        self.kind = "salmon"  # type: Literal["salmon"]
 
 
 class SawShark(Shark, discriminator="saw"):
@@ -262,6 +275,9 @@ class SawShark(Shark, discriminator="saw"):
     :ivar sharktype: Required. Default value is "saw".
     :vartype sharktype: str
     """
+
+    sharktype: Literal["saw"] = rest_discriminator()
+    """Required. Default value is \"saw\"."""
 
     @overload
     def __init__(
@@ -281,7 +297,7 @@ class SawShark(Shark, discriminator="saw"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.sharktype = "saw"  # type: str
+        self.sharktype = "saw"  # type: Literal["saw"]
 
 
 class Siamese(Cat):
