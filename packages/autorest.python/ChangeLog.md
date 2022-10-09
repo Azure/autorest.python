@@ -1,5 +1,20 @@
 # Release History
 
+### 2022-xx-xx - 6.1.10
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.8.4`     |
+| `@autorest/modelerfour`                                                 | `4.23.5`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+
+**Bug Fixes**
+
+- Fix `--postprocess` for windows and embeded packages #1491
+
 ### 2022-09-29 - 6.1.9
 
 | Library                                                                 | Min Version |
