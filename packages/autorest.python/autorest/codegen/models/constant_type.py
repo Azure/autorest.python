@@ -119,28 +119,23 @@ class ConstantType(BaseType):
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
         if kwargs.get("import_literal", False):
-            file_import.merge(self.import_literal())
-        return file_import
-
-    def import_literal(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_version_import(
-            "Literal",
-            {
-                (3, 8): ImportModel(
-                    TypingSection.REGULAR,
-                    ImportType.STDLIB,
-                    "typing",
-                    submodule_name="Literal",
-                ),
-                None: ImportModel(
-                    TypingSection.REGULAR,
-                    ImportType.STDLIB,
-                    "typing_extensions",
-                    submodule_name="Literal",
-                ),
-            },
-        )
+            file_import.add_version_import(
+                "Literal",
+                {
+                    (3, 8): ImportModel(
+                        TypingSection.REGULAR,
+                        ImportType.STDLIB,
+                        "typing",
+                        submodule_name="Literal",
+                    ),
+                    None: ImportModel(
+                        TypingSection.REGULAR,
+                        ImportType.STDLIB,
+                        "typing_extensions",
+                        submodule_name="Literal",
+                    ),
+                },
+            )
         return file_import
 
     @property
