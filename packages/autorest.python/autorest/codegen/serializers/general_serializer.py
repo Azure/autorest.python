@@ -114,6 +114,7 @@ class GeneralSerializer:
         params["extra_depencies"] = []
         if self.code_model.options["models_mode"] and any(
             isinstance(p.type, ConstantType)
+            and (p.optional or self.code_model.options["models_mode"] == "dpg")
             for model in self.code_model.model_types
             for p in model.properties
         ):
