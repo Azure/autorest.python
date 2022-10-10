@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-10-07 - 6.1.10
+### 2022-10-10 - 6.1.10
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -13,6 +13,7 @@
 
 **Bug Fixes**
 
+- Fix `--postprocess` for windows and embeded packages #1491
 - Be able to detect bodies with JSON content types with charsets as JSON requests  #1490
 
 ### 2022-09-29 - 6.1.9
