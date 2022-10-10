@@ -112,7 +112,7 @@ class GeneralSerializer:
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
         params["extra_depencies"] = []
-        if any(
+        if self.code_model.options["models_mode"] and any(
             isinstance(p.type, ConstantType)
             for model in self.code_model.model_types
             for p in model.properties

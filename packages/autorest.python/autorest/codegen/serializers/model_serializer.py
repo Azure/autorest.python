@@ -142,7 +142,7 @@ class MsrestModelSerializer(_ModelSerializer):
                 p for p in model.properties if not p.readonly and not p.is_discriminator
             ]
             for param in init_line_parameters:
-                file_import.merge(param.imports(import_literal=True))
+                file_import.merge(param.imports(import_literal=param.optional))
         return file_import
 
     def declare_model(self, model: ModelType) -> str:
