@@ -386,7 +386,7 @@ def update_response(
 def _get_default_content_type(  # pylint: disable=too-many-return-statements
     content_types: Iterable[str],
 ) -> Optional[str]:
-    json_values = [ct for ct in content_types if JSON_REGEXP.match(ct)]
+    json_values = [ct for ct in content_types if JSON_REGEXP.match(ct.split(";")[0])]
     if json_values:
         if "application/json" in json_values:
             return "application/json"
