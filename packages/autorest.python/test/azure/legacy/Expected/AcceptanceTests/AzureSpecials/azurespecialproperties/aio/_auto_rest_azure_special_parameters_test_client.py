@@ -7,7 +7,6 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Awaitable, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
@@ -31,10 +30,6 @@ from .operations import (
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
-if sys.version_info >= (3, 8):
-    from typing import Literal
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes

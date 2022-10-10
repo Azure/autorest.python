@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import PipelineClient

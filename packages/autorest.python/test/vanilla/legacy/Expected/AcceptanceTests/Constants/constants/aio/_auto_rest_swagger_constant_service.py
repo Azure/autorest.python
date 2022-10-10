@@ -7,7 +7,6 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
@@ -17,11 +16,6 @@ from .. import models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestSwaggerConstantServiceConfiguration
 from .operations import ContantsOperations
-
-if sys.version_info >= (3, 8):
-    from typing import Literal
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestSwaggerConstantService:  # pylint: disable=client-accepts-api-version-keyword

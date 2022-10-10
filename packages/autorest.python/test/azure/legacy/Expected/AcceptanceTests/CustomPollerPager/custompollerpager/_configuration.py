@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
@@ -18,10 +17,6 @@ from ._version import VERSION
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
-if sys.version_info >= (3, 8):
-    from typing import Literal
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -39,7 +34,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: Literal["1.0.0"]
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

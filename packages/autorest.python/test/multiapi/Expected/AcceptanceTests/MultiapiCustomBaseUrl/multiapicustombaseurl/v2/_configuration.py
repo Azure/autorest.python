@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
@@ -15,10 +14,6 @@ from azure.core.pipeline import policies
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
-if sys.version_info >= (3, 8):
-    from typing import Literal
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 VERSION = "unknown"
 
@@ -40,7 +35,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):  # pylint:
 
     def __init__(self, credential: "TokenCredential", endpoint: str, **kwargs: Any) -> None:
         super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "2.0.0")  # type: Literal["2.0.0"]
+        api_version = kwargs.pop("api_version", "2.0.0")  # type: str
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

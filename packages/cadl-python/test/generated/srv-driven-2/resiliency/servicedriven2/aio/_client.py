@@ -7,7 +7,6 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
@@ -16,11 +15,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import ResiliencyServiceDriven2Configuration
 from .operations import ParamsOperations
-
-if sys.version_info >= (3, 8):
-    from typing import Literal
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class ResiliencyServiceDriven2:  # pylint: disable=client-accepts-api-version-keyword

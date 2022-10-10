@@ -6,18 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
-
-if sys.version_info >= (3, 8):
-    from typing import Literal
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestValidationTestConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -35,7 +29,7 @@ class AutoRestValidationTestConfiguration(Configuration):  # pylint: disable=too
 
     def __init__(self, subscription_id: str, **kwargs: Any) -> None:
         super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: Literal["1.0.0"]
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")

@@ -75,9 +75,10 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
-            return f"Literal[{self.get_declaration()}]"
         return self.value_type.type_annotation(**kwargs)
+
+    def literal_annotation(self, **kwargs: Any) -> str:
+        return f"Literal[{self.get_declaration()}]"
 
     @classmethod
     def from_yaml(
@@ -117,24 +118,29 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
-        if self.code_model.options["models_mode"]:
-            file_import.add_version_import(
-                "Literal",
-                {
-                    (3, 8): ImportModel(
-                        TypingSection.REGULAR,
-                        ImportType.STDLIB,
-                        "typing",
-                        submodule_name="Literal",
-                    ),
-                    None: ImportModel(
-                        TypingSection.REGULAR,
-                        ImportType.STDLIB,
-                        "typing_extensions",
-                        submodule_name="Literal",
-                    ),
-                },
-            )
+        if kwargs.get("import_literal", False):
+            file_import.merge(self.import_literal())
+        return file_import
+
+    def import_literal(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_version_import(
+            "Literal",
+            {
+                (3, 8): ImportModel(
+                    TypingSection.REGULAR,
+                    ImportType.STDLIB,
+                    "typing",
+                    submodule_name="Literal",
+                ),
+                None: ImportModel(
+                    TypingSection.REGULAR,
+                    ImportType.STDLIB,
+                    "typing_extensions",
+                    submodule_name="Literal",
+                ),
+            },
+        )
         return file_import
 
     @property

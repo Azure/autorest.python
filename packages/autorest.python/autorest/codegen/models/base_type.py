@@ -111,6 +111,9 @@ class BaseType(BaseModel, ABC):
         """
         ...
 
+    def literal_annotation(self, **kwargs: Any) -> str:
+        return self.type_annotation(**kwargs)
+
     @property
     def validation(self) -> Optional[Dict[str, Any]]:
         """Whether there's any validation constraints on this type.
