@@ -13,7 +13,7 @@
 
 **New Features**
 
-- Support `"format": "arm-id"`  #1483
+- Handle all unrecognized types as "string"  #1483
 
 ### 2022-09-29 - 6.1.9
 

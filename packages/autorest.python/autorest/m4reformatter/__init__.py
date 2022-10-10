@@ -204,7 +204,7 @@ def update_primitive(  # pylint: disable=too-many-return-statements
 ) -> Dict[str, Any]:
     if type_group in ("integer", "number"):
         return update_number_type(yaml_data)
-    if type_group in ("string", "uuid", "uri", "arm-id"):
+    if type_group in ("string", "uuid", "uri"):
         if any(
             r in yaml_data
             for r in (
