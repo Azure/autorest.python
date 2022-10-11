@@ -177,12 +177,12 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 "client_name": self.code_model.client.name,
                 "namespace": self.code_model.namespace,
                 "code_model": self.code_model,
+                "extra_dependencies": [],
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
-            params["extra_dependencies"] = []
             if need_typing_extensions(self.code_model):
-                params["extra_dependencies"].append(
+                params["extra_dependencies"].append(  # type: ignore
                     f"typing_extensions>=4.3.0; python_version<'3.8.0'"
                 )
             return params
