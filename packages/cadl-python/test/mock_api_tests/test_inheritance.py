@@ -96,13 +96,13 @@ def recursive_body():
 })
 
 def test_put_recursive_body(client, recursive_body):
-    client.discriminated.put_recursive_model(polymorphic_body)
+    client.discriminated.put_recursive_model(recursive_body)
 
 def test_get_recursive_body(client, recursive_body):
-    assert client.discriminated.get_recursive_model() == polymorphic_body
+    assert client.discriminated.get_recursive_model() == recursive_body
 
 def test_get_missing_discriminator(client):
     assert client.discriminated.get_missing_discriminator() == models.Fish(age=1)
 
 def test_get_wrong_discriminator(client):
-    assert client.discriminated.get_wrong_discriminator() == models.Fish(age=1)
+    assert client.discriminated.get_wrong_discriminator() == models.Fish(age=1, kind="wrongKind")
