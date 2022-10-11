@@ -153,7 +153,7 @@ class HttpServerFailureOperations:
 
     @distributed_trace_async
     async def post505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
@@ -212,7 +212,7 @@ class HttpServerFailureOperations:
 
     @distributed_trace_async
     async def delete505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 

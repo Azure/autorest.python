@@ -105,7 +105,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", True)  # type: bool
+        bool_path = kwargs.pop("bool_path", True)  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_boolean_true_request(
@@ -156,7 +156,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", False)  # type: bool
+        bool_path = kwargs.pop("bool_path", False)  # type: Literal[False]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_boolean_false_request(
@@ -207,7 +207,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", 1000000)  # type: int
+        int_path = kwargs.pop("int_path", 1000000)  # type: Literal[1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_int_one_million_request(
@@ -260,7 +260,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", -1000000)  # type: int
+        int_path = kwargs.pop("int_path", -1000000)  # type: Literal[-1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_int_negative_one_million_request(
@@ -311,7 +311,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", 10000000000)  # type: int
+        long_path = kwargs.pop("long_path", 10000000000)  # type: Literal[10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_ten_billion_request(
@@ -362,7 +362,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", -10000000000)  # type: int
+        long_path = kwargs.pop("long_path", -10000000000)  # type: Literal[-10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_negative_ten_billion_request(
@@ -617,7 +617,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_unicode_request(
@@ -669,7 +669,9 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        string_path = kwargs.pop(
+            "string_path", "begin!*'();:@ &=+$,/?#[]end"
+        )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_url_encoded_request(
@@ -723,7 +725,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: Literal["begin!*'();:@&=+$,end"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_url_non_encoded_request(
@@ -774,7 +776,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "")  # type: str
+        string_path = kwargs.pop("string_path", "")  # type: Literal[""]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_empty_request(

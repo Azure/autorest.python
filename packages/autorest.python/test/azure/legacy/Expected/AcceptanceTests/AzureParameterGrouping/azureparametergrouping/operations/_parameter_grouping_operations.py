@@ -169,7 +169,7 @@ def build_post_shared_parameter_group_object_request(
 
 
 def build_group_with_constant_request(
-    *, grouped_constant: str = "foo", grouped_parameter: Optional[str] = None, **kwargs: Any
+    *, grouped_constant: Literal["foo"] = "foo", grouped_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

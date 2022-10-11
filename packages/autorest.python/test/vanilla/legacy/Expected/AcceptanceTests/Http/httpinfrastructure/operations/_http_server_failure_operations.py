@@ -66,7 +66,7 @@ def build_get501_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post505_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_post505_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -83,7 +83,7 @@ def build_post505_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_delete505_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_delete505_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -213,7 +213,7 @@ class HttpServerFailureOperations:
 
     @distributed_trace
     def post505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
@@ -272,7 +272,7 @@ class HttpServerFailureOperations:
 
     @distributed_trace
     def delete505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 

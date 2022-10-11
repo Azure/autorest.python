@@ -142,7 +142,7 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -162,7 +162,7 @@ def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -196,7 +196,7 @@ def build_duplicate_params_request(*, filter: Optional[str] = None, **kwargs: An
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_page_with_max_page_size_request(*, maxpagesize: str = "5", **kwargs: Any) -> HttpRequest:
+def build_page_with_max_page_size_request(*, maxpagesize: Literal["5"] = "5", **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -463,7 +463,7 @@ def build_append_api_version_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -482,7 +482,7 @@ def build_replace_api_version_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -992,7 +992,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
@@ -1129,7 +1129,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}  # type: ignore
 
     @distributed_trace
-    def page_with_max_page_size(self, maxpagesize: str = "5", **kwargs: Any) -> Iterable["_models.Product"]:
+    def page_with_max_page_size(self, maxpagesize: Literal["5"] = "5", **kwargs: Any) -> Iterable["_models.Product"]:
         """Paging with max page size. We don't want to.
 
         :param maxpagesize: Max page size query param. Don't send. Known values are "5" and None.
@@ -2095,7 +2095,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
+        api_version = kwargs.pop(
+            "api_version", _params.pop("api-version", self._config.api_version)
+        )  # type: Literal["1.0.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
@@ -2167,7 +2169,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
+        api_version = kwargs.pop(
+            "api_version", _params.pop("api-version", self._config.api_version)
+        )  # type: Literal["1.0.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {

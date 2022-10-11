@@ -108,7 +108,9 @@ def build_subscription_in_credentials_post_method_global_not_provided_valid_requ
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
+    api_version = kwargs.pop(
+        "api_version", _params.pop("api-version", "2015-07-01-preview")
+    )  # type: Literal["2015-07-01-preview"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -252,7 +254,9 @@ def build_api_version_default_get_method_global_valid_request(**kwargs: Any) -> 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
+    api_version = kwargs.pop(
+        "api_version", _params.pop("api-version", "2015-07-01-preview")
+    )  # type: Literal["2015-07-01-preview"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -271,7 +275,9 @@ def build_api_version_default_get_method_global_not_provided_valid_request(**kwa
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
+    api_version = kwargs.pop(
+        "api_version", _params.pop("api-version", "2015-07-01-preview")
+    )  # type: Literal["2015-07-01-preview"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -290,7 +296,9 @@ def build_api_version_default_get_path_global_valid_request(**kwargs: Any) -> Ht
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
+    api_version = kwargs.pop(
+        "api_version", _params.pop("api-version", "2015-07-01-preview")
+    )  # type: Literal["2015-07-01-preview"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -309,7 +317,9 @@ def build_api_version_default_get_swagger_global_valid_request(**kwargs: Any) ->
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
+    api_version = kwargs.pop(
+        "api_version", _params.pop("api-version", "2015-07-01-preview")
+    )  # type: Literal["2015-07-01-preview"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -328,7 +338,7 @@ def build_api_version_local_get_method_local_valid_request(**kwargs: Any) -> Htt
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -368,7 +378,7 @@ def build_api_version_local_get_path_local_valid_request(**kwargs: Any) -> HttpR
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -387,7 +397,7 @@ def build_api_version_local_get_swagger_local_valid_request(**kwargs: Any) -> Ht
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -443,7 +453,7 @@ def build_skip_url_encoding_get_path_valid_request(unencoded_path_param: str, **
 def build_skip_url_encoding_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
+    unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: Literal["path1/path2/path3"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -519,7 +529,9 @@ def build_skip_url_encoding_get_swagger_query_valid_request(**kwargs: Any) -> Ht
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    q1 = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))  # type: str
+    q1 = kwargs.pop(
+        "q1", _params.pop("q1", "value1&q2=value2&q3=value3")
+    )  # type: Literal["value1&q2=value2&q3=value3"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1372,7 +1384,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_method_local_valid_request(
@@ -1463,7 +1475,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_path_local_valid_request(
@@ -1509,7 +1521,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_swagger_local_valid_request(
@@ -1663,7 +1675,9 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
+        unencoded_path_param = kwargs.pop(
+            "unencoded_path_param", "path1/path2/path3"
+        )  # type: Literal["path1/path2/path3"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_swagger_path_valid_request(
@@ -1842,7 +1856,9 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        q1 = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))  # type: str
+        q1 = kwargs.pop(
+            "q1", _params.pop("q1", "value1&q2=value2&q3=value3")
+        )  # type: Literal["value1&q2=value2&q3=value3"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_swagger_query_valid_request(

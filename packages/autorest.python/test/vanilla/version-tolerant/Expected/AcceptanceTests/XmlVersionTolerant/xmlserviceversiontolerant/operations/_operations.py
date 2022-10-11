@@ -339,7 +339,7 @@ def build_xml_list_containers_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -358,8 +358,8 @@ def build_xml_get_service_properties_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
+    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -379,8 +379,8 @@ def build_xml_put_service_properties_request(*, content: Any, **kwargs: Any) -> 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
+    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/"
@@ -400,8 +400,8 @@ def build_xml_get_acls_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -421,8 +421,8 @@ def build_xml_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/mycontainer"
@@ -442,8 +442,8 @@ def build_xml_list_blobs_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -1910,7 +1910,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_list_containers_request(
@@ -2049,8 +2049,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_service_properties_request(
@@ -2194,8 +2194,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -2267,8 +2267,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_acls_request(
@@ -2344,8 +2344,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -2491,8 +2491,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_list_blobs_request(

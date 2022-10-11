@@ -89,7 +89,7 @@ def build_string_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_string_put_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop("json", "")  # type: str
+    json = kwargs.pop("json", "")  # type: Literal[""]
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
@@ -122,7 +122,9 @@ def build_string_put_mbcs_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    json = kwargs.pop("json", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
+    json = kwargs.pop(
+        "json", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+    )  # type: Literal["啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -156,7 +158,7 @@ def build_string_put_whitespace_request(**kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     json = kwargs.pop(
         "json", "    Now is the time for all good men to come to the aid of their country    "
-    )  # type: str
+    )  # type: Literal["    Now is the time for all good men to come to the aid of their country    "]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -521,7 +523,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        string_body = kwargs.pop("string_body", "")  # type: str
+        string_body = kwargs.pop("string_body", "")  # type: Literal[""]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -621,7 +623,7 @@ class StringOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-        )  # type: str
+        )  # type: Literal["啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body
@@ -724,7 +726,7 @@ class StringOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "    Now is the time for all good men to come to the aid of their country    "
-        )  # type: str
+        )  # type: Literal["    Now is the time for all good men to come to the aid of their country    "]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body

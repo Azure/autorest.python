@@ -112,7 +112,7 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def put500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
@@ -171,7 +171,7 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def patch500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
@@ -326,7 +326,7 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def post503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
@@ -385,7 +385,7 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def delete503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
@@ -444,7 +444,7 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def put504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
@@ -503,7 +503,7 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def patch504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 

@@ -1196,7 +1196,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ListContainersResponse]
 
         request = build_list_containers_request(
@@ -1253,8 +1253,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageServiceProperties]
 
         request = build_get_service_properties_request(
@@ -1316,8 +1316,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1376,8 +1376,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
         cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.SignedIdentifier]]
 
         request = build_get_acls_request(
@@ -1439,8 +1439,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1502,8 +1502,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ListBlobsResponse]
 
         request = build_list_blobs_request(

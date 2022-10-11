@@ -80,7 +80,7 @@ def build_options200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_put200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_put200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -97,7 +97,7 @@ def build_put200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_patch200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_patch200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -114,7 +114,7 @@ def build_patch200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_post200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_post200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -131,7 +131,7 @@ def build_post200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_delete200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_delete200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -148,7 +148,7 @@ def build_delete200_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_put201_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_put201_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -165,7 +165,7 @@ def build_put201_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_post201_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_post201_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -182,7 +182,7 @@ def build_post201_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_put202_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_put202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -199,7 +199,7 @@ def build_put202_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_patch202_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_patch202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -216,7 +216,7 @@ def build_patch202_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_post202_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_post202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -233,7 +233,7 @@ def build_post202_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_delete202_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_delete202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -264,7 +264,7 @@ def build_head204_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_put204_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_put204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -281,7 +281,7 @@ def build_put204_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_patch204_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_patch204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -298,7 +298,7 @@ def build_patch204_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_post204_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_post204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -315,7 +315,7 @@ def build_post204_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_delete204_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_delete204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -513,7 +513,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
@@ -572,7 +572,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
@@ -631,7 +631,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
@@ -690,7 +690,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
@@ -749,7 +749,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
@@ -808,7 +808,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
@@ -867,7 +867,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
@@ -926,7 +926,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
@@ -985,7 +985,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
@@ -1044,7 +1044,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
@@ -1149,7 +1149,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
@@ -1208,7 +1208,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
@@ -1267,7 +1267,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
@@ -1326,7 +1326,7 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: bool = True, **kwargs: Any
+        self, boolean_value: Literal[True] = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 

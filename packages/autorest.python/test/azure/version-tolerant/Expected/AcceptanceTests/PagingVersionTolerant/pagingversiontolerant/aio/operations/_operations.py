@@ -655,7 +655,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {

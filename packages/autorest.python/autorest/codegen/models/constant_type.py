@@ -84,7 +84,9 @@ class ConstantType(BaseType):
 
     @property
     def is_literal(self) -> bool:
-        return isinstance(self.type, (IntegerType, BinaryType, StringType, BooleanType))
+        return isinstance(
+            self.value_type, (IntegerType, BinaryType, StringType, BooleanType)
+        )
 
     @classmethod
     def from_yaml(
@@ -124,7 +126,7 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
-        if kwargs.get("import_literal"):
+        if self.is_literal and kwargs.get("import_literal"):
             file_import.merge(self._import_literal())
         return file_import
 

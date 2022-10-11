@@ -397,7 +397,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: str
+        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_with_constant_in_path_request(
@@ -598,7 +598,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: str
+        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 

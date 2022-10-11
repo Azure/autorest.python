@@ -230,7 +230,7 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Optional[str] = None, **kwargs):
+    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs):
         """
         :keyword parameter: Default value is "value1".
         :paramtype parameter: str
@@ -250,7 +250,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Optional[str] = None, **kwargs):
+    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs):
         """
         :keyword parameter: Default value is "value1".
         :paramtype parameter: str

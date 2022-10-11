@@ -37,7 +37,7 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: Literal["1.0.0"]
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

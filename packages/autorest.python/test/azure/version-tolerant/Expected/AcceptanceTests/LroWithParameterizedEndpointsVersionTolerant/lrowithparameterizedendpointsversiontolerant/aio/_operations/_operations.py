@@ -171,7 +171,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
         request = build_poll_with_constant_parameterized_endpoints_request(
@@ -236,7 +236,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

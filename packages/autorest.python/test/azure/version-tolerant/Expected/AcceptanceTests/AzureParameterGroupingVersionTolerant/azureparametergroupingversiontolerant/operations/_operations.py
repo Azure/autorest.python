@@ -164,7 +164,7 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(
 
 
 def build_parameter_grouping_group_with_constant_request(
-    *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+    *, grouped_constant: Optional[Literal["foo"]] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -466,7 +466,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def group_with_constant(  # pylint: disable=inconsistent-return-statements
-        self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        grouped_constant: Optional[Literal["foo"]] = None,
+        grouped_parameter: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.

@@ -46,7 +46,7 @@ def build_test_one_request(*, id: int, message: Optional[str] = None, **kwargs: 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -107,7 +107,7 @@ def build_test_different_calls_request(*, greeting_in_english: str, **kwargs: An
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -150,7 +150,7 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_test_one_request(
@@ -564,7 +564,7 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_test_different_calls_request(

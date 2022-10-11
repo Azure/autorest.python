@@ -84,7 +84,9 @@ class Grouper(msrest.serialization.Model):
         "grouped_parameter": {"key": "groupedParameter", "type": "str"},
     }
 
-    def __init__(self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, grouped_constant: Optional[Literal["foo"]] = None, grouped_parameter: Optional[str] = None, **kwargs
+    ):
         """
         :keyword grouped_constant: A grouped parameter that is a constant. Default value is "foo".
         :paramtype grouped_constant: str

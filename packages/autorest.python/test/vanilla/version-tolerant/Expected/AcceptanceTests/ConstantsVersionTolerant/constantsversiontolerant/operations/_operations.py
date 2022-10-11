@@ -68,7 +68,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_default_request(
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
-    *, input: Optional[str] = None, **kwargs: Any
+    *, input: Optional[Literal["value1"]] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -83,7 +83,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_no_default_reque
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_default_request(
-    *, input: str = "value1", **kwargs: Any
+    *, input: Literal["value1"] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -128,7 +128,7 @@ def build_contants_put_no_model_as_string_required_two_value_default_request(
 def build_contants_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
+    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueNoDefault"
 
@@ -141,7 +141,7 @@ def build_contants_put_no_model_as_string_required_one_value_no_default_request(
 def build_contants_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
+    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueDefault"
 
@@ -271,9 +271,9 @@ def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_constant = kwargs.pop("header_constant", _headers.pop("header-constant", True))  # type: bool
-    query_constant = kwargs.pop("query_constant", _params.pop("query-constant", 100))  # type: int
-    path_constant = kwargs.pop("path_constant", "path")  # type: str
+    header_constant = kwargs.pop("header_constant", _headers.pop("header-constant", True))  # type: Literal[True]
+    query_constant = kwargs.pop("query_constant", _params.pop("query-constant", 100))  # type: Literal[100]
+    path_constant = kwargs.pop("path_constant", "path")  # type: Literal["path"]
     # Construct URL
     _url = "/constants/clientConstants/{path-constant}"
     path_format_arguments = {
@@ -404,7 +404,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = None, **kwargs: Any
+        self, *, input: Optional[Literal["value1"]] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -451,7 +451,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: str = "value1", **kwargs: Any
+        self, *, input: Literal["value1"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -616,7 +616,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
+        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
@@ -665,7 +665,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
+        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_contants_put_no_model_as_string_required_one_value_default_request(

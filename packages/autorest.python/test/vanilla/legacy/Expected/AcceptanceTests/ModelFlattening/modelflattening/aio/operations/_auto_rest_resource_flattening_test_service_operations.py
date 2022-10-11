@@ -800,7 +800,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: str = "Large",
+        capacity: Literal["Large"] = "Large",
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any

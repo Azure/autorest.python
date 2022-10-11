@@ -127,7 +127,7 @@ class BoolOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        bool_body = kwargs.pop("bool_body", True)  # type: bool
+        bool_body = kwargs.pop("bool_body", True)  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = bool_body
@@ -222,7 +222,7 @@ class BoolOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        bool_body = kwargs.pop("bool_body", False)  # type: bool
+        bool_body = kwargs.pop("bool_body", False)  # type: Literal[False]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

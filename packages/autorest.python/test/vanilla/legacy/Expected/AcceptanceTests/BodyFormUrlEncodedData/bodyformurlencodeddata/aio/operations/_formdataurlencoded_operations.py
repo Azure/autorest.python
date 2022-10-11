@@ -176,7 +176,7 @@ class FormdataurlencodedOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
         )  # type: str
-        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
+        grant_type = kwargs.pop("grant_type", "access_token")  # type: Literal["access_token"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data

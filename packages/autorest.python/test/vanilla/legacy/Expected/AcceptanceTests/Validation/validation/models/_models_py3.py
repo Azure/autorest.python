@@ -177,7 +177,7 @@ class Product(msrest.serialization.Model):
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
-        const_string_as_enum: Optional[str] = None,
+        const_string_as_enum: Optional[Literal["constant_string_as_enum"]] = None,
         **kwargs
     ):
         """

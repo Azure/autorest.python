@@ -86,7 +86,9 @@ def build_post_method_global_not_provided_valid_request(subscription_id: str, **
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
+    api_version = kwargs.pop(
+        "api_version", _params.pop("api-version", "2015-07-01-preview")
+    )  # type: Literal["2015-07-01-preview"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -291,7 +293,9 @@ class SubscriptionInCredentialsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
+        api_version = kwargs.pop(
+            "api_version", _params.pop("api-version", self._config.api_version)
+        )  # type: Literal["2015-07-01-preview"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_post_method_global_not_provided_valid_request(

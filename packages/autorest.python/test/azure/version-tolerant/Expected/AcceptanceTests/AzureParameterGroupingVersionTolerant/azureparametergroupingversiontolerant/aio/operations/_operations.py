@@ -323,7 +323,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def group_with_constant(  # pylint: disable=inconsistent-return-statements
-        self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        grouped_constant: Optional[Literal["foo"]] = None,
+        grouped_parameter: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.

@@ -111,7 +111,7 @@ class Fish(_model_base.Model):
     __mapping__ = {}
     age: int = rest_field()
     """Required. """
-    kind: str = rest_discriminator()
+    kind: Literal[None] = rest_discriminator()
     """Required. Default value is None."""
 
     @overload
@@ -132,7 +132,7 @@ class Fish(_model_base.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.kind = None  # type: str
+        self.kind = None  # type: Literal[None]
 
 
 class Shark(Fish, discriminator="shark"):
@@ -152,7 +152,9 @@ class Shark(Fish, discriminator="shark"):
     """
 
     __mapping__ = {}
-    sharktype: str = rest_discriminator()
+    kind: Literal["shark"] = rest_discriminator()
+    """Required. Default value is \"shark\"."""
+    sharktype: Literal[None] = rest_discriminator()
     """Required. Default value is None."""
 
     @overload
@@ -173,7 +175,8 @@ class Shark(Fish, discriminator="shark"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.sharktype = None  # type: str
+        self.kind = "shark"  # type: Literal["shark"]
+        self.sharktype = None  # type: Literal[None]
 
 
 class GoblinShark(Shark, discriminator="goblin"):
@@ -188,6 +191,9 @@ class GoblinShark(Shark, discriminator="goblin"):
     :ivar sharktype: Required. Default value is "goblin".
     :vartype sharktype: str
     """
+
+    sharktype: Literal["goblin"] = rest_discriminator()
+    """Required. Default value is \"goblin\"."""
 
     @overload
     def __init__(
@@ -207,6 +213,7 @@ class GoblinShark(Shark, discriminator="goblin"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.sharktype = "goblin"  # type: Literal["goblin"]
 
 
 class Salmon(Fish, discriminator="salmon"):
@@ -226,6 +233,8 @@ class Salmon(Fish, discriminator="salmon"):
     :vartype partner: ~models.inheritance.models.Fish
     """
 
+    kind: Literal["salmon"] = rest_discriminator()
+    """Required. Default value is \"salmon\"."""
     friends: Optional[List["_models.Fish"]] = rest_field()
     hate: Optional[Dict[str, "_models.Fish"]] = rest_field()
     partner: Optional["_models.Fish"] = rest_field()
@@ -251,6 +260,7 @@ class Salmon(Fish, discriminator="salmon"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.kind = "salmon"  # type: Literal["salmon"]
 
 
 class SawShark(Shark, discriminator="saw"):
@@ -265,6 +275,9 @@ class SawShark(Shark, discriminator="saw"):
     :ivar sharktype: Required. Default value is "saw".
     :vartype sharktype: str
     """
+
+    sharktype: Literal["saw"] = rest_discriminator()
+    """Required. Default value is \"saw\"."""
 
     @overload
     def __init__(
@@ -284,6 +297,7 @@ class SawShark(Shark, discriminator="saw"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.sharktype = "saw"  # type: Literal["saw"]
 
 
 class Siamese(Cat):

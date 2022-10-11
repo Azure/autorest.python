@@ -65,7 +65,7 @@ def build_test_different_calls_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -187,7 +187,7 @@ class MultiapiServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_test_different_calls_request(

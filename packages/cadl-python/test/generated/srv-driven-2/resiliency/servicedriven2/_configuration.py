@@ -33,7 +33,7 @@ class ResiliencyServiceDriven2Configuration(Configuration):  # pylint: disable=t
 
     def __init__(self, **kwargs: Any) -> None:
         super(ResiliencyServiceDriven2Configuration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "1.1.0")  # type: str
+        api_version = kwargs.pop("api_version", "1.1.0")  # type: Literal["1.1.0"]
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "resiliencyservicedriven2/{}".format(VERSION))

@@ -40,7 +40,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):  # pylint:
 
     def __init__(self, credential: "AsyncTokenCredential", endpoint: str, **kwargs: Any) -> None:
         super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "2.0.0")  # type: str
+        api_version = kwargs.pop("api_version", "2.0.0")  # type: Literal["2.0.0"]
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

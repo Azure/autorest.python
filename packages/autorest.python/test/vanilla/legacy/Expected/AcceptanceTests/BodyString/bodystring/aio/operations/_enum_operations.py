@@ -351,7 +351,7 @@ class EnumOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        color_constant = kwargs.pop("color_constant", "green-color")  # type: str
+        color_constant = kwargs.pop("color_constant", "green-color")  # type: Literal["green-color"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)

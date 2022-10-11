@@ -95,7 +95,7 @@ def build_params_put_required_optional_request(
 def build_params_post_parameters_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type_path = kwargs.pop("content_type_path", "json")  # type: str
+    content_type_path = kwargs.pop("content_type_path", "json")  # type: Literal["json"]
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
@@ -363,7 +363,7 @@ class ParamsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type_path = kwargs.pop("content_type_path", "json")  # type: str
+        content_type_path = kwargs.pop("content_type_path", "json")  # type: Literal["json"]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Message]
 
