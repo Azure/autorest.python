@@ -6,8 +6,9 @@
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models.imports import MsrestImportType
-from ..models import FileImport, ImportType, CodeModel, ConstantType
+from ..models import FileImport, ImportType, CodeModel
 from .client_serializer import ClientSerializer, ConfigSerializer
+from .utils import need_typing_extensions
 
 
 class GeneralSerializer:
@@ -111,14 +112,9 @@ class GeneralSerializer:
         params = {}
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
-        params["extra_depencies"] = []
-        if self.code_model.options["models_mode"] and any(
-            isinstance(p.type, ConstantType)
-            and (p.optional or self.code_model.options["models_mode"] == "dpg")
-            for model in self.code_model.model_types
-            for p in model.properties
-        ):
-            params["extra_depencies"].append(
+        params["extra_dependencies"] = []
+        if need_typing_extensions(self.code_model):
+            params["extra_dependencies"].append(
                 f"typing_extensions>=4.3.0; python_version<'3.8.0'"
             )
         return template.render(code_model=self.code_model, **params)

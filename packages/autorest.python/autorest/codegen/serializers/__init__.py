@@ -22,6 +22,7 @@ from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
+from .utils import need_typing_extensions
 
 __all__ = [
     "JinjaSerializer",
@@ -176,9 +177,14 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 "client_name": self.code_model.client.name,
                 "namespace": self.code_model.namespace,
                 "code_model": self.code_model,
+                "extra_dependencies": [],
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
+            if need_typing_extensions(self.code_model):
+                params["extra_dependencies"].append(
+                    f"typing_extensions>=4.3.0; python_version<'3.8.0'"
+                )
             return params
 
         out_path = out_path / Path("../" * (self.code_model.namespace.count(".") + 1))

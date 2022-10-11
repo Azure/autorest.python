@@ -208,7 +208,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         for param in self.parameters.method:
-            file_import.merge(param.imports(async_mode, **kwargs))
+            file_import.merge(param.imports(async_mode, import_literal=True, **kwargs))
 
         response_types = [
             r.type_annotation(async_mode=async_mode) for r in self.responses if r.type

@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .utils import add_to_pylint_disable
+from .constant_type import ConstantType
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -244,7 +245,12 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
             )
         for gp in self.parameters:
-            file_import.merge(gp.imports(async_mode=async_mode))
+            file_import.merge(gp.imports(async_mode=async_mode, import_literal=True))
+        for kwarg in self.parameters.kwargs_to_pop:
+            if isinstance(kwarg.type, ConstantType):
+                file_import.merge(
+                    kwarg.imports(async_mode=async_mode, import_literal=True)
+                )
         if self.code_model.options["azure_arm"]:
             policy = (
                 "AsyncARMChallengeAuthenticationPolicy"

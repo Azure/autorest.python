@@ -91,9 +91,9 @@ setup(
         {% else %}
         "{{ dependency_azure_core }}",
         {% endif %}
-        {% if extra_depencies is defined %}
-        {%- for extra_depend in extra_depencies %}
-            "{{ extra_depend }}",
+        {% if extra_dependencies is defined %}
+        {%- for extra_dependency in extra_dependencies %}
+            "{{ extra_dependency }}",
         {%- endfor %}
         {% endif %}
     ],

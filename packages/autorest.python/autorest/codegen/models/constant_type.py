@@ -75,9 +75,6 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return self.value_type.type_annotation(**kwargs)
-
-    def literal_annotation(self, **kwargs: Any) -> str:
         return f"Literal[{self.get_declaration()}]"
 
     @classmethod
@@ -119,23 +116,29 @@ class ConstantType(BaseType):
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
         if kwargs.get("import_literal", False):
-            file_import.add_version_import(
-                "Literal",
-                {
-                    (3, 8): ImportModel(
-                        TypingSection.REGULAR,
-                        ImportType.STDLIB,
-                        "typing",
-                        submodule_name="Literal",
-                    ),
-                    None: ImportModel(
-                        TypingSection.REGULAR,
-                        ImportType.STDLIB,
-                        "typing_extensions",
-                        submodule_name="Literal",
-                    ),
-                },
-            )
+            file_import.merge(self._import_literal())
+        return file_import
+
+    @staticmethod
+    def _import_literal() -> FileImport:
+        file_import = FileImport()
+        file_import.add_version_import(
+            "Literal",
+            {
+                (3, 8): ImportModel(
+                    TypingSection.REGULAR,
+                    ImportType.STDLIB,
+                    "typing",
+                    submodule_name="Literal",
+                ),
+                None: ImportModel(
+                    TypingSection.REGULAR,
+                    ImportType.STDLIB,
+                    "typing_extensions",
+                    submodule_name="Literal",
+                ),
+            },
+        )
         return file_import
 
     @property

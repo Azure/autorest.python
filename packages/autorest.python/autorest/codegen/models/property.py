@@ -88,11 +88,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
         return self.type.type_annotation(is_operation_file=is_operation_file)
 
-    def literal_annotation(self, *, is_operation_file: bool = False) -> str:
-        if self.optional and self.client_default_value is None:
-            return f"Optional[{self.type.literal_annotation(is_operation_file=is_operation_file)}]"
-        return self.type.literal_annotation(is_operation_file=is_operation_file)
-
     def get_json_template_representation(
         self,
         *,

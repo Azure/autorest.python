@@ -82,11 +82,9 @@ class _ModelSerializer(ABC):
     @staticmethod
     def initialize_standard_property(prop: Property):
         if not (prop.optional or prop.client_default_value is not None):
-            return (
-                f"{prop.client_name}: {prop.literal_annotation()},{prop.pylint_disable}"
-            )
+            return f"{prop.client_name}: {prop.type_annotation()},{prop.pylint_disable}"
         return (
-            f"{prop.client_name}: {prop.literal_annotation()} = "
+            f"{prop.client_name}: {prop.type_annotation()} = "
             f"{prop.client_default_value_declaration},{prop.pylint_disable}"
         )
 
@@ -143,6 +141,7 @@ class MsrestModelSerializer(_ModelSerializer):
             ]
             for param in init_line_parameters:
                 file_import.merge(param.imports(import_literal=param.optional))
+
         return file_import
 
     def declare_model(self, model: ModelType) -> str:
@@ -236,7 +235,7 @@ class DpgModelSerializer(_ModelSerializer):
                 for p in model.properties
                 if not any(
                     p.client_name == pp.client_name
-                    and p.literal_annotation() == pp.literal_annotation()
+                    and p.type_annotation() == pp.type_annotation()
                     for pp in parent_properties
                 )
             ]
@@ -259,7 +258,7 @@ class DpgModelSerializer(_ModelSerializer):
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         ret = [
-            f"{prop.client_name}: {prop.literal_annotation()} ="
+            f"{prop.client_name}: {prop.type_annotation()} ="
             f' {field}({", ".join(args)})'
         ]
         comment = prop.description(is_operation_file=False).replace('"', '\\"')
@@ -273,6 +272,6 @@ class DpgModelSerializer(_ModelSerializer):
             if prop.constant or prop.is_discriminator:
                 init_args.append(
                     f"self.{prop.client_name} = {cast(ConstantType, prop.type).get_declaration()}   "
-                    f"# type: {prop.literal_annotation()}"
+                    f"# type: {prop.type_annotation()}"
                 )
         return init_args

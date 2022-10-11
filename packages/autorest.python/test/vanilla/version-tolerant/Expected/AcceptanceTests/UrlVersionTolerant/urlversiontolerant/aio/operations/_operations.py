@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core.exceptions import (
@@ -92,6 +93,10 @@ from ...operations._operations import (
     build_queries_string_url_encoded_request,
 )
 
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -135,7 +140,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", True)  # type: bool
+        bool_path = kwargs.pop("bool_path", True)  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_boolean_true_request(
@@ -180,7 +185,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", False)  # type: bool
+        bool_path = kwargs.pop("bool_path", False)  # type: Literal[False]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_boolean_false_request(
@@ -225,7 +230,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", 1000000)  # type: int
+        int_path = kwargs.pop("int_path", 1000000)  # type: Literal[1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_int_one_million_request(
@@ -272,7 +277,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", -1000000)  # type: int
+        int_path = kwargs.pop("int_path", -1000000)  # type: Literal[-1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_int_negative_one_million_request(
@@ -317,7 +322,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", 10000000000)  # type: int
+        long_path = kwargs.pop("long_path", 10000000000)  # type: Literal[10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_ten_billion_request(
@@ -362,7 +367,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", -10000000000)  # type: int
+        long_path = kwargs.pop("long_path", -10000000000)  # type: Literal[-10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_negative_ten_billion_request(
@@ -407,7 +412,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
+        float_path = kwargs.pop("float_path", 103400000000000000000)  # type: Literal[103400000000000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_float_scientific_positive_request(
@@ -452,7 +457,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
+        float_path = kwargs.pop("float_path", -1.034e-20)  # type: Literal[-1.034e-20]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_float_scientific_negative_request(
@@ -497,7 +502,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        double_path = kwargs.pop("double_path", 9999999.999)  # type: float
+        double_path = kwargs.pop("double_path", 9999999.999)  # type: Literal[9999999.999]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_double_decimal_positive_request(
@@ -542,7 +547,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        double_path = kwargs.pop("double_path", -9999999.999)  # type: float
+        double_path = kwargs.pop("double_path", -9999999.999)  # type: Literal[-9999999.999]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_double_decimal_negative_request(
@@ -587,7 +592,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_unicode_request(
@@ -633,7 +638,9 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        string_path = kwargs.pop(
+            "string_path", "begin!*'();:@ &=+$,/?#[]end"
+        )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_url_encoded_request(
@@ -681,7 +688,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: Literal["begin!*'();:@&=+$,end"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_url_non_encoded_request(
@@ -726,7 +733,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "")  # type: str
+        string_path = kwargs.pop("string_path", "")  # type: Literal[""]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_empty_request(
@@ -949,7 +956,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
+        byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: Literal[bytes("", encoding="utf-8")]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_empty_request(
@@ -1039,7 +1046,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
+        date_path = kwargs.pop("date_path", "2012-01-01")  # type: Literal["2012-01-01"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_valid_request(
@@ -1131,7 +1138,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+        date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: Literal["2012-01-01T01:01:01Z"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_time_valid_request(
@@ -1376,7 +1383,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", True))  # type: bool
+        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", True))  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_true_request(
@@ -1421,7 +1428,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: bool
+        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: Literal[False]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_false_request(
@@ -1511,7 +1518,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        int_query = kwargs.pop("int_query", _params.pop("intQuery", 1000000))  # type: int
+        int_query = kwargs.pop("int_query", _params.pop("intQuery", 1000000))  # type: Literal[1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_one_million_request(
@@ -1558,7 +1565,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        int_query = kwargs.pop("int_query", _params.pop("intQuery", -1000000))  # type: int
+        int_query = kwargs.pop("int_query", _params.pop("intQuery", -1000000))  # type: Literal[-1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_negative_one_million_request(
@@ -1648,7 +1655,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        long_query = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))  # type: int
+        long_query = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))  # type: Literal[10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_ten_billion_request(
@@ -1693,7 +1700,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        long_query = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))  # type: int
+        long_query = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))  # type: Literal[-10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_negative_ten_billion_request(
@@ -1783,7 +1790,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        float_query = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))  # type: float
+        float_query = kwargs.pop(
+            "float_query", _params.pop("floatQuery", 103400000000000000000)
+        )  # type: Literal[103400000000000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_scientific_positive_request(
@@ -1828,7 +1837,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        float_query = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))  # type: float
+        float_query = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))  # type: Literal[-1.034e-20]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_scientific_negative_request(
@@ -1918,7 +1927,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        double_query = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))  # type: float
+        double_query = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))  # type: Literal[9999999.999]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_decimal_positive_request(
@@ -1963,7 +1972,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        double_query = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))  # type: float
+        double_query = kwargs.pop(
+            "double_query", _params.pop("doubleQuery", -9999999.999)
+        )  # type: Literal[-9999999.999]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_decimal_negative_request(
@@ -2053,7 +2064,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        string_query = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))  # type: str
+        string_query = kwargs.pop(
+            "string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩")
+        )  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_unicode_request(
@@ -2101,7 +2114,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         string_query = kwargs.pop(
             "string_query", _params.pop("stringQuery", "begin!*'();:@ &=+$,/?#[]end")
-        )  # type: str
+        )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_url_encoded_request(
@@ -2146,7 +2159,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: str
+        string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: Literal[""]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_empty_request(
@@ -2374,7 +2387,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))  # type: bytes
+        byte_query = kwargs.pop(
+            "byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8"))
+        )  # type: Literal[bytes("", encoding="utf-8")]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_empty_request(
@@ -2464,7 +2479,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        date_query = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))  # type: datetime.date
+        date_query = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))  # type: Literal["2012-01-01"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_valid_request(
@@ -2557,7 +2572,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         date_time_query = kwargs.pop(
             "date_time_query", _params.pop("dateTimeQuery", "2012-01-01T01:01:01Z")
-        )  # type: datetime.datetime
+        )  # type: Literal["2012-01-01T01:01:01Z"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_time_valid_request(

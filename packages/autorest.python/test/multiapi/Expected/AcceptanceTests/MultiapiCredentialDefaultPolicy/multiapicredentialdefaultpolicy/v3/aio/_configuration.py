@@ -6,12 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
+
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 VERSION = "unknown"
 
@@ -31,7 +37,7 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "3.0.0")  # type: str
+        api_version = kwargs.pop("api_version", "3.0.0")  # type: Literal["3.0.0"]
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

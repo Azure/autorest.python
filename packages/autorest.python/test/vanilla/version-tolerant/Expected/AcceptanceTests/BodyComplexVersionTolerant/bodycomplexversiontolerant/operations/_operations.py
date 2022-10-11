@@ -56,7 +56,7 @@ def build_basic_put_valid_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2016-02-29"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2016-02-29"))  # type: Literal["2016-02-29"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
