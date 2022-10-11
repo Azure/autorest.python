@@ -41,7 +41,7 @@ from ...operations._auto_rest_resource_flattening_test_service_operations import
 from .._vendor import MixinABC
 
 if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")

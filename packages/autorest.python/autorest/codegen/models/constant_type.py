@@ -140,7 +140,7 @@ class ConstantType(BaseType):
                     TypingSection.REGULAR,
                     ImportType.STDLIB,
                     "typing",
-                    submodule_name="Literal  # pylint: disable=no-name-in-module",
+                    submodule_name="Literal  # pylint: disable=no-name-in-module, ungrouped-imports",
                 ),
                 None: ImportModel(
                     TypingSection.REGULAR,

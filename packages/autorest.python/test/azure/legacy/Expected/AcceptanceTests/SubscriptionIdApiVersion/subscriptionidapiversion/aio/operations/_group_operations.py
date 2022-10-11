@@ -29,7 +29,7 @@ from ..._vendor import _convert_request
 from ...operations._group_operations import build_get_sample_resource_group_request
 
 if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
