@@ -55,7 +55,7 @@ from ...operations._http_client_failure_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -221,7 +221,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -280,7 +280,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -339,7 +339,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -398,7 +398,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -641,7 +641,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put404(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
@@ -700,7 +700,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch405(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
@@ -759,7 +759,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post406(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
@@ -818,7 +818,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete407(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
@@ -877,7 +877,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put409(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
@@ -1120,7 +1120,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put413(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
@@ -1179,7 +1179,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch414(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
@@ -1238,7 +1238,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post415(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
@@ -1343,7 +1343,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete417(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 

@@ -28,7 +28,7 @@ from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -85,9 +85,7 @@ def build_post_method_global_not_provided_valid_request(subscription_id: str, **
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )  # type: Literal["2015-07-01-preview"]
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -292,9 +290,7 @@ class SubscriptionInCredentialsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )  # type: Literal["2015-07-01-preview"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_post_method_global_not_provided_valid_request(

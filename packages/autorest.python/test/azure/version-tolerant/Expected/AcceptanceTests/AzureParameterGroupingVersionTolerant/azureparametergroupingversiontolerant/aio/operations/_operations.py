@@ -33,7 +33,7 @@ from ...operations._operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -323,11 +323,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def group_with_constant(  # pylint: disable=inconsistent-return-statements
-        self,
-        *,
-        grouped_constant: Optional[Literal["foo"]] = None,
-        grouped_parameter: Optional[str] = None,
-        **kwargs: Any
+        self, *, grouped_constant: Optional[str] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.

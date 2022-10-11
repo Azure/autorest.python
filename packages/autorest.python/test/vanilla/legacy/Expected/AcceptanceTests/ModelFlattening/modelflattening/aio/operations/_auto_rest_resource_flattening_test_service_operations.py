@@ -41,7 +41,7 @@ from ...operations._auto_rest_resource_flattening_test_service_operations import
 from .._vendor import MixinABC
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -800,7 +800,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Literal["Large"] = "Large",
+        capacity: str = "Large",
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any

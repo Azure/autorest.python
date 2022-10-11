@@ -28,7 +28,7 @@ from .._serialization import Serializer
 from .._vendor import MixinABC, _convert_request, _format_url_section
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -970,7 +970,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Literal["Large"] = "Large",
+        capacity: str = "Large",
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any

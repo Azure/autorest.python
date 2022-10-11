@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
@@ -177,7 +177,7 @@ class Product(msrest.serialization.Model):
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
-        const_string_as_enum: Optional[Literal["constant_string_as_enum"]] = None,
+        const_string_as_enum: Optional[str] = None,
         **kwargs
     ):
         """

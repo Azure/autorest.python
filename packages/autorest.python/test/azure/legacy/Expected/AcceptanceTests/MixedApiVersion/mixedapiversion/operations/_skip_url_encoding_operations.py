@@ -28,7 +28,7 @@ from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -79,7 +79,7 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
 def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: Literal["path1/path2/path3"]
+    unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -155,9 +155,7 @@ def build_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    q1 = kwargs.pop(
-        "q1", _params.pop("q1", "value1&q2=value2&q3=value3")
-    )  # type: Literal["value1&q2=value2&q3=value3"]
+    q1 = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -317,9 +315,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        unencoded_path_param = kwargs.pop(
-            "unencoded_path_param", "path1/path2/path3"
-        )  # type: Literal["path1/path2/path3"]
+        unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_swagger_path_valid_request(
@@ -520,9 +516,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        q1 = kwargs.pop(
-            "q1", _params.pop("q1", "value1&q2=value2&q3=value3")
-        )  # type: Literal["value1&q2=value2&q3=value3"]
+        q1 = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_swagger_query_valid_request(

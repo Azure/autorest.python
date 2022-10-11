@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -158,7 +158,7 @@ def build_number_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpR
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    json = kwargs.pop("json", 99999999.99)  # type: Literal[99999999.99]
+    json = kwargs.pop("json", 99999999.99)  # type: float
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -190,7 +190,7 @@ def build_number_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpR
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    json = kwargs.pop("json", -99999999.99)  # type: Literal[-99999999.99]
+    json = kwargs.pop("json", -99999999.99)  # type: float
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -253,7 +253,7 @@ def build_number_put_big_decimal_positive_decimal_request(**kwargs: Any) -> Http
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    json = kwargs.pop("json", 99999999.99)  # type: Literal[99999999.99]
+    json = kwargs.pop("json", 99999999.99)  # type: float
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -285,7 +285,7 @@ def build_number_put_big_decimal_negative_decimal_request(**kwargs: Any) -> Http
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    json = kwargs.pop("json", -99999999.99)  # type: Literal[-99999999.99]
+    json = kwargs.pop("json", -99999999.99)  # type: float
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -826,7 +826,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        number_body = kwargs.pop("number_body", 99999999.99)  # type: Literal[99999999.99]
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -922,7 +922,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        number_body = kwargs.pop("number_body", -99999999.99)  # type: Literal[-99999999.99]
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1114,7 +1114,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        number_body = kwargs.pop("number_body", 99999999.99)  # type: Literal[99999999.99]
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1210,7 +1210,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        number_body = kwargs.pop("number_body", -99999999.99)  # type: Literal[-99999999.99]
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body

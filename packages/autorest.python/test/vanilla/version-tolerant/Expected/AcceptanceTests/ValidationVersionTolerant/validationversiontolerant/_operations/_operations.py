@@ -31,7 +31,7 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -48,7 +48,7 @@ def build_validation_of_method_parameters_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: Literal["1.0.0"]
+    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -79,7 +79,7 @@ def build_validation_of_body_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: Literal["1.0.0"]
+    api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -106,7 +106,7 @@ def build_validation_of_body_request(
 
 
 def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
-    constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
+    constant_param = kwargs.pop("constant_param", "constant")  # type: str
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
@@ -121,7 +121,7 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
 def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
+    constant_param = kwargs.pop("constant_param", "constant")  # type: str
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
@@ -494,7 +494,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_with_constant_in_path_request(
@@ -695,7 +695,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 

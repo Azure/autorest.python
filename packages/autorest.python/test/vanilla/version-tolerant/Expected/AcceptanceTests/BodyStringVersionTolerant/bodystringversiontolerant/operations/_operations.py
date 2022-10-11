@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 9):
@@ -89,7 +89,7 @@ def build_string_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_string_put_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop("json", "")  # type: Literal[""]
+    json = kwargs.pop("json", "")  # type: str
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
@@ -122,9 +122,7 @@ def build_string_put_mbcs_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    json = kwargs.pop(
-        "json", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-    )  # type: Literal["啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"]
+    json = kwargs.pop("json", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -158,7 +156,7 @@ def build_string_put_whitespace_request(**kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     json = kwargs.pop(
         "json", "    Now is the time for all good men to come to the aid of their country    "
-    )  # type: Literal["    Now is the time for all good men to come to the aid of their country    "]
+    )  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -523,7 +521,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        string_body = kwargs.pop("string_body", "")  # type: Literal[""]
+        string_body = kwargs.pop("string_body", "")  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -623,7 +621,7 @@ class StringOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-        )  # type: Literal["啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body
@@ -726,7 +724,7 @@ class StringOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "    Now is the time for all good men to come to the aid of their country    "
-        )  # type: Literal["    Now is the time for all good men to come to the aid of their country    "]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body

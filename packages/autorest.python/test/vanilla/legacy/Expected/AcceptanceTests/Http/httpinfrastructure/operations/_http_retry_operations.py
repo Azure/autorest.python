@@ -28,7 +28,7 @@ from .._serialization import Serializer
 from .._vendor import _convert_request
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -52,7 +52,7 @@ def build_head408_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_put500_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_put500_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -69,7 +69,7 @@ def build_put500_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRe
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_patch500_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_patch500_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -114,7 +114,7 @@ def build_options502_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_post503_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_post503_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -131,7 +131,7 @@ def build_post503_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_delete503_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_delete503_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -148,7 +148,7 @@ def build_delete503_request(*, json: Literal[True] = True, **kwargs: Any) -> Htt
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_put504_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_put504_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -165,7 +165,7 @@ def build_put504_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRe
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_patch504_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_patch504_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -249,7 +249,7 @@ class HttpRetryOperations:
 
     @distributed_trace
     def put500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
@@ -308,7 +308,7 @@ class HttpRetryOperations:
 
     @distributed_trace
     def patch500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
@@ -463,7 +463,7 @@ class HttpRetryOperations:
 
     @distributed_trace
     def post503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
@@ -522,7 +522,7 @@ class HttpRetryOperations:
 
     @distributed_trace
     def delete503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
@@ -581,7 +581,7 @@ class HttpRetryOperations:
 
     @distributed_trace
     def put504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
@@ -640,7 +640,7 @@ class HttpRetryOperations:
 
     @distributed_trace
     def patch504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 

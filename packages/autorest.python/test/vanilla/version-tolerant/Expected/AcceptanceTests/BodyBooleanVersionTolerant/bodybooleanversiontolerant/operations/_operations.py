@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -54,7 +54,7 @@ def build_bool_put_true_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    json = kwargs.pop("json", True)  # type: Literal[True]
+    json = kwargs.pop("json", True)  # type: bool
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -85,7 +85,7 @@ def build_bool_get_false_request(**kwargs: Any) -> HttpRequest:
 def build_bool_put_false_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    json = kwargs.pop("json", False)  # type: Literal[False]
+    json = kwargs.pop("json", False)  # type: bool
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
@@ -215,7 +215,7 @@ class BoolOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        bool_body = kwargs.pop("bool_body", True)  # type: Literal[True]
+        bool_body = kwargs.pop("bool_body", True)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = bool_body
@@ -310,7 +310,7 @@ class BoolOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        bool_body = kwargs.pop("bool_body", False)  # type: Literal[False]
+        bool_body = kwargs.pop("bool_body", False)  # type: bool
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

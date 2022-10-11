@@ -48,7 +48,7 @@ from ...operations._http_success_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -222,7 +222,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
@@ -281,7 +281,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
@@ -340,7 +340,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
@@ -399,7 +399,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
@@ -458,7 +458,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
@@ -517,7 +517,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
@@ -576,7 +576,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
@@ -635,7 +635,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
@@ -694,7 +694,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
@@ -753,7 +753,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
@@ -858,7 +858,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
@@ -917,7 +917,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
@@ -976,7 +976,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
@@ -1035,7 +1035,7 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 

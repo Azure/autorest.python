@@ -31,7 +31,7 @@ from ...operations._formdataurlencoded_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -176,7 +176,7 @@ class FormdataurlencodedOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
         )  # type: str
-        grant_type = kwargs.pop("grant_type", "access_token")  # type: Literal["access_token"]
+        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data

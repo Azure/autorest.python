@@ -29,7 +29,7 @@ from .._serialization import Serializer
 from .._vendor import MixinABC, _format_url_section
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -56,7 +56,7 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
 def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
+    constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -204,7 +204,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
         request = build_poll_with_constant_parameterized_endpoints_request(
@@ -267,7 +267,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

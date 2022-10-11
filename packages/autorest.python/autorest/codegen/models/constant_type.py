@@ -8,6 +8,7 @@ from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_type import BaseType
 from .imports import FileImport, ImportType, ImportModel, TypingSection
 from .utils import add_to_description
+from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -75,7 +76,15 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return f"Literal[{self.get_declaration()}]"
+        return (
+            f"Literal[{self.get_declaration()}]"
+            if self.is_literal
+            else self.value_type.type_annotation(**kwargs)
+        )
+
+    @property
+    def is_literal(self) -> bool:
+        return isinstance(self.type, (IntegerType, BinaryType, StringType, BooleanType))
 
     @classmethod
     def from_yaml(
@@ -115,7 +124,7 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
-        if kwargs.get("import_literal", False):
+        if kwargs.get("import_literal"):
             file_import.merge(self._import_literal())
         return file_import
 
@@ -129,7 +138,7 @@ class ConstantType(BaseType):
                     TypingSection.REGULAR,
                     ImportType.STDLIB,
                     "typing",
-                    submodule_name="Literal",
+                    submodule_name="Literal  # pylint: disable=no-name-in-module",
                 ),
                 None: ImportModel(
                     TypingSection.REGULAR,

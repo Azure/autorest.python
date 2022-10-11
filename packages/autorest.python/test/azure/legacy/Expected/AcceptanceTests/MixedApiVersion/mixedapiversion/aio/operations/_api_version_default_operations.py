@@ -33,7 +33,7 @@ from ...operations._api_version_default_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -79,9 +79,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )  # type: Literal["2015-07-01-preview"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_global_valid_request(
@@ -131,9 +129,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )  # type: Literal["2015-07-01-preview"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_global_not_provided_valid_request(
@@ -181,9 +177,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )  # type: Literal["2015-07-01-preview"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_path_global_valid_request(
@@ -231,9 +225,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )  # type: Literal["2015-07-01-preview"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_swagger_global_valid_request(

@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
@@ -42,9 +42,9 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):  # pylint: dis
 
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestSwaggerConstantServiceConfiguration, self).__init__(**kwargs)
-        header_constant = kwargs.pop("header_constant", True)  # type: Literal[True]
-        query_constant = kwargs.pop("query_constant", 100)  # type: Literal[100]
-        path_constant = kwargs.pop("path_constant", "path")  # type: Literal["path"]
+        header_constant = kwargs.pop("header_constant", True)  # type: bool
+        query_constant = kwargs.pop("query_constant", 100)  # type: int
+        path_constant = kwargs.pop("path_constant", "path")  # type: str
 
         self.header_constant = header_constant
         self.query_constant = query_constant

@@ -58,7 +58,7 @@ from ...operations._operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -831,7 +831,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_method_local_valid_request(
@@ -922,7 +922,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_path_local_valid_request(
@@ -968,7 +968,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_swagger_local_valid_request(
@@ -1122,9 +1122,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        unencoded_path_param = kwargs.pop(
-            "unencoded_path_param", "path1/path2/path3"
-        )  # type: Literal["path1/path2/path3"]
+        unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_swagger_path_valid_request(
@@ -1305,9 +1303,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        q1 = kwargs.pop(
-            "q1", _params.pop("q1", "value1&q2=value2&q3=value3")
-        )  # type: Literal["value1&q2=value2&q3=value3"]
+        q1 = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_swagger_query_valid_request(

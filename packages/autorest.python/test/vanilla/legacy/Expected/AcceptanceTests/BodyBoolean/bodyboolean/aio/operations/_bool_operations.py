@@ -35,7 +35,7 @@ from ...operations._bool_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -135,7 +135,7 @@ class BoolOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        bool_body = kwargs.pop("bool_body", True)  # type: Literal[True]
+        bool_body = kwargs.pop("bool_body", True)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(bool_body, "bool")
@@ -239,7 +239,7 @@ class BoolOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        bool_body = kwargs.pop("bool_body", False)  # type: Literal[False]
+        bool_body = kwargs.pop("bool_body", False)  # type: bool
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
@@ -230,7 +230,7 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs):
+    def __init__(self, *, parameter: Optional[str] = None, **kwargs):
         """
         :keyword parameter: Default value is "value1".
         :paramtype parameter: str
@@ -250,7 +250,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs):
+    def __init__(self, *, parameter: Optional[str] = None, **kwargs):
         """
         :keyword parameter: Default value is "value1".
         :paramtype parameter: str

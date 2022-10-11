@@ -61,7 +61,7 @@ from ...operations._paging_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -549,7 +549,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
+        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
@@ -686,9 +686,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}  # type: ignore
 
     @distributed_trace
-    def page_with_max_page_size(
-        self, maxpagesize: Literal["5"] = "5", **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def page_with_max_page_size(self, maxpagesize: str = "5", **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """Paging with max page size. We don't want to.
 
         :param maxpagesize: Max page size query param. Don't send. Known values are "5" and None.
@@ -1654,9 +1652,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["1.0.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
@@ -1728,9 +1724,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["1.0.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {

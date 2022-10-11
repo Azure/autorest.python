@@ -45,7 +45,7 @@ from ...operations._http_redirects_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -278,7 +278,7 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def put301(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
@@ -441,7 +441,7 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def patch302(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
@@ -504,7 +504,7 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def post303(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
@@ -718,7 +718,7 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def put307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
@@ -781,7 +781,7 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def patch307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
@@ -844,7 +844,7 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def post307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
@@ -907,7 +907,7 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def delete307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 

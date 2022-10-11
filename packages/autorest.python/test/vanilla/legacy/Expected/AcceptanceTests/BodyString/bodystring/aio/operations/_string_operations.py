@@ -42,7 +42,7 @@ from ...operations._string_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -249,7 +249,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        string_body = kwargs.pop("string_body", "")  # type: Literal[""]
+        string_body = kwargs.pop("string_body", "")  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -358,7 +358,7 @@ class StringOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-        )  # type: Literal["啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(string_body, "str")
@@ -470,7 +470,7 @@ class StringOperations:
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         string_body = kwargs.pop(
             "string_body", "    Now is the time for all good men to come to the aid of their country    "
-        )  # type: Literal["    Now is the time for all good men to come to the aid of their country    "]
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = self._serialize.body(string_body, "str")

@@ -30,7 +30,7 @@ from .. import models as _models
 from .._vendor import _convert_request
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -43,7 +43,7 @@ def build_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -81,7 +81,7 @@ def build_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -100,7 +100,7 @@ def build_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -157,7 +157,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_local_valid_request(
@@ -260,7 +260,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_path_local_valid_request(
@@ -312,7 +312,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_swagger_local_valid_request(

@@ -29,7 +29,7 @@ from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -43,9 +43,7 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )  # type: Literal["2015-05-01-preview"]
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -104,9 +102,7 @@ class UsageOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["2015-05-01-preview"]
+        api_version = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.UsageListResult]
 
         request = build_list_request(

@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
@@ -266,7 +266,7 @@ class FlattenParameterGroup(_serialization.Model):
         simple_body_product: Optional["_models.SimpleProduct"] = None,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Optional[Literal["Large"]] = None,
+        capacity: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs
@@ -446,7 +446,7 @@ class SimpleProduct(BaseProduct):
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Optional[Literal["Large"]] = None,
+        capacity: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs

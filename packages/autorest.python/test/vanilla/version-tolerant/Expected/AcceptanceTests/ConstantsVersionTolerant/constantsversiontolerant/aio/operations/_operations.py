@@ -44,7 +44,7 @@ from ...operations._operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -164,7 +164,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[Literal["value1"]] = None, **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -211,7 +211,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Literal["value1"] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -376,7 +376,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
+        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
@@ -425,7 +425,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
+        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_contants_put_no_model_as_string_required_one_value_default_request(

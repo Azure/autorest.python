@@ -66,7 +66,7 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -1421,7 +1421,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_list_containers_request(
@@ -1560,8 +1560,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_service_properties_request(
@@ -1705,8 +1705,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1778,8 +1778,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_acls_request(
@@ -1857,8 +1857,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -2004,8 +2004,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_list_blobs_request(

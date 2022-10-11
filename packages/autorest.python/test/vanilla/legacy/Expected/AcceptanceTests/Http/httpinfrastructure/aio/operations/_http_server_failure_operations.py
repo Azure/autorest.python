@@ -33,7 +33,7 @@ from ...operations._http_server_failure_operations import (
 )
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -153,7 +153,7 @@ class HttpServerFailureOperations:
 
     @distributed_trace_async
     async def post505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
@@ -212,7 +212,7 @@ class HttpServerFailureOperations:
 
     @distributed_trace_async
     async def delete505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 

@@ -28,7 +28,7 @@ from .._serialization import Serializer
 from .._vendor import _convert_request
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
@@ -441,7 +441,7 @@ class EnumOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        color_constant = kwargs.pop("color_constant", "green-color")  # type: Literal["green-color"]
+        color_constant = kwargs.pop("color_constant", "green-color")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)

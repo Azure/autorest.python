@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
@@ -33,7 +33,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=
 
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: Literal["1.0.0"]
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestpagingtestservice/{}".format(VERSION))

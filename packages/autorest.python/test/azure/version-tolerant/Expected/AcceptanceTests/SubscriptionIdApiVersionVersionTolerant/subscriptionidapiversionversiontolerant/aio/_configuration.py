@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 if sys.version_info >= (3, 8):
-    from typing import Literal
+    from typing import Literal  # pylint: disable=no-name-in-module
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
@@ -41,7 +41,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):  # pylint: disable=too-
 
     def __init__(self, subscription_id: str, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: Literal["2014-04-01-preview"]
+        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
