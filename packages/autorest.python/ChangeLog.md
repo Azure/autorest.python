@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-10-XX - 6.1.11
+### 2022-10-11 - 6.1.11
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -14,6 +14,7 @@
 **New Features**
 
 - Handle all unrecognized types as "string"  #1483
+- Make sure to urlencode next link when paging with multiple pages  #1504
 
 ### 2022-10-10 - 6.1.10
 
