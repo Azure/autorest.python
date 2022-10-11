@@ -159,7 +159,7 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         response.fill_instance_from_yaml(yaml_data, code_model)
     else:
         object_type = yaml_data.get("type")
-        if object_type is None:
+        if object_type not in TYPE_TO_OBJECT:
             _LOGGER.warning(
                 'Unrecognized definition type "%s" is found, falling back it as "string"! ',
                 yaml_data["type"],
