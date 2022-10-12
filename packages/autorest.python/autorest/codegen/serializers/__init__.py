@@ -24,7 +24,7 @@ from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
-from .._utils import to_snake_case
+from ..._utils import to_snake_case
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -506,7 +506,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         self.write_file(
             namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
         )
-    
+
     # find root folder where "setup.py" is
     def _package_root_folder(self, namespace_path: Path) -> Path:
         return namespace_path / Path("../" * (self.code_model.namespace.count(".") + 1))
@@ -542,6 +542,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         _LOGGER.error(
                             "error happens when generate sample with {%s}: {%s}", key, e
                         )
+
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
     def __init__(
