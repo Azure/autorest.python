@@ -78,12 +78,12 @@ class ConstantType(BaseType):
     def type_annotation(self, **kwargs: Any) -> str:
         return (
             f"Literal[{self.get_declaration()}]"
-            if self.is_literal
+            if self._is_literal
             else self.value_type.type_annotation(**kwargs)
         )
 
     @property
-    def is_literal(self) -> bool:
+    def _is_literal(self) -> bool:
         return isinstance(
             self.value_type, (IntegerType, BinaryType, StringType, BooleanType)
         )
@@ -126,7 +126,7 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
-        if self.is_literal and kwargs.get("import_literal"):
+        if self._is_literal and kwargs.get("import_literal"):
             file_import.merge(self._import_literal())
         return file_import
 
