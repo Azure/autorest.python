@@ -7,14 +7,14 @@ from typing import List
 from jinja2 import Environment
 
 from autorest.codegen.models.operation_group import OperationGroup
-from ..models import CodeModel
+from ..models import Client
 
 
 class OperationsInitSerializer:
     def __init__(
-        self, code_model: CodeModel, env: Environment, async_mode: bool
+        self, client: Client, env: Environment, async_mode: bool
     ) -> None:
-        self.code_model = code_model
+        self.client = client
         self.env = env
         self.async_mode = async_mode
 
@@ -22,13 +22,13 @@ class OperationsInitSerializer:
         def _get_filename(operation_group: OperationGroup) -> str:
             return (
                 "_operations"
-                if self.code_model.options["combine_operation_files"]
+                if self.client.namespace_model.options["combine_operation_files"]
                 else operation_group.filename
             )
 
         return [
             f"from .{_get_filename(og)} import {og.class_name}"
-            for og in self.code_model.operation_groups
+            for og in self.client.operation_groups
         ]
 
     def serialize(self) -> str:
@@ -37,8 +37,8 @@ class OperationsInitSerializer:
         )
 
         return operation_group_init_template.render(
-            code_model=self.code_model,
-            operation_groups=self.code_model.operation_groups,
+            client=self.client,
+            operation_groups=self.client.operation_groups,
             async_mode=self.async_mode,
             operation_group_imports=self.operation_group_imports,
         )

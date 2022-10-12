@@ -16,7 +16,7 @@ from .primitive_types import BinaryType, StringType
 from .combined_type import CombinedType
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
 
 
 class RequestBuilderBodyParameter(BodyParameter):
@@ -27,7 +27,7 @@ class RequestBuilderBodyParameter(BodyParameter):
         if (
             isinstance(self.type, (BinaryType, StringType))
             or any("xml" in ct for ct in self.content_types)
-            or self.code_model.options["models_mode"] == "dpg"
+            or self.namespace_model.options["models_mode"] == "dpg"
         ):
             self.client_name = "content"
         else:
@@ -52,9 +52,9 @@ class RequestBuilderBodyParameter(BodyParameter):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
     ) -> "RequestBuilderBodyParameter":
-        return super().from_yaml(yaml_data, code_model)  # type: ignore
+        return super().from_yaml(yaml_data, namespace_model)  # type: ignore
 
     @property
     def name_in_high_level_operation(self) -> str:
@@ -76,14 +76,14 @@ class RequestBuilderMultipartBodyParameter(
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
     ) -> "RequestBuilderMultipartBodyParameter":
         return cls(
             yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
+            namespace_model=namespace_model,
+            type=namespace_model.lookup_type(id(yaml_data["type"])),
             entries=[
-                RequestBuilderBodyParameter.from_yaml(entry, code_model)
+                RequestBuilderBodyParameter.from_yaml(entry, namespace_model)
                 for entry in yaml_data["entries"]
             ],
         )
@@ -93,9 +93,9 @@ class RequestBuilderParameter(Parameter):
     """Basic RequestBuilder Parameter."""
 
     def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", type: BaseType
     ) -> None:
-        super().__init__(yaml_data, code_model, type)
+        super().__init__(yaml_data, namespace_model, type)
         # we don't want any default content type behavior in request builder
         if self.is_content_type:
             self.client_default_value = None
@@ -141,9 +141,9 @@ class RequestBuilderParameter(Parameter):
 
 
 def get_request_body_parameter(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
+    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
 ) -> Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]:
     """Get body parameter for a request builder"""
     if yaml_data.get("entries"):
-        return RequestBuilderMultipartBodyParameter.from_yaml(yaml_data, code_model)
-    return RequestBuilderBodyParameter.from_yaml(yaml_data, code_model)
+        return RequestBuilderMultipartBodyParameter.from_yaml(yaml_data, namespace_model)
+    return RequestBuilderBodyParameter.from_yaml(yaml_data, namespace_model)

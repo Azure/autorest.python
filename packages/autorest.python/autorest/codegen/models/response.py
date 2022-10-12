@@ -14,12 +14,12 @@ from .list_type import ListType
 from .model_type import ModelType
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
 
 
 class ResponseHeader(BaseModel):
     def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType
+        self, yaml_data: Dict[str, Any], code_model: "NamespaceModel", type: BaseType
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.rest_api_name: str = yaml_data["restApiName"]
@@ -31,7 +31,7 @@ class ResponseHeader(BaseModel):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], code_model: "NamespaceModel"
     ) -> "ResponseHeader":
         return cls(
             yaml_data=yaml_data,
@@ -44,7 +44,7 @@ class Response(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        code_model: "NamespaceModel",
         *,
         headers: List[ResponseHeader] = [],
         type: Optional[BaseType] = None,
@@ -112,7 +112,7 @@ class Response(BaseModel):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], code_model: "NamespaceModel"
     ) -> "Response":
         type = (
             code_model.lookup_type(id(yaml_data["type"]))
@@ -320,7 +320,7 @@ class LROPagingResponse(LROResponse, PagingResponse):
         return file_import
 
 
-def get_response(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Response:
+def get_response(yaml_data: Dict[str, Any], code_model: "NamespaceModel") -> Response:
     if yaml_data["discriminator"] == "lropaging":
         return LROPagingResponse.from_yaml(yaml_data, code_model)
     if yaml_data["discriminator"] == "lro":

@@ -8,7 +8,7 @@ import functools
 from jinja2 import Environment
 
 from ..models import (
-    CodeModel,
+    Client,
     OperationGroup,
     FileImport,
 )
@@ -19,12 +19,12 @@ from .builder_serializer import get_operation_serializer, RequestBuilderSerializ
 class OperationGroupsSerializer:
     def __init__(
         self,
-        code_model: CodeModel,
+        client: Client,
         env: Environment,
         async_mode: bool,
         operation_group: Optional[OperationGroup] = None,
     ) -> None:
-        self.code_model = code_model
+        self.client = client
         self.env = env
         self.async_mode = async_mode
         self.operation_group = operation_group
@@ -33,7 +33,7 @@ class OperationGroupsSerializer:
         operation_groups = (
             [self.operation_group]
             if self.operation_group
-            else self.code_model.operation_groups
+            else self.client.operation_groups
         )
         imports = FileImport()
         for operation_group in operation_groups:
@@ -47,7 +47,7 @@ class OperationGroupsSerializer:
             "operation_groups_container.py.jinja2"
         )
         return template.render(
-            code_model=self.code_model,
+            client=self.client,
             operation_groups=operation_groups,
             imports=FileImportSerializer(
                 imports,
@@ -56,14 +56,14 @@ class OperationGroupsSerializer:
             async_mode=self.async_mode,
             get_operation_serializer=functools.partial(
                 get_operation_serializer,
-                code_model=self.code_model,
+                namespace_model=self.client.namespace_model,
                 async_mode=self.async_mode,
             ),
             request_builder_serializer=RequestBuilderSerializer(
-                self.code_model,
+                self.client.namespace_model,
                 async_mode=False,
             ),
             request_builders=[
-                rb for rb in self.code_model.request_builders if not rb.abstract
+                rb for rb in self.client.request_builders if not rb.abstract
             ],
         )

@@ -12,7 +12,7 @@ from .client import Client
 from . import build_type
 
 
-class CompleteCodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
+class CodeModel:
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
@@ -40,33 +40,33 @@ class CompleteCodeModel:  # pylint: disable=too-many-instance-attributes, too-ma
 
     def __init__(
         self,
-        yaml_data: Dict[str, Any],
+        yaml_data: List[Dict[str, Any]],
         options: Dict[str, Any],
     ) -> None:
         self.yaml_data = yaml_data
         self.options = options
-        self.namespace_to_code_model: Dict[str, "CodeModel"] = {
-            namespace: CodeModel(namespace_yaml_data, self.options, namespace)
-            for namespace, namespace_yaml_data in yaml_data.items()
-        }
+        self.namespace_models: List["NamespaceModel"] = [
+            NamespaceModel(namespace_yaml_data, self.options)
+            for namespace_yaml_data in yaml_data
+        ]
         self.package_dependency: Dict[str, str] = {}
 
-class CodeModel:
+class NamespaceModel:
     def __init__(
-        self, yaml_data: Dict[str, Any], options: Dict[str, Any], namespace: str
+        self, yaml_data: Dict[str, Any], options: Dict[str, Any]
     ):
         self.yaml_data = yaml_data
         self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
         self._model_types: List[ModelType] = []
-        self.module_name: str = self.yaml_data["client"]["moduleName"]
+        self.module_name: str = self.yaml_data["moduleName"]
         self.options = options
         self.clients: List[Client] = [
             Client.from_yaml(client_yaml_data, self)
             for client_yaml_data in yaml_data["clients"]
         ]
-        self.namespace = namespace
+        self.namespace = self.yaml_data["namespace"]
         for type_yaml in yaml_data.get("types", []):
-            build_type(yaml_data=type_yaml, code_model=self)
+            build_type(yaml_data=type_yaml, namespace_model=self)
 
     def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.

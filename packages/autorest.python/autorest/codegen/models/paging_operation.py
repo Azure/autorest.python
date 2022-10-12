@@ -17,7 +17,7 @@ from .parameter_list import ParameterList
 from .model_type import ModelType
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
 
 PagingResponseType = TypeVar(
     "PagingResponseType", bound=Union[PagingResponse, LROPagingResponse]
@@ -28,7 +28,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         name: str,
         request_builder: RequestBuilder,
         parameters: ParameterList,
@@ -41,7 +41,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         override_success_response_to_200: bool = False,
     ) -> None:
         super().__init__(
-            code_model=code_model,
+            namespace_model=namespace_model,
             yaml_data=yaml_data,
             name=name,
             request_builder=request_builder,
@@ -55,7 +55,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         self.next_request_builder: Optional[
             Union[RequestBuilder, OverloadedRequestBuilder]
         ] = (
-            get_request_builder(self.yaml_data["nextOperation"], code_model)
+            get_request_builder(self.yaml_data["nextOperation"], namespace_model)
             if self.yaml_data.get("nextOperation")
             else None
         )
@@ -85,14 +85,14 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         if not rest_api_name:
             # That's an ok scenario, it just means no next page possible
             return None
-        if self.code_model.options["models_mode"]:
+        if self.namespace_model.options["models_mode"]:
             return self._get_attr_name(rest_api_name)
         return rest_api_name
 
     @property
     def item_name(self) -> str:
         rest_api_name = self.yaml_data["itemName"]
-        if self.code_model.options["models_mode"]:
+        if self.namespace_model.options["models_mode"]:
             return self._get_attr_name(rest_api_name)
         return rest_api_name
 
@@ -115,7 +115,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             )
         if (
             self.next_request_builder
-            and self.code_model.options["builders_visibility"] == "embedded"
+            and self.namespace_model.options["builders_visibility"] == "embedded"
             and not async_mode
         ):
             file_import.merge(self.next_request_builder.imports())
@@ -130,7 +130,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(super().imports(async_mode, **kwargs))
-        if self.code_model.options["tracing"] and self.want_tracing:
+        if self.namespace_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
@@ -141,7 +141,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
                 self.get_request_builder_import(self.next_request_builder, async_mode)
             )
         elif "api-version" in [
-            p.rest_api_name for p in self.code_model.client.parameters
+            p.rest_api_name for p in self.namespace_model.client.parameters
         ]:
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(

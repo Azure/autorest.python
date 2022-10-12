@@ -12,7 +12,7 @@ import yaml
 from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 from .models.client import Client, Config
-from .models.code_model import CompleteCodeModel, CodeModel
+from .models.code_model import CodeModel, NamespaceModel
 from .models import build_type
 
 from .models.operation_group import OperationGroup
@@ -20,13 +20,13 @@ from .serializers import JinjaSerializer, JinjaSerializerAutorest
 from ._utils import DEFAULT_HEADER_TEXT
 
 
-def _build_convenience_layer(complete_code_model: CompleteCodeModel) -> None:
-    for code_model in complete_code_model.namespace_to_code_model.values():
-        if code_model.options["models_mode"] and code_model.model_types:
-            code_model.sort_model_types()
+def _build_convenience_layer(code_model: CodeModel) -> None:
+    for namespace_model in code_model.namespace_models:
+        if namespace_model.options["models_mode"] and namespace_model.model_types:
+            namespace_model.sort_model_types()
 
-        if code_model.options["show_operations"]:
-            for client in code_model.clients:
+        if namespace_model.options["show_operations"]:
+            for client in namespace_model.clients:
                 client.format_lro_operations()
 
 
@@ -123,14 +123,13 @@ class CodeGenerator(Plugin):
 
     def _create_code_model(
         self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]
-    ) -> CompleteCodeModel:
+    ) -> CodeModel:
         # Create a code model
+        code_model = CodeModel(yaml_data, options=options)
 
-        complete_code_model = CompleteCodeModel(yaml_data, options=options)
-
-        _build_convenience_layer(complete_code_model)
-        complete_code_model.package_dependency = self._build_package_dependency()
-        return CompleteCodeModel
+        _build_convenience_layer(code_model)
+        code_model.package_dependency = self._build_package_dependency()
+        return code_model
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
@@ -214,8 +213,8 @@ class CodeGenerator(Plugin):
         with open(self.options["cadl_file"], "r") as fd:
             return yaml.safe_load(fd.read())
 
-    def get_serializer(self, code_model: CompleteCodeModel):
-        return JinjaSerializer(code_model, output_folder=self.output_folder)
+    def get_serializer(self, namespace_model: NamespaceModel):
+        return JinjaSerializer(namespace_model, output_folder=self.output_folder)
 
     def process(self) -> bool:
         # List the input file, should be only one
@@ -226,10 +225,11 @@ class CodeGenerator(Plugin):
         if options["azure_arm"]:
             self.remove_cloud_errors(yaml_data)
 
-        complete_code_model = self._create_code_model(yaml_data=yaml_data, options=options)
+        code_model = self._create_code_model(yaml_data=yaml_data, options=options)
 
-        serializer = self.get_serializer(complete_code_model)
-        serializer.serialize()
+        for namespace_model in code_model.namespace_models:
+            serializer = self.get_serializer(namespace_model)
+            serializer.serialize()
 
         return True
 
@@ -324,9 +324,9 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
         # Parse the received YAML
         return yaml.safe_load(file_content)
 
-    def get_serializer(self, code_model: CodeModel):  # type: ignore
+    def get_serializer(self, namespace_model: NamespaceModel):  # type: ignore
         return JinjaSerializerAutorest(
-            self._autorestapi, code_model, output_folder=self.output_folder
+            self._autorestapi, namespace_model, output_folder=self.output_folder
         )
 
 

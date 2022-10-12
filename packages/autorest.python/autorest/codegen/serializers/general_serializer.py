@@ -9,16 +9,18 @@ from ..models.imports import MsrestImportType
 from ..models import (
     FileImport,
     ImportType,
-    CodeModel,
+    NamespaceModel,
+    CodeModel
 )
 from .client_serializer import ClientSerializer, ConfigSerializer
 
 
 class GeneralSerializer:
     def __init__(
-        self, code_model: CodeModel, env: Environment, async_mode: bool
+        self, code_model: CodeModel, namespace_model: NamespaceModel, env: Environment, async_mode: bool
     ) -> None:
         self.code_model = code_model
+        self.namespace_model = namespace_model
         self.env = env
         self.async_mode = async_mode
 
@@ -28,18 +30,19 @@ class GeneralSerializer:
 
     def serialize_init_file(self) -> str:
         template = self.env.get_template("init.py.jinja2")
-        return template.render(code_model=self.code_model, async_mode=self.async_mode)
+        clients = [c for c in self.namespace_model.clients if c.request_builders]
+        return template.render(namespace_model=self.namespace_model, clients=clients, async_mode=self.async_mode)
 
     def serialize_service_client_file(self) -> str:
 
         template = self.env.get_template("client.py.jinja2")
 
         return template.render(
-            code_model=self.code_model,
+            namespace_model=self.namespace_model,
             async_mode=self.async_mode,
-            serializer=ClientSerializer(self.code_model),
+            serializer=ClientSerializer(self.namespace_model),
             imports=FileImportSerializer(
-                self.code_model.client.imports(self.async_mode),
+                self.namespace_model.client.imports(self.async_mode),
             ),
         )
 
@@ -48,14 +51,14 @@ class GeneralSerializer:
 
         # configure imports
         file_import = FileImport()
-        if self.code_model.need_request_converter:
+        if self.namespace_model.need_request_converter:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
                 "HttpRequest",
                 ImportType.AZURECORE,
             )
 
-        if self.code_model.need_mixin_abc:
+        if self.namespace_model.need_mixin_abc:
             file_import.add_submodule_import(
                 "abc",
                 "ABC",
@@ -69,18 +72,18 @@ class GeneralSerializer:
             )
             file_import.add_submodule_import(
                 "._configuration",
-                f"{self.code_model.client.name}Configuration",
+                f"{self.namespace_model.client.name}Configuration",
                 ImportType.LOCAL,
             )
             file_import.add_msrest_import(
-                self.code_model,
+                self.namespace_model,
                 ".." if self.async_mode else ".",
                 MsrestImportType.SerializerDeserializer,
                 TypingSection.TYPING,
             )
 
         return template.render(
-            code_model=self.code_model,
+            namespace_model=self.namespace_model,
             imports=FileImportSerializer(
                 file_import,
             ),
@@ -89,42 +92,42 @@ class GeneralSerializer:
 
     def serialize_config_file(self) -> str:
 
-        package_name = self.code_model.options["package_name"]
+        package_name = self.namespace_model.options["package_name"]
         if package_name and package_name.startswith("azure-"):
             package_name = package_name[len("azure-") :]
         sdk_moniker = (
-            package_name if package_name else self.code_model.client.name.lower()
+            package_name if package_name else self.namespace_model.client.name.lower()
         )
         template = self.env.get_template("config.py.jinja2")
         return template.render(
-            code_model=self.code_model,
+            namespace_model=self.namespace_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(
-                self.code_model.config.imports(self.async_mode),
+                self.namespace_model.config.imports(self.async_mode),
             ),
-            serializer=ConfigSerializer(self.code_model),
+            serializer=ConfigSerializer(self.namespace_model),
             sdk_moniker=sdk_moniker,
         )
 
     def serialize_version_file(self) -> str:
         template = self.env.get_template("version.py.jinja2")
-        return template.render(code_model=self.code_model)
+        return template.render(namespace_model=self.namespace_model)
 
     def serialize_setup_file(self) -> str:
         template = self.env.get_template("setup.py.jinja2")
         params = {}
-        params.update(self.code_model.options)
-        params.update(self.code_model.package_dependency)
-        return template.render(code_model=self.code_model, **params)
+        params.update(self.namespace_model.options)
+        params.update(self.namespace_model.package_dependency)
+        return template.render(namespace_model=self.namespace_model, **params)
 
     def serialize_serialization_file(self) -> str:
         template = self.env.get_template("serialization.py.jinja2")
-        return template.render(code_model=self.code_model)
+        return template.render(namespace_model=self.namespace_model)
 
     def serialize_model_base_file(self) -> str:
         template = self.env.get_template("model_base.py.jinja2")
-        return template.render(code_model=self.code_model)
+        return template.render(namespace_model=self.namespace_model)
 
     def serialize_validation_file(self) -> str:
         template = self.env.get_template("validation.py.jinja2")
-        return template.render(code_model=self.code_model)
+        return template.render(namespace_model=self.namespace_model)

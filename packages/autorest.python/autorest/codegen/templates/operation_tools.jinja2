@@ -50,10 +50,10 @@ Example:
     {% endif %}
 {% endfor %}{% endmacro %}
 
-{% macro declare_serializer(code_model, request_builders) %}
+{% macro declare_serializer(client, request_builders) %}
 {% if request_builders %}
 _SERIALIZER = Serializer()
-    {% if not code_model.options["client_side_validation"] %}
+    {% if not client.namespace_model.options["client_side_validation"] %}
 _SERIALIZER.client_side_validation = False
     {% endif %}
 {% endif %}

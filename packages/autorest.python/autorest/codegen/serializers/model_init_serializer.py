@@ -4,19 +4,19 @@
 # license information.
 # --------------------------------------------------------------------------
 from jinja2 import Environment
-from ..models import CodeModel
+from ..models import NamespaceModel
 
 
 class ModelInitSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        self.code_model = code_model
+    def __init__(self, namespace_model: NamespaceModel, env: Environment) -> None:
+        self.namespace_model = namespace_model
         self.env = env
 
     def serialize(self) -> str:
-        schemas = [s.name for s in self.code_model.public_model_types]
+        schemas = [s.name for s in self.namespace_model.public_model_types]
         schemas.sort()
         enums = (
-            [e.name for e in self.code_model.enums] if self.code_model.enums else None
+            [e.name for e in self.namespace_model.enums] if self.namespace_model.enums else None
         )
 
         if enums:
@@ -32,4 +32,4 @@ class ModelInitSerializer:
                 )
 
         template = self.env.get_template("model_init.py.jinja2")
-        return template.render(code_model=self.code_model, schemas=schemas, enums=enums)
+        return template.render(namespace_model=self.namespace_model, schemas=schemas, enums=enums)

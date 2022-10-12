@@ -7,7 +7,7 @@ import re
 {% endif -%}
 from setuptools import setup, find_packages
 
-{% set package_name_render = package_name or code_model.client.name %}
+{% set package_name_render = package_name %}
 
 PACKAGE_NAME = "{{ package_name_render|lower }}"
 {% if package_mode -%}
@@ -28,9 +28,9 @@ if not version:
 {% set author_email = "azpysdkhelp@microsoft.com" %}
 {% set url = "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk" %}
 {% else %}
-version = "{{ code_model.options['package_version'] }}"
+version = "{{ namespace_model.options['package_version'] }}"
 {% set description = "%s"|format(package_name_render) %}
-{% set long_description = code_model.client.description %}
+{% set long_description = namespace_model.description %}
 {% set author_email = "" %}
 {% set url = "" %}
 {% endif -%}
@@ -81,7 +81,7 @@ setup(
     include_package_data=True,
     {% endif %}
     install_requires=[
-        {% if code_model.is_legacy %}
+        {% if namespace_model.is_legacy %}
         "{{ dependency_msrest }}",
         {% else %}
         "isodate<1.0.0,>=0.6.1",
@@ -96,7 +96,7 @@ setup(
     python_requires=">=3.7",
     {% else %}
     long_description="""\
-    {{ code_model.client.description }}
+    {{ namespace_model.description }}
     """
     {% endif %}
 )

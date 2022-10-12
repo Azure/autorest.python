@@ -12,7 +12,7 @@ from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_description
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
 
 
 class RawString(object):
@@ -83,8 +83,8 @@ class BooleanType(PrimitiveType):
 
 
 class BinaryType(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.type = "IO"
 
     @property
@@ -202,8 +202,8 @@ class AnyObjectType(PrimitiveType):
 
 
 class NumberType(PrimitiveType):  # pylint: disable=abstract-method
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.precision: Optional[int] = yaml_data.get("precision")
         self.multiple: Optional[int] = yaml_data.get("multipleOf")
         self.maximum: Optional[int] = yaml_data.get("maximum")
@@ -294,8 +294,8 @@ class FloatType(NumberType):
 
 
 class StringType(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.max_length: Optional[int] = yaml_data.get("maxLength")
         self.min_length: Optional[int] = (
             yaml_data.get("minLength", 0)
@@ -341,8 +341,8 @@ class StringType(PrimitiveType):
 
 
 class DatetimeType(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.format = self.Formats(yaml_data["format"])
 
     class Formats(str, Enum):
@@ -523,8 +523,8 @@ class DurationType(PrimitiveType):
 
 
 class ByteArraySchema(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.format = yaml_data["format"]
 
     @property
