@@ -81,14 +81,14 @@
         "credential_scopes": [],
         "credential_call_sync": "policies.BearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)",
         "credential_call_async": "policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)",
-        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\"._version\": [\"VERSION\"]}, \"stdlib\": {\"sys\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
-        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\".._version\": [\"VERSION\"]}, \"stdlib\": {\"sys\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
     },
     "operation_groups": {
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"sys\": [null]}, \"local\": {\".\": [[\"models\", \"_models\"]]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"sys\": [null]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\".\": [[\"models\", \"_models\"]]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
         "operations": {
             "test" : {
                 "sync": {

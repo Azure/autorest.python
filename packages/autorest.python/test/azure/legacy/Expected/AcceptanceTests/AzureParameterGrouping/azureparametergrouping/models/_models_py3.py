@@ -10,12 +10,12 @@
 import sys
 from typing import Optional
 
-import msrest.serialization
-
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+
+import msrest.serialization
 
 
 class Error(msrest.serialization.Model):

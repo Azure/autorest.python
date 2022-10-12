@@ -229,7 +229,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def name(self) -> str:
         return f"{super().name}Configuration"
 
-    def imports(self, async_mode: bool) -> FileImport:
+    def imports(self, async_mode: bool, for_multiapi=False) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "azure.core.configuration", "Configuration", ImportType.AZURECORE
@@ -245,11 +245,15 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
             )
         for gp in self.parameters:
-            file_import.merge(gp.imports(async_mode=async_mode, import_literal=True))
+            file_import.merge(
+                gp.imports(async_mode=async_mode, import_literal=not for_multiapi)
+            )
         for kwarg in self.parameters.kwargs_to_pop:
             if isinstance(kwarg.type, ConstantType):
                 file_import.merge(
-                    kwarg.imports(async_mode=async_mode, import_literal=True)
+                    kwarg.imports(
+                        async_mode=async_mode, import_literal=not for_multiapi
+                    )
                 )
         if self.code_model.options["azure_arm"]:
             policy = (

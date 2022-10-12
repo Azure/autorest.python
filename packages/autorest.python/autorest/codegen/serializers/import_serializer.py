@@ -33,16 +33,41 @@ def _serialize_package(imports: List[ImportModel], delimiter: str) -> str:
     return delimiter.join(buffer)
 
 
+def _serialize_versioned_package(i: ImportModel, delimiter: str) -> str:
+    if not i.version_modules:
+        return ""
+    buffer = []
+    for n, (version, module_name, comment) in enumerate(i.version_modules):
+        buffer.append(
+            "{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version)
+        )
+        buffer.append(
+            f"    from {module_name} import {i.submodule_name}{f' as {i.alias}' if i.alias else ''}{f' # {comment}' if comment else ''}"
+        )
+    buffer.append("else:")
+    buffer.append(
+        f"    from {i.module_name} import {i.submodule_name}{f' as {i.alias}' if i.alias else ''}"
+        "  # type: ignore  # pylint: disable=ungrouped-imports"
+    )
+    return delimiter.join(buffer)
+
+
 def _serialize_import_type(imports: List[ImportModel], delimiter: str) -> str:
     """Serialize a given import type."""
     import_list = []
     for module_name in sorted(set(i.module_name for i in imports)):
-
-        import_list.append(
-            _serialize_package(
-                [i for i in imports if i.module_name == module_name], delimiter
+        normal_imports = [
+            i for i in imports if i.module_name == module_name and not i.version_modules
+        ]
+        versioned_imports = [
+            i for i in imports if i.module_name == module_name and i.version_modules
+        ]
+        if normal_imports:
+            import_list.append(
+                _serialize_package([i for i in normal_imports], delimiter)
             )
-        )
+        for i in versioned_imports:
+            import_list.append(_serialize_versioned_package(i, delimiter))
     return delimiter.join(import_list)
 
 
@@ -157,9 +182,4 @@ class FileImportSerializer:
             typing_imports += "\n\n    ".join(
                 _get_import_clauses(typing_imports_list, "\n    ")
             )
-        return (
-            regular_imports
-            + typing_imports
-            + self._get_version_imports()
-            + self._get_typing_definitions()
-        )
+        return regular_imports + typing_imports + self._get_typing_definitions()

@@ -6,7 +6,7 @@
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_type import BaseType
-from .imports import FileImport, ImportType, ImportModel, TypingSection
+from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_description
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
 
@@ -133,22 +133,20 @@ class ConstantType(BaseType):
     @staticmethod
     def _import_literal() -> FileImport:
         file_import = FileImport()
-        file_import.add_version_import(
+        file_import.add_import("sys", ImportType.STDLIB)
+        file_import.add_submodule_import(
+            "typing_extensions",
             "Literal",
-            {
-                (3, 8): ImportModel(
-                    TypingSection.REGULAR,
-                    ImportType.STDLIB,
+            ImportType.STDLIB,
+            TypingSection.REGULAR,
+            None,
+            (
+                (
+                    (3, 8),
                     "typing",
-                    submodule_name="Literal  # pylint: disable=no-name-in-module, ungrouped-imports",
+                    "pylint: disable=no-name-in-module, ungrouped-imports",
                 ),
-                None: ImportModel(
-                    TypingSection.REGULAR,
-                    ImportType.STDLIB,
-                    "typing_extensions",
-                    submodule_name="Literal",
-                ),
-            },
+            ),
         )
         return file_import
 

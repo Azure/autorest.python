@@ -11,13 +11,14 @@ import datetime
 import sys
 from typing import Any, List, Mapping, Optional, overload
 
-from .. import _model_base
-from .._model_base import rest_field
-
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+
+from .. import _model_base
+from .._model_base import rest_field
+
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 

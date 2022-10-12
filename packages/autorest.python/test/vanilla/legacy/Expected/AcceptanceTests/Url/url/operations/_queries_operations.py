@@ -10,6 +10,11 @@ import datetime
 import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
 
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+
 from msrest import Serializer
 
 from azure.core.exceptions import (
@@ -29,10 +34,6 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._vendor import _convert_request
 
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
