@@ -3,12 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union
+from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, List, Optional
 
 from .base_model import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .utils import add_to_pylint_disable
+from .operation_group import OperationGroup
+from .request_builder import RequestBuilder, OverloadedRequestBuilder, get_request_builder
+from .parameter import Parameter
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -46,6 +49,48 @@ class _ClientConfigBase(Generic[ParameterListType], BaseModel):
 class Client(_ClientConfigBase[ClientGlobalParameterList]):
     """Model representing our service client"""
 
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "NamespaceCodeModel",
+        parameters: ClientGlobalParameterList
+    ):
+        super().__init__(yaml_data, code_model, parameters)
+        self.operation_groups: List[OperationGroup] = []
+        self.request_builders: List[
+            Union[RequestBuilder, OverloadedRequestBuilder]
+        ] = []
+        self._build_request_builders()
+        self._build_operations()
+        self.config = Config()
+
+    def _build_request_builders(self) -> None:
+        if not self.yaml_data.get("operationGroups"):
+            return
+        for og_group in self.yaml_data["operationGroups"]:
+            for operation_yaml in og_group["operations"]:
+                request_builder = get_request_builder(
+                    operation_yaml, code_model=self.code_model
+                )
+                if request_builder.overloads:
+                    self.request_builders.extend(request_builder.overloads)  # type: ignore
+                self.request_builders.append(request_builder)
+                if operation_yaml.get("nextOperation"):
+                    # i am a paging operation and i have a next operation. Make sure to include my next operation
+                    self.request_builders.append(
+                        get_request_builder(
+                            operation_yaml["nextOperation"], code_model=self.code_model
+                        )
+                    )
+
+    def _build_operations(self) -> None:
+        if self.code_model.options["show_operations"] and self.yaml_data.get("operationGroups"):
+            self.operation_groups = [
+                OperationGroup.from_yaml(op_group, self.code_model)
+                for op_group in self.yaml_data["operationGroups"]
+            ]
+
+
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
             if async_mode:
@@ -54,6 +99,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         if async_mode:
             return "AsyncPipelineClient"
         return "PipelineClient"
+
+    @property
+    def credential(self) -> Optional[Parameter]:
+        """The credential param, if one exists"""
+        return self.parameters.credential
 
     @property
     def send_request_name(self) -> str:
@@ -72,7 +122,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def pylint_disable(self) -> str:
         retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
-        if len(self.code_model.operation_groups) > 6:
+        if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
         return retval
 
@@ -85,6 +135,19 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         ):
             return "_client"
         return f"_{self.code_model.module_name}"
+
+    def lookup_request_builder(
+        self, request_builder_id: int
+    ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
+        """Find the request builder based off of id"""
+        try:
+            return next(
+                rb
+                for rb in self.request_builders
+                if id(rb.yaml_data) == request_builder_id
+            )
+        except StopIteration:
+            raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
@@ -116,6 +179,68 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         )
 
         return file_import
+
+    @property
+    def has_mixin(self) -> bool:
+        """Do we want a mixin ABC class for typing purposes?"""
+        return any(o for o in self.operation_groups if o.is_mixin)
+
+    @property
+    def need_format_url(self) -> bool:
+        """Whether we need to format urls. If so, we need to vendor core."""
+        return any(rq for rq in self.request_builders if rq.parameters.path)
+
+    @property
+    def has_lro_operations(self) -> bool:
+        """Are there any LRO operations in this SDK?"""
+        return any(
+            [
+                operation.operation_type in ("lro", "lropaging")
+                for operation_group in self.operation_groups
+                for operation in operation_group.operations
+            ]
+        )
+
+    def format_lro_operations(self) -> None:
+        """Adds operations and attributes needed for LROs.
+        If there are LRO functions in here, will add initial LRO function. Will also set the return
+        type of the LRO operation
+        """
+        for operation_group in self.operation_groups:
+            i = 0
+            while i < len(operation_group.operations):
+                operation = operation_group.operations[i]
+                if operation.operation_type in ("lro", "lropaging"):
+                    operation_group.operations.insert(i, operation.initial_operation)  # type: ignore
+                    i += 1
+                i += 1
+
+    @property
+    def need_request_converter(self) -> bool:
+        """
+        Whether we need to convert our created azure.core.rest.HttpRequests to
+        azure.core.pipeline.transport.HttpRequests
+        """
+        return (
+            self.code_model.options["show_operations"]
+            and bool(self.request_builders)
+            and not self.code_model.options["version_tolerant"]
+        )
+
+    def need_vendored_code(self, async_mode: bool) -> bool:
+        """Whether we need to vendor code in the _vendor.py file for this SDK"""
+        if self.has_abstract_operations:
+            return True
+        if async_mode:
+            return self.has_mixin
+        return (
+            self.need_request_converter or self.need_format_url or self.has_mixin
+        )
+
+    @property
+    def has_abstract_operations(self) -> bool:
+        """Whether there is abstract operation in any operation group."""
+        return any(og.has_abstract_operations for og in self.operation_groups)
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)

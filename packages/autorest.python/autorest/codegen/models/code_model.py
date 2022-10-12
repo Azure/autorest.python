@@ -8,13 +8,11 @@ from typing import List, Dict, Optional, Any, Set, Union
 from .base_type import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
-from .operation_group import OperationGroup
-from .client import Client, Config
-from .request_builder import OverloadedRequestBuilder, RequestBuilder
-from .parameter import Parameter
+from .client import Client
+from . import build_type
 
 
-class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
+class CompleteCodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
@@ -47,17 +45,28 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     ) -> None:
         self.yaml_data = yaml_data
         self.options = options
-        self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
-        self.operation_groups: List[OperationGroup] = []
-        self._model_types: List[ModelType] = []
-        self._client: Optional[Client] = None
-        self._config: Optional[Config] = None
-        self.request_builders: List[
-            Union[RequestBuilder, OverloadedRequestBuilder]
-        ] = []
+        self.namespace_to_code_model: Dict[str, "CodeModel"] = {
+            namespace: CodeModel(namespace_yaml_data, self.options, namespace)
+            for namespace, namespace_yaml_data in yaml_data.items()
+        }
         self.package_dependency: Dict[str, str] = {}
-        self.namespace: str = yaml_data["client"]["namespace"].lower()
+
+class CodeModel:
+    def __init__(
+        self, yaml_data: Dict[str, Any], options: Dict[str, Any], namespace: str
+    ):
+        self.yaml_data = yaml_data
+        self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
+        self._model_types: List[ModelType] = []
         self.module_name: str = self.yaml_data["client"]["moduleName"]
+        self.options = options
+        self.clients: List[Client] = [
+            Client.from_yaml(client_yaml_data, self)
+            for client_yaml_data in yaml_data["clients"]
+        ]
+        self.namespace = namespace
+        for type_yaml in yaml_data.get("types", []):
+            build_type(yaml_data=type_yaml, code_model=self)
 
     def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
@@ -71,44 +80,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             return next(type for id, type in self.types_map.items() if id == schema_id)
         except StopIteration:
             raise KeyError(f"Couldn't find schema with id {schema_id}")
-
-    @property
-    def credential(self) -> Optional[Parameter]:
-        """The credential param, if one exists"""
-        return self.client.parameters.credential
-
-    @property
-    def client(self) -> Client:
-        if not self._client:
-            raise ValueError("You haven't linked the client yet")
-        return self._client
-
-    @client.setter
-    def client(self, val: Client) -> None:
-        self._client = val
-
-    @property
-    def config(self) -> Config:
-        if not self._config:
-            raise ValueError("You haven't linked the config yet")
-        return self._config
-
-    @config.setter
-    def config(self, val: Config) -> None:
-        self._config = val
-
-    def lookup_request_builder(
-        self, request_builder_id: int
-    ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
-        """Find the request builder based off of id"""
-        try:
-            return next(
-                rb
-                for rb in self.request_builders
-                if id(rb.yaml_data) == request_builder_id
-            )
-        except StopIteration:
-            raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
     def model_types(self) -> List[ModelType]:
@@ -132,9 +103,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         """All of the enums"""
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
-    @staticmethod
     def _sort_model_types_helper(
-        current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]
+        self, current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]
     ):
         if current.id in seen_schema_yaml_ids:
             return []
@@ -150,7 +120,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 seen_schema_names.add(current.name)
                 seen_schema_yaml_ids.add(current.id)
                 ancestors = (
-                    CodeModel._sort_model_types_helper(
+                    self._sort_model_types_helper(
                         parent, seen_schema_names, seen_schema_yaml_ids
                     )
                     + ancestors
@@ -170,83 +140,22 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         sorted_object_schemas: List[ModelType] = []
         for schema in sorted(self.model_types, key=lambda x: x.name.lower()):
             sorted_object_schemas.extend(
-                CodeModel._sort_model_types_helper(
+                self._sort_model_types_helper(
                     schema, seen_schema_names, seen_schema_yaml_ids
                 )
             )
         self.model_types = sorted_object_schemas
 
-    def format_lro_operations(self) -> None:
-        """Adds operations and attributes needed for LROs.
-        If there are LRO functions in here, will add initial LRO function. Will also set the return
-        type of the LRO operation
-        """
-        for operation_group in self.operation_groups:
-            i = 0
-            while i < len(operation_group.operations):
-                operation = operation_group.operations[i]
-                if operation.operation_type in ("lro", "lropaging"):
-                    operation_group.operations.insert(i, operation.initial_operation)  # type: ignore
-                    i += 1
-                i += 1
-
     @property
-    def operations_folder_name(self) -> str:
-        """Get the name of the operations folder that holds operations."""
-        name = "operations"
-        if self.options["version_tolerant"] and not any(
-            og for og in self.operation_groups if not og.is_mixin
-        ):
-            name = f"_{name}"
-        return name
-
-    @property
-    def has_abstract_operations(self) -> bool:
-        """Whether there is abstract operation in any operation group."""
-        return any(og.has_abstract_operations for og in self.operation_groups)
-
-    def need_vendored_code(self, async_mode: bool) -> bool:
-        """Whether we need to vendor code in the _vendor.py file for this SDK"""
-        if self.has_abstract_operations:
-            return True
-        if async_mode:
-            return self.need_mixin_abc
-        return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc
+    def is_legacy(self) -> bool:
+        return not (
+            self.options["version_tolerant"] or self.options["low_level_client"]
         )
 
     @property
-    def need_request_converter(self) -> bool:
-        """
-        Whether we need to convert our created azure.core.rest.HttpRequests to
-        azure.core.pipeline.transport.HttpRequests
-        """
-        return (
-            self.options["show_operations"]
-            and bool(self.request_builders)
-            and not self.options["version_tolerant"]
-        )
-
-    @property
-    def need_format_url(self) -> bool:
-        """Whether we need to format urls. If so, we need to vendor core."""
-        return any(rq for rq in self.request_builders if rq.parameters.path)
-
-    @property
-    def need_mixin_abc(self) -> bool:
-        """Do we want a mixin ABC class for typing purposes?"""
-        return any(o for o in self.operation_groups if o.is_mixin)
-
-    @property
-    def has_lro_operations(self) -> bool:
-        """Are there any LRO operations in this SDK?"""
-        return any(
-            [
-                operation.operation_type in ("lro", "lropaging")
-                for operation_group in self.operation_groups
-                for operation in operation_group.operations
-            ]
-        )
+    def rest_layer_name(self) -> str:
+        """If we have a separate rest layer, what is its name?"""
+        return "rest" if self.options["builders_visibility"] == "public" else "_rest"
 
     @property
     def models_filename(self) -> str:
@@ -263,12 +172,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         return "_enums"
 
     @property
-    def is_legacy(self) -> bool:
-        return not (
-            self.options["version_tolerant"] or self.options["low_level_client"]
-        )
-
-    @property
-    def rest_layer_name(self) -> str:
-        """If we have a separate rest layer, what is its name?"""
-        return "rest" if self.options["builders_visibility"] == "public" else "_rest"
+    def operations_folder_name(self) -> str:
+        """Get the name of the operations folder that holds operations."""
+        name = "operations"
+        if self.options["version_tolerant"] and not any(
+            client for client in self.clients if client.has_mixin
+        ):
+            name = f"_{name}"
+        return name

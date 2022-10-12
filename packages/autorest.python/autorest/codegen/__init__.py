@@ -12,28 +12,22 @@ import yaml
 from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 from .models.client import Client, Config
-from .models.code_model import CodeModel
+from .models.code_model import CompleteCodeModel, CodeModel
 from .models import build_type
-from .models.request_builder import get_request_builder
+
 from .models.operation_group import OperationGroup
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
 from ._utils import DEFAULT_HEADER_TEXT
 
 
-def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
-    # Create operations
-    if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
-        code_model.operation_groups = [
-            OperationGroup.from_yaml(op_group, code_model)
-            for op_group in yaml_data["operationGroups"]
-        ]
-    if yaml_data.get("types"):
-        if code_model.options["models_mode"]:
+def _build_convenience_layer(complete_code_model: CompleteCodeModel) -> None:
+    for code_model in complete_code_model.namespace_to_code_model.values():
+        if code_model.options["models_mode"] and code_model.model_types:
             code_model.sort_model_types()
 
-    if code_model.options["show_operations"]:
-        # LRO operation
-        code_model.format_lro_operations()
+        if code_model.options["show_operations"]:
+            for client in code_model.clients:
+                client.format_lro_operations()
 
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
@@ -129,37 +123,14 @@ class CodeGenerator(Plugin):
 
     def _create_code_model(
         self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]
-    ) -> CodeModel:
+    ) -> CompleteCodeModel:
         # Create a code model
 
-        code_model = CodeModel(yaml_data, options=options)
-        for type_yaml in yaml_data.get("types", []):
-            build_type(yaml_data=type_yaml, code_model=code_model)
+        complete_code_model = CompleteCodeModel(yaml_data, options=options)
 
-        code_model.client = Client.from_yaml(yaml_data["client"], code_model)
-        code_model.config = Config.from_yaml(yaml_data["client"], code_model)
-
-        # Build request builders
-        if yaml_data.get("operationGroups"):
-            for og_group in yaml_data["operationGroups"]:
-                for operation_yaml in og_group["operations"]:
-                    request_builder = get_request_builder(
-                        operation_yaml, code_model=code_model
-                    )
-                    if request_builder.overloads:
-                        code_model.request_builders.extend(request_builder.overloads)  # type: ignore
-                    code_model.request_builders.append(request_builder)
-                    if operation_yaml.get("nextOperation"):
-                        # i am a paging operation and i have a next operation. Make sure to include my next operation
-                        code_model.request_builders.append(
-                            get_request_builder(
-                                operation_yaml["nextOperation"], code_model=code_model
-                            )
-                        )
-
-        _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
-        code_model.package_dependency = self._build_package_dependency()
-        return code_model
+        _build_convenience_layer(complete_code_model)
+        complete_code_model.package_dependency = self._build_package_dependency()
+        return CompleteCodeModel
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
@@ -243,7 +214,7 @@ class CodeGenerator(Plugin):
         with open(self.options["cadl_file"], "r") as fd:
             return yaml.safe_load(fd.read())
 
-    def get_serializer(self, code_model: CodeModel):
+    def get_serializer(self, code_model: CompleteCodeModel):
         return JinjaSerializer(code_model, output_folder=self.output_folder)
 
     def process(self) -> bool:
@@ -255,9 +226,9 @@ class CodeGenerator(Plugin):
         if options["azure_arm"]:
             self.remove_cloud_errors(yaml_data)
 
-        code_model = self._create_code_model(yaml_data=yaml_data, options=options)
+        complete_code_model = self._create_code_model(yaml_data=yaml_data, options=options)
 
-        serializer = self.get_serializer(code_model)
+        serializer = self.get_serializer(complete_code_model)
         serializer.serialize()
 
         return True

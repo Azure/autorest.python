@@ -347,9 +347,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
-        update_client(yaml_data["client"])
-        self.update_operation_groups(yaml_data)
-        update_types(yaml_data["types"])
+        for namespace_yaml_data in yaml_data.values():
+            update_types(namespace_yaml_data["types"])
+            for client in namespace_yaml_data["clients"]:
+                update_client(client)
+                self.update_operation_groups(client)
+
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
