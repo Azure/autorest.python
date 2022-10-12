@@ -198,7 +198,7 @@ class FileImport:
                             Tuple[str, str],
                             Tuple[
                                 str,
-                                str,
+                                Optional[str],
                                 Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
                             ],
                         ]
@@ -220,7 +220,7 @@ class FileImport:
                                 Tuple[str, str],
                                 Tuple[
                                     str,
-                                    str,
+                                    Optional[str],
                                     Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
                                 ],
                             ]
@@ -234,7 +234,11 @@ class FileImport:
                 Union[
                     str,
                     Tuple[str, str],
-                    Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
+                    Tuple[
+                        str,
+                        Optional[str],
+                        Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                    ],
                 ]
             ] = None
             if i.submodule_name:

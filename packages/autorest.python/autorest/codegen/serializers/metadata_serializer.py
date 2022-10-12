@@ -21,7 +21,25 @@ from .builder_serializer import get_operation_serializer
 def _json_serialize_imports(
     imports: Dict[
         TypingSection,
-        Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+        Dict[
+            ImportType,
+            Dict[
+                str,
+                Set[
+                    Optional[
+                        Union[
+                            str,
+                            Tuple[str, str],
+                            Tuple[
+                                str,
+                                Optional[str],
+                                Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+        ],
     ]
 ) -> str:
     if not imports:

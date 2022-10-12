@@ -18,7 +18,11 @@ def _serialize_package(
                     str,
                     str,
                 ],
-                Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
+                Tuple[
+                    str,
+                    Optional[str],
+                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                ],
             ]
         ]
     ],
@@ -26,12 +30,10 @@ def _serialize_package(
 ) -> str:
     buffer = []
 
-    versioned_modules = [
-        m
-        for m in module_list
-        if m and not isinstance(m, str) and len(m) >= 3 and len(m[2]) > 0
-    ]
-    module_list = [m for m in module_list if m not in versioned_modules]
+    versioned_modules = set(
+        m for m in module_list if m and isinstance(m, tuple) and len(m) > 2
+    )
+    module_list = set(m for m in module_list if m not in versioned_modules)
     if None in module_list:
         buffer.append(f"import {package_name}")
     if set(module_list) != {None}:
@@ -49,7 +51,7 @@ def _serialize_package(
                 ),
             )
         )
-    for submodule_name, alias, version_modules in versioned_modules:
+    for submodule_name, alias, version_modules in versioned_modules:  # type: ignore
         for n, (version, module_name, comment) in enumerate(version_modules):
             buffer.append(
                 "{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version)
@@ -77,7 +79,11 @@ def _serialize_type(
                         str,
                         str,
                     ],
-                    Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
+                    Tuple[
+                        str,
+                        Optional[str],
+                        Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                    ],
                 ]
             ]
         ],
@@ -106,7 +112,9 @@ def _get_import_clauses(
                             str,
                         ],
                         Tuple[
-                            str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]
+                            str,
+                            Optional[str],
+                            Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
                         ],
                     ]
                 ]

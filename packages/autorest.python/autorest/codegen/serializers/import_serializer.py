@@ -108,36 +108,6 @@ class FileImportSerializer:
                 "typing", "TYPE_CHECKING", ImportType.STDLIB
             )
 
-    def _get_version_imports(self) -> str:
-        ret: List[str] = [""]
-        for version_import in self.file_import.version_imports.values():
-            versions = version_import.keys()
-            for i, version in enumerate(
-                sorted(versions, key=lambda x: x if x is not None else (), reverse=True)
-            ):
-                if version is not None:
-                    ret.append(
-                        "{} sys.version_info >= {}:".format(
-                            "if" if i == 0 else "elif", version
-                        )
-                    )
-                elif i > 0:
-                    ret.append("else:")
-                for import_clause in _get_import_clauses(
-                    [version_import[version]], "\n"
-                ):
-                    ret.append(
-                        "{}{}".format(
-                            "    " if len(versions) > 1 or version is not None else "",
-                            import_clause,
-                        )
-                    )
-                    if i > 0:
-                        ret[
-                            -1
-                        ] += "  # type: ignore  # pylint: disable=ungrouped-imports"
-        return "\n".join(ret)
-
     def _get_typing_definitions(self) -> str:
         def declare_defintion(
             type_name: str, type_definition: TypeDefinition
