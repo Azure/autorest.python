@@ -9,11 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -43,6 +38,10 @@ from ..._operations._operations import (
 )
 from .._vendor import MixinABC
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]

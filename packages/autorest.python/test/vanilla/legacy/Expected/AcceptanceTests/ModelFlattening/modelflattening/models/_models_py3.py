@@ -10,12 +10,12 @@
 import sys
 from typing import Dict, List, Optional, TYPE_CHECKING
 
+from .. import _serialization
+
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-
-from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

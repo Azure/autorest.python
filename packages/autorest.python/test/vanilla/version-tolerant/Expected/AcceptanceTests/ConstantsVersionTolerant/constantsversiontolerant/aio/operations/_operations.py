@@ -9,11 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -48,6 +43,10 @@ from ...operations._operations import (
     build_contants_put_no_model_as_string_required_two_value_no_default_request,
 )
 
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 

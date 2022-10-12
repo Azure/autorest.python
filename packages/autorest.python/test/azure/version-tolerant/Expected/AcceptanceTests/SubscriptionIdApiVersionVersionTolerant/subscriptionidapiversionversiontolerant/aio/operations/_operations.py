@@ -9,11 +9,6 @@
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -30,6 +25,10 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ...operations._operations import build_group_get_sample_resource_group_request
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]

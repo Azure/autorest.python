@@ -11,13 +11,13 @@ import datetime
 import sys
 from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload
 
+from .. import _model_base
+from .._model_base import rest_field
+
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
-from .. import _model_base
-from .._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

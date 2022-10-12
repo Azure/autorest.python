@@ -42,7 +42,8 @@ def _serialize_versioned_package(i: ImportModel, delimiter: str) -> str:
             "{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version)
         )
         buffer.append(
-            f"    from {module_name} import {i.submodule_name}{f' as {i.alias}' if i.alias else ''}{f' # {comment}' if comment else ''}"
+            f"    from {module_name} import {i.submodule_name}{f' as {i.alias}' if i.alias else ''}"
+            f"{f' # {comment}' if comment else ''}"
         )
     buffer.append("else:")
     buffer.append(
@@ -63,9 +64,7 @@ def _serialize_import_type(imports: List[ImportModel], delimiter: str) -> str:
             i for i in imports if i.module_name == module_name and i.version_modules
         ]
         if normal_imports:
-            import_list.append(
-                _serialize_package([i for i in normal_imports], delimiter)
-            )
+            import_list.append(_serialize_package(normal_imports, delimiter))
         for i in versioned_imports:
             import_list.append(_serialize_versioned_package(i, delimiter))
     return delimiter.join(import_list)

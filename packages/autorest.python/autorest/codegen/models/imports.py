@@ -15,6 +15,7 @@ class ImportType(str, Enum):
     THIRDPARTY = "thirdparty"
     AZURECORE = "azurecore"
     LOCAL = "local"
+    BYVERSION = "by_version"
 
 
 class TypingSection(str, Enum):
@@ -171,7 +172,7 @@ class FileImport:
         self.add_submodule_import(
             "typing",
             "MutableMapping",
-            ImportType.STDLIB,
+            ImportType.BYVERSION,
             TypingSection.REGULAR,
             None,
             (((3, 9), "collections.abc", None),),

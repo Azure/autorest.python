@@ -55,7 +55,8 @@ def _serialize_package(
                 "{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version)
             )
             buffer.append(
-                f"    from {module_name} import {submodule_name}{f' as {alias}' if alias else ''}{f' # {comment}' if comment else ''}"
+                f"    from {module_name} import {submodule_name}{f' as {alias}' if alias else ''}"
+                f"{f' # {comment}' if comment else ''}"
             )
         buffer.append("else:")
         buffer.append(

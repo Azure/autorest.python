@@ -9,14 +9,14 @@
 import sys
 from typing import Any, TYPE_CHECKING
 
+from azure.core.configuration import Configuration
+from azure.core.pipeline import policies
+from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
+
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-
-from azure.core.configuration import Configuration
-from azure.core.pipeline import policies
-from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

@@ -137,7 +137,7 @@ class ConstantType(BaseType):
         file_import.add_submodule_import(
             "typing_extensions",
             "Literal",
-            ImportType.STDLIB,
+            ImportType.BYVERSION,
             TypingSection.REGULAR,
             None,
             (

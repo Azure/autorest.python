@@ -8,11 +8,6 @@
 # --------------------------------------------------------------------------
 import sys
 from typing import Any, Callable, Dict, Iterable, Optional, TypeVar
-
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -34,6 +29,10 @@ from .. import models as _models
 from ..._serialization import Serializer
 from .._vendor import MixinABC, _convert_request
 
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
