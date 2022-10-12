@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import logging
 from typing import Dict, List, Optional, Any, Union, cast
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
@@ -22,6 +23,10 @@ from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
+from .sample_serializer import SampleSerializer
+from .._utils import to_snake_case
+
+_LOGGER = logging.getLogger(__name__)
 
 __all__ = [
     "JinjaSerializer",
@@ -141,6 +146,13 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         if self.code_model.options["package_mode"]:
             self._serialize_and_write_package_files(out_path=namespace_path)
 
+        if (
+            self.code_model.options["show_operations"]
+            and self.code_model.operation_groups
+            and self.code_model.options["generate_sample"]
+        ):
+            self._serialize_and_write_sample(env, namespace_path)
+
     def _serialize_and_write_package_files(self, out_path: Path) -> None:
         def _serialize_and_write_package_files_proc(**kwargs: Any):
             for template_name in package_files:
@@ -181,7 +193,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             params.update(self.code_model.package_dependency)
             return params
 
-        out_path = out_path / Path("../" * (self.code_model.namespace.count(".") + 1))
+        out_path = self._package_root_folder(out_path)
         if self.code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
             env = Environment(
                 loader=PackageLoader("autorest.codegen", "templates"),
@@ -494,7 +506,42 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         self.write_file(
             namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
         )
+    
+    # find root folder where "setup.py" is
+    def _package_root_folder(self, namespace_path: Path) -> Path:
+        return namespace_path / Path("../" * (self.code_model.namespace.count(".") + 1))
 
+    def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
+        out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
+        for op_group in self.code_model.operation_groups:
+            if self.code_model.options["multiapi"]:
+                api_version_folder = f"{op_group.api_versions[0]}/"
+            else:
+                api_version_folder = ""
+            for operation in op_group.operations:
+                samples = operation.yaml_data["samples"]
+                if not samples:
+                    continue
+                for key, value in samples.items():
+                    file_name = to_snake_case(key) + ".py"
+                    try:
+                        self.write_file(
+                            out_path / f"{api_version_folder}{file_name}",
+                            SampleSerializer(
+                                code_model=self.code_model,
+                                env=env,
+                                operation_group=op_group,
+                                operation=operation,
+                                sample=value,
+                                file_name=file_name,
+                                sample_origin_name=key,
+                            ).serialize(),
+                        )
+                    except Exception as e:  # pylint: disable=broad-except
+                        # sample generation shall not block code generation, so just log error
+                        _LOGGER.error(
+                            "error happens when generate sample with {%s}: {%s}", key, e
+                        )
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
     def __init__(
