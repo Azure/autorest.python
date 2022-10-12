@@ -143,15 +143,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         elif "api-version" in [
             p.rest_api_name for p in self.code_model.client.parameters
         ]:
-            file_import.add_submodule_import(
-                "urllib.parse", "urlparse", ImportType.STDLIB
-            )
-            file_import.add_submodule_import(
-                "urllib.parse", "urljoin", ImportType.STDLIB
-            )
-            file_import.add_submodule_import(
-                "urllib.parse", "parse_qs", ImportType.STDLIB
-            )
+            file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
             )
