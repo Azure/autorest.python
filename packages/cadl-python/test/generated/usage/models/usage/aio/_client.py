@@ -13,18 +13,16 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import BasicPolymorphicModelsConfiguration
-from ._operations import BasicPolymorphicModelsOperationsMixin
+from ._configuration import ModelsUsageConfiguration
+from ._operations import ModelsUsageOperationsMixin
 
 
-class BasicPolymorphicModels(
-    BasicPolymorphicModelsOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class ModelsUsage(ModelsUsageOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = BasicPolymorphicModelsConfiguration(**kwargs)
+        self._config = ModelsUsageConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -56,7 +54,7 @@ class BasicPolymorphicModels(
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "BasicPolymorphicModels":
+    async def __aenter__(self) -> "ModelsUsage":
         await self._client.__aenter__()
         return self
 

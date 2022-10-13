@@ -41,82 +41,97 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_set_value_request(**kwargs: Any) -> HttpRequest:
+def build_input_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    # Construct URL
+    _url = "/models/usages/input"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_output_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/models/usages/output"
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_input_and_output_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/polymorphic/model"
+    _url = "/models/usages/input-output"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_set_value_with_polymorphic_property_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/polymorphic/property"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-class BasicPolymorphicModelsOperationsMixin(MixinABC):
+class ModelsUsageOperationsMixin(MixinABC):
     @overload
-    def set_value(
-        self, input: Union[_models.BaseClass, JSON], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.BaseClass:
-        """set_value.
+    def input(  # pylint: disable=inconsistent-return-statements
+        self, input: Union[_models.InputRecord, JSON], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """input.
 
         :param input: Required.
-        :type input: ~basicpolymorphicmodels.models.BaseClass or JSON
+        :type input: ~models.usage.models.InputRecord or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: BaseClass. The BaseClass is compatible with MutableMapping
-        :rtype: ~basicpolymorphicmodels.models.BaseClass
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def set_value(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.BaseClass:
-        """set_value.
+    def input(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """input.
 
         :param input: Required.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: BaseClass. The BaseClass is compatible with MutableMapping
-        :rtype: ~basicpolymorphicmodels.models.BaseClass
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
-    def set_value(self, input: Union[_models.BaseClass, JSON, IO], **kwargs: Any) -> _models.BaseClass:
-        """set_value.
+    def input(  # pylint: disable=inconsistent-return-statements
+        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
+    ) -> None:
+        """input.
 
         :param input: Is either a model type or a IO type. Required.
-        :type input: ~basicpolymorphicmodels.models.BaseClass or JSON or IO
+        :type input: ~models.usage.models.InputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: BaseClass. The BaseClass is compatible with MutableMapping
-        :rtype: ~basicpolymorphicmodels.models.BaseClass
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -131,7 +146,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.BaseClass]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
         _content = None
@@ -140,9 +155,49 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_set_value_request(
+        request = build_input_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace
+    def output(self, **kwargs: Any) -> _models.OutputRecord:
+        """output.
+
+        :return: OutputRecord. The OutputRecord is compatible with MutableMapping
+        :rtype: ~models.usage.models.OutputRecord
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OutputRecord]
+
+        request = build_output_request(
             headers=_headers,
             params=_params,
         )
@@ -158,7 +213,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.BaseClass, response.json())
+        deserialized = _deserialize(_models.OutputRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -166,57 +221,50 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         return deserialized
 
     @overload
-    def set_value_with_polymorphic_property(
-        self,
-        input: Union[_models.ModelWithPolymorphicProperty, JSON],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.ModelWithPolymorphicProperty:
-        """set_value_with_polymorphic_property.
+    def input_and_output(
+        self, body: Union[_models.InputOutputRecord, JSON], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
+        """input_and_output.
 
-        :param input: Required.
-        :type input: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty or JSON
+        :param body: Required.
+        :type body: ~models.usage.models.InputOutputRecord or JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. The ModelWithPolymorphicProperty is compatible with
-         MutableMapping
-        :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
+        :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
+        :rtype: ~models.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def set_value_with_polymorphic_property(
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ModelWithPolymorphicProperty:
-        """set_value_with_polymorphic_property.
+    def input_and_output(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
+        """input_and_output.
 
-        :param input: Required.
-        :type input: IO
+        :param body: Required.
+        :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. The ModelWithPolymorphicProperty is compatible with
-         MutableMapping
-        :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
+        :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
+        :rtype: ~models.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
-    def set_value_with_polymorphic_property(
-        self, input: Union[_models.ModelWithPolymorphicProperty, JSON, IO], **kwargs: Any
-    ) -> _models.ModelWithPolymorphicProperty:
-        """set_value_with_polymorphic_property.
+    def input_and_output(
+        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
+    ) -> _models.InputOutputRecord:
+        """input_and_output.
 
-        :param input: Is either a model type or a IO type. Required.
-        :type input: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty or JSON or IO
+        :param body: Is either a model type or a IO type. Required.
+        :type body: ~models.usage.models.InputOutputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: ModelWithPolymorphicProperty. The ModelWithPolymorphicProperty is compatible with
-         MutableMapping
-        :rtype: ~basicpolymorphicmodels.models.ModelWithPolymorphicProperty
+        :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
+        :rtype: ~models.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -231,16 +279,16 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelWithPolymorphicProperty]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.InputOutputRecord]
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
+        if isinstance(body, (IO, bytes)):
+            _content = body
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_set_value_with_polymorphic_property_request(
+        request = build_input_and_output_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -258,7 +306,7 @@ class BasicPolymorphicModelsOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.ModelWithPolymorphicProperty, response.json())
+        deserialized = _deserialize(_models.InputOutputRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
