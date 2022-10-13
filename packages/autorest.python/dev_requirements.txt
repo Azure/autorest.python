@@ -6,5 +6,6 @@ pylint==2.4.4
 pytest
 ptvsd
 mypy
+pyright==1.1.274
 black
 types-PyYAML
