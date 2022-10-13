@@ -1,10 +1,14 @@
 # Release History
 
-## 2022-09-XX - 0.3.0
+## 2022-10-13 - 0.3.0
 
 **New Features**
 
 - Basic support for LRO  #1442
+
+**Other Changes**
+
+- Bump Cadl Dependencies  #1509
 
 ## 2022-09-26 - 0.2.5
 
