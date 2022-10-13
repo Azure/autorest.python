@@ -13,8 +13,6 @@ from head import AutoRestHeadTestService
 # PREREQUISITES
     pip install azure-identity
     pip install autorestheadtestservice
-msyyc marked this conversation as resolved.
-Show resolved
 # USAGE
     python http_success_head404.py
 

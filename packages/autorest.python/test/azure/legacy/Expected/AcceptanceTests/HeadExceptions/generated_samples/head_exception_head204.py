@@ -13,8 +13,6 @@ from headexceptions import AutoRestHeadExceptionTestService
 # PREREQUISITES
     pip install azure-identity
     pip install autorestheadexceptiontestservice
-msyyc marked this conversation as resolved.
-Show resolved
 # USAGE
     python head_exception_head204.py
 

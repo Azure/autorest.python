@@ -11,8 +11,6 @@ from custombaseurlpagingversiontolerant import AutoRestParameterizedHostTestPagi
 """
 # PREREQUISITES
     pip install autorestparameterizedhosttestpagingclient
-msyyc marked this conversation as resolved.
-Show resolved
 # USAGE
     python paging_get_pages_partial_url.py
 """

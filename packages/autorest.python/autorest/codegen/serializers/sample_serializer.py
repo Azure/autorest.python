@@ -129,6 +129,10 @@ class SampleSerializer:
 
     def _operation_name(self) -> str:
         return f".{self.operation.name}"
+    
+    def _origin_file(self) -> str:
+        origin_file = self.sample.get("x-ms-original-file", "").split("specification")[-1]
+        return "specification" + origin_file if origin_file else origin_file
 
     def serialize(self) -> str:
         return self.env.get_template("sample.py.jinja2").render(
@@ -140,5 +144,5 @@ class SampleSerializer:
             operation_name=self._operation_name(),
             imports=self._imports(),
             client_params=self._client_params(),
-            origin_file=self.sample.get("x-ms-original-file"),
+            origin_file=self._origin_file(),
         )

@@ -11,8 +11,6 @@ from custombaseurl import AutoRestParameterizedHostTestClient
 """
 # PREREQUISITES
     pip install autorestparameterizedhosttestclient
-msyyc marked this conversation as resolved.
-Show resolved
 # USAGE
     python paths_get_empty.py
 """

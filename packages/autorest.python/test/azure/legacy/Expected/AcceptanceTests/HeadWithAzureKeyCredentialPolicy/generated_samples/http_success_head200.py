@@ -14,11 +14,9 @@ from headwithazurekeycredentialpolicy import AutoRestHeadTestService
 """
 # PREREQUISITES
     pip install autorestheadtestservice
-msyyc marked this conversation as resolved.
-Show resolved
 # USAGE
     python http_success_head200.py
-
+    
     Before run the sample, please set environment variables AZURE_KEY with real value
     which can access your service
 """
