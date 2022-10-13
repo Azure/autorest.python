@@ -129,10 +129,10 @@ class SampleSerializer:
 
     def _operation_name(self) -> str:
         return f".{self.operation.name}"
-    
+
     def _origin_file(self) -> str:
-        origin_file = self.sample.get("x-ms-original-file", "").split("specification")[-1]
-        return "specification" + origin_file if origin_file else origin_file
+        name = self.sample.get("x-ms-original-file", "").split("specification")[-1]
+        return "specification" + name if name else name
 
     def serialize(self) -> str:
         return self.env.get_template("sample.py.jinja2").render(
