@@ -9,7 +9,6 @@ from .base_type import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
 from .client import Client
-from . import build_type
 
 
 class CodeModel:
@@ -40,20 +39,20 @@ class CodeModel:
 
     def __init__(
         self,
-        yaml_data: List[Dict[str, Any]],
+        yaml_data: Dict[str, Any],
         options: Dict[str, Any],
     ) -> None:
         self.yaml_data = yaml_data
         self.options = options
         self.namespace_models: List["NamespaceModel"] = [
-            NamespaceModel(namespace_yaml_data, self.options)
-            for namespace_yaml_data in yaml_data
+            NamespaceModel(namespace_yaml_data, self.options, namespace)
+            for namespace, namespace_yaml_data in yaml_data.items()
         ]
         self.package_dependency: Dict[str, str] = {}
 
 class NamespaceModel:
     def __init__(
-        self, yaml_data: Dict[str, Any], options: Dict[str, Any]
+        self, yaml_data: Dict[str, Any], options: Dict[str, Any], namespace: str
     ):
         self.yaml_data = yaml_data
         self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
@@ -64,7 +63,8 @@ class NamespaceModel:
             Client.from_yaml(client_yaml_data, self)
             for client_yaml_data in yaml_data["clients"]
         ]
-        self.namespace = self.yaml_data["namespace"]
+        self.namespace = namespace
+        from . import build_type
         for type_yaml in yaml_data.get("types", []):
             build_type(yaml_data=type_yaml, namespace_model=self)
 

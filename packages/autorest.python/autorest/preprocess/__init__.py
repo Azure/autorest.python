@@ -175,7 +175,7 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
     yaml_data["description"] = update_description(
         yaml_data["description"], default_description=yaml_data["name"]
     )
-    yaml_data["moduleName"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
+
     for parameter in yaml_data["parameters"]:
         update_parameter(parameter)
 
@@ -348,6 +348,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
         for namespace_yaml_data in yaml_data.values():
+            namespace_yaml_data["moduleName"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
             update_types(namespace_yaml_data["types"])
             for client in namespace_yaml_data["clients"]:
                 update_client(client)
