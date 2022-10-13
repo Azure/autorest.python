@@ -447,6 +447,11 @@ def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typ
             return None
         if isinstance(deserializer, type) and issubclass(deserializer, Model):
             return deserializer._deserialize(value)
+        if isinstance(deserializer, list):
+            return [_deserialize(deserializer[0], x) for x in value]
+        if isinstance(deserializer, set):
+            return { _deserialize(None, k): _deserialize(list(deserializer)[0], v)
+                    for k, v in deserializer.items()}
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e

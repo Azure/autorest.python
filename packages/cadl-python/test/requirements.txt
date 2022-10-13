@@ -5,6 +5,7 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.24.0
 -e ./generated/api-key
 -e ./generated/dev-driven
+-e ./generated/dictionary
 -e ./generated/extensible-enums
 -e ./generated/hello
 -e ./generated/inheritance
