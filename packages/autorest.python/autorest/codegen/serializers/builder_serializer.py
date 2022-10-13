@@ -1208,15 +1208,20 @@ class _PagingOperationSerializer(
                 if p.rest_api_name == "api-version"
             )
             retval.append("# make call to next link with the client's api-version")
-            retval.append("_parsed_next_link = urlparse(next_link)")
-            retval.append(
-                "_next_request_params = case_insensitive_dict(parse_qs(_parsed_next_link.query))"
+            retval.append("_parsed_next_link = urllib.parse.urlparse(next_link)")
+            retval.extend(
+                [
+                    "_next_request_params = case_insensitive_dict({",
+                    "    key: [urllib.parse.quote(v) for v in value]"
+                    "    for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()"
+                    "})",
+                ]
             )
             retval.append(
                 f'_next_request_params["api-version"] = {api_version_param.full_client_name}'
             )
             query_str = ", params=_next_request_params"
-            next_link_str = "urljoin(next_link, _parsed_next_link.path)"
+            next_link_str = "urllib.parse.urljoin(next_link, _parsed_next_link.path)"
         except StopIteration:
             pass
 
