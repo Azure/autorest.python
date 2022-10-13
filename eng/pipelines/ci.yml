@@ -97,6 +97,11 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
 
+      - script: tox -e pyright
+        displayName: 'Pyright version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
+
       - script: tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/legacy
@@ -115,6 +120,11 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
 
+      - script: tox -e pyright
+        displayName: 'Pyright version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
+
       - script: tox -e ci
         displayName: 'Execute version-tolerant update "dpg" Tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
@@ -127,6 +137,11 @@ jobs:
       - script: tox -e mypy
         displayName: 'Mypy version-tolerant "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
+
+      - script: tox -e pyright
+        displayName: 'Pyright version-tolerant "dpg" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
 
       - script: tox -e ci
