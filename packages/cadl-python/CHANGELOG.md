@@ -5,6 +5,9 @@
 **New Features**
 
 - Basic support for LRO  #1442
+
+**Other Changes**
+
 - Bump Cadl Dependencies  #1509
 
 ## 2022-09-26 - 0.2.5
