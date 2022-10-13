@@ -9,11 +9,33 @@ import argparse
 
 
 def to_snake_case(name: str) -> str:
-    return re.sub(
-        "((?!^)(?<!_)[A-Z][a-z]+|(?<=[a-z0-9])[A-Z])",
-        r"_\1",
-        name.replace("-", "").replace(" ", "_"),
-    ).lower()
+    def replace_upper_characters(m) -> str:
+        match_str = m.group().lower()
+        if m.start() > 0 and name[m.start() - 1] == "_":
+            # we are good if a '_' already exists
+            return match_str
+        # the first letter should not have _
+        prefix = "_" if m.start() > 0 else ""
+
+        # we will add an extra _ if there are multiple upper case chars together
+        next_non_upper_case_char_location = m.start() + len(match_str)
+        if (
+            len(match_str) > 2
+            and len(name) - next_non_upper_case_char_location > 1
+            and name[next_non_upper_case_char_location].isalpha()
+        ):
+
+            return (
+                prefix
+                + match_str[: len(match_str) - 1]
+                + "_"
+                + match_str[len(match_str) - 1]
+            )
+
+        return prefix + match_str
+    
+    result = re.sub("[A-Z]+", replace_upper_characters, name)
+    return result.replace(" ", "_").replace("__", "_")
 
 
 def parse_args(
