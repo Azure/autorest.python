@@ -24,7 +24,7 @@ from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
-from .utils import to_snake_case
+from ..._utils import to_snake_case
 
 _LOGGER = logging.getLogger(__name__)
 

@@ -34,7 +34,11 @@ def to_snake_case(name: str) -> str:
 
         return prefix + match_str
 
-    return re.sub("[A-Z]+", replace_upper_characters, name)
+    return (
+        re.sub("[A-Z]+", replace_upper_characters, name)
+        .replace(" ", "_")
+        .replace("__", "_")
+    )
 
 
 def parse_args(
