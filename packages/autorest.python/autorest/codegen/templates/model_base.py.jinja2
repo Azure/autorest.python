@@ -445,13 +445,17 @@ def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typ
     try:
         if value is None:
             return None
+        if deserializer == object:
+            return value
         if isinstance(deserializer, type) and issubclass(deserializer, Model):
             return deserializer._deserialize(value)
         if isinstance(deserializer, list):
             return [_deserialize(deserializer[0], x) for x in value]
         if isinstance(deserializer, set):
             return { _deserialize(None, k): _deserialize(list(deserializer)[0], v)
-                    for k, v in deserializer.items()}
+                    for k, v in value.items()}
+        if deserializer in _DESERIALIZE_MAPPING:
+            return _DESERIALIZE_MAPPING.get(deserializer)(value)
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e

@@ -9,7 +9,6 @@ from abc import abstractmethod
 from collections import defaultdict
 from typing import Any, Generic, List, Type, TypeVar, Dict, Union, Optional, cast
 
-
 from ..models import (
     Operation,
     CodeModel,
@@ -31,6 +30,8 @@ from ..models import (
     ConstantType,
     MultipartBodyParameter,
     Property,
+    DatetimeType,
+    DurationType,
     RequestBuilderType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
@@ -968,7 +969,7 @@ class _OperationSerializer(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
             elif self.code_model.options["models_mode"] == "dpg" and isinstance(
-                response.type, ModelType
+                response.type, (ModelType, ListType, DictionaryType, DatetimeType, DurationType)
             ):
                 retval.append(
                     f"deserialized = _deserialize({response.serialization_type}, response.json())"
