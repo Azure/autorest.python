@@ -1,11 +1,3 @@
-{% import 'keywords.jinja2' as keywords with context %}
-{% import 'operation_tools.jinja2' as op_tools %}
-{# actual template starts here #}
-# coding=utf-8
-{{ client.namespace_model.options['license_header'] }}
-
-{{ imports }}
-
 {{ serializer.class_definition }}
     """{{ op_tools.wrap_string(client.description, "\n") | indent }}
 

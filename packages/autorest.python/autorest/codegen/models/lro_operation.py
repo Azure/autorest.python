@@ -13,6 +13,7 @@ from .parameter_list import ParameterList
 
 if TYPE_CHECKING:
     from .code_model import NamespaceModel
+    from .client import Client
 
 LROResponseType = TypeVar(
     "LROResponseType", bound=Union[LROResponse, LROPagingResponse]
@@ -24,6 +25,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
         self,
         yaml_data: Dict[str, Any],
         namespace_model: "NamespaceModel",
+        client: "Client",
         name: str,
         request_builder: RequestBuilder,
         parameters: ParameterList,
@@ -36,6 +38,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
     ) -> None:
         super().__init__(
             namespace_model=namespace_model,
+            client=client,
             yaml_data=yaml_data,
             name=name,
             request_builder=request_builder,
@@ -90,12 +93,17 @@ class LROOperationBase(OperationBase[LROResponseType]):
         return Operation(
             yaml_data=self.yaml_data,
             namespace_model=self.namespace_model,
-            request_builder=self.namespace_model.lookup_request_builder(id(self.yaml_data)),
+            client=self.client,
+            request_builder=self.namespace_model.lookup_request_builder(
+                id(self.yaml_data)
+            ),
             name=self.name[5:] + "_initial",
             overloads=self.overloads,
             parameters=self.parameters,
             responses=[
-                Response(r.yaml_data, self.namespace_model, headers=r.headers, type=r.type)
+                Response(
+                    r.yaml_data, self.namespace_model, headers=r.headers, type=r.type
+                )
                 for r in self.responses
             ],
             exceptions=self.exceptions,

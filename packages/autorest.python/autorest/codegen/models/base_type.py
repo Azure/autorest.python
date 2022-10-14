@@ -21,7 +21,9 @@ class BaseType(BaseModel, ABC):
     :type yaml_data: dict[str, Any]
     """
 
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         super().__init__(yaml_data, namespace_model)
         self.type = yaml_data["type"]  # the type discriminator
         self.api_versions: List[str] = yaml_data.get(

@@ -14,6 +14,6 @@
 
     {{ op_tools.serialize(operation_serializer.return_lro_poller(operation)) | indent }}
     {% endif %}
-{% if not client.namespace_model.options["version_tolerant"] %}
+{% if not namespace_model.options["version_tolerant"] %}
 {{ operation_serializer.get_metadata_url(operation) -}}
 {% endif %}

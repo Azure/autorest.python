@@ -16,7 +16,9 @@ from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
 from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
 
 
-def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, Any]):
+def add_body_param_type(
+    namespace_model: Dict[str, Any], body_parameter: Dict[str, Any]
+):
     if (
         body_parameter
         and body_parameter["type"]["type"] in ("model", "dict", "list")
@@ -30,7 +32,7 @@ def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, An
             "type": "combined",
             "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
         }
-        code_model["types"].append(body_parameter["type"])
+        namespace_model["types"].append(body_parameter["type"])
 
 
 def update_overload_section(
@@ -133,7 +135,7 @@ def update_operation_group_class_name(
     yaml_data: Dict[str, Any], class_name: str
 ) -> str:
     if class_name == "":
-        return yaml_data["client"]["name"] + "OperationsMixin"
+        return yaml_data["name"] + "OperationsMixin"
     if class_name == "Operations":
         return "Operations"
     return class_name + "Operations"
@@ -175,7 +177,7 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
     yaml_data["description"] = update_description(
         yaml_data["description"], default_description=yaml_data["name"]
     )
-
+    yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
     for parameter in yaml_data["parameters"]:
         update_parameter(parameter)
 
@@ -208,7 +210,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
     def update_operation(
         self,
-        code_model: Dict[str, Any],
+        namespace_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
         *,
         is_overload: bool = False,
@@ -231,12 +233,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             for entry in yaml_data["bodyParameter"].get("entries", []):
                 update_parameter(entry)
         for overload in yaml_data.get("overloads", []):
-            self.update_operation(code_model, overload, is_overload=True)
+            self.update_operation(namespace_model, overload, is_overload=True)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "operation"
         if body_parameter and not is_overload:
             # if we have a JSON body, we add a binary overload
-            add_body_param_type(code_model, body_parameter)
+            add_body_param_type(namespace_model, body_parameter)
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
@@ -264,36 +266,40 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
     def update_lro_paging_operation(
         self,
-        code_model: Dict[str, Any],
+        namespace_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
         is_overload: bool = False,
     ) -> None:
-        self.update_lro_operation(code_model, yaml_data, is_overload=is_overload)
-        self.update_paging_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_lro_operation(namespace_model, yaml_data, is_overload=is_overload)
+        self.update_paging_operation(
+            namespace_model, yaml_data, is_overload=is_overload
+        )
         yaml_data["discriminator"] = "lropaging"
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lropaging"
         for overload in yaml_data.get("overloads", []):
-            self.update_lro_paging_operation(code_model, overload, is_overload=True)
+            self.update_lro_paging_operation(
+                namespace_model, overload, is_overload=True
+            )
 
     def update_lro_operation(
         self,
-        code_model: Dict[str, Any],
+        namespace_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
         is_overload: bool = False,
     ) -> None:
-        self.update_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_operation(namespace_model, yaml_data, is_overload=is_overload)
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
 
     def update_paging_operation(
         self,
-        code_model: Dict[str, Any],
+        namespace_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
         is_overload: bool = False,
     ) -> None:
-        self.update_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_operation(namespace_model, yaml_data, is_overload=is_overload)
         if not yaml_data.get("pagerSync"):
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
@@ -328,11 +334,14 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             update_paging_response(response)
             response["itemType"] = item_type
         for overload in yaml_data.get("overloads", []):
-            self.update_paging_operation(code_model, overload, is_overload=True)
+            self.update_paging_operation(namespace_model, overload, is_overload=True)
 
-    def update_operation_groups(self, yaml_data: Dict[str, Any]) -> None:
-        operation_groups_yaml_data = yaml_data["operationGroups"]
+    def update_operation_groups(
+        self, namespace: Dict[str, Any], client: Dict[str, Any]
+    ) -> None:
+        operation_groups_yaml_data = client["operationGroups"]
         for operation_group in operation_groups_yaml_data:
+            operation_group["clientName"] = client["name"]
             operation_group["propertyName"] = pad_reserved_words(
                 operation_group["propertyName"], PadType.OPERATION_GROUP
             )
@@ -340,20 +349,18 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 operation_group["propertyName"]
             )
             operation_group["className"] = update_operation_group_class_name(
-                yaml_data, operation_group["className"]
+                client, operation_group["className"]
             )
             for operation in operation_group["operations"]:
-                self.get_operation_updater(operation)(yaml_data, operation)
+                self.get_operation_updater(operation)(namespace, operation)
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
-        for namespace_yaml_data in yaml_data.values():
-            namespace_yaml_data["moduleName"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
-            update_types(namespace_yaml_data["types"])
-            for client in namespace_yaml_data["clients"]:
+        for namespace in yaml_data.values():
+            update_types(namespace["types"])
+            for client in namespace["clients"]:
                 update_client(client)
-                self.update_operation_groups(client)
-
+                self.update_operation_groups(namespace, client)
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):

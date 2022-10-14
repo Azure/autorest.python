@@ -21,7 +21,10 @@ class CombinedType(BaseType):
     """
 
     def __init__(
-        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", types: List[BaseType]
+        self,
+        yaml_data: Dict[str, Any],
+        namespace_model: "NamespaceModel",
+        types: List[BaseType],
     ) -> None:
         super().__init__(yaml_data, namespace_model)
         self.types = types  # the types that this type is combining

@@ -35,13 +35,13 @@ from ...operations._multiapi_service_client_operations import (
     build_test_lro_request,
     build_test_one_request,
 )
-from .._vendor import MixinABC
+from .._vendor import MultiapiServiceClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultiapiServiceClientOperationsMixin(MixinABC):
+class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     @distributed_trace_async
     async def test_one(  # pylint: disable=inconsistent-return-statements
         self, id: int, message: Optional[str] = None, **kwargs: Any

@@ -83,7 +83,9 @@ class BooleanType(PrimitiveType):
 
 
 class BinaryType(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.type = "IO"
 
@@ -202,7 +204,9 @@ class AnyObjectType(PrimitiveType):
 
 
 class NumberType(PrimitiveType):  # pylint: disable=abstract-method
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.precision: Optional[int] = yaml_data.get("precision")
         self.multiple: Optional[int] = yaml_data.get("multipleOf")
@@ -294,7 +298,9 @@ class FloatType(NumberType):
 
 
 class StringType(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.max_length: Optional[int] = yaml_data.get("maxLength")
         self.min_length: Optional[int] = (
@@ -341,7 +347,9 @@ class StringType(PrimitiveType):
 
 
 class DatetimeType(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.format = self.Formats(yaml_data["format"])
 
@@ -523,7 +531,9 @@ class DurationType(PrimitiveType):
 
 
 class ByteArraySchema(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.format = yaml_data["format"]
 

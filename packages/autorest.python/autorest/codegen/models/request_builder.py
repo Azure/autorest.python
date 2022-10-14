@@ -24,6 +24,7 @@ from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 
 if TYPE_CHECKING:
     from .code_model import NamespaceModel
+    from .client import Client
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -36,6 +37,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self,
         yaml_data: Dict[str, Any],
         namespace_model: "NamespaceModel",
+        client: "Client",
         name: str,
         parameters: ParameterListType,
         *,
@@ -43,6 +45,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
     ) -> None:
         super().__init__(
             namespace_model=namespace_model,
+            client=client,
             yaml_data=yaml_data,
             name=name,
             parameters=parameters,
@@ -122,7 +125,12 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         ...
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"):
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        namespace_model: "NamespaceModel",
+        client: "Client",
+    ):
         # when combine embedded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
         additional_mark = ""
@@ -139,7 +147,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         ]
         name = "_".join([n for n in names if n])
         overloads = [
-            RequestBuilder.from_yaml(rb_yaml_data, namespace_model)
+            RequestBuilder.from_yaml(rb_yaml_data, namespace_model, client)
             for rb_yaml_data in yaml_data.get("overloads", [])
         ]
         parameter_list = cls.parameter_list_type()(yaml_data, namespace_model)
@@ -147,6 +155,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         return cls(
             yaml_data=yaml_data,
             namespace_model=namespace_model,
+            client=client,
             name=name,
             parameters=parameter_list,
             overloads=overloads,
@@ -172,8 +181,8 @@ class OverloadedRequestBuilder(
 
 
 def get_request_builder(
-    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", client: "Client"
 ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
     if yaml_data.get("overloads"):
-        return OverloadedRequestBuilder.from_yaml(yaml_data, namespace_model)
-    return RequestBuilder.from_yaml(yaml_data, namespace_model)
+        return OverloadedRequestBuilder.from_yaml(yaml_data, namespace_model, client)
+    return RequestBuilder.from_yaml(yaml_data, namespace_model, client)

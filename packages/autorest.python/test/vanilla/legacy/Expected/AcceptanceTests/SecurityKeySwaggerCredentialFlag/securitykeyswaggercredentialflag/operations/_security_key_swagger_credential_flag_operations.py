@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import SecurityKeySwaggerCredentialFlagMixinABC, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -38,7 +38,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class SecurityKeySwaggerCredentialFlagOperationsMixin(MixinABC):
+class SecurityKeySwaggerCredentialFlagOperationsMixin(SecurityKeySwaggerCredentialFlagMixinABC):
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.

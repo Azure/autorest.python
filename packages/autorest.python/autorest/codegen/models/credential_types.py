@@ -29,7 +29,9 @@ class _CredentialPolicyBaseType:
     Inherited by our BearerTokenCredentialPolicy and AzureKeyCredentialPolicy types.
     """
 
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         self.yaml_data = yaml_data
         self.namespace_model = namespace_model
 

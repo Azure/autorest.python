@@ -18,6 +18,7 @@ from .model_type import ModelType
 
 if TYPE_CHECKING:
     from .code_model import NamespaceModel
+    from .client import Client
 
 PagingResponseType = TypeVar(
     "PagingResponseType", bound=Union[PagingResponse, LROPagingResponse]
@@ -29,6 +30,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         self,
         yaml_data: Dict[str, Any],
         namespace_model: "NamespaceModel",
+        client: "Client",
         name: str,
         request_builder: RequestBuilder,
         parameters: ParameterList,
@@ -42,6 +44,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     ) -> None:
         super().__init__(
             namespace_model=namespace_model,
+            client=client,
             yaml_data=yaml_data,
             name=name,
             request_builder=request_builder,
@@ -55,7 +58,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         self.next_request_builder: Optional[
             Union[RequestBuilder, OverloadedRequestBuilder]
         ] = (
-            get_request_builder(self.yaml_data["nextOperation"], namespace_model)
+            get_request_builder(
+                self.yaml_data["nextOperation"], namespace_model, client
+            )
             if self.yaml_data.get("nextOperation")
             else None
         )
@@ -140,9 +145,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.merge(
                 self.get_request_builder_import(self.next_request_builder, async_mode)
             )
-        elif "api-version" in [
-            p.rest_api_name for p in self.namespace_model.client.parameters
-        ]:
+        elif "api-version" in [p.rest_api_name for p in self.client.parameters]:
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE

@@ -19,7 +19,6 @@ from typing import (
 from .request_builder_parameter import RequestBuilderParameter
 
 from .utils import OrderedSet, add_to_pylint_disable
-
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import (
@@ -41,6 +40,7 @@ from .request_builder import OverloadedRequestBuilder, RequestBuilder
 
 if TYPE_CHECKING:
     from .code_model import NamespaceModel
+    from .client import Client
 
 ResponseType = TypeVar(
     "ResponseType",
@@ -55,6 +55,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self,
         yaml_data: Dict[str, Any],
         namespace_model: "NamespaceModel",
+        client: "Client",
         name: str,
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
         parameters: ParameterList,
@@ -67,6 +68,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     ) -> None:
         super().__init__(
             namespace_model=namespace_model,
+            client=client,
             yaml_data=yaml_data,
             name=name,
             parameters=parameters,
@@ -287,7 +289,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                     import_type=ImportType.LOCAL,
                     alias="rest",
                 )
-        if self.namespace_model.options["builders_visibility"] == "embedded" and async_mode:
+        if (
+            self.namespace_model.options["builders_visibility"] == "embedded"
+            and async_mode
+        ):
             file_import.add_submodule_import(
                 f"...{self.namespace_model.operations_folder_name}.{self.filename}",
                 request_builder.name,
@@ -376,7 +381,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if self.namespace_model.options["tracing"] and self.want_tracing and not async_mode:
+        if (
+            self.namespace_model.options["tracing"]
+            and self.want_tracing
+            and not async_mode
+        ):
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator",
                 f"distributed_trace",
@@ -409,7 +418,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         basename = self.group_name
         if basename == "":
             # in a mixin
-            basename = self.namespace_model.module_name
+            basename = self.namespace_model.clients[0].legacy_filename
 
         if (
             basename == "operations"
@@ -423,7 +432,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         return any(r.is_stream_response for r in self.responses)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"):
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        namespace_model: "NamespaceModel",
+        client: "Client",
+    ):
         name = yaml_data["name"]
         request_builder = namespace_model.lookup_request_builder(id(yaml_data))
         responses = [
@@ -435,13 +449,14 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ]
         parameter_list = ParameterList.from_yaml(yaml_data, namespace_model)
         overloads = [
-            cls.from_yaml(overload, namespace_model)
+            cls.from_yaml(overload, namespace_model, client)
             for overload in yaml_data.get("overloads", [])
         ]
 
         return cls(
             yaml_data=yaml_data,
             namespace_model=namespace_model,
+            client=client,
             request_builder=request_builder,
             name=name,
             parameters=parameter_list,
@@ -486,7 +501,9 @@ class Operation(OperationBase[Response]):
         return file_import
 
 
-def get_operation(yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> OperationBase:
+def get_operation(
+    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", client: "Client"
+) -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":
         from .lro_paging_operation import LROPagingOperation as OperationCls
     elif yaml_data["discriminator"] == "lro":
@@ -495,4 +512,4 @@ def get_operation(yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") 
         from .paging_operation import PagingOperation as OperationCls  # type: ignore
     else:
         from . import Operation as OperationCls  # type: ignore
-    return OperationCls.from_yaml(yaml_data, namespace_model)
+    return OperationCls.from_yaml(yaml_data, namespace_model, client)

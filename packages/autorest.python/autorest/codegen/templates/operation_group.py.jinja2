@@ -16,11 +16,11 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`{{ "~" + client.namespace_model.namespace + (".aio." if async_mode else ".") + client.name }}`'s
+        :class:`{{ "~" + namespace_model.namespace + (".aio." if async_mode else ".") + operation_group.client.name }}`'s
         :attr:`{{ operation_group.property_name }}` attribute.
     """
 
-{% if client.namespace_model.public_model_types and client.namespace_model.options["models_mode"] == "msrest" %}
+{% if namespace_model.public_model_types and namespace_model.options["models_mode"] == "msrest" %}
     models = _models
 
 {% endif %}

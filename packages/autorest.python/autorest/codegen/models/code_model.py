@@ -3,12 +3,18 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Dict, Optional, Any, Set, Union
+from typing import List, Dict, Any, Set, Union
 
 from .base_type import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
 from .client import Client
+from .request_builder import RequestBuilder, OverloadedRequestBuilder
+from .operation_group import OperationGroup
+
+
+def _is_legacy(options) -> bool:
+    return not (options["version_tolerant"] or options["low_level_client"])
 
 
 class CodeModel:
@@ -48,7 +54,15 @@ class CodeModel:
             NamespaceModel(namespace_yaml_data, self.options, namespace)
             for namespace, namespace_yaml_data in yaml_data.items()
         ]
-        self.package_dependency: Dict[str, str] = {}
+
+    @property
+    def is_legacy(self) -> bool:
+        return _is_legacy(self.options)
+
+    @property
+    def description(self) -> str:
+        return self.namespace_models[0].clients[0].description
+
 
 class NamespaceModel:
     def __init__(
@@ -57,16 +71,13 @@ class NamespaceModel:
         self.yaml_data = yaml_data
         self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
         self._model_types: List[ModelType] = []
-        self.module_name: str = self.yaml_data["moduleName"]
         self.options = options
-        self.clients: List[Client] = [
-            Client.from_yaml(client_yaml_data, self)
-            for client_yaml_data in yaml_data["clients"]
-        ]
-        self.namespace = namespace
         from . import build_type
+
         for type_yaml in yaml_data.get("types", []):
             build_type(yaml_data=type_yaml, namespace_model=self)
+        self.clients: List[Client] = []
+        self.namespace = namespace
 
     def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
@@ -80,6 +91,25 @@ class NamespaceModel:
             return next(type for id, type in self.types_map.items() if id == schema_id)
         except StopIteration:
             raise KeyError(f"Couldn't find schema with id {schema_id}")
+
+    def lookup_request_builder(
+        self, request_builder_id: int
+    ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
+        """Find the request builder based off of id"""
+        for client in self.clients:
+            try:
+                return client.lookup_request_builder(request_builder_id)
+            except KeyError:
+                pass
+        raise KeyError(f"No request builder with id {request_builder_id} found.")
+
+    @property
+    def operation_groups(self) -> List[OperationGroup]:
+        return [og for client in self.clients for og in client.operation_groups]
+
+    @property
+    def request_builders(self) -> List[Union[RequestBuilder, OverloadedRequestBuilder]]:
+        return [rb for client in self.clients for rb in client.request_builders]
 
     @property
     def model_types(self) -> List[ModelType]:
@@ -104,7 +134,10 @@ class NamespaceModel:
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
     def _sort_model_types_helper(
-        self, current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]
+        self,
+        current: ModelType,
+        seen_schema_names: Set[str],
+        seen_schema_yaml_ids: Set[int],
     ):
         if current.id in seen_schema_yaml_ids:
             return []
@@ -148,9 +181,7 @@ class NamespaceModel:
 
     @property
     def is_legacy(self) -> bool:
-        return not (
-            self.options["version_tolerant"] or self.options["low_level_client"]
-        )
+        return _is_legacy(self.options)
 
     @property
     def rest_layer_name(self) -> str:
@@ -165,18 +196,51 @@ class NamespaceModel:
         return "_models"
 
     @property
+    def client_filename(self) -> str:
+        return self.clients[0].filename
+
+    @property
     def enums_filename(self) -> str:
         """The name of the enums file"""
         if self.is_legacy:
-            return f"_{self.module_name}_enums"
+            return f"_{self.clients[0].legacy_filename}_enums"
         return "_enums"
+
+    def need_vendored_code(self, async_mode: bool) -> bool:
+        """Whether we need to vendor code in the _vendor.py file for this SDK"""
+        if self.has_abstract_operations:
+            return True
+        if async_mode:
+            return self.need_mixin_abc
+        return (
+            self.need_request_converter or self.need_format_url or self.need_mixin_abc
+        )
+
+    @property
+    def need_request_converter(self) -> bool:
+        return any(c for c in self.clients if c.need_request_converter)
+
+    @property
+    def need_format_url(self) -> bool:
+        return any(c for c in self.clients if c.need_format_url)
+
+    @property
+    def need_mixin_abc(self) -> bool:
+        return any(c for c in self.clients if c.has_mixin)
+
+    @property
+    def has_abstract_operations(self) -> bool:
+        return any(c for c in self.clients if c.has_abstract_operations)
 
     @property
     def operations_folder_name(self) -> str:
         """Get the name of the operations folder that holds operations."""
         name = "operations"
         if self.options["version_tolerant"] and not any(
-            client for client in self.clients if client.has_mixin
+            og
+            for client in self.clients
+            for og in client.operation_groups
+            if not og.is_mixin
         ):
             name = f"_{name}"
         return name

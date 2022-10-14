@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC, _format_url_section
+from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC, _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -218,7 +218,7 @@ def build_put_simple_product_with_grouping_request(name: str, **kwargs: Any) -> 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatteningTestServiceMixinABC):
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any

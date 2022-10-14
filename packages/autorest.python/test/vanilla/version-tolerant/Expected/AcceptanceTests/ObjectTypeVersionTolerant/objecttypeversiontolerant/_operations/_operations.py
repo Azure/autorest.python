@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import ObjectTypeClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -69,7 +69,7 @@ def build_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class ObjectTypeClientOperationsMixin(MixinABC):
+class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
     @distributed_trace
     def get(self, **kwargs: Any) -> JSON:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully

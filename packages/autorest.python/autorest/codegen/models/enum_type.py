@@ -21,7 +21,9 @@ class EnumValue(BaseModel):
     :param str description: Optional. The description for this enum value
     """
 
-    def __init__(self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.name: str = self.yaml_data["name"]
         self.value: str = self.yaml_data["value"]
@@ -126,7 +128,11 @@ class EnumType(BaseType):
     def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation."""
         if self.namespace_model.options["models_mode"]:
-            return f"{self.value_type.type_annotation(**kwargs)} or ~{self.namespace_model.namespace}.models.{self.name}"
+            type_annotation = self.value_type.type_annotation(**kwargs)
+            enum_type_annotation = (
+                f"{self.namespace_model.namespace}.models.{self.name}"
+            )
+            return f"{type_annotation} or ~{enum_type_annotation}"
         return self.value_type.type_annotation(**kwargs)
 
     def get_json_template_representation(
@@ -166,7 +172,8 @@ class EnumType(BaseType):
             namespace_model=namespace_model,
             value_type=build_type(yaml_data["valueType"], namespace_model),
             values=[
-                EnumValue.from_yaml(value, namespace_model) for value in yaml_data["values"]
+                EnumValue.from_yaml(value, namespace_model)
+                for value in yaml_data["values"]
             ],
         )
 

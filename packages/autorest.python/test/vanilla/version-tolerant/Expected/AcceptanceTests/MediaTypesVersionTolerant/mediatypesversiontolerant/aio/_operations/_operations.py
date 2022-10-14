@@ -31,7 +31,7 @@ from ..._operations._operations import (
     build_content_type_with_encoding_request,
     build_put_text_and_json_body_request,
 )
-from .._vendor import MixinABC, raise_if_not_implemented
+from .._vendor import MediaTypesClientMixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -42,7 +42,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin(MixinABC):
+class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     def __init__(self) -> None:
         raise_if_not_implemented(
             self.__class__,

@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request, _format_url_section
+from .._vendor import ReservedWordsClientMixinABC, _convert_request, _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -136,7 +136,7 @@ def build_operation_with_url_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class ReservedWordsClientOperationsMixin(MixinABC):
+class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     @distributed_trace
     def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.

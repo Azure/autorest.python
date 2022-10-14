@@ -8,18 +8,18 @@ from jinja2 import Environment
 
 from ..models import FileImport
 from .import_serializer import FileImportSerializer
-from ..models import CodeModel, RequestBuilderType
+from ..models import NamespaceModel, RequestBuilderType
 from .builder_serializer import RequestBuilderSerializer
 
 
 class RequestBuildersSerializer:
     def __init__(
         self,
-        code_model: CodeModel,
+        namespace_model: NamespaceModel,
         env: Environment,
         request_builders: List[RequestBuilderType],
     ) -> None:
-        self.code_model = code_model
+        self.namespace_model = namespace_model
         self.env = env
         self.request_builders = request_builders
         self.group_name = request_builders[0].group_name
@@ -35,7 +35,7 @@ class RequestBuildersSerializer:
     def serialize_init(self) -> str:
         template = self.env.get_template("rest_init.py.jinja2")
         return template.render(
-            code_model=self.code_model,
+            namespace_model=self.namespace_model,
             request_builders=[r for r in self.request_builders if not r.is_overload],
         )
 
@@ -43,12 +43,12 @@ class RequestBuildersSerializer:
         template = self.env.get_template("request_builders.py.jinja2")
 
         return template.render(
-            code_model=self.code_model,
+            namespace_model=self.namespace_model,
             request_builders=[rb for rb in self.request_builders if not rb.abstract],
             imports=FileImportSerializer(
                 self.imports,
             ),
             request_builder_serializer=RequestBuilderSerializer(
-                self.code_model, async_mode=False
+                self.namespace_model, async_mode=False
             ),
         )

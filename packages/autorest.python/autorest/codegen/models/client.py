@@ -10,7 +10,10 @@ from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .utils import add_to_pylint_disable
 from .operation_group import OperationGroup
-from .request_builder import RequestBuilder, OverloadedRequestBuilder, get_request_builder
+from .request_builder import (
+    RequestBuilder,
+    OverloadedRequestBuilder,
+)
 from .parameter import Parameter
 
 ParameterListType = TypeVar(
@@ -36,6 +39,7 @@ class _ClientConfigBase(Generic[ParameterListType], BaseModel):
         self.url: str = self.yaml_data[
             "url"
         ]  # the base endpoint of the client. Can be parameterized or not
+        self.legacy_filename: str = self.yaml_data.get("legacyFilename", "client")
 
     @property
     def description(self) -> str:
@@ -52,44 +56,15 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceNamespaceModel",
-        parameters: ClientGlobalParameterList
+        namespace_model: "NamespaceModel",
+        parameters: ClientGlobalParameterList,
     ):
         super().__init__(yaml_data, namespace_model, parameters)
         self.operation_groups: List[OperationGroup] = []
         self.request_builders: List[
             Union[RequestBuilder, OverloadedRequestBuilder]
         ] = []
-        self._build_request_builders()
-        self._build_operations()
-        self.config = Config()
-
-    def _build_request_builders(self) -> None:
-        if not self.yaml_data.get("operationGroups"):
-            return
-        for og_group in self.yaml_data["operationGroups"]:
-            for operation_yaml in og_group["operations"]:
-                request_builder = get_request_builder(
-                    operation_yaml, namespace_model=self.namespace_model
-                )
-                if request_builder.overloads:
-                    self.request_builders.extend(request_builder.overloads)  # type: ignore
-                self.request_builders.append(request_builder)
-                if operation_yaml.get("nextOperation"):
-                    # i am a paging operation and i have a next operation. Make sure to include my next operation
-                    self.request_builders.append(
-                        get_request_builder(
-                            operation_yaml["nextOperation"], namespace_model=self.namespace_model
-                        )
-                    )
-
-    def _build_operations(self) -> None:
-        if self.namespace_model.options["show_operations"] and self.yaml_data.get("operationGroups"):
-            self.operation_groups = [
-                OperationGroup.from_yaml(op_group, self.namespace_model)
-                for op_group in self.yaml_data["operationGroups"]
-            ]
-
+        self.config = Config.from_yaml(yaml_data, self.namespace_model)
 
     def pipeline_class(self, async_mode: bool) -> str:
         if self.namespace_model.options["azure_arm"]:
@@ -134,7 +109,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             or self.namespace_model.options["low_level_client"]
         ):
             return "_client"
-        return f"_{self.namespace_model.module_name}"
+        return f"_{self.legacy_filename}"
 
     def lookup_request_builder(
         self, request_builder_id: int
@@ -168,7 +143,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
             "._configuration",
-            f"{self.namespace_model.client.name}Configuration",
+            f"{self.name}Configuration",
             ImportType.LOCAL,
         )
         file_import.add_msrest_import(
@@ -227,16 +202,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             and not self.namespace_model.options["version_tolerant"]
         )
 
-    def need_vendored_code(self, async_mode: bool) -> bool:
-        """Whether we need to vendor code in the _vendor.py file for this SDK"""
-        if self.has_abstract_operations:
-            return True
-        if async_mode:
-            return self.has_mixin
-        return (
-            self.need_request_converter or self.need_format_url or self.has_mixin
-        )
-
     @property
     def has_abstract_operations(self) -> bool:
         """Whether there is abstract operation in any operation group."""
@@ -265,7 +230,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ImportType.AZURECORE,
             TypingSection.CONDITIONAL,
         )
-        for og in self.namespace_model.operation_groups:
+        for og in self.operation_groups:
             file_import.add_submodule_import(
                 f".{self.namespace_model.operations_folder_name}",
                 og.class_name,
@@ -309,9 +274,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         try:
-            mixin_operation = next(
-                og for og in self.namespace_model.operation_groups if og.is_mixin
-            )
+            mixin_operation = next(og for og in self.operation_groups if og.is_mixin)
             file_import.add_submodule_import(
                 "._operations_mixin", mixin_operation.class_name, ImportType.LOCAL
             )
@@ -331,7 +294,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> "Client":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> "Client":
         return cls(
             yaml_data=yaml_data,
             namespace_model=namespace_model,
@@ -348,6 +313,13 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
             f"Configuration for {self.yaml_data['name']}.\n\n."
             "Note that all parameters used to create this instance are saved as instance attributes."
         )
+
+    @property
+    def sdk_moniker(self) -> str:
+        package_name = self.namespace_model.options["package_name"]
+        if package_name and package_name.startswith("azure-"):
+            package_name = package_name[len("azure-") :]
+        return package_name if package_name else self.yaml_data["name"].lower()
 
     @property
     def name(self) -> str:
@@ -385,7 +357,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel") -> "Config":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> "Config":
         return cls(
             yaml_data=yaml_data,
             namespace_model=namespace_model,

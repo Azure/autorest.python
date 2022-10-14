@@ -5,7 +5,7 @@
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
         "name": {{ client.name | tojson }},
-        "filename": {{ ("_" + client.namespace_model.module_name) | tojson }},
+        "filename": {{ ("_" + client.legacy_filename) | tojson }},
         "description": {{ client.description | tojson }},
         "host_value": {{ (client.parameters.host.client_default_value_declaration if not client.has_parameterized_host else None) | tojson }},
         "parameterized_host_template": {{ (keywords.escape_str(client.url) if client.has_parameterized_host else None) | tojson }},

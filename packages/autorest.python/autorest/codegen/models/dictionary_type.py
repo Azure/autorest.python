@@ -110,7 +110,9 @@ class DictionaryType(BaseType):
 
         from . import build_type  # pylint: disable=import-outside-toplevel
 
-        element_type = build_type(yaml_data=element_schema, namespace_model=namespace_model)
+        element_type = build_type(
+            yaml_data=element_schema, namespace_model=namespace_model
+        )
 
         return cls(
             yaml_data=yaml_data,

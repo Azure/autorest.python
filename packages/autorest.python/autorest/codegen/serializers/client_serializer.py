@@ -25,9 +25,7 @@ class ClientSerializer:
             function_def="def",
             method_name="__init__",
             need_self_param=True,
-            method_param_signatures=self.client.parameters.method_signature(
-                async_mode
-            ),
+            method_param_signatures=self.client.parameters.method_signature(async_mode),
             pylint_disable=pylint_disable,
         )
 
@@ -96,9 +94,7 @@ class ClientSerializer:
     @property
     def host_variable_name(self) -> str:
         try:
-            return next(
-                p for p in self.client.parameters if p.is_host
-            ).client_name
+            return next(p for p in self.client.parameters if p.is_host).client_name
         except StopIteration:
             return "_endpoint"
 

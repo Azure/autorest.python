@@ -36,7 +36,7 @@ from ..._operations._operations import (
     build_put_simple_product_with_grouping_request,
     build_put_wrapped_array_request,
 )
-from .._vendor import MixinABC
+from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -47,7 +47,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatteningTestServiceMixinABC):
     @overload
     async def put_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any

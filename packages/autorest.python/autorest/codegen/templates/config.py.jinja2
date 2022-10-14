@@ -1,16 +1,3 @@
-{% import 'keywords.jinja2' as keywords with context %}
-{% import 'operation_tools.jinja2' as op_tools %}
-{% set version_import = ".._version" if async_mode else "._version" %}
-{# actual template starts here #}
-# coding=utf-8
-{{ client.namespace_model.options['license_header'] }}
-
-{{ imports }}
-
-{% if not client.namespace_model.options['package_version'] %}
-VERSION = "unknown"
-{% endif %}
-
 class {{ client.name }}Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for {{ client.name }}.
 
@@ -38,7 +25,7 @@ class {{ client.name }}Configuration(Configuration):  # pylint: disable=too-many
 {% if client.credential and client.credential.type.policy.credential_scopes is defined %}
         self.credential_scopes = kwargs.pop('credential_scopes', {{ client.credential.type.policy.credential_scopes }})
 {% endif %}
-        kwargs.setdefault('sdk_moniker', '{{ sdk_moniker }}/{}'.format(VERSION))
+        kwargs.setdefault('sdk_moniker', '{{ client.config.sdk_moniker }}/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

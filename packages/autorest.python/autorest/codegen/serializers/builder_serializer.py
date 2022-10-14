@@ -1046,7 +1046,10 @@ class _OperationSerializer(
                     self.response_headers_and_deserialization(builder.responses[0])
                 )
                 retval.append("")
-        if builder.has_optional_return_type or self.namespace_model.options["models_mode"]:
+        if (
+            builder.has_optional_return_type
+            or self.namespace_model.options["models_mode"]
+        ):
             deserialized = "deserialized"
         else:
             deserialized = f"cast({builder.response_type_annotation(async_mode=self.async_mode)}, deserialized)"
@@ -1203,9 +1206,7 @@ class _PagingOperationSerializer(
         next_link_str = "next_link"
         try:
             api_version_param = next(
-                p
-                for p in self.namespace_model.client.parameters
-                if p.rest_api_name == "api-version"
+                p for p in builder.client.parameters if p.rest_api_name == "api-version"
             )
             retval.append("# make call to next link with the client's api-version")
             retval.append("_parsed_next_link = urllib.parse.urlparse(next_link)")

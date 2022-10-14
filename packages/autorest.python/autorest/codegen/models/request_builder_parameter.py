@@ -93,7 +93,10 @@ class RequestBuilderParameter(Parameter):
     """Basic RequestBuilder Parameter."""
 
     def __init__(
-        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", type: BaseType
+        self,
+        yaml_data: Dict[str, Any],
+        namespace_model: "NamespaceModel",
+        type: BaseType,
     ) -> None:
         super().__init__(yaml_data, namespace_model, type)
         # we don't want any default content type behavior in request builder
@@ -145,5 +148,7 @@ def get_request_body_parameter(
 ) -> Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]:
     """Get body parameter for a request builder"""
     if yaml_data.get("entries"):
-        return RequestBuilderMultipartBodyParameter.from_yaml(yaml_data, namespace_model)
+        return RequestBuilderMultipartBodyParameter.from_yaml(
+            yaml_data, namespace_model
+        )
     return RequestBuilderBodyParameter.from_yaml(yaml_data, namespace_model)

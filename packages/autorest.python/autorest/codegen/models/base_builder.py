@@ -13,6 +13,7 @@ from .parameter_list import (
     OverloadedRequestBuilderParameterList,
 )
 
+
 ParameterListType = TypeVar(
     "ParameterListType",
     bound=Union[
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     from .code_model import NamespaceModel
     from .operation import Operation
     from .request_builder import RequestBuilder
+    from .client import Client
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -40,6 +42,7 @@ class BaseBuilder(
         self,
         yaml_data: Dict[str, Any],
         namespace_model: "NamespaceModel",
+        client: "Client",
         name: str,
         parameters: ParameterListType,
         *,
@@ -47,6 +50,7 @@ class BaseBuilder(
         want_tracing: bool = True,
     ) -> None:
         super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
+        self.client = client
         self.name = name
         self._description: str = yaml_data.get("description", "")
         self.parameters = parameters

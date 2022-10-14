@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import ReservedWordsClientMixinABC, _convert_request
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

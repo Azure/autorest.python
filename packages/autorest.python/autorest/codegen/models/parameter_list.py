@@ -113,7 +113,9 @@ class _ParameterListBase(
 
     @staticmethod
     @abstractmethod
-    def parameter_creator() -> Callable[[Dict[str, Any], "NamespaceModel"], ParameterType]:
+    def parameter_creator() -> Callable[
+        [Dict[str, Any], "NamespaceModel"], ParameterType
+    ]:
         """Callable for creating parameters"""
         ...
 
@@ -448,7 +450,9 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
     """Parameter list for Client class"""
 
     @staticmethod
-    def parameter_creator() -> Callable[[Dict[str, Any], "NamespaceModel"], ClientParameter]:
+    def parameter_creator() -> Callable[
+        [Dict[str, Any], "NamespaceModel"], ClientParameter
+    ]:
         return ClientParameter.from_yaml
 
     @property
@@ -477,7 +481,9 @@ class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
     """Parameter list for config"""
 
     @staticmethod
-    def parameter_creator() -> Callable[[Dict[str, Any], "NamespaceModel"], ConfigParameter]:
+    def parameter_creator() -> Callable[
+        [Dict[str, Any], "NamespaceModel"], ConfigParameter
+    ]:
         return ConfigParameter.from_yaml
 
     @property

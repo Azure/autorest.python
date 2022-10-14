@@ -1080,13 +1080,15 @@ class M4Reformatter(
             "parameters": parameters,
             "url": update_client_url(yaml_data)
             if yaml_data.get("globalParameters")
-            else ""
+            else "",
         }
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
         # there can only be one namespace and client from swagger
-        namespace = self._autorestapi.get_value("namespace") or to_snake_case(yaml_data["info"]["title"].replace(" ", ""))
+        namespace = self._autorestapi.get_value("namespace") or to_snake_case(
+            yaml_data["info"]["title"].replace(" ", "")
+        )
         # First we update the types, so we can access for when we're creating parameters etc.
         for type_group, types in yaml_data["schemas"].items():
             for t in types:
@@ -1102,9 +1104,9 @@ class M4Reformatter(
         yaml_data[namespace]["clients"][0]["operationGroups"] = [
             self.update_operation_group(og) for og in yaml_data["operationGroups"]
         ]
-        yaml_data[namespace]["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(
-            KNOWN_TYPES.values()
-        )
+        yaml_data[namespace]["types"] = list(
+            ORIGINAL_ID_TO_UPDATED_TYPE.values()
+        ) + list(KNOWN_TYPES.values())
         if yaml_data.get("globalParameters"):
             del yaml_data["globalParameters"]
         del yaml_data["info"]
