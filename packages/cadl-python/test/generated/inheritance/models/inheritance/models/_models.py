@@ -112,7 +112,7 @@ class Fish(_model_base.Model):
     __mapping__ = {}
     age: int = rest_field()
     """Required. """
-    kind: Literal[None] = rest_discriminator()
+    kind: Literal[None] = rest_discriminator(name="kind")
     """Required. Default value is None."""
 
     @overload
@@ -153,9 +153,9 @@ class Shark(Fish, discriminator="shark"):
     """
 
     __mapping__ = {}
-    kind: Literal["shark"] = rest_discriminator()
+    kind: Literal["shark"] = rest_discriminator(name="kind")
     """Required. Default value is \"shark\"."""
-    sharktype: Literal[None] = rest_discriminator()
+    sharktype: Literal[None] = rest_discriminator(name="sharktype")
     """Required. Default value is None."""
 
     @overload
@@ -193,7 +193,7 @@ class GoblinShark(Shark, discriminator="goblin"):
     :vartype sharktype: str
     """
 
-    sharktype: Literal["goblin"] = rest_discriminator()
+    sharktype: Literal["goblin"] = rest_discriminator(name="sharktype")
     """Required. Default value is \"goblin\"."""
 
     @overload
@@ -234,7 +234,7 @@ class Salmon(Fish, discriminator="salmon"):
     :vartype partner: ~models.inheritance.models.Fish
     """
 
-    kind: Literal["salmon"] = rest_discriminator()
+    kind: Literal["salmon"] = rest_discriminator(name="kind")
     """Required. Default value is \"salmon\"."""
     friends: Optional[List["_models.Fish"]] = rest_field()
     hate: Optional[Dict[str, "_models.Fish"]] = rest_field()
@@ -277,7 +277,7 @@ class SawShark(Shark, discriminator="saw"):
     :vartype sharktype: str
     """
 
-    sharktype: Literal["saw"] = rest_discriminator()
+    sharktype: Literal["saw"] = rest_discriminator(name="sharktype")
     """Required. Default value is \"saw\"."""
 
     @overload

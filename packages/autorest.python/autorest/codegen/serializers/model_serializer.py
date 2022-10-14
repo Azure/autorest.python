@@ -249,7 +249,7 @@ class DpgModelSerializer(_ModelSerializer):
     def declare_property(prop: Property) -> List[str]:
         attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
         args = []
-        if prop.client_name != attribute_key:
+        if prop.client_name != attribute_key or prop.is_discriminator:
             args.append(f'name="{attribute_key}"')
         if prop.readonly:
             args.append("readonly=True")
