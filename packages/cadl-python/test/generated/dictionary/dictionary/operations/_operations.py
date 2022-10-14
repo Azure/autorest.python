@@ -26,7 +26,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder
+from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 9):
@@ -42,10 +42,17 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_int32_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/int32"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -63,10 +70,17 @@ def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_int64_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/int64"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -84,10 +98,17 @@ def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_boolean_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/boolean"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -105,10 +126,17 @@ def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/string"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -126,10 +154,17 @@ def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_float32_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/float32"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -147,10 +182,17 @@ def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_datetime_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/datetime"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -168,10 +210,17 @@ def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_duration_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/duration"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -189,10 +238,17 @@ def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_unknown_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/unknown"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -210,10 +266,17 @@ def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_model_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/model"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_model_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -231,10 +294,17 @@ def build_model_value_put_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_recursive_model_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/dictionary/model/recursive"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_recursive_model_value_put_request(**kwargs: Any) -> HttpRequest:
@@ -269,11 +339,11 @@ class Int32ValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, int]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to int
+        :rtype: dict[str, int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -287,7 +357,7 @@ class Int32ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_int32_value_get_request(
             headers=_headers,
@@ -301,12 +371,19 @@ class Int32ValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -416,11 +493,11 @@ class Int64ValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, int]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to int
+        :rtype: dict[str, int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -434,7 +511,7 @@ class Int64ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_int64_value_get_request(
             headers=_headers,
@@ -448,12 +525,19 @@ class Int64ValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -563,11 +647,11 @@ class BooleanValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, bool]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to bool
+        :rtype: dict[str, bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -581,7 +665,7 @@ class BooleanValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
 
         request = build_boolean_value_get_request(
             headers=_headers,
@@ -595,12 +679,19 @@ class BooleanValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -710,11 +801,11 @@ class StringValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, str]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to str
+        :rtype: dict[str, str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -728,7 +819,7 @@ class StringValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_string_value_get_request(
             headers=_headers,
@@ -742,12 +833,19 @@ class StringValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -857,11 +955,11 @@ class Float32ValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, float]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to float
+        :rtype: dict[str, float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -875,7 +973,7 @@ class Float32ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
         request = build_float32_value_get_request(
             headers=_headers,
@@ -889,12 +987,19 @@ class Float32ValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -1004,11 +1109,11 @@ class DatetimeValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to datetime
+        :rtype: dict[str, ~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1022,7 +1127,7 @@ class DatetimeValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
         request = build_datetime_value_get_request(
             headers=_headers,
@@ -1036,12 +1141,19 @@ class DatetimeValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -1151,11 +1263,11 @@ class DurationValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, datetime.timedelta]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to timedelta
+        :rtype: dict[str, ~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1169,7 +1281,7 @@ class DurationValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
 
         request = build_duration_value_get_request(
             headers=_headers,
@@ -1183,12 +1295,19 @@ class DurationValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -1298,11 +1417,11 @@ class UnknownValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, Any]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to any
+        :rtype: dict[str, any]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1316,7 +1435,7 @@ class UnknownValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
 
         request = build_unknown_value_get_request(
             headers=_headers,
@@ -1330,12 +1449,19 @@ class UnknownValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -1445,11 +1571,11 @@ class ModelValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to InnerModel
+        :rtype: dict[str, ~dictionary.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1463,7 +1589,7 @@ class ModelValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.InnerModel]]
 
         request = build_model_value_get_request(
             headers=_headers,
@@ -1477,12 +1603,19 @@ class ModelValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
@@ -1592,11 +1725,11 @@ class RecursiveModelValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
         """get.
 
-        :return: None
-        :rtype: None
+        :return: dict mapping str to InnerModel
+        :rtype: dict[str, ~dictionary.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1610,7 +1743,7 @@ class RecursiveModelValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.InnerModel]]
 
         request = build_recursive_model_value_get_request(
             headers=_headers,
@@ -1624,12 +1757,19 @@ class RecursiveModelValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements

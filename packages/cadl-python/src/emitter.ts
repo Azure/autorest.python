@@ -27,8 +27,8 @@ import {
     getEffectiveModelType,
     JSONSchemaType,
     createCadlLibrary,
+    getDiscriminator,
 } from "@cadl-lang/compiler";
-import { getDiscriminator } from "@cadl-lang/rest";
 import {
     getAllRoutes,
     getAuthentication,
@@ -102,7 +102,11 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     for (const [key, value] of Object.entries(options)) {
         commandArgs.push(`--${key}=${value}`);
     }
-    if (program.compilerOptions.diagnosticLevel === "debug") {
+    if (
+        program.compilerOptions.trace?.includes("*") ||
+        program.compilerOptions.trace?.includes("@azure-tools/cadl-python") ||
+        program.compilerOptions.trace?.includes("@azure-tools/cadl-python.*")
+    ) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
@@ -710,19 +714,6 @@ function emitModel(program: Program, type: Model, modelTypeProperty: ModelProper
             return { type: "duration" };
         default:
             // Now we know it's a defined model
-            // const discriminator = getDiscriminator(program, type);
-            // const discriminatorEntry: Record<string, any> | undefined = {};
-            // const childModels: Record<string, any>[] = [];
-            // for (const childModel of type.derivedModels) {
-            //   childModels.push(getType(program, childModel));
-            // }
-            // if (discriminator) {
-            //   const discriminatorMapping = getDiscriminatorMapping(program, discriminator, childModels);
-            //   if (discriminatorMapping) {
-            //     discriminatorEntry.mapping = discriminatorMapping;
-            //   }
-            //   discriminatorEntry.propertyName = discriminator.propertyName;
-            // }
             const properties: Record<string, any>[] = [];
             let baseModel = undefined;
             if (type.baseModel) {
