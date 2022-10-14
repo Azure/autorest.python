@@ -22,7 +22,7 @@ async def test_get_valid(client, valid_body):
 
 @pytest.mark.asyncio
 async def test_post_valid(client, valid_body):
-    client.post_valid(valid_body)
+    await client.post_valid(valid_body)
 
 @pytest.mark.asyncio
 async def test_put_valid(client, valid_body):
@@ -30,11 +30,11 @@ async def test_put_valid(client, valid_body):
 
 @pytest.fixture
 def polymorphic_body():
-    return models.Shark({"age": 1, "kind": "shark", "sharktype": "goblin"})
+    return models.GoblinShark({"age": 1})
 
 @pytest.mark.asyncio
 async def test_polymorhic_put_model(client, polymorphic_body):
-    client.discriminated.put_model(polymorphic_body)
+    await client.discriminated.put_model(polymorphic_body)
 
 @pytest.mark.asyncio
 async def test_polymorhic_get_model(client, polymorphic_body):
@@ -103,7 +103,7 @@ def recursive_body():
 
 @pytest.mark.asyncio
 async def test_put_recursive_body(client, recursive_body):
-    client.discriminated.put_recursive_model(recursive_body)
+    await client.discriminated.put_recursive_model(recursive_body)
 
 @pytest.mark.asyncio
 async def test_get_recursive_body(client, recursive_body):
