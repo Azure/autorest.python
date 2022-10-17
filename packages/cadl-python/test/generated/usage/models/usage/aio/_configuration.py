@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class BasicPolymorphicModelsConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for BasicPolymorphicModels.
+class ModelsUsageConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for ModelsUsage.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(BasicPolymorphicModelsConfiguration, self).__init__(**kwargs)
+        super(ModelsUsageConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "basicpolymorphicmodels/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "modelsusage/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

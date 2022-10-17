@@ -8,19 +8,19 @@
 from abc import ABC
 from typing import TYPE_CHECKING
 
-from ._configuration import BasicPolymorphicModelsConfiguration
+from ._configuration import ModelsUsageConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from azure.core import AsyncPipelineClient
+    from azure.core import PipelineClient
 
-    from .._serialization import Deserializer, Serializer
+    from ._serialization import Deserializer, Serializer
 
 
 class MixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
 
-    _client: "AsyncPipelineClient"
-    _config: BasicPolymorphicModelsConfiguration
+    _client: "PipelineClient"
+    _config: ModelsUsageConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
