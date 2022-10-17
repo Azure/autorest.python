@@ -150,6 +150,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             self.code_model.options["show_operations"]
             and self.code_model.operation_groups
             and self.code_model.options["generate_sample"]
+            and not self.code_model.options["multiapi"]
         ):
             self._serialize_and_write_sample(env, namespace_path)
 
@@ -514,10 +515,6 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
         out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
         for op_group in self.code_model.operation_groups:
-            if self.code_model.options["multiapi"]:
-                api_version_folder = f"{op_group.api_versions[0]}/"
-            else:
-                api_version_folder = ""
             for operation in op_group.operations:
                 samples = operation.yaml_data["samples"]
                 if not samples:
@@ -526,7 +523,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     file_name = to_snake_case(key) + ".py"
                     try:
                         self.write_file(
-                            out_path / f"{api_version_folder}{file_name}",
+                            out_path / file_name,
                             SampleSerializer(
                                 code_model=self.code_model,
                                 env=env,

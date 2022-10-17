@@ -85,8 +85,6 @@ class SampleSerializer:
             )
             for p in params_positional
         }
-        if self.code_model.options["multiapi"]:
-            client_params["api_version"] = cls(self.operation_group.api_versions[0])
 
         return client_params
 
