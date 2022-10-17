@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import build_patch_single_request
-from .._vendor import MixinABC
+from .._vendor import MergePatchJsonClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -35,7 +35,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MergePatchJsonClientOperationsMixin(MixinABC):
+class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
     @distributed_trace_async
     async def patch_single(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic patch with an object.

@@ -23,13 +23,13 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._vendor import _convert_request
 from ...operations._autorest_security_key_operations import build_head_request
-from .._vendor import MixinABC
+from .._vendor import AutorestSecurityKeyMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutorestSecurityKeyOperationsMixin(MixinABC):
+class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.

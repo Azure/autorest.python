@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_create_secret_request, build_get_error_with_secrets_request
-from .._vendor import MixinABC
+from .._vendor import ErrorWithSecretsMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -34,7 +34,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ErrorWithSecretsOperationsMixin(MixinABC):
+class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
     @distributed_trace_async
     async def create_secret(self, **kwargs: Any) -> JSON:
         """Creates a secret.

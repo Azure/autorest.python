@@ -6,6 +6,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
+
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
@@ -22,26 +23,30 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
         except KeyError:
             raise AttributeError(name)
 
+
 class EnumsWithCallableNames(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Gets the unit of measurement.
-    """
+    """Gets the unit of measurement."""
 
     COUNT = "count"
     ENCODE = "encode"
     FIND = "find"
     JOIN = "join"
 
+
 def test_count():
     assert EnumsWithCallableNames.COUNT == "count"
     assert callable(EnumsWithCallableNames.count)
+
 
 def test_encode():
     assert EnumsWithCallableNames.ENCODE == "encode"
     assert callable(EnumsWithCallableNames.encode)
 
+
 def test_find():
     assert EnumsWithCallableNames.FIND == "find"
     assert callable(EnumsWithCallableNames.find)
+
 
 def test_join():
     assert EnumsWithCallableNames.JOIN == "join"

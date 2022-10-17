@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import MixinABC, _convert_request, _format_url_section
+from .._vendor import AutoRestValidationTestMixinABC, _convert_request, _format_url_section
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -132,7 +132,7 @@ def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestValidationTestOperationsMixin(MixinABC):
+class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> _models.Product:
         """Validates input parameters on the method. See swagger for details.

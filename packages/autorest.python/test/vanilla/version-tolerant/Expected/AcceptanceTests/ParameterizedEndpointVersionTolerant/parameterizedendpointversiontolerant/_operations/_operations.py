@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import ParmaterizedEndpointClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -38,7 +38,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ParmaterizedEndpointClientOperationsMixin(MixinABC):
+class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinABC):
     @distributed_trace
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.

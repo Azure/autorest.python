@@ -32,13 +32,13 @@ from ...operations._multiapi_service_client_operations import (
     build_test_different_calls_request,
     build_test_paging_request,
 )
-from .._vendor import MixinABC
+from .._vendor import MultiapiServiceClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultiapiServiceClientOperationsMixin(MixinABC):
+class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     @distributed_trace
     def test_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.

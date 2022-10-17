@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._import_operations_operations import build_operation_one_request
-from .._vendor import MixinABC
+from .._vendor import ReservedWordsClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

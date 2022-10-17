@@ -33,7 +33,7 @@ from ..._operations._operations import (
     build_lro_request,
     build_post_model_request,
 )
-from .._vendor import MixinABC
+from .._vendor import DPGClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -44,7 +44,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class DPGClientOperationsMixin(MixinABC):
+class DPGClientOperationsMixin(DPGClientMixinABC):
     @distributed_trace_async
     async def get_model(self, mode: str, **kwargs: Any) -> JSON:
         """Get models that you will either return to end users as a raw body, or with a model added during

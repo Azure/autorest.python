@@ -27,7 +27,7 @@ from .combined_type import CombinedType
 from .utils import add_to_description
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
     from .request_builder_parameter import RequestBuilderBodyParameter
 
 
@@ -61,10 +61,10 @@ class _ParameterBase(
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         type: BaseType,
     ) -> None:
-        super().__init__(yaml_data, code_model)
+        super().__init__(yaml_data, namespace_model)
         self.rest_api_name: str = yaml_data["restApiName"]
         self.client_name: str = self.yaml_data["clientName"]
         self.optional: bool = self.yaml_data["optional"]
@@ -230,18 +230,18 @@ class BodyParameter(_BodyParameterBase):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
     ) -> "BodyParameter":
         return cls(
             yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
+            namespace_model=namespace_model,
+            type=namespace_model.lookup_type(id(yaml_data["type"])),
         )
 
     def type_annotation(self, **kwargs: Any) -> str:
         annotation = super().type_annotation(**kwargs)
         model_seq = BodyParameter.get_model_seq(self.type)
-        if self.code_model.options["models_mode"] == "dpg" and model_seq >= 0:
+        if self.namespace_model.options["models_mode"] == "dpg" and model_seq >= 0:
             pattern = re.compile(r"Union\[.*\]")
             union_content = (
                 annotation[6:-1] if pattern.match(annotation) else annotation
@@ -254,7 +254,7 @@ class BodyParameter(_BodyParameterBase):
     def docstring_type(self, **kwargs: Any) -> str:
         docstring = super().docstring_type(**kwargs)
         model_seq = BodyParameter.get_model_seq(self.type)
-        if self.code_model.options["models_mode"] == "dpg" and model_seq >= 0:
+        if self.namespace_model.options["models_mode"] == "dpg" and model_seq >= 0:
             items = docstring.split(" or ")
             items.insert(model_seq + 1, "JSON")
             docstring = " or ".join(items)
@@ -284,11 +284,11 @@ class _MultipartBodyParameter(Generic[EntryBodyParameterType], BodyParameter):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         type: BaseType,
         entries: List[EntryBodyParameterType],
     ) -> None:
-        super().__init__(yaml_data, code_model, type)
+        super().__init__(yaml_data, namespace_model, type)
         self.entries = entries
 
     @property
@@ -305,14 +305,14 @@ class MultipartBodyParameter(
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
     ) -> "MultipartBodyParameter":
         return cls(
             yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
+            namespace_model=namespace_model,
+            type=namespace_model.lookup_type(id(yaml_data["type"])),
             entries=[
-                BodyParameter.from_yaml(entry, code_model)
+                BodyParameter.from_yaml(entry, namespace_model)
                 for entry in yaml_data["entries"]
             ],
         )
@@ -324,10 +324,10 @@ class Parameter(_ParameterBase):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         type: BaseType,
     ) -> None:
-        super().__init__(yaml_data, code_model, type=type)
+        super().__init__(yaml_data, namespace_model, type=type)
 
         self.implementation: str = yaml_data["implementation"]
         self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
@@ -371,18 +371,18 @@ class Parameter(_ParameterBase):
             ParameterLocation.QUERY,
         )
         if (
-            self.code_model.options["only_path_and_body_params_positional"]
+            self.namespace_model.options["only_path_and_body_params_positional"]
             and query_or_header
         ):
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
+    def from_yaml(cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"):
         return cls(
             yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
+            namespace_model=namespace_model,
+            type=namespace_model.lookup_type(id(yaml_data["type"])),
         )
 
 
@@ -398,8 +398,8 @@ class ClientParameter(Parameter):
         if self.constant:
             return ParameterMethodLocation.KWARG
         if self.is_host and (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
+            self.namespace_model.options["version_tolerant"]
+            or self.namespace_model.options["low_level_client"]
         ):
             # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY
@@ -425,9 +425,9 @@ class ConfigParameter(Parameter):
 
 
 def get_body_parameter(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
+    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
 ) -> Union[BodyParameter, MultipartBodyParameter]:
     """Creates a regular body parameter or Multipart body parameter"""
     if yaml_data.get("entries"):
-        return MultipartBodyParameter.from_yaml(yaml_data, code_model)
-    return BodyParameter.from_yaml(yaml_data, code_model)
+        return MultipartBodyParameter.from_yaml(yaml_data, namespace_model)
+    return BodyParameter.from_yaml(yaml_data, namespace_model)

@@ -1,18 +1,17 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% import 'keywords.jinja2' as keywords %}
-{% set client = code_model.client %}
 {
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
-        "name": {{ code_model.client.name | tojson }},
-        "filename": {{ ("_" + code_model.module_name) | tojson }},
-        "description": {{ code_model.client.description | tojson }},
+        "name": {{ client.name | tojson }},
+        "filename": {{ ("_" + client.legacy_filename) | tojson }},
+        "description": {{ client.description | tojson }},
         "host_value": {{ (client.parameters.host.client_default_value_declaration if not client.has_parameterized_host else None) | tojson }},
         "parameterized_host_template": {{ (keywords.escape_str(client.url) if client.has_parameterized_host else None) | tojson }},
-        "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
-        "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
-        "client_side_validation": {{ code_model.options["client_side_validation"] | tojson }},
+        "azure_arm": {{ client.namespace_model.options["azure_arm"]  | tojson }},
+        "has_lro_operations": {{ client.has_lro_operations | tojson }},
+        "client_side_validation": {{ client.namespace_model.options["client_side_validation"] | tojson }},
         "sync_imports": {{ sync_client_imports | tojson }},
         "async_imports": {{ async_client_imports | tojson }}
     },
@@ -38,11 +37,11 @@
             {% endfor %}
         },
         "constant": {
-            {% for gp in code_model.client.parameters.constant | rejectattr("client_name", "equalto", "api_version") %}
+            {% for gp in client.parameters.constant | rejectattr("client_name", "equalto", "api_version") %}
             {{ gp.client_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "call": {{ code_model.client.parameters.method | rejectattr("client_name", "equalto", "api_version") | rejectattr("is_host") | map(attribute="client_name") | join(', ') | tojson }},
+        "call": {{ client.parameters.method | rejectattr("client_name", "equalto", "api_version") | rejectattr("is_host") | map(attribute="client_name") | join(', ') | tojson }},
         "service_client_specific": {
             "sync": {
                 "api_version": {
@@ -92,14 +91,14 @@
     },
     "config": {
         "credential": {{ has_credential | tojson }},
-        "credential_scopes": {{ (code_model.credential.type.policy.credential_scopes if has_credential and code_model.credential.type.policy.credential_scopes is defined else None)| tojson}},
-        "credential_call_sync": {{ (code_model.credential.type.policy.call(async_mode=False) if has_credential else None) | tojson }},
-        "credential_call_async": {{ (code_model.credential.type.policy.call(async_mode=True) if has_credential else None) | tojson }},
+        "credential_scopes": {{ (client.credential.type.policy.credential_scopes if has_credential and client.credential.type.policy.credential_scopes is defined else None)| tojson}},
+        "credential_call_sync": {{ (client.credential.type.policy.call(async_mode=False) if has_credential else None) | tojson }},
+        "credential_call_async": {{ (client.credential.type.policy.call(async_mode=True) if has_credential else None) | tojson }},
         "sync_imports": {{ sync_config_imports | tojson }},
         "async_imports": {{ async_config_imports | tojson }}
     },
     "operation_groups": {
-        {% for operation_group in code_model.operation_groups | rejectattr('is_mixin') %}
+        {% for operation_group in client.operation_groups | rejectattr('is_mixin') %}
         {{ operation_group.property_name | tojson }}: {{ operation_group.class_name | tojson }}{{ "," if not loop.last else "" }}
         {% endfor %}
     }{{ "," if mixin_operations }}

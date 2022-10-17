@@ -11,29 +11,68 @@ import yaml
 
 from .. import Plugin, PluginAutorest
 from .._utils import parse_args
-from .models.client import Client, Config
-from .models.code_model import CodeModel
-from .models import build_type
+from .models.client import Client
+from .models.code_model import CodeModel, NamespaceModel
 from .models.request_builder import get_request_builder
+
 from .models.operation_group import OperationGroup
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
 from ._utils import DEFAULT_HEADER_TEXT
 
 
-def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
-    # Create operations
-    if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
-        code_model.operation_groups = [
-            OperationGroup.from_yaml(op_group, code_model)
-            for op_group in yaml_data["operationGroups"]
-        ]
-    if yaml_data.get("types"):
-        if code_model.options["models_mode"]:
-            code_model.sort_model_types()
+def _build_convenience_layer(code_model: CodeModel) -> None:
+    for namespace_model in code_model.namespace_models:
+        if namespace_model.options["show_operations"]:
+            for client in namespace_model.clients:
+                client.operation_groups = [
+                    OperationGroup.from_yaml(op_group, namespace_model, client)
+                    for op_group in client.yaml_data.get("operationGroups", [])
+                ]
+        if namespace_model.options["models_mode"] and namespace_model.model_types:
+            namespace_model.sort_model_types()
 
-    if code_model.options["show_operations"]:
-        # LRO operation
-        code_model.format_lro_operations()
+        if namespace_model.options["show_operations"]:
+            for client in namespace_model.clients:
+                client.format_lro_operations()
+
+
+def _create_code_model(
+    yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]
+) -> CodeModel:
+    # Create a code model
+    code_model = CodeModel(yaml_data, options=options)
+    for namespace_model in code_model.namespace_models:
+        namespace_model.clients = [
+            Client.from_yaml(client_yaml_data, namespace_model)
+            for client_yaml_data in namespace_model.yaml_data["clients"]
+        ]
+
+        for client in namespace_model.clients:
+            if not client.yaml_data.get("operationGroups"):
+                continue
+            for og_group in client.yaml_data["operationGroups"]:
+                for operation_yaml in og_group["operations"]:
+                    request_builder = get_request_builder(
+                        operation_yaml,
+                        namespace_model=namespace_model,
+                        client=client,
+                    )
+                    if request_builder.overloads:
+                        client.request_builders.extend(request_builder.overloads)  # type: ignore
+                    client.request_builders.append(request_builder)
+                    if operation_yaml.get("nextOperation"):
+                        # i am a paging operation and i have a next operation.
+                        # Make sure to include my next operation
+                        client.request_builders.append(
+                            get_request_builder(
+                                operation_yaml["nextOperation"],
+                                namespace_model=namespace_model,
+                                client=client,
+                            )
+                        )
+
+    _build_convenience_layer(code_model)
+    return code_model
 
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
@@ -97,69 +136,28 @@ _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
     @staticmethod
     def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
-        for group in yaml_data["operationGroups"]:
-            for operation in group["operations"]:
-                if not operation.get("exceptions"):
-                    continue
-                i = 0
-                while i < len(operation["exceptions"]):
-                    exception = operation["exceptions"][i]
-                    if (
-                        exception.get("schema")
-                        and exception["schema"]["language"]["default"]["name"]
-                        == "CloudError"
-                    ):
-                        del operation["exceptions"][i]
-                        i -= 1
-                    i += 1
+        for client in yaml_data["clients"]:
+            for group in client["operationGroups"]:
+                for operation in group["operations"]:
+                    if not operation.get("exceptions"):
+                        continue
+                    i = 0
+                    while i < len(operation["exceptions"]):
+                        exception = operation["exceptions"][i]
+                        if (
+                            exception.get("schema")
+                            and exception["schema"]["language"]["default"]["name"]
+                            == "CloudError"
+                        ):
+                            del operation["exceptions"][i]
+                            i -= 1
+                        i += 1
         if yaml_data.get("schemas") and yaml_data["schemas"].get("objects"):
             for i in range(len(yaml_data["schemas"]["objects"])):
                 obj_schema = yaml_data["schemas"]["objects"][i]
                 if obj_schema["language"]["default"]["name"] == "CloudError":
                     del yaml_data["schemas"]["objects"][i]
                     break
-
-    @staticmethod
-    def _build_package_dependency() -> Dict[str, str]:
-        return {
-            "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.2",
-            "dependency_azure_core": "azure-core<2.0.0,>=1.24.0",
-            "dependency_msrest": "msrest>=0.7.1",
-        }
-
-    def _create_code_model(
-        self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]
-    ) -> CodeModel:
-        # Create a code model
-
-        code_model = CodeModel(yaml_data, options=options)
-        for type_yaml in yaml_data.get("types", []):
-            build_type(yaml_data=type_yaml, code_model=code_model)
-
-        code_model.client = Client.from_yaml(yaml_data["client"], code_model)
-        code_model.config = Config.from_yaml(yaml_data["client"], code_model)
-
-        # Build request builders
-        if yaml_data.get("operationGroups"):
-            for og_group in yaml_data["operationGroups"]:
-                for operation_yaml in og_group["operations"]:
-                    request_builder = get_request_builder(
-                        operation_yaml, code_model=code_model
-                    )
-                    if request_builder.overloads:
-                        code_model.request_builders.extend(request_builder.overloads)  # type: ignore
-                    code_model.request_builders.append(request_builder)
-                    if operation_yaml.get("nextOperation"):
-                        # i am a paging operation and i have a next operation. Make sure to include my next operation
-                        code_model.request_builders.append(
-                            get_request_builder(
-                                operation_yaml["nextOperation"], code_model=code_model
-                            )
-                        )
-
-        _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
-        code_model.package_dependency = self._build_package_dependency()
-        return code_model
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
@@ -243,8 +241,10 @@ class CodeGenerator(Plugin):
         with open(self.options["cadl_file"], "r") as fd:
             return yaml.safe_load(fd.read())
 
-    def get_serializer(self, code_model: CodeModel):
-        return JinjaSerializer(code_model, output_folder=self.output_folder)
+    def get_serializer(self, code_model: CodeModel, namespace_model: NamespaceModel):
+        return JinjaSerializer(
+            code_model, namespace_model, output_folder=self.output_folder
+        )
 
     def process(self) -> bool:
         # List the input file, should be only one
@@ -253,12 +253,14 @@ class CodeGenerator(Plugin):
         yaml_data = self.get_yaml()
 
         if options["azure_arm"]:
-            self.remove_cloud_errors(yaml_data)
+            for namespace in yaml_data.values():
+                self.remove_cloud_errors(namespace)
 
-        code_model = self._create_code_model(yaml_data=yaml_data, options=options)
+        code_model = _create_code_model(yaml_data=yaml_data, options=options)
 
-        serializer = self.get_serializer(code_model)
-        serializer.serialize()
+        for namespace_model in code_model.namespace_models:
+            serializer = self.get_serializer(code_model, namespace_model)
+            serializer.serialize()
 
         return True
 
@@ -353,9 +355,12 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
         # Parse the received YAML
         return yaml.safe_load(file_content)
 
-    def get_serializer(self, code_model: CodeModel):  # type: ignore
+    def get_serializer(self, code_model: CodeModel, namespace_model: NamespaceModel):  # type: ignore
         return JinjaSerializerAutorest(
-            self._autorestapi, code_model, output_folder=self.output_folder
+            self._autorestapi,
+            code_model,
+            namespace_model,
+            output_folder=self.output_folder,
         )
 
 

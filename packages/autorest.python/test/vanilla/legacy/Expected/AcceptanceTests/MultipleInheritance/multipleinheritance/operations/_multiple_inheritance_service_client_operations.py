@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import MultipleInheritanceServiceClientMixinABC, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -188,7 +188,7 @@ def build_put_kitten_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
+class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceServiceClientMixinABC):
     @distributed_trace
     def get_horse(self, **kwargs: Any) -> _models.Horse:
         """Get a horse with name 'Fred' and isAShowHorse true.
