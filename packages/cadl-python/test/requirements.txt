@@ -9,7 +9,6 @@ azure-core==1.24.0
 -e ./generated/hello
 -e ./generated/inheritance
 -e ./generated/interfaces
--e ./generated/nested-models
 -e ./generated/oauth2
 -e ./generated/property-optional
 -e ./generated/property-types
