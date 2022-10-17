@@ -34,7 +34,7 @@ from ..._operations._operations import (
     build_lro_request,
     build_post_model_request,
 )
-from .._vendor import MixinABC
+from .._vendor import ResiliencyDevDrivenMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -45,7 +45,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ResiliencyDevDrivenOperationsMixin(MixinABC):
+class ResiliencyDevDrivenOperationsMixin(ResiliencyDevDrivenMixinABC):
     @distributed_trace_async
     async def get_model(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.Product:
         """Get models that you will either return to end users as a raw body, or with a model added during

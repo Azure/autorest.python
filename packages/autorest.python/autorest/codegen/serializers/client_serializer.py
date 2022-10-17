@@ -61,8 +61,9 @@ class ClientSerializer:
         operations_folder = ".aio.operations." if async_mode else ".operations."
         for og in [og for og in self.client.operation_groups if not og.is_mixin]:
             retval.append(f":ivar {og.property_name}: {og.class_name} operations")
+            property_type = f"{self.client.namespace_model.namespace}{operations_folder}{og.class_name}"
             retval.append(
-                f":vartype {og.property_name}: {self.client.namespace_model.namespace}{operations_folder}{og.class_name}"
+                f":vartype {og.property_name}: {property_type}"
             )
         for param in self.client.parameters.method:
             retval.append(
@@ -192,8 +193,9 @@ class ClientSerializer:
         else:
             rest_imported = request_builder.name
             request_builder_name = request_builder.name
+        full_path = f"{self.client.namespace_model.namespace}.{self.client.namespace_model.rest_layer_name}"
         retval.append(
-            f">>> from {self.client.namespace_model.namespace}.{self.client.namespace_model.rest_layer_name} import {rest_imported}"
+            f">>> from {full_path} import {rest_imported}"
         )
         retval.append(
             f">>> request = {request_builder_name}({request_builder_signature})"
