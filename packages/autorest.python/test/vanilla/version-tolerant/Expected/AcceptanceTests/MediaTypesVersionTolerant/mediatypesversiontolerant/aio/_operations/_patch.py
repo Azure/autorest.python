@@ -1,3 +1,4 @@
+# pyright: reportUnnecessaryTypeIgnoreComment=false
 # ------------------------------------
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
@@ -91,10 +92,10 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
         error_map.update(kwargs.pop("error_map", {}) or {})
         request, kwargs = self._prepare_body_three_types(message, **kwargs)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
-        return self._handle_body_three_types_response(pipeline_response, cls=cls, error_map=error_map)
+        return self._handle_body_three_types_response(pipeline_response, cls=cls, error_map=error_map)  # type: ignore
 
 
 __all__: List[str] = [

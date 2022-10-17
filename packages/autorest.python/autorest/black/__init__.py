@@ -8,13 +8,15 @@ from pathlib import Path
 import os
 from typing import Any, Dict
 import black
+from black.mode import Mode as BlackMode  # pylint: disable=no-name-in-module
+from black.report import NothingChanged
 
 from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 
 logging.getLogger("blib2to3").setLevel(logging.ERROR)
 
-_BLACK_MODE = black.Mode()
+_BLACK_MODE = BlackMode()
 _BLACK_MODE.line_length = 120
 
 
@@ -42,7 +44,7 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
             file_content = black.format_file_contents(
                 file_content, fast=True, mode=_BLACK_MODE
             )
-        except black.NothingChanged:
+        except NothingChanged:
             pass
         self.write_file(file, file_content)
 

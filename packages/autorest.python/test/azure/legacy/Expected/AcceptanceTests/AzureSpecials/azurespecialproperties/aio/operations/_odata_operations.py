@@ -78,7 +78,7 @@ class OdataOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_with_filter_request(
             filter=filter,
@@ -89,9 +89,9 @@ class OdataOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -105,4 +105,4 @@ class OdataOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_with_filter.metadata = {"url": "/azurespecials/odata/filter"}  # type: ignore
+    get_with_filter.metadata = {"url": "/azurespecials/odata/filter"}

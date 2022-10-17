@@ -17,7 +17,9 @@ class LocalAutorestAPI(AutorestAPI):
     """A local API that will write on local disk."""
 
     def __init__(
-        self, reachable_files: List[str] = None, output_folder: str = "generated"
+        self,
+        reachable_files: Optional[List[str]] = None,
+        output_folder: str = "generated",
     ) -> None:
         super().__init__()
         if reachable_files is None:

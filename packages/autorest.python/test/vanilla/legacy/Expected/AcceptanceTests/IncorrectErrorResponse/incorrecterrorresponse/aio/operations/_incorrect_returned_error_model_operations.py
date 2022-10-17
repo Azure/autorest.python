@@ -54,7 +54,7 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"],
@@ -62,9 +62,9 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -77,4 +77,4 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_incorrect_error_from_server.metadata = {"url": "/incorrectError"}  # type: ignore
+    get_incorrect_error_from_server.metadata = {"url": "/incorrectError"}

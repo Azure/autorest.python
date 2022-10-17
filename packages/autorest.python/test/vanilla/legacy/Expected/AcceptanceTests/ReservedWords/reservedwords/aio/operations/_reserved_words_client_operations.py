@@ -66,8 +66,8 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         _content = content
 
@@ -79,9 +79,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -98,7 +98,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         return deserialized
 
-    operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}  # type: ignore
+    operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}
 
     @distributed_trace_async
     async def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
@@ -122,8 +122,8 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(json, "object")
 
@@ -135,9 +135,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -154,7 +154,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         return deserialized
 
-    operation_with_json_param.metadata = {"url": "/reservedWords/operation/json"}  # type: ignore
+    operation_with_json_param.metadata = {"url": "/reservedWords/operation/json"}
 
     @distributed_trace_async
     async def operation_with_data_param(self, data: str, world: str, **kwargs: Any) -> JSON:
@@ -180,10 +180,10 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
+        content_type: str = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        )
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         # Construct form data
         _data = {
@@ -199,9 +199,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -218,7 +218,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         return deserialized
 
-    operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}  # type: ignore
+    operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}
 
     @distributed_trace_async
     async def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
@@ -244,8 +244,8 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         # Construct form data
         _files = {
@@ -261,9 +261,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             params=_params,
         )
         request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -280,7 +280,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         return deserialized
 
-    operation_with_files_param.metadata = {"url": "/reservedWords/operation/files"}  # type: ignore
+    operation_with_files_param.metadata = {"url": "/reservedWords/operation/files"}
 
     @distributed_trace_async
     async def operation_with_url(
@@ -313,7 +313,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_operation_with_url_request(
             url=url,
@@ -324,9 +324,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -343,4 +343,4 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         return deserialized
 
-    operation_with_url.metadata = {"url": "/reservedWords/{url}"}  # type: ignore
+    operation_with_url.metadata = {"url": "/reservedWords/{url}"}

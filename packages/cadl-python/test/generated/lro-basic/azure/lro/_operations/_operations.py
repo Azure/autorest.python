@@ -1,4 +1,5 @@
 # pylint: disable=too-many-lines
+# pyright: reportUnnecessaryTypeIgnoreComment=false
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -90,15 +91,15 @@ class LroClientOperationsMixin(LroClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         request = build_lro_create_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -114,9 +115,9 @@ class LroClientOperationsMixin(LroClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_create(self, **kwargs: Any) -> LROPoller[str]:
@@ -136,14 +137,12 @@ class LroClientOperationsMixin(LroClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        cls: ClsType[str] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._create_initial(  # type: ignore
-                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
-            )
+            raw_result = self._create_initial(cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -153,11 +152,11 @@ class LroClientOperationsMixin(LroClientMixinABC):
             else:
                 deserialized = None
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         if polling is True:
-            polling_method = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))  # type: PollingMethod
+            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -169,7 +168,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @distributed_trace
     def polling(self, **kwargs: Any) -> str:
@@ -190,15 +189,15 @@ class LroClientOperationsMixin(LroClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         request = build_lro_polling_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -214,9 +213,9 @@ class LroClientOperationsMixin(LroClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get(self, **kwargs: Any) -> str:
@@ -237,15 +236,15 @@ class LroClientOperationsMixin(LroClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         request = build_lro_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -261,6 +260,6 @@ class LroClientOperationsMixin(LroClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

@@ -70,7 +70,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         api_version=None, # type: Optional[str]
         base_url: str = "http://localhost:3000",
         profile=KnownProfiles.default, # type: KnownProfiles
-        **kwargs  # type: Any
+        **kwargs: Any
     ):
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)

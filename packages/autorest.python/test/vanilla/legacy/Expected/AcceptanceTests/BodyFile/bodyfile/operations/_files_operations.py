@@ -114,7 +114,7 @@ class FilesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         request = build_get_file_request(
             template_url=self.get_file.metadata["url"],
@@ -122,9 +122,9 @@ class FilesOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
 
@@ -138,11 +138,11 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
-    get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
+    get_file.metadata = {"url": "/files/stream/nonempty"}
 
     @distributed_trace
     def get_file_large(self, **kwargs: Any) -> Iterator[bytes]:
@@ -164,7 +164,7 @@ class FilesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         request = build_get_file_large_request(
             template_url=self.get_file_large.metadata["url"],
@@ -172,9 +172,9 @@ class FilesOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
 
@@ -188,11 +188,11 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
-    get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
+    get_file_large.metadata = {"url": "/files/stream/verylarge"}
 
     @distributed_trace
     def get_empty_file(self, **kwargs: Any) -> Iterator[bytes]:
@@ -214,7 +214,7 @@ class FilesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Iterator[bytes]]
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         request = build_get_empty_file_request(
             template_url=self.get_empty_file.metadata["url"],
@@ -222,9 +222,9 @@ class FilesOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
 
@@ -238,8 +238,8 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
-    get_empty_file.metadata = {"url": "/files/stream/empty"}  # type: ignore
+    get_empty_file.metadata = {"url": "/files/stream/empty"}

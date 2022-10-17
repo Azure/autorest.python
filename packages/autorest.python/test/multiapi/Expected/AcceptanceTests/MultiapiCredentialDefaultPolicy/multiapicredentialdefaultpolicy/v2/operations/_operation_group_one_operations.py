@@ -43,8 +43,8 @@ def build_test_two_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))  # type: Literal["2.0.0"]
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    api_version: Literal["2.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -65,7 +65,7 @@ def build_test_three_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))  # type: Literal["2.0.0"]
+    api_version: Literal["2.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -159,9 +159,9 @@ class OperationGroupOneOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))  # type: Literal["2.0.0"]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelTwo]
+        api_version: Literal["2.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.ModelTwo] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -184,9 +184,9 @@ class OperationGroupOneOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -204,7 +204,7 @@ class OperationGroupOneOperations:
 
         return deserialized
 
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}  # type: ignore
+    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}
 
     @distributed_trace
     def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -226,8 +226,8 @@ class OperationGroupOneOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))  # type: Literal["2.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["2.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_three_request(
             api_version=api_version,
@@ -236,9 +236,9 @@ class OperationGroupOneOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -252,4 +252,4 @@ class OperationGroupOneOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_three.metadata = {"url": "/multiapi/one/testThreeEndpoint"}  # type: ignore
+    test_three.metadata = {"url": "/multiapi/one/testThreeEndpoint"}

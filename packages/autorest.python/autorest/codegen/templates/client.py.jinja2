@@ -29,21 +29,12 @@
         {% endif %}
         return self._client.send_request(request_copy, **kwargs)
 
-    {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
-        {% if not async_mode %}
-        # type: () -> None
-        {% endif %}
+    {{ keywords.def }} close(self) -> None:
         {{ keywords.await }}self._client.close()
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self){{ (" -> \"" + client.name + "\"") if async_mode else "" }}:
-        {% if not async_mode %}
-        # type: () -> {{ client.name }}
-        {% endif %}
+    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self){{ " -> \"" + client.name + "\"" }}:
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details){{ " -> None" if async_mode else "" }}:
-        {% if not async_mode %}
-        # type: (Any) -> None
-        {% endif %}
+    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details) -> None:
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}exit__(*exc_details)

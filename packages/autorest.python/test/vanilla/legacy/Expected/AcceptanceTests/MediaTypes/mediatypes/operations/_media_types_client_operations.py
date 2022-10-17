@@ -36,7 +36,7 @@ _SERIALIZER.client_side_validation = False
 def build_analyze_body_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -53,7 +53,7 @@ def build_analyze_body_request(**kwargs: Any) -> HttpRequest:
 def build_analyze_body_no_accept_header_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/mediatypes/analyzeNoAccept")
 
@@ -67,7 +67,7 @@ def build_analyze_body_no_accept_header_request(**kwargs: Any) -> HttpRequest:
 def build_content_type_with_encoding_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -84,7 +84,7 @@ def build_content_type_with_encoding_request(*, content: Optional[str] = None, *
 def build_binary_body_with_two_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
@@ -101,7 +101,7 @@ def build_binary_body_with_two_content_types_request(*, content: IO, **kwargs: A
 def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
@@ -118,7 +118,7 @@ def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs:
 def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
@@ -135,7 +135,7 @@ def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
 def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
@@ -208,8 +208,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         _json = None
         _content = None
@@ -231,9 +231,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -250,7 +250,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         return deserialized
 
-    analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
+    analyze_body.metadata = {"url": "/mediatypes/analyze"}
 
     @overload
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
@@ -317,8 +317,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = None
         _content = None
@@ -340,9 +340,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -355,7 +355,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    analyze_body_no_accept_header.metadata = {"url": "/mediatypes/analyzeNoAccept"}  # type: ignore
+    analyze_body_no_accept_header.metadata = {"url": "/mediatypes/analyzeNoAccept"}
 
     @distributed_trace
     def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
@@ -379,8 +379,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
             _content = self._serialize.body(input, "str")
@@ -395,9 +395,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -414,7 +414,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         return deserialized
 
-    content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
+    content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}
 
     @distributed_trace
     def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -439,8 +439,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         _content = message
 
@@ -452,9 +452,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -471,7 +471,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         return deserialized
 
-    binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}  # type: ignore
+    binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}
 
     @distributed_trace
     def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -497,8 +497,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         _content = message
 
@@ -510,9 +510,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -529,7 +529,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         return deserialized
 
-    binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}  # type: ignore
+    binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}
 
     @overload
     def body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -610,8 +610,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         _json = None
         _content = None
@@ -631,9 +631,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -650,7 +650,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         return deserialized
 
-    body_three_types.metadata = {"url": "/mediatypes/bodyThreeTypes"}  # type: ignore
+    body_three_types.metadata = {"url": "/mediatypes/bodyThreeTypes"}
 
     @distributed_trace
     def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:
@@ -674,8 +674,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(message, "str")
 
@@ -687,9 +687,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -706,4 +706,4 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         return deserialized
 
-    put_text_and_json_body.metadata = {"url": "/mediatypes/textAndJson"}  # type: ignore
+    put_text_and_json_body.metadata = {"url": "/mediatypes/textAndJson"}

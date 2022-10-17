@@ -66,7 +66,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         endpoint: str,
         api_version: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
-        **kwargs  # type: Any
+        **kwargs: Any
     ) -> None:
         if api_version == '1.0.0':
             base_url = '{Endpoint}/multiapiCustomBaseUrl/v1'

@@ -114,7 +114,9 @@ class AutorestAPI(ABC):
     def message(self, channel: Channel, text: str) -> None:
         """Send a log message to autorest."""
 
-    def get_boolean_value(self, key: str, default: bool = None) -> Optional[bool]:
+    def get_boolean_value(
+        self, key: str, default: Optional[bool] = None
+    ) -> Optional[bool]:
         """Check if value is present on the line, and interpret it as bool if it was.
 
         If value is not not on the line, return the "default".

@@ -7,6 +7,7 @@ import contextlib
 import os
 import sys
 import logging
+from typing import no_type_check
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
 
@@ -31,6 +32,7 @@ def GetPluginNames():
 
 
 @dispatcher.add_method
+@no_type_check
 def Process(plugin_name: str, session_id: str) -> bool:
     # pylint: disable=import-outside-toplevel
     """JSON-RPC process call."""
@@ -46,19 +48,19 @@ def Process(plugin_name: str, session_id: str) -> bool:
         if plugin_name == "m2r":
             from ..m2r import M2RAutorest as PluginToLoad
         elif plugin_name == "preprocess":
-            from ..preprocess import PreProcessPluginAutorest as PluginToLoad  # type: ignore
+            from ..preprocess import PreProcessPluginAutorest as PluginToLoad
         elif plugin_name == "m4reformatter":
-            from ..m4reformatter import M4Reformatter as PluginToLoad  # type: ignore
+            from ..m4reformatter import M4Reformatter as PluginToLoad
         elif plugin_name == "codegen":
-            from ..codegen import CodeGeneratorAutorest as PluginToLoad  # type: ignore
+            from ..codegen import CodeGeneratorAutorest as PluginToLoad
         elif plugin_name == "postprocess":
-            from ..postprocess import PostProcessPluginAutorest as PluginToLoad  # type: ignore
+            from ..postprocess import PostProcessPluginAutorest as PluginToLoad
         elif plugin_name == "black":
-            from ..black import BlackScriptPluginAutorest as PluginToLoad  # type: ignore
+            from ..black import BlackScriptPluginAutorest as PluginToLoad
         elif plugin_name == "multiapiscript":
-            from ..multiapi import MultiApiScriptPluginAutorest as PluginToLoad  # type: ignore
+            from ..multiapi import MultiApiScriptPluginAutorest as PluginToLoad
         elif plugin_name == "multiclientscript":
-            from ..multiclient import MultiClientPluginAutorest as PluginToLoad  # type: ignore
+            from ..multiclient import MultiClientPluginAutorest as PluginToLoad
         else:
             _LOGGER.fatal("Unknown plugin name %s", plugin_name)
             raise RuntimeError(f"Unknown plugin name {plugin_name}")

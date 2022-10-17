@@ -15,6 +15,7 @@ from ..models import (
     OverloadedRequestBuilder,
     Client,
 )
+from ..models.lro_operation import LROOperationBase
 from .import_serializer import FileImportSerializer
 from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
 
@@ -64,6 +65,14 @@ class OperationGroupsSerializer:
         template = self.env.get_or_select_template(
             "operation_groups_container.py.jinja2"
         )
+
+        pyright_not_report_unnecessary_ignore = any(
+            isinstance(op, LROOperationBase)
+            and op.lro_response
+            and op.lro_response.type
+            for og in operation_groups
+            for op in og.operations
+        )
         return template.render(
             code_model=self.code_model,
             operation_groups=operation_groups,
@@ -82,4 +91,5 @@ class OperationGroupsSerializer:
                 async_mode=False,
             ),
             get_request_builders=self._get_request_builders,
+            pyright_not_report_unnecessary_ignore=pyright_not_report_unnecessary_ignore,
         )

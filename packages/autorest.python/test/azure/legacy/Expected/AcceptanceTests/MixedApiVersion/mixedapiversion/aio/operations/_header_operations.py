@@ -76,7 +76,7 @@ class HeaderOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
@@ -85,9 +85,9 @@ class HeaderOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -104,7 +104,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
+    custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}
 
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
@@ -134,7 +134,7 @@ class HeaderOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
@@ -147,9 +147,9 @@ class HeaderOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -166,7 +166,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
+    custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}
 
     @distributed_trace_async
     async def custom_named_request_id_head(  # pylint: disable=inconsistent-return-statements
@@ -192,7 +192,7 @@ class HeaderOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
@@ -201,9 +201,9 @@ class HeaderOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -221,4 +221,4 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore
+    custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}

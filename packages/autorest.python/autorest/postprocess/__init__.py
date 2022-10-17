@@ -9,11 +9,13 @@ import os
 import shutil
 from venv import EnvBuilder
 import black
+from black.mode import Mode as BlackMode  # pylint: disable=no-name-in-module
+from black.report import NothingChanged
 from .venvtools import ExtendedEnvBuilder, python_run
 
 from .. import Plugin, PluginAutorest
 
-_BLACK_MODE = black.Mode()
+_BLACK_MODE = BlackMode()
 _BLACK_MODE.line_length = 120
 
 
@@ -24,7 +26,7 @@ def format_file(file: Path, file_content: str) -> str:
         file_content = black.format_file_contents(
             file_content, fast=True, mode=_BLACK_MODE
         )
-    except black.NothingChanged:
+    except NothingChanged:
         pass
     return file_content
 
@@ -170,7 +172,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
                 added_objs.append(obj)
         file_content = file_content.replace(
             "try:\n    from ._patch import __all__ as _patch_all\n    "
-            "from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import"
+            "from ._patch import *  # pylint: disable=unused-wildcard-import"
             "\nexcept ImportError:\n    _patch_all = []",
             "",
         )
@@ -178,7 +180,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             "from ._patch import __all__ as _patch_all", ""
         )
         file_content = file_content.replace(
-            "from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import\n",
+            "from ._patch import *  # pylint: disable=unused-wildcard-import\n",
             "",
         )
         file_content = file_content.replace(

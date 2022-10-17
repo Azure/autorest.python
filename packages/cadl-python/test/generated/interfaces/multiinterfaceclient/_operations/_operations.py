@@ -58,7 +58,7 @@ def build_multi_interface_client_get_dogs_request(**kwargs: Any) -> HttpRequest:
 def build_multi_interface_client_set_dogs_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -89,7 +89,7 @@ def build_multi_interface_client_get_cats_request(**kwargs: Any) -> HttpRequest:
 def build_multi_interface_client_set_cats_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -123,15 +123,15 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Dog]
+        cls: ClsType[_models.Dog] = kwargs.pop("cls", None)
 
         request = build_multi_interface_client_get_dogs_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -144,9 +144,9 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         deserialized = _deserialize(_models.Dog, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def set_dogs(
@@ -202,8 +202,8 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Dog]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Dog] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -218,9 +218,9 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -233,9 +233,9 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         deserialized = _deserialize(_models.Dog, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_cats(self, **kwargs: Any) -> _models.Cat:
@@ -256,15 +256,15 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Cat]
+        cls: ClsType[_models.Cat] = kwargs.pop("cls", None)
 
         request = build_multi_interface_client_get_cats_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -277,9 +277,9 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         deserialized = _deserialize(_models.Cat, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def set_cats(
@@ -335,8 +335,8 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Cat]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Cat] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -351,9 +351,9 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -366,6 +366,6 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         deserialized = _deserialize(_models.Cat, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

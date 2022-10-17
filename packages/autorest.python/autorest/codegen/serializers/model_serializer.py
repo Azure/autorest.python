@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, List
+from typing import List, cast
 from abc import ABC, abstractmethod
 
 from jinja2 import Environment
@@ -77,7 +77,7 @@ class _ModelSerializer(ABC):
             typing = "Optional[str]"
         else:
             typing = "str"
-        return f"self.{prop.client_name} = {discriminator_value}  # type: {typing}"
+        return f"self.{prop.client_name}: {typing}  = {discriminator_value}"
 
     @staticmethod
     def initialize_standard_property(prop: Property):
@@ -152,7 +152,7 @@ class MsrestModelSerializer(_ModelSerializer):
             else "_serialization.Model"
         )
         if model.parents:
-            basename = ", ".join([cast(ModelType, m).name for m in model.parents])
+            basename = ", ".join([m.name for m in model.parents])
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
@@ -163,9 +163,7 @@ class MsrestModelSerializer(_ModelSerializer):
                     p.client_name: p
                     for bm in model.parents
                     for p in model.properties
-                    if p not in cast(ModelType, bm).properties
-                    or p.is_discriminator
-                    or p.constant
+                    if p not in bm.properties or p.is_discriminator or p.constant
                 }.values()
             )
         else:
@@ -220,7 +218,7 @@ class DpgModelSerializer(_ModelSerializer):
     def declare_model(self, model: ModelType) -> str:
         basename = "_model_base.Model"
         if model.parents:
-            basename = ", ".join([cast(ModelType, m).name for m in model.parents])
+            basename = ", ".join([m.name for m in model.parents])
         if model.discriminator_value:
             basename += f", discriminator='{model.discriminator_value}'"
         return f"class {model.name}({basename}):{model.pylint_disable}"
@@ -228,9 +226,7 @@ class DpgModelSerializer(_ModelSerializer):
     @staticmethod
     def get_properties_to_declare(model: ModelType) -> List[Property]:
         if model.parents:
-            parent_properties = [
-                p for bm in model.parents for p in cast(ModelType, bm).properties
-            ]
+            parent_properties = [p for bm in model.parents for p in bm.properties]
             properties_to_declare = [
                 p
                 for p in model.properties

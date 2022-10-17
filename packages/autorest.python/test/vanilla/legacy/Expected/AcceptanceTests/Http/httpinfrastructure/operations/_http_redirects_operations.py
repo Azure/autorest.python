@@ -97,7 +97,7 @@ def build_get301_request(**kwargs: Any) -> HttpRequest:
 def build_put301_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -142,7 +142,7 @@ def build_get302_request(**kwargs: Any) -> HttpRequest:
 def build_patch302_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -159,7 +159,7 @@ def build_patch302_request(*, json: Literal[True] = True, **kwargs: Any) -> Http
 def build_post303_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -218,7 +218,7 @@ def build_options307_request(**kwargs: Any) -> HttpRequest:
 def build_put307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -235,7 +235,7 @@ def build_put307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRe
 def build_patch307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -252,7 +252,7 @@ def build_patch307_request(*, json: Literal[True] = True, **kwargs: Any) -> Http
 def build_post307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -269,7 +269,7 @@ def build_post307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpR
 def build_delete307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -322,7 +322,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head300_request(
             template_url=self.head300.metadata["url"],
@@ -330,9 +330,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -350,7 +350,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head300.metadata = {"url": "/http/redirect/300"}  # type: ignore
+    head300.metadata = {"url": "/http/redirect/300"}
 
     @distributed_trace
     def get300(self, **kwargs: Any) -> Optional[List[str]]:
@@ -372,7 +372,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[str]]]
+        cls: ClsType[Optional[List[str]]] = kwargs.pop("cls", None)
 
         request = build_get300_request(
             template_url=self.get300.metadata["url"],
@@ -380,9 +380,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -405,7 +405,7 @@ class HttpRedirectsOperations:
 
         return deserialized
 
-    get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
+    get300.metadata = {"url": "/http/redirect/300"}
 
     @distributed_trace
     def head301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -427,7 +427,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head301_request(
             template_url=self.head301.metadata["url"],
@@ -435,9 +435,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -455,7 +455,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
+    head301.metadata = {"url": "/http/redirect/301"}
 
     @distributed_trace
     def get301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -477,7 +477,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get301_request(
             template_url=self.get301.metadata["url"],
@@ -485,9 +485,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -505,7 +505,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
+    get301.metadata = {"url": "/http/redirect/301"}
 
     @distributed_trace
     def put301(  # pylint: disable=inconsistent-return-statements
@@ -533,8 +533,8 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -549,9 +549,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -568,7 +568,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
+    put301.metadata = {"url": "/http/redirect/301"}
 
     @distributed_trace
     def head302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -590,7 +590,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head302_request(
             template_url=self.head302.metadata["url"],
@@ -598,9 +598,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -618,7 +618,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
+    head302.metadata = {"url": "/http/redirect/302"}
 
     @distributed_trace
     def get302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -640,7 +640,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get302_request(
             template_url=self.get302.metadata["url"],
@@ -648,9 +648,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -668,7 +668,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
+    get302.metadata = {"url": "/http/redirect/302"}
 
     @distributed_trace
     def patch302(  # pylint: disable=inconsistent-return-statements
@@ -696,8 +696,8 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -712,9 +712,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -731,7 +731,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
+    patch302.metadata = {"url": "/http/redirect/302"}
 
     @distributed_trace
     def post303(  # pylint: disable=inconsistent-return-statements
@@ -759,8 +759,8 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -775,9 +775,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -795,7 +795,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
+    post303.metadata = {"url": "/http/redirect/303"}
 
     @distributed_trace
     def head307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -817,7 +817,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head307_request(
             template_url=self.head307.metadata["url"],
@@ -825,9 +825,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -845,7 +845,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
+    head307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace
     def get307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -867,7 +867,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get307_request(
             template_url=self.get307.metadata["url"],
@@ -875,9 +875,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -895,7 +895,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
+    get307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace
     def options307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -917,7 +917,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options307_request(
             template_url=self.options307.metadata["url"],
@@ -925,9 +925,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -945,7 +945,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
+    options307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace
     def put307(  # pylint: disable=inconsistent-return-statements
@@ -972,8 +972,8 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -988,9 +988,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1008,7 +1008,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
+    put307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace
     def patch307(  # pylint: disable=inconsistent-return-statements
@@ -1035,8 +1035,8 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -1051,9 +1051,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1071,7 +1071,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
+    patch307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace
     def post307(  # pylint: disable=inconsistent-return-statements
@@ -1098,8 +1098,8 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -1114,9 +1114,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1134,7 +1134,7 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
+    post307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace
     def delete307(  # pylint: disable=inconsistent-return-statements
@@ -1161,8 +1161,8 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -1177,9 +1177,9 @@ class HttpRedirectsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1197,4 +1197,4 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    delete307.metadata = {"url": "/http/redirect/307"}  # type: ignore
+    delete307.metadata = {"url": "/http/redirect/307"}

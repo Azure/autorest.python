@@ -33,7 +33,7 @@ class ServiceDriven2ClientConfiguration(Configuration):  # pylint: disable=too-m
 
     def __init__(self, **kwargs: Any) -> None:
         super(ServiceDriven2ClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "1.1.0")  # type: Literal["1.1.0"]
+        api_version: Literal["1.1.0"] = kwargs.pop("api_version", "1.1.0")
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "servicedriven2client/{}".format(VERSION))

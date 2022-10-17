@@ -1,4 +1,5 @@
 # pylint: disable=too-many-lines
+# pyright: reportUnnecessaryTypeIgnoreComment=false
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -58,7 +59,7 @@ def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endp
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
+    constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -67,7 +68,7 @@ def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endp
         "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, "str", skip_quote=True),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -88,7 +89,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
+        cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
         request = build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request(
             headers=_headers,
@@ -98,9 +99,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
+        request.url = self._client.format_url(request.url, **path_format_arguments)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -146,12 +147,12 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        cls: ClsType[str] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._poll_with_parameterized_endpoints_initial(  # type: ignore
+            raw_result = self._poll_with_parameterized_endpoints_initial(
                 account_name=account_name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
@@ -163,7 +164,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
             else:
                 deserialized = None
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         path_format_arguments = {
@@ -172,7 +173,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         }
 
         if polling is True:
-            polling_method = cast(
+            polling_method: PollingMethod = cast(
                 PollingMethod,
                 LROBasePolling(
                     lro_delay,
@@ -180,7 +181,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                     path_format_arguments=path_format_arguments,
                     **kwargs,
                 ),
-            )  # type: PollingMethod
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -192,7 +193,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _poll_with_constant_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         error_map = {
@@ -206,8 +207,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
+        constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
+        cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
         request = build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
@@ -218,9 +219,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
+        request.url = self._client.format_url(request.url, **path_format_arguments)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -269,13 +270,13 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: Literal["iAmConstant"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
+        cls: ClsType[str] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._poll_with_constant_parameterized_endpoints_initial(  # type: ignore
+            raw_result = self._poll_with_constant_parameterized_endpoints_initial(
                 account_name=account_name,
                 constant_parameter=constant_parameter,
                 cls=lambda x, y, z: x,
@@ -292,7 +293,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
             else:
                 deserialized = None
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         path_format_arguments = {
@@ -301,9 +302,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         }
 
         if polling is True:
-            polling_method = cast(
+            polling_method: PollingMethod = cast(
                 PollingMethod, LROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs)
-            )  # type: PollingMethod
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -315,4 +316,4 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore

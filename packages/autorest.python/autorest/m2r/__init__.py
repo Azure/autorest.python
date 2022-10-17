@@ -6,7 +6,7 @@
 """An autorest MD to RST plugin.
 """
 import logging
-from typing import Any, Dict, Set
+from typing import Any, Dict, Set, Union
 
 import m2r2
 
@@ -35,7 +35,7 @@ class M2R(YamlUpdatePlugin):  # pylint: disable=abstract-method
         self._convert_docstring_no_cycles(yaml_data, set())
 
     def _convert_docstring_no_cycles(
-        self, yaml_data: Dict[str, Any], node_list: Set[int]
+        self, yaml_data: Union[Dict[str, Any], str], node_list: Set[int]
     ) -> None:
         """Walk the YAML tree to convert MD to RST."""
         if id(yaml_data) in node_list:

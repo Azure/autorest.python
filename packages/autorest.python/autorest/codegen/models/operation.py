@@ -14,6 +14,7 @@ from typing import (
     Generic,
     TypeVar,
     cast,
+    no_type_check,
 )
 
 from .request_builder_parameter import RequestBuilderParameter
@@ -160,10 +161,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             isinstance(r.type, ModelType) for r in self.responses
         ):
             r = next(r for r in self.responses if isinstance(r.type, ModelType))
-            type_name = getattr(r, "item_type", getattr(r, "type")).docstring_text(
-                **kwargs
-            )
-            retval += f". The {type_name} is compatible with MutableMapping"
+            item_type = getattr(r, "item_type", getattr(r, "type"))
+            if item_type:
+                type_name = item_type.docstring_text(**kwargs)
+                retval += f". The {type_name} is compatible with MutableMapping"
         return retval
 
     def response_docstring_type(self, **kwargs) -> str:
@@ -344,9 +345,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
 
         if self.has_kwargs_to_pop_with_default(
-            self.parameters.kwargs_to_pop, ParameterLocation.HEADER
+            self.parameters.kwargs_to_pop, ParameterLocation.HEADER  # type: ignore
         ) or self.has_kwargs_to_pop_with_default(
-            self.parameters.kwargs_to_pop, ParameterLocation.QUERY
+            self.parameters.kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
         ):
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
@@ -508,15 +509,16 @@ class Operation(OperationBase[Response]):
         return file_import
 
 
+@no_type_check
 def get_operation(
     yaml_data: Dict[str, Any], code_model: "CodeModel", client: "Client"
 ) -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":
         from .lro_paging_operation import LROPagingOperation as OperationCls
     elif yaml_data["discriminator"] == "lro":
-        from .lro_operation import LROOperation as OperationCls  # type: ignore
+        from .lro_operation import LROOperation as OperationCls
     elif yaml_data["discriminator"] == "paging":
-        from .paging_operation import PagingOperation as OperationCls  # type: ignore
+        from .paging_operation import PagingOperation as OperationCls
     else:
-        from . import Operation as OperationCls  # type: ignore
+        from . import Operation as OperationCls
     return OperationCls.from_yaml(yaml_data, code_model, client)

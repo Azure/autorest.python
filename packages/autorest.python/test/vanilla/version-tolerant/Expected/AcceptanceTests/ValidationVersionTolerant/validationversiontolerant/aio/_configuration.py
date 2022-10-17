@@ -35,7 +35,7 @@ class AutoRestValidationTestConfiguration(Configuration):  # pylint: disable=too
 
     def __init__(self, subscription_id: str, **kwargs: Any) -> None:
         super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: Literal["1.0.0"]
+        api_version: Literal["1.0.0"] = kwargs.pop("api_version", "1.0.0")
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")

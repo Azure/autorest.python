@@ -55,6 +55,13 @@ class SampleSerializer:
             imports.add_submodule_import(
                 "azure.core.credentials", "AzureKeyCredential", ImportType.THIRDPARTY
             )
+        for param in self.operation.parameters.positional:
+            if (
+                not param.client_default_value
+                and not param.optional
+                and param.rest_api_name in self.sample["parameters"]
+            ):
+                imports.merge(param.type.imports_for_sample())
         return FileImportSerializer(imports, True)
 
     def _client_params(self) -> Dict[str, Any]:
@@ -94,7 +101,6 @@ class SampleSerializer:
             for p in self.operation.parameters.positional
             if not p.client_default_value
         ]
-        cls = lambda x: f'"{x}"' if isinstance(x, str) else str(x)
         failure_info = "fail to find required param named {} in example file {}"
         operation_params = {}
         for param in params_positional:
@@ -103,7 +109,9 @@ class SampleSerializer:
             if not param.optional:
                 if not param_value:
                     raise Exception(failure_info.format(name, self.sample_origin_name))
-                operation_params[param.client_name] = cls(param_value)
+                operation_params[param.client_name] = param.type.serialize_sample_value(
+                    param_value
+                )
         return operation_params
 
     def _operation_group_name(self) -> str:

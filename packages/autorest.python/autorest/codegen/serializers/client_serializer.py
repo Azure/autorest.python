@@ -116,15 +116,19 @@ class ClientSerializer:
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
+        dict_annotation = False
         if self.client.code_model.model_types:
             client_models_value = (
                 "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
             )
         else:
-            client_models_value = "{}  # type: Dict[str, Any]"
+            client_models_value = "{}"
+            dict_annotation = True
         is_msrest_model = self.client.code_model.options["models_mode"] == "msrest"
         if is_msrest_model:
-            retval.append(f"client_models = {client_models_value}")
+            retval.append(
+                f"client_models{': Dict[str, Any]' if dict_annotation else ''} = {client_models_value}"
+            )
         client_models_str = "client_models" if is_msrest_model else ""
         retval.append(f"self._serialize = Serializer({client_models_str})")
         retval.append(f"self._deserialize = Deserializer({client_models_str})")
@@ -136,7 +140,7 @@ class ClientSerializer:
         for og in operation_groups:
             retval.extend(
                 [
-                    f"self.{og.property_name} = {og.class_name}({og.mypy_ignore}{og.pylint_disable}",
+                    f"self.{og.property_name} = {og.class_name}({og.pylint_disable}",
                     "    self._client, self._config, self._serialize, self._deserialize",
                     ")",
                 ]
