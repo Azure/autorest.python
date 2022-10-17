@@ -152,14 +152,10 @@ class MetadataSerializer:
                 self.code_model.client.imports_for_multiapi(async_mode=True).to_dict()
             ),
             sync_config_imports=_json_serialize_imports(
-                self.code_model.config.imports(
-                    async_mode=False, for_multiapi=True
-                ).to_dict()
+                self.code_model.config.imports_for_multiapi(async_mode=False).to_dict()
             ),
             async_config_imports=_json_serialize_imports(
-                self.code_model.config.imports(
-                    async_mode=True, for_multiapi=True
-                ).to_dict()
+                self.code_model.config.imports_for_multiapi(async_mode=True).to_dict()
             ),
             get_async_operation_serializer=functools.partial(
                 get_operation_serializer,
