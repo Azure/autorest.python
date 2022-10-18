@@ -27,13 +27,13 @@ from ...operations._error_with_secrets_operations import (
     build_create_secret_request,
     build_get_error_with_secrets_request,
 )
-from .._vendor import MixinABC
+from .._vendor import ErrorWithSecretsMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ErrorWithSecretsOperationsMixin(MixinABC):
+class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
     @distributed_trace_async
     async def create_secret(self, **kwargs: Any) -> _models.SecretResponse:
         """Creates a secret.

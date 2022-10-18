@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import AnythingClientMixinABC, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -116,7 +116,7 @@ def build_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class AnythingClientOperationsMixin(MixinABC):
+class AnythingClientOperationsMixin(AnythingClientMixinABC):
     @distributed_trace
     def get_object(self, **kwargs: Any) -> Any:
         """Basic get that returns an object as anything. Returns object { 'message': 'An object was

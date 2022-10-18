@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import AutoRestReportServiceForAzureMixinABC, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -52,7 +52,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class AutoRestReportServiceForAzureOperationsMixin(MixinABC):
+class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzureMixinABC):
     @distributed_trace
     def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.

@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from ._serialization import Deserializer, Serializer
 
 
-class MixinABC(ABC):
+class AuthenticationOAuth2MixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
 
     _client: "PipelineClient"

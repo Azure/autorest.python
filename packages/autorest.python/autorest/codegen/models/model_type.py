@@ -13,7 +13,7 @@ from .property import Property
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
 
 
 def _get_properties(type: "ModelType", properties: List[Property]) -> List[Property]:
@@ -47,13 +47,13 @@ class ModelType(
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         *,
         properties: Optional[List[Property]] = None,
         parents: Optional[List["ModelType"]] = None,
         discriminated_subtypes: Optional[Dict[str, "ModelType"]] = None,
     ) -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.name: str = self.yaml_data["name"]
         self.max_properties: Optional[int] = self.yaml_data.get("maxProperties")
         self.min_properties: Optional[int] = self.yaml_data.get("minProperties")
@@ -74,10 +74,10 @@ class ModelType(
 
     @property
     def serialization_type(self) -> str:
-        if self.code_model.options["models_mode"] == "msrest":
-            private_model_path = f"_models.{self.code_model.models_filename}."
+        if self.namespace_model.options["models_mode"] == "msrest":
+            private_model_path = f"_models.{self.namespace_model.models_filename}."
             return f"{'' if self.is_public else private_model_path}{self.name}"
-        if self.code_model.options["models_mode"] == "dpg":
+        if self.namespace_model.options["models_mode"] == "dpg":
             return f"{'' if self.is_public else '_models.'}_models.{self.name}"
         return "object"
 
@@ -86,24 +86,24 @@ class ModelType(
         return any(p.is_polymorphic for p in self.properties)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
+        if self.namespace_model.options["models_mode"]:
             is_operation_file = kwargs.pop("is_operation_file", False)
             retval = f"_models.{self.name}"
             if not self.is_public:
-                retval = f"{self.code_model.models_filename}.{retval}"
+                retval = f"{self.namespace_model.models_filename}.{retval}"
             return retval if is_operation_file else f'"{retval}"'
         return "ET.Element" if self.is_xml else "JSON"
 
     def docstring_type(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
-            return f"~{self.code_model.namespace}.models.{self.name}"
+        if self.namespace_model.options["models_mode"]:
+            return f"~{self.namespace_model.namespace}.models.{self.name}"
         return "ET.Element" if self.is_xml else "JSON"
 
     def description(self, *, is_operation_file: bool = False) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", self.name)
 
     def docstring_text(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
+        if self.namespace_model.options["models_mode"]:
             return self.name
         return "XML Element" if self.is_xml else "JSON object"
 
@@ -198,7 +198,7 @@ class ModelType(
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
     ) -> "ModelType":
         raise ValueError(
             "You shouldn't call from_yaml for ModelType to avoid recursion. "
@@ -206,21 +206,21 @@ class ModelType(
         )
 
     def fill_instance_from_yaml(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
     ) -> None:
         from . import build_type
 
         self.parents = [
-            cast(ModelType, build_type(bm, code_model))
+            cast(ModelType, build_type(bm, namespace_model))
             for bm in yaml_data.get("parents", [])
         ]
         properties = [
-            Property.from_yaml(p, code_model) for p in yaml_data["properties"]
+            Property.from_yaml(p, namespace_model) for p in yaml_data["properties"]
         ]
         self.properties = _get_properties(self, properties)
         # checking to see if this is a polymorphic class
         self.discriminated_subtypes = {
-            k: cast(ModelType, build_type(v, code_model))
+            k: cast(ModelType, build_type(v, namespace_model))
             for k, v in self.yaml_data.get("discriminatedSubtypes", {}).items()
         }
 
@@ -250,7 +250,7 @@ class ModelType(
 
     @property
     def instance_check_template(self) -> str:
-        models_mode = self.code_model.options["models_mode"]
+        models_mode = self.namespace_model.options["models_mode"]
         if models_mode == "msrest":
             return "isinstance({}, msrest.Model)"
         if models_mode == "dpg":
@@ -274,12 +274,12 @@ class ModelType(
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         relative_path = kwargs.pop("relative_path", None)
-        if self.code_model.options["models_mode"] and relative_path:
+        if self.namespace_model.options["models_mode"] and relative_path:
             # add import for models in operations file
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )
-        if self.code_model.options["models_mode"] == "msrest":
+        if self.namespace_model.options["models_mode"] == "msrest":
             return file_import
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL

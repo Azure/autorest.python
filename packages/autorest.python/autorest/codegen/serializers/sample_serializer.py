@@ -14,7 +14,7 @@ from autorest.codegen.models.imports import FileImport, ImportType
 from autorest.codegen.models.operation import OperationBase
 from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.serializers.import_serializer import FileImportSerializer
-from ..models import CodeModel
+from ..models import NamespaceModel
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ _LOGGER = logging.getLogger(__name__)
 class SampleSerializer:
     def __init__(
         self,
-        code_model: CodeModel,
+        namespace_model: NamespaceModel,
         env: Environment,
         operation_group: OperationGroup,
         operation: OperationBase[Any],
@@ -30,7 +30,7 @@ class SampleSerializer:
         file_name: str,
         sample_origin_name: str,
     ) -> None:
-        self.code_model = code_model
+        self.namespace_model = namespace_model
         self.env = env
         self.operation_group = operation_group
         self.operation = operation
@@ -40,13 +40,13 @@ class SampleSerializer:
 
     def _imports(self) -> FileImportSerializer:
         imports = FileImport()
-        namespace = (self.code_model.options["package_name"] or "").replace(
+        namespace = (self.namespace_model.options["package_name"] or "").replace(
             "-", "."
-        ) or self.code_model.namespace
+        ) or self.namespace_model.namespace
         imports.add_submodule_import(
-            namespace, self.code_model.client.name, ImportType.THIRDPARTY
+            namespace, self.namespace_model.clients[0].name, ImportType.THIRDPARTY
         )
-        credential_type = getattr(self.code_model.credential, "type", None)
+        credential_type = getattr(self.namespace_model.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             imports.add_submodule_import(
                 "azure.identity", "DefaultAzureCredential", ImportType.THIRDPARTY
@@ -61,7 +61,7 @@ class SampleSerializer:
     def _client_params(self) -> Dict[str, Any]:
         # client params
         special_param = dict()
-        credential_type = getattr(self.code_model.credential, "type", None)
+        credential_type = getattr(self.namespace_model.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             special_param.update({"credential": "DefaultAzureCredential()"})
         elif isinstance(credential_type, AzureKeyCredentialType):
@@ -71,7 +71,7 @@ class SampleSerializer:
 
         params_positional = [
             p
-            for p in self.code_model.client.parameters.positional
+            for p in self.namespace_model.clients[0].parameters.positional
             if not (p.optional or p.client_default_value)
         ]
         cls = lambda x: f'"{x}"'
@@ -134,7 +134,7 @@ class SampleSerializer:
 
     def serialize(self) -> str:
         return self.env.get_template("sample.py.jinja2").render(
-            code_model=self.code_model,
+            namespace_model=self.namespace_model,
             file_name=self.file_name,
             operation_result=self._operation_result(),
             operation_params=self._operation_params(),

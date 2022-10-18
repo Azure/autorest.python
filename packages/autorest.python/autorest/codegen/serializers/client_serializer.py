@@ -6,18 +6,18 @@
 from typing import List
 
 from . import utils
-from ..models import CodeModel, ParameterMethodLocation
+from ..models import Client, ParameterMethodLocation
 from .parameter_serializer import ParameterSerializer, PopKwargType
 
 
 class ClientSerializer:
-    def __init__(self, code_model: CodeModel) -> None:
-        self.code_model = code_model
+    def __init__(self, client: Client) -> None:
+        self.client = client
         self.parameter_serializer = ParameterSerializer()
 
     def _init_signature(self, async_mode: bool) -> str:
         pylint_disable = ""
-        if not self.code_model.client.parameters.credential:
+        if not self.client.parameters.credential:
             pylint_disable = (
                 "  # pylint: disable=missing-client-constructor-parameter-credential"
             )
@@ -25,9 +25,7 @@ class ClientSerializer:
             function_def="def",
             method_name="__init__",
             need_self_param=True,
-            method_param_signatures=self.code_model.client.parameters.method_signature(
-                async_mode
-            ),
+            method_param_signatures=self.client.parameters.method_signature(async_mode),
             pylint_disable=pylint_disable,
         )
 
@@ -40,7 +38,7 @@ class ClientSerializer:
 
     def pop_kwargs_from_signature(self) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
-            self.code_model.client.parameters.kwargs_to_pop,
+            self.client.parameters.kwargs_to_pop,
             check_kwarg_dict=False,
             pop_headers_kwarg=PopKwargType.NO,
             pop_params_kwarg=PopKwargType.NO,
@@ -48,12 +46,12 @@ class ClientSerializer:
 
     @property
     def class_definition(self) -> str:
-        class_name = self.code_model.client.name
-        has_mixin_og = any(og for og in self.code_model.operation_groups if og.is_mixin)
+        class_name = self.client.name
+        has_mixin_og = any(og for og in self.client.operation_groups if og.is_mixin)
         base_class = ""
         if has_mixin_og:
             base_class = f"{class_name}OperationsMixin"
-        pylint_disable = self.code_model.client.pylint_disable
+        pylint_disable = self.client.pylint_disable
         if base_class:
             return f"class {class_name}({base_class}):{pylint_disable}"
         return f"class {class_name}:{pylint_disable}"
@@ -61,19 +59,18 @@ class ClientSerializer:
     def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []
         operations_folder = ".aio.operations." if async_mode else ".operations."
-        for og in [og for og in self.code_model.operation_groups if not og.is_mixin]:
+        for og in [og for og in self.client.operation_groups if not og.is_mixin]:
             retval.append(f":ivar {og.property_name}: {og.class_name} operations")
-            retval.append(
-                f":vartype {og.property_name}: {self.code_model.namespace}{operations_folder}{og.class_name}"
-            )
-        for param in self.code_model.client.parameters.method:
+            property_type = f"{self.client.namespace_model.namespace}{operations_folder}{og.class_name}"
+            retval.append(f":vartype {og.property_name}: {property_type}")
+        for param in self.client.parameters.method:
             retval.append(
                 f":{param.description_keyword} {param.client_name}: {param.description}"
             )
             retval.append(
                 f":{param.docstring_type_keyword} {param.client_name}: {param.docstring_type(async_mode=async_mode)}"
             )
-        if self.code_model.has_lro_operations:
+        if self.client.has_lro_operations:
             retval.append(
                 ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
                 "if no Retry-After header is present."
@@ -82,11 +79,11 @@ class ClientSerializer:
         return retval
 
     def initialize_config(self) -> str:
-        config_name = f"{self.code_model.client.name}Configuration"
+        config_name = f"{self.client.name}Configuration"
         config_call = ", ".join(
             [
                 f"{p.client_name}={p.client_name}"
-                for p in self.code_model.config.parameters.method
+                for p in self.client.config.parameters.method
                 if p.method_location != ParameterMethodLocation.KWARG
             ]
             + ["**kwargs"]
@@ -96,9 +93,7 @@ class ClientSerializer:
     @property
     def host_variable_name(self) -> str:
         try:
-            return next(
-                p for p in self.code_model.client.parameters if p.is_host
-            ).client_name
+            return next(p for p in self.client.parameters if p.is_host).client_name
         except StopIteration:
             return "_endpoint"
 
@@ -106,12 +101,12 @@ class ClientSerializer:
     def should_init_super(self) -> bool:
         return any(
             og
-            for og in self.code_model.operation_groups
+            for og in self.client.operation_groups
             if og.is_mixin and og.has_abstract_operations
         )
 
     def initialize_pipeline_client(self, async_mode: bool) -> str:
-        pipeline_client_name = self.code_model.client.pipeline_class(async_mode)
+        pipeline_client_name = self.client.pipeline_class(async_mode)
         return (
             f"self._client = {pipeline_client_name}(base_url={self.host_variable_name}, "
             "config=self._config, **kwargs)"
@@ -119,22 +114,22 @@ class ClientSerializer:
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
-        if self.code_model.model_types:
+        if self.client.namespace_model.model_types:
             client_models_value = (
                 "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
             )
         else:
             client_models_value = "{}  # type: Dict[str, Any]"
-        is_msrest_model = self.code_model.options["models_mode"] == "msrest"
+        is_msrest_model = self.client.namespace_model.options["models_mode"] == "msrest"
         if is_msrest_model:
             retval.append(f"client_models = {client_models_value}")
         client_models_str = "client_models" if is_msrest_model else ""
         retval.append(f"self._serialize = Serializer({client_models_str})")
         retval.append(f"self._deserialize = Deserializer({client_models_str})")
-        if not self.code_model.options["client_side_validation"]:
+        if not self.client.namespace_model.options["client_side_validation"]:
             retval.append("self._serialize.client_side_validation = False")
         operation_groups = [
-            og for og in self.code_model.operation_groups if not og.is_mixin
+            og for og in self.client.operation_groups if not og.is_mixin
         ]
         for og in operation_groups:
             retval.extend(
@@ -149,10 +144,10 @@ class ClientSerializer:
     def _send_request_signature(self) -> str:
         send_request_signature = [
             "request: HttpRequest,"
-        ] + self.code_model.client.parameters.method_signature_kwargs
+        ] + self.client.parameters.method_signature_kwargs
         return self.parameter_serializer.serialize_method(
             function_def="def",
-            method_name=self.code_model.client.send_request_name,
+            method_name=self.client.send_request_name,
             need_self_param=True,
             method_param_signatures=send_request_signature,
         )
@@ -171,7 +166,7 @@ class ClientSerializer:
     def _example_make_call(self, async_mode: bool) -> List[str]:
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
         retval = [
-            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.client.send_request_name}(request)"
+            f">>> response = {'await ' if async_mode else ''}client.{self.client.send_request_name}(request)"
         ]
         retval.append(f"<{http_response}: 200 OK>")
         return retval
@@ -179,14 +174,14 @@ class ClientSerializer:
     def _request_builder_example(self, async_mode: bool) -> List[str]:
         retval = [
             "We have helper methods to create requests specific to this service in "
-            + f"`{self.code_model.namespace}.{self.code_model.rest_layer_name}`."
+            + f"`{self.client.namespace_model.namespace}.{self.client.namespace_model.rest_layer_name}`."
         ]
         retval.append(
             "Use these helper methods to create the request you pass to this method."
         )
         retval.append("")
 
-        request_builder = self.code_model.request_builders[0]
+        request_builder = self.client.request_builders[0]
         request_builder_signature = ", ".join(request_builder.parameters.call)
         if request_builder.group_name:
             rest_imported = request_builder.group_name
@@ -196,9 +191,8 @@ class ClientSerializer:
         else:
             rest_imported = request_builder.name
             request_builder_name = request_builder.name
-        retval.append(
-            f">>> from {self.code_model.namespace}.{self.code_model.rest_layer_name} import {rest_imported}"
-        )
+        full_path = f"{self.client.namespace_model.namespace}.{self.client.namespace_model.rest_layer_name}"
+        retval.append(f">>> from {full_path} import {rest_imported}")
         retval.append(
             f">>> request = {request_builder_name}({request_builder_signature})"
         )
@@ -218,7 +212,7 @@ class ClientSerializer:
     def send_request_description(self, async_mode: bool) -> List[str]:
         retval = ['"""Runs the network request through the client\'s chained policies.']
         retval.append("")
-        if self.code_model.options["builders_visibility"] != "embedded":
+        if self.client.namespace_model.options["builders_visibility"] != "embedded":
             retval.extend(self._request_builder_example(async_mode))
         else:
             retval.extend(self._rest_request_example(async_mode))
@@ -242,13 +236,13 @@ class ClientSerializer:
 
     def serialize_path(self) -> List[str]:
         return self.parameter_serializer.serialize_path(
-            self.code_model.client.parameters.path, "self._serialize"
+            self.client.parameters.path, "self._serialize"
         )
 
 
 class ConfigSerializer:
-    def __init__(self, code_model: CodeModel) -> None:
-        self.code_model = code_model
+    def __init__(self, client: Client) -> None:
+        self.client = client
         self.parameter_serializer = ParameterSerializer()
 
     def _init_signature(self, async_mode: bool) -> str:
@@ -256,7 +250,7 @@ class ConfigSerializer:
             function_def="def",
             method_name="__init__",
             need_self_param=True,
-            method_param_signatures=self.code_model.config.parameters.method_signature(
+            method_param_signatures=self.client.config.parameters.method_signature(
                 async_mode
             ),
         )
@@ -270,7 +264,7 @@ class ConfigSerializer:
 
     def pop_kwargs_from_signature(self) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
-            self.code_model.config.parameters.kwargs_to_pop,
+            self.client.config.parameters.kwargs_to_pop,
             check_kwarg_dict=False,
             pop_headers_kwarg=PopKwargType.NO,
             pop_params_kwarg=PopKwargType.NO,
@@ -279,21 +273,21 @@ class ConfigSerializer:
     def set_constants(self) -> List[str]:
         return [
             f"self.{p.client_name} = {p.client_default_value_declaration}"
-            for p in self.code_model.config.parameters.constant
-            if p not in self.code_model.config.parameters.method
+            for p in self.client.config.parameters.constant
+            if p not in self.client.config.parameters.method
         ]
 
     def check_required_parameters(self) -> List[str]:
         return [
             f"if {p.client_name} is None:\n"
             f"    raise ValueError(\"Parameter '{p.client_name}' must not be None.\")"
-            for p in self.code_model.config.parameters.method
+            for p in self.client.config.parameters.method
             if not (p.optional or p.constant)
         ]
 
     def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []
-        for p in self.code_model.config.parameters.method:
+        for p in self.client.config.parameters.method:
             retval.append(f":{p.description_keyword} {p.client_name}: {p.description}")
             retval.append(
                 f":{p.docstring_type_keyword} {p.client_name}: {p.docstring_type(async_mode=async_mode)}"

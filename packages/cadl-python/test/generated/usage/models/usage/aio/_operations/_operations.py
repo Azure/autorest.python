@@ -27,7 +27,7 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import build_input_and_output_request, build_input_request, build_output_request
-from .._vendor import MixinABC
+from .._vendor import ModelsUsageMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -38,7 +38,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ModelsUsageOperationsMixin(MixinABC):
+class ModelsUsageOperationsMixin(ModelsUsageMixinABC):
     @overload
     async def input(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.InputRecord, JSON], *, content_type: str = "application/json", **kwargs: Any
