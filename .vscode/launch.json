@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Generate cadl",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/cadl-ranch/packages/cadl-ranch-specs/http/resiliency/dev-driven",
+            "args": ["compile", ".", "--emit", "${workspaceFolder}/packages/cadl-python/dist/src/index.js"],
+            "program": "${workspaceFolder}/packages/cadl-python/node_modules/@cadl-lang/compiler/dist/core/cli.js",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node",
+            "smartStep": true,
+            "sourceMaps": true,
+          },
+          {
+            "name": "Python: Attach",
+            "type": "python",
+            "request": "attach",
+            "port": 5678,
+            "host": "localhost"
+          }
+    ]
+}

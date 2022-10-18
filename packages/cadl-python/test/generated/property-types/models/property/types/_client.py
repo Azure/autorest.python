@@ -12,7 +12,7 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import ModelsPropertyTypesConfiguration
+from ._configuration import TypesClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import (
     BooleanOperations,
@@ -32,8 +32,8 @@ from .operations import (
 )
 
 
-class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
-    """Service client.
+class TypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+    """Illustrates various property types for models.
 
     :ivar boolean: BooleanOperations operations
     :vartype boolean: models.property.types.operations.BooleanOperations
@@ -67,7 +67,7 @@ class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ModelsPropertyTypesConfiguration(**kwargs)
+        self._config = TypesClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -121,7 +121,7 @@ class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword
         self._client.close()
 
     def __enter__(self):
-        # type: () -> ModelsPropertyTypes
+        # type: () -> TypesClient
         self._client.__enter__()
         return self
 

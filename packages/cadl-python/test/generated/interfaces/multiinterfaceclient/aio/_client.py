@@ -13,29 +13,23 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import MultiInterfaceClientConfiguration
-from .operations import CatsOperations, DogsOperations
+from ._configuration import MultiInterfaceClientClientConfiguration
+from ._operations import MultiInterfaceClientClientOperationsMixin
 
 
-class MultiInterfaceClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
-
-    :ivar dogs: DogsOperations operations
-    :vartype dogs: multiinterfaceclient.aio.operations.DogsOperations
-    :ivar cats: CatsOperations operations
-    :vartype cats: multiinterfaceclient.aio.operations.CatsOperations
-    """
+class MultiInterfaceClientClient(
+    MultiInterfaceClientClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates clients generated from a Cadl with multiple interfaces."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = MultiInterfaceClientConfiguration(**kwargs)
+        self._config = MultiInterfaceClientClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.dogs = DogsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.cats = CatsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -62,7 +56,7 @@ class MultiInterfaceClient:  # pylint: disable=client-accepts-api-version-keywor
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "MultiInterfaceClient":
+    async def __aenter__(self) -> "MultiInterfaceClientClient":
         await self._client.__aenter__()
         return self
 

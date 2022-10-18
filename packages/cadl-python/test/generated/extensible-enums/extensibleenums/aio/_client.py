@@ -13,26 +13,21 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import ExtensibleEnumsConfiguration
-from .operations import StringOperations
+from ._configuration import ExtensibleEnumsClientConfiguration
+from ._operations import ExtensibleEnumsClientOperationsMixin
 
 
-class ExtensibleEnums:  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
-
-    :ivar string: StringOperations operations
-    :vartype string: extensibleenums.aio.operations.StringOperations
-    """
+class ExtensibleEnumsClient(ExtensibleEnumsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """ExtensibleEnumsClient."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ExtensibleEnumsConfiguration(**kwargs)
+        self._config = ExtensibleEnumsClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -59,7 +54,7 @@ class ExtensibleEnums:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ExtensibleEnums":
+    async def __aenter__(self) -> "ExtensibleEnumsClient":
         await self._client.__aenter__()
         return self
 

@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class ResiliencyServiceDriven1Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for ResiliencyServiceDriven1.
+class ServiceDriven1ClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for ServiceDriven1Client.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(ResiliencyServiceDriven1Configuration, self).__init__(**kwargs)
+        super(ServiceDriven1ClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "resiliencyservicedriven1/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "servicedriven1client/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

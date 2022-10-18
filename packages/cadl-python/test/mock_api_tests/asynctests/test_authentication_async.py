@@ -6,12 +6,12 @@
 import pytest
 from azure.core.credentials import AzureKeyCredential, AccessToken
 from azure.core.exceptions import HttpResponseError
-from authentication.apikey.aio import AuthenticationApiKey
-from authentication.oauth2.aio import AuthenticationOAuth2
+from authentication.apikey.aio import ApiKeyClient
+from authentication.oauth2.aio import OAuth2Client
 
 @pytest.fixture
 async def api_key_client():
-    async with AuthenticationApiKey(AzureKeyCredential("valid-key")) as client:
+    async with ApiKeyClient(AzureKeyCredential("valid-key")) as client:
         yield client
 
 def generate_token(*scopes) -> AccessToken:
@@ -27,7 +27,7 @@ def token_credential():
 
 @pytest.fixture
 async def oauth2_client(token_credential):
-    async with AuthenticationOAuth2(token_credential) as client:
+    async with OAuth2Client(token_credential) as client:
         yield client
 
 @pytest.mark.asyncio

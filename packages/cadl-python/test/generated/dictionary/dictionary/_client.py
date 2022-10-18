@@ -12,7 +12,7 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import DictionaryConfiguration
+from ._configuration import DictionaryClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import (
     BooleanValueOperations,
@@ -28,8 +28,8 @@ from .operations import (
 )
 
 
-class Dictionary:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
-    """Service client.
+class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+    """Illustrates various of dictionaries.
 
     :ivar int32_value: Int32ValueOperations operations
     :vartype int32_value: dictionary.operations.Int32ValueOperations
@@ -55,7 +55,7 @@ class Dictionary:  # pylint: disable=client-accepts-api-version-keyword,too-many
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = DictionaryConfiguration(**kwargs)
+        self._config = DictionaryClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -101,7 +101,7 @@ class Dictionary:  # pylint: disable=client-accepts-api-version-keyword,too-many
         self._client.close()
 
     def __enter__(self):
-        # type: () -> Dictionary
+        # type: () -> DictionaryClient
         self._client.__enter__()
         return self
 

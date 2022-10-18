@@ -12,17 +12,19 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import ReadonlyPropertiesConfiguration
-from ._operations import ReadonlyPropertiesOperationsMixin
+from ._configuration import ReadonlyPropertiesClientConfiguration
+from ._operations import ReadonlyPropertiesClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class ReadonlyProperties(ReadonlyPropertiesOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client."""
+class ReadonlyPropertiesClient(
+    ReadonlyPropertiesClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates models with readonly properties."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ReadonlyPropertiesConfiguration(**kwargs)
+        self._config = ReadonlyPropertiesClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -56,7 +58,7 @@ class ReadonlyProperties(ReadonlyPropertiesOperationsMixin):  # pylint: disable=
         self._client.close()
 
     def __enter__(self):
-        # type: () -> ReadonlyProperties
+        # type: () -> ReadonlyPropertiesClient
         self._client.__enter__()
         return self
 

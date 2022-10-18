@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "modelspropertytypes"
+PACKAGE_NAME = "typesclient"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="ModelsPropertyTypes",
+    description="TypesClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Service client.
+    Illustrates various property types for models.
     """,
 )

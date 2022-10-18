@@ -15,8 +15,8 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class AuthenticationApiKeyConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for AuthenticationApiKey.
+class ApiKeyClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for ApiKeyClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -26,12 +26,12 @@ class AuthenticationApiKeyConfiguration(Configuration):  # pylint: disable=too-m
     """
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
-        super(AuthenticationApiKeyConfiguration, self).__init__(**kwargs)
+        super(ApiKeyClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
-        kwargs.setdefault("sdk_moniker", "authenticationapikey/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "apikeyclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

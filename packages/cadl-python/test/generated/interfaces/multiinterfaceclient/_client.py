@@ -12,30 +12,24 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import MultiInterfaceClientConfiguration
+from ._configuration import MultiInterfaceClientClientConfiguration
+from ._operations import MultiInterfaceClientClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .operations import CatsOperations, DogsOperations
 
 
-class MultiInterfaceClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
-
-    :ivar dogs: DogsOperations operations
-    :vartype dogs: multiinterfaceclient.operations.DogsOperations
-    :ivar cats: CatsOperations operations
-    :vartype cats: multiinterfaceclient.operations.CatsOperations
-    """
+class MultiInterfaceClientClient(
+    MultiInterfaceClientClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates clients generated from a Cadl with multiple interfaces."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = MultiInterfaceClientConfiguration(**kwargs)
+        self._config = MultiInterfaceClientClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.dogs = DogsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.cats = CatsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -64,7 +58,7 @@ class MultiInterfaceClient:  # pylint: disable=client-accepts-api-version-keywor
         self._client.close()
 
     def __enter__(self):
-        # type: () -> MultiInterfaceClient
+        # type: () -> MultiInterfaceClientClient
         self._client.__enter__()
         return self
 

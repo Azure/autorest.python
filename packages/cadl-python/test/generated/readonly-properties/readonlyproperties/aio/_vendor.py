@@ -8,7 +8,7 @@
 from abc import ABC
 from typing import TYPE_CHECKING
 
-from ._configuration import ReadonlyPropertiesConfiguration
+from ._configuration import ReadonlyPropertiesClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -17,10 +17,10 @@ if TYPE_CHECKING:
     from .._serialization import Deserializer, Serializer
 
 
-class ReadonlyPropertiesMixinABC(ABC):
+class ReadonlyPropertiesClientMixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
 
     _client: "AsyncPipelineClient"
-    _config: ReadonlyPropertiesConfiguration
+    _config: ReadonlyPropertiesClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"

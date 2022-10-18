@@ -18,101 +18,28 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
-from .._serialization import Serializer
+from ... import models as _models
+from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._operations._operations import (
+    build_get_known_value_request,
+    build_get_unknown_value_request,
+    build_put_known_value_request,
+    build_put_unknown_value_request,
+)
+from .._vendor import ExtensibleEnumsClientMixinABC
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-def build_string_get_known_value_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/extensible-enums/string/known-value"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_string_get_unknown_value_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/extensible-enums/string/unknown-value"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_string_put_known_value_request(
-    *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
-) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    # Construct URL
-    _url = "/extensible-enums/string/known-value"
-
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
-
-
-def build_string_put_unknown_value_request(
-    *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
-) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    # Construct URL
-    _url = "/extensible-enums/string/unknown-value"
-
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
-
-
-class StringOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~extensibleenums.ExtensibleEnums`'s
-        :attr:`string` attribute.
-    """
-
-    def __init__(self, *args, **kwargs):
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace
-    def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
+class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
+    @distributed_trace_async
+    async def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
         """get_known_value.
 
         :return: DaysOfWeekExtensibleEnum
@@ -132,13 +59,13 @@ class StringOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
 
-        request = build_string_get_known_value_request(
+        request = build_get_known_value_request(
             headers=_headers,
             params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -158,8 +85,8 @@ class StringOperations:
 
         return deserialized
 
-    @distributed_trace
-    def get_unknown_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
+    @distributed_trace_async
+    async def get_unknown_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
         """get_unknown_value.
 
         :return: DaysOfWeekExtensibleEnum
@@ -179,13 +106,13 @@ class StringOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
 
-        request = build_string_get_unknown_value_request(
+        request = build_get_unknown_value_request(
             headers=_headers,
             params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -205,8 +132,8 @@ class StringOperations:
 
         return deserialized
 
-    @distributed_trace
-    def put_known_value(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace_async
+    async def put_known_value(  # pylint: disable=inconsistent-return-statements
         self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
     ) -> None:
         """put_known_value.
@@ -237,7 +164,7 @@ class StringOperations:
 
         _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_string_put_known_value_request(
+        request = build_put_known_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -245,7 +172,7 @@ class StringOperations:
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -258,8 +185,8 @@ class StringOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    @distributed_trace
-    def put_unknown_value(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace_async
+    async def put_unknown_value(  # pylint: disable=inconsistent-return-statements
         self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
     ) -> None:
         """put_unknown_value.
@@ -290,7 +217,7 @@ class StringOperations:
 
         _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_string_put_unknown_value_request(
+        request = build_put_unknown_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -298,7 +225,7 @@ class StringOperations:
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 

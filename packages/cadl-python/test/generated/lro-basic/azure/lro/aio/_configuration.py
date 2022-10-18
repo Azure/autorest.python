@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class AzureLroConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for AzureLro.
+class LroClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for LroClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(AzureLroConfiguration, self).__init__(**kwargs)
+        super(LroClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "azurelro/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "lroclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

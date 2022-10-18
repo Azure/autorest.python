@@ -26,6 +26,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .._model_base import _deserialize
 from .._serialization import Serializer
+from .._vendor import LroClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -34,7 +35,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_polling_success_create_request(**kwargs: Any) -> HttpRequest:
+def build_create_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -48,7 +49,7 @@ def build_polling_success_create_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_polling_success_polling_request(**kwargs: Any) -> HttpRequest:
+def build_polling_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -62,7 +63,7 @@ def build_polling_success_polling_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_polling_success_get_request(**kwargs: Any) -> HttpRequest:
+def build_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -76,23 +77,7 @@ def build_polling_success_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class PollingSuccessOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~azure.lro.AzureLro`'s
-        :attr:`polling_success` attribute.
-    """
-
-    def __init__(self, *args, **kwargs):
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
+class LroClientOperationsMixin(LroClientMixinABC):
     def _create_initial(self, **kwargs: Any) -> str:
         error_map = {
             401: ClientAuthenticationError,
@@ -107,7 +92,7 @@ class PollingSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_success_create_request(
+        request = build_create_request(
             headers=_headers,
             params=_params,
         )
@@ -207,7 +192,7 @@ class PollingSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_success_polling_request(
+        request = build_polling_request(
             headers=_headers,
             params=_params,
         )
@@ -254,7 +239,7 @@ class PollingSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_success_get_request(
+        request = build_get_request(
             headers=_headers,
             params=_params,
         )

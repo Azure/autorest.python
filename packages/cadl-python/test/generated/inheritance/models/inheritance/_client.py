@@ -12,27 +12,22 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import ModelsInheritanceConfiguration
+from ._configuration import InheritanceClientConfiguration
+from ._operations import InheritanceClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .operations import DiscriminatedOperations, ModelsInheritanceOperationsMixin
 
 
-class ModelsInheritance(ModelsInheritanceOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
-
-    :ivar discriminated: DiscriminatedOperations operations
-    :vartype discriminated: models.inheritance.operations.DiscriminatedOperations
-    """
+class InheritanceClient(InheritanceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates inheritance and polymorphic model."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ModelsInheritanceConfiguration(**kwargs)
+        self._config = InheritanceClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.discriminated = DiscriminatedOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -61,7 +56,7 @@ class ModelsInheritance(ModelsInheritanceOperationsMixin):  # pylint: disable=cl
         self._client.close()
 
     def __enter__(self):
-        # type: () -> ModelsInheritance
+        # type: () -> InheritanceClient
         self._client.__enter__()
         return self
 

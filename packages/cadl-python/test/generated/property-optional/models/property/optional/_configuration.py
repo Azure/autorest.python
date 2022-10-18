@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class ModelsPropertyOptionalConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for ModelsPropertyOptional.
+class OptionalClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for OptionalClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(ModelsPropertyOptionalConfiguration, self).__init__(**kwargs)
+        super(OptionalClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "modelspropertyoptional/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "optionalclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

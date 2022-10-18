@@ -24,33 +24,14 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._model_base import _deserialize
-from ...operations._operations import (
-    build_polling_success_create_request,
-    build_polling_success_get_request,
-    build_polling_success_polling_request,
-)
+from ..._operations._operations import build_create_request, build_get_request, build_polling_request
+from .._vendor import LroClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PollingSuccessOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~azure.lro.aio.AzureLro`'s
-        :attr:`polling_success` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
+class LroClientOperationsMixin(LroClientMixinABC):
     async def _create_initial(self, **kwargs: Any) -> str:
         error_map = {
             401: ClientAuthenticationError,
@@ -65,7 +46,7 @@ class PollingSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_success_create_request(
+        request = build_create_request(
             headers=_headers,
             params=_params,
         )
@@ -167,7 +148,7 @@ class PollingSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_success_polling_request(
+        request = build_polling_request(
             headers=_headers,
             params=_params,
         )
@@ -214,7 +195,7 @@ class PollingSuccessOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_success_get_request(
+        request = build_get_request(
             headers=_headers,
             params=_params,
         )

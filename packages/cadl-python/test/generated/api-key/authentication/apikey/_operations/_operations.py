@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import AuthenticationApiKeyMixinABC
+from .._vendor import ApiKeyClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -53,7 +53,7 @@ def build_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class AuthenticationApiKeyOperationsMixin(AuthenticationApiKeyMixinABC):
+class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
     @distributed_trace
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.
