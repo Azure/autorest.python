@@ -25,7 +25,6 @@ from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
-from .utils import need_typing_extensions
 
 __all__ = [
     "JinjaSerializer",
