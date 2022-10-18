@@ -27,8 +27,8 @@ import {
     getEffectiveModelType,
     JSONSchemaType,
     createCadlLibrary,
+    getDiscriminator,
 } from "@cadl-lang/compiler";
-import { getDiscriminator } from "@cadl-lang/rest";
 import {
     getAllRoutes,
     getAuthentication,
@@ -102,7 +102,11 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     for (const [key, value] of Object.entries(options)) {
         commandArgs.push(`--${key}=${value}`);
     }
-    if (program.compilerOptions.diagnosticLevel === "debug") {
+    if (
+        program.compilerOptions.trace?.includes("*") ||
+        program.compilerOptions.trace?.includes("@azure-tools/cadl-python") ||
+        program.compilerOptions.trace?.includes("@azure-tools/cadl-python.*")
+    ) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
@@ -704,19 +708,6 @@ function emitModel(program: Program, type: Model, modelTypeProperty: ModelProper
             return { type: "duration" };
         default:
             // Now we know it's a defined model
-            // const discriminator = getDiscriminator(program, type);
-            // const discriminatorEntry: Record<string, any> | undefined = {};
-            // const childModels: Record<string, any>[] = [];
-            // for (const childModel of type.derivedModels) {
-            //   childModels.push(getType(program, childModel));
-            // }
-            // if (discriminator) {
-            //   const discriminatorMapping = getDiscriminatorMapping(program, discriminator, childModels);
-            //   if (discriminatorMapping) {
-            //     discriminatorEntry.mapping = discriminatorMapping;
-            //   }
-            //   discriminatorEntry.propertyName = discriminator.propertyName;
-            // }
             const properties: Record<string, any>[] = [];
             let baseModel = undefined;
             if (type.baseModel) {
@@ -1020,19 +1011,22 @@ function createYamlEmitter(program: Program) {
     const clientParameters = emitGlobalParameters(program, serviceNamespace);
     // Get types
     const server = getServerHelper(program, serviceNamespace);
+    const namespace = getServiceNamespaceString(program)!.toLowerCase();
     const codeModel = {
-        client: {
-            name: name,
-            description: "Service client",
-            moduleName: camelToSnakeCase(name),
-            parameters: clientParameters,
-            security: {},
-            namespace: getServiceNamespaceString(program),
-            url: server ? server.url : "",
-            apiVersions: [],
+        [namespace]: {
+            clients: [
+                {
+                    name: name,
+                    description: "Service client",
+                    parameters: clientParameters,
+                    security: {},
+                    url: server ? server.url : "",
+                    apiVersions: [],
+                    operationGroups: emitOperationGroups(program),
+                },
+            ],
+            types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
         },
-        operationGroups: emitOperationGroups(program),
-        types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
     };
     return codeModel;
 }

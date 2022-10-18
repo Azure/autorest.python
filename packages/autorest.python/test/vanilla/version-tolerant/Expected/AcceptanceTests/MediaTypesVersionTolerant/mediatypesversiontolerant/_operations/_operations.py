@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC, raise_if_not_implemented
+from .._vendor import MediaTypesClientMixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -137,7 +137,7 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-class MediaTypesClientOperationsMixin(MixinABC):
+class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     def __init__(self):
         raise_if_not_implemented(
             self.__class__,

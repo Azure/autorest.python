@@ -24,13 +24,13 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._incorrect_returned_error_model_operations import build_get_incorrect_error_from_server_request
-from .._vendor import MixinABC
+from .._vendor import IncorrectReturnedErrorModelMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class IncorrectReturnedErrorModelOperationsMixin(MixinABC):
+class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixinABC):
     @distributed_trace_async
     async def get_incorrect_error_from_server(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any

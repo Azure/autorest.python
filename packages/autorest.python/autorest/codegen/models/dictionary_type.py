@@ -8,7 +8,7 @@ from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
     from .model_type import ModelType
 
 
@@ -24,10 +24,10 @@ class DictionaryType(BaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         element_type: BaseType,
     ) -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
         self.element_type = element_type
 
     @property
@@ -96,7 +96,7 @@ class DictionaryType(BaseType):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
     ) -> "DictionaryType":
         """Constructs a DictionaryType from yaml data.
 
@@ -110,11 +110,13 @@ class DictionaryType(BaseType):
 
         from . import build_type  # pylint: disable=import-outside-toplevel
 
-        element_type = build_type(yaml_data=element_schema, code_model=code_model)
+        element_type = build_type(
+            yaml_data=element_schema, namespace_model=namespace_model
+        )
 
         return cls(
             yaml_data=yaml_data,
-            code_model=code_model,
+            namespace_model=namespace_model,
             element_type=element_type,
         )
 

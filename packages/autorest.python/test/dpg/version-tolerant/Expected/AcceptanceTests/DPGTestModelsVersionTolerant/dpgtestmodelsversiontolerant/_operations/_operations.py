@@ -27,7 +27,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _format_url_section
+from .._vendor import DPGClientMixinABC, _format_url_section
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -115,7 +115,7 @@ def build_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class DPGClientOperationsMixin(MixinABC):
+class DPGClientOperationsMixin(DPGClientMixinABC):
     @distributed_trace
     def get_model(self, mode: str, **kwargs: Any) -> _models.Product:
         """Get models that you will either return to end users as a raw body, or with a model added during

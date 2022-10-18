@@ -6,7 +6,7 @@
 from typing import Any, Dict, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
 
 
 class BaseModel:
@@ -16,9 +16,11 @@ class BaseModel:
     :type yaml_data: dict[str, Any]
     """
 
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+    def __init__(
+        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+    ) -> None:
         self.yaml_data = yaml_data
-        self.code_model = code_model
+        self.namespace_model = namespace_model
 
     @property
     def id(self) -> int:

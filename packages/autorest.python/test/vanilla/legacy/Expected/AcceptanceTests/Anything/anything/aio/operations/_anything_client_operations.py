@@ -31,13 +31,13 @@ from ...operations._anything_client_operations import (
     build_put_object_request,
     build_put_string_request,
 )
-from .._vendor import MixinABC
+from .._vendor import AnythingClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AnythingClientOperationsMixin(MixinABC):
+class AnythingClientOperationsMixin(AnythingClientMixinABC):
     @distributed_trace_async
     async def get_object(self, **kwargs: Any) -> Any:
         """Basic get that returns an object as anything. Returns object { 'message': 'An object was

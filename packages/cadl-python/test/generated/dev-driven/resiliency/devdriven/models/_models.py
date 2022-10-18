@@ -167,16 +167,16 @@ class InnerError(_model_base.Model):
 
 
 class Input(_model_base.Model):
-    """Input.
+    """Input to LRO call.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar hello: Required.
+    :ivar hello: property on the input. Required.
     :vartype hello: str
     """
 
     hello: str = rest_field()
-    """Required. """
+    """property on the input. Required. """
 
     @overload
     def __init__(
@@ -199,20 +199,20 @@ class Input(_model_base.Model):
 
 
 class Product(_model_base.Model):
-    """Product.
+    """Product resource.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar key: Required.
+    :ivar key: key of product. Required.
     :vartype key: str
-    :ivar received: Required. Known values are: "raw" and "model".
+    :ivar received: received mode. Required. Known values are: "raw" and "model".
     :vartype received: str or ~resiliency.devdriven.models.Mode
     """
 
     key: str = rest_field()
-    """Required. """
+    """key of product. Required. """
     received: Union[str, "_models.Mode"] = rest_field()
-    """Required. Known values are: \"raw\" and \"model\"."""
+    """received mode. Required. Known values are: \"raw\" and \"model\"."""
 
     @overload
     def __init__(
@@ -236,20 +236,20 @@ class Product(_model_base.Model):
 
 
 class LROProduct(Product):
-    """LROProduct.
+    """Final response from LRO call.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar key: Required.
+    :ivar key: key of product. Required.
     :vartype key: str
-    :ivar received: Required. Known values are: "raw" and "model".
+    :ivar received: received mode. Required. Known values are: "raw" and "model".
     :vartype received: str or ~resiliency.devdriven.models.Mode
-    :ivar provisioning_state: Required.
+    :ivar provisioning_state: Provisioning state returned by the service. Required.
     :vartype provisioning_state: str
     """
 
     provisioning_state: str = rest_field(name="provisioningState")
-    """Required. """
+    """Provisioning state returned by the service. Required. """
 
     @overload
     def __init__(
