@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-python",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Microsoft Corporation",
   "description": "Cadl emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
