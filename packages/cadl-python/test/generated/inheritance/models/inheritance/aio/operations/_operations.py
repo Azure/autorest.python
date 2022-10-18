@@ -37,7 +37,7 @@ from ...operations._operations import (
     build_post_valid_request,
     build_put_valid_request,
 )
-from .._vendor import MixinABC
+from .._vendor import ModelsInheritanceMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -48,7 +48,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ModelsInheritanceOperationsMixin(MixinABC):
+class ModelsInheritanceOperationsMixin(ModelsInheritanceMixinABC):
     @overload
     async def post_valid(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.Siamese, JSON], *, content_type: str = "application/json", **kwargs: Any

@@ -3,18 +3,21 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Dict, Optional, Any, Set, Union
+from typing import List, Dict, Any, Set, Union
 
 from .base_type import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
+from .client import Client
+from .request_builder import RequestBuilder, OverloadedRequestBuilder
 from .operation_group import OperationGroup
-from .client import Client, Config
-from .request_builder import OverloadedRequestBuilder, RequestBuilder
-from .parameter import Parameter
 
 
-class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
+def _is_legacy(options) -> bool:
+    return not (options["version_tolerant"] or options["low_level_client"])
+
+
+class CodeModel:
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
@@ -47,17 +50,34 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     ) -> None:
         self.yaml_data = yaml_data
         self.options = options
+        self.namespace_models: List["NamespaceModel"] = [
+            NamespaceModel(namespace_yaml_data, self.options, namespace)
+            for namespace, namespace_yaml_data in yaml_data.items()
+        ]
+
+    @property
+    def is_legacy(self) -> bool:
+        return _is_legacy(self.options)
+
+    @property
+    def description(self) -> str:
+        return self.namespace_models[0].clients[0].description
+
+
+class NamespaceModel:
+    def __init__(
+        self, yaml_data: Dict[str, Any], options: Dict[str, Any], namespace: str
+    ):
+        self.yaml_data = yaml_data
         self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
-        self.operation_groups: List[OperationGroup] = []
         self._model_types: List[ModelType] = []
-        self._client: Optional[Client] = None
-        self._config: Optional[Config] = None
-        self.request_builders: List[
-            Union[RequestBuilder, OverloadedRequestBuilder]
-        ] = []
-        self.package_dependency: Dict[str, str] = {}
-        self.namespace: str = yaml_data["client"]["namespace"].lower()
-        self.module_name: str = self.yaml_data["client"]["moduleName"]
+        self.options = options
+        from . import build_type
+
+        for type_yaml in yaml_data.get("types", []):
+            build_type(yaml_data=type_yaml, namespace_model=self)
+        self.clients: List[Client] = []
+        self.namespace = namespace
 
     def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
@@ -72,43 +92,24 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         except StopIteration:
             raise KeyError(f"Couldn't find schema with id {schema_id}")
 
-    @property
-    def credential(self) -> Optional[Parameter]:
-        """The credential param, if one exists"""
-        return self.client.parameters.credential
-
-    @property
-    def client(self) -> Client:
-        if not self._client:
-            raise ValueError("You haven't linked the client yet")
-        return self._client
-
-    @client.setter
-    def client(self, val: Client) -> None:
-        self._client = val
-
-    @property
-    def config(self) -> Config:
-        if not self._config:
-            raise ValueError("You haven't linked the config yet")
-        return self._config
-
-    @config.setter
-    def config(self, val: Config) -> None:
-        self._config = val
-
     def lookup_request_builder(
         self, request_builder_id: int
     ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
         """Find the request builder based off of id"""
-        try:
-            return next(
-                rb
-                for rb in self.request_builders
-                if id(rb.yaml_data) == request_builder_id
-            )
-        except StopIteration:
-            raise KeyError(f"No request builder with id {request_builder_id} found.")
+        for client in self.clients:
+            try:
+                return client.lookup_request_builder(request_builder_id)
+            except KeyError:
+                pass
+        raise KeyError(f"No request builder with id {request_builder_id} found.")
+
+    @property
+    def operation_groups(self) -> List[OperationGroup]:
+        return [og for client in self.clients for og in client.operation_groups]
+
+    @property
+    def request_builders(self) -> List[Union[RequestBuilder, OverloadedRequestBuilder]]:
+        return [rb for client in self.clients for rb in client.request_builders]
 
     @property
     def model_types(self) -> List[ModelType]:
@@ -132,9 +133,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         """All of the enums"""
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
-    @staticmethod
     def _sort_model_types_helper(
-        current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]
+        self,
+        current: ModelType,
+        seen_schema_names: Set[str],
+        seen_schema_yaml_ids: Set[int],
     ):
         if current.id in seen_schema_yaml_ids:
             return []
@@ -150,7 +153,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 seen_schema_names.add(current.name)
                 seen_schema_yaml_ids.add(current.id)
                 ancestors = (
-                    CodeModel._sort_model_types_helper(
+                    self._sort_model_types_helper(
                         parent, seen_schema_names, seen_schema_yaml_ids
                     )
                     + ancestors
@@ -170,40 +173,38 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         sorted_object_schemas: List[ModelType] = []
         for schema in sorted(self.model_types, key=lambda x: x.name.lower()):
             sorted_object_schemas.extend(
-                CodeModel._sort_model_types_helper(
+                self._sort_model_types_helper(
                     schema, seen_schema_names, seen_schema_yaml_ids
                 )
             )
         self.model_types = sorted_object_schemas
 
-    def format_lro_operations(self) -> None:
-        """Adds operations and attributes needed for LROs.
-        If there are LRO functions in here, will add initial LRO function. Will also set the return
-        type of the LRO operation
-        """
-        for operation_group in self.operation_groups:
-            i = 0
-            while i < len(operation_group.operations):
-                operation = operation_group.operations[i]
-                if operation.operation_type in ("lro", "lropaging"):
-                    operation_group.operations.insert(i, operation.initial_operation)  # type: ignore
-                    i += 1
-                i += 1
+    @property
+    def is_legacy(self) -> bool:
+        return _is_legacy(self.options)
 
     @property
-    def operations_folder_name(self) -> str:
-        """Get the name of the operations folder that holds operations."""
-        name = "operations"
-        if self.options["version_tolerant"] and not any(
-            og for og in self.operation_groups if not og.is_mixin
-        ):
-            name = f"_{name}"
-        return name
+    def rest_layer_name(self) -> str:
+        """If we have a separate rest layer, what is its name?"""
+        return "rest" if self.options["builders_visibility"] == "public" else "_rest"
 
     @property
-    def has_abstract_operations(self) -> bool:
-        """Whether there is abstract operation in any operation group."""
-        return any(og.has_abstract_operations for og in self.operation_groups)
+    def models_filename(self) -> str:
+        """Get the names of the model file(s)"""
+        if self.is_legacy:
+            return "_models_py3"
+        return "_models"
+
+    @property
+    def client_filename(self) -> str:
+        return self.clients[0].filename
+
+    @property
+    def enums_filename(self) -> str:
+        """The name of the enums file"""
+        if self.is_legacy:
+            return f"_{self.clients[0].legacy_filename}_enums"
+        return "_enums"
 
     def need_vendored_code(self, async_mode: bool) -> bool:
         """Whether we need to vendor code in the _vendor.py file for this SDK"""
@@ -217,58 +218,29 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def need_request_converter(self) -> bool:
-        """
-        Whether we need to convert our created azure.core.rest.HttpRequests to
-        azure.core.pipeline.transport.HttpRequests
-        """
-        return (
-            self.options["show_operations"]
-            and bool(self.request_builders)
-            and not self.options["version_tolerant"]
-        )
+        return any(c for c in self.clients if c.need_request_converter)
 
     @property
     def need_format_url(self) -> bool:
-        """Whether we need to format urls. If so, we need to vendor core."""
-        return any(rq for rq in self.request_builders if rq.parameters.path)
+        return any(c for c in self.clients if c.need_format_url)
 
     @property
     def need_mixin_abc(self) -> bool:
-        """Do we want a mixin ABC class for typing purposes?"""
-        return any(o for o in self.operation_groups if o.is_mixin)
+        return any(c for c in self.clients if c.has_mixin)
 
     @property
-    def has_lro_operations(self) -> bool:
-        """Are there any LRO operations in this SDK?"""
-        return any(
-            [
-                operation.operation_type in ("lro", "lropaging")
-                for operation_group in self.operation_groups
-                for operation in operation_group.operations
-            ]
-        )
+    def has_abstract_operations(self) -> bool:
+        return any(c for c in self.clients if c.has_abstract_operations)
 
     @property
-    def models_filename(self) -> str:
-        """Get the names of the model file(s)"""
-        if self.is_legacy:
-            return "_models_py3"
-        return "_models"
-
-    @property
-    def enums_filename(self) -> str:
-        """The name of the enums file"""
-        if self.is_legacy:
-            return f"_{self.module_name}_enums"
-        return "_enums"
-
-    @property
-    def is_legacy(self) -> bool:
-        return not (
-            self.options["version_tolerant"] or self.options["low_level_client"]
-        )
-
-    @property
-    def rest_layer_name(self) -> str:
-        """If we have a separate rest layer, what is its name?"""
-        return "rest" if self.options["builders_visibility"] == "public" else "_rest"
+    def operations_folder_name(self) -> str:
+        """Get the name of the operations folder that holds operations."""
+        name = "operations"
+        if self.options["version_tolerant"] and not any(
+            og
+            for client in self.clients
+            for og in client.operation_groups
+            if not og.is_mixin
+        ):
+            name = f"_{name}"
+        return name

@@ -29,13 +29,13 @@ from ...operations._lro_with_paramaterized_endpoints_operations import (
     build_poll_with_constant_parameterized_endpoints_request,
     build_poll_with_parameterized_endpoints_request,
 )
-from .._vendor import MixinABC
+from .._vendor import LROWithParamaterizedEndpointsMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
+class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
     async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,

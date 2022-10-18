@@ -33,13 +33,13 @@ from ...operations._media_types_client_operations import (
     build_content_type_with_encoding_request,
     build_put_text_and_json_body_request,
 )
-from .._vendor import MixinABC
+from .._vendor import MediaTypesClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin(MixinABC):
+class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     @overload
     async def analyze_body(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any

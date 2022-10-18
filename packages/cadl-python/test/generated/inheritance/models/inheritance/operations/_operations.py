@@ -27,7 +27,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import ModelsInheritanceMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -170,7 +170,7 @@ def build_discriminated_get_wrong_discriminator_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ModelsInheritanceOperationsMixin(MixinABC):
+class ModelsInheritanceOperationsMixin(ModelsInheritanceMixinABC):
     @overload
     def post_valid(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.Siamese, JSON], *, content_type: str = "application/json", **kwargs: Any

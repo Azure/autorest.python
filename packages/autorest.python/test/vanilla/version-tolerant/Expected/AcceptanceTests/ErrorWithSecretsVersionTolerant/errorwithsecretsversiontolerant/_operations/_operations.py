@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import ErrorWithSecretsMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -66,7 +66,7 @@ def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ErrorWithSecretsOperationsMixin(MixinABC):
+class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> JSON:
         """Creates a secret.

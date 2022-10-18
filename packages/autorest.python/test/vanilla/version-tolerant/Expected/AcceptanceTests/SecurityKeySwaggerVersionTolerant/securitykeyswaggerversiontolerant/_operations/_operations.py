@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import AutorestSecurityKeyMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -38,7 +38,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class AutorestSecurityKeyOperationsMixin(MixinABC):
+class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.

@@ -36,13 +36,13 @@ from ...operations._multiple_inheritance_service_client_operations import (
     build_put_kitten_request,
     build_put_pet_request,
 )
-from .._vendor import MixinABC
+from .._vendor import MultipleInheritanceServiceClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
+class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceServiceClientMixinABC):
     @distributed_trace_async
     async def get_horse(self, **kwargs: Any) -> _models.Horse:
         """Get a horse with name 'Fred' and isAShowHorse true.
