@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_invalid_request, build_valid_request
+from ..._operations._operations import build_oauth2_invalid_request, build_oauth2_valid_request
 from .._vendor import OAuth2ClientMixinABC
 
 T = TypeVar("T")
@@ -50,7 +50,7 @@ class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_valid_request(
+        request = build_oauth2_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -90,7 +90,7 @@ class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_invalid_request(
+        request = build_oauth2_invalid_request(
             headers=_headers,
             params=_params,
         )

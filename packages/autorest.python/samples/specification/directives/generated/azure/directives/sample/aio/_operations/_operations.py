@@ -27,7 +27,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
-from ..._operations._operations import build_basic_paging_request, build_basic_polling_request
+from ..._operations._operations import (
+    build_polling_paging_example_basic_paging_request,
+    build_polling_paging_example_basic_polling_request,
+)
 from .._vendor import PollingPagingExampleMixinABC
 
 if sys.version_info >= (3, 9):
@@ -66,7 +69,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             else:
                 _json = None
 
-        request = build_basic_polling_request(
+        request = build_polling_paging_example_basic_polling_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -287,7 +290,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_basic_paging_request(
+                request = build_polling_paging_example_basic_paging_request(
                     headers=_headers,
                     params=_params,
                 )

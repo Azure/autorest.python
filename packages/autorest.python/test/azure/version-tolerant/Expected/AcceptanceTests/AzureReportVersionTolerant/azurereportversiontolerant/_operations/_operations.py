@@ -32,7 +32,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_auto_rest_report_service_for_azure_get_report_request(
+    *, qualifier: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -85,7 +87,7 @@ class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzure
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        request = build_get_report_request(
+        request = build_auto_rest_report_service_for_azure_get_report_request(
             qualifier=qualifier,
             headers=_headers,
             params=_params,

@@ -26,7 +26,11 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
-from ..._operations._operations import build_input_and_output_request, build_input_request, build_output_request
+from ..._operations._operations import (
+    build_usage_input_and_output_request,
+    build_usage_input_request,
+    build_usage_output_request,
+)
 from .._vendor import UsageClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -107,7 +111,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_input_request(
+        request = build_usage_input_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -149,7 +153,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.OutputRecord]
 
-        request = build_output_request(
+        request = build_usage_output_request(
             headers=_headers,
             params=_params,
         )
@@ -240,7 +244,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_input_and_output_request(
+        request = build_usage_input_and_output_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

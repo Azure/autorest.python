@@ -24,16 +24,16 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import (
-    build_get_cat_request,
-    build_get_feline_request,
-    build_get_horse_request,
-    build_get_kitten_request,
-    build_get_pet_request,
-    build_put_cat_request,
-    build_put_feline_request,
-    build_put_horse_request,
-    build_put_kitten_request,
-    build_put_pet_request,
+    build_multiple_inheritance_service_get_cat_request,
+    build_multiple_inheritance_service_get_feline_request,
+    build_multiple_inheritance_service_get_horse_request,
+    build_multiple_inheritance_service_get_kitten_request,
+    build_multiple_inheritance_service_get_pet_request,
+    build_multiple_inheritance_service_put_cat_request,
+    build_multiple_inheritance_service_put_feline_request,
+    build_multiple_inheritance_service_put_horse_request,
+    build_multiple_inheritance_service_put_kitten_request,
+    build_multiple_inheritance_service_put_pet_request,
 )
 from .._vendor import MultipleInheritanceServiceClientMixinABC
 
@@ -77,7 +77,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_horse_request(
+        request = build_multiple_inheritance_service_get_horse_request(
             headers=_headers,
             params=_params,
         )
@@ -176,7 +176,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         else:
             _json = horse
 
-        request = build_put_horse_request(
+        request = build_multiple_inheritance_service_put_horse_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -234,7 +234,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_pet_request(
+        request = build_multiple_inheritance_service_get_pet_request(
             headers=_headers,
             params=_params,
         )
@@ -331,7 +331,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         else:
             _json = pet
 
-        request = build_put_pet_request(
+        request = build_multiple_inheritance_service_put_pet_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -390,7 +390,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_feline_request(
+        request = build_multiple_inheritance_service_get_feline_request(
             headers=_headers,
             params=_params,
         )
@@ -489,7 +489,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         else:
             _json = feline
 
-        request = build_put_feline_request(
+        request = build_multiple_inheritance_service_put_feline_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -550,7 +550,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_cat_request(
+        request = build_multiple_inheritance_service_get_cat_request(
             headers=_headers,
             params=_params,
         )
@@ -653,7 +653,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         else:
             _json = cat
 
-        request = build_put_cat_request(
+        request = build_multiple_inheritance_service_put_cat_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -716,7 +716,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_kitten_request(
+        request = build_multiple_inheritance_service_get_kitten_request(
             headers=_headers,
             params=_params,
         )
@@ -823,7 +823,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         else:
             _json = kitten
 
-        request = build_put_kitten_request(
+        request = build_multiple_inheritance_service_put_kitten_request(
             content_type=content_type,
             json=_json,
             content=_content,

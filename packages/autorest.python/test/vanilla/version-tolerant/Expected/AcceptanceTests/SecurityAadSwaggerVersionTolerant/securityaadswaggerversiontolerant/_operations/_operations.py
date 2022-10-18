@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_head_request(**kwargs: Any) -> HttpRequest:
+def build_autorest_security_aad_head_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/securityaad"
 
@@ -60,7 +60,7 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_head_request(
+        request = build_autorest_security_aad_head_request(
             headers=_headers,
             params=_params,
         )

@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._model_base import _deserialize
-from ..._operations._operations import build_create_request, build_get_request, build_polling_request
+from ..._operations._operations import build_lro_create_request, build_lro_get_request, build_lro_polling_request
 from .._vendor import LroClientMixinABC
 
 T = TypeVar("T")
@@ -46,7 +46,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_create_request(
+        request = build_lro_create_request(
             headers=_headers,
             params=_params,
         )
@@ -148,7 +148,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_request(
+        request = build_lro_polling_request(
             headers=_headers,
             params=_params,
         )
@@ -195,7 +195,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_get_request(
+        request = build_lro_get_request(
             headers=_headers,
             params=_params,
         )

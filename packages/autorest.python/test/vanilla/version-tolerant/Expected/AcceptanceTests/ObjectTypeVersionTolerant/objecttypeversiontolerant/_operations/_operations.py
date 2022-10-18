@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_request(**kwargs: Any) -> HttpRequest:
+def build_object_type_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -52,7 +52,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
+def build_object_type_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -92,7 +92,7 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_request(
+        request = build_object_type_get_request(
             headers=_headers,
             params=_params,
         )
@@ -146,7 +146,7 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         _json = put_object
 
-        request = build_put_request(
+        request = build_object_type_put_request(
             content_type=content_type,
             json=_json,
             headers=_headers,

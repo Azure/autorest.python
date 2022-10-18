@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_get_request
+from ..._operations._operations import build_parmaterized_endpoint_get_request
 from .._vendor import ParmaterizedEndpointClientMixinABC
 
 T = TypeVar("T")
@@ -50,7 +50,7 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_request(
+        request = build_parmaterized_endpoint_get_request(
             headers=_headers,
             params=_params,
         )

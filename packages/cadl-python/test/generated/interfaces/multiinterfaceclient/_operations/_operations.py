@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_dogs_request(**kwargs: Any) -> HttpRequest:
+def build_multi_interface_client_get_dogs_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -55,7 +55,7 @@ def build_get_dogs_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_set_dogs_request(**kwargs: Any) -> HttpRequest:
+def build_multi_interface_client_set_dogs_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -72,7 +72,7 @@ def build_set_dogs_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_cats_request(**kwargs: Any) -> HttpRequest:
+def build_multi_interface_client_get_cats_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -86,7 +86,7 @@ def build_get_cats_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_set_cats_request(**kwargs: Any) -> HttpRequest:
+def build_multi_interface_client_set_cats_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -125,7 +125,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Dog]
 
-        request = build_get_dogs_request(
+        request = build_multi_interface_client_get_dogs_request(
             headers=_headers,
             params=_params,
         )
@@ -212,7 +212,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_set_dogs_request(
+        request = build_multi_interface_client_set_dogs_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -258,7 +258,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Cat]
 
-        request = build_get_cats_request(
+        request = build_multi_interface_client_get_cats_request(
             headers=_headers,
             params=_params,
         )
@@ -345,7 +345,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_set_cats_request(
+        request = build_multi_interface_client_set_cats_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

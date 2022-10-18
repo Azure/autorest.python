@@ -23,12 +23,12 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import (
-    build_get_array_request,
-    build_get_object_request,
-    build_get_string_request,
-    build_put_array_request,
-    build_put_object_request,
-    build_put_string_request,
+    build_anything_get_array_request,
+    build_anything_get_object_request,
+    build_anything_get_string_request,
+    build_anything_put_array_request,
+    build_anything_put_object_request,
+    build_anything_put_string_request,
 )
 from .._vendor import AnythingClientMixinABC
 
@@ -59,7 +59,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
-        request = build_get_object_request(
+        request = build_anything_get_object_request(
             headers=_headers,
             params=_params,
         )
@@ -112,7 +112,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         _json = input
 
-        request = build_put_object_request(
+        request = build_anything_put_object_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -154,7 +154,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
-        request = build_get_string_request(
+        request = build_anything_get_string_request(
             headers=_headers,
             params=_params,
         )
@@ -207,7 +207,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         _json = input
 
-        request = build_put_string_request(
+        request = build_anything_put_string_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -249,7 +249,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
-        request = build_get_array_request(
+        request = build_anything_get_array_request(
             headers=_headers,
             params=_params,
         )
@@ -302,7 +302,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         _json = input
 
-        request = build_put_array_request(
+        request = build_anything_put_array_request(
             content_type=content_type,
             json=_json,
             headers=_headers,

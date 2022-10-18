@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_get_incorrect_error_from_server_request
+from ..._operations._operations import build_incorrect_returned_error_model_get_incorrect_error_from_server_request
 from .._vendor import IncorrectReturnedErrorModelMixinABC
 
 T = TypeVar("T")
@@ -53,7 +53,7 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_incorrect_error_from_server_request(
+        request = build_incorrect_returned_error_model_get_incorrect_error_from_server_request(
             headers=_headers,
             params=_params,
         )

@@ -42,7 +42,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
+def build_dev_driven_get_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -61,7 +61,7 @@ def build_get_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> Ht
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
+def build_dev_driven_post_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -83,7 +83,7 @@ def build_post_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> H
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_dev_driven_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -101,7 +101,7 @@ def build_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_lro_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
+def build_dev_driven_lro_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -147,7 +147,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
-        request = build_get_model_request(
+        request = build_dev_driven_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
@@ -259,7 +259,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_post_model_request(
+        request = build_dev_driven_post_model_request(
             mode=mode,
             content_type=content_type,
             content=_content,
@@ -312,7 +312,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_request(
+                request = build_dev_driven_get_pages_request(
                     api_version=api_version,
                     headers=_headers,
                     params=_params,
@@ -375,7 +375,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
-        request = build_lro_request(
+        request = build_dev_driven_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,

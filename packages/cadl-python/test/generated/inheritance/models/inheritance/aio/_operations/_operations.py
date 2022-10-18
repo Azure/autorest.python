@@ -27,15 +27,15 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import (
-    build_get_missing_discriminator_request,
-    build_get_model_request,
-    build_get_recursive_model_request,
-    build_get_valid_request,
-    build_get_wrong_discriminator_request,
-    build_post_valid_request,
-    build_put_model_request,
-    build_put_recursive_model_request,
-    build_put_valid_request,
+    build_inheritance_get_missing_discriminator_request,
+    build_inheritance_get_model_request,
+    build_inheritance_get_recursive_model_request,
+    build_inheritance_get_valid_request,
+    build_inheritance_get_wrong_discriminator_request,
+    build_inheritance_post_valid_request,
+    build_inheritance_put_model_request,
+    build_inheritance_put_recursive_model_request,
+    build_inheritance_put_valid_request,
 )
 from .._vendor import InheritanceClientMixinABC
 
@@ -117,7 +117,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_post_valid_request(
+        request = build_inheritance_post_valid_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -159,7 +159,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
 
-        request = build_get_valid_request(
+        request = build_inheritance_get_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -246,7 +246,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_put_valid_request(
+        request = build_inheritance_put_valid_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -292,7 +292,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_model_request(
+        request = build_inheritance_get_model_request(
             headers=_headers,
             params=_params,
         )
@@ -383,7 +383,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_put_model_request(
+        request = build_inheritance_put_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -425,7 +425,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_recursive_model_request(
+        request = build_inheritance_get_recursive_model_request(
             headers=_headers,
             params=_params,
         )
@@ -516,7 +516,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_put_recursive_model_request(
+        request = build_inheritance_put_recursive_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -558,7 +558,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_missing_discriminator_request(
+        request = build_inheritance_get_missing_discriminator_request(
             headers=_headers,
             params=_params,
         )
@@ -602,7 +602,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_wrong_discriminator_request(
+        request = build_inheritance_get_wrong_discriminator_request(
             headers=_headers,
             params=_params,
         )

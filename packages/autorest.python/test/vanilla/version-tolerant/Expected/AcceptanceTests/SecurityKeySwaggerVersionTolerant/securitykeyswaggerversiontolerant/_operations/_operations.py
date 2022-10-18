@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_head_request(**kwargs: Any) -> HttpRequest:
+def build_autorest_security_key_head_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/securitykey"
 
@@ -60,7 +60,7 @@ class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_head_request(
+        request = build_autorest_security_key_head_request(
             headers=_headers,
             params=_params,
         )

@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_object_request(**kwargs: Any) -> HttpRequest:
+def build_anything_get_object_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -46,7 +46,7 @@ def build_get_object_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_object_request(*, json: Any, **kwargs: Any) -> HttpRequest:
+def build_anything_put_object_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -60,7 +60,7 @@ def build_put_object_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_string_request(**kwargs: Any) -> HttpRequest:
+def build_anything_get_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -74,7 +74,7 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_string_request(*, json: Any, **kwargs: Any) -> HttpRequest:
+def build_anything_put_string_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -88,7 +88,7 @@ def build_put_string_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_array_request(**kwargs: Any) -> HttpRequest:
+def build_anything_get_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -102,7 +102,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest:
+def build_anything_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -139,7 +139,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
-        request = build_get_object_request(
+        request = build_anything_get_object_request(
             headers=_headers,
             params=_params,
         )
@@ -192,7 +192,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         _json = input
 
-        request = build_put_object_request(
+        request = build_anything_put_object_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -234,7 +234,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
-        request = build_get_string_request(
+        request = build_anything_get_string_request(
             headers=_headers,
             params=_params,
         )
@@ -287,7 +287,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         _json = input
 
-        request = build_put_string_request(
+        request = build_anything_put_string_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -329,7 +329,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
-        request = build_get_array_request(
+        request = build_anything_get_array_request(
             headers=_headers,
             params=_params,
         )
@@ -382,7 +382,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         _json = input
 
-        request = build_put_array_request(
+        request = build_anything_put_array_request(
             content_type=content_type,
             json=_json,
             headers=_headers,

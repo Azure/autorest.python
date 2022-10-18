@@ -27,10 +27,10 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import (
-    build_get_cats_request,
-    build_get_dogs_request,
-    build_set_cats_request,
-    build_set_dogs_request,
+    build_multi_interface_client_get_cats_request,
+    build_multi_interface_client_get_dogs_request,
+    build_multi_interface_client_set_cats_request,
+    build_multi_interface_client_set_dogs_request,
 )
 from .._vendor import MultiInterfaceClientClientMixinABC
 
@@ -65,7 +65,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Dog]
 
-        request = build_get_dogs_request(
+        request = build_multi_interface_client_get_dogs_request(
             headers=_headers,
             params=_params,
         )
@@ -152,7 +152,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_set_dogs_request(
+        request = build_multi_interface_client_set_dogs_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -198,7 +198,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Cat]
 
-        request = build_get_cats_request(
+        request = build_multi_interface_client_get_cats_request(
             headers=_headers,
             params=_params,
         )
@@ -285,7 +285,7 @@ class MultiInterfaceClientClientOperationsMixin(MultiInterfaceClientClientMixinA
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_set_cats_request(
+        request = build_multi_interface_client_set_cats_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
