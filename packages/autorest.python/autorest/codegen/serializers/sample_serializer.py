@@ -43,10 +43,9 @@ class SampleSerializer:
         namespace = (self.namespace_model.options["package_name"] or "").replace(
             "-", "."
         ) or self.namespace_model.namespace
-        imports.add_submodule_import(
-            namespace, self.namespace_model.clients[0].name, ImportType.THIRDPARTY
-        )
-        credential_type = getattr(self.namespace_model.credential, "type", None)
+        client = self.namespace_model.clients[0]
+        imports.add_submodule_import(namespace, client.name, ImportType.THIRDPARTY)
+        credential_type = getattr(client.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             imports.add_submodule_import(
                 "azure.identity", "DefaultAzureCredential", ImportType.THIRDPARTY
@@ -61,7 +60,7 @@ class SampleSerializer:
     def _client_params(self) -> Dict[str, Any]:
         # client params
         special_param = dict()
-        credential_type = getattr(self.namespace_model.credential, "type", None)
+        credential_type = getattr(self.namespace_model.clients[0].credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             special_param.update({"credential": "DefaultAzureCredential()"})
         elif isinstance(credential_type, AzureKeyCredentialType):

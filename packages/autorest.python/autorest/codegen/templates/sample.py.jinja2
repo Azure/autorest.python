@@ -9,7 +9,7 @@
 {% if "credential" in client_params and aad_token in client_params["credential"] %}
     pip install azure-identity
 {% endif %}
-    pip install {{ (namespace_model.options["package_name"] or namespace_model.client.name)|lower }}
+    pip install {{ (namespace_model.options["package_name"] or namespace_model.clients[0].name)|lower }}
 # USAGE
     python {{ file_name }}
     {% if "credential" in client_params and aad_token in client_params["credential"] %}
@@ -25,7 +25,7 @@
     {% endif %}
 """
 def main():
-    client = {{ namespace_model.client.name }}(
+    client = {{ namespace_model.clients[0].name }}(
         {% for key,value in client_params.items() %}
         {{ key }}={{ value }},
         {% endfor %}
