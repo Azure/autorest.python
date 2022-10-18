@@ -514,7 +514,9 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     # find root folder where "setup.py" is
     def _package_root_folder(self, namespace_path: Path) -> Path:
-        return namespace_path / Path("../" * (self.namespace_model.namespace.count(".") + 1))
+        return namespace_path / Path(
+            "../" * (self.namespace_model.namespace.count(".") + 1)
+        )
 
     def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
         out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
@@ -543,6 +545,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         _LOGGER.error(
                             "error happens when generate sample with {%s}: {%s}", key, e
                         )
+
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
     def __init__(

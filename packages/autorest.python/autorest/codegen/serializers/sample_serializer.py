@@ -60,7 +60,9 @@ class SampleSerializer:
     def _client_params(self) -> Dict[str, Any]:
         # client params
         special_param = dict()
-        credential_type = getattr(self.namespace_model.clients[0].credential, "type", None)
+        credential_type = getattr(
+            self.namespace_model.clients[0].credential, "type", None
+        )
         if isinstance(credential_type, TokenCredentialType):
             special_param.update({"credential": "DefaultAzureCredential()"})
         elif isinstance(credential_type, AzureKeyCredentialType):
