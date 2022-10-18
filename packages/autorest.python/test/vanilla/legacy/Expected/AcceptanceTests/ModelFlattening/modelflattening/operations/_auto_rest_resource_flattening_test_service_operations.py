@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request, _format_url_section
+from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC, _convert_request, _format_url_section
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -218,7 +218,7 @@ def build_put_simple_product_with_grouping_request(name: str, **kwargs: Any) -> 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatteningTestServiceMixinABC):
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
         self,

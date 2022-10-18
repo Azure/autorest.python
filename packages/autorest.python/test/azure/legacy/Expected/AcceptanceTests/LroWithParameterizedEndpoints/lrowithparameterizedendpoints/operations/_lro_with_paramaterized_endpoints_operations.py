@@ -27,7 +27,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request, _format_url_section
+from .._vendor import LROWithParamaterizedEndpointsMixinABC, _convert_request, _format_url_section
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -74,7 +74,7 @@ def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> H
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
+class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
     def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,

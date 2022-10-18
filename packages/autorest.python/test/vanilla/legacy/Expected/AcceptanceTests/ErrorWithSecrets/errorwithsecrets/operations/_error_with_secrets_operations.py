@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import ErrorWithSecretsMixinABC, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -61,7 +61,7 @@ def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ErrorWithSecretsOperationsMixin(MixinABC):
+class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> _models.SecretResponse:
         """Creates a secret.

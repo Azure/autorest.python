@@ -13,6 +13,7 @@ from .parameter_list import (
     OverloadedRequestBuilderParameterList,
 )
 
+
 ParameterListType = TypeVar(
     "ParameterListType",
     bound=Union[
@@ -24,9 +25,10 @@ ParameterListType = TypeVar(
 
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
     from .operation import Operation
     from .request_builder import RequestBuilder
+    from .client import Client
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -39,14 +41,16 @@ class BaseBuilder(
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
+        client: "Client",
         name: str,
         parameters: ParameterListType,
         *,
         overloads=None,
         want_tracing: bool = True,
     ) -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
+        self.client = client
         self.name = name
         self._description: str = yaml_data.get("description", "")
         self.parameters = parameters
@@ -60,7 +64,7 @@ class BaseBuilder(
         self.api_versions: List[str] = yaml_data["apiVersions"]
         self.added_on: Optional[str] = yaml_data.get("addedOn")
 
-        if code_model.options["version_tolerant"] and yaml_data.get("abstract"):
+        if namespace_model.options["version_tolerant"] and yaml_data.get("abstract"):
             _LOGGER.warning(
                 'Not going to generate operation "%s" because we are unable to generate this '
                 "type of operation right now. "

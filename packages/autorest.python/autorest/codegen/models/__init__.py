@@ -6,7 +6,8 @@
 import logging
 from typing import Any, Dict, Union
 from .base_model import BaseModel
-from .code_model import CodeModel
+from .code_model import CodeModel, NamespaceModel
+from .client import Client
 from .model_type import ModelType
 from .dictionary_type import DictionaryType
 from .list_type import ListType
@@ -78,6 +79,8 @@ __all__ = [
     "BaseModel",
     "BaseType",
     "CodeModel",
+    "Client",
+    "NamespaceModel",
     "ConstantType",
     "ModelType",
     "DictionaryType",
@@ -145,18 +148,18 @@ TYPE_TO_OBJECT = {
 _LOGGER = logging.getLogger(__name__)
 
 
-def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
+def build_type(yaml_data: Dict[str, Any], namespace_model: NamespaceModel) -> BaseType:
     yaml_id = id(yaml_data)
     try:
-        return code_model.lookup_type(yaml_id)
+        return namespace_model.lookup_type(yaml_id)
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
     if yaml_data["type"] == "model":
         # need to special case model to avoid recursion
-        response = ModelType(yaml_data, code_model)
-        code_model.types_map[yaml_id] = response
-        response.fill_instance_from_yaml(yaml_data, code_model)
+        response = ModelType(yaml_data, namespace_model)
+        namespace_model.types_map[yaml_id] = response
+        response.fill_instance_from_yaml(yaml_data, namespace_model)
     else:
         object_type = yaml_data.get("type")
         if object_type not in TYPE_TO_OBJECT:
@@ -165,8 +168,8 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
                 yaml_data["type"],
             )
             object_type = "string"
-        response = TYPE_TO_OBJECT[object_type].from_yaml(yaml_data, code_model)  # type: ignore
-    code_model.types_map[yaml_id] = response
+        response = TYPE_TO_OBJECT[object_type].from_yaml(yaml_data, namespace_model)  # type: ignore
+    namespace_model.types_map[yaml_id] = response
     return response
 
 

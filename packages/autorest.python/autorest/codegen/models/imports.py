@@ -7,7 +7,7 @@ from enum import Enum, auto
 from typing import Dict, List, Optional, Tuple, Union, Set, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
 
 
 class ImportType(str, Enum):
@@ -255,12 +255,12 @@ class FileImport:
 
     def add_msrest_import(
         self,
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         relative_path: str,
         msrest_import_type: MsrestImportType,
         typing_section: TypingSection,
     ):
-        if code_model.options["client_side_validation"]:
+        if namespace_model.options["client_side_validation"]:
             if msrest_import_type == MsrestImportType.Module:
                 self.add_import(
                     "msrest.serialization", ImportType.AZURECORE, typing_section
@@ -274,7 +274,7 @@ class FileImport:
                         "msrest", "Deserializer", ImportType.THIRDPARTY, typing_section
                     )
         else:
-            if code_model.options["multiapi"]:
+            if namespace_model.options["multiapi"]:
                 relative_path += "."
             if msrest_import_type == MsrestImportType.Module:
                 self.add_submodule_import(

@@ -29,7 +29,7 @@ from ...operations._operations import (
     build_operation_with_json_param_request,
     build_operation_with_url_request,
 )
-from .._vendor import MixinABC, raise_if_not_implemented
+from .._vendor import ReservedWordsClientMixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -108,7 +108,7 @@ class ImportOperations:
         return cast(JSON, deserialized)
 
 
-class ReservedWordsClientOperationsMixin(MixinABC):
+class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     def __init__(self) -> None:
         raise_if_not_implemented(
             self.__class__,

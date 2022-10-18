@@ -23,7 +23,8 @@ from .parameter_list import (
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
+    from .client import Client
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -35,14 +36,16 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
+        client: "Client",
         name: str,
         parameters: ParameterListType,
         *,
         overloads: Optional[List["RequestBuilder"]] = None,
     ) -> None:
         super().__init__(
-            code_model=code_model,
+            namespace_model=namespace_model,
+            client=client,
             yaml_data=yaml_data,
             name=name,
             parameters=parameters,
@@ -82,7 +85,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         if self.parameters.path:
             relative_path = ".."
             if (
-                not self.code_model.options["builders_visibility"] == "embedded"
+                not self.namespace_model.options["builders_visibility"] == "embedded"
                 and self.group_name
             ):
                 relative_path = "..." if self.group_name else ".."
@@ -97,10 +100,10 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_msrest_import(
-            self.code_model,
+            self.namespace_model,
             "..."
             if (
-                not self.code_model.options["builders_visibility"] == "embedded"
+                not self.namespace_model.options["builders_visibility"] == "embedded"
                 and self.group_name
             )
             else "..",
@@ -109,7 +112,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         )
         if (
             self.overloads
-            and self.code_model.options["builders_visibility"] != "embedded"
+            and self.namespace_model.options["builders_visibility"] != "embedded"
         ):
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
@@ -117,18 +120,23 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
     @staticmethod
     @abstractmethod
     def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], ParameterListType
+        [Dict[str, Any], "NamespaceModel"], ParameterListType
     ]:
         ...
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        namespace_model: "NamespaceModel",
+        client: "Client",
+    ):
         # when combine embedded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
         additional_mark = ""
         if (
-            code_model.options["combine_operation_files"]
-            and code_model.options["builders_visibility"] == "embedded"
+            namespace_model.options["combine_operation_files"]
+            and namespace_model.options["builders_visibility"] == "embedded"
         ):
             additional_mark = yaml_data["groupName"]
         names = [
@@ -139,14 +147,15 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         ]
         name = "_".join([n for n in names if n])
         overloads = [
-            RequestBuilder.from_yaml(rb_yaml_data, code_model)
+            RequestBuilder.from_yaml(rb_yaml_data, namespace_model, client)
             for rb_yaml_data in yaml_data.get("overloads", [])
         ]
-        parameter_list = cls.parameter_list_type()(yaml_data, code_model)
+        parameter_list = cls.parameter_list_type()(yaml_data, namespace_model)
 
         return cls(
             yaml_data=yaml_data,
-            code_model=code_model,
+            namespace_model=namespace_model,
+            client=client,
             name=name,
             parameters=parameter_list,
             overloads=overloads,
@@ -156,7 +165,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
     @staticmethod
     def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], RequestBuilderParameterList
+        [Dict[str, Any], "NamespaceModel"], RequestBuilderParameterList
     ]:
         return RequestBuilderParameterList.from_yaml
 
@@ -166,14 +175,14 @@ class OverloadedRequestBuilder(
 ):
     @staticmethod
     def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], OverloadedRequestBuilderParameterList
+        [Dict[str, Any], "NamespaceModel"], OverloadedRequestBuilderParameterList
     ]:
         return OverloadedRequestBuilderParameterList.from_yaml
 
 
 def get_request_builder(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
+    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", client: "Client"
 ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
     if yaml_data.get("overloads"):
-        return OverloadedRequestBuilder.from_yaml(yaml_data, code_model)
-    return RequestBuilder.from_yaml(yaml_data, code_model)
+        return OverloadedRequestBuilder.from_yaml(yaml_data, namespace_model, client)
+    return RequestBuilder.from_yaml(yaml_data, namespace_model, client)

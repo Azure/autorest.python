@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from ..._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import MultiapiCustomBaseUrlServiceClientMixinABC, _convert_request
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -58,7 +58,7 @@ def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class MultiapiCustomBaseUrlServiceClientOperationsMixin(MixinABC):
+class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
     @distributed_trace
     def test(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Should be a mixin operation. Put in 1 for the required parameter and have the correct api

@@ -1017,19 +1017,22 @@ function createYamlEmitter(program: Program) {
     const clientParameters = emitGlobalParameters(program, serviceNamespace);
     // Get types
     const server = getServerHelper(program, serviceNamespace);
+    const namespace = getServiceNamespaceString(program)!.toLowerCase();
     const codeModel = {
-        client: {
-            name: name,
-            description: "Service client",
-            moduleName: camelToSnakeCase(name),
-            parameters: clientParameters,
-            security: {},
-            namespace: getServiceNamespaceString(program),
-            url: server ? server.url : "",
-            apiVersions: [],
+        [namespace]: {
+            clients: [
+                {
+                    name: name,
+                    description: "Service client",
+                    parameters: clientParameters,
+                    security: {},
+                    url: server ? server.url : "",
+                    apiVersions: [],
+                    operationGroups: emitOperationGroups(program),
+                },
+            ],
+            types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
         },
-        operationGroups: emitOperationGroups(program),
-        types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
     };
     return codeModel;
 }

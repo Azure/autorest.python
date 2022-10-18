@@ -20,20 +20,24 @@ def need_typing_extensions(code_model: CodeModel):
     if code_model.options["models_mode"] and any(
         isinstance(p.type, ConstantType)
         and (p.optional or code_model.options["models_mode"] == "dpg")
-        for model in code_model.model_types
+        for namespace_model in code_model.namespace_models
+        for model in namespace_model.model_types
         for p in model.properties
     ):
         return True
     if any(
         isinstance(parameter.type, ConstantType)
-        for og in code_model.operation_groups
+        for namespace_model in code_model.namespace_models
+        for og in namespace_model.operation_groups
         for op in og.operations
         for parameter in op.parameters.method
     ):
         return True
     if any(
         isinstance(parameter.type, ConstantType)
-        for parameter in code_model.config.parameters.kwargs_to_pop
+        for namespace_model in code_model.namespace_models
+        for client in namespace_model.clients
+        for parameter in client.config.parameters.kwargs_to_pop
     ):
         return True
     return False

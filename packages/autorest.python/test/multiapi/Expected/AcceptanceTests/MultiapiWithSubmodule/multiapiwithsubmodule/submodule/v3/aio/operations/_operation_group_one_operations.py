@@ -33,7 +33,7 @@ from ...operations._operation_group_one_operations import (
     build_test_operation_group_paging_request,
     build_test_two_request,
 )
-from .._vendor import MixinABC
+from .._vendor import MultiapiServiceClientMixinABC
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports

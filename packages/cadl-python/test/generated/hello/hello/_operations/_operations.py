@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .._model_base import _deserialize
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import HelloMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -47,7 +47,7 @@ def build_world_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class HelloOperationsMixin(MixinABC):
+class HelloOperationsMixin(HelloMixinABC):
     @distributed_trace
     def world(self, **kwargs: Any) -> str:
         """world.

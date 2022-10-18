@@ -12,7 +12,7 @@ from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_description, add_to_pylint_disable
 
 if TYPE_CHECKING:
-    from .code_model import CodeModel
+    from .code_model import NamespaceModel
     from .model_type import ModelType
 
 
@@ -20,10 +20,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
         type: BaseType,
     ) -> None:
-        super().__init__(yaml_data, code_model)
+        super().__init__(yaml_data, namespace_model)
         self.rest_api_name: str = self.yaml_data["restApiName"]
         self.client_name: str = self.yaml_data["clientName"]
         self.type = type
@@ -139,7 +139,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 TypingSection.TYPING,
                 alias="_models",
             )
-        if self.code_model.options["models_mode"] == "dpg":
+        if self.namespace_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(
                 ".._model_base",
                 "rest_discriminator" if self.is_discriminator else "rest_field",
@@ -151,12 +151,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def from_yaml(
         cls,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
+        namespace_model: "NamespaceModel",
     ) -> "Property":
         from . import build_type  # pylint: disable=import-outside-toplevel
 
         return cls(
             yaml_data=yaml_data,
-            code_model=code_model,
-            type=build_type(yaml_data["type"], code_model),
+            namespace_model=namespace_model,
+            type=build_type(yaml_data["type"], namespace_model),
         )

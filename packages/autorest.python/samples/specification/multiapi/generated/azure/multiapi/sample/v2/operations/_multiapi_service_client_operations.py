@@ -26,7 +26,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
 from ..._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -85,7 +85,7 @@ def build_test_different_calls_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class MultiapiServiceClientOperationsMixin(MixinABC):
+class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     @distributed_trace
     def test_one(self, id: int, message: Optional[str] = None, **kwargs: Any) -> _models.ModelTwo:
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.

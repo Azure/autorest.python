@@ -28,7 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import MixinABC, _format_url_section
+from .._vendor import ResiliencyDevDrivenMixinABC, _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -120,7 +120,7 @@ def build_lro_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequ
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class ResiliencyDevDrivenOperationsMixin(MixinABC):
+class ResiliencyDevDrivenOperationsMixin(ResiliencyDevDrivenMixinABC):
     @distributed_trace
     def get_model(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.Product:
         """Get models that you will either return to end users as a raw body, or with a model added during

@@ -8,12 +8,12 @@ import json
 from typing import List, Optional, Set, Tuple, Dict, Union
 from jinja2 import Environment
 from ..models import (
-    CodeModel,
     OperationGroup,
     LROOperation,
     PagingOperation,
     TypingSection,
     ImportType,
+    NamespaceModel,
 )
 from .builder_serializer import get_operation_serializer
 
@@ -80,14 +80,17 @@ def _mixin_imports(
 
 
 class MetadataSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        self.code_model = code_model
+    def __init__(self, namespace_model: NamespaceModel, env: Environment) -> None:
+        self.namespace_model = namespace_model
+        self.client = self.namespace_model.clients[
+            0
+        ]  # we only do one client for multiapi
         self.env = env
 
     def _choose_api_version(self) -> Tuple[str, List[str]]:
         chosen_version = ""
         total_api_version_set: Set[str] = set()
-        for operation_group in self.code_model.operation_groups:
+        for operation_group in self.namespace_model.operation_groups:
             total_api_version_set.update(operation_group.api_versions)
 
         total_api_version_list = list(total_api_version_set)
@@ -100,7 +103,7 @@ class MetadataSerializer:
         if len(total_api_version_list) == 1:
             chosen_version = total_api_version_list[0]
         elif len(total_api_version_list) > 1:
-            module_version = self.code_model.namespace.split(".")[-1]
+            module_version = self.namespace_model.namespace.split(".")[-1]
             for api_version in total_api_version_list:
                 if "v{}".format(api_version.replace("-", "_")) == module_version:
                     chosen_version = api_version
@@ -117,7 +120,7 @@ class MetadataSerializer:
         mixin_operation_group: Optional[OperationGroup] = next(
             (
                 operation_group
-                for operation_group in self.code_model.operation_groups
+                for operation_group in self.namespace_model.operation_groups
                 if operation_group.is_mixin
             ),
             None,
@@ -130,14 +133,15 @@ class MetadataSerializer:
         chosen_version, total_api_version_list = self._choose_api_version()
 
         # setting to true, because for multiapi we always generate with a version file with version 0.1.0
-        self.code_model.options["package_version"] = "0.1.0"
+        self.namespace_model.options["package_version"] = "0.1.0"
         template = self.env.get_template("metadata.json.jinja2")
 
         return template.render(
+            namespace_model=self.namespace_model,
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,
-            code_model=self.code_model,
-            global_parameters=self.code_model.client.parameters,
+            client=self.client,
+            global_parameters=self.client.parameters,
             mixin_operations=mixin_operations,
             any=any,
             is_lro=_is_lro,
@@ -146,26 +150,26 @@ class MetadataSerializer:
             sync_mixin_imports=sync_mixin_imports,
             async_mixin_imports=async_mixin_imports,
             sync_client_imports=_json_serialize_imports(
-                self.code_model.client.imports_for_multiapi(async_mode=False).to_dict()
+                self.client.imports_for_multiapi(async_mode=False).to_dict()
             ),
             async_client_imports=_json_serialize_imports(
-                self.code_model.client.imports_for_multiapi(async_mode=True).to_dict()
+                self.client.imports_for_multiapi(async_mode=True).to_dict()
             ),
             sync_config_imports=_json_serialize_imports(
-                self.code_model.config.imports_for_multiapi(async_mode=False).to_dict()
+                self.client.config.imports_for_multiapi(async_mode=False).to_dict()
             ),
             async_config_imports=_json_serialize_imports(
-                self.code_model.config.imports_for_multiapi(async_mode=True).to_dict()
+                self.client.config.imports_for_multiapi(async_mode=True).to_dict()
             ),
             get_async_operation_serializer=functools.partial(
                 get_operation_serializer,
-                code_model=self.code_model,
+                namespace_model=self.client.namespace_model,
                 async_mode=True,
             ),
             get_sync_operation_serializer=functools.partial(
                 get_operation_serializer,
-                code_model=self.code_model,
+                namespace_model=self.client.namespace_model,
                 async_mode=False,
             ),
-            has_credential=bool(self.code_model.credential),
+            has_credential=bool(self.client.credential),
         )

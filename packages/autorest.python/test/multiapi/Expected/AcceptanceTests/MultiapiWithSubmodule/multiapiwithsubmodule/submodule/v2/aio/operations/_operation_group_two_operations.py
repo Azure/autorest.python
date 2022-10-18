@@ -27,7 +27,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._operation_group_two_operations import build_test_four_request
-from .._vendor import MixinABC
+from .._vendor import MultiapiServiceClientMixinABC
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports

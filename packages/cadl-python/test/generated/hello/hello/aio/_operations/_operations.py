@@ -23,13 +23,13 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._model_base import _deserialize
 from ..._operations._operations import build_world_request
-from .._vendor import MixinABC
+from .._vendor import HelloMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HelloOperationsMixin(MixinABC):
+class HelloOperationsMixin(HelloMixinABC):
     @distributed_trace_async
     async def world(self, **kwargs: Any) -> str:
         """world.
