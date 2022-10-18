@@ -13,13 +13,13 @@ from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import AuthenticationApiKeyConfiguration
-from ._operations import AuthenticationApiKeyOperationsMixin
+from ._configuration import ApiKeyClientConfiguration
+from ._operations import ApiKeyClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class AuthenticationApiKey(AuthenticationApiKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
+class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates clients generated with ApiKey authentication.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
@@ -27,7 +27,7 @@ class AuthenticationApiKey(AuthenticationApiKeyOperationsMixin):  # pylint: disa
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
-        self._config = AuthenticationApiKeyConfiguration(credential=credential, **kwargs)
+        self._config = ApiKeyClientConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -61,7 +61,7 @@ class AuthenticationApiKey(AuthenticationApiKeyOperationsMixin):  # pylint: disa
         self._client.close()
 
     def __enter__(self):
-        # type: () -> AuthenticationApiKey
+        # type: () -> ApiKeyClient
         self._client.__enter__()
         return self
 

@@ -119,7 +119,7 @@ node_modules/
 **/output.yaml
 
 # VS code
-.vscode/
+packages/**/.vscode/
 
 # Generated test folders
 test/services/*/_generated

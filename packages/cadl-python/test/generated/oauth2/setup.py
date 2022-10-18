@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "authenticationoauth2"
+PACKAGE_NAME = "oauth2client"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="AuthenticationOAuth2",
+    description="OAuth2Client",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Service client.
+    Illustrates clients generated with OAuth2 authentication.
     """,
 )

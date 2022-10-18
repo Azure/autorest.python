@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from models.inheritance import ModelsInheritance, models
+from models.inheritance import InheritanceClient, models
 
 @pytest.fixture
 def client():
-    with ModelsInheritance() as client:
+    with InheritanceClient() as client:
         yield client
 
 @pytest.fixture
@@ -29,10 +29,10 @@ def polymorphic_body():
     return models.Shark({"age": 1, "kind": "shark", "sharktype": "goblin"})
 
 def test_polymorhic_put_model(client, polymorphic_body):
-    client.discriminated.put_model(polymorphic_body)
+    client.put_model(polymorphic_body)
 
 def test_polymorhic_get_model(client, polymorphic_body):
-    assert client.discriminated.get_model() == polymorphic_body
+    assert client.get_model() == polymorphic_body
 
 
 @pytest.fixture
@@ -96,13 +96,13 @@ def recursive_body():
 })
 
 def test_put_recursive_body(client, recursive_body):
-    client.discriminated.put_recursive_model(recursive_body)
+    client.put_recursive_model(recursive_body)
 
 def test_get_recursive_body(client, recursive_body):
-    assert client.discriminated.get_recursive_model() == recursive_body
+    assert client.get_recursive_model() == recursive_body
 
 def test_get_missing_discriminator(client):
-    assert client.discriminated.get_missing_discriminator() == models.Fish(age=1)
+    assert client.get_missing_discriminator() == models.Fish(age=1)
 
 def test_get_wrong_discriminator(client):
-    assert client.discriminated.get_wrong_discriminator() == models.Fish(age=1, kind="wrongKind")
+    assert client.get_wrong_discriminator() == models.Fish(age=1, kind="wrongKind")

@@ -65,7 +65,7 @@ class Int32ValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`int32_value` attribute.
     """
 
@@ -205,7 +205,7 @@ class Int32ValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -219,7 +219,7 @@ class Int64ValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`int64_value` attribute.
     """
 
@@ -359,7 +359,7 @@ class Int64ValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -373,7 +373,7 @@ class BooleanValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`boolean_value` attribute.
     """
 
@@ -513,7 +513,7 @@ class BooleanValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -527,7 +527,7 @@ class StringValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`string_value` attribute.
     """
 
@@ -667,7 +667,7 @@ class StringValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -681,7 +681,7 @@ class Float32ValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`float32_value` attribute.
     """
 
@@ -821,7 +821,7 @@ class Float32ValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -835,7 +835,7 @@ class DatetimeValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`datetime_value` attribute.
     """
 
@@ -975,7 +975,7 @@ class DatetimeValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -989,7 +989,7 @@ class DurationValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`duration_value` attribute.
     """
 
@@ -1129,7 +1129,7 @@ class DurationValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1143,7 +1143,7 @@ class UnknownValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`unknown_value` attribute.
     """
 
@@ -1283,7 +1283,7 @@ class UnknownValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1297,7 +1297,7 @@ class ModelValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`model_value` attribute.
     """
 
@@ -1437,7 +1437,7 @@ class ModelValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1451,7 +1451,7 @@ class RecursiveModelValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~dictionary.aio.Dictionary`'s
+        :class:`~dictionary.aio.DictionaryClient`'s
         :attr:`recursive_model_value` attribute.
     """
 
@@ -1591,7 +1591,7 @@ class RecursiveModelValueOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

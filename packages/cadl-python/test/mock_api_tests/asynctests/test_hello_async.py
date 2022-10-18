@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from hello.aio import Hello
+from hello.aio import HelloClient
 
 @pytest.fixture
 async def client():
-    async with Hello() as client:
+    async with HelloClient() as client:
         yield client
 
 @pytest.mark.asyncio

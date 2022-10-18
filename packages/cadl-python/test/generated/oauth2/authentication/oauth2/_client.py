@@ -12,8 +12,8 @@ from typing import Any, TYPE_CHECKING
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import AuthenticationOAuth2Configuration
-from ._operations import AuthenticationOAuth2OperationsMixin
+from ._configuration import OAuth2ClientConfiguration
+from ._operations import OAuth2ClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -21,8 +21,8 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AuthenticationOAuth2(AuthenticationOAuth2OperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
+class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates clients generated with OAuth2 authentication.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
@@ -30,7 +30,7 @@ class AuthenticationOAuth2(AuthenticationOAuth2OperationsMixin):  # pylint: disa
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
-        self._config = AuthenticationOAuth2Configuration(credential=credential, **kwargs)
+        self._config = OAuth2ClientConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -64,7 +64,7 @@ class AuthenticationOAuth2(AuthenticationOAuth2OperationsMixin):  # pylint: disa
         self._client.close()
 
     def __enter__(self):
-        # type: () -> AuthenticationOAuth2
+        # type: () -> OAuth2Client
         self._client.__enter__()
         return self
 
