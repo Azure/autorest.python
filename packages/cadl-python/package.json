@@ -67,6 +67,7 @@
     "@azure-tools/cadl-ranch-specs": "workspace:*",
     "@azure-tools/cadl-ranch-expect": "~0.1.11",
     "@cadl-lang/openapi": "~0.13.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "@azure-tools/cadl-dpg": "~0.1.0"
   }
 }
