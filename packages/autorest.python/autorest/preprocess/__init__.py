@@ -180,6 +180,10 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
     yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
     for parameter in yaml_data["parameters"]:
         update_parameter(parameter)
+    prop_name = yaml_data["name"]
+    if prop_name.endswith("Client"):
+        prop_name = prop_name[:len(prop_name) - len("Client")]
+    yaml_data["builderPadName"] = to_snake_case(prop_name)
 
 
 def update_paging_response(yaml_data: Dict[str, Any]) -> None:
