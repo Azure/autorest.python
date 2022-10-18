@@ -438,7 +438,7 @@ class StringOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.optional.ModelsPropertyOptional`'s
+        :class:`~models.property.optional.OptionalClient`'s
         :attr:`string` attribute.
     """
 
@@ -722,7 +722,7 @@ class BytesOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.optional.ModelsPropertyOptional`'s
+        :class:`~models.property.optional.OptionalClient`'s
         :attr:`bytes` attribute.
     """
 
@@ -1006,7 +1006,7 @@ class DatetimeOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.optional.ModelsPropertyOptional`'s
+        :class:`~models.property.optional.OptionalClient`'s
         :attr:`datetime` attribute.
     """
 
@@ -1290,7 +1290,7 @@ class DurationOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.optional.ModelsPropertyOptional`'s
+        :class:`~models.property.optional.OptionalClient`'s
         :attr:`duration` attribute.
     """
 
@@ -1574,7 +1574,7 @@ class CollectionsByteOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.optional.ModelsPropertyOptional`'s
+        :class:`~models.property.optional.OptionalClient`'s
         :attr:`collections_byte` attribute.
     """
 
@@ -1866,7 +1866,7 @@ class CollectionsModelOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.optional.ModelsPropertyOptional`'s
+        :class:`~models.property.optional.OptionalClient`'s
         :attr:`collections_model` attribute.
     """
 
@@ -2160,7 +2160,7 @@ class RequiredAndOptionalOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.optional.ModelsPropertyOptional`'s
+        :class:`~models.property.optional.OptionalClient`'s
         :attr:`required_and_optional` attribute.
     """
 

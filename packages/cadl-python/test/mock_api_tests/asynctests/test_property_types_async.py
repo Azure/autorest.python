@@ -6,11 +6,11 @@
 import datetime
 import pytest
 from models.property.types import models
-from models.property.types.aio import ModelsPropertyTypes
+from models.property.types.aio import TypesClient
 
 @pytest.fixture
 async def client():
-    async with ModelsPropertyTypes() as client:
+    async with TypesClient() as client:
         yield client
 
 @pytest.mark.asyncio

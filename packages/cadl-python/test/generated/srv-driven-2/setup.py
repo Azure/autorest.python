@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "resiliencyservicedriven2"
+PACKAGE_NAME = "servicedriven2client"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="ResiliencyServiceDriven2",
+    description="ServiceDriven2Client",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Service client.
+    DPG Swagger, this is the initial swagger a service could do.
     """,
 )

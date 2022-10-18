@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "extensibleenums"
+PACKAGE_NAME = "extensibleenumsclient"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="ExtensibleEnums",
+    description="ExtensibleEnumsClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Service client.
+    ExtensibleEnumsClient.
     """,
 )
