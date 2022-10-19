@@ -8,7 +8,6 @@ from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_description
-from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
 
 if TYPE_CHECKING:
     from .code_model import NamespaceModel
@@ -76,17 +75,7 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return (
-            f"Literal[{self.get_declaration()}]"
-            if self._is_literal
-            else self.value_type.type_annotation(**kwargs)
-        )
-
-    @property
-    def _is_literal(self) -> bool:
-        return isinstance(
-            self.value_type, (IntegerType, BinaryType, StringType, BooleanType)
-        )
+        return f"Literal[{self.get_declaration()}]"
 
     @classmethod
     def from_yaml(
@@ -123,16 +112,16 @@ class ConstantType(BaseType):
             description=description,
         )
 
-    def imports(self, **kwargs: Any) -> FileImport:
+    def _imports_shared(self, **kwargs: Any):
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
-        if self._is_literal and kwargs.get("import_literal"):
-            file_import.merge(self._import_literal())
         return file_import
 
-    @staticmethod
-    def _import_literal() -> FileImport:
-        file_import = FileImport()
+    def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
+        return self._imports_shared(**kwargs)
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = self._imports_shared(**kwargs)
         file_import.add_import("sys", ImportType.STDLIB)
         file_import.add_submodule_import(
             "typing_extensions",

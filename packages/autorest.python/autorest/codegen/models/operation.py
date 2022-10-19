@@ -213,7 +213,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(
                 param.imports(
                     async_mode,
-                    import_literal=not kwargs.get("for_multiapi", False),
                     **kwargs,
                 )
             )
@@ -236,7 +235,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
             return FileImport()
-        file_import = self._imports_shared(async_mode, for_multiapi=True, **kwargs)
+        file_import = self._imports_shared(async_mode, **kwargs)
         for response in self.responses:
             file_import.merge(
                 response.imports_for_multiapi(async_mode=async_mode, **kwargs)

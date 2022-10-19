@@ -140,7 +140,7 @@ class MsrestModelSerializer(_ModelSerializer):
                 p for p in model.properties if not p.readonly and not p.is_discriminator
             ]
             for param in init_line_parameters:
-                file_import.merge(param.imports(import_literal=param.optional))
+                file_import.merge(param.imports())
 
         return file_import
 
@@ -213,7 +213,7 @@ class DpgModelSerializer(_ModelSerializer):
         for model in self.namespace_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
             for prop in model.properties:
-                file_import.merge(prop.imports(import_literal=True))
+                file_import.merge(prop.imports())
         return file_import
 
     def declare_model(self, model: ModelType) -> str:
