@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class ModelsPropertyTypesConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for ModelsPropertyTypes.
+class TypesClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for TypesClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(ModelsPropertyTypesConfiguration, self).__init__(**kwargs)
+        super(TypesClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "modelspropertytypes/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "typesclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

@@ -13,7 +13,7 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import DictionaryConfiguration
+from ._configuration import DictionaryClientConfiguration
 from .operations import (
     BooleanValueOperations,
     DatetimeValueOperations,
@@ -28,8 +28,8 @@ from .operations import (
 )
 
 
-class Dictionary:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
-    """Service client.
+class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+    """Illustrates various of dictionaries.
 
     :ivar int32_value: Int32ValueOperations operations
     :vartype int32_value: dictionary.aio.operations.Int32ValueOperations
@@ -55,7 +55,7 @@ class Dictionary:  # pylint: disable=client-accepts-api-version-keyword,too-many
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = DictionaryConfiguration(**kwargs)
+        self._config = DictionaryClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -99,7 +99,7 @@ class Dictionary:  # pylint: disable=client-accepts-api-version-keyword,too-many
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "Dictionary":
+    async def __aenter__(self) -> "DictionaryClient":
         await self._client.__aenter__()
         return self
 

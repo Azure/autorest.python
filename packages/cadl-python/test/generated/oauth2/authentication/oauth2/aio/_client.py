@@ -13,16 +13,16 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import AuthenticationOAuth2Configuration
-from ._operations import AuthenticationOAuth2OperationsMixin
+from ._configuration import OAuth2ClientConfiguration
+from ._operations import OAuth2ClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AuthenticationOAuth2(AuthenticationOAuth2OperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
+class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates clients generated with OAuth2 authentication.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
@@ -30,7 +30,7 @@ class AuthenticationOAuth2(AuthenticationOAuth2OperationsMixin):  # pylint: disa
 
     def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
-        self._config = AuthenticationOAuth2Configuration(credential=credential, **kwargs)
+        self._config = OAuth2ClientConfiguration(credential=credential, **kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -62,7 +62,7 @@ class AuthenticationOAuth2(AuthenticationOAuth2OperationsMixin):  # pylint: disa
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AuthenticationOAuth2":
+    async def __aenter__(self) -> "OAuth2Client":
         await self._client.__aenter__()
         return self
 

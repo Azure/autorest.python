@@ -5,11 +5,11 @@
 # --------------------------------------------------------------------------
 from typing import Any
 import pytest
-from models.property.optional import ModelsPropertyOptional, models
+from models.property.optional import OptionalClient, models
 
 @pytest.fixture
 def client():
-    with ModelsPropertyOptional() as client:
+    with OptionalClient() as client:
         yield client
 
 @pytest.mark.parametrize(

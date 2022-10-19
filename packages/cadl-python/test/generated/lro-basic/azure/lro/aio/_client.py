@@ -13,28 +13,25 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import AzureLroConfiguration
-from .operations import PollingSuccessOperations
+from ._configuration import LroClientConfiguration
+from ._operations import LroClientOperationsMixin
 
 
-class AzureLro:  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
+class LroClient(LroClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """All the basic lro test shall be added in this file.
 
-    :ivar polling_success: PollingSuccessOperations operations
-    :vartype polling_success: azure.lro.aio.operations.PollingSuccessOperations
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = AzureLroConfiguration(**kwargs)
+        self._config = LroClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.polling_success = PollingSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -61,7 +58,7 @@ class AzureLro:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AzureLro":
+    async def __aenter__(self) -> "LroClient":
         await self._client.__aenter__()
         return self
 

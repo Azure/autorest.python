@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "azurelro"
+PACKAGE_NAME = "lroclient"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="AzureLro",
+    description="LroClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Service client.
+    All the basic lro test shall be added in this file.
     """,
 )

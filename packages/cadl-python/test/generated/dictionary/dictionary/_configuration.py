@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class DictionaryConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for Dictionary.
+class DictionaryClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for DictionaryClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(DictionaryConfiguration, self).__init__(**kwargs)
+        super(DictionaryClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "dictionary/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "dictionaryclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

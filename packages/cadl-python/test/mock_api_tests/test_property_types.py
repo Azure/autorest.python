@@ -5,11 +5,11 @@
 # --------------------------------------------------------------------------
 import pytest
 import datetime
-from models.property.types import ModelsPropertyTypes, models
+from models.property.types import TypesClient, models
 
 @pytest.fixture
 def client():
-    with ModelsPropertyTypes() as client:
+    with TypesClient() as client:
         yield client
 
 @pytest.mark.parametrize(

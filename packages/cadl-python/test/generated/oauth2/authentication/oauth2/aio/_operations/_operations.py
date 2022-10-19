@@ -22,13 +22,13 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_invalid_request, build_valid_request
-from .._vendor import AuthenticationOAuth2MixinABC
+from .._vendor import OAuth2ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AuthenticationOAuth2OperationsMixin(AuthenticationOAuth2MixinABC):
+class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
     @distributed_trace_async
     async def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.
