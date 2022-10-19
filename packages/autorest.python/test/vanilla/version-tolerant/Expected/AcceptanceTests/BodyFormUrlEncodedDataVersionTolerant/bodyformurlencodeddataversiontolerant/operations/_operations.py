@@ -8,9 +8,6 @@
 # --------------------------------------------------------------------------
 from .._vendor import raise_if_not_implemented
 
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
-
 
 class FormdataurlencodedOperations:
     """
