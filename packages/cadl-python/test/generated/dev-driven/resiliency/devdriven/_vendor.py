@@ -8,7 +8,7 @@
 from abc import ABC
 from typing import TYPE_CHECKING
 
-from ._configuration import ResiliencyDevDrivenConfiguration
+from ._configuration import DevDrivenClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -28,10 +28,10 @@ def _format_url_section(template, **kwargs):
             template = "/".join(components)
 
 
-class MixinABC(ABC):
+class DevDrivenClientMixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
 
     _client: "PipelineClient"
-    _config: ResiliencyDevDrivenConfiguration
+    _config: DevDrivenClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"

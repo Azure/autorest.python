@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from ..._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -79,7 +79,7 @@ def build_test_different_calls_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class MultiapiServiceClientOperationsMixin(MixinABC):
+class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     @distributed_trace
     def test_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.

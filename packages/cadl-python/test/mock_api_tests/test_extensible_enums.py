@@ -4,17 +4,17 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from extensibleenums import ExtensibleEnums, models
+from extensibleenums import ExtensibleEnumsClient, models
 
 @pytest.fixture
 def client():
-    with ExtensibleEnums() as client:
+    with ExtensibleEnumsClient() as client:
         yield client
 
 def test_known_value(client):
-    assert client.string.get_known_value() == models.DaysOfWeekExtensibleEnum.MONDAY
-    client.string.put_known_value(models.DaysOfWeekExtensibleEnum.MONDAY)
+    assert client.get_known_value() == models.DaysOfWeekExtensibleEnum.MONDAY
+    client.put_known_value(models.DaysOfWeekExtensibleEnum.MONDAY)
 
 def test_unknown_value(client):
-    assert client.string.get_unknown_value() == "Weekend"
-    client.string.put_unknown_value("Weekend")
+    assert client.get_unknown_value() == "Weekend"
+    client.put_unknown_value("Weekend")

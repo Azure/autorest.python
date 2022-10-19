@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import PollingPagingExampleMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -71,7 +71,7 @@ def build_basic_paging_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class PollingPagingExampleOperationsMixin(MixinABC):
+class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
     def _basic_polling_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,

@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC, _format_url_section, raise_if_not_implemented
+from .._vendor import ReservedWordsClientMixinABC, _format_url_section, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -187,7 +187,7 @@ class ImportOperations:
         return cast(JSON, deserialized)
 
 
-class ReservedWordsClientOperationsMixin(MixinABC):
+class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     def __init__(self):
         raise_if_not_implemented(
             self.__class__,

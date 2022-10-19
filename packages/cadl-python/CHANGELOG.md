@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-10-13 - 0.3.1
+
+**Bug Fixes**
+
+- Only generate operation groups from cadl if a group is tagged with `@operationGroup` from `cadl-dpg`  #1516
+
 ## 2022-10-13 - 0.3.0
 
 **New Features**

@@ -27,7 +27,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import ReadonlyPropertiesClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -72,7 +72,7 @@ def build_set_optional_property_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class ReadonlyPropertiesOperationsMixin(MixinABC):
+class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
     @distributed_trace
     def get_optional_property_model(self, **kwargs: Any) -> _models.OutputModel:
         """get_optional_property_model.

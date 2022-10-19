@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import AutoRestReportServiceMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -70,7 +70,7 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class AutoRestReportServiceOperationsMixin(MixinABC):
+class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
     @distributed_trace
     def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.

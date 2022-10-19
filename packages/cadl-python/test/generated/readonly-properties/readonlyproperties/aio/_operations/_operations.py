@@ -30,7 +30,7 @@ from ..._operations._operations import (
     build_get_optional_property_model_request,
     build_set_optional_property_model_request,
 )
-from .._vendor import MixinABC
+from .._vendor import ReadonlyPropertiesClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -41,7 +41,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ReadonlyPropertiesOperationsMixin(MixinABC):
+class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
     @distributed_trace_async
     async def get_optional_property_model(self, **kwargs: Any) -> _models.OutputModel:
         """get_optional_property_model.

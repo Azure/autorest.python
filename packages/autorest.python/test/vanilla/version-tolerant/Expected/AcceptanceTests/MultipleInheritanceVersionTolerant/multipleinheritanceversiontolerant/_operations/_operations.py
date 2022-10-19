@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import MultipleInheritanceServiceClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -193,7 +193,7 @@ def build_put_kitten_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
+class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceServiceClientMixinABC):
     @distributed_trace
     def get_horse(self, **kwargs: Any) -> JSON:
         """Get a horse with name 'Fred' and isAShowHorse true.

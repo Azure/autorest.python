@@ -12,27 +12,22 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import ResiliencyServiceDriven1Configuration
+from ._configuration import ServiceDriven1ClientConfiguration
+from ._operations import ServiceDriven1ClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .operations import ParamsOperations
 
 
-class ResiliencyServiceDriven1:  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
-
-    :ivar params: ParamsOperations operations
-    :vartype params: resiliency.servicedriven1.operations.ParamsOperations
-    """
+class ServiceDriven1Client(ServiceDriven1ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """DPG Swagger, this is the initial swagger a service could do."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ResiliencyServiceDriven1Configuration(**kwargs)
+        self._config = ServiceDriven1ClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.params = ParamsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -61,7 +56,7 @@ class ResiliencyServiceDriven1:  # pylint: disable=client-accepts-api-version-ke
         self._client.close()
 
     def __enter__(self):
-        # type: () -> ResiliencyServiceDriven1
+        # type: () -> ServiceDriven1Client
         self._client.__enter__()
         return self
 

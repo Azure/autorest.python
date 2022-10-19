@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class ReadonlyPropertiesConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for ReadonlyProperties.
+class ReadonlyPropertiesClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for ReadonlyPropertiesClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(ReadonlyPropertiesConfiguration, self).__init__(**kwargs)
+        super(ReadonlyPropertiesClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "readonlyproperties/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "readonlypropertiesclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

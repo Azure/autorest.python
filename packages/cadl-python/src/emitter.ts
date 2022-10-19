@@ -12,7 +12,6 @@ import {
     getPattern,
     getServiceNamespace,
     getServiceNamespaceString,
-    getServiceTitle,
     getSummary,
     getVisibility,
     ignoreDiagnostics,
@@ -28,12 +27,13 @@ import {
     JSONSchemaType,
     createCadlLibrary,
     getDiscriminator,
+    Operation,
 } from "@cadl-lang/compiler";
 import {
-    getAllRoutes,
     getAuthentication,
     getContentTypes,
     getHeaderFieldName,
+    getHttpOperation,
     getPathParamName,
     getQueryParamName,
     getServers,
@@ -44,11 +44,11 @@ import {
     HttpOperationResponseContent,
     HttpServer,
     isStatusCode,
-    OperationDetails,
 } from "@cadl-lang/rest/http";
 import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
+import { Client, listClients, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -149,22 +149,13 @@ function getDocStr(program: Program, target: Type): string {
     return getDoc(program, target) ?? "";
 }
 
-function isLro(program: Program, operation: OperationDetails): boolean {
-    for (const decorator of operation.operation.decorators) {
+function isLro(program: Program, operation: Operation): boolean {
+    for (const decorator of operation.decorators) {
         if (decorator.decorator.name === "$pollingOperation") {
             return true;
         }
     }
     return false;
-}
-
-function getOperationGroupName(program: Program, operation: OperationDetails): string {
-    let groupName = "";
-    const serviceNamespace = getServiceNamespace(program);
-    if (!serviceNamespace || capitalize(operation.container.name) !== capitalize(serviceNamespace.name)) {
-        groupName = capitalize(operation.container.name);
-    }
-    return groupName;
 }
 
 function handleDiscriminator(program: Program, type: Model, model: Record<string, any>) {
@@ -289,7 +280,7 @@ function emitBodyParameter(
     program: Program,
     bodyType: Type,
     params: HttpOperationParameters,
-    operation: OperationDetails,
+    operation: Operation,
 ): Record<string, any> {
     const base = emitParamBase(program, params.bodyParameter ?? bodyType);
     const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
@@ -306,15 +297,15 @@ function emitBodyParameter(
         type = getType(program, bodyType);
     }
 
-    // avoid anonymous model type
-    if (type && type.type === "model" && !type.name) {
-        type.name =
-            operation.container.name +
-            operation.operation.name[0].toUpperCase() +
-            operation.operation.name.slice(1) +
-            "Request";
-        type.snakeCaseName = camelToSnakeCase(type.name);
-    }
+    // // avoid anonymous model type
+    // if (type && type.type === "model" && !type.name) {
+    //     type.name =
+    //         operation.container.name +
+    //         operation.operation.name[0].toUpperCase() +
+    //         operation.operation.name.slice(1) +
+    //         "Request";
+    //     type.snakeCaseName = camelToSnakeCase(type.name);
+    // }
 
     return {
         contentTypes,
@@ -466,26 +457,26 @@ function emitResponse(
     };
 }
 
-function emitOperation(program: Program, operation: OperationDetails): Record<string, any> {
+function emitOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
     const lro = isLro(program, operation);
-    const paging = getPagedResult(program, operation.operation);
+    const paging = getPagedResult(program, operation);
     if (lro && paging) {
-        return emitLroPagingOperation(program, operation);
+        return emitLroPagingOperation(program, operation, operationGroupName);
     } else if (paging) {
-        return emitPagingOperation(program, operation);
+        return emitPagingOperation(program, operation, operationGroupName);
     } else if (lro) {
-        return emitLroOperation(program, operation);
+        return emitLroOperation(program, operation, operationGroupName);
     }
-    return emitBasicOperation(program, operation);
+    return emitBasicOperation(program, operation, operationGroupName);
 }
 
 function addLroInformation(emittedOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "lro";
 }
 
-function addPagingInformation(program: Program, operation: OperationDetails, emittedOperation: Record<string, any>) {
+function addPagingInformation(program: Program, operation: Operation, emittedOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "paging";
-    const pagedResult = getPagedResult(program, operation.operation);
+    const pagedResult = getPagedResult(program, operation);
     if (pagedResult === undefined) {
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
@@ -493,27 +484,31 @@ function addPagingInformation(program: Program, operation: OperationDetails, emi
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
 }
 
-function emitLroPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation);
+function emitLroPagingOperation(
+    program: Program,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
     addLroInformation(emittedOperation);
     addPagingInformation(program, operation, emittedOperation);
     emittedOperation["discriminator"] = "lropaging";
     return emittedOperation;
 }
 
-function emitLroOperation(program: Program, operation: OperationDetails): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation);
+function emitLroOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
     addLroInformation(emittedOperation);
     return emittedOperation;
 }
 
-function emitPagingOperation(program: Program, operation: OperationDetails): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation);
+function emitPagingOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
+    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
     addPagingInformation(program, operation, emittedOperation);
     return emittedOperation;
 }
 
-function emitBasicOperation(program: Program, operation: OperationDetails): Record<string, any> {
+function emitBasicOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
     // Set up parameters for operation
     const parameters: Record<string, any>[] = [];
     if (endpointPathParameters) {
@@ -521,7 +516,8 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
             parameters.push(param);
         }
     }
-    for (const param of operation.parameters.parameters) {
+    const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
+    for (const param of httpOperation.parameters.parameters) {
         parameters.push(emitParameter(program, param, "Method"));
     }
 
@@ -530,7 +526,7 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
     const exceptions: Record<string, any>[] = [];
     const isOverload: boolean = false;
     const isOverriden: boolean = false;
-    for (const response of operation.responses) {
+    for (const response of httpOperation.responses) {
         for (const innerResponse of response.responses) {
             const emittedResponse = emitResponse(program, response, innerResponse);
             if (
@@ -551,30 +547,35 @@ function emitBasicOperation(program: Program, operation: OperationDetails): Reco
     }
 
     let bodyParameter: Record<string, any> | undefined;
-    if (operation.parameters.bodyType === undefined) {
+    if (httpOperation.parameters.bodyType === undefined) {
         bodyParameter = undefined;
     } else {
-        bodyParameter = emitBodyParameter(program, operation.parameters.bodyType, operation.parameters, operation);
+        bodyParameter = emitBodyParameter(
+            program,
+            httpOperation.parameters.bodyType,
+            httpOperation.parameters,
+            operation,
+        );
         if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
     }
     return {
-        name: camelToSnakeCase(operation.operation.name),
-        description: getDocStr(program, operation.operation),
-        summary: getSummary(program, operation.operation),
-        url: operation.path,
-        method: operation.verb.toUpperCase(),
+        name: camelToSnakeCase(operation.name),
+        description: getDocStr(program, operation),
+        summary: getSummary(program, operation),
+        url: httpOperation.path,
+        method: httpOperation.verb.toUpperCase(),
         parameters: parameters,
         bodyParameter: bodyParameter,
         responses: responses,
         exceptions: exceptions,
-        groupName: getOperationGroupName(program, operation),
-        addedOn: getAddedOnVersion(program, operation.operation),
+        groupName: operationGroupName,
+        addedOn: getAddedOnVersion(program, operation),
         discriminator: "basic",
         isOverload: false,
         overloads: [],
-        apiVersions: [getAddedOnVersion(program, operation.operation)],
+        apiVersions: [getAddedOnVersion(program, operation)],
     };
 }
 
@@ -845,27 +846,30 @@ function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
 }
 
-function emitOperationGroups(program: Program): Record<string, any>[] {
+function emitOperationGroups(program: Program, client: Client): Record<string, any>[] {
     const operationGroups: Record<string, any>[] = [];
-    const allOperations = ignoreDiagnostics(getAllRoutes(program));
-    for (const operation of allOperations) {
-        let existingOperationGroup: Record<string, any> | undefined = undefined;
-        for (const operationGroup of operationGroups) {
-            if (operationGroup["className"] === getOperationGroupName(program, operation)) {
-                existingOperationGroup = operationGroup;
-            }
+    for (const operationGroup of listOperationGroups(program, client)) {
+        const operations: Record<string, any>[] = [];
+        const name = operationGroup.type.name;
+        for (const operation of listOperationsInOperationGroup(program, operationGroup)) {
+            operations.push(emitOperation(program, operation, name));
         }
-        const emittedOperation = emitOperation(program, operation);
-        if (existingOperationGroup) {
-            existingOperationGroup["operations"].push(emittedOperation);
-        } else {
-            const newOperationGroup = {
-                propertyName: getOperationGroupName(program, operation),
-                className: getOperationGroupName(program, operation),
-                operations: [emittedOperation],
-            };
-            operationGroups.push(newOperationGroup);
-        }
+        operationGroups.push({
+            className: name,
+            propertyName: name,
+            operations: operations,
+        });
+    }
+    const clientOperations: Record<string, any>[] = [];
+    for (const operation of listOperationsInOperationGroup(program, client)) {
+        clientOperations.push(emitOperation(program, operation, ""));
+    }
+    if (clientOperations.length > 0) {
+        operationGroups.push({
+            className: "",
+            propertyName: "",
+            operations: clientOperations,
+        });
     }
     return operationGroups;
 }
@@ -977,9 +981,9 @@ function emitApiVersionParam(program: Program): Record<string, any> | undefined 
     return undefined;
 }
 
-function emitGlobalParameters(program: Program, serviceNamespace: Namespace): Record<string, any>[] {
-    const clientParameters = emitServerParams(program, serviceNamespace);
-    const credentialParam = emitCredentialParam(program, serviceNamespace);
+function emitGlobalParameters(program: Program, namespace: Namespace): Record<string, any>[] {
+    const clientParameters = emitServerParams(program, namespace);
+    const credentialParam = emitCredentialParam(program, namespace);
     const apiVersionParam = emitApiVersionParam(program);
     if (credentialParam) {
         clientParameters.push(credentialParam);
@@ -1000,6 +1004,23 @@ function getApiVersions(program: Program, namespace: Namespace) {
     }
 }
 
+function emitClients(program: Program): Record<string, any>[] {
+    const clients = listClients(program);
+    const retval: Record<string, any>[] = [];
+    for (const client of clients) {
+        const server = getServerHelper(program, client.service);
+        retval.push({
+            name: client.name,
+            description: getDocStr(program, client.type),
+            parameters: emitGlobalParameters(program, client.service),
+            url: server ? server.url : "",
+            apiVersions: [],
+            operationGroups: emitOperationGroups(program, client),
+        });
+    }
+    return retval;
+}
+
 function createYamlEmitter(program: Program) {
     const serviceNamespace = getServiceNamespace(program);
     if (serviceNamespace === undefined) {
@@ -1007,23 +1028,13 @@ function createYamlEmitter(program: Program) {
     }
 
     getApiVersions(program, serviceNamespace);
-    const name = getServiceTitle(program).replace(/ /g, "").replace(/-/g, "");
-    const clientParameters = emitGlobalParameters(program, serviceNamespace);
     // Get types
-    const server = getServerHelper(program, serviceNamespace);
+    const namespace = getServiceNamespaceString(program)!.toLowerCase();
     const codeModel = {
-        client: {
-            name: name,
-            description: "Service client",
-            moduleName: camelToSnakeCase(name),
-            parameters: clientParameters,
-            security: {},
-            namespace: getServiceNamespaceString(program),
-            url: server ? server.url : "",
-            apiVersions: [],
+        [namespace.toLowerCase()]: {
+            clients: emitClients(program),
+            types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
         },
-        operationGroups: emitOperationGroups(program),
-        types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
     };
     return codeModel;
 }

@@ -18,8 +18,8 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AuthenticationOAuth2Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for AuthenticationOAuth2.
+class OAuth2ClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for OAuth2Client.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -29,13 +29,13 @@ class AuthenticationOAuth2Configuration(Configuration):  # pylint: disable=too-m
     """
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        super(AuthenticationOAuth2Configuration, self).__init__(**kwargs)
+        super(OAuth2ClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
-        kwargs.setdefault("sdk_moniker", "authenticationoauth2/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "oauth2client/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

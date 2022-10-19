@@ -5,11 +5,11 @@
 # --------------------------------------------------------------------------
 import pytest
 from models.property.optional import models
-from models.property.optional.aio import ModelsPropertyOptional
+from models.property.optional.aio import OptionalClient
 
 @pytest.fixture
 async def client():
-    async with ModelsPropertyOptional() as client:
+    async with OptionalClient() as client:
         yield client
 
 @pytest.mark.parametrize(

@@ -13,16 +13,16 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import ResiliencyDevDrivenConfiguration
-from ._operations import ResiliencyDevDrivenOperationsMixin
+from ._configuration import DevDrivenClientConfiguration
+from ._operations import DevDrivenClientOperationsMixin
 
 
-class ResiliencyDevDriven(ResiliencyDevDrivenOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client."""
+class DevDrivenClient(DevDrivenClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """DPG Swagger that tests our ability to grow up."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ResiliencyDevDrivenConfiguration(**kwargs)
+        self._config = DevDrivenClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -54,7 +54,7 @@ class ResiliencyDevDriven(ResiliencyDevDrivenOperationsMixin):  # pylint: disabl
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ResiliencyDevDriven":
+    async def __aenter__(self) -> "DevDrivenClient":
         await self._client.__aenter__()
         return self
 

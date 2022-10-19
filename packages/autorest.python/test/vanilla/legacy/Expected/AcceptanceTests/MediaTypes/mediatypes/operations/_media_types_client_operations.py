@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import MixinABC, _convert_request
+from .._vendor import MediaTypesClientMixinABC, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -149,7 +149,7 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-class MediaTypesClientOperationsMixin(MixinABC):
+class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     @overload
     def analyze_body(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any

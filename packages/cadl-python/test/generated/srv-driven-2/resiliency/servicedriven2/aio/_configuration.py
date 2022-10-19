@@ -14,8 +14,8 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class ResiliencyServiceDriven2Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for ResiliencyServiceDriven2.
+class ServiceDriven2ClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for ServiceDriven2Client.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -26,11 +26,11 @@ class ResiliencyServiceDriven2Configuration(Configuration):  # pylint: disable=t
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(ResiliencyServiceDriven2Configuration, self).__init__(**kwargs)
+        super(ServiceDriven2ClientConfiguration, self).__init__(**kwargs)
         api_version = kwargs.pop("api_version", "1.1.0")  # type: str
 
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "resiliencyservicedriven2/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "servicedriven2client/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

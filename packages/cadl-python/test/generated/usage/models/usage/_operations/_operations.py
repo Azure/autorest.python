@@ -27,7 +27,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import MixinABC
+from .._vendor import UsageClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -86,7 +86,7 @@ def build_input_and_output_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class ModelsUsageOperationsMixin(MixinABC):
+class UsageClientOperationsMixin(UsageClientMixinABC):
     @overload
     def input(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.InputRecord, JSON], *, content_type: str = "application/json", **kwargs: Any

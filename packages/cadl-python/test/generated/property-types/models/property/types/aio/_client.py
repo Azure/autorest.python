@@ -13,7 +13,7 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import ModelsPropertyTypesConfiguration
+from ._configuration import TypesClientConfiguration
 from .operations import (
     BooleanOperations,
     BytesOperations,
@@ -32,8 +32,8 @@ from .operations import (
 )
 
 
-class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
-    """Service client.
+class TypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+    """Illustrates various property types for models.
 
     :ivar boolean: BooleanOperations operations
     :vartype boolean: models.property.types.aio.operations.BooleanOperations
@@ -67,7 +67,7 @@ class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ModelsPropertyTypesConfiguration(**kwargs)
+        self._config = TypesClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -119,7 +119,7 @@ class ModelsPropertyTypes:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ModelsPropertyTypes":
+    async def __aenter__(self) -> "TypesClient":
         await self._client.__aenter__()
         return self
 

@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "modelsusage"
+PACKAGE_NAME = "usageclient"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="ModelsUsage",
+    description="UsageClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Service client.
+    Illustrates usage of Record in different places(Operation parameters, return type or both).
     """,
 )
