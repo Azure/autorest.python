@@ -24,8 +24,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import (
-    build_poll_with_constant_parameterized_endpoints_request,
-    build_poll_with_parameterized_endpoints_request,
+    build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request,
+    build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request,
 )
 from .._vendor import LROWithParamaterizedEndpointsMixinABC
 
@@ -48,7 +48,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_parameterized_endpoints_request(
+        request = build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request(
             headers=_headers,
             params=_params,
         )
@@ -169,7 +169,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_constant_parameterized_endpoints_request(
+        request = build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             headers=_headers,
             params=_params,

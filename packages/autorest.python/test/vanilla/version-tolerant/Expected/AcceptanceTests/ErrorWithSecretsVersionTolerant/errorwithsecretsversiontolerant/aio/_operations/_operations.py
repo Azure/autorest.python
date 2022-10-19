@@ -22,7 +22,10 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_create_secret_request, build_get_error_with_secrets_request
+from ..._operations._operations import (
+    build_error_with_secrets_create_secret_request,
+    build_error_with_secrets_get_error_with_secrets_request,
+)
 from .._vendor import ErrorWithSecretsMixinABC
 
 if sys.version_info >= (3, 9):
@@ -65,7 +68,7 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_create_secret_request(
+        request = build_error_with_secrets_create_secret_request(
             headers=_headers,
             params=_params,
         )
@@ -112,7 +115,7 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_error_with_secrets_request(
+        request = build_error_with_secrets_get_error_with_secrets_request(
             headers=_headers,
             params=_params,
         )

@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_post_valid_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_post_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -55,7 +55,7 @@ def build_post_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_valid_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_get_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -69,7 +69,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_valid_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -86,7 +86,7 @@ def build_put_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_model_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_get_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -100,7 +100,7 @@ def build_get_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_model_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_put_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -114,7 +114,7 @@ def build_put_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_recursive_model_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_get_recursive_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -128,7 +128,7 @@ def build_get_recursive_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_recursive_model_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_put_recursive_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -142,7 +142,7 @@ def build_put_recursive_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_missing_discriminator_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_get_missing_discriminator_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -156,7 +156,7 @@ def build_get_missing_discriminator_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_wrong_discriminator_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_get_wrong_discriminator_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -239,7 +239,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_post_valid_request(
+        request = build_inheritance_post_valid_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -281,7 +281,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
 
-        request = build_get_valid_request(
+        request = build_inheritance_get_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -368,7 +368,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_put_valid_request(
+        request = build_inheritance_put_valid_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -414,7 +414,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_model_request(
+        request = build_inheritance_get_model_request(
             headers=_headers,
             params=_params,
         )
@@ -505,7 +505,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_put_model_request(
+        request = build_inheritance_put_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -547,7 +547,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_recursive_model_request(
+        request = build_inheritance_get_recursive_model_request(
             headers=_headers,
             params=_params,
         )
@@ -638,7 +638,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_put_recursive_model_request(
+        request = build_inheritance_put_recursive_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -680,7 +680,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_missing_discriminator_request(
+        request = build_inheritance_get_missing_discriminator_request(
             headers=_headers,
             params=_params,
         )
@@ -724,7 +724,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
-        request = build_get_wrong_discriminator_request(
+        request = build_inheritance_get_wrong_discriminator_request(
             headers=_headers,
             params=_params,
         )

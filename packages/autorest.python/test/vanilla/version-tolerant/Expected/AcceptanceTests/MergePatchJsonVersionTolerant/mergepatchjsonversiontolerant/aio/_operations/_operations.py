@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._operations._operations import build_patch_single_request
+from ..._operations._operations import build_merge_patch_json_patch_single_request
 from .._vendor import MergePatchJsonClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -64,7 +64,7 @@ class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
 
         _json = body
 
-        request = build_patch_single_request(
+        request = build_merge_patch_json_patch_single_request(
             content_type=content_type,
             json=_json,
             headers=_headers,

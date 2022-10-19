@@ -16,7 +16,7 @@ __version__ = VERSION
 {{ keywords.patch_imports(try_except=True) }}
 __all__ = [
     {% for client in clients %}
-    {{ keywords.escape_str(client.name) }}
+    {{ keywords.escape_str(client.name) }},
     {% endfor %}
 ]
 {{ keywords.extend_all }}

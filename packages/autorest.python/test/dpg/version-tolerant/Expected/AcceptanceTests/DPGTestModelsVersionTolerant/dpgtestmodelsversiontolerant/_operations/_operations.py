@@ -36,7 +36,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
+def build_dpg_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -55,7 +55,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
+def build_dpg_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -77,7 +77,7 @@ def build_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_pages_request(mode: str, **kwargs: Any) -> HttpRequest:
+def build_dpg_get_pages_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -96,7 +96,7 @@ def build_get_pages_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
+def build_dpg_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -142,7 +142,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
-        request = build_get_model_request(
+        request = build_dpg_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
@@ -248,7 +248,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         else:
             _json = self._serialize.body(input, "Input")
 
-        request = build_post_model_request(
+        request = build_dpg_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
@@ -304,7 +304,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_request(
+                request = build_dpg_get_pages_request(
                     mode=mode,
                     headers=_headers,
                     params=_params,
@@ -356,7 +356,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
-        request = build_lro_request(
+        request = build_dpg_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,

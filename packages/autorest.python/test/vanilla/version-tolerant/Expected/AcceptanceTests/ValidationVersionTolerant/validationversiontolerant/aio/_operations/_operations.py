@@ -24,10 +24,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import (
-    build_get_with_constant_in_path_request,
-    build_post_with_constant_in_body_request,
-    build_validation_of_body_request,
-    build_validation_of_method_parameters_request,
+    build_auto_rest_validation_test_get_with_constant_in_path_request,
+    build_auto_rest_validation_test_post_with_constant_in_body_request,
+    build_auto_rest_validation_test_validation_of_body_request,
+    build_auto_rest_validation_test_validation_of_method_parameters_request,
 )
 from .._vendor import AutoRestValidationTestMixinABC
 
@@ -96,7 +96,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_validation_of_method_parameters_request(
+        request = build_auto_rest_validation_test_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -338,7 +338,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_validation_of_body_request(
+        request = build_auto_rest_validation_test_validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -396,7 +396,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_with_constant_in_path_request(
+        request = build_auto_rest_validation_test_get_with_constant_in_path_request(
             constant_param=constant_param,
             headers=_headers,
             params=_params,
@@ -609,7 +609,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_post_with_constant_in_body_request(
+        request = build_auto_rest_validation_test_post_with_constant_in_body_request(
             constant_param=constant_param,
             content_type=content_type,
             json=_json,

@@ -56,7 +56,7 @@ def build_import_operations_operation_one_request(*, parameter1: str, **kwargs: 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_operation_with_content_param_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_reserved_words_operation_with_content_param_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -73,7 +73,7 @@ def build_operation_with_content_param_request(*, content: IO, **kwargs: Any) ->
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> HttpRequest:
+def build_reserved_words_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -90,7 +90,7 @@ def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> Http
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_operation_with_url_request(
+def build_reserved_words_operation_with_url_request(
     url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -223,7 +223,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         _content = content
 
-        request = build_operation_with_content_param_request(
+        request = build_reserved_words_operation_with_content_param_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -277,7 +277,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         _json = json
 
-        request = build_operation_with_json_param_request(
+        request = build_reserved_words_operation_with_json_param_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -337,7 +337,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_operation_with_url_request(
+        request = build_reserved_words_operation_with_url_request(
             url=url,
             header_parameters=header_parameters,
             query_parameters=query_parameters,
