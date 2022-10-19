@@ -4,7 +4,7 @@
 
 **Bug Fixes**
 
-- Generate names for anonymous models
+- Generate names for anonymous models  #1519
 
 ## 2022-10-19 - 0.4.0
 
