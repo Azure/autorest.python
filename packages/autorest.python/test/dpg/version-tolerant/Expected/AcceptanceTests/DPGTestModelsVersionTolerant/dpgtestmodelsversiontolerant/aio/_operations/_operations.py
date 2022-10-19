@@ -28,10 +28,10 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._operations._operations import (
-    build_get_model_request,
-    build_get_pages_request,
-    build_lro_request,
-    build_post_model_request,
+    build_dpg_get_model_request,
+    build_dpg_get_pages_request,
+    build_dpg_lro_request,
+    build_dpg_post_model_request,
 )
 from .._vendor import DPGClientMixinABC
 
@@ -66,7 +66,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
-        request = build_get_model_request(
+        request = build_dpg_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
@@ -172,7 +172,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         else:
             _json = self._serialize.body(input, "Input")
 
-        request = build_post_model_request(
+        request = build_dpg_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
@@ -228,7 +228,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_request(
+                request = build_dpg_get_pages_request(
                     mode=mode,
                     headers=_headers,
                     params=_params,
@@ -280,7 +280,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
-        request = build_lro_request(
+        request = build_dpg_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,

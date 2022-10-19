@@ -21,7 +21,10 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_get_optional_report_request, build_get_report_request
+from ..._operations._operations import (
+    build_auto_rest_report_service_get_optional_report_request,
+    build_auto_rest_report_service_get_report_request,
+)
 from .._vendor import AutoRestReportServiceMixinABC
 
 T = TypeVar("T")
@@ -62,7 +65,7 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        request = build_get_report_request(
+        request = build_auto_rest_report_service_get_report_request(
             qualifier=qualifier,
             headers=_headers,
             params=_params,
@@ -122,7 +125,7 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        request = build_get_optional_report_request(
+        request = build_auto_rest_report_service_get_optional_report_request(
             qualifier=qualifier,
             headers=_headers,
             params=_params,

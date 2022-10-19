@@ -35,7 +35,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_create_request(**kwargs: Any) -> HttpRequest:
+def build_lro_create_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -49,7 +49,7 @@ def build_create_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_polling_request(**kwargs: Any) -> HttpRequest:
+def build_lro_polling_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -63,7 +63,7 @@ def build_polling_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_request(**kwargs: Any) -> HttpRequest:
+def build_lro_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -92,7 +92,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_create_request(
+        request = build_lro_create_request(
             headers=_headers,
             params=_params,
         )
@@ -192,7 +192,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_polling_request(
+        request = build_lro_polling_request(
             headers=_headers,
             params=_params,
         )
@@ -239,7 +239,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_get_request(
+        request = build_lro_get_request(
             headers=_headers,
             params=_params,
         )

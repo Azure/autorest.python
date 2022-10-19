@@ -34,7 +34,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
+def build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -48,7 +48,9 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
+def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request(
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
@@ -83,7 +85,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_parameterized_endpoints_request(
+        request = build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request(
             headers=_headers,
             params=_params,
         )
@@ -171,7 +173,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                     lro_delay,
                     lro_options={"final-state-via": "location"},
                     path_format_arguments=path_format_arguments,
-                    **kwargs
+                    **kwargs,
                 ),
             )  # type: PollingMethod
         elif polling is False:
@@ -202,7 +204,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_constant_parameterized_endpoints_request(
+        request = build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             headers=_headers,
             params=_params,
@@ -274,7 +276,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 

@@ -24,17 +24,17 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import (
-    build_get_array_request,
-    build_get_dictionary_request,
-    build_get_resource_collection_request,
-    build_get_wrapped_array_request,
-    build_post_flattened_simple_product_request,
-    build_put_array_request,
-    build_put_dictionary_request,
-    build_put_resource_collection_request,
-    build_put_simple_product_request,
-    build_put_simple_product_with_grouping_request,
-    build_put_wrapped_array_request,
+    build_auto_rest_resource_flattening_test_service_get_array_request,
+    build_auto_rest_resource_flattening_test_service_get_dictionary_request,
+    build_auto_rest_resource_flattening_test_service_get_resource_collection_request,
+    build_auto_rest_resource_flattening_test_service_get_wrapped_array_request,
+    build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request,
+    build_auto_rest_resource_flattening_test_service_put_array_request,
+    build_auto_rest_resource_flattening_test_service_put_dictionary_request,
+    build_auto_rest_resource_flattening_test_service_put_resource_collection_request,
+    build_auto_rest_resource_flattening_test_service_put_simple_product_request,
+    build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request,
+    build_auto_rest_resource_flattening_test_service_put_wrapped_array_request,
 )
 from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC
 
@@ -137,7 +137,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_array_request(
+        request = build_auto_rest_resource_flattening_test_service_put_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -204,7 +204,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
-        request = build_get_array_request(
+        request = build_auto_rest_resource_flattening_test_service_get_array_request(
             headers=_headers,
             params=_params,
         )
@@ -316,7 +316,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_wrapped_array_request(
+        request = build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -372,7 +372,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
-        request = build_get_wrapped_array_request(
+        request = build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(
             headers=_headers,
             params=_params,
         )
@@ -499,7 +499,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_dictionary_request(
+        request = build_auto_rest_resource_flattening_test_service_put_dictionary_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -566,7 +566,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
-        request = build_get_dictionary_request(
+        request = build_auto_rest_resource_flattening_test_service_get_dictionary_request(
             headers=_headers,
             params=_params,
         )
@@ -736,7 +736,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_resource_collection_request(
+        request = build_auto_rest_resource_flattening_test_service_put_resource_collection_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -848,7 +848,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_resource_collection_request(
+        request = build_auto_rest_resource_flattening_test_service_get_resource_collection_request(
             headers=_headers,
             params=_params,
         )
@@ -1026,7 +1026,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_simple_product_request(
+        request = build_auto_rest_resource_flattening_test_service_put_simple_product_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1209,7 +1209,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_post_flattened_simple_product_request(
+        request = build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1408,7 +1408,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_simple_product_with_grouping_request(
+        request = build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(
             name=name,
             content_type=content_type,
             json=_json,

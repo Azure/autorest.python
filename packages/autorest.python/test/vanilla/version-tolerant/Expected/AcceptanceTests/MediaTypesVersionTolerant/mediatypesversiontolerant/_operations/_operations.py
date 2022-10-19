@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_analyze_body_request(**kwargs: Any) -> HttpRequest:
+def build_media_types_analyze_body_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -55,7 +55,7 @@ def build_analyze_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_analyze_body_no_accept_header_request(**kwargs: Any) -> HttpRequest:
+def build_media_types_analyze_body_no_accept_header_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -69,7 +69,9 @@ def build_analyze_body_no_accept_header_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_content_type_with_encoding_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_media_types_content_type_with_encoding_request(
+    *, content: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -86,7 +88,7 @@ def build_content_type_with_encoding_request(*, content: Optional[str] = None, *
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_binary_body_with_two_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_media_types_binary_body_with_two_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -103,7 +105,7 @@ def build_binary_body_with_two_content_types_request(*, content: IO, **kwargs: A
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_media_types_binary_body_with_three_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -120,7 +122,7 @@ def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs:
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> HttpRequest:
+def build_media_types_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -228,7 +230,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_analyze_body_request(
+        request = build_media_types_analyze_body_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -346,7 +348,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_analyze_body_no_accept_header_request(
+        request = build_media_types_analyze_body_no_accept_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -397,7 +399,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         else:
             _content = None
 
-        request = build_content_type_with_encoding_request(
+        request = build_media_types_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -452,7 +454,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_binary_body_with_two_content_types_request(
+        request = build_media_types_binary_body_with_two_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -508,7 +510,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_binary_body_with_three_content_types_request(
+        request = build_media_types_binary_body_with_three_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -562,7 +564,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_put_text_and_json_body_request(
+        request = build_media_types_put_text_and_json_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

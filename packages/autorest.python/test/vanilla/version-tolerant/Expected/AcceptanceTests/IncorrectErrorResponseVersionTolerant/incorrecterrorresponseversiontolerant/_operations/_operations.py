@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
+def build_incorrect_returned_error_model_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/incorrectError"
 
@@ -61,7 +61,7 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_incorrect_error_from_server_request(
+        request = build_incorrect_returned_error_model_get_incorrect_error_from_server_request(
             headers=_headers,
             params=_params,
         )

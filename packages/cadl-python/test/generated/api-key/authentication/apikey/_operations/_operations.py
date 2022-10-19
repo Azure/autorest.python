@@ -32,14 +32,14 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_valid_request(**kwargs: Any) -> HttpRequest:
+def build_api_key_valid_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/authentication/api-key/valid"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_api_key_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -75,7 +75,7 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_valid_request(
+        request = build_api_key_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -115,7 +115,7 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_invalid_request(
+        request = build_api_key_invalid_request(
             headers=_headers,
             params=_params,
         )
