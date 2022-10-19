@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import logging
 from typing import List, Optional, Any, Union, cast
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
@@ -25,6 +26,10 @@ from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
+from .sample_serializer import SampleSerializer
+from ..._utils import to_snake_case
+
+_LOGGER = logging.getLogger(__name__)
 
 __all__ = [
     "JinjaSerializer",
@@ -150,10 +155,16 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         if self.namespace_model.options["package_mode"]:
             self._serialize_and_write_package_files(namespace_path=namespace_path)
 
+        if (
+            self.namespace_model.options["show_operations"]
+            and self.namespace_model.operation_groups
+            and self.namespace_model.options["generate_sample"]
+            and not self.namespace_model.options["multiapi"]
+        ):
+            self._serialize_and_write_sample(env, namespace_path)
+
     def _serialize_and_write_package_files(self, namespace_path: Path) -> None:
-        root_of_sdk = namespace_path / Path(
-            "../" * (self.namespace_model.namespace.count(".") + 1)
-        )
+        root_of_sdk = self._package_root_folder(namespace_path)
         if self.namespace_model.options["package_mode"] in ("dataplane", "mgmtplane"):
             env = Environment(
                 loader=PackageLoader(
@@ -500,6 +511,40 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         self.write_file(
             namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
         )
+
+    # find root folder where "setup.py" is
+    def _package_root_folder(self, namespace_path: Path) -> Path:
+        return namespace_path / Path(
+            "../" * (self.namespace_model.namespace.count(".") + 1)
+        )
+
+    def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
+        out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
+        for op_group in self.namespace_model.operation_groups:
+            for operation in op_group.operations:
+                samples = operation.yaml_data["samples"]
+                if not samples:
+                    continue
+                for key, value in samples.items():
+                    file_name = to_snake_case(key) + ".py"
+                    try:
+                        self.write_file(
+                            out_path / file_name,
+                            SampleSerializer(
+                                namespace_model=self.namespace_model,
+                                env=env,
+                                operation_group=op_group,
+                                operation=operation,
+                                sample=value,
+                                file_name=file_name,
+                                sample_origin_name=key,
+                            ).serialize(),
+                        )
+                    except Exception as e:  # pylint: disable=broad-except
+                        # sample generation shall not block code generation, so just log error
+                        _LOGGER.error(
+                            "error happens when generate sample with {%s}: {%s}", key, e
+                        )
 
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):

@@ -216,6 +216,7 @@ class CodeGenerator(Plugin):
                 "default-optional-constants-to-none",
                 low_level_client or version_tolerant,
             ),
+            "generate_sample": self.options.get("generate-sample", False),
         }
 
         if options["builders_visibility"] is None:
@@ -332,6 +333,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             "default-optional-constants-to-none": self._autorestapi.get_boolean_value(
                 "default-optional-constants-to-none"
             ),
+            "generate-sample": self._autorestapi.get_boolean_value("generate-sample"),
         }
         return {k: v for k, v in options.items() if v is not None}
 
