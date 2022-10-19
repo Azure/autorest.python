@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "resiliencydevdriven"
+PACKAGE_NAME = "devdrivenclient"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="ResiliencyDevDriven",
+    description="DevDrivenClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -26,6 +26,6 @@ setup(
         "typing_extensions>=4.3.0; python_version<'3.8.0'",
     ],
     long_description="""\
-    Service client.
+    DPG Swagger that tests our ability to grow up.
     """,
 )

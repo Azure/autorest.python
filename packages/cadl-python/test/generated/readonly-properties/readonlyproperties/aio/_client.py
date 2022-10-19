@@ -13,16 +13,18 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import ReadonlyPropertiesConfiguration
-from ._operations import ReadonlyPropertiesOperationsMixin
+from ._configuration import ReadonlyPropertiesClientConfiguration
+from ._operations import ReadonlyPropertiesClientOperationsMixin
 
 
-class ReadonlyProperties(ReadonlyPropertiesOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client."""
+class ReadonlyPropertiesClient(
+    ReadonlyPropertiesClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates models with readonly properties."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ReadonlyPropertiesConfiguration(**kwargs)
+        self._config = ReadonlyPropertiesClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -54,7 +56,7 @@ class ReadonlyProperties(ReadonlyPropertiesOperationsMixin):  # pylint: disable=
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ReadonlyProperties":
+    async def __aenter__(self) -> "ReadonlyPropertiesClient":
         await self._client.__aenter__()
         return self
 

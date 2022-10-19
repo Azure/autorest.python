@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._client import Dictionary
+from ._client import DictionaryClient
 from ._version import VERSION
 
 __version__ = VERSION
@@ -18,7 +18,7 @@ except ImportError:
     _patch_all = []
 from ._patch import patch_sdk as _patch_sdk
 
-__all__ = ["Dictionary"]
+__all__ = ["DictionaryClient"]
 __all__.extend([p for p in _patch_all if p not in __all__])
 
 _patch_sdk()

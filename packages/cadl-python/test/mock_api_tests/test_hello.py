@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from hello import Hello
+from hello import HelloClient
 
 @pytest.fixture
 def client():
-    with Hello() as client:
+    with HelloClient() as client:
         yield client
 
 def test_get(client):

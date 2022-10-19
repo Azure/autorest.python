@@ -13,26 +13,21 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import ResiliencyServiceDriven1Configuration
-from .operations import ParamsOperations
+from ._configuration import ServiceDriven1ClientConfiguration
+from ._operations import ServiceDriven1ClientOperationsMixin
 
 
-class ResiliencyServiceDriven1:  # pylint: disable=client-accepts-api-version-keyword
-    """Service client.
-
-    :ivar params: ParamsOperations operations
-    :vartype params: resiliency.servicedriven1.aio.operations.ParamsOperations
-    """
+class ServiceDriven1Client(ServiceDriven1ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """DPG Swagger, this is the initial swagger a service could do."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ResiliencyServiceDriven1Configuration(**kwargs)
+        self._config = ServiceDriven1ClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.params = ParamsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -59,7 +54,7 @@ class ResiliencyServiceDriven1:  # pylint: disable=client-accepts-api-version-ke
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ResiliencyServiceDriven1":
+    async def __aenter__(self) -> "ServiceDriven1Client":
         await self._client.__aenter__()
         return self
 

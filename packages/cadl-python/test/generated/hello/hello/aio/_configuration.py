@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class HelloConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for Hello.
+class HelloClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for HelloClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(HelloConfiguration, self).__init__(**kwargs)
+        super(HelloClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "hello/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "helloclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

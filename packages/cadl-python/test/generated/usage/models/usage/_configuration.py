@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class ModelsUsageConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for ModelsUsage.
+class UsageClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for UsageClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(ModelsUsageConfiguration, self).__init__(**kwargs)
+        super(UsageClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "modelsusage/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "usageclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

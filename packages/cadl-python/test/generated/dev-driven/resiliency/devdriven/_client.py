@@ -12,17 +12,17 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import ResiliencyDevDrivenConfiguration
-from ._operations import ResiliencyDevDrivenOperationsMixin
+from ._configuration import DevDrivenClientConfiguration
+from ._operations import DevDrivenClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class ResiliencyDevDriven(ResiliencyDevDrivenOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client."""
+class DevDrivenClient(DevDrivenClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """DPG Swagger that tests our ability to grow up."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ResiliencyDevDrivenConfiguration(**kwargs)
+        self._config = DevDrivenClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -56,7 +56,7 @@ class ResiliencyDevDriven(ResiliencyDevDrivenOperationsMixin):  # pylint: disabl
         self._client.close()
 
     def __enter__(self):
-        # type: () -> ResiliencyDevDriven
+        # type: () -> DevDrivenClient
         self._client.__enter__()
         return self
 

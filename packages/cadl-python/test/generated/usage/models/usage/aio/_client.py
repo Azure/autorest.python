@@ -13,16 +13,16 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import ModelsUsageConfiguration
-from ._operations import ModelsUsageOperationsMixin
+from ._configuration import UsageClientConfiguration
+from ._operations import UsageClientOperationsMixin
 
 
-class ModelsUsage(ModelsUsageOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client."""
+class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates usage of Record in different places(Operation parameters, return type or both)."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ModelsUsageConfiguration(**kwargs)
+        self._config = UsageClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -54,7 +54,7 @@ class ModelsUsage(ModelsUsageOperationsMixin):  # pylint: disable=client-accepts
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ModelsUsage":
+    async def __aenter__(self) -> "UsageClient":
         await self._client.__aenter__()
         return self
 

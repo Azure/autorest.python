@@ -13,16 +13,16 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import HelloConfiguration
-from ._operations import HelloOperationsMixin
+from ._configuration import HelloClientConfiguration
+from ._operations import HelloClientOperationsMixin
 
 
-class Hello(HelloOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client."""
+class HelloClient(HelloClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Basic Hello World Test."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = HelloConfiguration(**kwargs)
+        self._config = HelloClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -54,7 +54,7 @@ class Hello(HelloOperationsMixin):  # pylint: disable=client-accepts-api-version
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "Hello":
+    async def __aenter__(self) -> "HelloClient":
         await self._client.__aenter__()
         return self
 

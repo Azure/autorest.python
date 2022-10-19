@@ -72,7 +72,7 @@ class BooleanOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`boolean` attribute.
     """
 
@@ -223,7 +223,7 @@ class StringOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`string` attribute.
     """
 
@@ -374,7 +374,7 @@ class BytesOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`bytes` attribute.
     """
 
@@ -525,7 +525,7 @@ class IntOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`int` attribute.
     """
 
@@ -676,7 +676,7 @@ class FloatOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`float` attribute.
     """
 
@@ -827,7 +827,7 @@ class DatetimeOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`datetime` attribute.
     """
 
@@ -978,7 +978,7 @@ class DurationOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`duration` attribute.
     """
 
@@ -1129,7 +1129,7 @@ class EnumOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`enum` attribute.
     """
 
@@ -1280,7 +1280,7 @@ class ExtensibleEnumOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`extensible_enum` attribute.
     """
 
@@ -1435,7 +1435,7 @@ class ModelOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`model` attribute.
     """
 
@@ -1586,7 +1586,7 @@ class CollectionsStringOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`collections_string` attribute.
     """
 
@@ -1742,7 +1742,7 @@ class CollectionsIntOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`collections_int` attribute.
     """
 
@@ -1897,7 +1897,7 @@ class CollectionsModelOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`collections_model` attribute.
     """
 
@@ -2053,7 +2053,7 @@ class DictionaryStringOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~models.property.types.aio.ModelsPropertyTypes`'s
+        :class:`~models.property.types.aio.TypesClient`'s
         :attr:`dictionary_string` attribute.
     """
 

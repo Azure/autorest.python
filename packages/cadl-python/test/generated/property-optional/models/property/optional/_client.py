@@ -12,7 +12,7 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import ModelsPropertyOptionalConfiguration
+from ._configuration import OptionalClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import (
     BytesOperations,
@@ -25,8 +25,8 @@ from .operations import (
 )
 
 
-class ModelsPropertyOptional:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
-    """Service client.
+class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+    """Illustrates models with optional properties.
 
     :ivar string: StringOperations operations
     :vartype string: models.property.optional.operations.StringOperations
@@ -47,7 +47,7 @@ class ModelsPropertyOptional:  # pylint: disable=client-accepts-api-version-keyw
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = ModelsPropertyOptionalConfiguration(**kwargs)
+        self._config = OptionalClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -94,7 +94,7 @@ class ModelsPropertyOptional:  # pylint: disable=client-accepts-api-version-keyw
         self._client.close()
 
     def __enter__(self):
-        # type: () -> ModelsPropertyOptional
+        # type: () -> OptionalClient
         self._client.__enter__()
         return self
 
