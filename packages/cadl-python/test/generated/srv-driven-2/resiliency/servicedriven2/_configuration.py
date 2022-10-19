@@ -12,7 +12,7 @@ from typing import Any
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
-from resiliency.servicedriven2._version import VERSION
+from ._version import VERSION
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
