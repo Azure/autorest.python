@@ -1,10 +1,16 @@
 # Release History
 
-## 2022-10-19 - 0.4.0
+## 2022-10-19 - 0.4.1
 
 **Bug Fixes**
 
-- Add support for multiple clients  #1518 
+- Generate names for anonymous models
+
+## 2022-10-19 - 0.4.0
+
+**New Features**
+
+- Add support for multiple clients  #1518
 
 ## 2022-10-13 - 0.3.1
 
