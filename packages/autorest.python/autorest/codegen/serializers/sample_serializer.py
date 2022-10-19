@@ -102,11 +102,9 @@ class SampleSerializer:
         for param in params_positional:
             name = param.rest_api_name
             param_value = self.sample["parameters"].get(name)
-            if param_value or not param.optional:
+            if not param.optional:
                 if not param_value:
-                    # if can't find required param, need to log it
-                    _LOGGER.warning(failure_info, name, self.sample_origin_name)
-                    param_value = param.client_name.upper()
+                    raise Exception(failure_info.format(name, self.sample_origin_name))
                 operation_params[param.client_name] = cls(param_value)
         return operation_params
 
@@ -117,14 +115,15 @@ class SampleSerializer:
 
     def _operation_result(self) -> str:
         lro = ".result()"
-        paging = "\n    response = [item for item in response]"
+        paging = "\n    for item in response:\n        print(item)"
+        normal_print = "\n    print(response)"
         if self.operation.operation_type == "paging":
-            return "\n    response = [item for item in response]"
+            return paging
         if self.operation.operation_type == "lro":
-            return ".result()"
+            return lro + normal_print
         if self.operation.operation_type == "lropaging":
             return lro + paging
-        return ""
+        return normal_print
 
     def _operation_name(self) -> str:
         return f".{self.operation.name}"

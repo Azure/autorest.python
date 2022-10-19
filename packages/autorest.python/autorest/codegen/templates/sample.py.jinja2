@@ -36,7 +36,6 @@ def main():
         {{ key }}={{ value|indent(8) }},
         {% endfor %}
     ){{ operation_result }}
-    print(response)
 
 {% if origin_file %}
 # x-ms-original-file: {{ origin_file }}
