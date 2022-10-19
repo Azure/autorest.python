@@ -59,7 +59,9 @@ class BaseBuilder(
         )
         self._summary: str = yaml_data.get("summary", "")
         self.want_tracing = want_tracing
-        self.group_name: str = yaml_data["groupName"]  # either operationGroup or client I am on
+        self.group_name: str = yaml_data[
+            "groupName"
+        ]  # either operationGroup or client I am on
         self.is_overload: bool = yaml_data["isOverload"]
         self.api_versions: List[str] = yaml_data["apiVersions"]
         self.added_on: Optional[str] = yaml_data.get("addedOn")

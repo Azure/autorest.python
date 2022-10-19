@@ -138,7 +138,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             namespace_model.options["combine_operation_files"]
             and namespace_model.options["builders_visibility"] == "embedded"
         ):
-            additional_mark = yaml_data["groupName"] or client.yaml_data["builderPadName"]
+            additional_mark = (
+                yaml_data["groupName"] or client.yaml_data["builderPadName"]
+            )
         names = [
             "build",
             additional_mark,

@@ -182,7 +182,7 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
         update_parameter(parameter)
     prop_name = yaml_data["name"]
     if prop_name.endswith("Client"):
-        prop_name = prop_name[:len(prop_name) - len("Client")]
+        prop_name = prop_name[: len(prop_name) - len("Client")]
     yaml_data["builderPadName"] = to_snake_case(prop_name)
 
 

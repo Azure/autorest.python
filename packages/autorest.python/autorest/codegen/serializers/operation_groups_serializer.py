@@ -31,12 +31,16 @@ class OperationGroupsSerializer:
         self.async_mode = async_mode
         self.operation_group = operation_group
 
-    def _get_request_builders(self, operation_group: OperationGroup) -> List[Union[OverloadedRequestBuilder, RequestBuilder]]:
+    def _get_request_builders(
+        self, operation_group: OperationGroup
+    ) -> List[Union[OverloadedRequestBuilder, RequestBuilder]]:
         return [
-            r for r in self.namespace_model.request_builders
-            if r.client.name == operation_group.client.name and
-            r.group_name == operation_group.property_name and
-            not r.is_overload and not r.abstract
+            r
+            for r in self.namespace_model.request_builders
+            if r.client.name == operation_group.client.name
+            and r.group_name == operation_group.property_name
+            and not r.is_overload
+            and not r.abstract
         ]
 
     def serialize(self) -> str:
