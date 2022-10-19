@@ -24,12 +24,12 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import (
-    build_analyze_body_no_accept_header_request,
-    build_analyze_body_request,
-    build_binary_body_with_three_content_types_request,
-    build_binary_body_with_two_content_types_request,
-    build_content_type_with_encoding_request,
-    build_put_text_and_json_body_request,
+    build_media_types_analyze_body_no_accept_header_request,
+    build_media_types_analyze_body_request,
+    build_media_types_binary_body_with_three_content_types_request,
+    build_media_types_binary_body_with_two_content_types_request,
+    build_media_types_content_type_with_encoding_request,
+    build_media_types_put_text_and_json_body_request,
 )
 from .._vendor import MediaTypesClientMixinABC, raise_if_not_implemented
 
@@ -133,7 +133,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_analyze_body_request(
+        request = build_media_types_analyze_body_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -251,7 +251,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_analyze_body_no_accept_header_request(
+        request = build_media_types_analyze_body_no_accept_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -302,7 +302,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         else:
             _content = None
 
-        request = build_content_type_with_encoding_request(
+        request = build_media_types_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -357,7 +357,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_binary_body_with_two_content_types_request(
+        request = build_media_types_binary_body_with_two_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -413,7 +413,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_binary_body_with_three_content_types_request(
+        request = build_media_types_binary_body_with_three_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -467,7 +467,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_put_text_and_json_body_request(
+        request = build_media_types_put_text_and_json_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

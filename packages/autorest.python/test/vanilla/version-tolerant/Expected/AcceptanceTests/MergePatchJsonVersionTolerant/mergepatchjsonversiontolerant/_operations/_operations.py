@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_patch_single_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
+def build_merge_patch_json_patch_single_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -84,7 +84,7 @@ class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
 
         _json = body
 
-        request = build_patch_single_request(
+        request = build_merge_patch_json_patch_single_request(
             content_type=content_type,
             json=_json,
             headers=_headers,

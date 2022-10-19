@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_request(**kwargs: Any) -> HttpRequest:
+def build_parmaterized_endpoint_get_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/parameterizedEndpoint/get"
 
@@ -60,7 +60,7 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_request(
+        request = build_parmaterized_endpoint_get_request(
             headers=_headers,
             params=_params,
         )

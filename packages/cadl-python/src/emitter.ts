@@ -303,15 +303,16 @@ function emitBodyParameter(
         type = getType(program, bodyType);
     }
 
-    // // avoid anonymous model type
-    // if (type && type.type === "model" && !type.name) {
-    //     type.name =
-    //         operation.container.name +
-    //         operation.operation.name[0].toUpperCase() +
-    //         operation.operation.name.slice(1) +
-    //         "Request";
-    //     type.snakeCaseName = camelToSnakeCase(type.name);
-    // }
+    const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
+    // avoid anonymous model type
+    if (type && type.type === "model" && !type.name) {
+        type.name =
+            httpOperation.container.name +
+            httpOperation.operation.name[0].toUpperCase() +
+            httpOperation.operation.name.slice(1) +
+            "Request";
+        type.snakeCaseName = camelToSnakeCase(type.name);
+    }
 
     return {
         contentTypes,

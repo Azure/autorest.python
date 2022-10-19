@@ -35,7 +35,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_known_value_request(**kwargs: Any) -> HttpRequest:
+def build_extensible_enums_get_known_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -49,7 +49,7 @@ def build_get_known_value_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_unknown_value_request(**kwargs: Any) -> HttpRequest:
+def build_extensible_enums_get_unknown_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -63,7 +63,7 @@ def build_get_unknown_value_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_known_value_request(
+def build_extensible_enums_put_known_value_request(
     *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -79,7 +79,7 @@ def build_put_known_value_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_put_unknown_value_request(
+def build_extensible_enums_put_unknown_value_request(
     *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -117,7 +117,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
 
-        request = build_get_known_value_request(
+        request = build_extensible_enums_get_known_value_request(
             headers=_headers,
             params=_params,
         )
@@ -164,7 +164,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
 
-        request = build_get_unknown_value_request(
+        request = build_extensible_enums_get_unknown_value_request(
             headers=_headers,
             params=_params,
         )
@@ -222,7 +222,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_put_known_value_request(
+        request = build_extensible_enums_put_known_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -275,7 +275,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_put_unknown_value_request(
+        request = build_extensible_enums_put_unknown_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

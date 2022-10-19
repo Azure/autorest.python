@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._operations._operations import build_get_request, build_put_request
+from ..._operations._operations import build_object_type_get_request, build_object_type_put_request
 from .._vendor import ObjectTypeClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -58,7 +58,7 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_request(
+        request = build_object_type_get_request(
             headers=_headers,
             params=_params,
         )
@@ -112,7 +112,7 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         _json = put_object
 
-        request = build_put_request(
+        request = build_object_type_put_request(
             content_type=content_type,
             json=_json,
             headers=_headers,

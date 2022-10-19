@@ -33,7 +33,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_world_request(**kwargs: Any) -> HttpRequest:
+def build_hello_world_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -69,7 +69,7 @@ class HelloClientOperationsMixin(HelloClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_world_request(
+        request = build_hello_world_request(
             headers=_headers,
             params=_params,
         )

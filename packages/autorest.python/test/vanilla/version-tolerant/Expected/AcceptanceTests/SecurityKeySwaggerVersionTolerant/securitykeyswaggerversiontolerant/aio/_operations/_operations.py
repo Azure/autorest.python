@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_head_request
+from ..._operations._operations import build_autorest_security_key_head_request
 from .._vendor import AutorestSecurityKeyMixinABC
 
 T = TypeVar("T")
@@ -50,7 +50,7 @@ class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_head_request(
+        request = build_autorest_security_key_head_request(
             headers=_headers,
             params=_params,
         )

@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -55,7 +55,7 @@ def build_put_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -69,7 +69,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_wrapped_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -86,7 +86,7 @@ def build_put_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -100,7 +100,7 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_dictionary_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_dictionary_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -117,7 +117,7 @@ def build_put_dictionary_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_dictionary_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -131,7 +131,7 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_resource_collection_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_resource_collection_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -148,7 +148,7 @@ def build_put_resource_collection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -162,7 +162,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_product_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_simple_product_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -179,7 +179,9 @@ def build_put_simple_product_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_flattened_simple_product_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -196,7 +198,9 @@ def build_post_flattened_simple_product_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_product_with_grouping_request(name: str, **kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(
+    name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -308,7 +312,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_array_request(
+        request = build_auto_rest_resource_flattening_test_service_put_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -375,7 +379,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
-        request = build_get_array_request(
+        request = build_auto_rest_resource_flattening_test_service_get_array_request(
             headers=_headers,
             params=_params,
         )
@@ -487,7 +491,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_wrapped_array_request(
+        request = build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -543,7 +547,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
-        request = build_get_wrapped_array_request(
+        request = build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(
             headers=_headers,
             params=_params,
         )
@@ -575,7 +579,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         resource_dictionary: Optional[Dict[str, JSON]] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -670,7 +674,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_dictionary_request(
+        request = build_auto_rest_resource_flattening_test_service_put_dictionary_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -737,7 +741,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
-        request = build_get_dictionary_request(
+        request = build_auto_rest_resource_flattening_test_service_get_dictionary_request(
             headers=_headers,
             params=_params,
         )
@@ -907,7 +911,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_resource_collection_request(
+        request = build_auto_rest_resource_flattening_test_service_put_resource_collection_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1019,7 +1023,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_get_resource_collection_request(
+        request = build_auto_rest_resource_flattening_test_service_get_resource_collection_request(
             headers=_headers,
             params=_params,
         )
@@ -1197,7 +1201,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_simple_product_request(
+        request = build_auto_rest_resource_flattening_test_service_put_simple_product_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1380,7 +1384,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_post_flattened_simple_product_request(
+        request = build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1416,7 +1420,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         simple_body_product: Optional[JSON] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
@@ -1478,7 +1482,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         simple_body_product: Optional[IO] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
@@ -1579,7 +1583,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             else:
                 _json = None
 
-        request = build_put_simple_product_with_grouping_request(
+        request = build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(
             name=name,
             content_type=content_type,
             json=_json,

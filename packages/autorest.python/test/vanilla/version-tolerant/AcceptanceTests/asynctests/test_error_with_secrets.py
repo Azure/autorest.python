@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from errorwithsecretsversiontolerant._operations._operations import build_create_secret_request
+from errorwithsecretsversiontolerant._operations._operations import build_error_with_secrets_create_secret_request
 from errorwithsecretsversiontolerant.aio import ErrorWithSecrets
 from azure.core.exceptions import HttpResponseError
 
@@ -35,7 +35,7 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_create_secret(client):
-    request = build_create_secret_request(
+    request = build_error_with_secrets_create_secret_request(
         headers={"authorization": "SharedKey 1c88a67921784300a462b2cb61da2339"},
         params={"key": "1c88a67921784300a462b2cb61da2339"},
         json={ "key": "1c88a67921784300a462b2cb61da2339" },

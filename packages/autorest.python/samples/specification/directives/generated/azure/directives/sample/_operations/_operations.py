@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_basic_polling_request(**kwargs: Any) -> HttpRequest:
+def build_polling_paging_example_basic_polling_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -57,7 +57,7 @@ def build_basic_polling_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_basic_paging_request(**kwargs: Any) -> HttpRequest:
+def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -98,7 +98,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             else:
                 _json = None
 
-        request = build_basic_polling_request(
+        request = build_polling_paging_example_basic_polling_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -315,7 +315,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_basic_paging_request(
+                request = build_polling_paging_example_basic_paging_request(
                     headers=_headers,
                     params=_params,
                 )
