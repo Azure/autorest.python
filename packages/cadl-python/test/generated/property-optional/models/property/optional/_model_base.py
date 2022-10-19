@@ -232,7 +232,15 @@ def _deserialize_time(attr: typing.Union[str, time]) -> time:
 
 
 def deserialize_bytes(attr):
+    if isinstance(attr, (bytes, bytearray)):
+        return attr
     return bytes(base64.b64decode(attr))
+
+
+def deserialize_duration(attr):
+    if isinstance(attr, timedelta):
+        return attr
+    return isodate.parse_duration(attr)
 
 
 _DESERIALIZE_MAPPING = {
@@ -240,6 +248,7 @@ _DESERIALIZE_MAPPING = {
     date: _deserialize_date,
     time: _deserialize_time,
     bytes: deserialize_bytes,
+    timedelta: deserialize_duration,
 }
 
 
@@ -452,8 +461,20 @@ def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typ
     try:
         if value is None:
             return None
+        if deserializer == object:
+            return value
+        if deserializer in _DESERIALIZE_MAPPING:
+            return _DESERIALIZE_MAPPING.get(deserializer)(value)
         if isinstance(deserializer, type) and issubclass(deserializer, Model):
             return deserializer._deserialize(value)
+        if isinstance(deserializer, typing._GenericAlias):  # pylint: disable=protected-access
+            if deserializer._name in ["List", "Set", "Tuple", "Sequence"]:
+                return [_deserialize(deserializer.__args__[0], x) for x in value]
+            if deserializer._name == "Dict":
+                return {
+                    _deserialize(deserializer.__args__[0], k): _deserialize(deserializer.__args__[1], v)
+                    for k, v in value.items()
+                }
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e

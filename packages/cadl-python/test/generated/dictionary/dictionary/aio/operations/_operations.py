@@ -883,10 +883,7 @@ class DatetimeValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, datetime.datetime], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1037,10 +1034,7 @@ class DurationValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, datetime.timedelta], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1345,10 +1339,7 @@ class ModelValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1499,10 +1490,7 @@ class RecursiveModelValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})

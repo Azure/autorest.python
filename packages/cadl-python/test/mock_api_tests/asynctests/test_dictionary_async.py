@@ -4,11 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from dictionary import DictionaryClient, models
+from dictionary import models
+from dictionary.aio import DictionaryClient
 import isodate
+
 @pytest.fixture
-def client():
-    with DictionaryClient() as client:
+async def client():
+    async with DictionaryClient() as client:
         yield client
 
 @pytest.mark.parametrize(
@@ -31,7 +33,8 @@ def client():
         }),
     ]
 )
-def test_dictionary(client: DictionaryClient, og_name: str, val: dict):
+@pytest.mark.asyncio
+async def test_dictionary(client: DictionaryClient, og_name: str, val: dict):
     og_group = getattr(client, og_name)
-    assert og_group.get() == val
-    og_group.put(val)
+    assert await og_group.get() == val
+    await og_group.put(val)

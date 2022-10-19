@@ -7,7 +7,7 @@
 import json
 from abc import abstractmethod
 from collections import defaultdict
-from typing import Any, Generic, List, Union, Optional, cast
+from typing import Any, Generic, List, Type, TypeVar, Dict, Union, Optional, cast
 
 from ..models import (
     Operation,
@@ -30,8 +30,13 @@ from ..models import (
     ConstantType,
     MultipartBodyParameter,
     Property,
+    RequestBuilderType,
     DatetimeType,
     DurationType,
+    BaseType,
+    DateType,
+    TimeType,
+    ByteArraySchema,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -967,11 +972,11 @@ class _OperationSerializer(
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
-            elif self.namespace_model.options["models_mode"] == "dpg" and isinstance(
-                response.type, (ModelType, ListType, DictionaryType, DatetimeType, DurationType)
-            ):
+            elif self.namespace_model.options[
+                "models_mode"
+            ] == "dpg" and self._need_deserialize(response.type):
                 retval.append(
-                    f"deserialized = _deserialize({response.serialization_type}, response.json())"
+                    f"deserialized = _deserialize({response.type_annotation()}, response.json())"
                 )
             else:
                 deserialized_value = (
@@ -984,6 +989,24 @@ class _OperationSerializer(
                 retval.append("else:")
                 retval.append(f"    deserialized = None")
         return retval
+
+    @staticmethod
+    def _need_deserialize(t: BaseType) -> bool:
+        if isinstance(
+            t,
+            (
+                ModelType,
+                DatetimeType,
+                DurationType,
+                DateType,
+                TimeType,
+                ByteArraySchema,
+            ),
+        ):
+            return True
+        elif isinstance(t, (ListType, DictionaryType)):
+            return _OperationSerializer._need_deserialize(t.element_type)
+        return False
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
         retval = [
