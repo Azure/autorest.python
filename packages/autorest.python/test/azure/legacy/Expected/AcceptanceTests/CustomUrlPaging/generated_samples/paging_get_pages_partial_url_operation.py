@@ -22,8 +22,8 @@ def main():
     response = client.paging.get_pages_partial_url_operation(
         account_name="testaccount",
     )
-    response = [item for item in response]
-    print(response)
+    for item in response:
+        print(item)
 
 
 if __name__ == "__main__":
