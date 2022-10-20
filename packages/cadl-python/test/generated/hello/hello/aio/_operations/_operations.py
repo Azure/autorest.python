@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._model_base import _deserialize
-from ..._operations._operations import build_world_request
+from ..._operations._operations import build_hello_world_request
 from .._vendor import HelloClientMixinABC
 
 T = TypeVar("T")
@@ -51,7 +51,7 @@ class HelloClientOperationsMixin(HelloClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        request = build_world_request(
+        request = build_hello_world_request(
             headers=_headers,
             params=_params,
         )

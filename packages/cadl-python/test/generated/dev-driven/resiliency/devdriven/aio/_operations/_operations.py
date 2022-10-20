@@ -29,10 +29,10 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import (
-    build_get_model_request,
-    build_get_pages_request,
-    build_lro_request,
-    build_post_model_request,
+    build_dev_driven_get_model_request,
+    build_dev_driven_get_pages_request,
+    build_dev_driven_lro_request,
+    build_dev_driven_post_model_request,
 )
 from .._vendor import DevDrivenClientMixinABC
 
@@ -72,7 +72,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
-        request = build_get_model_request(
+        request = build_dev_driven_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
@@ -184,7 +184,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_post_model_request(
+        request = build_dev_driven_post_model_request(
             mode=mode,
             content_type=content_type,
             content=_content,
@@ -237,7 +237,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_request(
+                request = build_dev_driven_get_pages_request(
                     api_version=api_version,
                     headers=_headers,
                     params=_params,
@@ -300,7 +300,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
-        request = build_lro_request(
+        request = build_dev_driven_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,

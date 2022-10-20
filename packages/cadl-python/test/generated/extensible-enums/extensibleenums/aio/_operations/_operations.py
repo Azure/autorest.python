@@ -26,10 +26,10 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import (
-    build_get_known_value_request,
-    build_get_unknown_value_request,
-    build_put_known_value_request,
-    build_put_unknown_value_request,
+    build_extensible_enums_get_known_value_request,
+    build_extensible_enums_get_unknown_value_request,
+    build_extensible_enums_put_known_value_request,
+    build_extensible_enums_put_unknown_value_request,
 )
 from .._vendor import ExtensibleEnumsClientMixinABC
 
@@ -59,7 +59,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
 
-        request = build_get_known_value_request(
+        request = build_extensible_enums_get_known_value_request(
             headers=_headers,
             params=_params,
         )
@@ -106,7 +106,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]]
 
-        request = build_get_unknown_value_request(
+        request = build_extensible_enums_get_unknown_value_request(
             headers=_headers,
             params=_params,
         )
@@ -164,7 +164,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_put_known_value_request(
+        request = build_extensible_enums_put_known_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -217,7 +217,7 @@ class ExtensibleEnumsClientOperationsMixin(ExtensibleEnumsClientMixinABC):
 
         _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_put_unknown_value_request(
+        request = build_extensible_enums_put_unknown_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

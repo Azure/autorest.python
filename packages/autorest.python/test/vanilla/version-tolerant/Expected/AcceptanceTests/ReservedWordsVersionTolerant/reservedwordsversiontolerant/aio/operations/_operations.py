@@ -25,9 +25,9 @@ from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
     build_import_operations_operation_one_request,
-    build_operation_with_content_param_request,
-    build_operation_with_json_param_request,
-    build_operation_with_url_request,
+    build_reserved_words_operation_with_content_param_request,
+    build_reserved_words_operation_with_json_param_request,
+    build_reserved_words_operation_with_url_request,
 )
 from .._vendor import ReservedWordsClientMixinABC, raise_if_not_implemented
 
@@ -144,7 +144,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         _content = content
 
-        request = build_operation_with_content_param_request(
+        request = build_reserved_words_operation_with_content_param_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -198,7 +198,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         _json = json
 
-        request = build_operation_with_json_param_request(
+        request = build_reserved_words_operation_with_json_param_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -258,7 +258,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_operation_with_url_request(
+        request = build_reserved_words_operation_with_url_request(
             url=url,
             header_parameters=header_parameters,
             query_parameters=query_parameters,

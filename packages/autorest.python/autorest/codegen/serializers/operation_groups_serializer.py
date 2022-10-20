@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Optional
+from typing import Optional, List, Union
 import functools
 from jinja2 import Environment
 
@@ -11,6 +11,8 @@ from ..models import (
     NamespaceModel,
     OperationGroup,
     FileImport,
+    RequestBuilder,
+    OverloadedRequestBuilder,
 )
 from .import_serializer import FileImportSerializer
 from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
@@ -28,6 +30,18 @@ class OperationGroupsSerializer:
         self.env = env
         self.async_mode = async_mode
         self.operation_group = operation_group
+
+    def _get_request_builders(
+        self, operation_group: OperationGroup
+    ) -> List[Union[OverloadedRequestBuilder, RequestBuilder]]:
+        return [
+            r
+            for r in self.namespace_model.request_builders
+            if r.client.name == operation_group.client.name
+            and r.group_name == operation_group.property_name
+            and not r.is_overload
+            and not r.abstract
+        ]
 
     def serialize(self) -> str:
         operation_groups = (
@@ -63,10 +77,5 @@ class OperationGroupsSerializer:
                 self.namespace_model,
                 async_mode=False,
             ),
-            request_builders=[
-                rb
-                for c in self.namespace_model.clients
-                for rb in c.request_builders
-                if not rb.abstract
-            ],
+            get_request_builders=self._get_request_builders,
         )

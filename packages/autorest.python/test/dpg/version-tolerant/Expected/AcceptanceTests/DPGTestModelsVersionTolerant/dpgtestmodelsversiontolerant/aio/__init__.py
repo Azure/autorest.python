@@ -11,7 +11,9 @@ from ._patch import DPGClient
 
 from ._patch import patch_sdk as _patch_sdk
 
-__all__ = ["DPGClient"]
+__all__ = [
+    "DPGClient",
+]
 
 
 _patch_sdk()

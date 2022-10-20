@@ -27,8 +27,8 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import (
-    build_get_optional_property_model_request,
-    build_set_optional_property_model_request,
+    build_readonly_properties_get_optional_property_model_request,
+    build_readonly_properties_set_optional_property_model_request,
 )
 from .._vendor import ReadonlyPropertiesClientMixinABC
 
@@ -63,7 +63,7 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.OutputModel]
 
-        request = build_get_optional_property_model_request(
+        request = build_readonly_properties_get_optional_property_model_request(
             headers=_headers,
             params=_params,
         )
@@ -154,7 +154,7 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)
 
-        request = build_set_optional_property_model_request(
+        request = build_readonly_properties_set_optional_property_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

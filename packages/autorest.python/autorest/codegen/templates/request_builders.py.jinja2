@@ -1,9 +1,9 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 # coding=utf-8
-{{ client.namespace_model.options['license_header'] }}
+{{ namespace_model.options['license_header'] }}
 {{ imports }}
 
-{{ op_tools.declare_serializer(client, request_builders) }}
+{{ op_tools.declare_serializer(namespace_model) }}
 {% for request_builder in request_builders %}
 
 {% include "request_builder.py.jinja2" %}

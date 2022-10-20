@@ -27,11 +27,11 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import (
-    build_get_optional_request,
-    build_get_required_request,
-    build_head_no_params_request,
-    build_post_parameters_request,
-    build_put_required_optional_request,
+    build_service_driven1_get_optional_request,
+    build_service_driven1_get_required_request,
+    build_service_driven1_head_no_params_request,
+    build_service_driven1_post_parameters_request,
+    build_service_driven1_put_required_optional_request,
 )
 from .._vendor import ServiceDriven1ClientMixinABC
 
@@ -67,7 +67,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_head_no_params_request(
+        request = build_service_driven1_head_no_params_request(
             headers=_headers,
             params=_params,
         )
@@ -112,7 +112,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Message]
 
-        request = build_get_required_request(
+        request = build_service_driven1_get_required_request(
             parameter=parameter,
             headers=_headers,
             params=_params,
@@ -164,7 +164,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Message]
 
-        request = build_put_required_optional_request(
+        request = build_service_driven1_put_required_optional_request(
             required_param=required_param,
             optional_param=optional_param,
             headers=_headers,
@@ -268,7 +268,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         else:
             _content = json.dumps(parameter, cls=AzureJSONEncoder)
 
-        request = build_post_parameters_request(
+        request = build_service_driven1_post_parameters_request(
             content_type_path=content_type_path,
             content_type=content_type,
             content=_content,
@@ -319,7 +319,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Message]
 
-        request = build_get_optional_request(
+        request = build_service_driven1_get_optional_request(
             optional_param=optional_param,
             headers=_headers,
             params=_params,

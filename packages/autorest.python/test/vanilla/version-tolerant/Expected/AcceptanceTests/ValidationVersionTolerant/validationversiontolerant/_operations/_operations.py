@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_validation_of_method_parameters_request(
+def build_auto_rest_validation_test_validation_of_method_parameters_request(
     resource_group_name: str, id: int, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -68,7 +68,7 @@ def build_validation_of_method_parameters_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_validation_of_body_request(
+def build_auto_rest_validation_test_validation_of_body_request(
     resource_group_name: str, id: int, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -101,7 +101,7 @@ def build_validation_of_body_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_validation_test_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"
@@ -114,7 +114,7 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_validation_test_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
@@ -193,7 +193,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_validation_of_method_parameters_request(
+        request = build_auto_rest_validation_test_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -435,7 +435,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_validation_of_body_request(
+        request = build_auto_rest_validation_test_validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -493,7 +493,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_with_constant_in_path_request(
+        request = build_auto_rest_validation_test_get_with_constant_in_path_request(
             constant_param=constant_param,
             headers=_headers,
             params=_params,
@@ -706,7 +706,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_post_with_constant_in_body_request(
+        request = build_auto_rest_validation_test_post_with_constant_in_body_request(
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
