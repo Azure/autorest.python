@@ -204,7 +204,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         )
 
-    def _imports_shared(self, async_mode: bool, **kwargs: Any) -> FileImport:
+    def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -228,7 +228,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
             return FileImport()
-        file_import = self._imports_shared(async_mode, **kwargs)
+        file_import = self._imports_shared(async_mode)
         for param in self.parameters.method:
             file_import.merge(
                 param.imports_for_multiapi(
@@ -308,7 +308,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
             return FileImport()
-        file_import = self._imports_shared(async_mode, **kwargs)
+        file_import = self._imports_shared(async_mode)
 
         for param in self.parameters.method:
             file_import.merge(
