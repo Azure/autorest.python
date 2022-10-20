@@ -6,6 +6,7 @@
 from copy import deepcopy
 from typing import Dict, Set, Optional, List, Tuple, Union
 from ..models import ImportType, FileImport, TypingSection
+from ..utils import convert_list_to_tuple
 
 
 def _serialize_package(
@@ -30,13 +31,16 @@ def _serialize_package(
 ) -> str:
     buffer = []
 
-    versioned_modules = set(
-        m for m in module_list if m and isinstance(m, tuple) and len(m) > 2
-    )
-    module_list = set(m for m in module_list if m not in versioned_modules)
-    if None in module_list:
+    versioned_modules = set()
+    normal_modules = set()
+    for m in module_list:
+        if m and isinstance(m, (tuple, list)) and len(m) > 2:
+            versioned_modules.add(convert_list_to_tuple(m))
+        else:
+            normal_modules.add(m)
+    if None in normal_modules:
         buffer.append(f"import {package_name}")
-    if set(module_list) != {None}:
+    if normal_modules != {None} and len(normal_modules) > 0:
         buffer.append(
             "from {} import {}".format(
                 package_name,
@@ -44,7 +48,7 @@ def _serialize_package(
                     sorted(
                         [
                             mod if isinstance(mod, str) else f"{mod[0]} as {mod[1]}"
-                            for mod in module_list
+                            for mod in normal_modules
                             if mod is not None
                         ]
                     )

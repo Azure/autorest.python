@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 from typing import Dict, Optional, Set, Union, Tuple
+from ..utils import convert_list_to_tuple
 
 
 class ImportType(str, Enum):
@@ -12,6 +13,7 @@ class ImportType(str, Enum):
     THIRDPARTY = "thirdparty"
     AZURECORE = "azurecore"
     LOCAL = "local"
+    BYVERSION = "by_version"
 
 
 class TypingSection(str, Enum):
@@ -82,14 +84,6 @@ class FileImport:
             imports or dict()
         )
 
-    @staticmethod
-    def _convert_list_to_tuple(l):
-        return (
-            tuple(FileImport._convert_list_to_tuple(x) for x in l)
-            if isinstance(l, list)
-            else l
-        )
-
     def _add_import(
         self,
         from_section: str,
@@ -116,10 +110,7 @@ class FileImport:
                 Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
             ]
         ] = None
-        if isinstance(name_import, list):
-            name_input = self._convert_list_to_tuple(name_import)
-        else:
-            name_input = name_import
+        name_input = convert_list_to_tuple(name_import)
         self._imports.setdefault(typing_section, dict()).setdefault(
             import_type, dict()
         ).setdefault(from_section, set()).add(name_input)

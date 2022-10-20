@@ -149,11 +149,8 @@ class _ParameterBase(
     def serialization_type(self) -> str:
         return self.type.serialization_type
 
-    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+    def _imports_shared(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        file_import.merge(
-            self.type.imports(is_operation_file=True, async_mode=async_mode, **kwargs)
-        )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if self.added_on:
@@ -162,6 +159,22 @@ class _ParameterBase(
                 "api_version_validation",
                 ImportType.LOCAL,
             )
+        return file_import
+
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = self._imports_shared(async_mode, **kwargs)
+        file_import.merge(
+            self.type.imports(is_operation_file=True, async_mode=async_mode, **kwargs)
+        )
+        return file_import
+
+    def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = self._imports_shared(async_mode, **kwargs)
+        file_import.merge(
+            self.type.imports_for_multiapi(
+                is_operation_file=True, async_mode=async_mode, **kwargs
+            )
+        )
         return file_import
 
     @property

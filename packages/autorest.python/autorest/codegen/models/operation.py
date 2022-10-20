@@ -209,13 +209,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        for param in self.parameters.method:
-            file_import.merge(
-                param.imports(
-                    async_mode,
-                    **kwargs,
-                )
-            )
 
         response_types = [
             r.type_annotation(async_mode=async_mode) for r in self.responses if r.type
@@ -236,6 +229,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.abstract:
             return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
+        for param in self.parameters.method:
+            file_import.merge(
+                param.imports_for_multiapi(
+                    async_mode,
+                    **kwargs,
+                )
+            )
         for response in self.responses:
             file_import.merge(
                 response.imports_for_multiapi(async_mode=async_mode, **kwargs)
@@ -310,6 +310,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
 
+        for param in self.parameters.method:
+            file_import.merge(
+                param.imports(
+                    async_mode,
+                    **kwargs,
+                )
+            )
         for response in self.responses:
             file_import.merge(response.imports(async_mode=async_mode, **kwargs))
         if self.namespace_model.options["models_mode"]:
