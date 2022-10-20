@@ -523,7 +523,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         for op_group in self.namespace_model.operation_groups:
             for operation in op_group.operations:
                 samples = operation.yaml_data["samples"]
-                if not samples or operation.name[0] == "_":
+                if not samples or operation.name.startswith("_"):
                     continue
                 for key, value in samples.items():
                     file_name = to_snake_case(key) + ".py"
