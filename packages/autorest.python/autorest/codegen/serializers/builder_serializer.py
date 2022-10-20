@@ -1004,7 +1004,7 @@ class _OperationSerializer(
             ),
         ):
             return True
-        elif isinstance(t, (ListType, DictionaryType)):
+        if isinstance(t, (ListType, DictionaryType)):
             return _OperationSerializer._need_deserialize(t.element_type)
         return False
 
