@@ -81,16 +81,16 @@
         "credential_scopes": null,
         "credential_call_sync": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
         "credential_call_async": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
-        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
-        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\", \"AsyncARMChallengeAuthenticationPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}, \"stdlib\": {\"sys\": [null]}, \"by_version\": {\"typing_extensions\": [[\"Literal\", null, [[[3, 8], \"typing\", \"pylint: disable=no-name-in-module, ungrouped-imports\"]]]]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\", \"AsyncARMChallengeAuthenticationPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}, \"stdlib\": {\"sys\": [null]}, \"by_version\": {\"typing_extensions\": [[\"Literal\", null, [[[3, 8], \"typing\", \"pylint: disable=no-name-in-module, ungrouped-imports\"]]]]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations",
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\".\": [[\"models\", \"_models\"]]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"], \"sys\": [null]}, \"by_version\": {\"typing_extensions\": [[\"Literal\", null, [[[3, 8], \"typing\", \"pylint: disable=no-name-in-module, ungrouped-imports\"]]]]}, \"local\": {\".\": [[\"models\", \"_models\"]]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"], \"sys\": [null]}, \"by_version\": {\"typing_extensions\": [[\"Literal\", null, [[[3, 8], \"typing\", \"pylint: disable=no-name-in-module, ungrouped-imports\"]]]]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
         "operations": {
             "test_one" : {
                 "sync": {

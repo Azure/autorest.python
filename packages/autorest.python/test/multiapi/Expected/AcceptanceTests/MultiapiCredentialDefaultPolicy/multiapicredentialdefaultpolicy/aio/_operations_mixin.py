@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from .._serialization import Serializer, Deserializer
+import sys
 from typing import Any, AsyncIterable, IO, Optional, Union
 
 from azure.core.async_paging import AsyncItemPaged

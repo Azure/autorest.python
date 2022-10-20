@@ -106,7 +106,7 @@ def build_auto_rest_validation_test_validation_of_body_request(
 
 
 def build_auto_rest_validation_test_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
-    constant_param = kwargs.pop("constant_param", "constant")  # type: str
+    constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {

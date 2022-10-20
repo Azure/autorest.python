@@ -9,7 +9,6 @@ from .base_model import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .utils import add_to_pylint_disable
-from .constant_type import ConstantType
 from .operation_group import OperationGroup
 from .request_builder import (
     RequestBuilder,
@@ -383,7 +382,6 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 continue
             file_import.merge(gp.imports(async_mode=async_mode))
         return file_import
-
 
     @classmethod
     def from_yaml(
