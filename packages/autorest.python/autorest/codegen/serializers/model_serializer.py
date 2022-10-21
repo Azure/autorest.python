@@ -95,13 +95,17 @@ class _ModelSerializer(ABC):
             f"Known sub-classes are: {', '.join(v.name for v in model.discriminated_subtypes.values())}"
         )
 
-    def init_line(self, model: ModelType) -> List[str]:
-        init_properties_declaration = []
-        init_line_parameters = [
+    @staticmethod
+    def _init_line_parameters(model: ModelType):
+        return [
             p
             for p in model.properties
             if not p.readonly and not p.is_discriminator and not p.constant
         ]
+
+    def init_line(self, model: ModelType) -> List[str]:
+        init_properties_declaration = []
+        init_line_parameters = self._init_line_parameters(model)
         init_line_parameters.sort(key=lambda x: x.optional)
         if init_line_parameters:
             init_properties_declaration.append("*,")
@@ -136,10 +140,7 @@ class MsrestModelSerializer(_ModelSerializer):
         )
         for model in self.namespace_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            init_line_parameters = [
-                p for p in model.properties if not p.readonly and not p.is_discriminator
-            ]
-            for param in init_line_parameters:
+            for param in self._init_line_parameters(model):
                 file_import.merge(param.imports())
 
         return file_import

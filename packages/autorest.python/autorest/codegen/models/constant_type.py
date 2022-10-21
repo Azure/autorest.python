@@ -7,6 +7,7 @@ import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
+from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
 from .utils import add_to_description
 
 if TYPE_CHECKING:
@@ -75,7 +76,17 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return f"Literal[{self.get_declaration()}]"
+        return (
+            f"Literal[{self.get_declaration()}]"
+            if self._is_literal
+            else self.value_type.type_annotation(**kwargs)
+        )
+
+    @property
+    def _is_literal(self) -> bool:
+        return isinstance(
+            self.value_type, (IntegerType, BinaryType, StringType, BooleanType)
+        )
 
     @classmethod
     def from_yaml(
@@ -122,21 +133,22 @@ class ConstantType(BaseType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
-        file_import.add_import("sys", ImportType.STDLIB)
-        file_import.add_submodule_import(
-            "typing_extensions",
-            "Literal",
-            ImportType.BYVERSION,
-            TypingSection.REGULAR,
-            None,
-            (
+        if self._is_literal:
+            file_import.add_import("sys", ImportType.STDLIB)
+            file_import.add_submodule_import(
+                "typing_extensions",
+                "Literal",
+                ImportType.BYVERSION,
+                TypingSection.REGULAR,
+                None,
                 (
-                    (3, 8),
-                    "typing",
-                    "pylint: disable=no-name-in-module, ungrouped-imports",
+                    (
+                        (3, 8),
+                        "typing",
+                        "pylint: disable=no-name-in-module, ungrouped-imports",
+                    ),
                 ),
-            ),
-        )
+            )
         return file_import
 
     @property

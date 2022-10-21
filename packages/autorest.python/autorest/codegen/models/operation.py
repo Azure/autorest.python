@@ -204,7 +204,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         )
 
-    def _imports_shared(self, async_mode: bool, **_: Any) -> FileImport:
+    def _imports_shared(
+        self, async_mode: bool, **kwargs: Any  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
