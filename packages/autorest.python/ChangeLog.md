@@ -15,6 +15,10 @@
 
 - Fixed lro operation name in auto-generated sample  #1521
 
+**Other Changes**
+
+- Type constant properties as Literals #1464
+
 ### 2022-10-19 - 6.2.0
 
 | Library                                                                 | Min Version |
