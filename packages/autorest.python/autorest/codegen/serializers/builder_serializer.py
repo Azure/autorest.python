@@ -31,12 +31,6 @@ from ..models import (
     MultipartBodyParameter,
     Property,
     RequestBuilderType,
-    DatetimeType,
-    DurationType,
-    BaseType,
-    DateType,
-    TimeType,
-    ByteArraySchema,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -972,9 +966,7 @@ class _OperationSerializer(
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
-            elif self.namespace_model.options[
-                "models_mode"
-            ] == "dpg" and self._need_deserialize(response.type):
+            elif self.namespace_model.options["models_mode"] == "dpg":
                 retval.append(
                     f"deserialized = _deserialize({response.type_annotation()}, response.json())"
                 )
@@ -989,24 +981,6 @@ class _OperationSerializer(
                 retval.append("else:")
                 retval.append(f"    deserialized = None")
         return retval
-
-    @staticmethod
-    def _need_deserialize(t: BaseType) -> bool:
-        if isinstance(
-            t,
-            (
-                ModelType,
-                DatetimeType,
-                DurationType,
-                DateType,
-                TimeType,
-                ByteArraySchema,
-            ),
-        ):
-            return True
-        if isinstance(t, (ListType, DictionaryType)):
-            return _OperationSerializer._need_deserialize(t.element_type)
-        return False
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
         retval = [

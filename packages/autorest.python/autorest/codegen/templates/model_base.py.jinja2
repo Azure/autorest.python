@@ -17,6 +17,7 @@ from datetime import datetime, date, time, timedelta
 from azure.core.utils._utils import _FixedOffset
 from collections.abc import MutableMapping
 from azure.core.exceptions import DeserializationError
+from azure.core import CaseInsensitiveEnumMeta
 import copy
 
 _LOGGER = logging.getLogger(__name__)
@@ -453,18 +454,33 @@ def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typ
     try:
         if value is None:
             return None
-        if deserializer == object:
+        if deserializer == typing.Any:
             return value
+        if isinstance(deserializer, CaseInsensitiveEnumMeta):
+            try:
+                return deserializer(value)
+            except ValueError:
+                # for unknown value, return raw value
+                return value
         if deserializer in _DESERIALIZE_MAPPING:
             return _DESERIALIZE_MAPPING.get(deserializer)(value)
         if isinstance(deserializer, type) and issubclass(deserializer, Model):
             return deserializer._deserialize(value)
-        if isinstance(deserializer, typing._GenericAlias): # pylint: disable=protected-access
+        if isinstance(deserializer, typing._GenericAlias):  # pylint: disable=protected-access
             if deserializer._name in ["List", "Set", "Tuple", "Sequence"]:
                 return [_deserialize(deserializer.__args__[0], x) for x in value]
             if deserializer._name == "Dict":
-                return { _deserialize(deserializer.__args__[0], k): _deserialize(deserializer.__args__[1], v)
-                        for k, v in value.items()}
+                return {
+                    _deserialize(deserializer.__args__[0], k): _deserialize(deserializer.__args__[1], v)
+                    for k, v in value.items()
+                }
+        if isinstance(deserializer, typing._UnionGenericAlias):  # pylint: disable=protected-access
+            d = value
+            for t in deserializer.__args__:
+                deserialized = _deserialize(t, value)
+                if id(deserialized) != id(value):
+                    return deserialized
+            return d
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e

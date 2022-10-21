@@ -113,10 +113,7 @@ class Int32ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -267,10 +264,7 @@ class Int64ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -421,10 +415,7 @@ class BooleanValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, bool], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -575,10 +566,7 @@ class StringValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -729,10 +717,7 @@ class Float32ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1185,10 +1170,7 @@ class UnknownValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(Dict[str, Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
