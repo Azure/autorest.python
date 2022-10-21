@@ -543,7 +543,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     except Exception as e:  # pylint: disable=broad-except
                         # sample generation shall not block code generation, so just log error
                         _LOGGER.error(
-                            "error happens when generate sample with {%s}: {%s}", key, e
+                            f"error happens when generate sample with {key}: {e}"
                         )
 
 
