@@ -145,7 +145,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(LROPoller[str], response.json())
+            deserialized = _deserialize(str, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
