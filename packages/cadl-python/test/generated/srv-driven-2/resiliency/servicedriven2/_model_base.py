@@ -482,13 +482,13 @@ def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typ
                     _deserialize(deserializer.__args__[0], k): _deserialize(deserializer.__args__[1], v)
                     for k, v in value.items()
                 }
-        if isinstance(deserializer, typing._UnionGenericAlias):  # pylint: disable=protected-access
-            d = value
-            for t in deserializer.__args__:
-                deserialized = _deserialize(t, value)
-                if id(deserialized) != id(value):
-                    return deserialized
-            return d
+            if deserializer.__origin__ is typing.Union:
+                d = value
+                for t in deserializer.__args__:
+                    deserialized = _deserialize(t, value)
+                    if id(deserialized) != id(value):
+                        return deserialized
+                return d
         return deserializer(value) if deserializer else value
     except Exception as e:
         raise DeserializationError() from e
