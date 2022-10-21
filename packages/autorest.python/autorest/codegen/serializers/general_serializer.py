@@ -15,6 +15,7 @@ from ..models import (
     TokenCredentialType,
 )
 from .client_serializer import ClientSerializer, ConfigSerializer
+from .utils import need_typing_extensions
 
 _PACKAGE_MODE_FILES = [
     "CHANGELOG.md.jinja2",
@@ -36,6 +37,7 @@ class GeneralSerializer:
         template = self.env.get_template("packaging_templates/setup.py.jinja2")
         params = {}
         params.update(self.code_model.options)
+        params["need_typing_extensions"] = need_typing_extensions(self.code_model)
         return template.render(code_model=self.code_model, **params)
 
     def serialize_package_file(self, template_name: str, **kwargs: Any) -> str:
@@ -65,6 +67,7 @@ class GeneralSerializer:
             ],
             "client_name": self.code_model.namespace_models[0].clients[0].name,
             "namespace": self.code_model.namespace_models[0],
+            "need_typing_extensions": need_typing_extensions(self.code_model),
         }
         params.update(self.code_model.options)
         params.update(kwargs)

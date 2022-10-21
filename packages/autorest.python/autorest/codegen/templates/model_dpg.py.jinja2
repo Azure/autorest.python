@@ -30,7 +30,7 @@
     {% if model.is_polymorphic %}
     __mapping__ = {}
     {% endif %}
-    {% for p in serializer.get_properties_to_initialize(model)%}
+    {% for p in serializer.get_properties_to_declare(model)%}
         {% for line in serializer.declare_property(p) %}
     {{ line }}
         {% endfor %}
@@ -57,6 +57,6 @@
     {% endif %}
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-    {% if model.discriminator_value %}
-        {{ serializer.initialize_discriminator_property(model, model.discriminator_property) }}
-    {% endif %}
+    {% for initialize_property in serializer.initialize_properties(model) %}
+        {{ initialize_property }}
+    {% endfor %}

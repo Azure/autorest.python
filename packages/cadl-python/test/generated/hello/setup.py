@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "helloclient"
-version = "0.1.0"
+version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -23,6 +23,7 @@ setup(
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
         "azure-core<2.0.0,>=1.24.0",
+        "typing_extensions>=4.3.0; python_version<'3.8.0'",
     ],
     long_description="""\
     Basic Hello World Test.

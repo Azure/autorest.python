@@ -80,6 +80,11 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
     required: [],
 };
 
+const defaultOptions = {
+    "basic-setup-py": true,
+    "package-version": "1.0.0b1",
+};
+
 export const $lib = createCadlLibrary({
     name: "MyEmitter",
     diagnostics: {},
@@ -89,9 +94,10 @@ export const $lib = createCadlLibrary({
 });
 
 export async function $onEmit(program: Program, options: EmitterOptions) {
+    const resolvedOptions = { ...defaultOptions, ...options };
     const yamlMap = createYamlEmitter(program);
     const root = process.cwd();
-    const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
+    const outputFolder = resolvedOptions["output-path"] ?? program.compilerOptions.outputPath!;
     const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
@@ -99,7 +105,7 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
         `--output-folder=${outputFolder}`,
         `--cadl-file=${yamlPath}`,
     ];
-    for (const [key, value] of Object.entries(options)) {
+    for (const [key, value] of Object.entries(resolvedOptions)) {
         commandArgs.push(`--${key}=${value}`);
     }
     if (
@@ -175,7 +181,13 @@ function handleDiscriminator(program: Program, type: Model, model: Record<string
         }
         // it is not included in properties of cadl but needed by python codegen
         if (discriminatorProperty) {
-            const propertyCopy = { ...discriminatorProperty, isPolymorphic: true };
+            const discriminatorType = { ...discriminatorProperty.type };
+            discriminatorType.value = null;
+            const propertyCopy = {
+                ...discriminatorProperty,
+                isPolymorphic: true,
+                type: discriminatorType,
+            };
             propertyCopy.description = "";
             model.properties.push(propertyCopy);
         }
@@ -297,15 +309,16 @@ function emitBodyParameter(
         type = getType(program, bodyType);
     }
 
-    // // avoid anonymous model type
-    // if (type && type.type === "model" && !type.name) {
-    //     type.name =
-    //         operation.container.name +
-    //         operation.operation.name[0].toUpperCase() +
-    //         operation.operation.name.slice(1) +
-    //         "Request";
-    //     type.snakeCaseName = camelToSnakeCase(type.name);
-    // }
+    const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
+    // avoid anonymous model type
+    if (type && type.type === "model" && !type.name) {
+        type.name =
+            httpOperation.container.name +
+            httpOperation.operation.name[0].toUpperCase() +
+            httpOperation.operation.name.slice(1) +
+            "Request";
+        type.snakeCaseName = camelToSnakeCase(type.name);
+    }
 
     return {
         contentTypes,

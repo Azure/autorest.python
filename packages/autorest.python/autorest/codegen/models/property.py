@@ -125,10 +125,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         retval.update(self.type.validation or {})
         return retval or None
 
-    def imports(self) -> FileImport:
+    def imports(self, **kwargs) -> FileImport:
         from .model_type import ModelType
 
-        file_import = self.type.imports(is_operation_file=False)
+        file_import = self.type.imports(**kwargs, is_operation_file=False)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if isinstance(self.type, ModelType):
