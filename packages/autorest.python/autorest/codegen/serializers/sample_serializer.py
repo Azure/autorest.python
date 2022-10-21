@@ -104,7 +104,6 @@ class SampleSerializer:
             param_value = self.sample["parameters"].get(name)
             if not param.optional:
                 if not param_value:
-                    x = failure_info.format(name, self.sample_origin_name)
                     raise Exception(failure_info.format(name, self.sample_origin_name))
                 operation_params[param.client_name] = cls(param_value)
         return operation_params
