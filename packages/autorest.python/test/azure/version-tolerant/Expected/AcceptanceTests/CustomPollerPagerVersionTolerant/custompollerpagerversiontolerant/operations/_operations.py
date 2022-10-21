@@ -36,6 +36,10 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -143,7 +147,7 @@ def build_paging_get_with_query_params_request(*, required_query_parameter: int,
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -163,7 +167,7 @@ def build_paging_next_operation_with_query_params_request(**kwargs: Any) -> Http
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+    query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -461,7 +465,7 @@ def build_paging_append_api_version_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -480,7 +484,7 @@ def build_paging_replace_api_version_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: str
+    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1137,7 +1141,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
+        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {

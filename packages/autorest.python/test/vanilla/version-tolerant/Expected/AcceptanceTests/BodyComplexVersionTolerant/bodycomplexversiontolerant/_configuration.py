@@ -6,12 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
+
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestComplexTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -27,7 +33,7 @@ class AutoRestComplexTestServiceConfiguration(Configuration):  # pylint: disable
 
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
+        api_version = kwargs.pop("api_version", "2016-02-29")  # type: Literal["2016-02-29"]
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestcomplextestservice/{}".format(VERSION))

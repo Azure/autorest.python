@@ -35,6 +35,10 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -393,7 +397,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: str
+        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_auto_rest_validation_test_get_with_constant_in_path_request(
@@ -594,7 +598,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: str
+        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 

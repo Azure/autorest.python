@@ -284,7 +284,6 @@ class ModelType(
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        file_import.add_import("sys", ImportType.STDLIB)
         file_import.define_mutable_mapping_type()
         if self.is_xml:
             file_import.add_submodule_import(
