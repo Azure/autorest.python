@@ -1,5 +1,13 @@
 # Release History
 
+# Release History
+
+## 2022-10-20 - 0.4.2
+
+**Bug Fixes**
+
+- Add defaults for some config flags  #1524
+
 ## 2022-10-19 - 0.4.1
 
 **Bug Fixes**

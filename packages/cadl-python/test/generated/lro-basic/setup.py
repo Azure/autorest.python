@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "lroclient"
-version = "0.1.0"
+version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,

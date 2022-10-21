@@ -80,6 +80,11 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
     required: [],
 };
 
+const defaultOptions = {
+    "basic-setup-py": true,
+    "package-version": "1.0.0b1",
+};
+
 export const $lib = createCadlLibrary({
     name: "MyEmitter",
     diagnostics: {},
@@ -89,9 +94,10 @@ export const $lib = createCadlLibrary({
 });
 
 export async function $onEmit(program: Program, options: EmitterOptions) {
+    const resolvedOptions = { ...defaultOptions, ...options };
     const yamlMap = createYamlEmitter(program);
     const root = process.cwd();
-    const outputFolder = options["output-path"] ?? program.compilerOptions.outputPath!;
+    const outputFolder = resolvedOptions["output-path"] ?? program.compilerOptions.outputPath!;
     const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
@@ -99,7 +105,7 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
         `--output-folder=${outputFolder}`,
         `--cadl-file=${yamlPath}`,
     ];
-    for (const [key, value] of Object.entries(options)) {
+    for (const [key, value] of Object.entries(resolvedOptions)) {
         commandArgs.push(`--${key}=${value}`);
     }
     if (
