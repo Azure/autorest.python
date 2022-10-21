@@ -968,7 +968,8 @@ class _OperationSerializer(
                 )
             elif self.namespace_model.options["models_mode"] == "dpg":
                 retval.append(
-                    f"deserialized = _deserialize({response.type.type_annotation(is_operation_file=True)}, response.json())"
+                    f"deserialized = _deserialize({response.type.type_annotation(is_operation_file=True)}"
+                    ", response.json())"
                 )
             else:
                 deserialized_value = (
