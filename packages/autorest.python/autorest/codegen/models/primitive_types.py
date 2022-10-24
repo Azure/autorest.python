@@ -199,7 +199,6 @@ class AnyObjectType(PrimitiveType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.define_mutable_mapping_type()
-        file_import.add_import("sys", ImportType.STDLIB)
         return file_import
 
 

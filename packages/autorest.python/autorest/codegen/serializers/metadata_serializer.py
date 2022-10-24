@@ -21,7 +21,25 @@ from .builder_serializer import get_operation_serializer
 def _json_serialize_imports(
     imports: Dict[
         TypingSection,
-        Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+        Dict[
+            ImportType,
+            Dict[
+                str,
+                Set[
+                    Optional[
+                        Union[
+                            str,
+                            Tuple[str, str],
+                            Tuple[
+                                str,
+                                Optional[str],
+                                Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+        ],
     ]
 ) -> str:
     if not imports:
@@ -138,10 +156,10 @@ class MetadataSerializer:
                 self.client.imports_for_multiapi(async_mode=True).to_dict()
             ),
             sync_config_imports=_json_serialize_imports(
-                self.client.config.imports(async_mode=False).to_dict()
+                self.client.config.imports_for_multiapi(async_mode=False).to_dict()
             ),
             async_config_imports=_json_serialize_imports(
-                self.client.config.imports(async_mode=True).to_dict()
+                self.client.config.imports_for_multiapi(async_mode=True).to_dict()
             ),
             get_async_operation_serializer=functools.partial(
                 get_operation_serializer,

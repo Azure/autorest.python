@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 from typing import Dict, Optional, Set, Union, Tuple
+from ..utils import convert_list_to_tuple
 
 
 class ImportType(str, Enum):
@@ -12,6 +13,7 @@ class ImportType(str, Enum):
     THIRDPARTY = "thirdparty"
     AZURECORE = "azurecore"
     LOCAL = "local"
+    BYVERSION = "by_version"
 
 
 class TypingSection(str, Enum):
@@ -25,7 +27,28 @@ class FileImport:
         self,
         imports: Dict[
             TypingSection,
-            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+            Dict[
+                ImportType,
+                Dict[
+                    str,
+                    Set[
+                        Optional[
+                            Union[
+                                str,
+                                Tuple[
+                                    str,
+                                    str,
+                                ],
+                                Tuple[
+                                    str,
+                                    str,
+                                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                                ],
+                            ]
+                        ]
+                    ],
+                ],
+            ],
         ] = None,
     ) -> None:
         # Basic implementation
@@ -35,7 +58,28 @@ class FileImport:
         # Fourth level set: None if this import is a "import", the name to import if it's a "from"
         self._imports: Dict[
             TypingSection,
-            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+            Dict[
+                ImportType,
+                Dict[
+                    str,
+                    Set[
+                        Optional[
+                            Union[
+                                str,
+                                Tuple[
+                                    str,
+                                    str,
+                                ],
+                                Tuple[
+                                    str,
+                                    str,
+                                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                                ],
+                            ]
+                        ]
+                    ],
+                ],
+            ],
         ] = (
             imports or dict()
         )
@@ -44,14 +88,29 @@ class FileImport:
         self,
         from_section: str,
         import_type: ImportType,
-        name_import: Optional[Union[str, Tuple[str, str]]] = None,
+        name_import: Optional[
+            Union[
+                str,
+                Tuple[
+                    str,
+                    str,
+                ],
+                Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
+            ]
+        ] = None,
         typing_section: TypingSection = TypingSection.REGULAR,
     ) -> None:
-        name_input: Optional[Union[str, Tuple[str, str]]] = None
-        if isinstance(name_import, list):
-            name_input = tuple(name_import)
-        else:
-            name_input = name_import
+        name_input: Optional[
+            Union[
+                str,
+                Tuple[
+                    str,
+                    str,
+                ],
+                Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
+            ]
+        ] = None
+        name_input = convert_list_to_tuple(name_import)
         self._imports.setdefault(typing_section, dict()).setdefault(
             import_type, dict()
         ).setdefault(from_section, set()).add(name_input)
@@ -66,21 +125,33 @@ class FileImport:
         """Add an import to this import block."""
         self._add_import(from_section, import_type, name_import, typing_section)
 
-    def add_import(
-        self,
-        name_import: str,
-        import_type: ImportType,
-        typing_section: TypingSection = TypingSection.REGULAR,
-    ) -> None:
-        # Implementation detail: a regular import is just a "from" with no from
-        self._add_import(name_import, import_type, None, typing_section)
-
     @property
     def imports(
         self,
     ) -> Dict[
         TypingSection,
-        Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+        Dict[
+            ImportType,
+            Dict[
+                str,
+                Set[
+                    Optional[
+                        Union[
+                            str,
+                            Tuple[
+                                str,
+                                str,
+                            ],
+                            Tuple[
+                                str,
+                                str,
+                                Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+        ],
     ]:
         return self._imports
 

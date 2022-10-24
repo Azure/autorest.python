@@ -26,7 +26,7 @@ def test_put_valid(client, valid_body):
 
 @pytest.fixture
 def polymorphic_body():
-    return models.Shark({"age": 1, "kind": "shark", "sharktype": "goblin"})
+    return models.GoblinShark({"age": 1})
 
 def test_polymorhic_put_model(client, polymorphic_body):
     client.put_model(polymorphic_body)

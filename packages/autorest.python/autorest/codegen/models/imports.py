@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum, auto
-from typing import Dict, List, Optional, Tuple, Union, Set, Mapping, TYPE_CHECKING
+from typing import Dict, List, Optional, Tuple, Union, Set, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .code_model import NamespaceModel
@@ -15,6 +15,7 @@ class ImportType(str, Enum):
     THIRDPARTY = "thirdparty"
     AZURECORE = "azurecore"
     LOCAL = "local"
+    BYVERSION = "by_version"
 
 
 class TypingSection(str, Enum):
@@ -42,12 +43,19 @@ class ImportModel:
         *,
         submodule_name: Optional[str] = None,
         alias: Optional[str] = None,
+        version_modules: Optional[
+            Tuple[Tuple[Tuple[int, int], str, Optional[str]]]
+        ] = None,
     ):
         self.typing_section = typing_section
         self.import_type = import_type
         self.module_name = module_name
         self.submodule_name = submodule_name
         self.alias = alias
+        # version_modules: this field is for imports submodule from specified module by python version.
+        #                  It's a list of "python version, module_name, comments".
+        #                  The python version is in form of (major, minor), for instance (3, 9) stands for py3.9.
+        self.version_modules = version_modules
 
     def __eq__(self, other):
         try:
@@ -74,14 +82,9 @@ class TypeDefinition:
         self,
         sync_definition: str,
         async_definition: str,
-        version_imports: Mapping[Optional[Tuple[int, int]], ImportModel] = None,
     ):
-        # version_imports: a map of "python version -> ImportModel".
-        #                  The python version is in form of (major, minor), for instance (3, 9) stands for py3.9.
-        #                  If the python version is None, it's a default ImportModel.
         self.sync_definition = sync_definition
         self.async_definition = async_definition
-        self.version_imports = version_imports
 
 
 class FileImport:
@@ -114,6 +117,9 @@ class FileImport:
         import_type: ImportType,
         typing_section: TypingSection = TypingSection.REGULAR,
         alias: Optional[str] = None,
+        version_modules: Optional[
+            Tuple[Tuple[Tuple[int, int], str, Optional[str]]]
+        ] = None,
     ) -> None:
         """Add an import to this import block."""
         self._append_import(
@@ -123,6 +129,7 @@ class FileImport:
                 module_name=module_name,
                 submodule_name=submodule_name,
                 alias=alias,
+                version_modules=version_modules,
             )
         )
 
@@ -148,10 +155,9 @@ class FileImport:
         type_name: str,
         type_value: str,
         async_type_value: Optional[str] = None,
-        version_imports: Mapping[Optional[Tuple[int, int]], ImportModel] = None,
     ):
         self.type_definitions[type_name] = TypeDefinition(
-            type_value, async_type_value or type_value, version_imports
+            type_value, async_type_value or type_value
         )
 
     def merge(self, file_import: "FileImport") -> None:
@@ -162,24 +168,18 @@ class FileImport:
 
     def define_mutable_mapping_type(self) -> None:
         """Helper function for defining the mutable mapping type"""
+        self.add_import("sys", ImportType.STDLIB)
+        self.add_submodule_import(
+            "typing",
+            "MutableMapping",
+            ImportType.BYVERSION,
+            TypingSection.REGULAR,
+            None,
+            (((3, 9), "collections.abc", None),),
+        )
         self.define_mypy_type(
             "JSON",
             "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
-            None,
-            {
-                (3, 9): ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "collections.abc",
-                    submodule_name="MutableMapping",
-                ),
-                None: ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "typing",
-                    submodule_name="MutableMapping",
-                ),
-            },
         )
         self.add_submodule_import("typing", "Any", ImportType.STDLIB)
 
@@ -187,18 +187,67 @@ class FileImport:
         self,
     ) -> Dict[
         TypingSection,
-        Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+        Dict[
+            ImportType,
+            Dict[
+                str,
+                Set[
+                    Optional[
+                        Union[
+                            str,
+                            Tuple[str, str],
+                            Tuple[
+                                str,
+                                Optional[str],
+                                Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+        ],
     ]:
         retval: Dict[
             TypingSection,
-            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+            Dict[
+                ImportType,
+                Dict[
+                    str,
+                    Set[
+                        Optional[
+                            Union[
+                                str,
+                                Tuple[str, str],
+                                Tuple[
+                                    str,
+                                    Optional[str],
+                                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                                ],
+                            ]
+                        ]
+                    ],
+                ],
+            ],
         ] = dict()
         for i in self.imports:
-            name_import: Optional[Union[str, Tuple[str, str]]] = None
+            name_import: Optional[
+                Union[
+                    str,
+                    Tuple[str, str],
+                    Tuple[
+                        str,
+                        Optional[str],
+                        Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                    ],
+                ]
+            ] = None
             if i.submodule_name:
-                name_import = (
-                    (i.submodule_name, i.alias) if i.alias else i.submodule_name
-                )
+                if i.version_modules:
+                    name_import = (i.submodule_name, i.alias, i.version_modules)
+                elif i.alias:
+                    name_import = (i.submodule_name, i.alias)
+                else:
+                    name_import = i.submodule_name
             retval.setdefault(i.typing_section, dict()).setdefault(
                 i.import_type, dict()
             ).setdefault(i.module_name, set()).add(name_import)

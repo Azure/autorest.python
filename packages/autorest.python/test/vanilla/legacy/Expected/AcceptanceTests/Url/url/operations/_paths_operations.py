@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
 
 from msrest import Serializer
@@ -28,6 +29,10 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._vendor import _convert_request, _format_url_section
 
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -37,7 +42,7 @@ _SERIALIZER = Serializer()
 def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    bool_path = kwargs.pop("bool_path", True)  # type: bool
+    bool_path = kwargs.pop("bool_path", True)  # type: Literal[True]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -57,7 +62,7 @@ def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
 def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    bool_path = kwargs.pop("bool_path", False)  # type: bool
+    bool_path = kwargs.pop("bool_path", False)  # type: Literal[False]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -77,7 +82,7 @@ def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
 def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    int_path = kwargs.pop("int_path", 1000000)  # type: int
+    int_path = kwargs.pop("int_path", 1000000)  # type: Literal[1000000]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -97,7 +102,7 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
 def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    int_path = kwargs.pop("int_path", -1000000)  # type: int
+    int_path = kwargs.pop("int_path", -1000000)  # type: Literal[-1000000]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -117,7 +122,7 @@ def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
 def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    long_path = kwargs.pop("long_path", 10000000000)  # type: int
+    long_path = kwargs.pop("long_path", 10000000000)  # type: Literal[10000000000]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -137,7 +142,7 @@ def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
 def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    long_path = kwargs.pop("long_path", -10000000000)  # type: int
+    long_path = kwargs.pop("long_path", -10000000000)  # type: Literal[-10000000000]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -237,7 +242,7 @@ def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
 def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+    string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -257,7 +262,9 @@ def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
 def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+    string_path = kwargs.pop(
+        "string_path", "begin!*'();:@ &=+$,/?#[]end"
+    )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -279,7 +286,7 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
 def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+    string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: Literal["begin!*'();:@&=+$,end"]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -299,7 +306,7 @@ def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
 def build_string_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop("string_path", "")  # type: str
+    string_path = kwargs.pop("string_path", "")  # type: Literal[""]
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -611,7 +618,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", True)  # type: bool
+        bool_path = kwargs.pop("bool_path", True)  # type: Literal[True]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_boolean_true_request(
@@ -662,7 +669,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", False)  # type: bool
+        bool_path = kwargs.pop("bool_path", False)  # type: Literal[False]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_boolean_false_request(
@@ -713,7 +720,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", 1000000)  # type: int
+        int_path = kwargs.pop("int_path", 1000000)  # type: Literal[1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_int_one_million_request(
@@ -764,7 +771,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", -1000000)  # type: int
+        int_path = kwargs.pop("int_path", -1000000)  # type: Literal[-1000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_int_negative_one_million_request(
@@ -815,7 +822,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", 10000000000)  # type: int
+        long_path = kwargs.pop("long_path", 10000000000)  # type: Literal[10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_ten_billion_request(
@@ -866,7 +873,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", -10000000000)  # type: int
+        long_path = kwargs.pop("long_path", -10000000000)  # type: Literal[-10000000000]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_negative_ten_billion_request(
@@ -1121,7 +1128,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_unicode_request(
@@ -1173,7 +1180,9 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        string_path = kwargs.pop(
+            "string_path", "begin!*'();:@ &=+$,/?#[]end"
+        )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_url_encoded_request(
@@ -1227,7 +1236,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: Literal["begin!*'();:@&=+$,end"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_url_non_encoded_request(
@@ -1278,7 +1287,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "")  # type: str
+        string_path = kwargs.pop("string_path", "")  # type: Literal[""]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_empty_request(

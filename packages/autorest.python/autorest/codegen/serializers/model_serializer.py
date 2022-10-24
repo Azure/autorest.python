@@ -5,10 +5,12 @@
 # --------------------------------------------------------------------------
 from typing import cast, List
 from abc import ABC, abstractmethod
+
 from jinja2 import Environment
 from ..models import ModelType, NamespaceModel, Property
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
+from ..models.constant_type import ConstantType
 
 
 def _documentation_string(
@@ -93,13 +95,17 @@ class _ModelSerializer(ABC):
             f"Known sub-classes are: {', '.join(v.name for v in model.discriminated_subtypes.values())}"
         )
 
-    def init_line(self, model: ModelType) -> List[str]:
-        init_properties_declaration = []
-        init_line_parameters = [
+    @staticmethod
+    def _init_line_parameters(model: ModelType):
+        return [
             p
             for p in model.properties
             if not p.readonly and not p.is_discriminator and not p.constant
         ]
+
+    def init_line(self, model: ModelType) -> List[str]:
+        init_properties_declaration = []
+        init_line_parameters = self._init_line_parameters(model)
         init_line_parameters.sort(key=lambda x: x.optional)
         if init_line_parameters:
             init_properties_declaration.append("*,")
@@ -134,11 +140,9 @@ class MsrestModelSerializer(_ModelSerializer):
         )
         for model in self.namespace_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            init_line_parameters = [
-                p for p in model.properties if not p.readonly and not p.is_discriminator
-            ]
-            for param in init_line_parameters:
+            for param in self._init_line_parameters(model):
                 file_import.merge(param.imports())
+
         return file_import
 
     def declare_model(self, model: ModelType) -> str:
@@ -209,8 +213,8 @@ class DpgModelSerializer(_ModelSerializer):
 
         for model in self.namespace_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
-            for param in model.properties:
-                file_import.merge(param.imports())
+            for prop in model.properties:
+                file_import.merge(prop.imports())
         return file_import
 
     def declare_model(self, model: ModelType) -> str:
@@ -222,30 +226,31 @@ class DpgModelSerializer(_ModelSerializer):
         return f"class {model.name}({basename}):{model.pylint_disable}"
 
     @staticmethod
-    def get_properties_to_initialize(model: ModelType) -> List[Property]:
+    def get_properties_to_declare(model: ModelType) -> List[Property]:
         if model.parents:
+            parent_properties = [
+                p for bm in model.parents for p in cast(ModelType, bm).properties
+            ]
             properties_to_declare = [
                 p
-                for bm in model.parents
                 for p in model.properties
-                if p not in cast(ModelType, bm).properties
+                if not any(
+                    p.client_name == pp.client_name
+                    and p.type_annotation() == pp.type_annotation()
+                    for pp in parent_properties
+                )
             ]
-
         else:
             properties_to_declare = model.properties
         if any(p for p in properties_to_declare if p.client_name == "_"):
             raise ValueError("We do not generate anonymous properties")
-        return [
-            p
-            for p in properties_to_declare
-            if (not p.is_discriminator or p.is_polymorphic)
-        ]
+        return properties_to_declare
 
     @staticmethod
     def declare_property(prop: Property) -> List[str]:
         attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
         args = []
-        if prop.client_name != attribute_key:
+        if prop.client_name != attribute_key or prop.is_discriminator:
             args.append(f'name="{attribute_key}"')
         if prop.readonly:
             args.append("readonly=True")
@@ -261,3 +266,13 @@ class DpgModelSerializer(_ModelSerializer):
         if comment:
             ret.append(f'"""{comment}"""')
         return ret
+
+    def initialize_properties(self, model: ModelType) -> List[str]:
+        init_args = []
+        for prop in self.get_properties_to_declare(model):
+            if prop.constant or prop.is_discriminator:
+                init_args.append(
+                    f"self.{prop.client_name} = {cast(ConstantType, prop.type).get_declaration()}   "
+                    f"# type: {prop.type_annotation()}"
+                )
+        return init_args

@@ -23,6 +23,7 @@ setup(
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
         "azure-mgmt-core<2.0.0,>=1.3.2",
+        "typing_extensions>=4.3.0; python_version<'3.8.0'",
     ],
     long_description="""\
     Long-running Operation for AutoRest.

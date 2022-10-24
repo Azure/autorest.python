@@ -41,6 +41,9 @@ class BaseType(BaseModel, ABC):
     ) -> FileImport:
         return FileImport()
 
+    def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
+        return self.imports(**kwargs)
+
     @property
     def xml_metadata(self) -> Dict[str, Any]:
         """XML metadata for the type, if the type has it."""

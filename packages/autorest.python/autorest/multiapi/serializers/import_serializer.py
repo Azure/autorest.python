@@ -4,17 +4,43 @@
 # license information.
 # --------------------------------------------------------------------------
 from copy import deepcopy
-from typing import Dict, Set, Optional, List
+from typing import Dict, Set, Optional, List, Tuple, Union
 from ..models import ImportType, FileImport, TypingSection
+from ..utils import convert_list_to_tuple
 
 
 def _serialize_package(
-    package_name: str, module_list: Set[Optional[str]], delimiter: str
+    package_name: str,
+    module_list: Set[
+        Optional[
+            Union[
+                str,
+                Tuple[
+                    str,
+                    str,
+                ],
+                Tuple[
+                    str,
+                    Optional[str],
+                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                ],
+            ]
+        ]
+    ],
+    delimiter: str,
 ) -> str:
     buffer = []
-    if None in module_list:
+
+    versioned_modules = set()
+    normal_modules = set()
+    for m in module_list:
+        if m and isinstance(m, (tuple, list)) and len(m) > 2:
+            versioned_modules.add(convert_list_to_tuple(m))
+        else:
+            normal_modules.add(m)
+    if None in normal_modules:
         buffer.append(f"import {package_name}")
-    if module_list != {None}:
+    if normal_modules != {None} and len(normal_modules) > 0:
         buffer.append(
             "from {} import {}".format(
                 package_name,
@@ -22,18 +48,51 @@ def _serialize_package(
                     sorted(
                         [
                             mod if isinstance(mod, str) else f"{mod[0]} as {mod[1]}"
-                            for mod in module_list
+                            for mod in normal_modules
                             if mod is not None
                         ]
                     )
                 ),
             )
         )
+    for submodule_name, alias, version_modules in versioned_modules:  # type: ignore
+        for n, (version, module_name, comment) in enumerate(version_modules):
+            buffer.append(
+                "{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version)
+            )
+            buffer.append(
+                f"    from {module_name} import {submodule_name}{f' as {alias}' if alias else ''}"
+                f"{f' # {comment}' if comment else ''}"
+            )
+        buffer.append("else:")
+        buffer.append(
+            f"    from {package_name} import {submodule_name}{f' as {alias}' if alias else ''}"
+            "  # type: ignore  # pylint: disable=ungrouped-imports"
+        )
     return delimiter.join(buffer)
 
 
 def _serialize_type(
-    import_type_dict: Dict[str, Set[Optional[str]]], delimiter: str
+    import_type_dict: Dict[
+        str,
+        Set[
+            Optional[
+                Union[
+                    str,
+                    Tuple[
+                        str,
+                        str,
+                    ],
+                    Tuple[
+                        str,
+                        Optional[str],
+                        Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                    ],
+                ]
+            ]
+        ],
+    ],
+    delimiter: str,
 ) -> str:
     """Serialize a given import type."""
     import_list = []
@@ -44,7 +103,29 @@ def _serialize_type(
 
 
 def _get_import_clauses(
-    imports: Dict[ImportType, Dict[str, Set[Optional[str]]]], delimiter: str
+    imports: Dict[
+        ImportType,
+        Dict[
+            str,
+            Set[
+                Optional[
+                    Union[
+                        str,
+                        Tuple[
+                            str,
+                            str,
+                        ],
+                        Tuple[
+                            str,
+                            Optional[str],
+                            Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                        ],
+                    ]
+                ]
+            ],
+        ],
+    ],
+    delimiter: str,
 ) -> List[str]:
     import_clause = []
     for import_type in ImportType:
