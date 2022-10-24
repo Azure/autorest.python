@@ -5,13 +5,13 @@
 # --------------------------------------------------------------------------
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
-from .base_type import BaseType
+from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
 from .utils import add_to_description
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -29,11 +29,11 @@ class ConstantType(BaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         value_type: BaseType,
         value: Optional[str],
     ) -> None:
-        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.value_type = value_type
         self.value = value
 
@@ -90,7 +90,7 @@ class ConstantType(BaseType):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "ConstantType":
         """Constructs a ConstantType from yaml data.
 
@@ -104,8 +104,8 @@ class ConstantType(BaseType):
 
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
-            value_type=build_type(yaml_data["valueType"], namespace_model),
+            code_model=code_model,
+            value_type=build_type(yaml_data["valueType"], code_model),
             value=yaml_data["value"],
         )
 

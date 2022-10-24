@@ -5,8 +5,9 @@
 # --------------------------------------------------------------------------
 import logging
 from typing import Any, Dict, Union
-from .base_model import BaseModel
-from .code_model import CodeModel, NamespaceModel
+from .base import BaseModel
+from .base_builder import BaseBuilder
+from .code_model import CodeModel
 from .client import Client
 from .model_type import ModelType
 from .dictionary_type import DictionaryType
@@ -29,7 +30,7 @@ from .primitive_types import (
     UnixTimeType,
 )
 from .enum_type import EnumType
-from .base_type import BaseType
+from .base import BaseType
 from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
@@ -58,7 +59,6 @@ from .request_builder import (
     OverloadedRequestBuilder,
     RequestBuilderBase,
 )
-from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
 from .request_builder_parameter import (
     RequestBuilderParameter,
@@ -80,7 +80,6 @@ __all__ = [
     "BaseType",
     "CodeModel",
     "Client",
-    "NamespaceModel",
     "ConstantType",
     "ModelType",
     "DictionaryType",
@@ -148,18 +147,18 @@ TYPE_TO_OBJECT = {
 _LOGGER = logging.getLogger(__name__)
 
 
-def build_type(yaml_data: Dict[str, Any], namespace_model: NamespaceModel) -> BaseType:
+def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     yaml_id = id(yaml_data)
     try:
-        return namespace_model.lookup_type(yaml_id)
+        return code_model.lookup_type(yaml_id)
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
     if yaml_data["type"] == "model":
         # need to special case model to avoid recursion
-        response = ModelType(yaml_data, namespace_model)
-        namespace_model.types_map[yaml_id] = response
-        response.fill_instance_from_yaml(yaml_data, namespace_model)
+        response = ModelType(yaml_data, code_model)
+        code_model.types_map[yaml_id] = response
+        response.fill_instance_from_yaml(yaml_data, code_model)
     else:
         object_type = yaml_data.get("type")
         if object_type not in TYPE_TO_OBJECT:
@@ -168,8 +167,8 @@ def build_type(yaml_data: Dict[str, Any], namespace_model: NamespaceModel) -> Ba
                 yaml_data["type"],
             )
             object_type = "string"
-        response = TYPE_TO_OBJECT[object_type].from_yaml(yaml_data, namespace_model)  # type: ignore
-    namespace_model.types_map[yaml_id] = response
+        response = TYPE_TO_OBJECT[object_type].from_yaml(yaml_data, code_model)  # type: ignore
+    code_model.types_map[yaml_id] = response
     return response
 
 

@@ -1,10 +1,10 @@
 # coding=utf-8
 # pylint: disable=too-many-lines
-{{ namespace_model.options['license_header'] }}
+{{ code_model.options['license_header'] }}
 
 {{ imports }}
-{% for model in namespace_model.model_types %}
-{% if namespace_model.options["models_mode"] == "dpg" %}
+{% for model in code_model.model_types %}
+{% if code_model.options["models_mode"] == "dpg" %}
 {% include "model_dpg.py.jinja2" %}
 {% else %}
 {% include "model_msrest.py.jinja2" %}

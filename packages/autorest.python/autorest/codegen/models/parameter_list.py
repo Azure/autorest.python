@@ -49,7 +49,7 @@ RequestBuilderBodyParameterType = Union[
 
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
 
 
 class ParameterImplementation(Enum):
@@ -81,12 +81,12 @@ class _ParameterListBase(
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         parameters: List[ParameterType],
         body_parameter: Optional[BodyParameterType] = None,
     ) -> None:
         self.yaml_data = yaml_data
-        self.namespace_model = namespace_model
+        self.code_model = code_model
         self.parameters = parameters or []
         self._body_parameter = body_parameter
 
@@ -113,16 +113,14 @@ class _ParameterListBase(
 
     @staticmethod
     @abstractmethod
-    def parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], ParameterType
-    ]:
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ParameterType]:
         """Callable for creating parameters"""
         ...
 
     @staticmethod
     @abstractmethod
     def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], BodyParameterType
+        [Dict[str, Any], "CodeModel"], BodyParameterType
     ]:
         """Callable for creating body parameters"""
         ...
@@ -292,19 +290,19 @@ class _ParameterListBase(
         return retval
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"):
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         parameters = [
-            cls.parameter_creator()(parameter, namespace_model)
+            cls.parameter_creator()(parameter, code_model)
             for parameter in yaml_data["parameters"]
         ]
         body_parameter = None
         if yaml_data.get("bodyParameter"):
             body_parameter = cls.body_parameter_creator()(
-                yaml_data["bodyParameter"], namespace_model
+                yaml_data["bodyParameter"], code_model
             )
         return cls(
             yaml_data,
-            namespace_model,
+            code_model,
             parameters=parameters,
             body_parameter=body_parameter,
         )
@@ -318,12 +316,12 @@ class _ParameterList(
     """Base Parameter class for the two operation ParameterLists"""
 
     @staticmethod
-    def parameter_creator() -> Callable[[Dict[str, Any], "NamespaceModel"], Parameter]:
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], Parameter]:
         return Parameter.from_yaml
 
     @staticmethod
     def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], Union[MultipartBodyParameter, BodyParameter]
+        [Dict[str, Any], "CodeModel"], Union[MultipartBodyParameter, BodyParameter]
     ]:
         return get_body_parameter
 
@@ -353,13 +351,13 @@ class _RequestBuilderParameterList(
 
     @staticmethod
     def parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], RequestBuilderParameter
+        [Dict[str, Any], "CodeModel"], RequestBuilderParameter
     ]:
         return RequestBuilderParameter.from_yaml
 
     @staticmethod
     def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], RequestBuilderBodyParameterType
+        [Dict[str, Any], "CodeModel"], RequestBuilderBodyParameterType
     ]:
         return get_request_body_parameter
 
@@ -424,7 +422,7 @@ class _ClientGlobalParameterList(
 
     @staticmethod
     def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], BodyParameter
+        [Dict[str, Any], "CodeModel"], BodyParameter
     ]:
         return BodyParameter.from_yaml
 
@@ -450,9 +448,7 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
     """Parameter list for Client class"""
 
     @staticmethod
-    def parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], ClientParameter
-    ]:
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ClientParameter]:
         return ClientParameter.from_yaml
 
     @property
@@ -481,9 +477,7 @@ class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
     """Parameter list for config"""
 
     @staticmethod
-    def parameter_creator() -> Callable[
-        [Dict[str, Any], "NamespaceModel"], ConfigParameter
-    ]:
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ConfigParameter]:
         return ConfigParameter.from_yaml
 
     @property

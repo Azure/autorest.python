@@ -55,4 +55,7 @@ def test_m2r_cycle():
 
 def test_inline_html():
     m2r = M2R(output_folder="")
-    assert m2r.convert_to_rst("Dictionary of <FlattenedProduct>.") == "Dictionary of :code:`<FlattenedProduct>`."
+    assert (
+        m2r.convert_to_rst("Dictionary of <FlattenedProduct>.")
+        == "Dictionary of :code:`<FlattenedProduct>`."
+    )

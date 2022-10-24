@@ -1044,7 +1044,7 @@ function getNamespace(program: Program, clientName: string): string {
     if (!submodule) {
         return serviceNamespace;
     }
-    return serviceNamespace + "." + submodule;
+    return submodule;
 }
 
 function getNamespaces(program: Program): Set<string> {
@@ -1064,7 +1064,13 @@ function createYamlEmitter(program: Program) {
     getApiVersions(program, serviceNamespace);
     // Get types
     const codeModel: Record<string, any> = {};
+    const serviceNamespaceString = getServiceNamespaceString(program)!.toLowerCase();
+    codeModel["namespace"] = serviceNamespaceString;
     for (const namespace of getNamespaces(program)) {
+        if (namespace === serviceNamespaceString) {
+            codeModel["clients"] = emitClients(program, namespace);
+            codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
+        }
         codeModel[namespace] = {
             clients: emitClients(program, namespace),
             types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],

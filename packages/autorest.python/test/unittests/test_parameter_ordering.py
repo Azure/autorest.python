@@ -3,21 +3,32 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models import Parameter, AnyType, NamespaceModel, StringType
+from autorest.codegen.models import Parameter, AnyType, CodeModel, StringType
 from autorest.codegen.models.parameter_list import ParameterList
 
 
-def get_namespace_model():
-    options = {
-        "show_send_request": True,
-        "builders_visibility": "embedded",
-        "multiapi": False,
-        "only_path_and_body_params_positional": True,
-    }
-    return NamespaceModel(
-        {"clients": [{"name": "cient", "namespace": "blah", "moduleName": "blah"}]},
-        options=options,
-        namespace="namespace",
+def get_code_model():
+    return CodeModel(
+        {
+            "clients": [
+                {
+                    "name": "cient",
+                    "namespace": "blah",
+                    "moduleName": "blah",
+                    "parameters": [],
+                    "url": "",
+                    "operationGroups": [],
+                }
+            ],
+            "namespace": "namespace",
+        },
+        options={
+            "show_send_request": True,
+            "builders_visibility": "public",
+            "show_operations": True,
+            "models_mode": "dpg",
+            "only_path_and_body_params_positional": True,
+        },
     )
 
 
@@ -25,7 +36,7 @@ def get_parameter(name, required, default_value=None, type=None):
     if not type:
         type = AnyType(
             yaml_data={"type": "any"},
-            namespace_model=get_namespace_model(),
+            code_model=get_code_model(),
         )
 
     return Parameter(
@@ -39,7 +50,7 @@ def get_parameter(name, required, default_value=None, type=None):
             "inOverload": False,
             "inOverloaded": False,
         },
-        namespace_model=get_namespace_model(),
+        code_model=get_code_model(),
         type=type,
     )
 
@@ -47,7 +58,7 @@ def get_parameter(name, required, default_value=None, type=None):
 def test_sort_parameters_with_default_value_from_schema():
     type = StringType(
         yaml_data={"clientDefaultValue": "this_is_the_default", "type": "str"},
-        namespace_model=get_namespace_model(),
+        code_model=get_code_model(),
     )
     parameter_with_default_schema_value_required = get_parameter(
         name="required_param_with_schema_default", required=True, type=type
@@ -56,9 +67,10 @@ def test_sort_parameters_with_default_value_from_schema():
 
     parameter_list = [parameter_with_default_schema_value_required, required_parameter]
 
-    assert [required_parameter, parameter_with_default_schema_value_required] == ParameterList(
-        {}, get_namespace_model(), parameter_list
-    ).method
+    assert [
+        required_parameter,
+        parameter_with_default_schema_value_required,
+    ] == ParameterList({}, get_code_model(), parameter_list).method
 
 
 def test_sort_required_parameters():
@@ -70,7 +82,7 @@ def test_sort_required_parameters():
     parameter_list = [required_parameter, required_default_value_parameter]
 
     assert [required_parameter, required_default_value_parameter] == ParameterList(
-        {}, get_namespace_model(), parameter_list
+        {}, get_code_model(), parameter_list
     ).method
 
     # switch around ordering to confirm
@@ -78,7 +90,7 @@ def test_sort_required_parameters():
     parameter_list = [required_default_value_parameter, required_parameter]
 
     assert [required_parameter, required_default_value_parameter] == ParameterList(
-        {}, get_namespace_model(), parameter_list
+        {}, get_code_model(), parameter_list
     ).method
 
 
@@ -89,4 +101,6 @@ def test_sort_required_and_non_required_parameters():
 
     parameter_list = [optional_parameter, required_parameter]
 
-    assert [required_parameter, optional_parameter] == ParameterList({}, get_namespace_model(), parameter_list).method
+    assert [required_parameter, optional_parameter] == ParameterList(
+        {}, get_code_model(), parameter_list
+    ).method
