@@ -2,11 +2,12 @@
 
 # Release History
 
-## 2022-10-20 - 0.4.2
+## 2022-10-xx - 0.4.2
 
 **Bug Fixes**
 
 - Add defaults for some config flags  #1524
+- Allow users to specify a subnamespace for their client in the client name  #1529
 
 ## 2022-10-19 - 0.4.1
 
