@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, List, Optional
 
-from .base_model import BaseModel
+from .base import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .utils import add_to_pylint_disable
@@ -13,6 +13,7 @@ from .operation_group import OperationGroup
 from .request_builder import (
     RequestBuilder,
     OverloadedRequestBuilder,
+    get_request_builder,
 )
 from .parameter import Parameter, ParameterMethodLocation
 
@@ -22,7 +23,7 @@ ParameterListType = TypeVar(
 )
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
 
 
 class _ClientConfigBase(Generic[ParameterListType], BaseModel):
@@ -31,10 +32,10 @@ class _ClientConfigBase(Generic[ParameterListType], BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         parameters: ParameterListType,
     ):
-        super().__init__(yaml_data, namespace_model)
+        super().__init__(yaml_data, code_model)
         self.parameters = parameters
         self.url: str = self.yaml_data[
             "url"
@@ -56,18 +57,49 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         parameters: ClientGlobalParameterList,
+        *,
+        is_subclient: bool = False,
     ):
-        super().__init__(yaml_data, namespace_model, parameters)
+        super().__init__(yaml_data, code_model, parameters)
         self.operation_groups: List[OperationGroup] = []
-        self.request_builders: List[
-            Union[RequestBuilder, OverloadedRequestBuilder]
-        ] = []
-        self.config = Config.from_yaml(yaml_data, self.namespace_model)
+        self.config = Config.from_yaml(yaml_data, self.code_model)
+        self.is_subclient = is_subclient
+        self.request_builders = self._build_request_builders()
+        if self.code_model.options["show_operations"]:
+            self.operation_groups = [
+                OperationGroup.from_yaml(op_group, code_model, self)
+                for op_group in self.yaml_data.get("operationGroups", [])
+            ]
+            self.format_lro_operations()
+
+    def _build_request_builders(self):
+        request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
+        for og_group in self.yaml_data["operationGroups"]:
+            for operation_yaml in og_group["operations"]:
+                request_builder = get_request_builder(
+                    operation_yaml,
+                    code_model=self.code_model,
+                    client=self,
+                )
+                if request_builder.overloads:
+                    request_builders.extend(request_builder.overloads)  # type: ignore
+                request_builders.append(request_builder)
+                if operation_yaml.get("nextOperation"):
+                    # i am a paging operation and i have a next operation.
+                    # Make sure to include my next operation
+                    request_builders.append(
+                        get_request_builder(
+                            operation_yaml["nextOperation"],
+                            code_model=self.code_model,
+                            client=self,
+                        )
+                    )
+        return request_builders
 
     def pipeline_class(self, async_mode: bool) -> str:
-        if self.namespace_model.options["azure_arm"]:
+        if self.code_model.options["azure_arm"]:
             if async_mode:
                 return "AsyncARMPipelineClient"
             return "ARMPipelineClient"
@@ -85,7 +117,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         """Name of the send request function"""
         return (
             "send_request"
-            if self.namespace_model.options["show_send_request"]
+            if self.code_model.options["show_send_request"]
             else "_send_request"
         )
 
@@ -105,8 +137,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def filename(self) -> str:
         """Name of the file for the client"""
         if (
-            self.namespace_model.options["version_tolerant"]
-            or self.namespace_model.options["low_level_client"]
+            self.code_model.options["version_tolerant"]
+            or self.code_model.options["low_level_client"]
         ):
             return "_client"
         return f"_{self.legacy_filename}"
@@ -130,7 +162,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if self.namespace_model.options["azure_arm"]:
+        if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
                 "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.AZURECORE
             )
@@ -152,7 +184,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ImportType.LOCAL,
         )
         file_import.add_msrest_import(
-            self.namespace_model,
+            self.code_model,
             ".." if async_mode else ".",
             MsrestImportType.SerializerDeserializer,
             TypingSection.REGULAR,
@@ -202,9 +234,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         azure.core.pipeline.transport.HttpRequests
         """
         return (
-            self.namespace_model.options["show_operations"]
+            self.code_model.options["show_operations"]
             and bool(self.request_builders)
-            and not self.namespace_model.options["version_tolerant"]
+            and not self.code_model.options["version_tolerant"]
         )
 
     @property
@@ -237,18 +269,18 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         )
         for og in self.operation_groups:
             file_import.add_submodule_import(
-                f".{self.namespace_model.operations_folder_name}",
+                f".{self.code_model.operations_folder_name}",
                 og.class_name,
                 ImportType.LOCAL,
             )
 
         if (
-            self.namespace_model.model_types
-            and self.namespace_model.options["models_mode"] == "msrest"
+            self.code_model.model_types
+            and self.code_model.options["models_mode"] == "msrest"
         ):
             path_to_models = ".." if async_mode else "."
-            if len(self.namespace_model.model_types) != len(
-                self.namespace_model.public_model_types
+            if len(self.code_model.model_types) != len(
+                self.code_model.public_model_types
             ):
                 # this means we have hidden models. In that case, we import directly from the models
                 # file, not the module, bc we don't expose the hidden models in the models module
@@ -256,7 +288,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 # Also in this case, we're in version tolerant, so python3 only is true
                 file_import.add_submodule_import(
                     f"{path_to_models}models",
-                    self.namespace_model.models_filename,
+                    self.code_model.models_filename,
                     ImportType.LOCAL,
                     alias="models",
                 )
@@ -264,7 +296,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 file_import.add_submodule_import(
                     path_to_models, "models", ImportType.LOCAL
                 )
-        elif self.namespace_model.options["models_mode"] == "msrest":
+        elif self.code_model.options["models_mode"] == "msrest":
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
             file_import.add_submodule_import(
@@ -300,12 +332,17 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        *,
+        is_subclient: bool = False,
     ) -> "Client":
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
-            parameters=ClientGlobalParameterList.from_yaml(yaml_data, namespace_model),
+            code_model=code_model,
+            parameters=ClientGlobalParameterList.from_yaml(yaml_data, code_model),
+            is_subclient=is_subclient,
         )
 
 
@@ -321,7 +358,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
 
     @property
     def sdk_moniker(self) -> str:
-        package_name = self.namespace_model.options["package_name"]
+        package_name = self.code_model.options["package_name"]
         if package_name and package_name.startswith("azure-"):
             package_name = package_name[len("azure-") :]
         return package_name if package_name else self.yaml_data["name"].lower()
@@ -341,11 +378,11 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if self.namespace_model.options["package_version"]:
+        if self.code_model.options["package_version"]:
             file_import.add_submodule_import(
                 ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
             )
-        if self.namespace_model.options["azure_arm"]:
+        if self.code_model.options["azure_arm"]:
             policy = (
                 "AsyncARMChallengeAuthenticationPolicy"
                 if async_mode
@@ -384,11 +421,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         return file_import
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
-    ) -> "Config":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Config":
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
-            parameters=ConfigGlobalParameterList.from_yaml(yaml_data, namespace_model),
+            code_model=code_model,
+            parameters=ConfigGlobalParameterList.from_yaml(yaml_data, code_model),
         )

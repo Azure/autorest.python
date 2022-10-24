@@ -61,7 +61,9 @@ class ClientSerializer:
         operations_folder = ".aio.operations." if async_mode else ".operations."
         for og in [og for og in self.client.operation_groups if not og.is_mixin]:
             retval.append(f":ivar {og.property_name}: {og.class_name} operations")
-            property_type = f"{self.client.namespace_model.namespace}{operations_folder}{og.class_name}"
+            property_type = (
+                f"{self.client.code_model.namespace}{operations_folder}{og.class_name}"
+            )
             retval.append(f":vartype {og.property_name}: {property_type}")
         for param in self.client.parameters.method:
             retval.append(
@@ -114,19 +116,19 @@ class ClientSerializer:
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
-        if self.client.namespace_model.model_types:
+        if self.client.code_model.model_types:
             client_models_value = (
                 "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
             )
         else:
             client_models_value = "{}  # type: Dict[str, Any]"
-        is_msrest_model = self.client.namespace_model.options["models_mode"] == "msrest"
+        is_msrest_model = self.client.code_model.options["models_mode"] == "msrest"
         if is_msrest_model:
             retval.append(f"client_models = {client_models_value}")
         client_models_str = "client_models" if is_msrest_model else ""
         retval.append(f"self._serialize = Serializer({client_models_str})")
         retval.append(f"self._deserialize = Deserializer({client_models_str})")
-        if not self.client.namespace_model.options["client_side_validation"]:
+        if not self.client.code_model.options["client_side_validation"]:
             retval.append("self._serialize.client_side_validation = False")
         operation_groups = [
             og for og in self.client.operation_groups if not og.is_mixin
@@ -174,7 +176,7 @@ class ClientSerializer:
     def _request_builder_example(self, async_mode: bool) -> List[str]:
         retval = [
             "We have helper methods to create requests specific to this service in "
-            + f"`{self.client.namespace_model.namespace}.{self.client.namespace_model.rest_layer_name}`."
+            + f"`{self.client.code_model.namespace}.{self.client.code_model.rest_layer_name}`."
         ]
         retval.append(
             "Use these helper methods to create the request you pass to this method."
@@ -191,7 +193,7 @@ class ClientSerializer:
         else:
             rest_imported = request_builder.name
             request_builder_name = request_builder.name
-        full_path = f"{self.client.namespace_model.namespace}.{self.client.namespace_model.rest_layer_name}"
+        full_path = f"{self.client.code_model.namespace}.{self.client.code_model.rest_layer_name}"
         retval.append(f">>> from {full_path} import {rest_imported}")
         retval.append(
             f">>> request = {request_builder_name}({request_builder_signature})"
@@ -212,7 +214,7 @@ class ClientSerializer:
     def send_request_description(self, async_mode: bool) -> List[str]:
         retval = ['"""Runs the network request through the client\'s chained policies.']
         retval.append("")
-        if self.client.namespace_model.options["builders_visibility"] != "embedded":
+        if self.client.code_model.options["builders_visibility"] != "embedded":
             retval.extend(self._request_builder_example(async_mode))
         else:
             retval.extend(self._rest_request_example(async_mode))

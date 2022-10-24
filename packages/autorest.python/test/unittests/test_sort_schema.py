@@ -4,36 +4,52 @@
 # license information.
 # --------------------------------------------------------------------------
 
-from autorest.codegen.models import NamespaceModel, ModelType
+from autorest.codegen.models import CodeModel, ModelType
 
 
-def get_namespace_model():
-    return NamespaceModel(
-        {"clients": [{"name": "cient", "namespace": "blah", "moduleName": "blah"}]},
-        options={"show_send_request": True, "builders_visibility": "public"},
-        namespace="namespace",
+def get_code_model():
+    return CodeModel(
+        {
+            "clients": [
+                {
+                    "name": "cient",
+                    "namespace": "blah",
+                    "moduleName": "blah",
+                    "parameters": [],
+                    "url": "",
+                    "operationGroups": [],
+                }
+            ],
+            "namespace": "namespace",
+        },
+        options={
+            "show_send_request": True,
+            "builders_visibility": "public",
+            "show_operations": True,
+            "models_mode": "dpg",
+        },
     )
 
 
 def get_object_schema(name, base_models):
     return ModelType(
         yaml_data={"name": name, "type": "model", "snakeCaseName": name},
-        namespace_model=get_namespace_model(),
+        code_model=get_code_model(),
         parents=base_models,
     )
 
 
 def test_pet_cat_kitten_horse_wood():
     """Horse -> Pet <- Cat <- Kitten, Wood"""
-    namespace_model = get_namespace_model()
+    code_model = get_code_model()
     pet = get_object_schema("Pet", None)
     horse = get_object_schema("Horse", [pet])
     cat = get_object_schema("Cat", [pet])
     kitten = get_object_schema("Kitten", [cat])
     wood = get_object_schema("Wood", None)
-    namespace_model.model_types = [wood, horse, cat, pet, kitten]
-    namespace_model.sort_model_types()
-    sorted_model_types = namespace_model.model_types
+    code_model.model_types = [wood, horse, cat, pet, kitten]
+    code_model.sort_model_types()
+    sorted_model_types = code_model.model_types
     # assert pet is before cat
     assert sorted_model_types.index(pet) < sorted_model_types.index(cat)
     # assert pet is before horse
@@ -49,7 +65,7 @@ def test_multiple_inheritance():
     |
     ObjectOnEarth
     """
-    namespace_model = get_namespace_model()
+    code_model = get_code_model()
     carbon_object = get_object_schema("CarbonObject", [])
     object_on_earth = get_object_schema("ObjectOnEarth", [])
     person = get_object_schema("Person", [carbon_object, object_on_earth])
@@ -57,7 +73,7 @@ def test_multiple_inheritance():
     teacher = get_object_schema("Teacher", [person, employee])
     kid = get_object_schema("Kid", [person])
 
-    namespace_model.model_types = [
+    code_model.model_types = [
         kid,
         person,
         teacher,
@@ -65,8 +81,8 @@ def test_multiple_inheritance():
         employee,
         object_on_earth,
     ]
-    namespace_model.sort_model_types()
-    sorted_model_types = namespace_model.model_types
+    code_model.sort_model_types()
+    sorted_model_types = code_model.model_types
     # assert carbon object and object on earth is in front of person
     assert sorted_model_types.index(carbon_object) < sorted_model_types.index(person)
     assert sorted_model_types.index(object_on_earth) < sorted_model_types.index(person)

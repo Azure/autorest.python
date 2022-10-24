@@ -2,11 +2,11 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {# actual template starts here #}
 # coding=utf-8
-{{ namespace_model.options['license_header'] }}
+{{ code_model.options['license_header'] }}
 
 {{ imports }}
 
-{% for client in namespace_model.clients %}
+{% for client in clients %}
     {% set serializer = get_serializer(client) %}
 {% include "client.py.jinja2" %}
 {% endfor %}

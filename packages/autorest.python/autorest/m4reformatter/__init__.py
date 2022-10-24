@@ -1108,14 +1108,14 @@ class M4Reformatter(
                     # we don't generate cloud error
                     continue
                 update_type(t)
-        yaml_data[namespace] = {}
-        yaml_data[namespace]["clients"] = [self.update_client(yaml_data)]
-        yaml_data[namespace]["clients"][0]["operationGroups"] = [
+        yaml_data["namespace"] = namespace
+        yaml_data["clients"] = [self.update_client(yaml_data)]
+        yaml_data["clients"][0]["operationGroups"] = [
             self.update_operation_group(og) for og in yaml_data["operationGroups"]
         ]
-        yaml_data[namespace]["types"] = list(
-            ORIGINAL_ID_TO_UPDATED_TYPE.values()
-        ) + list(KNOWN_TYPES.values())
+        yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(
+            KNOWN_TYPES.values()
+        )
         if yaml_data.get("globalParameters"):
             del yaml_data["globalParameters"]
         del yaml_data["info"]

@@ -19,6 +19,6 @@
     {{ op_tools.serialize(operation_serializer.make_pipeline_call(operation)) | indent }}
     {{ op_tools.serialize(operation_serializer.handle_response(operation)) | indent }}
     {% endif %}
-{% if not namespace_model.options["version_tolerant"] %}
+{% if not code_model.options["version_tolerant"] %}
 {{ operation_serializer.get_metadata_url(operation) }}
 {% endif %}

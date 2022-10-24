@@ -5,8 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
 
-from .base_model import BaseModel
-from .base_type import BaseType
+from .base import BaseModel
+from .base import BaseType
 from .imports import FileImport, ImportType
 from .primitive_types import BinaryType, BinaryIteratorType
 from .dictionary_type import DictionaryType
@@ -14,17 +14,17 @@ from .list_type import ListType
 from .model_type import ModelType
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
 
 
 class ResponseHeader(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         type: BaseType,
     ) -> None:
-        super().__init__(yaml_data, namespace_model)
+        super().__init__(yaml_data, code_model)
         self.rest_api_name: str = yaml_data["restApiName"]
         self.type = type
 
@@ -34,12 +34,12 @@ class ResponseHeader(BaseModel):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "ResponseHeader":
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
-            type=namespace_model.lookup_type(id(yaml_data["type"])),
+            code_model=code_model,
+            type=code_model.lookup_type(id(yaml_data["type"])),
         )
 
 
@@ -47,12 +47,12 @@ class Response(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         *,
         headers: List[ResponseHeader] = [],
         type: Optional[BaseType] = None,
     ) -> None:
-        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.status_codes: List[Union[int, str]] = yaml_data["statusCodes"]
         self.headers = headers
         self.type = type
@@ -115,21 +115,21 @@ class Response(BaseModel):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "Response":
         type = (
-            namespace_model.lookup_type(id(yaml_data["type"]))
+            code_model.lookup_type(id(yaml_data["type"]))
             if yaml_data.get("type")
             else None
         )
         # use ByteIteratorType if we are returning a binary type
         if isinstance(type, BinaryType):
-            type = BinaryIteratorType(type.yaml_data, type.namespace_model)
+            type = BinaryIteratorType(type.yaml_data, type.code_model)
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[
-                ResponseHeader.from_yaml(header, namespace_model)
+                ResponseHeader.from_yaml(header, code_model)
                 for header in yaml_data["headers"]
             ],
             type=type,
@@ -142,9 +142,7 @@ class Response(BaseModel):
 class PagingResponse(Response):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        self.item_type = self.namespace_model.lookup_type(
-            id(self.yaml_data["itemType"])
-        )
+        self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
         return self.item_type.get_polymorphic_subtypes(polymorphic_subtypes)
@@ -166,7 +164,7 @@ class PagingResponse(Response):
 
     def docstring_text(self, **kwargs: Any) -> str:
         base_description = "An iterator like instance of "
-        if not self.namespace_model.options["version_tolerant"]:
+        if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + self.item_type.docstring_text(**kwargs)
 
@@ -247,7 +245,7 @@ class LROResponse(Response):
     def docstring_text(self, **kwargs) -> str:
         super_text = super().docstring_text(**kwargs)
         base_description = f"An instance of {self.get_poller(kwargs.get('async_mode', False))} that returns "
-        if not self.namespace_model.options["version_tolerant"]:
+        if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + super_text
 
@@ -310,7 +308,7 @@ class LROPagingResponse(LROResponse, PagingResponse):
         base_description = (
             "An instance of LROPoller that returns an iterator like instance of "
         )
-        if not self.namespace_model.options["version_tolerant"]:
+        if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + Response.docstring_text(self)
 
@@ -325,13 +323,11 @@ class LROPagingResponse(LROResponse, PagingResponse):
         return file_import
 
 
-def get_response(
-    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
-) -> Response:
+def get_response(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Response:
     if yaml_data["discriminator"] == "lropaging":
-        return LROPagingResponse.from_yaml(yaml_data, namespace_model)
+        return LROPagingResponse.from_yaml(yaml_data, code_model)
     if yaml_data["discriminator"] == "lro":
-        return LROResponse.from_yaml(yaml_data, namespace_model)
+        return LROResponse.from_yaml(yaml_data, code_model)
     if yaml_data["discriminator"] == "paging":
-        return PagingResponse.from_yaml(yaml_data, namespace_model)
-    return Response.from_yaml(yaml_data, namespace_model)
+        return PagingResponse.from_yaml(yaml_data, code_model)
+    return Response.from_yaml(yaml_data, code_model)

@@ -12,7 +12,7 @@ from .request_builder import RequestBuilder
 from .parameter_list import ParameterList
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
     from .client import Client
 
 LROResponseType = TypeVar(
@@ -24,7 +24,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         client: "Client",
         name: str,
         request_builder: RequestBuilder,
@@ -37,7 +37,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
         want_tracing: bool = True,
     ) -> None:
         super().__init__(
-            namespace_model=namespace_model,
+            code_model=code_model,
             client=client,
             yaml_data=yaml_data,
             name=name,
@@ -92,18 +92,14 @@ class LROOperationBase(OperationBase[LROResponseType]):
         """Initial operation that creates the first call for LRO polling"""
         return Operation(
             yaml_data=self.yaml_data,
-            namespace_model=self.namespace_model,
+            code_model=self.code_model,
             client=self.client,
-            request_builder=self.namespace_model.lookup_request_builder(
-                id(self.yaml_data)
-            ),
+            request_builder=self.client.lookup_request_builder(id(self.yaml_data)),
             name=self.name[5:] + "_initial",
             overloads=self.overloads,
             parameters=self.parameters,
             responses=[
-                Response(
-                    r.yaml_data, self.namespace_model, headers=r.headers, type=r.type
-                )
+                Response(r.yaml_data, self.code_model, headers=r.headers, type=r.type)
                 for r in self.responses
             ],
             exceptions=self.exceptions,

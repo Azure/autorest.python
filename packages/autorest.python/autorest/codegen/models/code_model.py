@@ -5,21 +5,20 @@
 # --------------------------------------------------------------------------
 from typing import List, Dict, Any, Set, Union
 
-from .base_type import BaseType
+from .base import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
 from .client import Client
 from .request_builder import RequestBuilder, OverloadedRequestBuilder
-from .operation_group import OperationGroup
+from .constant_type import ConstantType
 
 
 def _is_legacy(options) -> bool:
     return not (options["version_tolerant"] or options["low_level_client"])
 
 
-class CodeModel:
-    """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
-    serialized by the serializers.
+class CodeModel:  # pylint: disable=too-many-public-methods
+    """Top level code model
 
     :param options: Options of the code model. I.e., whether this is for management generation
     :type options: dict[str, bool]
@@ -37,8 +36,6 @@ class CodeModel:
     :param primitives: List of schemas we've created that are not EnumSchemas or ObjectSchemas. Maps their
      yaml id to our created schemas.
     :type primitives: Dict[int, ~autorest.models.BaseType]
-    :param operation_groups: The operation groups we are going to serialize
-    :type operation_groups: list[~autorest.models.OperationGroup]
     :param package_dependency: All the dependencies needed in setup.py
     :type package_dependency: Dict[str, str]
     """
@@ -47,50 +44,60 @@ class CodeModel:
         self,
         yaml_data: Dict[str, Any],
         options: Dict[str, Any],
+        *,
+        is_subnamespace: bool = False,
     ) -> None:
         self.yaml_data = yaml_data
         self.options = options
-        self.namespace_models: List["NamespaceModel"] = [
-            NamespaceModel(namespace_yaml_data, self.options, namespace)
-            for namespace, namespace_yaml_data in yaml_data.items()
-        ]
-
-    @property
-    def is_legacy(self) -> bool:
-        return _is_legacy(self.options)
-
-    @property
-    def description(self) -> str:
-        return self.namespace_models[0].clients[0].description
-
-
-class NamespaceModel:
-    def __init__(
-        self, yaml_data: Dict[str, Any], options: Dict[str, Any], namespace: str
-    ):
-        self.yaml_data = yaml_data
+        self.namespace = self.yaml_data["namespace"]
         self.types_map: Dict[int, BaseType] = {}  # map yaml id to schema
         self._model_types: List[ModelType] = []
-        self.options = options
         from . import build_type
 
         for type_yaml in yaml_data.get("types", []):
-            build_type(yaml_data=type_yaml, namespace_model=self)
-        self.clients: List[Client] = []
-        self.namespace = namespace
+            build_type(yaml_data=type_yaml, code_model=self)
+        self.clients: List[Client] = [
+            Client.from_yaml(client_yaml_data, self)
+            for client_yaml_data in yaml_data["clients"]
+        ]
+        self.subnamespace_to_clients: Dict[str, List[Client]] = {
+            subnamespace: [
+                Client.from_yaml(client_yaml, self, is_subclient=True)
+                for client_yaml in client_yamls
+            ]
+            for subnamespace, client_yamls in yaml_data.get(
+                "subnamespaceToClients", {}
+            ).items()
+        }
+        if self.options["models_mode"] and self.model_types:
+            self.sort_model_types()
+        self.is_subnamespace = is_subnamespace
 
-    def lookup_type(self, schema_id: int) -> BaseType:
-        """Looks to see if the schema has already been created.
+    @property
+    def has_operations(self) -> bool:
+        if any(c for c in self.clients if c.operation_groups):
+            return True
+        return any(
+            c
+            for clients in self.subnamespace_to_clients.values()
+            for c in clients
+            if c.operation_groups
+        )
 
-        :param int schema_id: The yaml id of the schema
-        :return: If created, we return the created schema, otherwise, we throw.
-        :rtype: ~autorest.models.BaseType
-        :raises: KeyError if schema is not found
-        """
-        try:
-            return next(type for id, type in self.types_map.items() if id == schema_id)
-        except StopIteration:
-            raise KeyError(f"Couldn't find schema with id {schema_id}")
+    @property
+    def has_non_abstract_operations(self) -> bool:
+        for client in self.clients:
+            for operation_group in client.operation_groups:
+                for operation in operation_group.operations:
+                    if not operation.abstract:
+                        return True
+        for clients in self.subnamespace_to_clients.values():
+            for client in clients:
+                for operation_group in client.operation_groups:
+                    for operation in operation_group.operations:
+                        if not operation.abstract:
+                            return True
+        return False
 
     def lookup_request_builder(
         self, request_builder_id: int
@@ -104,12 +111,69 @@ class NamespaceModel:
         raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
-    def operation_groups(self) -> List[OperationGroup]:
-        return [og for client in self.clients for og in client.operation_groups]
+    def rest_layer_name(self) -> str:
+        """If we have a separate rest layer, what is its name?"""
+        return "rest" if self.options["builders_visibility"] == "public" else "_rest"
 
     @property
-    def request_builders(self) -> List[Union[RequestBuilder, OverloadedRequestBuilder]]:
-        return [rb for client in self.clients for rb in client.request_builders]
+    def client_filename(self) -> str:
+        return self.clients[0].filename
+
+    def need_vendored_code(self, async_mode: bool) -> bool:
+        """Whether we need to vendor code in the _vendor.py file for this SDK"""
+        if self.has_abstract_operations:
+            return True
+        if async_mode:
+            return self.need_mixin_abc
+        return (
+            self.need_request_converter or self.need_format_url or self.need_mixin_abc
+        )
+
+    @property
+    def need_request_converter(self) -> bool:
+        return any(c for c in self.clients if c.need_request_converter)
+
+    @property
+    def need_format_url(self) -> bool:
+        return any(c for c in self.clients if c.need_format_url)
+
+    @property
+    def need_mixin_abc(self) -> bool:
+        return any(c for c in self.clients if c.has_mixin)
+
+    @property
+    def has_abstract_operations(self) -> bool:
+        return any(c for c in self.clients if c.has_abstract_operations)
+
+    @property
+    def operations_folder_name(self) -> str:
+        """Get the name of the operations folder that holds operations."""
+        name = "operations"
+        if self.options["version_tolerant"] and not any(
+            og
+            for client in self.clients
+            for og in client.operation_groups
+            if not og.is_mixin
+        ):
+            name = f"_{name}"
+        return name
+
+    @property
+    def description(self) -> str:
+        return self.clients[0].description
+
+    def lookup_type(self, schema_id: int) -> BaseType:
+        """Looks to see if the schema has already been created.
+
+        :param int schema_id: The yaml id of the schema
+        :return: If created, we return the created schema, otherwise, we throw.
+        :rtype: ~autorest.models.BaseType
+        :raises: KeyError if schema is not found
+        """
+        try:
+            return next(type for id, type in self.types_map.items() if id == schema_id)
+        except StopIteration:
+            raise KeyError(f"Couldn't find schema with id {schema_id}")
 
     @property
     def model_types(self) -> List[ModelType]:
@@ -180,24 +244,11 @@ class NamespaceModel:
         self.model_types = sorted_object_schemas
 
     @property
-    def is_legacy(self) -> bool:
-        return _is_legacy(self.options)
-
-    @property
-    def rest_layer_name(self) -> str:
-        """If we have a separate rest layer, what is its name?"""
-        return "rest" if self.options["builders_visibility"] == "public" else "_rest"
-
-    @property
     def models_filename(self) -> str:
         """Get the names of the model file(s)"""
         if self.is_legacy:
             return "_models_py3"
         return "_models"
-
-    @property
-    def client_filename(self) -> str:
-        return self.clients[0].filename
 
     @property
     def enums_filename(self) -> str:
@@ -206,41 +257,31 @@ class NamespaceModel:
             return f"_{self.clients[0].legacy_filename}_enums"
         return "_enums"
 
-    def need_vendored_code(self, async_mode: bool) -> bool:
-        """Whether we need to vendor code in the _vendor.py file for this SDK"""
-        if self.has_abstract_operations:
+    @property
+    def is_legacy(self) -> bool:
+        return _is_legacy(self.options)
+
+    @property
+    def need_typing_extensions(self) -> bool:
+        if self.options["models_mode"] and any(
+            isinstance(p.type, ConstantType)
+            and (p.optional or self.options["models_mode"] == "dpg")
+            for model in self.model_types
+            for p in model.properties
+        ):
             return True
-        if async_mode:
-            return self.need_mixin_abc
-        return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc
-        )
-
-    @property
-    def need_request_converter(self) -> bool:
-        return any(c for c in self.clients if c.need_request_converter)
-
-    @property
-    def need_format_url(self) -> bool:
-        return any(c for c in self.clients if c.need_format_url)
-
-    @property
-    def need_mixin_abc(self) -> bool:
-        return any(c for c in self.clients if c.has_mixin)
-
-    @property
-    def has_abstract_operations(self) -> bool:
-        return any(c for c in self.clients if c.has_abstract_operations)
-
-    @property
-    def operations_folder_name(self) -> str:
-        """Get the name of the operations folder that holds operations."""
-        name = "operations"
-        if self.options["version_tolerant"] and not any(
-            og
+        if any(
+            isinstance(parameter.type, ConstantType)
             for client in self.clients
             for og in client.operation_groups
-            if not og.is_mixin
+            for op in og.operations
+            for parameter in op.parameters.method
         ):
-            name = f"_{name}"
-        return name
+            return True
+        if any(
+            isinstance(parameter.type, ConstantType)
+            for client in self.clients
+            for parameter in client.config.parameters.kwargs_to_pop
+        ):
+            return True
+        return False
