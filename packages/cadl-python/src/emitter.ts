@@ -1017,13 +1017,16 @@ function getApiVersions(program: Program, namespace: Namespace) {
     }
 }
 
-function emitClients(program: Program): Record<string, any>[] {
+function emitClients(program: Program, namespace: string): Record<string, any>[] {
     const clients = listClients(program);
     const retval: Record<string, any>[] = [];
     for (const client of clients) {
+        if (getNamespace(program, client.name) !== namespace) {
+            continue;
+        }
         const server = getServerHelper(program, client.service);
         retval.push({
-            name: client.name,
+            name: client.name.split(".").at(-1),
             description: getDocStr(program, client.type),
             parameters: emitGlobalParameters(program, client.service),
             url: server ? server.url : "",
@@ -1034,6 +1037,24 @@ function emitClients(program: Program): Record<string, any>[] {
     return retval;
 }
 
+function getNamespace(program: Program, clientName: string): string {
+    // We get client namespaces from the client name. If there's a dot, we add that to the namespace
+    const serviceNamespace = getServiceNamespaceString(program)!.toLowerCase();
+    const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
+    if (!submodule) {
+        return serviceNamespace;
+    }
+    return serviceNamespace + "." + submodule;
+}
+
+function getNamespaces(program: Program): Set<string> {
+    const namespaces = new Set<string>();
+    for (const client of listClients(program)) {
+        namespaces.add(getNamespace(program, client.name));
+    }
+    return namespaces;
+}
+
 function createYamlEmitter(program: Program) {
     const serviceNamespace = getServiceNamespace(program);
     if (serviceNamespace === undefined) {
@@ -1042,13 +1063,13 @@ function createYamlEmitter(program: Program) {
 
     getApiVersions(program, serviceNamespace);
     // Get types
-    const namespace = getServiceNamespaceString(program)!.toLowerCase();
-    const codeModel = {
-        [namespace.toLowerCase()]: {
-            clients: emitClients(program),
+    const codeModel: Record<string, any> = {};
+    for (const namespace of getNamespaces(program)) {
+        codeModel[namespace] = {
+            clients: emitClients(program, namespace),
             types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
-        },
-    };
+        };
+    }
     return codeModel;
 }
 
