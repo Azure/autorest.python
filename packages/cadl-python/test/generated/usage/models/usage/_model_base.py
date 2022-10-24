@@ -459,7 +459,7 @@ class Model(_MyMutableMapping):
         return mapped_cls._deserialize(data)
 
 
-def get_deserialize_callable_from_annotation(
+def _get_deserialize_callable_from_annotation(
     annotation: typing.Any,
     module: str,
 ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
@@ -504,7 +504,7 @@ def get_deserialize_callable_from_annotation(
         # union we used to have in msrest models, which was union of str and enum
         if any(a for a in annotation.__args__ if a == type(None)):
 
-            if_obj_deserializer = get_deserialize_callable_from_annotation(
+            if_obj_deserializer = _get_deserialize_callable_from_annotation(
                 next(a for a in annotation.__args__ if a != type(None)), module
             )
 
@@ -528,8 +528,8 @@ def get_deserialize_callable_from_annotation(
 
     try:
         if annotation._name == "Dict":
-            key_deserializer = get_deserialize_callable_from_annotation(annotation.__args__[0], module)
-            value_deserializer = get_deserialize_callable_from_annotation(annotation.__args__[1], module)
+            key_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module)
+            value_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[1], module)
 
             def _deserialize_dict(
                 key_deserializer: typing.Optional[typing.Callable],
@@ -561,10 +561,10 @@ def get_deserialize_callable_from_annotation(
                     )
 
                 entry_deserializers = [
-                    get_deserialize_callable_from_annotation(dt, module) for dt in annotation.__args__
+                    _get_deserialize_callable_from_annotation(dt, module) for dt in annotation.__args__
                 ]
                 return functools.partial(_deserialize_multiple_sequence, entry_deserializers)
-            deserializer = get_deserialize_callable_from_annotation(annotation.__args__[0], module)
+            deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module)
 
             def _deserialize_sequence(
                 deserializer: typing.Optional[typing.Callable],
@@ -614,7 +614,7 @@ def _deserialize_with_callable(
 
 
 def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typing.Any]], value: typing.Any):
-    deserializer = get_deserialize_callable_from_annotation(deserializer, "")
+    deserializer = _get_deserialize_callable_from_annotation(deserializer, "")
     return _deserialize_with_callable(deserializer, value)
 
 
@@ -665,7 +665,7 @@ class _RestField:
     def _get_deserialize_callable_from_annotation(
         self, annotation: typing.Any
     ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
-        return get_deserialize_callable_from_annotation(annotation, self._module)
+        return _get_deserialize_callable_from_annotation(annotation, self._module)
 
 
 def rest_field(
