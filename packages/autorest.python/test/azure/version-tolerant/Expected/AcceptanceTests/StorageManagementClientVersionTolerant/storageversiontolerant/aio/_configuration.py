@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
@@ -13,6 +14,11 @@ from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
 from .._version import VERSION
+
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -37,7 +43,7 @@ class StorageManagementClientConfiguration(Configuration):  # pylint: disable=to
 
     def __init__(self, subscription_id: str, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         super(StorageManagementClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: Literal["2015-05-01-preview"]
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")

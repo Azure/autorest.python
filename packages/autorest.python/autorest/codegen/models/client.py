@@ -14,7 +14,7 @@ from .request_builder import (
     RequestBuilder,
     OverloadedRequestBuilder,
 )
-from .parameter import Parameter
+from .parameter import Parameter, ParameterMethodLocation
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -140,6 +140,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
 
         for gp in self.parameters:
+            if (
+                gp.method_location == ParameterMethodLocation.KWARG
+                and gp not in self.parameters.kwargs_to_pop
+            ):
+                continue
             file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
             "._configuration",
@@ -325,7 +330,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def name(self) -> str:
         return f"{super().name}Configuration"
 
-    def imports(self, async_mode: bool) -> FileImport:
+    def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "azure.core.configuration", "Configuration", ImportType.AZURECORE
@@ -340,8 +345,6 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
             file_import.add_submodule_import(
                 ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
             )
-        for gp in self.parameters:
-            file_import.merge(gp.imports(async_mode=async_mode))
         if self.namespace_model.options["azure_arm"]:
             policy = (
                 "AsyncARMChallengeAuthenticationPolicy"
@@ -354,6 +357,30 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
             file_import.add_submodule_import(
                 "azure.mgmt.core.policies", policy, ImportType.AZURECORE
             )
+
+        return file_import
+
+    def imports(self, async_mode: bool) -> FileImport:
+        file_import = self._imports_shared(async_mode)
+        for gp in self.parameters:
+            if (
+                gp.method_location == ParameterMethodLocation.KWARG
+                and gp not in self.parameters.kwargs_to_pop
+            ):
+                continue
+            file_import.merge(gp.imports(async_mode=async_mode))
+        return file_import
+
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
+        file_import = self._imports_shared(async_mode)
+        for gp in self.parameters:
+            if (
+                gp.method_location == ParameterMethodLocation.KWARG
+                and gp not in self.parameters.kwargs_to_pop
+                and gp.client_name == "api_version"
+            ):
+                continue
+            file_import.merge(gp.imports_for_multiapi(async_mode=async_mode))
         return file_import
 
     @classmethod

@@ -47,3 +47,9 @@ def _get_default_api_version_from_list(
 
     # If not preview mode, and there is preview, take the latest known stable
     return sorted(not_preview_versions)[-1]
+
+
+def convert_list_to_tuple(l):
+    if not isinstance(l, list):
+        return l
+    return tuple(convert_list_to_tuple(x) for x in l) if isinstance(l, list) else l
