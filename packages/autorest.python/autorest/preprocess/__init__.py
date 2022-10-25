@@ -366,7 +366,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             for client in clients:
                 update_client(client)
                 self.update_operation_groups(yaml_data, client)
-        yaml_data["namespace"] = pad_builtin_namespaces(yaml_data["namespace"])
+        if yaml_data.get("namespace"):
+            yaml_data["namespace"] = pad_builtin_namespaces(yaml_data["namespace"])
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
