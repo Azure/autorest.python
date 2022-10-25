@@ -1039,10 +1039,9 @@ function emitClients(program: Program, namespace: string): Record<string, any>[]
 
 function getNamespace(program: Program, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
-    const serviceNamespace = getServiceNamespaceString(program)!.toLowerCase();
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return serviceNamespace;
+        return getServiceNamespaceString(program)!.toLowerCase();
     }
     return submodule;
 }
@@ -1062,20 +1061,20 @@ function createYamlEmitter(program: Program) {
     }
 
     getApiVersions(program, serviceNamespace);
-    // Get types
-    const codeModel: Record<string, any> = {};
     const serviceNamespaceString = getServiceNamespaceString(program)!.toLowerCase();
-    codeModel["namespace"] = serviceNamespaceString;
+    // Get types
+    const codeModel: Record<string, any> = {
+        namespace: serviceNamespaceString,
+        subnamespaceToClients: {},
+    };
     for (const namespace of getNamespaces(program)) {
         if (namespace === serviceNamespaceString) {
             codeModel["clients"] = emitClients(program, namespace);
-            codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
+        } else {
+            codeModel["subnamespaceToClients"][namespace] = emitClients(program, namespace);
         }
-        codeModel[namespace] = {
-            clients: emitClients(program, namespace),
-            types: [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()],
-        };
     }
+    codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
     return codeModel;
 }
 
