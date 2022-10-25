@@ -4,15 +4,15 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from typing import List, Dict, Any, Generic, TypeVar, Optional, Union, TYPE_CHECKING
 from abc import abstractmethod
-from typing import Any, Dict, List, Optional, TypeVar, Union, TYPE_CHECKING, Generic
-from .base_model import BaseModel
+
+from .base import BaseModel
 from .parameter_list import (
     ParameterList,
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
 )
-
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -22,13 +22,11 @@ ParameterListType = TypeVar(
         OverloadedRequestBuilderParameterList,
     ],
 )
-
-
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
+    from .client import Client
     from .operation import Operation
     from .request_builder import RequestBuilder
-    from .client import Client
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -41,7 +39,7 @@ class BaseBuilder(
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         client: "Client",
         name: str,
         parameters: ParameterListType,
@@ -49,7 +47,7 @@ class BaseBuilder(
         overloads=None,
         want_tracing: bool = True,
     ) -> None:
-        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.client = client
         self.name = name
         self._description: str = yaml_data.get("description", "")
@@ -66,7 +64,7 @@ class BaseBuilder(
         self.api_versions: List[str] = yaml_data["apiVersions"]
         self.added_on: Optional[str] = yaml_data.get("addedOn")
 
-        if namespace_model.options["version_tolerant"] and yaml_data.get("abstract"):
+        if code_model.options["version_tolerant"] and yaml_data.get("abstract"):
             _LOGGER.warning(
                 'Not going to generate operation "%s" because we are unable to generate this '
                 "type of operation right now. "

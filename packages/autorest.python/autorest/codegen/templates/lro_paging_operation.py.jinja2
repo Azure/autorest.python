@@ -16,6 +16,6 @@
     {{ op_tools.serialize(operation_serializer.get_long_running_output(operation)) | indent }}
     {{ op_tools.serialize(operation_serializer.return_lro_poller(operation)) | indent }}
     {% endif %}
-{% if not namespace_model.options["version_tolerant"] %}
+{% if not code_model.options["version_tolerant"] %}
 {{ operation_serializer.get_metadata_url(operation) }}
 {% endif %}

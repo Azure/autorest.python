@@ -11,7 +11,7 @@ from autorest.codegen.models import (
     PagingOperation,
     Response,
     ParameterList,
-    NamespaceModel,
+    CodeModel,
     RequestBuilder,
     Client,
 )
@@ -20,29 +20,49 @@ from autorest.codegen.models.primitive_types import StringType
 
 
 @pytest.fixture
-def namespace_model():
-    return NamespaceModel(
-        {"clients": [{"name": "cient", "namespace": "blah", "moduleName": "blah"}]},
+def code_model():
+    return CodeModel(
+        {
+            "clients": [
+                {
+                    "name": "cient",
+                    "namespace": "blah",
+                    "moduleName": "blah",
+                    "parameters": [],
+                    "url": "",
+                    "operationGroups": [],
+                }
+            ],
+            "namespace": "namespace",
+        },
         options={
             "show_send_request": True,
             "builders_visibility": "public",
+            "show_operations": True,
+            "models_mode": "dpg",
             "version_tolerant": True,
         },
-        namespace="namespace",
     )
 
 
 @pytest.fixture
-def client(namespace_model):
+def client(code_model):
     return Client(
-        {"name": "client", "url": "http://localhost", "parameters": []},
-        namespace_model,
+        {
+            "name": "cient",
+            "namespace": "blah",
+            "moduleName": "blah",
+            "parameters": [],
+            "url": "",
+            "operationGroups": [],
+        },
+        code_model,
         parameters=[],
     )
 
 
 @pytest.fixture
-def request_builder(namespace_model, client):
+def request_builder(code_model, client):
     return RequestBuilder(
         yaml_data={
             "url": "http://fake.com",
@@ -52,14 +72,14 @@ def request_builder(namespace_model, client):
             "apiVersions": [],
         },
         client=client,
-        namespace_model=namespace_model,
+        code_model=code_model,
         name="optional_return_type_test",
-        parameters=RequestBuilderParameterList({}, namespace_model, parameters=[]),
+        parameters=RequestBuilderParameterList({}, code_model, parameters=[]),
     )
 
 
 @pytest.fixture
-def operation(namespace_model, request_builder, client):
+def operation(code_model, request_builder, client):
     return Operation(
         yaml_data={
             "url": "http://fake.com",
@@ -69,17 +89,17 @@ def operation(namespace_model, request_builder, client):
             "apiVersions": [],
         },
         client=client,
-        namespace_model=namespace_model,
+        code_model=code_model,
         request_builder=request_builder,
         name="optional_return_type_test",
-        parameters=ParameterList({}, namespace_model, []),
+        parameters=ParameterList({}, code_model, []),
         responses=[],
         exceptions=[],
     )
 
 
 @pytest.fixture
-def lro_operation(namespace_model, request_builder, client):
+def lro_operation(code_model, request_builder, client):
     return LROOperation(
         yaml_data={
             "url": "http://fake.com",
@@ -89,17 +109,17 @@ def lro_operation(namespace_model, request_builder, client):
             "apiVersions": [],
         },
         client=client,
-        namespace_model=namespace_model,
+        code_model=code_model,
         request_builder=request_builder,
         name="lro_optional_return_type_test",
-        parameters=ParameterList({}, namespace_model, []),
+        parameters=ParameterList({}, code_model, []),
         responses=[],
         exceptions=[],
     )
 
 
 @pytest.fixture
-def paging_operation(namespace_model, request_builder, client):
+def paging_operation(code_model, request_builder, client):
     return PagingOperation(
         yaml_data={
             "url": "http://fake.com",
@@ -111,31 +131,31 @@ def paging_operation(namespace_model, request_builder, client):
             "pagerAsync": "blah",
         },
         client=client,
-        namespace_model=namespace_model,
+        code_model=code_model,
         request_builder=request_builder,
         name="paging_optional_return_type_test",
-        parameters=ParameterList({}, namespace_model, []),
+        parameters=ParameterList({}, code_model, []),
         responses=[],
         exceptions=[],
     )
 
 
 @pytest.fixture
-def base_type(namespace_model):
-    return StringType({"type": "string"}, namespace_model)
+def base_type(code_model):
+    return StringType({"type": "string"}, code_model)
 
 
-def test_success_with_body_and_fail_no_body(namespace_model, operation, base_type):
+def test_success_with_body_and_fail_no_body(code_model, operation, base_type):
     operation.responses = [
         Response(
             yaml_data={"statusCodes": [200]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),
         Response(
             yaml_data={"statusCodes": [202]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),
@@ -143,7 +163,7 @@ def test_success_with_body_and_fail_no_body(namespace_model, operation, base_typ
     operation.exceptions = [
         Response(
             yaml_data={"statusCodes": ["default"]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=None,
         )
@@ -152,11 +172,11 @@ def test_success_with_body_and_fail_no_body(namespace_model, operation, base_typ
     assert operation.has_optional_return_type is False
 
 
-def test_success_no_body_fail_with_body(namespace_model, operation, base_type):
+def test_success_no_body_fail_with_body(code_model, operation, base_type):
     operation.responses = [
         Response(
             yaml_data={"statusCodes": [200]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=None,
         )
@@ -164,7 +184,7 @@ def test_success_no_body_fail_with_body(namespace_model, operation, base_type):
     operation.exceptions = [
         Response(
             yaml_data={"statusCodes": ["default"]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         )
@@ -173,23 +193,23 @@ def test_success_no_body_fail_with_body(namespace_model, operation, base_type):
     assert operation.has_optional_return_type is False
 
 
-def test_optional_return_type_operation(namespace_model, operation, base_type):
+def test_optional_return_type_operation(code_model, operation, base_type):
     operation.responses = [
         Response(
             yaml_data={"statusCodes": [200]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),
         Response(
             yaml_data={"statusCodes": [202]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=None,
         ),
         Response(
             yaml_data={"statusCodes": ["default"]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),
@@ -198,23 +218,23 @@ def test_optional_return_type_operation(namespace_model, operation, base_type):
     assert operation.has_optional_return_type is True
 
 
-def test_lro_operation(namespace_model, lro_operation, base_type):
+def test_lro_operation(code_model, lro_operation, base_type):
     lro_operation.responses = [
         Response(
             yaml_data={"statusCodes": [200]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),
         Response(
             yaml_data={"statusCodes": [202]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=None,
         ),
         Response(
             yaml_data={"statusCodes": ["default"]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),
@@ -223,23 +243,23 @@ def test_lro_operation(namespace_model, lro_operation, base_type):
     assert lro_operation.has_optional_return_type is False
 
 
-def test_paging_operation(namespace_model, paging_operation, base_type):
+def test_paging_operation(code_model, paging_operation, base_type):
     paging_operation.responses = [
         Response(
             yaml_data={"statusCodes": [200]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),
         Response(
             yaml_data={"statusCodes": [202]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=None,
         ),
         Response(
             yaml_data={"statusCodes": ["default"]},
-            namespace_model=namespace_model,
+            code_model=code_model,
             headers=[],
             type=base_type,
         ),

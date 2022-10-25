@@ -7,7 +7,7 @@ from typing import cast, List
 from abc import ABC, abstractmethod
 
 from jinja2 import Environment
-from ..models import ModelType, NamespaceModel, Property
+from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
 from ..models.constant_type import ConstantType
@@ -30,8 +30,8 @@ def _documentation_string(
 
 
 class _ModelSerializer(ABC):
-    def __init__(self, namespace_model: NamespaceModel, env: Environment) -> None:
-        self.namespace_model = namespace_model
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
+        self.code_model = code_model
         self.env = env
 
     @abstractmethod
@@ -42,7 +42,7 @@ class _ModelSerializer(ABC):
         # Generate the models
         template = self.env.get_template("model_container.py.jinja2")
         return template.render(
-            namespace_model=self.namespace_model,
+            code_model=self.code_model,
             imports=FileImportSerializer(self.imports()),
             str=str,
             serializer=self,
@@ -136,9 +136,9 @@ class MsrestModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_msrest_import(
-            self.namespace_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
         )
-        for model in self.namespace_model.model_types:
+        for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
             for param in self._init_line_parameters(model):
                 file_import.merge(param.imports())
@@ -148,7 +148,7 @@ class MsrestModelSerializer(_ModelSerializer):
     def declare_model(self, model: ModelType) -> str:
         basename = (
             "msrest.serialization.Model"
-            if self.namespace_model.options["client_side_validation"]
+            if self.code_model.options["client_side_validation"]
             else "_serialization.Model"
         )
         if model.parents:
@@ -211,7 +211,7 @@ class DpgModelSerializer(_ModelSerializer):
         file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
         file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
 
-        for model in self.namespace_model.model_types:
+        for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
             for prop in model.properties:
                 file_import.merge(prop.imports())

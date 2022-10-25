@@ -2,16 +2,16 @@
 {% import 'keywords.jinja2' as keywords %}
 {# actual template starts here #}
 # coding=utf-8
-{{ namespace_model.options['license_header'] }}
+{{ code_model.options['license_header'] }}
 
 {{ op_tools.serialize(operation_group_imports()) }}
 {{ keywords.patch_imports() }}
-{% if namespace_model.operation_groups %}
 __all__ = [
-    {% for operation_group in namespace_model.operation_groups %}
+    {% for client in clients %}
+        {% for operation_group in client.operation_groups %}
     '{{ operation_group.class_name }}',
+        {% endfor %}
     {% endfor %}
 ]
-{% endif %}
 {{ keywords.extend_all }}
 _patch_sdk()
