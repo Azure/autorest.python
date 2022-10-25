@@ -358,6 +358,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         for client in yaml_data["clients"]:
             update_client(client)
             self.update_operation_groups(yaml_data, client)
+        for clients in yaml_data["subnamespaceToClients"].values():
+            for client in clients:
+                update_client(client)
+                self.update_operation_groups(yaml_data, client)
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
