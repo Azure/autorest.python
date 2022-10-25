@@ -14,6 +14,7 @@
 **Bug Fixes**
 
 - Fixed lro operation name in auto-generated sample  #1521
+- Deserialize complex schema response for cadl generated operation #1520
 
 **Other Changes**
 
