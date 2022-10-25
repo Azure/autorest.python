@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, overload
+from typing import Any, List, Mapping, Optional, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -20,55 +20,27 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
-class Cat(_model_base.Model):
-    """Simple model.
+class InnerModel(_model_base.Model):
+    """Array inner model.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar name: Name. Required.
-    :vartype name: str
+    :ivar property: Required string property. Required.
+    :vartype property: str
+    :ivar children:
+    :vartype children: list[~array.itemtypes.models.InnerModel]
     """
 
-    name: str = rest_field()
-    """Name. Required. """
+    property: str = rest_field()
+    """Required string property. Required. """
+    children: Optional[List["_models.InnerModel"]] = rest_field()
 
     @overload
     def __init__(
         self,
         *,
-        name: str,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class Dog(_model_base.Model):
-    """Simple model.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar name: Name. Required.
-    :vartype name: str
-    """
-
-    name: str = rest_field()
-    """Name. Required. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        name: str,
+        property: str,
+        children: Optional[List["_models.InnerModel"]] = None,
     ):
         ...
 
