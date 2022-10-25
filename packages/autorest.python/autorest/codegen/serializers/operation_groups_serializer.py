@@ -8,11 +8,12 @@ import functools
 from jinja2 import Environment
 
 from ..models import (
-    NamespaceModel,
+    CodeModel,
     OperationGroup,
     FileImport,
     RequestBuilder,
     OverloadedRequestBuilder,
+    Client,
 )
 from .import_serializer import FileImportSerializer
 from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
@@ -21,12 +22,14 @@ from .builder_serializer import get_operation_serializer, RequestBuilderSerializ
 class OperationGroupsSerializer:
     def __init__(
         self,
-        namespace_model: NamespaceModel,
+        code_model: CodeModel,
+        clients: List[Client],
         env: Environment,
         async_mode: bool,
         operation_group: Optional[OperationGroup] = None,
     ):
-        self.namespace_model = namespace_model
+        self.clients = clients
+        self.code_model = code_model
         self.env = env
         self.async_mode = async_mode
         self.operation_group = operation_group
@@ -36,7 +39,8 @@ class OperationGroupsSerializer:
     ) -> List[Union[OverloadedRequestBuilder, RequestBuilder]]:
         return [
             r
-            for r in self.namespace_model.request_builders
+            for client in self.clients
+            for r in client.request_builders
             if r.client.name == operation_group.client.name
             and r.group_name == operation_group.property_name
             and not r.is_overload
@@ -47,7 +51,7 @@ class OperationGroupsSerializer:
         operation_groups = (
             [self.operation_group]
             if self.operation_group
-            else self.namespace_model.operation_groups
+            else [og for client in self.clients for og in client.operation_groups]
         )
         imports = FileImport()
         for operation_group in operation_groups:
@@ -61,7 +65,7 @@ class OperationGroupsSerializer:
             "operation_groups_container.py.jinja2"
         )
         return template.render(
-            namespace_model=self.namespace_model,
+            code_model=self.code_model,
             operation_groups=operation_groups,
             imports=FileImportSerializer(
                 imports,
@@ -70,11 +74,11 @@ class OperationGroupsSerializer:
             async_mode=self.async_mode,
             get_operation_serializer=functools.partial(
                 get_operation_serializer,
-                namespace_model=self.namespace_model,
+                code_model=self.code_model,
                 async_mode=self.async_mode,
             ),
             request_builder_serializer=RequestBuilderSerializer(
-                self.namespace_model,
+                self.code_model,
                 async_mode=False,
             ),
             get_request_builders=self._get_request_builders,

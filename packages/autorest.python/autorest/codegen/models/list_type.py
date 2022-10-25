@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, Union, TYPE_CHECKING, List
-from .base_type import BaseType
+from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
     from .model_type import ModelType
 
 
@@ -16,10 +16,10 @@ class ListType(BaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         element_type: BaseType,
     ) -> None:
-        super().__init__(yaml_data=yaml_data, namespace_model=namespace_model)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
         self.max_items: Optional[int] = yaml_data.get("maxItems")
         self.min_items: Optional[int] = yaml_data.get("minItems")
@@ -30,10 +30,7 @@ class ListType(BaseType):
         return f"[{self.element_type.serialization_type}]"
 
     def type_annotation(self, **kwargs: Any) -> str:
-        if (
-            self.namespace_model.options["version_tolerant"]
-            and self.element_type.is_xml
-        ):
+        if self.code_model.options["version_tolerant"] and self.element_type.is_xml:
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.type_annotation(**kwargs)
         return f"List[{self.element_type.type_annotation(**kwargs)}]"
@@ -65,7 +62,7 @@ class ListType(BaseType):
 
     def docstring_type(self, **kwargs: Any) -> str:
         if (
-            self.namespace_model.options["version_tolerant"]
+            self.code_model.options["version_tolerant"]
             and self.element_type.xml_metadata
         ):
             # this means we're version tolerant XML, we just return the XML element
@@ -74,7 +71,7 @@ class ListType(BaseType):
 
     def docstring_text(self, **kwargs: Any) -> str:
         if (
-            self.namespace_model.options["version_tolerant"]
+            self.code_model.options["version_tolerant"]
             and self.element_type.xml_metadata
         ):
             # this means we're version tolerant XML, we just return the XML element
@@ -128,23 +125,22 @@ class ListType(BaseType):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "ListType":
         from . import build_type
 
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
+            code_model=code_model,
             element_type=build_type(
-                yaml_data=yaml_data["elementType"], namespace_model=namespace_model
+                yaml_data=yaml_data["elementType"], code_model=code_model
             ),
         )
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if not (
-            self.namespace_model.options["version_tolerant"]
-            and self.element_type.is_xml
+            self.code_model.options["version_tolerant"] and self.element_type.is_xml
         ):
             file_import.add_submodule_import(
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL

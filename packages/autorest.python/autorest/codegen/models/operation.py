@@ -39,7 +39,7 @@ from .model_type import ModelType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
     from .client import Client
 
 ResponseType = TypeVar(
@@ -54,7 +54,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         client: "Client",
         name: str,
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
@@ -67,7 +67,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         want_tracing: bool = True,
     ) -> None:
         super().__init__(
-            namespace_model=namespace_model,
+            code_model=code_model,
             client=client,
             yaml_data=yaml_data,
             name=name,
@@ -98,7 +98,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
 
     def response_type_annotation(self, **kwargs) -> str:
         if (
-            self.namespace_model.options["head_as_boolean"]
+            self.code_model.options["head_as_boolean"]
             and self.request_builder.method.lower() == "head"
         ):
             return "bool"
@@ -127,7 +127,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         if (
             self.request_builder.method.lower() == "head"
-            and self.namespace_model.options["head_as_boolean"]
+            and self.code_model.options["head_as_boolean"]
         ):
             return "ClsType[None]"
         return f"ClsType[{self.response_type_annotation(async_mode=async_mode)}]"
@@ -136,7 +136,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         responses_with_body = [r for r in self.responses if r.type]
         if (
             self.request_builder.method.lower() == "head"
-            and self.namespace_model.options["head_as_boolean"]
+            and self.code_model.options["head_as_boolean"]
         ):
             return "bool"
         if responses_with_body:
@@ -154,9 +154,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
 
     def response_docstring_text(self, **kwargs) -> str:
         retval = self._response_docstring_helper("docstring_text", **kwargs)
-        if not self.namespace_model.options["version_tolerant"]:
+        if not self.code_model.options["version_tolerant"]:
             retval += " or the result of cls(response)"
-        if self.namespace_model.options["models_mode"] == "dpg" and any(
+        if self.code_model.options["models_mode"] == "dpg" and any(
             isinstance(r.type, ModelType) for r in self.responses
         ):
             r = next(r for r in self.responses if isinstance(r.type, ModelType))
@@ -242,7 +242,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(
                 response.imports_for_multiapi(async_mode=async_mode, **kwargs)
             )
-        if self.namespace_model.options["models_mode"]:
+        if self.code_model.options["models_mode"]:
             for exception in self.exceptions:
                 file_import.merge(
                     exception.imports_for_multiapi(async_mode=async_mode, **kwargs)
@@ -279,12 +279,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     ) -> FileImport:
         """Helper method to get a request builder import."""
         file_import = FileImport()
-        if self.namespace_model.options["builders_visibility"] != "embedded":
+        if self.code_model.options["builders_visibility"] != "embedded":
             group_name = request_builder.group_name
             rest_import_path = "..." if async_mode else ".."
             if group_name:
                 file_import.add_submodule_import(
-                    f"{rest_import_path}{self.namespace_model.rest_layer_name}",
+                    f"{rest_import_path}{self.code_model.rest_layer_name}",
                     group_name,
                     import_type=ImportType.LOCAL,
                     alias=f"rest_{group_name}",
@@ -292,16 +292,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             else:
                 file_import.add_submodule_import(
                     rest_import_path,
-                    self.namespace_model.rest_layer_name,
+                    self.code_model.rest_layer_name,
                     import_type=ImportType.LOCAL,
                     alias="rest",
                 )
-        if (
-            self.namespace_model.options["builders_visibility"] == "embedded"
-            and async_mode
-        ):
+        if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             file_import.add_submodule_import(
-                f"...{self.namespace_model.operations_folder_name}.{self.filename}",
+                f"...{self.code_model.operations_folder_name}.{self.filename}",
                 request_builder.name,
                 import_type=ImportType.LOCAL,
             )
@@ -321,7 +318,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         for response in self.responses:
             file_import.merge(response.imports(async_mode=async_mode, **kwargs))
-        if self.namespace_model.options["models_mode"]:
+        if self.code_model.options["models_mode"]:
             for exception in self.exceptions:
                 file_import.merge(exception.imports(async_mode=async_mode, **kwargs))
 
@@ -341,7 +338,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 "azure.core.exceptions", error, ImportType.AZURECORE
             )
-        if self.namespace_model.options["azure_arm"]:
+        if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
                 "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
             )
@@ -357,7 +354,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.deprecated:
             file_import.add_import("warnings", ImportType.STDLIB)
 
-        if self.namespace_model.need_request_converter:
+        if self.code_model.need_request_converter:
             relative_path = "..." if async_mode else ".."
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
@@ -373,7 +370,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE
             )
         if (
-            self.namespace_model.options["builders_visibility"] == "embedded"
+            self.code_model.options["builders_visibility"] == "embedded"
             and not async_mode
         ):
             file_import.merge(self.request_builder.imports())
@@ -395,11 +392,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         file_import.add_submodule_import(
             "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if (
-            self.namespace_model.options["tracing"]
-            and self.want_tracing
-            and not async_mode
-        ):
+        if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator",
                 f"distributed_trace",
@@ -432,11 +425,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         basename = self.group_name
         if basename == "":
             # in a mixin
-            basename = self.namespace_model.clients[0].legacy_filename
+            basename = self.code_model.clients[0].legacy_filename
 
         if (
             basename == "operations"
-            or self.namespace_model.options["combine_operation_files"]
+            or self.code_model.options["combine_operation_files"]
         ):
             return f"_operations"
         return f"_{basename}_operations"
@@ -449,27 +442,27 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def from_yaml(
         cls,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         client: "Client",
     ):
         name = yaml_data["name"]
-        request_builder = namespace_model.lookup_request_builder(id(yaml_data))
+        request_builder = client.lookup_request_builder(id(yaml_data))
         responses = [
-            cast(ResponseType, get_response(r, namespace_model))
+            cast(ResponseType, get_response(r, code_model))
             for r in yaml_data["responses"]
         ]
         exceptions = [
-            Response.from_yaml(e, namespace_model) for e in yaml_data["exceptions"]
+            Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]
         ]
-        parameter_list = ParameterList.from_yaml(yaml_data, namespace_model)
+        parameter_list = ParameterList.from_yaml(yaml_data, code_model)
         overloads = [
-            cls.from_yaml(overload, namespace_model, client)
+            cls.from_yaml(overload, code_model, client)
             for overload in yaml_data.get("overloads", [])
         ]
 
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
+            code_model=code_model,
             client=client,
             request_builder=request_builder,
             name=name,
@@ -495,10 +488,10 @@ class Operation(OperationBase[Response]):
         if (
             self.has_response_body
             and not self.has_optional_return_type
-            and not self.namespace_model.options["models_mode"]
+            and not self.code_model.options["models_mode"]
         ):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
-        if self.namespace_model.options["models_mode"] == "dpg":
+        if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."
             if self.parameters.has_body:
                 file_import.add_submodule_import(
@@ -516,7 +509,7 @@ class Operation(OperationBase[Response]):
 
 
 def get_operation(
-    yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", client: "Client"
+    yaml_data: Dict[str, Any], code_model: "CodeModel", client: "Client"
 ) -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":
         from .lro_paging_operation import LROPagingOperation as OperationCls
@@ -526,4 +519,4 @@ def get_operation(
         from .paging_operation import PagingOperation as OperationCls  # type: ignore
     else:
         from . import Operation as OperationCls  # type: ignore
-    return OperationCls.from_yaml(yaml_data, namespace_model, client)
+    return OperationCls.from_yaml(yaml_data, code_model, client)

@@ -6,10 +6,10 @@
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 import re
 from autorest.codegen.models.imports import FileImport, ImportType
-from .base_type import BaseType
+from .base import BaseType
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
     from .model_type import ModelType
 
 
@@ -23,10 +23,10 @@ class CombinedType(BaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         types: List[BaseType],
     ) -> None:
-        super().__init__(yaml_data, namespace_model)
+        super().__init__(yaml_data, code_model)
         self.types = types  # the types that this type is combining
 
     @property
@@ -105,12 +105,12 @@ class CombinedType(BaseType):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "BaseType":
         from . import build_type
 
         return cls(
             yaml_data,
-            namespace_model,
-            [build_type(t, namespace_model) for t in yaml_data["types"]],
+            code_model,
+            [build_type(t, code_model) for t in yaml_data["types"]],
         )

@@ -7,7 +7,7 @@ import re
 {% endif -%}
 from setuptools import setup, find_packages
 
-{% set package_name = package_name or code_model.namespace_models[0].clients[0].name %}
+{% set package_name = package_name or code_model.clients[0].name %}
 
 PACKAGE_NAME = "{{ package_name|lower }}"
 {% if package_mode -%}
@@ -91,7 +91,7 @@ setup(
         {% else %}
         "azure-core<2.0.0,>=1.24.0",
         {% endif %}
-        {% if need_typing_extensions is defined %}
+        {% if code_model.need_typing_extensions %}
         "typing_extensions>=4.3.0; python_version<'3.8.0'",
         {% endif %}
     ],

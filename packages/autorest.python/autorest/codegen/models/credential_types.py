@@ -17,10 +17,10 @@ from typing import (
 )
 
 from .imports import FileImport, ImportType, TypingSection
-from .base_type import BaseType
+from .base import BaseType
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
 
 
 class _CredentialPolicyBaseType:
@@ -29,11 +29,9 @@ class _CredentialPolicyBaseType:
     Inherited by our BearerTokenCredentialPolicy and AzureKeyCredentialPolicy types.
     """
 
-    def __init__(
-        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
-    ) -> None:
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         self.yaml_data = yaml_data
-        self.namespace_model = namespace_model
+        self.code_model = code_model
 
     @abstractmethod
     def call(self, async_mode: bool) -> str:
@@ -49,10 +47,10 @@ class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         credential_scopes: List[str],
     ) -> None:
-        super().__init__(yaml_data, namespace_model)
+        super().__init__(yaml_data, code_model)
         self.credential_scopes = credential_scopes
 
     def call(self, async_mode: bool) -> str:
@@ -61,9 +59,9 @@ class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "BearerTokenCredentialPolicyType":
-        return cls(yaml_data, namespace_model, yaml_data["credentialScopes"])
+        return cls(yaml_data, code_model, yaml_data["credentialScopes"])
 
 
 class ARMChallengeAuthenticationPolicyType(BearerTokenCredentialPolicyType):
@@ -76,9 +74,9 @@ class ARMChallengeAuthenticationPolicyType(BearerTokenCredentialPolicyType):
 
 class AzureKeyCredentialPolicyType(_CredentialPolicyBaseType):
     def __init__(
-        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel", key: str
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", key: str
     ) -> None:
-        super().__init__(yaml_data, namespace_model)
+        super().__init__(yaml_data, code_model)
         self.key = key
 
     def call(self, async_mode: bool) -> str:
@@ -86,9 +84,9 @@ class AzureKeyCredentialPolicyType(_CredentialPolicyBaseType):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "AzureKeyCredentialPolicyType":
-        return cls(yaml_data, namespace_model, yaml_data["key"])
+        return cls(yaml_data, code_model, yaml_data["key"])
 
 
 CredentialPolicyType = TypeVar(
@@ -109,10 +107,10 @@ class CredentialType(
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         policy: CredentialPolicyType,
     ) -> None:
-        super().__init__(yaml_data, namespace_model)
+        super().__init__(yaml_data, code_model)
         self.policy = policy
 
     def description(
@@ -140,15 +138,15 @@ class CredentialType(
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "CredentialType":
         from . import build_type
 
         return cls(
             yaml_data,
-            namespace_model,
+            code_model,
             policy=cast(
-                CredentialPolicyType, build_type(yaml_data["policy"], namespace_model)
+                CredentialPolicyType, build_type(yaml_data["policy"], code_model)
             ),
         )
 

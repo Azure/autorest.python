@@ -7,13 +7,13 @@ from typing import Dict, List, Any, TYPE_CHECKING
 
 from autorest.codegen.models.utils import OrderedSet
 
-from .base_model import BaseModel
+from .base import BaseModel
 from .operation import OperationBase, get_operation
 from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_pylint_disable
 
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
     from .client import Client
 
 
@@ -23,12 +23,12 @@ class OperationGroup(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         client: "Client",
         operations: List[OperationBase],
         api_versions: List[str],
     ) -> None:
-        super().__init__(yaml_data, namespace_model)
+        super().__init__(yaml_data, code_model)
         self.client = client
         self.class_name: str = yaml_data["className"]
         self.property_name: str = yaml_data["propertyName"]
@@ -42,7 +42,7 @@ class OperationGroup(BaseModel):
     @property
     def base_class(self) -> str:
         base_classes: List[str] = []
-        if self.is_mixin and self.namespace_model.need_mixin_abc:
+        if self.is_mixin and self.code_model.need_mixin_abc:
             base_classes.append(f"{self.client.name}MixinABC")
         return ", ".join(base_classes)
 
@@ -84,12 +84,12 @@ class OperationGroup(BaseModel):
             )
         # for multiapi
         if (
-            self.namespace_model.model_types or self.namespace_model.enums
-        ) and self.namespace_model.options["models_mode"] == "msrest":
+            self.code_model.model_types or self.code_model.enums
+        ) and self.code_model.options["models_mode"] == "msrest":
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )
-        if self.namespace_model.need_mixin_abc:
+        if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(
                 ".._vendor", f"{self.client.name}MixinABC", ImportType.LOCAL
             )
@@ -122,11 +122,11 @@ class OperationGroup(BaseModel):
     def from_yaml(
         cls,
         yaml_data: Dict[str, Any],
-        namespace_model: "NamespaceModel",
+        code_model: "CodeModel",
         client: "Client",
     ) -> "OperationGroup":
         operations = [
-            get_operation(o, namespace_model, client) for o in yaml_data["operations"]
+            get_operation(o, code_model, client) for o in yaml_data["operations"]
         ]
         api_versions: OrderedSet[str] = {}
         for operation in operations:
@@ -134,7 +134,7 @@ class OperationGroup(BaseModel):
                 api_versions[api_version] = None
         return cls(
             yaml_data=yaml_data,
-            namespace_model=namespace_model,
+            code_model=code_model,
             client=client,
             operations=operations,
             api_versions=list(api_versions.keys()),
