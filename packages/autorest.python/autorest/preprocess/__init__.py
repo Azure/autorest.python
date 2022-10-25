@@ -9,7 +9,7 @@ import copy
 from typing import Callable, Dict, Any, List, Optional
 
 from .._utils import to_snake_case
-from .helpers import pad_reserved_words, add_redefined_builtin_info
+from .helpers import pad_reserved_words, add_redefined_builtin_info, pad_builtin_namespaces
 from .python_mappings import PadType
 
 from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
@@ -362,6 +362,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             for client in clients:
                 update_client(client)
                 self.update_operation_groups(yaml_data, client)
+        yaml_data["namespace"] = pad_builtin_namespaces(yaml_data["namespace"])
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):

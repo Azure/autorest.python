@@ -28,7 +28,7 @@ class InnerModel(_model_base.Model):
     :ivar property: Required string property. Required.
     :vartype property: str
     :ivar children:
-    :vartype children: list[~array.itemtypes.models.InnerModel]
+    :vartype children: list[~array_.itemtypes.models.InnerModel]
     """
 
     property: str = rest_field()

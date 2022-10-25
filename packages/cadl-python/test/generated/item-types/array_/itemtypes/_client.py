@@ -31,23 +31,23 @@ class ItemTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too
     """Illustrates various of dictionaries.
 
     :ivar int32_value: Int32ValueOperations operations
-    :vartype int32_value: array.itemtypes.operations.Int32ValueOperations
+    :vartype int32_value: array_.itemtypes.operations.Int32ValueOperations
     :ivar int64_value: Int64ValueOperations operations
-    :vartype int64_value: array.itemtypes.operations.Int64ValueOperations
+    :vartype int64_value: array_.itemtypes.operations.Int64ValueOperations
     :ivar boolean_value: BooleanValueOperations operations
-    :vartype boolean_value: array.itemtypes.operations.BooleanValueOperations
+    :vartype boolean_value: array_.itemtypes.operations.BooleanValueOperations
     :ivar string_value: StringValueOperations operations
-    :vartype string_value: array.itemtypes.operations.StringValueOperations
+    :vartype string_value: array_.itemtypes.operations.StringValueOperations
     :ivar float32_value: Float32ValueOperations operations
-    :vartype float32_value: array.itemtypes.operations.Float32ValueOperations
+    :vartype float32_value: array_.itemtypes.operations.Float32ValueOperations
     :ivar datetime_value: DatetimeValueOperations operations
-    :vartype datetime_value: array.itemtypes.operations.DatetimeValueOperations
+    :vartype datetime_value: array_.itemtypes.operations.DatetimeValueOperations
     :ivar duration_value: DurationValueOperations operations
-    :vartype duration_value: array.itemtypes.operations.DurationValueOperations
+    :vartype duration_value: array_.itemtypes.operations.DurationValueOperations
     :ivar unknown_value: UnknownValueOperations operations
-    :vartype unknown_value: array.itemtypes.operations.UnknownValueOperations
+    :vartype unknown_value: array_.itemtypes.operations.UnknownValueOperations
     :ivar model_value: ModelValueOperations operations
-    :vartype model_value: array.itemtypes.operations.ModelValueOperations
+    :vartype model_value: array_.itemtypes.operations.ModelValueOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential

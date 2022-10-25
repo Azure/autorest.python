@@ -63,7 +63,7 @@ class Int32ValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`int32_value` attribute.
     """
 
@@ -214,7 +214,7 @@ class Int64ValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`int64_value` attribute.
     """
 
@@ -365,7 +365,7 @@ class BooleanValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`boolean_value` attribute.
     """
 
@@ -516,7 +516,7 @@ class StringValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`string_value` attribute.
     """
 
@@ -667,7 +667,7 @@ class Float32ValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`float32_value` attribute.
     """
 
@@ -818,7 +818,7 @@ class DatetimeValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`datetime_value` attribute.
     """
 
@@ -969,7 +969,7 @@ class DurationValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`duration_value` attribute.
     """
 
@@ -1120,7 +1120,7 @@ class UnknownValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`unknown_value` attribute.
     """
 
@@ -1271,7 +1271,7 @@ class ModelValueOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~array.itemtypes.aio.ItemTypesClient`'s
+        :class:`~array_.itemtypes.aio.ItemTypesClient`'s
         :attr:`model_value` attribute.
     """
 
@@ -1287,7 +1287,7 @@ class ModelValueOperations:
         """get.
 
         :return: list of InnerModel
-        :rtype: list[~array.itemtypes.models.InnerModel]
+        :rtype: list[~array_.itemtypes.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1333,7 +1333,7 @@ class ModelValueOperations:
         """put.
 
         :param body: Required.
-        :type body: list[~array.itemtypes.models.InnerModel]
+        :type body: list[~array_.itemtypes.models.InnerModel]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1365,7 +1365,7 @@ class ModelValueOperations:
         """put.
 
         :param body: Is either a list type or a IO type. Required.
-        :type body: list[~array.itemtypes.models.InnerModel] or IO
+        :type body: list[~array_.itemtypes.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

@@ -31,23 +31,23 @@ class ItemTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too
     """Illustrates various of dictionaries.
 
     :ivar int32_value: Int32ValueOperations operations
-    :vartype int32_value: array.itemtypes.aio.operations.Int32ValueOperations
+    :vartype int32_value: array_.itemtypes.aio.operations.Int32ValueOperations
     :ivar int64_value: Int64ValueOperations operations
-    :vartype int64_value: array.itemtypes.aio.operations.Int64ValueOperations
+    :vartype int64_value: array_.itemtypes.aio.operations.Int64ValueOperations
     :ivar boolean_value: BooleanValueOperations operations
-    :vartype boolean_value: array.itemtypes.aio.operations.BooleanValueOperations
+    :vartype boolean_value: array_.itemtypes.aio.operations.BooleanValueOperations
     :ivar string_value: StringValueOperations operations
-    :vartype string_value: array.itemtypes.aio.operations.StringValueOperations
+    :vartype string_value: array_.itemtypes.aio.operations.StringValueOperations
     :ivar float32_value: Float32ValueOperations operations
-    :vartype float32_value: array.itemtypes.aio.operations.Float32ValueOperations
+    :vartype float32_value: array_.itemtypes.aio.operations.Float32ValueOperations
     :ivar datetime_value: DatetimeValueOperations operations
-    :vartype datetime_value: array.itemtypes.aio.operations.DatetimeValueOperations
+    :vartype datetime_value: array_.itemtypes.aio.operations.DatetimeValueOperations
     :ivar duration_value: DurationValueOperations operations
-    :vartype duration_value: array.itemtypes.aio.operations.DurationValueOperations
+    :vartype duration_value: array_.itemtypes.aio.operations.DurationValueOperations
     :ivar unknown_value: UnknownValueOperations operations
-    :vartype unknown_value: array.itemtypes.aio.operations.UnknownValueOperations
+    :vartype unknown_value: array_.itemtypes.aio.operations.UnknownValueOperations
     :ivar model_value: ModelValueOperations operations
-    :vartype model_value: array.itemtypes.aio.operations.ModelValueOperations
+    :vartype model_value: array_.itemtypes.aio.operations.ModelValueOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
