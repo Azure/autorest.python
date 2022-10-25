@@ -95,7 +95,7 @@ class SampleSerializer:
             if not p.client_default_value
         ]
         cls = lambda x: f'"{x}"' if isinstance(x, str) else str(x)
-        failure_info = '"fail to find required param named {%s} in example file {%s}"'
+        failure_info = "fail to find required param named {} in example file {}"
         operation_params = {}
         for param in params_positional:
             name = param.rest_api_name
