@@ -157,14 +157,20 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             p = p.parent
 
         # serialize main module
-        self._serialize_namespace_level(env, namespace_path, self.code_model.clients)
+        self._serialize_namespace_level(
+            env,
+            namespace_path,
+            [c for c in self.code_model.clients if c.has_operations],
+        )
         # serialize sub modules
         for (
             subnamespace,
             clients,
         ) in self.code_model.subnamespace_to_clients.items():
             subnamespace_path = namespace_path / Path(subnamespace)
-            self._serialize_namespace_level(env, subnamespace_path, clients)
+            self._serialize_namespace_level(
+                env, subnamespace_path, [c for c in clients if c.has_operations]
+            )
 
         if self.code_model.options["models_mode"] and (
             self.code_model.model_types or self.code_model.enums
