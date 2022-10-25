@@ -3,15 +3,33 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Dict, TYPE_CHECKING, List, Optional
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional, TYPE_CHECKING
-
-from .base_model import BaseModel
 from .imports import FileImport
 
+
 if TYPE_CHECKING:
-    from .code_model import NamespaceModel
+    from .code_model import CodeModel
     from .model_type import ModelType
+
+
+class BaseModel:
+    """This is the base class for model representations that are based on some YAML data.
+
+    :param yaml_data: the yaml data for this schema
+    :type yaml_data: dict[str, Any]
+    """
+
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        self.yaml_data = yaml_data
+        self.code_model = code_model
+
+    @property
+    def id(self) -> int:
+        return id(self.yaml_data)
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__}>"
 
 
 class BaseType(BaseModel, ABC):
@@ -21,10 +39,8 @@ class BaseType(BaseModel, ABC):
     :type yaml_data: dict[str, Any]
     """
 
-    def __init__(
-        self, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
-    ) -> None:
-        super().__init__(yaml_data, namespace_model)
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data, code_model)
         self.type = yaml_data["type"]  # the type discriminator
         self.api_versions: List[str] = yaml_data.get(
             "apiVersions", []
@@ -32,9 +48,9 @@ class BaseType(BaseModel, ABC):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], namespace_model: "NamespaceModel"
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "BaseType":
-        return cls(yaml_data=yaml_data, namespace_model=namespace_model)
+        return cls(yaml_data=yaml_data, code_model=code_model)
 
     def imports(  # pylint: disable=no-self-use
         self, **kwargs  # pylint: disable=unused-argument

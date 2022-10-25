@@ -5,13 +5,13 @@
 # --------------------------------------------------------------------------
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer
-from ..models import NamespaceModel, FileImport, ImportType, TypingSection
+from ..models import CodeModel, FileImport, ImportType, TypingSection
 
 
 class PatchSerializer:
-    def __init__(self, env: Environment, namespace_model: NamespaceModel) -> None:
+    def __init__(self, env: Environment, code_model: CodeModel) -> None:
         self.env = env
-        self.namespace_model = namespace_model
+        self.code_model = code_model
 
     def serialize(self) -> str:
         template = self.env.get_template("patch.py.jinja2")
@@ -20,6 +20,6 @@ class PatchSerializer:
             "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         return template.render(
-            namespace_model=self.namespace_model,
+            code_model=self.code_model,
             imports=FileImportSerializer(imports),
         )
