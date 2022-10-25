@@ -5,7 +5,12 @@
 # --------------------------------------------------------------------------
 import sys
 from typing import Any, Dict
-from .python_mappings import PadType, RESERVED_WORDS, REDEFINED_BUILTINS
+from .python_mappings import (
+    PadType,
+    RESERVED_WORDS,
+    REDEFINED_BUILTINS,
+    BUILTIN_PACKAGES,
+)
 
 
 def pad_reserved_words(name: str, pad_type: PadType):
@@ -27,6 +32,6 @@ def add_redefined_builtin_info(name: str, yaml_data: Dict[str, Any]) -> None:
 
 def pad_builtin_namespaces(namespace: str) -> str:
     items = namespace.split(".")
-    while items[0] in sys.builtin_module_names:
+    if items[0] in BUILTIN_PACKAGES:
         items[0] = items[0] + "_"
     return ".".join(items)
