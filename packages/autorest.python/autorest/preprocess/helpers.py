@@ -24,6 +24,7 @@ def add_redefined_builtin_info(name: str, yaml_data: Dict[str, Any]) -> None:
     if name in REDEFINED_BUILTINS:
         yaml_data["pylintDisable"] = "redefined-builtin"
 
+
 def pad_builtin_namespaces(namespace: str) -> str:
     items = namespace.split(".")
     while items[0] in sys.builtin_module_names:

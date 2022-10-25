@@ -9,7 +9,11 @@ import copy
 from typing import Callable, Dict, Any, List, Optional
 
 from .._utils import to_snake_case
-from .helpers import pad_reserved_words, add_redefined_builtin_info, pad_builtin_namespaces
+from .helpers import (
+    pad_reserved_words,
+    add_redefined_builtin_info,
+    pad_builtin_namespaces,
+)
 from .python_mappings import PadType
 
 from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
