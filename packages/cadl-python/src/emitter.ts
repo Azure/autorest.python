@@ -470,6 +470,15 @@ function emitResponse(
     };
 }
 
+function isConvenienceAPI(operation: Operation): boolean {
+    for (const decorator of operation.decorators) {
+        if (decorator.decorator.name === "$convenienceAPI") {
+            return true;
+        }
+    }
+    return false;
+}
+
 function emitOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
     const lro = isLro(program, operation);
     const paging = getPagedResult(program, operation);
@@ -573,8 +582,9 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
     }
+    const name = camelToSnakeCase(operation.name);
     return {
-        name: camelToSnakeCase(operation.name),
+        name: isConvenienceAPI(operation) ? "_" + name : name,
         description: getDocStr(program, operation),
         summary: getSummary(program, operation),
         url: httpOperation.path,
