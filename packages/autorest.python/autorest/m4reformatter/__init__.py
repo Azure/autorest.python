@@ -957,11 +957,13 @@ class M4Reformatter(
                 global_parameter.get("origin") == "modelerfour:synthesized/api-version"
             ):
                 self.check_client_input = True
-            global_params.append(
-                self.update_parameter(
-                    global_parameter, override_client_name=client_name
-                )
+            param = self.update_parameter(
+                global_parameter, override_client_name=client_name
             )
+            if global_parameter.get("origin") == "modelerfour:synthesized/api-version":
+                param["implementation"] = "Client"
+                param["checkClientInput"] = False
+            global_params.append(param)
         return global_params
 
     def get_token_credential(self, credential_scopes: List[str]) -> Dict[str, Any]:
