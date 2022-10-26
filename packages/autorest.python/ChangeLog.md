@@ -47,6 +47,7 @@
 **Bug Fixes**
 
 - Fixed lro operation name in auto-generated sample  #1521
+- Pad special characters in names #1535
 
 **Other Changes**
 
