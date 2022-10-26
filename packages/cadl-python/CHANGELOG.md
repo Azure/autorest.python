@@ -1,6 +1,11 @@
 # Release History
 
-# Release History
+## 2022-10-26 - 0.4.3
+
+**Bug Fixes**
+
+- Make special `api-version` logic more generic to allow for path parameters  #1537
+
 
 ## 2022-10-25 - 0.4.2
 
