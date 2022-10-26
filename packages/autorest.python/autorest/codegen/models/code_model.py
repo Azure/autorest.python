@@ -75,13 +75,13 @@ class CodeModel:  # pylint: disable=too-many-public-methods
 
     @property
     def has_operations(self) -> bool:
-        if any(c for c in self.clients if c.operation_groups):
+        if any(c for c in self.clients if c.has_operations):
             return True
         return any(
             c
             for clients in self.subnamespace_to_clients.values()
             for c in clients
-            if c.operation_groups
+            if c.has_operations
         )
 
     @property

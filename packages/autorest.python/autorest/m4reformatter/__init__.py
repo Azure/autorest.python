@@ -1109,6 +1109,7 @@ class M4Reformatter(
                     continue
                 update_type(t)
         yaml_data["namespace"] = namespace
+        yaml_data["subnamespaceToClients"] = {}
         yaml_data["clients"] = [self.update_client(yaml_data)]
         yaml_data["clients"][0]["operationGroups"] = [
             self.update_operation_group(og) for og in yaml_data["operationGroups"]

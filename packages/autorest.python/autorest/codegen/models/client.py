@@ -213,6 +213,15 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ]
         )
 
+    @property
+    def has_operations(self) -> bool:
+        return any(
+            [
+                bool(operation_group.operations)
+                for operation_group in self.operation_groups
+            ]
+        )
+
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.
         If there are LRO functions in here, will add initial LRO function. Will also set the return

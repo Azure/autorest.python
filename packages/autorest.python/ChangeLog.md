@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-10-XX - 6.2.1
+### 2022-10-25 - 6.2.1
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -10,6 +10,7 @@
 | `isodate` dep of generated code                                         | `0.6.1`     |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
