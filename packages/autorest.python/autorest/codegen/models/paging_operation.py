@@ -143,7 +143,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.merge(
                 self.get_request_builder_import(self.next_request_builder, async_mode)
             )
-        elif "api-version" in [p.rest_api_name for p in self.client.parameters]:
+        elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE

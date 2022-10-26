@@ -999,6 +999,7 @@ function emitApiVersionParam(program: Program): Record<string, any> | undefined 
             inOverload: false,
             inOverridden: false,
             type: getConstantType(version),
+            isApiVersion: true,
         };
     }
     return undefined;
