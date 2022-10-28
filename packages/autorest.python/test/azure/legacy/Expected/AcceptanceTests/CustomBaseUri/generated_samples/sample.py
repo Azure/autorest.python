@@ -6,24 +6,23 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from custombaseurlpagingversiontolerant import AutoRestParameterizedHostTestPagingClient
+from custombaseurl import AutoRestParameterizedHostTestClient
 
 """
 # PREREQUISITES
-    pip install autorestparameterizedhosttestpagingclient
+    pip install autorestparameterizedhosttestclient
 # USAGE
-    python paging_get_pages_partial_url_operation.py
+    python sample.py
 """
 
 
 def main():
-    client = AutoRestParameterizedHostTestPagingClient()
+    client = AutoRestParameterizedHostTestClient()
 
-    response = client.paging.get_pages_partial_url_operation(
+    response = client.paths.get_empty(
         account_name="testaccount",
     )
-    for item in response:
-        print(item)
+    print(response)
 
 
 if __name__ == "__main__":

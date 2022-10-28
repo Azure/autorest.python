@@ -12,7 +12,7 @@ from bodyduration import AutoRestDurationTestService
 # PREREQUISITES
     pip install autorestdurationtestservice
 # USAGE
-    python duration_put_positive_duration.py
+    python sample0.py
 """
 
 

@@ -6,26 +6,25 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.identity import DefaultAzureCredential
-from head import AutoRestHeadTestService
+import os
+
+from azure.core.credentials import AzureKeyCredential
+from headwithazurekeycredentialpolicy import AutoRestHeadTestService
 
 """
 # PREREQUISITES
-    pip install azure-identity
     pip install autorestheadtestservice
 # USAGE
-    python http_success_head404.py
+    python sample1.py
 
-    Before run the sample, please set the values of the client ID, tenant ID and client secret
-    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,
-    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:
-    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
+    Before run the sample, please set environment variables AZURE_KEY with real value
+    which can access your service
 """
 
 
 def main():
     client = AutoRestHeadTestService(
-        credential=DefaultAzureCredential(),
+        credential=AzureKeyCredential(key=os.getenv("AZURE_KEY")),
     )
 
     response = client.http_success.head404()

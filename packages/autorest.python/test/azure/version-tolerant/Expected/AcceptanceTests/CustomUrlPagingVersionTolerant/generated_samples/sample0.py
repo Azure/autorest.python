@@ -6,21 +6,24 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from bodyduration import AutoRestDurationTestService
+from custombaseurlpagingversiontolerant import AutoRestParameterizedHostTestPagingClient
 
 """
 # PREREQUISITES
-    pip install autorestdurationtestservice
+    pip install autorestparameterizedhosttestpagingclient
 # USAGE
-    python duration_get_null.py
+    python sample0.py
 """
 
 
 def main():
-    client = AutoRestDurationTestService()
+    client = AutoRestParameterizedHostTestPagingClient()
 
-    response = client.duration.get_null()
-    print(response)
+    response = client.paging.get_pages_partial_url_operation(
+        account_name="testaccount",
+    )
+    for item in response:
+        print(item)
 
 
 if __name__ == "__main__":
