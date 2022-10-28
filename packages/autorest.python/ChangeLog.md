@@ -15,6 +15,7 @@
 **Other Changes**
 
 - Install `typing-extensions` instead of `typing_extensions` #1538
+- Change rule of generated sample files to avoid too long path  #1540
 
 ### 2022-10-26 - 6.2.2
 
