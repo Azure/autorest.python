@@ -1201,7 +1201,9 @@ class _PagingOperationSerializer(
         next_link_str = "next_link"
         try:
             api_version_param = next(
-                p for p in builder.client.parameters if p.rest_api_name == "api-version"
+                p
+                for p in builder.client.parameters
+                if p.is_api_version and p.location == ParameterLocation.QUERY
             )
             retval.append("# make call to next link with the client's api-version")
             retval.append("_parsed_next_link = urllib.parse.urlparse(next_link)")
