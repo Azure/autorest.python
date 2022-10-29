@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import re
 import logging
 from typing import List, Optional, Any, Union, cast
 from pathlib import Path
@@ -546,29 +547,31 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     samples = operation.yaml_data["samples"]
                     if not samples or operation.name.startswith("_"):
                         continue
-                    for sample in samples.values():
-                        sample_name = extract_sample_name(sample)
-                        if sample_name in sample_names:
-                            sample_name = sample_name + str(idx)
-                            idx = idx + 1
-                        file_name = to_snake_case(sample_name) + ".py"
+                    for key, value in samples.items():
+                        file_name = to_snake_case(sample_name)
+                        if len(file_name) > 80 or re.compile("^[a-z_]+").findall(file_name):
+                            sample_name = extract_sample_name(value)
+                            if sample_name in sample_names:
+                                sample_name = sample_name + str(idx)
+                                idx = idx + 1
+                            file_name = to_snake_case(sample_name)
                         try:
                             self.write_file(
-                                out_path / file_name,
+                                out_path / f"{file_name}.py",
                                 SampleSerializer(
                                     code_model=self.code_model,
                                     env=env,
                                     operation_group=op_group,
                                     operation=operation,
-                                    sample=sample,
+                                    sample=value,
                                     file_name=file_name,
-                                    sample_origin_name=sample_name + ".json",
+                                    sample_origin_name=key,
                                 ).serialize(),
                             )
                             sample_names.add(sample_name)
                         except Exception as e:  # pylint: disable=broad-except
                             # sample generation shall not block code generation, so just log error
-                            log_error = f"error happens in sample {sample_name}: {e}"
+                            log_error = f"error happens in sample {key}: {e}"
                             _LOGGER.error(log_error)
 
 
