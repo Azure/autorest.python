@@ -12,6 +12,10 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
+**Bug Fixes**
+
+- Handle complex string for generated sample  #1546
+
 **Other Changes**
 
 - Install `typing-extensions` instead of `typing_extensions` #1538
