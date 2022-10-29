@@ -5,7 +5,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from os import stat
 from typing import Dict, Any
 from jinja2 import Environment
 
