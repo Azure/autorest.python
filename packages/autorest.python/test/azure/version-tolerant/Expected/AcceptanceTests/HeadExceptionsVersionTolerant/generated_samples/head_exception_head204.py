@@ -14,7 +14,7 @@ from headexceptionsversiontolerant import AutoRestHeadExceptionTestService
     pip install azure-identity
     pip install autorestheadexceptiontestservice
 # USAGE
-    python sample0.py
+    python head_exception_head204.py
 
     Before run the sample, please set the values of the client ID, tenant ID and client secret
     of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,

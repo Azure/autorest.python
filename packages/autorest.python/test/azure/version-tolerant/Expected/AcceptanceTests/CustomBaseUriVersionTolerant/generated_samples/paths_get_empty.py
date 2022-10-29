@@ -6,21 +6,21 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from bodydurationversiontolerant import AutoRestDurationTestService
+from custombaseurlversiontolerant import AutoRestParameterizedHostTestClient
 
 """
 # PREREQUISITES
-    pip install autorestdurationtestservice
+    pip install autorestparameterizedhosttestclient
 # USAGE
-    python sample0.py
+    python paths_get_empty.py
 """
 
 
 def main():
-    client = AutoRestDurationTestService()
+    client = AutoRestParameterizedHostTestClient()
 
-    response = client.duration.put_positive_duration(
-        duration_body="P123DT22H14M12.011S",
+    response = client.paths.get_empty(
+        account_name="testaccount",
     )
     print(response)
 

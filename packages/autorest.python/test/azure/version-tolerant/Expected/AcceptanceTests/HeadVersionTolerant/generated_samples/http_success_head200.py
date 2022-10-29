@@ -7,14 +7,14 @@
 # --------------------------------------------------------------------------
 
 from azure.identity import DefaultAzureCredential
-from headexceptionsversiontolerant import AutoRestHeadExceptionTestService
+from headversiontolerant import AutoRestHeadTestService
 
 """
 # PREREQUISITES
     pip install azure-identity
-    pip install autorestheadexceptiontestservice
+    pip install autorestheadtestservice
 # USAGE
-    python sample.py
+    python http_success_head200.py
 
     Before run the sample, please set the values of the client ID, tenant ID and client secret
     of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,
@@ -24,11 +24,11 @@ from headexceptionsversiontolerant import AutoRestHeadExceptionTestService
 
 
 def main():
-    client = AutoRestHeadExceptionTestService(
+    client = AutoRestHeadTestService(
         credential=DefaultAzureCredential(),
     )
 
-    response = client.head_exception.head200()
+    response = client.http_success.head200()
     print(response)
 
 

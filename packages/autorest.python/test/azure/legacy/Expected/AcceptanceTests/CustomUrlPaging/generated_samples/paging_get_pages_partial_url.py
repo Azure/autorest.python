@@ -12,7 +12,7 @@ from custombaseurlpaging import AutoRestParameterizedHostTestPagingClient
 # PREREQUISITES
     pip install autorestparameterizedhosttestpagingclient
 # USAGE
-    python sample.py
+    python paging_get_pages_partial_url.py
 """
 
 

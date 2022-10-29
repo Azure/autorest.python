@@ -6,29 +6,24 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import os
-
-from azure.core.credentials import AzureKeyCredential
-from headwithazurekeycredentialpolicy import AutoRestHeadTestService
+from custombaseurlpagingversiontolerant import AutoRestParameterizedHostTestPagingClient
 
 """
 # PREREQUISITES
-    pip install autorestheadtestservice
+    pip install autorestparameterizedhosttestpagingclient
 # USAGE
-    python sample0.py
-
-    Before run the sample, please set environment variables AZURE_KEY with real value
-    which can access your service
+    python paging_get_pages_partial_url.py
 """
 
 
 def main():
-    client = AutoRestHeadTestService(
-        credential=AzureKeyCredential(key=os.getenv("AZURE_KEY")),
-    )
+    client = AutoRestParameterizedHostTestPagingClient()
 
-    response = client.http_success.head204()
-    print(response)
+    response = client.paging.get_pages_partial_url(
+        account_name="testaccount",
+    )
+    for item in response:
+        print(item)
 
 
 if __name__ == "__main__":

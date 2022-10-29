@@ -6,28 +6,22 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import os
-
-from azure.core.credentials import AzureKeyCredential
-from headwithazurekeycredentialpolicy import AutoRestHeadTestService
+from bodydurationversiontolerant import AutoRestDurationTestService
 
 """
 # PREREQUISITES
-    pip install autorestheadtestservice
+    pip install autorestdurationtestservice
 # USAGE
-    python sample.py
-
-    Before run the sample, please set environment variables AZURE_KEY with real value
-    which can access your service
+    python duration_put_positive_duration.py
 """
 
 
 def main():
-    client = AutoRestHeadTestService(
-        credential=AzureKeyCredential(key=os.getenv("AZURE_KEY")),
-    )
+    client = AutoRestDurationTestService()
 
-    response = client.http_success.head200()
+    response = client.duration.put_positive_duration(
+        duration_body="P123DT22H14M12.011S",
+    )
     print(response)
 
 
