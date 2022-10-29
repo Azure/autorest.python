@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import re
 import logging
 from typing import List, Optional, Any, Union, cast
 from pathlib import Path
@@ -29,7 +28,7 @@ from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from ..._utils import to_snake_case
-from .utils import extract_sample_name
+from .utils import extract_sample_name, invalid_file_name
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -539,8 +538,6 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
         out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
-        sample_names = set()
-        idx = 0
         for client in self.code_model.clients:
             for op_group in client.operation_groups:
                 for operation in op_group.operations:
@@ -549,15 +546,12 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         continue
                     for key, value in samples.items():
                         file_name = to_snake_case(key)
-                        if len(file_name) > 80 or re.compile("[^a-z_]+").findall(file_name):
-                            sample_name = extract_sample_name(value)
-                            if sample_name in sample_names:
-                                sample_name = sample_name + str(idx)
-                                idx = idx + 1
-                            file_name = to_snake_case(sample_name)
+                        if invalid_file_name(file_name):
+                            file_name = to_snake_case(extract_sample_name(value))
+                        file_name = file_name + ".py"
                         try:
                             self.write_file(
-                                out_path / f"{file_name}.py",
+                                out_path / file_name,
                                 SampleSerializer(
                                     code_model=self.code_model,
                                     env=env,
@@ -568,7 +562,6 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                                     sample_origin_name=key,
                                 ).serialize(),
                             )
-                            sample_names.add(sample_name)
                         except Exception as e:  # pylint: disable=broad-except
                             # sample generation shall not block code generation, so just log error
                             log_error = f"error happens in sample {key}: {e}"
