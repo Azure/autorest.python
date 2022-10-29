@@ -548,7 +548,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     if not samples or operation.name.startswith("_"):
                         continue
                     for key, value in samples.items():
-                        file_name = to_snake_case(sample_name)
+                        file_name = to_snake_case(key)
                         if len(file_name) > 80 or re.compile("^[a-z_]+").findall(file_name):
                             sample_name = extract_sample_name(value)
                             if sample_name in sample_names:
