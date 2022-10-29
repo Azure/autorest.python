@@ -5,6 +5,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from os import stat
 from typing import Dict, Any
 from jinja2 import Environment
 
@@ -87,6 +88,15 @@ class SampleSerializer:
 
         return client_params
 
+    @staticmethod
+    def handle_param(param: Any) -> str:
+        if isinstance(param, str):
+            if param.find('\r\n"') > -1:
+                return f'"""{param}"""'
+            else:
+                return f'"{param}"'
+        return str(param)
+
     # prepare operation parameters
     def _operation_params(self) -> Dict[str, Any]:
         params_positional = [
@@ -94,7 +104,6 @@ class SampleSerializer:
             for p in self.operation.parameters.positional
             if not p.client_default_value
         ]
-        cls = lambda x: f'"{x}"' if isinstance(x, str) else str(x)
         failure_info = "fail to find required param named {} in example file {}"
         operation_params = {}
         for param in params_positional:
@@ -103,7 +112,7 @@ class SampleSerializer:
             if not param.optional:
                 if not param_value:
                     raise Exception(failure_info.format(name, self.sample_origin_name))
-                operation_params[param.client_name] = cls(param_value)
+                operation_params[param.client_name] = self.handle_param(param_value)
         return operation_params
 
     def _operation_group_name(self) -> str:
