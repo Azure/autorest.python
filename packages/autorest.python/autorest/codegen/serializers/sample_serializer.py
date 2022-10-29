@@ -5,7 +5,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from os import stat
 from typing import Dict, Any
 from jinja2 import Environment
 
@@ -93,8 +92,8 @@ class SampleSerializer:
         if isinstance(param, str):
             if any(i in param for i in '\r\n"'):
                 return f'"""{param}"""'
-            else:
-                return f'"{param}"'
+            return f'"{param}"'
+
         return str(param)
 
     # prepare operation parameters
