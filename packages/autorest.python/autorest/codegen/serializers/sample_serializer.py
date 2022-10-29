@@ -91,7 +91,7 @@ class SampleSerializer:
     @staticmethod
     def handle_param(param: Any) -> str:
         if isinstance(param, str):
-            if param.find('\r\n"') > -1:
+            if any(i in param for i in '\r\n"'):
                 return f'"""{param}"""'
             else:
                 return f'"{param}"'
