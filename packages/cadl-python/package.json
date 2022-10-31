@@ -8,10 +8,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azure/adl.git"
+    "url": "git+https://github.com/Azure/autorest.python.git"
   },
   "bugs": {
-    "url": "https://github.com/Azure/adl/issues"
+    "url": "https://github.com/Azure/autorest.python/issues"
   },
   "keywords": [
     "cadl"
