@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-10-31 - 0.4.4
+
+**Bug Fixes**
+
+- Don't force users to manually install `@azure-tools/cadl-dpg`  #1549
+
 ## 2022-10-26 - 0.4.3
 
 **Bug Fixes**
