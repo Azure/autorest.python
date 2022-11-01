@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import re
 from typing import Any, Dict
 from .python_mappings import (
     PadType,
@@ -17,6 +18,7 @@ def pad_reserved_words(name: str, pad_type: PadType):
     if not name:
         # we'll pass in empty operation groups sometime etc.
         return name
+    name = pad_special_chars(name)
     name_prefix = "_" if name[0] == "_" else ""
     name = name[1:] if name[0] == "_" else name
     if name.lower() in RESERVED_WORDS[pad_type]:
@@ -34,3 +36,6 @@ def pad_builtin_namespaces(namespace: str) -> str:
     if items[0] in BUILTIN_PACKAGES:
         items[0] = items[0] + "_"
     return ".".join(items)
+
+def pad_special_chars(name: str) -> str:
+    return re.sub(r"[^A-z0-9_]", "_", name)

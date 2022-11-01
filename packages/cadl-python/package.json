@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-python",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "author": "Microsoft Corporation",
   "description": "Cadl emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
@@ -8,10 +8,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azure/adl.git"
+    "url": "git+https://github.com/Azure/autorest.python.git"
   },
   "bugs": {
-    "url": "https://github.com/Azure/adl/issues"
+    "url": "https://github.com/Azure/autorest.python/issues"
   },
   "keywords": [
     "cadl"
@@ -49,7 +49,8 @@
   "dependencies": {
     "js-yaml": "~4.1.0",
     "@autorest/python": "workspace:^",
-    "@cadl-lang/compiler": "~0.36.0"
+    "@cadl-lang/compiler": "~0.36.1",
+    "@azure-tools/cadl-dpg": "~0.2.0"
   },
   "devDependencies": {
     "@types/mocha": "~9.1.0",
@@ -64,9 +65,8 @@
     "rimraf": "~3.0.2",
     "typescript": "^4.8.3",
     "@azure-tools/cadl-azure-core": "~0.8.0",
-    "@azure-tools/cadl-ranch-specs": "~0.4.1",
+    "@azure-tools/cadl-ranch-specs": "~0.4.2",
     "@azure-tools/cadl-ranch-expect": "~0.1.11",
-    "@azure-tools/cadl-dpg": "~0.1.0",
     "@cadl-lang/openapi": "~0.13.0",
     "prettier": "^2.7.1"
   }
