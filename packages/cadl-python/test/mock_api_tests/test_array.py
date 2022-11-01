@@ -6,7 +6,7 @@
 
 import pytest
 import isodate
-from array_.itemtypes import ItemTypesClient, models
+from arrays.itemtypes import ItemTypesClient, models
 
 
 @pytest.fixture

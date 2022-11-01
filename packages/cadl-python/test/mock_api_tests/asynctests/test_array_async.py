@@ -6,8 +6,8 @@
 
 import pytest
 import isodate
-from array_.itemtypes import models
-from array_.itemtypes.aio import ItemTypesClient
+from arrays.itemtypes import models
+from arrays.itemtypes.aio import ItemTypesClient
 
 @pytest.fixture
 async def client():
