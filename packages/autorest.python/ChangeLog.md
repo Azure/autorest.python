@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-xx-xx - 6.x.x
+### 2022-10-31 - 6.2.3
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -19,6 +19,7 @@
 **Other Changes**
 
 - Install `typing-extensions` instead of `typing_extensions` #1538
+- Pad special characters in names #1535
 
 ### 2022-10-26 - 6.2.2
 
@@ -51,7 +52,6 @@
 **Bug Fixes**
 
 - Fixed lro operation name in auto-generated sample  #1521
-- Pad special characters in names #1535
 
 **Other Changes**
 
