@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-xx-xx - 6.x.x
+### 2022-10-31 - 6.2.3
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -16,6 +16,7 @@
 
 - Install `typing-extensions` instead of `typing_extensions` #1538
 - Optimize rule about name of generated sample files to avoid too long path  #1540
+- Pad special characters in names #1535
 
 ### 2022-10-26 - 6.2.2
 
