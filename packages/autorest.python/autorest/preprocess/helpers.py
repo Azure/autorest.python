@@ -37,5 +37,6 @@ def pad_builtin_namespaces(namespace: str) -> str:
         items[0] = items[0] + "_"
     return ".".join(items)
 
+
 def pad_special_chars(name: str) -> str:
     return re.sub(r"[^A-z0-9_]", "_", name)
