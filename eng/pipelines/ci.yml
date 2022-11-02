@@ -58,7 +58,7 @@ jobs:
           PythonVersion: "3.10"
         Linux_Python311:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
+          OSVmImage: "MMSUbuntu22.04"
           PythonVersion: "3.11"
 
     pool:
@@ -177,7 +177,7 @@ jobs:
           PythonVersion: "3.10"
         Linux_Python311:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
+          OSVmImage: "MMSUbuntu22.04"
           PythonVersion: "3.11"
 
     pool:
