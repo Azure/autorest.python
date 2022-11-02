@@ -84,8 +84,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.type.serialization_type
 
     @property
-    def msrest_deserialization_type(self) -> str:
-        return self.type.msrest_deserialization_type
+    def msrest_deserialization_key(self) -> str:
+        return self.type.msrest_deserialization_key
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         if self.optional and self.client_default_value is None:

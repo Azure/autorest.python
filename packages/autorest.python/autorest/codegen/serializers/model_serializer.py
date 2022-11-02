@@ -197,7 +197,7 @@ class MsrestModelSerializer(_ModelSerializer):
             xml_metadata = ""
         return (
             f'"{prop.client_name}": {{"key": "{attribute_key}",'
-            f' "type": "{prop.msrest_deserialization_type}"{xml_metadata}}},'
+            f' "type": "{prop.msrest_deserialization_key}"{xml_metadata}}},'
         )
 
 

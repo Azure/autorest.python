@@ -82,10 +82,8 @@ class ModelType(
         return "object"
 
     @property
-    def msrest_deserialization_type(self) -> str:
-        if self.code_model.options["models_mode"] == "msrest":
-            return self.name
-        return self.serialization_type
+    def msrest_deserialization_key(self) -> str:
+        return self.name
 
     @property
     def is_polymorphic(self) -> bool:
