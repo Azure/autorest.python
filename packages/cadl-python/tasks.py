@@ -11,6 +11,13 @@ from colorama import init, Fore
 from invoke import task, run
 import shutil
 
+#######################################################
+# Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
+import inspect
+if not hasattr(inspect, 'getargspec'):
+    inspect.getargspec = inspect.getfullargspec
+#######################################################
+
 init()
 
 PLUGIN_DIR = Path(os.path.dirname(__file__))

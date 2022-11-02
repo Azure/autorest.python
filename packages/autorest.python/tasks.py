@@ -7,12 +7,19 @@ import copy
 import itertools
 from multiprocessing import Pool
 import os
-from typing import Any, Dict, NamedTuple, Optional, Union
-from enum import Enum, auto
+from typing import Any, Dict, NamedTuple, Optional
+from enum import Enum
 from colorama import init, Fore
 from invoke import task, run
 import shutil
 import re
+
+#######################################################
+# Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
+import inspect
+if not hasattr(inspect, 'getargspec'):
+    inspect.getargspec = inspect.getfullargspec
+#######################################################
 
 init()
 class _SwaggerGroup(str, Enum):
