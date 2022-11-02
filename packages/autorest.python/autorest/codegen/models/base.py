@@ -102,7 +102,7 @@ class BaseType(BaseModel, ABC):
         raise NotImplementedError()
 
     @property
-    def msrest_serialization_type(self) -> str:
+    def msrest_deserialization_type(self) -> str:
         return self.serialization_type
 
     @property
