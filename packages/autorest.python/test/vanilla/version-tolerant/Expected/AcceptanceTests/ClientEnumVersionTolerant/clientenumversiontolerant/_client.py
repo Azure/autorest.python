@@ -12,7 +12,7 @@ from typing import Any, Union
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from . import models
+from . import models as _models
 from ._configuration import ClientWithEnumConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import TimeOperations
@@ -35,7 +35,7 @@ class ClientWithEnum:  # pylint: disable=client-accepts-api-version-keyword
         self._config = ClientWithEnumConfiguration(x_ms_enum=x_ms_enum, **kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

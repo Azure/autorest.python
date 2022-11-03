@@ -296,11 +296,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                     f"{path_to_models}models",
                     self.code_model.models_filename,
                     ImportType.LOCAL,
-                    alias="models",
+                    alias="_models",
                 )
             else:
                 file_import.add_submodule_import(
-                    path_to_models, "models", ImportType.LOCAL
+                    path_to_models, "models", ImportType.LOCAL, alias="_models"
                 )
         elif self.code_model.options["models_mode"] == "msrest":
             # in this case, we have client_models = {} in the service client, which needs a type annotation

@@ -118,7 +118,7 @@ class ClientSerializer:
         retval = []
         if self.client.code_model.model_types:
             client_models_value = (
-                "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
+                "{k: v for k, v in _models.__dict__.items() if isinstance(v, type)}"
             )
         else:
             client_models_value = "{}  # type: Dict[str, Any]"
