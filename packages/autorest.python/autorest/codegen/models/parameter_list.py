@@ -393,6 +393,15 @@ class _RequestBuilderParameterList(
             p for p in super().path if p.location != ParameterLocation.ENDPOINT_PATH
         ]
 
+    @property
+    def constant(
+        self,
+    ) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameterType]]:
+        """All constant parameters"""
+        return [
+            p for p in super().constant if p.location != ParameterLocation.ENDPOINT_PATH
+        ]
+
 
 class RequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for Request Builder"""
@@ -462,15 +471,6 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
             return next(p for p in self.parameters if p.is_host)
         except StopIteration:
             return None
-
-    @property
-    def kwargs_to_pop(self) -> List[Union[ClientParameter, BodyParameter]]:
-        """We only want to pass base url path parameters in the client"""
-        return [
-            k
-            for k in super().kwargs_to_pop
-            if k.location == ParameterLocation.ENDPOINT_PATH
-        ]
 
 
 class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
