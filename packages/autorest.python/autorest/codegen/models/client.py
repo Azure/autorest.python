@@ -172,10 +172,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
 
         for gp in self.parameters:
-            if (
-                gp.method_location == ParameterMethodLocation.KWARG
-                and gp not in self.parameters.kwargs_to_pop
-            ):
+            if gp.method_location == ParameterMethodLocation.KWARG:
                 continue
             file_import.merge(gp.imports(async_mode))
         file_import.add_submodule_import(
