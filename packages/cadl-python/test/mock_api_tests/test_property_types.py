@@ -19,7 +19,7 @@ def client():
     ("bytes", "aGVsbG8sIHdvcmxkIQ=="),
     ("int", 42),
     ("float", 42.42),
-    ("datetime", '2022-08-26T18:38:00Z'),
+    ("datetime",'2022-08-26T18:38:00Z'),
     ("duration", "P123DT22H14M12.011S"),
     ("enum", "ValueOne"),
     ("extensible_enum", "UnknownValue"),
@@ -27,6 +27,7 @@ def client():
     ("collections_string", ['hello', 'world']),
     ("collections_int", [1, 2]),
     ("collections_model", [{'property': 'hello'}, {'property': 'world'}]),
+    ("dictionary_string", {'k1': 'hello', 'k2': 'world'}),
 ]
 )
 def test_json(client, og_name, val):
@@ -48,6 +49,7 @@ def test_json(client, og_name, val):
     ("collections_string", models.CollectionsStringProperty, ['hello', 'world']),
     ("collections_int", models.CollectionsIntProperty, [1, 2]),
     ("collections_model", models.CollectionsModelProperty, [{'property': 'hello'}, {'property': 'world'}]),
+    ("dictionary_string", models.DictionaryStringProperty, {'k1': 'hello', 'k2': 'world'}),
 ]
 )
 def test_model(client, og_name, model, val):

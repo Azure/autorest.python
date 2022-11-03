@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-11-XX - 6.2.4
+### 2022-11-03 - 6.2.4
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,7 @@
 **Bug Fixes**
 
 - Handle complex string for generated sample  #1546
+- Allow `api-version` to be a path parameter #1551
 
 ### 2022-10-31 - 6.2.3
 
@@ -68,6 +69,7 @@
 **Other Changes**
 
 - Type constant properties as Literals #1464
+- Deserialize complex schema response for cadl generated operation #1520
 
 ### 2022-10-19 - 6.2.0
 
