@@ -347,10 +347,7 @@ class Int32ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -499,10 +496,7 @@ class Int64ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -651,10 +645,7 @@ class BooleanValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[bool], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -803,10 +794,7 @@ class StringValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -955,10 +943,7 @@ class Float32ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1109,10 +1094,7 @@ class DatetimeValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[datetime.datetime], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1263,10 +1245,7 @@ class DurationValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[datetime.timedelta], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1417,10 +1396,7 @@ class UnknownValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1569,10 +1545,7 @@ class ModelValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = _deserialize(List[_models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})

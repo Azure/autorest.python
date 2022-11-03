@@ -69,6 +69,7 @@
 **Other Changes**
 
 - Type constant properties as Literals #1464
+- Deserialize complex schema response for cadl generated operation #1520
 
 ### 2022-10-19 - 6.2.0
 
