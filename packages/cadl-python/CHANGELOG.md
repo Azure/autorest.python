@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-xx-xx - 0.x.x
+
+**Other Changes**
+
+- Make @key properties readonly  #1554
+
 ## 2022-10-31 - 0.4.4
 
 **Bug Fixes**
