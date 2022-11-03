@@ -9,7 +9,6 @@ from abc import abstractmethod
 from collections import defaultdict
 from typing import Any, Generic, List, Type, TypeVar, Dict, Union, Optional, cast
 
-
 from ..models import (
     Operation,
     PagingOperation,
@@ -967,11 +966,10 @@ class _OperationSerializer(
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
-            elif self.code_model.options["models_mode"] == "dpg" and isinstance(
-                response.type, ModelType
-            ):
+            elif self.code_model.options["models_mode"] == "dpg":
                 retval.append(
-                    f"deserialized = _deserialize({response.serialization_type}, response.json())"
+                    f"deserialized = _deserialize({response.type.type_annotation(is_operation_file=True)}"
+                    ", response.json())"
                 )
             else:
                 deserialized_value = (
