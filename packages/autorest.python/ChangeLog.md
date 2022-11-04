@@ -5,7 +5,7 @@
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `@autorest/modelerfour`                                                 | `4.25.0`    |
 | `azure-core` dep of generated code                                      | `1.24.0`    |
 | `isodate` dep of generated code                                         | `0.6.1`     |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
