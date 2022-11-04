@@ -6,9 +6,6 @@
     {% if serializer.should_init_super %}
         super().__init__()
     {% endif %}
-    {% if client.parameters.kwargs_to_pop %}
-        {{ op_tools.serialize(serializer.pop_kwargs_from_signature()) | indent(8) }}
-    {% endif %}
         {% if client.has_parameterized_host %}
         {{ serializer.host_variable_name }} = {{ keywords.escape_str(client.url) }}
         {% endif %}
