@@ -15,6 +15,7 @@
 **Bug Fixes**
 
 - Don't continue paging empty next links  #1557
+- Fix deserialization of msrest models containing private models  #1556
 
 ### 2022-11-03 - 6.2.4
 
