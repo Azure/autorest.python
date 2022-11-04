@@ -1,5 +1,21 @@
 # Release History
 
+### 2022-11-04 - 6.2.5
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
+
+**Bug Fixes**
+
+- Don't continue paging empty next links  #1557
+
 ### 2022-11-03 - 6.2.4
 
 | Library                                                                 | Min Version |
@@ -69,6 +85,7 @@
 **Other Changes**
 
 - Type constant properties as Literals #1464
+- Deserialize complex schema response for cadl generated operation #1520
 
 ### 2022-10-19 - 6.2.0
 
