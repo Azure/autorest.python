@@ -411,7 +411,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 and gp not in self.parameters.kwargs_to_pop
             ):
                 continue
-            file_import.merge(gp.imports(async_mode=async_mode))
+            file_import.merge(gp.imports(async_mode=async_mode, relative_path=".." if async_mode else "."))
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
@@ -423,7 +423,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 and gp.client_name == "api_version"
             ):
                 continue
-            file_import.merge(gp.imports_for_multiapi(async_mode=async_mode))
+            file_import.merge(gp.imports_for_multiapi(async_mode=async_mode, relative_path=".." if async_mode else "."))
         return file_import
 
     @classmethod

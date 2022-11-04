@@ -11,6 +11,7 @@ from typing import Any, Union
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
+from . import models as _models
 from ._version import VERSION
 
 
