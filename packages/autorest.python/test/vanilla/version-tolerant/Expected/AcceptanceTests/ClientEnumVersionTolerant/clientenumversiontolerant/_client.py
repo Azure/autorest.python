@@ -14,15 +14,13 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import ClientWithEnumConfiguration
+from ._operations import ClientWithEnumOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .operations import TimeOperations
 
 
-class ClientWithEnum:  # pylint: disable=client-accepts-api-version-keyword
+class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test client with enum variable.
 
-    :ivar time: TimeOperations operations
-    :vartype time: clientenumversiontolerant.operations.TimeOperations
     :param x_ms_enum: Enum client parameter. "single" Required.
     :type x_ms_enum: str or ~clientenumversiontolerant.models.Enum0
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
@@ -39,7 +37,6 @@ class ClientWithEnum:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.time = TimeOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
