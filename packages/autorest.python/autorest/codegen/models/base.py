@@ -87,7 +87,6 @@ class BaseType(BaseModel, ABC):
         return ", ".join(attrs_list)
 
     @property
-    @abstractmethod
     def serialization_type(self) -> str:
         """The tag recognized by 'msrest' as a serialization/deserialization.
 
@@ -100,6 +99,11 @@ class BaseType(BaseModel, ABC):
         If dict: '{str}'
         """
         ...
+        raise NotImplementedError()
+
+    @property
+    def msrest_serialization_type(self) -> str:
+        return self.serialization_type
 
     @property
     def client_default_value(self) -> Any:

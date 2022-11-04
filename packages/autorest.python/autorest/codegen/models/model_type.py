@@ -75,11 +75,18 @@ class ModelType(
     @property
     def serialization_type(self) -> str:
         if self.code_model.options["models_mode"] == "msrest":
+            return self.name
             private_model_path = f"_models.{self.code_model.models_filename}."
             return f"{'' if self.is_public else private_model_path}{self.name}"
         if self.code_model.options["models_mode"] == "dpg":
             return f"{'' if self.is_public else '_models.'}_models.{self.name}"
         return "object"
+
+    @property
+    def msrest_serialization_type(self) -> str:
+        if self.code_model.options["models_mode"] == "msrest":
+            return self.name
+        return self.serialization_type
 
     @property
     def is_polymorphic(self) -> bool:
