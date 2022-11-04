@@ -1288,7 +1288,7 @@ class _PagingOperationSerializer(
         elif self.code_model.options["models_mode"]:
             cont_token_property = f"deserialized.{continuation_token_name} or None"
         else:
-            cont_token_property = f'deserialized.get("{continuation_token_name}", None)'
+            cont_token_property = f'deserialized.get("{continuation_token_name}") or None'
         list_type = "AsyncList" if self.async_mode else "iter"
         retval.append(f"    return {cont_token_property}, {list_type}(list_of_elem)")
         return retval
