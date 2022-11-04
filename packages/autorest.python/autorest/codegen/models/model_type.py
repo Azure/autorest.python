@@ -82,6 +82,10 @@ class ModelType(
         return "object"
 
     @property
+    def msrest_deserialization_key(self) -> str:
+        return self.name
+
+    @property
     def is_polymorphic(self) -> bool:
         return any(p.is_polymorphic for p in self.properties)
 
