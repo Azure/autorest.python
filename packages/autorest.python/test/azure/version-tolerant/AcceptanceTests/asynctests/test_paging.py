@@ -74,6 +74,14 @@ async def test_get_null_next_link_name_pages(client):
     assert items[0]["properties"]["name"] == "Product"
 
 @pytest.mark.asyncio
+async def test_get_empty_next_link_name_pages(client):
+    pages = client.paging.get_empty_next_link_name_pages()
+    items = [i async for i in pages]
+    assert len(items) == 1
+    assert items[0]["properties"]["id"] == 1
+    assert items[0]["properties"]["name"] == "Product"
+
+@pytest.mark.asyncio
 async def test_get_single_pages_with_cb(client):
     def cb(list_of_obj):
         for obj in list_of_obj:
