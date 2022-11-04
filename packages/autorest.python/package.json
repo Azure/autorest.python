@@ -27,7 +27,7 @@
     "@autorest/system-requirements": "~1.0.0"
   },
   "devDependencies": {
-    "@microsoft.azure/autorest.testserver": "^3.3.41",
+    "@microsoft.azure/autorest.testserver": "^3.3.44",
     "typescript": "^4.8.3"
   },
   "files": [
