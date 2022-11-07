@@ -314,7 +314,7 @@ class ParameterGroupingOperations:
 
         request = build_post_optional_request(
             custom_header=_custom_header,
-            query=_query,
+            query=_query,  # type: ignore
             template_url=self.post_optional.metadata["url"],
             headers=_headers,
             params=_params,
@@ -450,9 +450,9 @@ class ParameterGroupingOperations:
 
         request = build_post_multi_param_groups_request(
             header_one=_header_one,
-            query_one=_query_one,
+            query_one=_query_one,  # type: ignore
             header_two=_header_two,
-            query_two=_query_two,
+            query_two=_query_two,  # type: ignore
             template_url=self.post_multi_param_groups.metadata["url"],
             headers=_headers,
             params=_params,
@@ -510,7 +510,7 @@ class ParameterGroupingOperations:
 
         request = build_post_shared_parameter_group_object_request(
             header_one=_header_one,
-            query_one=_query_one,
+            query_one=_query_one,  # type: ignore
             template_url=self.post_shared_parameter_group_object.metadata["url"],
             headers=_headers,
             params=_params,
@@ -568,7 +568,7 @@ class ParameterGroupingOperations:
             _grouped_parameter = grouper.grouped_parameter
 
         request = build_group_with_constant_request(
-            grouped_constant=_grouped_constant,
+            grouped_constant=_grouped_constant,  # type: ignore
             grouped_parameter=_grouped_parameter,
             template_url=self.group_with_constant.metadata["url"],
             headers=_headers,

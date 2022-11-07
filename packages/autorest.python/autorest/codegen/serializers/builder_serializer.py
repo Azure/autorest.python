@@ -850,8 +850,18 @@ class _OperationSerializer(
                 # in paging operations with a single swagger operation defintion,
                 # we skip passing query params when building the next request
                 continue
+            type_ignore = (
+                parameter.grouped_by
+                and parameter.client_default_value is not None
+                and next(
+                    p
+                    for p in builder.parameters
+                    if p.grouper and p.client_name == parameter.grouped_by
+                ).optional
+            )
             retval.append(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
+                f"{'  # type: ignore' if type_ignore else ''}"
             )
         if request_builder.overloads:
             seen_body_params = set()

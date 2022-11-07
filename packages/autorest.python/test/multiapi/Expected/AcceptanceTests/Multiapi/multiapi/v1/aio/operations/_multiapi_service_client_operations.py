@@ -310,7 +310,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         request = build_test_lro_and_paging_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
-            timeout=_timeout,
+            timeout=_timeout,  # type: ignore
             template_url=self._test_lro_and_paging_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -389,7 +389,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 request = build_test_lro_and_paging_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
-                    timeout=_timeout,
+                    timeout=_timeout,  # type: ignore
                     template_url=self.begin_test_lro_and_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
