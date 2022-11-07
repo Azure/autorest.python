@@ -5,7 +5,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any
+from typing import Dict, Any, Union
 from jinja2 import Environment
 
 from autorest.codegen.models.credential_types import AzureKeyCredentialType
@@ -13,7 +13,7 @@ from autorest.codegen.models.credential_types import TokenCredentialType
 from autorest.codegen.models.imports import FileImport, ImportType
 from autorest.codegen.models.operation import OperationBase
 from autorest.codegen.models.operation_group import OperationGroup
-from autorest.codegen.models.parameter import Parameter
+from autorest.codegen.models.parameter import Parameter, BodyParameter
 from autorest.codegen.serializers.import_serializer import FileImportSerializer
 from ..models import CodeModel
 
@@ -96,7 +96,7 @@ class SampleSerializer:
         return client_params
 
     @staticmethod
-    def handle_param(param: Parameter, param_value: Any) -> str:
+    def handle_param(param: Union[Parameter, BodyParameter], param_value: Any) -> str:
         if isinstance(param_value, str):
             if any(i in param_value for i in '\r\n"'):
                 return f'"""{param_value}"""'
