@@ -13,6 +13,7 @@ from autorest.codegen.models.credential_types import TokenCredentialType
 from autorest.codegen.models.imports import FileImport, ImportType
 from autorest.codegen.models.operation import OperationBase
 from autorest.codegen.models.operation_group import OperationGroup
+from autorest.codegen.models.parameter import Parameter
 from autorest.codegen.serializers.import_serializer import FileImportSerializer
 from ..models import CodeModel
 
@@ -94,6 +95,16 @@ class SampleSerializer:
 
         return client_params
 
+    @staticmethod
+    def handle_param(param: Parameter, param_value: Any) -> str:
+        if isinstance(param_value, str):
+            if any(i in param_value for i in '\r\n"'):
+                return f'"""{param_value}"""'
+
+        return param.type.serialize_sample_value(
+                    param_value
+                )
+
     # prepare operation parameters
     def _operation_params(self) -> Dict[str, Any]:
         params_positional = [
@@ -109,9 +120,7 @@ class SampleSerializer:
             if not param.optional:
                 if not param_value:
                     raise Exception(failure_info.format(name, self.sample_origin_name))
-                operation_params[param.client_name] = param.type.serialize_sample_value(
-                    param_value
-                )
+                operation_params[param.client_name] = self.handle_param(param, param_value)
         return operation_params
 
     def _operation_group_name(self) -> str:

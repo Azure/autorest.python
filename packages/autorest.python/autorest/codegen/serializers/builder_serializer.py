@@ -9,7 +9,6 @@ from abc import abstractmethod
 from collections import defaultdict
 from typing import Any, Generic, List, Type, TypeVar, Dict, Union, Optional, cast
 
-
 from ..models import (
     Operation,
     PagingOperation,
@@ -970,11 +969,10 @@ class _OperationSerializer(
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
-            elif self.code_model.options["models_mode"] == "dpg" and isinstance(
-                response.type, ModelType
-            ):
+            elif self.code_model.options["models_mode"] == "dpg":
                 retval.append(
-                    f"deserialized = _deserialize({response.serialization_type}, response.json())"
+                    f"deserialized = _deserialize({response.type.type_annotation(is_operation_file=True)}"
+                    ", response.json())"
                 )
             else:
                 deserialized_value = (
@@ -1314,7 +1312,9 @@ class _PagingOperationSerializer(
         elif self.code_model.options["models_mode"]:
             cont_token_property = f"deserialized.{continuation_token_name} or None"
         else:
-            cont_token_property = f'deserialized.get("{continuation_token_name}", None)'
+            cont_token_property = (
+                f'deserialized.get("{continuation_token_name}") or None'
+            )
         list_type = "AsyncList" if self.async_mode else "iter"
         retval.append(f"    return {cont_token_property}, {list_type}(list_of_elem)")
         return retval
