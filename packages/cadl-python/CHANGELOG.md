@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-11-04 - 0.4.5
+
+**Bug Fixes**
+
+- Don't continue paging empty next links  #1557
+
 ## 2022-10-31 - 0.4.4
 
 **Bug Fixes**
