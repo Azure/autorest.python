@@ -59,6 +59,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'BodyNumber': 'body-number.json',
     'BodyString': 'body-string.json',
     'BodyTime': 'body-time.json',
+    'ClientEnum': 'client-enum.json',
     'ErrorWithSecrets': 'error-with-secrets.json',
     'ExtensibleEnums': 'extensible-enums-swagger.json',
     'Header': 'header.json',
@@ -119,6 +120,9 @@ _GENERATOR_SPECIFIC_TESTS = {
 
 _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
     'DPGTestModels': {
+        "models-mode": "msrest",
+    },
+    'ClientEnum': {
         "models-mode": "msrest",
     },
     'BodyArrayWithNamespaceFolders': {
