@@ -14,7 +14,7 @@ from msrest import Deserializer, Serializer
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .. import models
+from .. import models as _models
 from ._configuration import AutoRestComplexTestServiceConfiguration
 from .operations import (
     ArrayOperations,
@@ -63,7 +63,7 @@ class AutoRestComplexTestService:  # pylint: disable=client-accepts-api-version-
         self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)

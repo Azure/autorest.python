@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-11-XX - 6.2.6
+### 2022-11-xx - 6.2.6
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -12,8 +12,9 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
-**Other Changes**
+**Bug Fixes**
 
+- Fix clients with enum params  #1558
 - Optimize rule about name of generated sample files to avoid too long path  #1540
 
 ### 2022-11-04 - 6.2.5
