@@ -25,30 +25,34 @@ class TypingSection(str, Enum):
 class FileImport:
     def __init__(
         self,
-        imports: Dict[
-            TypingSection,
+        imports: Optional[
             Dict[
-                ImportType,
+                TypingSection,
                 Dict[
-                    str,
-                    Set[
-                        Optional[
-                            Union[
-                                str,
-                                Tuple[
+                    ImportType,
+                    Dict[
+                        str,
+                        Set[
+                            Optional[
+                                Union[
                                     str,
-                                    str,
-                                ],
-                                Tuple[
-                                    str,
-                                    str,
-                                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
-                                ],
+                                    Tuple[
+                                        str,
+                                        str,
+                                    ],
+                                    Tuple[
+                                        str,
+                                        str,
+                                        Tuple[
+                                            Tuple[Tuple[int, int], str, Optional[str]]
+                                        ],
+                                    ],
+                                ]
                             ]
-                        ]
+                        ],
                     ],
                 ],
-            ],
+            ]
         ] = None,
     ) -> None:
         # Basic implementation

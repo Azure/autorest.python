@@ -74,7 +74,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ]
             self.format_lro_operations()
 
-    def _build_request_builders(self):
+    def _build_request_builders(
+        self,
+    ) -> List[Union[RequestBuilder, OverloadedRequestBuilder]]:
         request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         for og_group in self.yaml_data["operationGroups"]:
             for operation_yaml in og_group["operations"]:
