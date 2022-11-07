@@ -88,9 +88,11 @@ class OperationGroup(BaseModel):
                 operation.imports(async_mode, relative_path=relative_path)
             )
         # for multiapi
-        if (self.code_model.public_model_types) and self.code_model.options[
-            "models_mode"
-        ] == "msrest":
+        if (
+            (self.code_model.public_model_types)
+            and self.code_model.options["models_mode"] == "msrest"
+            and not self.is_mixin
+        ):
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )
