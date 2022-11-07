@@ -12,10 +12,10 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
+from . import models as _models
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .models import _models as _models
 
 
 class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -33,7 +33,8 @@ class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api
         self._config = DPGClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
+        client_models = {k: v for k, v in _models._models.__dict__.items() if isinstance(v, type)}
+        client_models.update({k: v for k, v in _models.__dict__.items() if isinstance(v, type)})
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
