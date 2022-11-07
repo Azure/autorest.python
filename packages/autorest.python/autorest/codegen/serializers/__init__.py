@@ -28,7 +28,7 @@ from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from ..._utils import to_snake_case
-from .utils import extract_sample_name, invalid_file_name
+from .utils import extract_sample_name
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -544,11 +544,9 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     samples = operation.yaml_data["samples"]
                     if not samples or operation.name.startswith("_"):
                         continue
-                    for key, value in samples.items():
-                        file_name = to_snake_case(key)
-                        if invalid_file_name(file_name):
-                            file_name = to_snake_case(extract_sample_name(value))
-                        file_name = file_name + ".py"
+                    for value in samples.values():
+                        file = value.get("x-ms-original-file", "sample.json")
+                        file_name = to_snake_case(extract_sample_name(file)) + ".py"
                         try:
                             self.write_file(
                                 out_path / file_name,
@@ -559,12 +557,11 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                                     operation=operation,
                                     sample=value,
                                     file_name=file_name,
-                                    sample_origin_name=key,
                                 ).serialize(),
                             )
                         except Exception as e:  # pylint: disable=broad-except
                             # sample generation shall not block code generation, so just log error
-                            log_error = f"error happens in sample {key}: {e}"
+                            log_error = f"error happens in sample {file}: {e}"
                             _LOGGER.error(log_error)
 
 

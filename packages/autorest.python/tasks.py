@@ -236,6 +236,7 @@ def _build_flags(
     else:
         namespace += "versiontolerant"
 
+    generate_sample = swagger_group == _SwaggerGroup.AZURE or swagger_group == _SwaggerGroup.AZURE_ARM
     flags = {
         "use": AUTOREST_DIR,
         "clear-output-folder": True,
@@ -253,7 +254,8 @@ def _build_flags(
         "namespace": namespace,
         "client-side-validation": client_side_validation,
         "black": True,
-        "generate-sample": swagger_group == _SwaggerGroup.AZURE or swagger_group == _SwaggerGroup.AZURE_ARM,
+        "generate-sample": generate_sample,
+        "include-x-ms-examples-original-file": generate_sample,
     }
     if override_flags:
         flags.update(override_flags)
