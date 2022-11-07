@@ -8,7 +8,6 @@ from pathlib import Path
 import os
 from typing import Any, Dict
 import black
-from black.mode import Mode as BlackMode  # pylint: disable=no-name-in-module
 from black.report import NothingChanged
 
 from .. import Plugin, PluginAutorest
@@ -16,7 +15,7 @@ from .._utils import parse_args
 
 logging.getLogger("blib2to3").setLevel(logging.ERROR)
 
-_BLACK_MODE = BlackMode()
+_BLACK_MODE = black.Mode()  # pyright: ignore [reportPrivateImportUsage]
 _BLACK_MODE.line_length = 120
 
 

@@ -15,7 +15,6 @@ from ..models import (
     OverloadedRequestBuilder,
     Client,
 )
-from ..models.lro_operation import LROOperationBase
 from .import_serializer import FileImportSerializer
 from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
 
@@ -67,9 +66,7 @@ class OperationGroupsSerializer:
         )
 
         pyright_not_report_unnecessary_ignore = any(
-            isinstance(op, LROOperationBase)
-            and op.lro_response
-            and op.lro_response.type
+            op.pyright_not_report_unnecessary_ignore
             for og in operation_groups
             for op in og.operations
         )

@@ -61,6 +61,10 @@ class LROOperationBase(OperationBase[LROResponseType]):
         return False
 
     @property
+    def pyright_not_report_unnecessary_ignore(self) -> bool:
+        return self.lro_response and self.lro_response.type
+
+    @property
     def lro_response(self) -> Optional[LROResponseType]:
         responses_with_bodies = [r for r in self.responses if r.type]
         num_response_schemas = {

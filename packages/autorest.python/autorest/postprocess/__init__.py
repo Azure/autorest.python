@@ -9,13 +9,12 @@ import os
 import shutil
 from venv import EnvBuilder
 import black
-from black.mode import Mode as BlackMode  # pylint: disable=no-name-in-module
 from black.report import NothingChanged
 from .venvtools import ExtendedEnvBuilder, python_run
 
 from .. import Plugin, PluginAutorest
 
-_BLACK_MODE = BlackMode()
+_BLACK_MODE = black.BlackMode()  # pyright: ignore [reportPrivateImportUsage]
 _BLACK_MODE.line_length = 120
 
 

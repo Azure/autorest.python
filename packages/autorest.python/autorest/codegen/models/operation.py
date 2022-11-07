@@ -474,6 +474,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             want_tracing=not yaml_data["isOverload"],
         )
 
+    @property
+    def pyright_not_report_unnecessary_ignore(self) -> bool:
+        return False
+
 
 class Operation(OperationBase[Response]):
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
