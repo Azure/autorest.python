@@ -341,7 +341,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("LROProduct", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         if polling is True:

@@ -14,7 +14,7 @@ from .venvtools import ExtendedEnvBuilder, python_run
 
 from .. import Plugin, PluginAutorest
 
-_BLACK_MODE = black.BlackMode()  # pyright: ignore [reportPrivateImportUsage]
+_BLACK_MODE = black.Mode()  # pyright: ignore [reportPrivateImportUsage]
 _BLACK_MODE.line_length = 120
 
 

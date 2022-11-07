@@ -327,7 +327,7 @@ class LRORetrysOperations:
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         if polling is True:
@@ -519,7 +519,7 @@ class LRORetrysOperations:
 
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         if polling is True:
@@ -624,7 +624,7 @@ class LRORetrysOperations:
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         if polling is True:
@@ -719,7 +719,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
+                return cls(pipeline_response, None, {})
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
@@ -816,7 +816,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
+                return cls(pipeline_response, None, {})
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
@@ -988,7 +988,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
+                return cls(pipeline_response, None, {})
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
@@ -1166,7 +1166,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
+                return cls(pipeline_response, None, {})
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))

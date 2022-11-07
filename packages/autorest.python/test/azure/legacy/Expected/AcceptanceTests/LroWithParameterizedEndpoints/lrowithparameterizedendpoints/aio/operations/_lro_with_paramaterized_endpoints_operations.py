@@ -128,7 +128,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         path_format_arguments = {
@@ -264,7 +264,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         path_format_arguments = {

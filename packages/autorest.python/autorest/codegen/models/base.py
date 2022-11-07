@@ -32,7 +32,7 @@ class BaseModel:
         return f"<{self.__class__.__name__}>"
 
 
-class BaseType(BaseModel, ABC):
+class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     """This is the base class for all types.
 
     :param yaml_data: the yaml data for this schema

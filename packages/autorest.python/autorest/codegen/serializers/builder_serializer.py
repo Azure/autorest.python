@@ -1487,13 +1487,18 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
             )
         retval.append("    if cls:")
         retval.append(
-            "        return cls(pipeline_response, {}, {}) # type: ignore".format(
+            "        return cls(pipeline_response, {}, {}){}".format(
                 "deserialized"
                 if builder.lro_response and builder.lro_response.type
                 else "None",
                 "response_headers"
                 if builder.lro_response and builder.lro_response.headers
                 else "{}",
+                " # type: ignore"
+                if builder.lro_response
+                and builder.lro_response.type
+                and not self.code_model.options["models_mode"]
+                else "",
             )
         )
         if builder.lro_response and builder.lro_response.type:

@@ -270,7 +270,7 @@ class DpgModelSerializer(_ModelSerializer):
         for prop in self.get_properties_to_declare(model):
             if prop.constant or prop.is_discriminator:
                 init_args.append(
-                    f"self.{prop.client_name} = {cast(ConstantType, prop.type).get_declaration()}   "
-                    f"# type: {prop.type_annotation()}"
+                    f"self.{prop.client_name}: {prop.type_annotation()} = "
+                    f"{cast(ConstantType, prop.type).get_declaration()}"
                 )
         return init_args

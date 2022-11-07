@@ -100,7 +100,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
             response = pipeline_response.http_response
             deserialized = _deserialize(str, response.json())
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         if polling is True:
