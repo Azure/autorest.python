@@ -255,7 +255,6 @@ def _build_flags(
         "client-side-validation": client_side_validation,
         "black": True,
         "generate-sample": generate_sample,
-        "include-x-ms-examples-original-file": generate_sample,
     }
     if override_flags:
         flags.update(override_flags)
