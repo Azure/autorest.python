@@ -56,6 +56,10 @@ jobs:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.10"
+        Linux_Python311:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu22.04"
+          PythonVersion: "3.11"
 
     pool:
       name: azsdk-pool-mms-ubuntu-2004-general
@@ -90,7 +94,7 @@ jobs:
 
       - script: tox -e mypy
         displayName: 'Mypy version-tolerant "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
 
       - script: tox -e ci
@@ -108,7 +112,7 @@ jobs:
 
       - script: tox -e mypy
         displayName: 'Mypy version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
 
       - script: tox -e ci
@@ -122,7 +126,7 @@ jobs:
 
       - script: tox -e mypy
         displayName: 'Mypy version-tolerant "dpg" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
 
       - script: tox -e ci
@@ -133,7 +137,7 @@ jobs:
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to storage account"
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
           - script: |
@@ -171,6 +175,10 @@ jobs:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.10"
+        Linux_Python311:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu22.04"
+          PythonVersion: "3.11"
 
     pool:
       name: azsdk-pool-mms-ubuntu-2004-general
