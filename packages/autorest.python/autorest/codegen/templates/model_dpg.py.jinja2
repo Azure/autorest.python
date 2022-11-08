@@ -9,7 +9,7 @@
     {% endif %}
     {% if model.has_readonly_or_constant_property %}
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
     {% endif %}
     {% if (model.properties | selectattr('optional', "equalto", false) | first) is defined %}
 

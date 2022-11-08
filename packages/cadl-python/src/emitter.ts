@@ -28,6 +28,7 @@ import {
     createCadlLibrary,
     getDiscriminator,
     Operation,
+    isKey,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -656,7 +657,7 @@ function emitProperty(program: Program, property: ModelProperty): Record<string,
         optional: property.optional,
         description: getDocStr(program, property),
         addedOn: getAddedOnVersion(program, property),
-        readonly: isReadOnly(program, property),
+        readonly: isReadOnly(program, property) || isKey(program, property),
         clientDefaultValue: clientDefaultValue,
     };
 }
