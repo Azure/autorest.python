@@ -431,7 +431,7 @@ function emitResponseHeaders(program: Program, headers?: Record<string, ModelPro
     }
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
-            type: emitType(program, value.type, value),
+            type: getType(program, value.type),
             restApiName: key,
         });
     }
