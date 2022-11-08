@@ -147,36 +147,6 @@ class InnerError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class TemplatedCreateOrUpdateUserRequest(_model_base.Model):
-    """TemplatedCreateOrUpdateUserRequest.
-
-    :ivar name: The user's name.
-    :vartype name: str
-    """
-
-    name: Optional[str] = rest_field()
-    """The user's name. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        name: Optional[str] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
 class User(_model_base.Model):
     """Details about a user.
 

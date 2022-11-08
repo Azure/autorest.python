@@ -72,7 +72,7 @@ class TemplatedClientOperationsMixin(TemplatedClientMixinABC):
     def create_or_update_user(
         self,
         id: int,
-        body: Union[_models.TemplatedCreateOrUpdateUserRequest, JSON],
+        body: Union[_models.User, JSON],
         *,
         api_version: str,
         content_type: str = "application/merge-patch+json",
@@ -85,7 +85,7 @@ class TemplatedClientOperationsMixin(TemplatedClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param body: Required.
-        :type body: ~bodies.templated.models.TemplatedCreateOrUpdateUserRequest or JSON
+        :type body: ~bodies.templated.models.User or JSON
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -120,12 +120,7 @@ class TemplatedClientOperationsMixin(TemplatedClientMixinABC):
 
     @distributed_trace
     def create_or_update_user(
-        self,
-        id: int,
-        body: Union[_models.TemplatedCreateOrUpdateUserRequest, JSON, IO],
-        *,
-        api_version: str,
-        **kwargs: Any
+        self, id: int, body: Union[_models.User, JSON, IO], *, api_version: str, **kwargs: Any
     ) -> _models.User:
         """Adds a user or updates a user's fields.
 
@@ -134,7 +129,7 @@ class TemplatedClientOperationsMixin(TemplatedClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param body: Is either a model type or a IO type. Required.
-        :type body: ~bodies.templated.models.TemplatedCreateOrUpdateUserRequest or JSON or IO
+        :type body: ~bodies.templated.models.User or JSON or IO
         :keyword api_version: The API version to use for this operation. Required.
         :paramtype api_version: str
         :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
