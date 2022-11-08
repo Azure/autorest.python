@@ -62,7 +62,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
 
     @property
     def pyright_not_report_unnecessary_ignore(self) -> bool:
-        return bool(self.lro_response and self.lro_response.type)
+        return not (self.lro_response and self.lro_response.type)
 
     @property
     def lro_response(self) -> Optional[LROResponseType]:
