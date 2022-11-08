@@ -1,6 +1,6 @@
 # Release History
 
-### 2022-10-XX - 6.2.1
+### 2022-11-07 - 6.2.6
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -10,6 +10,90 @@
 | `isodate` dep of generated code                                         | `0.6.1`     |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
+
+**Bug Fixes**
+
+- Fix clients with enum params  #1558
+
+### 2022-11-04 - 6.2.5
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
+
+**Bug Fixes**
+
+- Don't continue paging empty next links  #1557
+- Fix deserialization of msrest models containing private models  #1556
+
+### 2022-11-03 - 6.2.4
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
+
+**Bug Fixes**
+
+- Handle complex string for generated sample  #1546
+- Allow `api-version` to be a path parameter #1551
+
+### 2022-10-31 - 6.2.3
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
+
+**Other Changes**
+
+- Install `typing-extensions` instead of `typing_extensions` #1538
+- Pad special characters in names #1535
+
+### 2022-10-26 - 6.2.2
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
+
+**Bug Fixes**
+
+- Make special `api-version` logic more generic to allow for path parameters  #1537
+
+### 2022-10-25 - 6.2.1
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -18,6 +102,7 @@
 **Other Changes**
 
 - Type constant properties as Literals #1464
+- Deserialize complex schema response for cadl generated operation #1520
 
 ### 2022-10-19 - 6.2.0
 

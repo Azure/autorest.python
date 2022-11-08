@@ -74,9 +74,8 @@ class GeneralSerializer:
         template = self.env.get_template("pkgutil_init.py.jinja2")
         return template.render()
 
-    def serialize_init_file(self) -> str:
+    def serialize_init_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("init.py.jinja2")
-        clients = [c for c in self.code_model.clients if c.request_builders]
         return template.render(
             code_model=self.code_model,
             clients=clients,
@@ -88,7 +87,7 @@ class GeneralSerializer:
         template = self.env.get_template("client_container.py.jinja2")
 
         imports = FileImport()
-        for client in self.code_model.clients:
+        for client in clients:
             imports.merge(client.imports(self.async_mode))
 
         return template.render(

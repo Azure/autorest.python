@@ -280,35 +280,6 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return updated_type
 
 
-def update_parameter_base(
-    yaml_data: Dict[str, Any], *, override_client_name: Optional[str] = None
-) -> Dict[str, Any]:
-    location = yaml_data["protocol"].get("http", {}).get("in")
-    if not location:
-        location = "other"
-    if location == "uri":
-        location = "endpointPath"
-    grouped_by = (
-        yaml_data["groupedBy"]["language"]["default"]["name"]
-        if yaml_data.get("groupedBy")
-        else None
-    )
-    client_name: str = override_client_name or yaml_data["language"]["default"]["name"]
-    if grouped_by and client_name[0] != "_":
-        # this is an m4 bug, doesn't hide constant grouped params, patching m4 for now
-        client_name = "_" + client_name
-    return {
-        "optional": not yaml_data.get("required", False),
-        "description": yaml_data["language"]["default"]["description"],
-        "clientName": client_name,
-        "restApiName": yaml_data["language"]["default"].get("serializedName"),
-        "clientDefaultValue": yaml_data.get("clientDefaultValue"),
-        "location": location,
-        "groupedBy": grouped_by,
-        "checkClientInput": yaml_data.get("checkClientInput", False),
-    }
-
-
 def update_parameter_delimiter(style: Optional[str]) -> Optional[str]:
     if not style:
         return None
@@ -457,6 +428,45 @@ class M4Reformatter(
             self._autorestapi.get_boolean_value("default-optional-constants-to-none")
             or self.version_tolerant
         )
+
+    def update_parameter_base(
+        self, yaml_data: Dict[str, Any], *, override_client_name: Optional[str] = None
+    ) -> Dict[str, Any]:
+        location = yaml_data["protocol"].get("http", {}).get("in")
+        if not location:
+            location = "other"
+        if location == "uri":
+            location = "endpointPath"
+        grouped_by = (
+            yaml_data["groupedBy"]["language"]["default"]["name"]
+            if yaml_data.get("groupedBy")
+            else None
+        )
+        client_name: str = (
+            override_client_name or yaml_data["language"]["default"]["name"]
+        )
+        if grouped_by and client_name[0] != "_":
+            # this is an m4 bug, doesn't hide constant grouped params, patching m4 for now
+            client_name = "_" + client_name
+        if yaml_data.get("origin") == "modelerfour:synthesized/api-version":
+            yaml_data["inDocstring"] = False
+            if self.legacy:
+                yaml_data["implementation"] = "Method"
+                yaml_data["checkClientInput"] = self.check_client_input
+            yaml_data["isApiVersion"] = True
+        return {
+            "optional": not yaml_data.get("required", False),
+            "description": yaml_data["language"]["default"]["description"],
+            "clientName": client_name,
+            "restApiName": yaml_data["language"]["default"].get("serializedName"),
+            "clientDefaultValue": yaml_data.get("clientDefaultValue"),
+            "location": location,
+            "groupedBy": grouped_by,
+            "checkClientInput": yaml_data.get("checkClientInput", False),
+            "inDocstring": yaml_data.get("inDocstring", True),
+            "isApiVersion": yaml_data.get("isApiVersion", False),
+            "implementation": yaml_data.get("implementation"),
+        }
 
     def update_overloads(
         self,
@@ -646,7 +656,7 @@ class M4Reformatter(
     ) -> Dict[str, Any]:
         flattened = body_param.get("flattened")
         is_partial_body = body_param.get("isPartialBody")
-        param_base = update_parameter_base(body_param)
+        param_base = self.update_parameter_base(body_param)
         body_param = copy.deepcopy(param_base)
         body_param["type"] = body_type
         body_param["contentTypes"] = content_types or [
@@ -811,11 +821,6 @@ class M4Reformatter(
             ):
                 continue
             seen_client_names.add(client_name)
-            if param.get("origin") == "modelerfour:synthesized/api-version":
-                param["inDocstring"] = False
-                if self.legacy:
-                    param["implementation"] = "Method"
-                    param["checkClientInput"] = self.check_client_input
             if has_flattened_body and param.get("targetProperty"):
                 retval.append(self.update_flattened_parameter(param, body_parameter))
                 continue
@@ -910,7 +915,7 @@ class M4Reformatter(
         in_overload: bool = False,
         in_overriden: bool = False,
     ) -> Dict[str, Any]:
-        param_base = update_parameter_base(
+        param_base = self.update_parameter_base(
             yaml_data, override_client_name=override_client_name
         )
         type = get_type(yaml_data["schema"])
@@ -948,13 +953,17 @@ class M4Reformatter(
 
                 client_name = "base_url" if self.legacy else "endpoint"
                 global_parameter["language"]["default"]["description"] = "Service URL."
-            elif name == "api_version":
+            elif (
+                global_parameter.get("origin") == "modelerfour:synthesized/api-version"
+            ):
                 self.check_client_input = True
-            global_params.append(
-                self.update_parameter(
-                    global_parameter, override_client_name=client_name
-                )
+            param = self.update_parameter(
+                global_parameter, override_client_name=client_name
             )
+            if global_parameter.get("origin") == "modelerfour:synthesized/api-version":
+                param["implementation"] = "Client"
+                param["checkClientInput"] = False
+            global_params.append(param)
         return global_params
 
     def get_token_credential(self, credential_scopes: List[str]) -> Dict[str, Any]:
@@ -1109,6 +1118,7 @@ class M4Reformatter(
                     continue
                 update_type(t)
         yaml_data["namespace"] = namespace
+        yaml_data["subnamespaceToClients"] = {}
         yaml_data["clients"] = [self.update_client(yaml_data)]
         yaml_data["clients"][0]["operationGroups"] = [
             self.update_operation_group(og) for og in yaml_data["operationGroups"]

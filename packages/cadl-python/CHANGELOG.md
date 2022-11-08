@@ -1,13 +1,40 @@
 # Release History
 
-# Release History
+## 2022-11-04 - 0.4.6
 
-## 2022-10-xx - 0.4.2
+**Bug Fixes**
+
+- Bump python generator to 6.2.5
+
+## 2022-11-04 - 0.4.5
+
+**Bug Fixes**
+
+- Don't continue paging empty next links  #1557
+
+## 2022-10-31 - 0.4.4
+
+**Bug Fixes**
+
+- Don't force users to manually install `@azure-tools/cadl-dpg`  #1549
+
+## 2022-10-26 - 0.4.3
+
+**Bug Fixes**
+
+- Make special `api-version` logic more generic to allow for path parameters  #1537
+
+
+## 2022-10-25 - 0.4.2
 
 **Bug Fixes**
 
 - Add defaults for some config flags  #1524
 - Allow users to specify a subnamespace for their client in the client name  #1529
+
+**Other Changes**
+
+- Generate operations with the `@convenienceAPI` decorator as hidden operations so users can customize them #1533
 
 ## 2022-10-19 - 0.4.1
 

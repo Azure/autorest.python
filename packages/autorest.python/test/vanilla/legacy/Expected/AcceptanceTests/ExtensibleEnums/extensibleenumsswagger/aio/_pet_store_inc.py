@@ -12,7 +12,7 @@ from typing import Any, Awaitable
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .. import models
+from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import PetStoreIncConfiguration
 from .operations import PetOperations
@@ -33,7 +33,7 @@ class PetStoreInc:  # pylint: disable=client-accepts-api-version-keyword
         self._config = PetStoreIncConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

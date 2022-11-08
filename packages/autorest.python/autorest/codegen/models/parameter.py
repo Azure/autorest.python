@@ -86,6 +86,7 @@ class _ParameterBase(
         self.grouper: bool = self.yaml_data.get("grouper", False)
         self.check_client_input: bool = self.yaml_data.get("checkClientInput", False)
         self.added_on: Optional[str] = self.yaml_data.get("addedOn")
+        self.is_api_version: bool = self.yaml_data.get("isApiVersion", False)
 
     @property
     def constant(self) -> bool:
@@ -93,7 +94,9 @@ class _ParameterBase(
         Checking to see if it's required, because if not, we don't consider it
         a constant because it can have a value of None.
         """
-        return not self.optional and isinstance(self.type, ConstantType)
+        return (not self.optional or self.is_api_version) and isinstance(
+            self.type, ConstantType
+        )
 
     @property
     def description(self) -> str:

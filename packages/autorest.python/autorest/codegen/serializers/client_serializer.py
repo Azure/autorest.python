@@ -116,15 +116,28 @@ class ClientSerializer:
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
-        if self.client.code_model.model_types:
-            client_models_value = (
-                "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
-            )
-        else:
-            client_models_value = "{}  # type: Dict[str, Any]"
+
+        def _get_client_models_value(models_dict_name: str) -> str:
+            if self.client.code_model.model_types:
+                return f"{{k: v for k, v in {models_dict_name}.__dict__.items() if isinstance(v, type)}}"
+            return "{}  # type: Dict[str, Any]"
+
         is_msrest_model = self.client.code_model.options["models_mode"] == "msrest"
         if is_msrest_model:
-            retval.append(f"client_models = {client_models_value}")
+            add_private_models = len(self.client.code_model.model_types) != len(
+                self.client.code_model.public_model_types
+            )
+            model_dict_name = (
+                f"_models.{self.client.code_model.models_filename}"
+                if add_private_models
+                else "_models"
+            )
+            retval.append(
+                f"client_models = {_get_client_models_value(model_dict_name)}"
+            )
+            if add_private_models and self.client.code_model.model_types:
+                update_dict = f"{{k: v for k, v in _models.__dict__.items() if isinstance(v, type)}}"
+                retval.append(f"client_models.update({update_dict})")
         client_models_str = "client_models" if is_msrest_model else ""
         retval.append(f"self._serialize = Serializer({client_models_str})")
         retval.append(f"self._deserialize = Deserializer({client_models_str})")

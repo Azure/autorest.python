@@ -69,7 +69,7 @@ class ImportModel:
         except AttributeError:
             return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         retval: int = 0
         for attr in dir(self):
             if attr[0] != "_":
@@ -88,7 +88,7 @@ class TypeDefinition:
 
 
 class FileImport:
-    def __init__(self, imports: List[ImportModel] = None) -> None:
+    def __init__(self, imports: Optional[List[ImportModel]] = None) -> None:
         self.imports = imports or []
         # has sync and async type definitions
         self.type_definitions: Dict[str, TypeDefinition] = {}

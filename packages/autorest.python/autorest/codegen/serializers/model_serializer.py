@@ -195,7 +195,10 @@ class MsrestModelSerializer(_ModelSerializer):
             xml_metadata = f", 'xml': {{{prop.type.xml_serialization_ctxt}}}"
         else:
             xml_metadata = ""
-        return f'"{prop.client_name}": {{"key": "{attribute_key}", "type": "{prop.serialization_type}"{xml_metadata}}},'
+        return (
+            f'"{prop.client_name}": {{"key": "{attribute_key}",'
+            f' "type": "{prop.msrest_deserialization_key}"{xml_metadata}}},'
+        )
 
 
 class DpgModelSerializer(_ModelSerializer):
@@ -248,10 +251,9 @@ class DpgModelSerializer(_ModelSerializer):
 
     @staticmethod
     def declare_property(prop: Property) -> List[str]:
-        attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
         args = []
-        if prop.client_name != attribute_key or prop.is_discriminator:
-            args.append(f'name="{attribute_key}"')
+        if prop.client_name != prop.rest_api_name or prop.is_discriminator:
+            args.append(f'name="{prop.rest_api_name}"')
         if prop.readonly:
             args.append("readonly=True")
         if prop.client_default_value is not None:
