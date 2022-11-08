@@ -65,11 +65,6 @@ class OperationGroupsSerializer:
             "operation_groups_container.py.jinja2"
         )
 
-        pyright_not_report_unnecessary_ignore = any(
-            op.pyright_not_report_unnecessary_ignore
-            for og in operation_groups
-            for op in og.operations
-        )
         return template.render(
             code_model=self.code_model,
             operation_groups=operation_groups,
@@ -88,5 +83,4 @@ class OperationGroupsSerializer:
                 async_mode=False,
             ),
             get_request_builders=self._get_request_builders,
-            pyright_not_report_unnecessary_ignore=pyright_not_report_unnecessary_ignore,
         )
