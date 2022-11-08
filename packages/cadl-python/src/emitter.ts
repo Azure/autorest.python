@@ -28,6 +28,7 @@ import {
     createCadlLibrary,
     getDiscriminator,
     Operation,
+    isKey,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -49,6 +50,7 @@ import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import { Client, listClients, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import { getResourceOperation } from "@cadl-lang/rest";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -303,21 +305,13 @@ function emitBodyParameter(
         throw Error("Currently only one kind of content-type!");
     }
     let type;
-    if (params.bodyParameter) {
+    const resourceOperation = getResourceOperation(program, operation);
+    if (resourceOperation) {
+        type = getType(program, resourceOperation.resourceType);
+    } else if (params.bodyParameter) {
         type = getType(program, params.bodyParameter.type, params.bodyParameter);
     } else {
         type = getType(program, bodyType);
-    }
-
-    const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
-    // avoid anonymous model type
-    if (type && type.type === "model" && !type.name) {
-        type.name =
-            httpOperation.container.name +
-            httpOperation.operation.name[0].toUpperCase() +
-            httpOperation.operation.name.slice(1) +
-            "Request";
-        type.snakeCaseName = camelToSnakeCase(type.name);
     }
 
     return {
@@ -647,7 +641,7 @@ function emitProperty(program: Program, property: ModelProperty): Record<string,
         optional: property.optional,
         description: getDocStr(program, property),
         addedOn: getAddedOnVersion(program, property),
-        readonly: isReadOnly(program, property),
+        readonly: isReadOnly(program, property) || isKey(program, property),
         clientDefaultValue: clientDefaultValue,
     };
 }

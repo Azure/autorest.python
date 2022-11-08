@@ -202,6 +202,8 @@ class Input(_model_base.Model):
 class Product(_model_base.Model):
     """Product resource.
 
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to Azure.
 
     :ivar key: key of product. Required.
@@ -210,7 +212,7 @@ class Product(_model_base.Model):
     :vartype received: str or ~resiliency.devdriven.models.Mode
     """
 
-    key: str = rest_field()
+    key: str = rest_field(readonly=True)
     """key of product. Required. """
     received: Union[str, "_models.Mode"] = rest_field()
     """received mode. Required. Known values are: \"raw\" and \"model\"."""
@@ -219,7 +221,6 @@ class Product(_model_base.Model):
     def __init__(
         self,
         *,
-        key: str,
         received: Union[str, "_models.Mode"],
     ):
         ...
@@ -239,6 +240,8 @@ class Product(_model_base.Model):
 class LROProduct(Product):
     """Final response from LRO call.
 
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to Azure.
 
     :ivar key: key of product. Required.
@@ -256,7 +259,6 @@ class LROProduct(Product):
     def __init__(
         self,
         *,
-        key: str,
         received: Union[str, "_models.Mode"],
         provisioning_state: str,
     ):

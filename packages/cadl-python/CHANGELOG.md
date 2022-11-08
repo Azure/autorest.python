@@ -1,9 +1,10 @@
 # Release History
 
-## 2022-11-04 - 0.4.7
+## 2022-11-08 - 0.4.7
 
 **Other Changes**
 
+- Make @key properties readonly  #1554
 - Do not generate operations with the `@convenienceAPI` decorator as hidden operations #1564
 
 ## 2022-11-04 - 0.4.6
