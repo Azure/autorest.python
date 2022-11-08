@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-11-04 - 0.4.7
+
+**Other Changes**
+
+- Do not generate operations with the `@convenienceAPI` decorator as hidden operations #1564
+
 ## 2022-11-04 - 0.4.6
 
 **Bug Fixes**
