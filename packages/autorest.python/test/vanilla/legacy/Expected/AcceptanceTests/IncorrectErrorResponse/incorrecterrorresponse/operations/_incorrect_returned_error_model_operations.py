@@ -21,7 +21,6 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import IncorrectReturnedErrorModelMixinABC, _convert_request
 

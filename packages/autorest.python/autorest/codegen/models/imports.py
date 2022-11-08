@@ -69,7 +69,7 @@ class ImportModel:
         except AttributeError:
             return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         retval: int = 0
         for attr in dir(self):
             if attr[0] != "_":
