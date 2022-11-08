@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_int32_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_int32_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -55,7 +55,7 @@ def build_int32_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_int32_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -69,7 +69,7 @@ def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_int64_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_int64_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -83,7 +83,7 @@ def build_int64_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_int64_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -97,7 +97,7 @@ def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_boolean_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_boolean_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -111,7 +111,7 @@ def build_boolean_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_boolean_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -125,7 +125,7 @@ def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_string_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -139,7 +139,7 @@ def build_string_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_string_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -153,7 +153,7 @@ def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_float32_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_float32_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -167,7 +167,7 @@ def build_float32_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_float32_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -181,7 +181,7 @@ def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_datetime_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -195,7 +195,7 @@ def build_datetime_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_datetime_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -209,7 +209,7 @@ def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_duration_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -223,7 +223,7 @@ def build_duration_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_duration_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -237,7 +237,7 @@ def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_unknown_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_unknown_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -251,7 +251,7 @@ def build_unknown_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_unknown_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -265,7 +265,7 @@ def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_model_value__get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -279,7 +279,7 @@ def build_model_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_model_value__put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -311,8 +311,8 @@ class Int32ValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[int]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[int]:
+        """_get.
 
         :return: list of int
         :rtype: list[int]
@@ -331,7 +331,7 @@ class Int32ValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
 
-        request = build_int32_value_get_request(
+        request = build_int32_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -355,10 +355,10 @@ class Int32ValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[int]
@@ -371,10 +371,10 @@ class Int32ValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -387,8 +387,8 @@ class Int32ValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    def _put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[int] or IO
@@ -420,7 +420,7 @@ class Int32ValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_int32_value_put_request(
+        request = build_int32_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -460,8 +460,8 @@ class Int64ValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[int]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[int]:
+        """_get.
 
         :return: list of int
         :rtype: list[int]
@@ -480,7 +480,7 @@ class Int64ValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
 
-        request = build_int64_value_get_request(
+        request = build_int64_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -504,10 +504,10 @@ class Int64ValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[int]
@@ -520,10 +520,10 @@ class Int64ValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -536,8 +536,8 @@ class Int64ValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    def _put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[int] or IO
@@ -569,7 +569,7 @@ class Int64ValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_int64_value_put_request(
+        request = build_int64_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -609,8 +609,8 @@ class BooleanValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[bool]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[bool]:
+        """_get.
 
         :return: list of bool
         :rtype: list[bool]
@@ -629,7 +629,7 @@ class BooleanValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
 
-        request = build_boolean_value_get_request(
+        request = build_boolean_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -653,10 +653,10 @@ class BooleanValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[bool]
@@ -669,10 +669,10 @@ class BooleanValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -685,8 +685,10 @@ class BooleanValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[bool], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    def _put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[List[bool], IO], **kwargs: Any
+    ) -> None:
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[bool] or IO
@@ -718,7 +720,7 @@ class BooleanValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_boolean_value_put_request(
+        request = build_boolean_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -758,8 +760,8 @@ class StringValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[str]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[str]:
+        """_get.
 
         :return: list of str
         :rtype: list[str]
@@ -778,7 +780,7 @@ class StringValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
 
-        request = build_string_value_get_request(
+        request = build_string_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -802,10 +804,10 @@ class StringValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[str]
@@ -818,10 +820,10 @@ class StringValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -834,8 +836,8 @@ class StringValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[str], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    def _put(self, body: Union[List[str], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[str] or IO
@@ -867,7 +869,7 @@ class StringValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_string_value_put_request(
+        request = build_string_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -907,8 +909,8 @@ class Float32ValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[float]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[float]:
+        """_get.
 
         :return: list of float
         :rtype: list[float]
@@ -927,7 +929,7 @@ class Float32ValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
 
-        request = build_float32_value_get_request(
+        request = build_float32_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -951,10 +953,10 @@ class Float32ValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[float]
@@ -967,10 +969,10 @@ class Float32ValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -983,10 +985,10 @@ class Float32ValueOperations:
         """
 
     @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[List[float], IO], **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[float] or IO
@@ -1018,7 +1020,7 @@ class Float32ValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_float32_value_put_request(
+        request = build_float32_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1058,8 +1060,8 @@ class DatetimeValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[datetime.datetime]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[datetime.datetime]:
+        """_get.
 
         :return: list of datetime
         :rtype: list[~datetime.datetime]
@@ -1078,7 +1080,7 @@ class DatetimeValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
 
-        request = build_datetime_value_get_request(
+        request = build_datetime_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -1102,10 +1104,10 @@ class DatetimeValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[~datetime.datetime]
@@ -1118,10 +1120,10 @@ class DatetimeValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -1134,10 +1136,10 @@ class DatetimeValueOperations:
         """
 
     @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[List[datetime.datetime], IO], **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[~datetime.datetime] or IO
@@ -1169,7 +1171,7 @@ class DatetimeValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_datetime_value_put_request(
+        request = build_datetime_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1209,8 +1211,8 @@ class DurationValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[datetime.timedelta]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[datetime.timedelta]:
+        """_get.
 
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
@@ -1229,7 +1231,7 @@ class DurationValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.timedelta]]
 
-        request = build_duration_value_get_request(
+        request = build_duration_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -1253,10 +1255,10 @@ class DurationValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[~datetime.timedelta]
@@ -1269,10 +1271,10 @@ class DurationValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -1285,10 +1287,10 @@ class DurationValueOperations:
         """
 
     @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[List[datetime.timedelta], IO], **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[~datetime.timedelta] or IO
@@ -1320,7 +1322,7 @@ class DurationValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_duration_value_put_request(
+        request = build_duration_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1360,8 +1362,8 @@ class UnknownValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[Any]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[Any]:
+        """_get.
 
         :return: list of any
         :rtype: list[any]
@@ -1380,7 +1382,7 @@ class UnknownValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
 
-        request = build_unknown_value_get_request(
+        request = build_unknown_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -1404,10 +1406,10 @@ class UnknownValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[Any], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[any]
@@ -1420,10 +1422,10 @@ class UnknownValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -1436,8 +1438,8 @@ class UnknownValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[Any], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """put.
+    def _put(self, body: Union[List[Any], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[any] or IO
@@ -1469,7 +1471,7 @@ class UnknownValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_unknown_value_put_request(
+        request = build_unknown_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1509,8 +1511,8 @@ class ModelValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[_models.InnerModel]:
-        """get.
+    def _get(self, **kwargs: Any) -> List[_models.InnerModel]:
+        """_get.
 
         :return: list of InnerModel
         :rtype: list[~arrays.itemtypes.models.InnerModel]
@@ -1529,7 +1531,7 @@ class ModelValueOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.InnerModel]]
 
-        request = build_model_value_get_request(
+        request = build_model_value__get_request(
             headers=_headers,
             params=_params,
         )
@@ -1553,10 +1555,10 @@ class ModelValueOperations:
         return deserialized
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: list[~arrays.itemtypes.models.InnerModel]
@@ -1569,10 +1571,10 @@ class ModelValueOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Required.
         :type body: IO
@@ -1585,10 +1587,10 @@ class ModelValueOperations:
         """
 
     @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
+    def _put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[List[_models.InnerModel], IO], **kwargs: Any
     ) -> None:
-        """put.
+        """_put.
 
         :param body: Is either a list type or a IO type. Required.
         :type body: list[~arrays.itemtypes.models.InnerModel] or IO
@@ -1620,7 +1622,7 @@ class ModelValueOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)
 
-        request = build_model_value_put_request(
+        request = build_model_value__put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
