@@ -14,7 +14,6 @@ from typing import (
     Generic,
     TypeVar,
     cast,
-    no_type_check,
 )
 
 from .request_builder_parameter import RequestBuilderParameter
@@ -509,16 +508,15 @@ class Operation(OperationBase[Response]):
         return file_import
 
 
-@no_type_check
 def get_operation(
     yaml_data: Dict[str, Any], code_model: "CodeModel", client: "Client"
 ) -> OperationBase:
     if yaml_data["discriminator"] == "lropaging":
         from .lro_paging_operation import LROPagingOperation as OperationCls
     elif yaml_data["discriminator"] == "lro":
-        from .lro_operation import LROOperation as OperationCls
+        from .lro_operation import LROOperation as OperationCls  # type: ignore
     elif yaml_data["discriminator"] == "paging":
-        from .paging_operation import PagingOperation as OperationCls
+        from .paging_operation import PagingOperation as OperationCls  # type: ignore
     else:
-        from . import Operation as OperationCls
+        from . import Operation as OperationCls  # type: ignore
     return OperationCls.from_yaml(yaml_data, code_model, client)
