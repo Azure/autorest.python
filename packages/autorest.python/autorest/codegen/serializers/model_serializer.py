@@ -195,7 +195,10 @@ class MsrestModelSerializer(_ModelSerializer):
             xml_metadata = f", 'xml': {{{prop.type.xml_serialization_ctxt}}}"
         else:
             xml_metadata = ""
-        return f'"{prop.client_name}": {{"key": "{attribute_key}", "type": "{prop.serialization_type}"{xml_metadata}}},'
+        return (
+            f'"{prop.client_name}": {{"key": "{attribute_key}",'
+            f' "type": "{prop.msrest_deserialization_key}"{xml_metadata}}},'
+        )
 
 
 class DpgModelSerializer(_ModelSerializer):

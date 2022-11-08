@@ -1,10 +1,22 @@
 # Release History
 
-## 2022-xx-xx - 0.x.x
+## 2022-11-xx - 0.4.7
 
 **Other Changes**
 
 - Make @key properties readonly  #1554
+
+## 2022-11-04 - 0.4.6
+
+**Bug Fixes**
+
+- Bump python generator to 6.2.5
+
+## 2022-11-04 - 0.4.5
+
+**Bug Fixes**
+
+- Don't continue paging empty next links  #1557
 
 ## 2022-10-31 - 0.4.4
 

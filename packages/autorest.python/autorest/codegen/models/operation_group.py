@@ -48,11 +48,16 @@ class OperationGroup(BaseModel):
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
+        relative_path = ".." if async_mode else "."
         for operation in self.operations:
             file_import.merge(
-                operation.imports_for_multiapi(
-                    async_mode, relative_path=".." if async_mode else "."
-                )
+                operation.imports_for_multiapi(async_mode, relative_path=relative_path)
+            )
+        if (
+            self.code_model.model_types or self.code_model.enums
+        ) and self.code_model.options["models_mode"] == "msrest":
+            file_import.add_submodule_import(
+                relative_path, "models", ImportType.LOCAL, alias="_models"
             )
         return file_import
 
@@ -84,8 +89,10 @@ class OperationGroup(BaseModel):
             )
         # for multiapi
         if (
-            self.code_model.model_types or self.code_model.enums
-        ) and self.code_model.options["models_mode"] == "msrest":
+            (self.code_model.public_model_types)
+            and self.code_model.options["models_mode"] == "msrest"
+            and not self.is_mixin
+        ):
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )

@@ -41,7 +41,7 @@ class CombinedType(BaseType):
         If list: '[str]'
         If dict: '{str}'
         """
-        ...
+        raise ValueError("Shouldn't get serialization type of a combinedtype")
 
     @property
     def client_default_value(self) -> Any:
