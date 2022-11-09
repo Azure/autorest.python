@@ -21,7 +21,7 @@ async def client():
     ("bytes", "aGVsbG8sIHdvcmxkIQ=="),
     ("int", 42),
     ("float", 42.42),
-    ("datetime", "2022-08-26T18:38:00.000Z"),
+    ("datetime", "2022-08-26T18:38:00Z"),
     ("duration", "P123DT22H14M12.011S"),
     ("enum", "ValueOne"),
     ("extensible_enum", "UnknownValue"),
@@ -65,7 +65,7 @@ async def test_model(client, og_name, model, val):
 @pytest.mark.asyncio
 async def test_datetime_model(client):
     received_body = await client.datetime.get()
-    assert received_body == {"property": '2022-08-26T18:38:00.000Z'}
+    assert received_body == {"property": '2022-08-26T18:38:00Z'}
     assert received_body.property.year == 2022
     assert received_body.property.month == 8
     assert received_body.property.day == 26
