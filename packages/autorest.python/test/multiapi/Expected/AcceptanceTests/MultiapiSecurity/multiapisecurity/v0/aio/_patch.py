@@ -6,11 +6,7 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import List
+from typing import List
 
 __all__: List[str] = []  # Add all objects you want publicly available to users at this package level
 
