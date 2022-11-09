@@ -16,7 +16,7 @@ async def client():
 "og_name,val", [
     ("string", "hello"),
     ("bytes", "aGVsbG8sIHdvcmxkIQ=="),
-    ("datetime", "2022-08-26T18:38:00.000Z"),
+    ("datetime", "2022-08-26T18:38:00Z"),
     ("duration", "P123DT22H14M12.011S"),
     ("collections_byte", ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]),
     ("collections_model", [{'property': 'hello'}, {'property': 'world'}]),
@@ -35,7 +35,7 @@ async def test_json(client, og_name, val):
 "og_name,model,val", [
     ("string", models.StringProperty, "hello"),
     ("bytes", models.BytesProperty, "aGVsbG8sIHdvcmxkIQ=="),
-    ("datetime", models.DatetimeProperty, "2022-08-26T18:38:00.000Z"),
+    ("datetime", models.DatetimeProperty, "2022-08-26T18:38:00Z"),
     ("duration", models.DurationProperty, "P123DT22H14M12.011S"),
     ("collections_byte", models.CollectionsByteProperty, ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]),
     ("collections_model", models.CollectionsModelProperty, [models.StringProperty(property="hello"), models.StringProperty(property="world")]),

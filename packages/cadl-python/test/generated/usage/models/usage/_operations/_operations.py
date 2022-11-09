@@ -46,7 +46,7 @@ def build_usage_input_request(**kwargs: Any) -> HttpRequest:
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
-    _url = "/models/usages/input"
+    _url = "/models/usage/input"
 
     # Construct headers
     if content_type is not None:
@@ -61,7 +61,7 @@ def build_usage_output_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/models/usages/output"
+    _url = "/models/usage/output"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -76,7 +76,7 @@ def build_usage_input_and_output_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/models/usages/input-output"
+    _url = "/models/usage/input-output"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
