@@ -645,9 +645,6 @@ class _OperationSerializer(
             kwargs[-1] += " # pylint: disable=protected-access"
         return kwargs
 
-    def cls_type_annotation(self, builder: OperationType) -> str:
-        return f"# type: {builder.cls_type_annotation(async_mode=self.async_mode)}"
-
     def response_docstring(self, builder: OperationType) -> List[str]:
         response_str = (
             f":return: {builder.response_docstring_text(async_mode=self.async_mode)}"

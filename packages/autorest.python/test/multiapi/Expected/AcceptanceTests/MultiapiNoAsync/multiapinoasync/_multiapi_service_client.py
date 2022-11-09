@@ -67,9 +67,9 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def __init__(
         self,
         credential: "TokenCredential",
-        api_version=None, # type: Optional[str]
+        api_version: Optional[str]=None,
         base_url: str = "http://localhost:3000",
-        profile=KnownProfiles.default, # type: KnownProfiles
+        profile: KnownProfiles=KnownProfiles.default,
         **kwargs: Any
     ):
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
