@@ -27,7 +27,7 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 class OutputModel(_model_base.Model):
     """Output model with readonly properties.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -116,7 +116,7 @@ class ReadonlyModel(_model_base.Model):
 class RoundTripModel(_model_base.Model):
     """Round-trip model with readonly properties.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
