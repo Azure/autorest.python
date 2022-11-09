@@ -31,7 +31,6 @@
 **Bug Fixes**
 
 - Fix clients with enum params  #1558
-- Optimize rule about name of generated sample files to avoid too long path  #1540
 
 ### 2022-11-04 - 6.2.5
 
