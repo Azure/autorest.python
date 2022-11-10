@@ -217,6 +217,7 @@ function getType(
     type: Type | CredentialType,
     modelTypeProperty: ModelProperty | undefined = undefined,
 ): any {
+    if (type.kind === "Model" && isAzureCoreErrorType(type)) return { type: "any" };
     // don't cache simple type(string, int, etc) since decorators may change the result
     const enableCache = !isSimpleType(program, modelTypeProperty);
     if (enableCache) {
@@ -432,13 +433,22 @@ function emitResponseHeaders(program: Program, headers?: Record<string, ModelPro
     return retval;
 }
 
+function isAzureCoreErrorType(t?: Type): boolean {
+    if (t?.kind !== "Model" || !["Error", "ErrorResponse", "InnerError"].includes(t.name)) return false;
+    const namespaces = ".Azure.Core.Foundations".split(".");
+    while (namespaces.length > 0 && (t?.kind== "Model" || t?.kind=="Namespace") && t.namespace?.name == namespaces.pop()) {
+        t = t.namespace;
+    }
+    return namespaces.length == 0
+}
+
 function emitResponse(
     program: Program,
     response: HttpOperationResponse,
     innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
     let type = undefined;
-    if (innerResponse.body?.type) {
+    if (innerResponse.body?.type && !isAzureCoreErrorType(innerResponse.body?.type)) {
         // temporary logic. It can be removed after compiler optimize the response
         const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
         const originType = innerResponse.body.type as Model;
