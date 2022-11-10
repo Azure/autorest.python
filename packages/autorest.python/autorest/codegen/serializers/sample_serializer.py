@@ -29,7 +29,6 @@ class SampleSerializer:
         operation: OperationBase[Any],
         sample: Dict[str, Any],
         file_name: str,
-        sample_origin_name: str,
     ) -> None:
         self.code_model = code_model
         self.env = env
@@ -37,7 +36,6 @@ class SampleSerializer:
         self.operation = operation
         self.sample = sample
         self.file_name = file_name
-        self.sample_origin_name = sample_origin_name
 
     def _imports(self) -> FileImportSerializer:
         imports = FileImport()
@@ -110,14 +108,14 @@ class SampleSerializer:
             for p in self.operation.parameters.positional
             if not p.client_default_value
         ]
-        failure_info = "fail to find required param named {} in example file {}"
+        failure_info = "fail to find required param named {}"
         operation_params = {}
         for param in params_positional:
             name = param.rest_api_name
             param_value = self.sample["parameters"].get(name)
             if not param.optional:
                 if not param_value:
-                    raise Exception(failure_info.format(name, self.sample_origin_name))
+                    raise Exception(failure_info.format(name))
                 operation_params[param.client_name] = self.handle_param(
                     param, param_value
                 )
@@ -144,8 +142,10 @@ class SampleSerializer:
         return f".{self.operation.name}"
 
     def _origin_file(self) -> str:
-        name = self.sample.get("x-ms-original-file", "").split("specification")[-1]
-        return "specification" + name if name else name
+        name = self.sample.get("x-ms-original-file", "")
+        if "specification" in name:
+            return "specification" + name.split("specification")[-1]
+        return ""
 
     def serialize(self) -> str:
         return self.env.get_template("sample.py.jinja2").render(
