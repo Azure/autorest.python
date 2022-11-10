@@ -102,10 +102,8 @@ def _upload_files_deserialize(pipeline_response, **kwargs):
 class FormdataOperations(_FormdataOperations):
     def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs) -> PipelineResponse:
         kwargs.pop("cls", None)
-        request.url = self._client.format_url(request.url)  # type: ignore
-        return self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=stream, **kwargs
-        )
+        request.url = self._client.format_url(request.url)
+        return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace
     def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> Iterator[bytes]:

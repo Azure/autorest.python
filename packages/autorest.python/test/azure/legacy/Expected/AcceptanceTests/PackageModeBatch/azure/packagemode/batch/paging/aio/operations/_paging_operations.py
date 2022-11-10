@@ -99,7 +99,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResultValue]
+        cls: ClsType[_models.ProductResultValue] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -118,7 +118,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -134,7 +134,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -142,13 +142,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResultValue", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -161,7 +161,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_no_item_name_pages.metadata = {"url": "/paging/noitemname"}  # type: ignore
+    get_no_item_name_pages.metadata = {"url": "/paging/noitemname"}
 
     @distributed_trace
     def get_empty_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -175,7 +175,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResultValue]
+        cls: ClsType[_models.ProductResultValue] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -194,7 +194,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -210,7 +210,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -218,13 +218,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResultValue", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -237,7 +237,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_empty_next_link_name_pages.metadata = {"url": "/paging/emptynextlink"}  # type: ignore
+    get_empty_next_link_name_pages.metadata = {"url": "/paging/emptynextlink"}
 
     @distributed_trace
     def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -251,7 +251,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -270,7 +270,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -286,7 +286,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -294,13 +294,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -313,7 +313,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_null_next_link_name_pages.metadata = {"url": "/paging/nullnextlink"}  # type: ignore
+    get_null_next_link_name_pages.metadata = {"url": "/paging/nullnextlink"}
 
     @distributed_trace
     def get_single_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -327,7 +327,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -346,7 +346,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -362,7 +362,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -370,13 +370,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -389,7 +389,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
+    get_single_pages.metadata = {"url": "/paging/single"}
 
     @distributed_trace
     def get_single_pages_with_body_params(
@@ -407,8 +407,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -431,7 +431,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -447,7 +447,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -455,13 +455,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -474,7 +474,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_single_pages_with_body_params.metadata = {"url": "/paging/single/getWithBodyParams"}  # type: ignore
+    get_single_pages_with_body_params.metadata = {"url": "/paging/single/getWithBodyParams"}
 
     @distributed_trace
     def first_response_empty(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -489,7 +489,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResultValue]
+        cls: ClsType[_models.ProductResultValue] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -508,7 +508,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -524,7 +524,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -532,13 +532,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResultValue", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -551,7 +551,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    first_response_empty.metadata = {"url": "/paging/firstResponseEmpty/1"}  # type: ignore
+    first_response_empty.metadata = {"url": "/paging/firstResponseEmpty/1"}
 
     @distributed_trace
     def get_multiple_pages(
@@ -575,7 +575,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -596,13 +596,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
-                    timeout=_timeout,
+                    timeout=_timeout,  # type: ignore
                     template_url=self.get_multiple_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -618,7 +618,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -626,13 +626,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -645,7 +645,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages.metadata = {"url": "/paging/multiple"}  # type: ignore
+    get_multiple_pages.metadata = {"url": "/paging/multiple"}
 
     @distributed_trace
     def get_with_query_params(self, required_query_parameter: int, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -667,8 +667,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: Literal[True]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        query_constant: Literal[True] = kwargs.pop("query_constant", _params.pop("queryConstant", True))
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -689,7 +689,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
 
@@ -700,7 +700,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             return request
 
@@ -708,13 +708,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -727,7 +727,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_with_query_params.metadata = {"url": "/paging/multiple/getWithQueryParams"}  # type: ignore
+    get_with_query_params.metadata = {"url": "/paging/multiple/getWithQueryParams"}
 
     @distributed_trace
     def duplicate_params(self, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -745,7 +745,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -765,7 +765,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -781,7 +781,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -789,13 +789,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -808,7 +808,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}  # type: ignore
+    duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}
 
     @distributed_trace
     def page_with_max_page_size(
@@ -827,7 +827,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -847,7 +847,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -863,7 +863,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -871,13 +871,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -890,7 +890,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    page_with_max_page_size.metadata = {"url": "/paging/maxPageSize"}  # type: ignore
+    page_with_max_page_size.metadata = {"url": "/paging/maxPageSize"}
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -914,7 +914,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OdataProductResult]
+        cls: ClsType[_models.OdataProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -935,13 +935,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
-                    timeout=_timeout,
+                    timeout=_timeout,  # type: ignore
                     template_url=self.get_odata_multiple_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -957,7 +957,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -965,13 +965,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("OdataProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.odata_next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -984,7 +984,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_odata_multiple_pages.metadata = {"url": "/paging/multiple/odata"}  # type: ignore
+    get_odata_multiple_pages.metadata = {"url": "/paging/multiple/odata"}
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -1008,7 +1008,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1038,7 +1038,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1054,7 +1054,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1062,13 +1062,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1081,7 +1081,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_with_offset.metadata = {"url": "/paging/multiple/withpath/{offset}"}  # type: ignore
+    get_multiple_pages_with_offset.metadata = {"url": "/paging/multiple/withpath/{offset}"}
 
     @distributed_trace
     def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1096,7 +1096,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1115,7 +1115,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1131,7 +1131,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1139,13 +1139,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1158,7 +1158,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_retry_first.metadata = {"url": "/paging/multiple/retryfirst"}  # type: ignore
+    get_multiple_pages_retry_first.metadata = {"url": "/paging/multiple/retryfirst"}
 
     @distributed_trace
     def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1173,7 +1173,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1192,7 +1192,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1208,7 +1208,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1216,13 +1216,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1235,7 +1235,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_retry_second.metadata = {"url": "/paging/multiple/retrysecond"}  # type: ignore
+    get_multiple_pages_retry_second.metadata = {"url": "/paging/multiple/retrysecond"}
 
     @distributed_trace
     def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1249,7 +1249,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1268,7 +1268,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1284,7 +1284,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1292,13 +1292,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1311,7 +1311,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_single_pages_failure.metadata = {"url": "/paging/single/failure"}  # type: ignore
+    get_single_pages_failure.metadata = {"url": "/paging/single/failure"}
 
     @distributed_trace
     def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1325,7 +1325,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1344,7 +1344,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1360,7 +1360,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1368,13 +1368,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1387,7 +1387,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_failure.metadata = {"url": "/paging/multiple/failure"}  # type: ignore
+    get_multiple_pages_failure.metadata = {"url": "/paging/multiple/failure"}
 
     @distributed_trace
     def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1401,7 +1401,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1420,7 +1420,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1436,7 +1436,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1444,13 +1444,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1463,7 +1463,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_failure_uri.metadata = {"url": "/paging/multiple/failureuri"}  # type: ignore
+    get_multiple_pages_failure_uri.metadata = {"url": "/paging/multiple/failureuri"}
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -1483,7 +1483,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OdataProductResult]
+        cls: ClsType[_models.OdataProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1504,7 +1504,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
 
@@ -1517,7 +1517,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             return request
 
@@ -1525,13 +1525,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("OdataProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.odata_next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1544,7 +1544,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_fragment_next_link.metadata = {"url": "/paging/multiple/fragment/{tenant}"}  # type: ignore
+    get_multiple_pages_fragment_next_link.metadata = {"url": "/paging/multiple/fragment/{tenant}"}
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
@@ -1562,7 +1562,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OdataProductResult]
+        cls: ClsType[_models.OdataProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1588,7 +1588,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 _api_version = None
@@ -1606,7 +1606,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             return request
 
@@ -1614,13 +1614,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("OdataProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.odata_next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1633,7 +1633,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_fragment_with_grouping_next_link.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
+    get_multiple_pages_fragment_with_grouping_next_link.metadata = {
+        "url": "/paging/multiple/fragmentwithgrouping/{tenant}"
+    }
 
     async def _get_multiple_pages_lro_initial(
         self,
@@ -1652,7 +1654,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         _maxresults = None
         _timeout = None
@@ -1663,15 +1665,15 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         request = build_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
-            timeout=_timeout,
+            timeout=_timeout,  # type: ignore
             template_url=self._get_multiple_pages_lro_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1688,7 +1690,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
+    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
@@ -1722,7 +1724,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1743,13 +1745,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
-                    timeout=_timeout,
+                    timeout=_timeout,  # type: ignore
                     template_url=self.begin_get_multiple_pages_lro.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1765,7 +1767,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1773,13 +1775,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1790,11 +1792,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
             return pipeline_response
 
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._get_multiple_pages_lro_initial(  # type: ignore
+            raw_result = await self._get_multiple_pages_lro_initial(
                 client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                 cls=lambda x, y, z: x,
@@ -1813,7 +1815,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return AsyncItemPaged(internal_get_next, extract_data)
 
         if polling is True:
-            polling_method = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))  # type: AsyncPollingMethod
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
         elif polling is False:
             polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:
@@ -1825,9 +1827,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_get_multiple_pages_lro.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
+    begin_get_multiple_pages_lro.metadata = {"url": "/paging/multiple/lro"}
 
     @distributed_trace
     def append_api_version(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1842,10 +1844,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["1.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1865,7 +1865,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1881,7 +1881,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1889,13 +1889,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1908,7 +1908,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    append_api_version.metadata = {"url": "/paging/apiVersion/append/1"}  # type: ignore
+    append_api_version.metadata = {"url": "/paging/apiVersion/append/1"}
 
     @distributed_trace
     def replace_api_version(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1923,10 +1923,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["1.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
+        api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))
+        cls: ClsType[_models.ProductResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1946,7 +1944,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1962,7 +1960,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1970,13 +1968,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -1989,7 +1987,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    replace_api_version.metadata = {"url": "/paging/apiVersion/replace/1"}  # type: ignore
+    replace_api_version.metadata = {"url": "/paging/apiVersion/replace/1"}
 
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -2004,7 +2002,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResultValueWithXMSClientName]
+        cls: ClsType[_models.ProductResultValueWithXMSClientName] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2023,7 +2021,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -2039,7 +2037,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -2047,13 +2045,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("ProductResultValueWithXMSClientName", pipeline_response)
             list_of_elem = deserialized.indexes
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -2066,4 +2064,4 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_paging_model_with_item_name_with_xms_client_name.metadata = {"url": "/paging/itemNameWithXMSClientName"}  # type: ignore
+    get_paging_model_with_item_name_with_xms_client_name.metadata = {"url": "/paging/itemNameWithXMSClientName"}

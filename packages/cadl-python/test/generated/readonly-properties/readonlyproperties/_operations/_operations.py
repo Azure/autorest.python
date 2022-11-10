@@ -58,7 +58,7 @@ def build_readonly_properties_get_optional_property_model_request(**kwargs: Any)
 def build_readonly_properties_set_optional_property_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -92,15 +92,15 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.OutputModel]
+        cls: ClsType[_models.OutputModel] = kwargs.pop("cls", None)
 
         request = build_readonly_properties_get_optional_property_model_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -113,9 +113,9 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
         deserialized = _deserialize(_models.OutputModel, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def set_optional_property_model(
@@ -175,8 +175,8 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RoundTripModel]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.RoundTripModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -191,9 +191,9 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -206,6 +206,6 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
         deserialized = _deserialize(_models.RoundTripModel, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

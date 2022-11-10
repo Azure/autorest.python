@@ -69,7 +69,7 @@ class InheritanceOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
+        cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -77,9 +77,9 @@ class InheritanceOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -97,7 +97,7 @@ class InheritanceOperations:
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
+    get_valid.metadata = {"url": "/complex/inheritance/valid"}
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -167,8 +167,8 @@ class InheritanceOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -187,9 +187,9 @@ class InheritanceOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -203,4 +203,4 @@ class InheritanceOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
+    put_valid.metadata = {"url": "/complex/inheritance/valid"}

@@ -51,7 +51,7 @@ def build_get_int_request(**kwargs: Any) -> HttpRequest:
 def build_put_int_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -82,7 +82,7 @@ def build_get_long_request(**kwargs: Any) -> HttpRequest:
 def build_put_long_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -113,7 +113,7 @@ def build_get_float_request(**kwargs: Any) -> HttpRequest:
 def build_put_float_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -144,7 +144,7 @@ def build_get_double_request(**kwargs: Any) -> HttpRequest:
 def build_put_double_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -175,7 +175,7 @@ def build_get_bool_request(**kwargs: Any) -> HttpRequest:
 def build_put_bool_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -206,7 +206,7 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
 def build_put_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -237,7 +237,7 @@ def build_get_date_request(**kwargs: Any) -> HttpRequest:
 def build_put_date_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -268,7 +268,7 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
 def build_put_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -299,7 +299,7 @@ def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
 def build_put_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -330,7 +330,7 @@ def build_get_duration_request(**kwargs: Any) -> HttpRequest:
 def build_put_duration_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -361,7 +361,7 @@ def build_get_byte_request(**kwargs: Any) -> HttpRequest:
 def build_put_byte_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -414,7 +414,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.IntWrapper]
+        cls: ClsType[_models.IntWrapper] = kwargs.pop("cls", None)
 
         request = build_get_int_request(
             template_url=self.get_int.metadata["url"],
@@ -422,9 +422,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -442,7 +442,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
+    get_int.metadata = {"url": "/complex/primitive/integer"}
 
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
@@ -505,8 +505,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -525,9 +525,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -541,7 +541,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
+    put_int.metadata = {"url": "/complex/primitive/integer"}
 
     @distributed_trace
     def get_long(self, **kwargs: Any) -> _models.LongWrapper:
@@ -563,7 +563,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.LongWrapper]
+        cls: ClsType[_models.LongWrapper] = kwargs.pop("cls", None)
 
         request = build_get_long_request(
             template_url=self.get_long.metadata["url"],
@@ -571,9 +571,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -591,7 +591,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
+    get_long.metadata = {"url": "/complex/primitive/long"}
 
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
@@ -655,8 +655,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -675,9 +675,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -691,7 +691,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
+    put_long.metadata = {"url": "/complex/primitive/long"}
 
     @distributed_trace
     def get_float(self, **kwargs: Any) -> _models.FloatWrapper:
@@ -713,7 +713,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.FloatWrapper]
+        cls: ClsType[_models.FloatWrapper] = kwargs.pop("cls", None)
 
         request = build_get_float_request(
             template_url=self.get_float.metadata["url"],
@@ -721,9 +721,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -741,7 +741,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
+    get_float.metadata = {"url": "/complex/primitive/float"}
 
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
@@ -804,8 +804,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -824,9 +824,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -840,7 +840,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
+    put_float.metadata = {"url": "/complex/primitive/float"}
 
     @distributed_trace
     def get_double(self, **kwargs: Any) -> _models.DoubleWrapper:
@@ -862,7 +862,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DoubleWrapper]
+        cls: ClsType[_models.DoubleWrapper] = kwargs.pop("cls", None)
 
         request = build_get_double_request(
             template_url=self.get_double.metadata["url"],
@@ -870,9 +870,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -890,7 +890,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
+    get_double.metadata = {"url": "/complex/primitive/double"}
 
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
@@ -957,8 +957,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -977,9 +977,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -993,7 +993,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
+    put_double.metadata = {"url": "/complex/primitive/double"}
 
     @distributed_trace
     def get_bool(self, **kwargs: Any) -> _models.BooleanWrapper:
@@ -1015,7 +1015,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.BooleanWrapper]
+        cls: ClsType[_models.BooleanWrapper] = kwargs.pop("cls", None)
 
         request = build_get_bool_request(
             template_url=self.get_bool.metadata["url"],
@@ -1023,9 +1023,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1043,7 +1043,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
+    get_bool.metadata = {"url": "/complex/primitive/bool"}
 
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
@@ -1106,8 +1106,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1126,9 +1126,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1142,7 +1142,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
+    put_bool.metadata = {"url": "/complex/primitive/bool"}
 
     @distributed_trace
     def get_string(self, **kwargs: Any) -> _models.StringWrapper:
@@ -1164,7 +1164,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StringWrapper]
+        cls: ClsType[_models.StringWrapper] = kwargs.pop("cls", None)
 
         request = build_get_string_request(
             template_url=self.get_string.metadata["url"],
@@ -1172,9 +1172,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1192,7 +1192,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
+    get_string.metadata = {"url": "/complex/primitive/string"}
 
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
@@ -1256,8 +1256,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1276,9 +1276,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1292,7 +1292,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
+    put_string.metadata = {"url": "/complex/primitive/string"}
 
     @distributed_trace
     def get_date(self, **kwargs: Any) -> _models.DateWrapper:
@@ -1314,7 +1314,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DateWrapper]
+        cls: ClsType[_models.DateWrapper] = kwargs.pop("cls", None)
 
         request = build_get_date_request(
             template_url=self.get_date.metadata["url"],
@@ -1322,9 +1322,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1342,7 +1342,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
+    get_date.metadata = {"url": "/complex/primitive/date"}
 
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
@@ -1406,8 +1406,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1426,9 +1426,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1442,7 +1442,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
+    put_date.metadata = {"url": "/complex/primitive/date"}
 
     @distributed_trace
     def get_date_time(self, **kwargs: Any) -> _models.DatetimeWrapper:
@@ -1464,7 +1464,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DatetimeWrapper]
+        cls: ClsType[_models.DatetimeWrapper] = kwargs.pop("cls", None)
 
         request = build_get_date_time_request(
             template_url=self.get_date_time.metadata["url"],
@@ -1472,9 +1472,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1492,7 +1492,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
+    get_date_time.metadata = {"url": "/complex/primitive/datetime"}
 
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1558,8 +1558,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1578,9 +1578,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1594,7 +1594,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
+    put_date_time.metadata = {"url": "/complex/primitive/datetime"}
 
     @distributed_trace
     def get_date_time_rfc1123(self, **kwargs: Any) -> _models.Datetimerfc1123Wrapper:
@@ -1616,7 +1616,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Datetimerfc1123Wrapper]
+        cls: ClsType[_models.Datetimerfc1123Wrapper] = kwargs.pop("cls", None)
 
         request = build_get_date_time_rfc1123_request(
             template_url=self.get_date_time_rfc1123.metadata["url"],
@@ -1624,9 +1624,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1644,7 +1644,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
+    get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}
 
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1710,8 +1710,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1730,9 +1730,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1746,7 +1746,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
+    put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}
 
     @distributed_trace
     def get_duration(self, **kwargs: Any) -> _models.DurationWrapper:
@@ -1768,7 +1768,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DurationWrapper]
+        cls: ClsType[_models.DurationWrapper] = kwargs.pop("cls", None)
 
         request = build_get_duration_request(
             template_url=self.get_duration.metadata["url"],
@@ -1776,9 +1776,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1796,7 +1796,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
+    get_duration.metadata = {"url": "/complex/primitive/duration"}
 
     @distributed_trace
     def put_duration(  # pylint: disable=inconsistent-return-statements
@@ -1822,8 +1822,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _complex_body = _models.DurationWrapper(field=field)
         _json = self._serialize.body(_complex_body, "DurationWrapper")
@@ -1836,9 +1836,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1852,7 +1852,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
+    put_duration.metadata = {"url": "/complex/primitive/duration"}
 
     @distributed_trace
     def get_byte(self, **kwargs: Any) -> _models.ByteWrapper:
@@ -1874,7 +1874,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ByteWrapper]
+        cls: ClsType[_models.ByteWrapper] = kwargs.pop("cls", None)
 
         request = build_get_byte_request(
             template_url=self.get_byte.metadata["url"],
@@ -1882,9 +1882,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1902,7 +1902,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
+    get_byte.metadata = {"url": "/complex/primitive/byte"}
 
     @distributed_trace
     def put_byte(  # pylint: disable=inconsistent-return-statements
@@ -1928,8 +1928,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _complex_body = _models.ByteWrapper(field=field)
         _json = self._serialize.body(_complex_body, "ByteWrapper")
@@ -1942,9 +1942,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1958,4 +1958,4 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
+    put_byte.metadata = {"url": "/complex/primitive/byte"}

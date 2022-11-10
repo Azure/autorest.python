@@ -63,7 +63,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Horse]
+        cls: ClsType[_models.Horse] = kwargs.pop("cls", None)
 
         request = build_get_horse_request(
             template_url=self.get_horse.metadata["url"],
@@ -71,9 +71,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -91,7 +91,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
+    get_horse.metadata = {"url": "/multipleInheritance/horse"}
 
     @overload
     async def put_horse(self, horse: _models.Horse, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -149,8 +149,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -169,9 +169,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -188,7 +188,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
+    put_horse.metadata = {"url": "/multipleInheritance/horse"}
 
     @distributed_trace_async
     async def get_pet(self, **kwargs: Any) -> _models.Pet:
@@ -210,7 +210,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
+        cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
         request = build_get_pet_request(
             template_url=self.get_pet.metadata["url"],
@@ -218,9 +218,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -238,7 +238,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    get_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
+    get_pet.metadata = {"url": "/multipleInheritance/pet"}
 
     @distributed_trace_async
     async def put_pet(self, name: str, **kwargs: Any) -> str:
@@ -262,8 +262,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         _pet = _models.Pet(name=name)
         _json = self._serialize.body(_pet, "Pet")
@@ -276,9 +276,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -295,7 +295,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
+    put_pet.metadata = {"url": "/multipleInheritance/pet"}
 
     @distributed_trace_async
     async def get_feline(self, **kwargs: Any) -> _models.Feline:
@@ -317,7 +317,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Feline]
+        cls: ClsType[_models.Feline] = kwargs.pop("cls", None)
 
         request = build_get_feline_request(
             template_url=self.get_feline.metadata["url"],
@@ -325,9 +325,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -345,7 +345,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
+    get_feline.metadata = {"url": "/multipleInheritance/feline"}
 
     @overload
     async def put_feline(self, feline: _models.Feline, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -403,8 +403,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -423,9 +423,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -442,7 +442,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
+    put_feline.metadata = {"url": "/multipleInheritance/feline"}
 
     @distributed_trace_async
     async def get_cat(self, **kwargs: Any) -> _models.Cat:
@@ -464,7 +464,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Cat]
+        cls: ClsType[_models.Cat] = kwargs.pop("cls", None)
 
         request = build_get_cat_request(
             template_url=self.get_cat.metadata["url"],
@@ -472,9 +472,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -492,7 +492,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
+    get_cat.metadata = {"url": "/multipleInheritance/cat"}
 
     @overload
     async def put_cat(self, cat: _models.Cat, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -552,8 +552,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -572,9 +572,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -591,7 +591,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
+    put_cat.metadata = {"url": "/multipleInheritance/cat"}
 
     @distributed_trace_async
     async def get_kitten(self, **kwargs: Any) -> _models.Kitten:
@@ -614,7 +614,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Kitten]
+        cls: ClsType[_models.Kitten] = kwargs.pop("cls", None)
 
         request = build_get_kitten_request(
             template_url=self.get_kitten.metadata["url"],
@@ -622,9 +622,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -642,7 +642,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
+    get_kitten.metadata = {"url": "/multipleInheritance/kitten"}
 
     @overload
     async def put_kitten(self, kitten: _models.Kitten, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -705,8 +705,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -725,9 +725,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -744,4 +744,4 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return deserialized
 
-    put_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
+    put_kitten.metadata = {"url": "/multipleInheritance/kitten"}

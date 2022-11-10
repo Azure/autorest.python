@@ -88,7 +88,7 @@ class PathsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
@@ -100,9 +100,9 @@ class PathsOperations:
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
+        request.url = self._client.format_url(request.url, **path_format_arguments)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -116,4 +116,4 @@ class PathsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_empty.metadata = {"url": "/customuri"}  # type: ignore
+    get_empty.metadata = {"url": "/customuri"}

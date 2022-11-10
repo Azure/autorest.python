@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import List, Optional, Any, Union, cast
+from typing import List, Optional, Any, Union
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 
@@ -191,7 +191,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             if self.read_file(namespace_path / Path("models.py")):
                 self.write_file(
                     namespace_path / Path("models.py"),
-                    cast(str, self.read_file(namespace_path / Path("models.py"))),
+                    self.read_file(namespace_path / Path("models.py")),
                 )
 
     def _serialize_and_write_package_files(self, namespace_path: Path) -> None:

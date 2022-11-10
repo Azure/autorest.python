@@ -36,7 +36,7 @@ _SERIALIZER.client_side_validation = False
 def build_update_request(resource_group_name: str, avset: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/parameterFlattening/{resourceGroupName}/{availabilitySetName}")
     path_format_arguments = {
@@ -44,7 +44,7 @@ def build_update_request(resource_group_name: str, avset: str, **kwargs: Any) ->
         "availabilitySetName": _SERIALIZER.url("avset", avset, "str", max_length=80),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     if content_type is not None:
@@ -100,8 +100,8 @@ class AvailabilitySetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         _json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
@@ -116,9 +116,9 @@ class AvailabilitySetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -131,4 +131,4 @@ class AvailabilitySetsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    update.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}  # type: ignore
+    update.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}

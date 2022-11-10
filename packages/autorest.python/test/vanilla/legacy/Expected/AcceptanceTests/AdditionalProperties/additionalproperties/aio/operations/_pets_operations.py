@@ -115,8 +115,8 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPTrue]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.PetAPTrue] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -135,9 +135,9 @@ class PetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -155,7 +155,7 @@ class PetsOperations:
 
         return deserialized
 
-    create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
+    create_ap_true.metadata = {"url": "/additionalProperties/true"}
 
     @overload
     async def create_cat_ap_true(
@@ -218,8 +218,8 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CatAPTrue]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.CatAPTrue] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -238,9 +238,9 @@ class PetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -258,7 +258,7 @@ class PetsOperations:
 
         return deserialized
 
-    create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
+    create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}
 
     @overload
     async def create_ap_object(
@@ -321,8 +321,8 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPObject]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.PetAPObject] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -341,9 +341,9 @@ class PetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -361,7 +361,7 @@ class PetsOperations:
 
         return deserialized
 
-    create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
+    create_ap_object.metadata = {"url": "/additionalProperties/type/object"}
 
     @overload
     async def create_ap_string(
@@ -424,8 +424,8 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPString]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.PetAPString] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -444,9 +444,9 @@ class PetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -464,7 +464,7 @@ class PetsOperations:
 
         return deserialized
 
-    create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
+    create_ap_string.metadata = {"url": "/additionalProperties/type/string"}
 
     @overload
     async def create_ap_in_properties(
@@ -527,8 +527,8 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInProperties]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.PetAPInProperties] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -547,9 +547,9 @@ class PetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -567,7 +567,7 @@ class PetsOperations:
 
         return deserialized
 
-    create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
+    create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}
 
     @overload
     async def create_ap_in_properties_with_ap_string(
@@ -634,8 +634,8 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInPropertiesWithAPString]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.PetAPInPropertiesWithAPString] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -654,9 +654,9 @@ class PetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -674,4 +674,6 @@ class PetsOperations:
 
         return deserialized
 
-    create_ap_in_properties_with_ap_string.metadata = {"url": "/additionalProperties/in/properties/with/additionalProperties/string"}  # type: ignore
+    create_ap_in_properties_with_ap_string.metadata = {
+        "url": "/additionalProperties/in/properties/with/additionalProperties/string"
+    }

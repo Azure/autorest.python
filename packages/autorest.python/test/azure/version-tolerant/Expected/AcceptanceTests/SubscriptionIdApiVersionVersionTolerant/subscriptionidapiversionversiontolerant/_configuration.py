@@ -42,7 +42,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):  # pylint: disable=too-
 
     def __init__(self, subscription_id: str, credential: "TokenCredential", **kwargs: Any) -> None:
         super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: Literal["2014-04-01-preview"]
+        api_version: Literal["2014-04-01-preview"] = kwargs.pop("api_version", "2014-04-01-preview")
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
@@ -56,10 +56,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):  # pylint: disable=too-
         kwargs.setdefault("sdk_moniker", "microsoftazuretesturl/{}".format(VERSION))
         self._configure(**kwargs)
 
-    def _configure(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _configure(self, **kwargs: Any) -> None:
         self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get("headers_policy") or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)

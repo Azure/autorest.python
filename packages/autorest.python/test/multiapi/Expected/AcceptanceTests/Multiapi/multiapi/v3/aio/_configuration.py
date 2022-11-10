@@ -40,7 +40,7 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
 
     def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
-        api_version = kwargs.pop("api_version", "3.0.0")  # type: Literal["3.0.0"]
+        api_version: Literal["3.0.0"] = kwargs.pop("api_version", "3.0.0")
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

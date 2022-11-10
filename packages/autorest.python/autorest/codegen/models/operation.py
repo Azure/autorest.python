@@ -160,10 +160,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             isinstance(r.type, ModelType) for r in self.responses
         ):
             r = next(r for r in self.responses if isinstance(r.type, ModelType))
-            type_name = getattr(r, "item_type", getattr(r, "type")).docstring_text(
-                **kwargs
-            )
-            retval += f". The {type_name} is compatible with MutableMapping"
+            item_type = getattr(r, "item_type", getattr(r, "type"))
+            if item_type:
+                type_name = item_type.docstring_text(**kwargs)
+                retval += f". The {type_name} is compatible with MutableMapping"
         return retval
 
     def response_docstring_type(self, **kwargs) -> str:
@@ -344,9 +344,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
 
         if self.has_kwargs_to_pop_with_default(
-            self.parameters.kwargs_to_pop, ParameterLocation.HEADER
+            self.parameters.kwargs_to_pop, ParameterLocation.HEADER  # type: ignore
         ) or self.has_kwargs_to_pop_with_default(
-            self.parameters.kwargs_to_pop, ParameterLocation.QUERY
+            self.parameters.kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
         ):
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE

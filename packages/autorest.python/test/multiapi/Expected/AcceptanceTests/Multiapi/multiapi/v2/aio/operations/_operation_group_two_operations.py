@@ -80,8 +80,8 @@ class OperationGroupTwoOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))  # type: Literal["2.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["2.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_four_request(
             parameter_one=parameter_one,
@@ -91,9 +91,9 @@ class OperationGroupTwoOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -107,4 +107,4 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}  # type: ignore
+    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}

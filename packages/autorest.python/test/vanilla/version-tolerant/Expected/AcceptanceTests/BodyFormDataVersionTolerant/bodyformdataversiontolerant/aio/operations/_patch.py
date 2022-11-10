@@ -49,7 +49,9 @@ class FormdataOperations(_FormdataOperations):
         """
         request = _upload_file_request(files=files, **kwargs)
         request.url = self._client.format_url(request.url)
-        return _upload_file_deserialize(await self._send_request(request, stream=True, **kwargs), **kwargs)
+        return _upload_file_deserialize(
+            await self._send_request(request, stream=True, **kwargs), **kwargs
+        )  # type: ignore
 
     @distributed_trace_async
     async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> AsyncIterator[bytes]:
@@ -73,7 +75,9 @@ class FormdataOperations(_FormdataOperations):
         """
         request = _upload_files_request(files=files, **kwargs)
         request.url = self._client.format_url(request.url)
-        return _upload_files_deserialize(await self._send_request(request, stream=True, **kwargs), **kwargs)
+        return _upload_files_deserialize(
+            await self._send_request(request, stream=True, **kwargs), **kwargs
+        )  # type: ignore
 
 
 __all__: List[str] = [

@@ -42,7 +42,7 @@ class BaseModel(_model_base.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.model_kind = None  # type: Literal[None]
+        self.model_kind: Literal[None] = None
 
 
 class DerivedModel(BaseModel, discriminator="derived"):
@@ -84,4 +84,4 @@ class DerivedModel(BaseModel, discriminator="derived"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.model_kind = "derived"  # type: Literal["derived"]
+        self.model_kind: Literal["derived"] = "derived"

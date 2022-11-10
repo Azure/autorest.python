@@ -78,8 +78,8 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[AsyncIterator[bytes]]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data
         _files = {
@@ -95,9 +95,9 @@ class FormdataOperations:
             params=_params,
         )
         request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
 
@@ -111,11 +111,11 @@ class FormdataOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
-    upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
+    upload_file.metadata = {"url": "/formdata/stream/uploadfile"}
 
     @distributed_trace_async
     async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> AsyncIterator[bytes]:
@@ -139,8 +139,8 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[AsyncIterator[bytes]]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _content = file_content
 
@@ -152,9 +152,9 @@ class FormdataOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
 
@@ -168,11 +168,11 @@ class FormdataOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
-    upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
+    upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}
 
     @distributed_trace_async
     async def upload_files(self, file_content: List[IO], **kwargs: Any) -> AsyncIterator[bytes]:
@@ -196,8 +196,8 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[AsyncIterator[bytes]]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data
         _files = {
@@ -212,9 +212,9 @@ class FormdataOperations:
             params=_params,
         )
         request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
 
@@ -228,8 +228,8 @@ class FormdataOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
-    upload_files.metadata = {"url": "/formdata/stream/uploadfiles"}  # type: ignore
+    upload_files.metadata = {"url": "/formdata/stream/uploadfiles"}

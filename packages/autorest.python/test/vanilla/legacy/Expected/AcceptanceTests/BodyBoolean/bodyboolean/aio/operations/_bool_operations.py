@@ -81,7 +81,7 @@ class BoolOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_true_request(
             template_url=self.get_true.metadata["url"],
@@ -89,9 +89,9 @@ class BoolOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -109,7 +109,7 @@ class BoolOperations:
 
         return deserialized
 
-    get_true.metadata = {"url": "/bool/true"}  # type: ignore
+    get_true.metadata = {"url": "/bool/true"}
 
     @distributed_trace_async
     async def put_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -134,9 +134,9 @@ class BoolOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        bool_body = kwargs.pop("bool_body", True)  # type: Literal[True]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        bool_body: Literal[True] = kwargs.pop("bool_body", True)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(bool_body, "bool")
 
@@ -148,9 +148,9 @@ class BoolOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -164,7 +164,7 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_true.metadata = {"url": "/bool/true"}  # type: ignore
+    put_true.metadata = {"url": "/bool/true"}
 
     @distributed_trace_async
     async def get_false(self, **kwargs: Any) -> bool:
@@ -186,7 +186,7 @@ class BoolOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_false_request(
             template_url=self.get_false.metadata["url"],
@@ -194,9 +194,9 @@ class BoolOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -214,7 +214,7 @@ class BoolOperations:
 
         return deserialized
 
-    get_false.metadata = {"url": "/bool/false"}  # type: ignore
+    get_false.metadata = {"url": "/bool/false"}
 
     @distributed_trace_async
     async def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -239,9 +239,9 @@ class BoolOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        bool_body = kwargs.pop("bool_body", False)  # type: Literal[False]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        bool_body: Literal[False] = kwargs.pop("bool_body", False)
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(bool_body, "bool")
 
@@ -253,9 +253,9 @@ class BoolOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -269,7 +269,7 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_false.metadata = {"url": "/bool/false"}  # type: ignore
+    put_false.metadata = {"url": "/bool/false"}
 
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> Optional[bool]:
@@ -291,7 +291,7 @@ class BoolOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[bool]]
+        cls: ClsType[Optional[bool]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
@@ -299,9 +299,9 @@ class BoolOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -319,7 +319,7 @@ class BoolOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/bool/null"}  # type: ignore
+    get_null.metadata = {"url": "/bool/null"}
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bool:
@@ -341,7 +341,7 @@ class BoolOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
@@ -349,9 +349,9 @@ class BoolOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -369,4 +369,4 @@ class BoolOperations:
 
         return deserialized
 
-    get_invalid.metadata = {"url": "/bool/invalid"}  # type: ignore
+    get_invalid.metadata = {"url": "/bool/invalid"}
