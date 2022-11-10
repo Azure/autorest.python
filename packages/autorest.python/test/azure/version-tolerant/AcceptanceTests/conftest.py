@@ -24,15 +24,12 @@
 #
 # --------------------------------------------------------------------------
 
-import glob
-import sys
 import subprocess
 import os
 import signal
 from os.path import dirname, realpath
-from unittest import TestLoader, TextTestRunner
 
-from os.path import dirname, pardir, join, realpath
+from os.path import dirname, realpath
 
 from azure.core.pipeline.policies import SansIOHTTPPolicy
 
@@ -69,14 +66,12 @@ class CookiePolicy(SansIOHTTPPolicy):
         self._current_cookie = None
 
     def on_request(self, request, **kwargs):
-        # type: (PipelineRequest, Any) -> None
         http_request = request.http_request
         if self._current_cookie:
             http_request.headers["Cookie"] = self._current_cookie
             self._current_cookie = None
 
     def on_response(self, request, response, **kwargs):
-        # type: (PipelineRequest, PipelineResponse, Any) -> None
         http_response = response.http_response
 
         if "Set-Cookie" in http_response.headers:

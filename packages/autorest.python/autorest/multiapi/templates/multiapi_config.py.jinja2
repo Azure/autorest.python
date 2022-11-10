@@ -11,7 +11,7 @@ def __init__(
     {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
-    **kwargs  # type: Any
+    **kwargs: Any
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}
@@ -43,9 +43,6 @@ class {{ code_model.client.name }}Configuration(Configuration):
     """
 
     {{ method_signature()|indent }}
-        {% if not async_mode %}
-        # type: (...) -> None
-        {% endif %}
 {% for parameter in code_model.global_parameters.parameters %}
     {% if parameter.required %}
         if {{ parameter.name }} is None:
@@ -70,11 +67,8 @@ class {{ code_model.client.name }}Configuration(Configuration):
 
     def _configure(
         self,
-        **kwargs{{": Any" if async_mode else "  # type: Any"}}
+        **kwargs: Any
     ){{ " -> None" if async_mode else "" }}:
-        {% if not async_mode %}
-        # type: (...) -> None
-        {% endif %}
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

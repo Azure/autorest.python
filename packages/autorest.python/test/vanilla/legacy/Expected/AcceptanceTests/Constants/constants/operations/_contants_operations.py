@@ -129,7 +129,7 @@ def build_put_no_model_as_string_required_two_value_default_request(
 def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
+    input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueNoDefault")
 
@@ -142,7 +142,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs:
 def build_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
+    input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueDefault")
 
@@ -272,16 +272,16 @@ def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_constant = kwargs.pop("header_constant", _headers.pop("header-constant", True))  # type: Literal[True]
-    query_constant = kwargs.pop("query_constant", _params.pop("query-constant", 100))  # type: Literal[100]
-    path_constant = kwargs.pop("path_constant", "path")  # type: Literal["path"]
+    header_constant: Literal[True] = kwargs.pop("header_constant", _headers.pop("header-constant", True))
+    query_constant: Literal[100] = kwargs.pop("query_constant", _params.pop("query-constant", 100))
+    path_constant: Literal["path"] = kwargs.pop("path_constant", "path")
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/clientConstants/{path-constant}")
     path_format_arguments = {
         "path-constant": _SERIALIZER.url("path_constant", path_constant, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["query-constant"] = _SERIALIZER.query("query_constant", query_constant, "int")
@@ -339,7 +339,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
@@ -348,9 +348,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -363,7 +363,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
+    put_no_model_as_string_no_required_two_value_no_default.metadata = {
+        "url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"
+    }
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
@@ -391,7 +393,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
@@ -400,9 +402,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -415,7 +417,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
+    put_no_model_as_string_no_required_two_value_default.metadata = {
+        "url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"
+    }
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -443,7 +447,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
@@ -452,9 +456,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -467,7 +471,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
+    put_no_model_as_string_no_required_one_value_no_default.metadata = {
+        "url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
+    }
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
@@ -495,7 +501,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
@@ -504,9 +510,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -519,7 +525,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
+    put_no_model_as_string_no_required_one_value_default.metadata = {
+        "url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"
+    }
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -547,7 +555,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
@@ -556,9 +564,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -571,7 +579,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
+    put_no_model_as_string_required_two_value_no_default.metadata = {
+        "url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"
+    }
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
@@ -599,7 +609,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_required_two_value_default_request(
             input=input,
@@ -608,9 +618,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -623,7 +633,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
+    put_no_model_as_string_required_two_value_default.metadata = {
+        "url": "/constants/putNoModelAsStringRequiredTwoValueDefault"
+    }
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -652,8 +664,8 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_required_one_value_no_default_request(
             input=input,
@@ -662,9 +674,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -677,7 +689,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
+    put_no_model_as_string_required_one_value_no_default.metadata = {
+        "url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"
+    }
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
@@ -706,8 +720,8 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        input = kwargs.pop("input", _params.pop("input", "value1"))  # type: Literal["value1"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_no_model_as_string_required_one_value_default_request(
             input=input,
@@ -716,9 +730,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -731,7 +745,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
+    put_no_model_as_string_required_one_value_default.metadata = {
+        "url": "/constants/putNoModelAsStringRequiredOneValueDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -759,7 +775,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
@@ -768,9 +784,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -783,7 +799,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
+    put_model_as_string_no_required_two_value_no_default.metadata = {
+        "url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
@@ -811,7 +829,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_no_required_two_value_default_request(
             input=input,
@@ -820,9 +838,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -835,7 +853,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
+    put_model_as_string_no_required_two_value_default.metadata = {
+        "url": "/constants/putModelAsStringNoRequiredTwoValueDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -863,7 +883,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
@@ -872,9 +892,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -887,7 +907,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
+    put_model_as_string_no_required_one_value_no_default.metadata = {
+        "url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
@@ -915,7 +937,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_no_required_one_value_default_request(
             input=input,
@@ -924,9 +946,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -939,7 +961,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
+    put_model_as_string_no_required_one_value_default.metadata = {
+        "url": "/constants/putModelAsStringNoRequiredOneValueDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -967,7 +991,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_required_two_value_no_default_request(
             input=input,
@@ -976,9 +1000,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -991,7 +1015,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
+    put_model_as_string_required_two_value_no_default.metadata = {
+        "url": "/constants/putModelAsStringRequiredTwoValueNoDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
@@ -1019,7 +1045,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_required_two_value_default_request(
             input=input,
@@ -1028,9 +1054,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1043,7 +1069,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
+    put_model_as_string_required_two_value_default.metadata = {
+        "url": "/constants/putModelAsStringRequiredTwoValueDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -1071,7 +1099,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_required_one_value_no_default_request(
             input=input,
@@ -1080,9 +1108,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1095,7 +1123,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
+    put_model_as_string_required_one_value_no_default.metadata = {
+        "url": "/constants/putModelAsStringRequiredOneValueNoDefault"
+    }
 
     @distributed_trace
     def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
@@ -1123,7 +1153,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_model_as_string_required_one_value_default_request(
             input=input,
@@ -1132,9 +1162,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1147,7 +1177,9 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_one_value_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
+    put_model_as_string_required_one_value_default.metadata = {
+        "url": "/constants/putModelAsStringRequiredOneValueDefault"
+    }
 
     @distributed_trace
     def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1170,7 +1202,7 @@ class ContantsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_client_constants_request(
             header_constant=self._config.header_constant,
@@ -1181,9 +1213,9 @@ class ContantsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1196,4 +1228,4 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_client_constants.metadata = {"url": "/constants/clientConstants/{path-constant}"}  # type: ignore
+    put_client_constants.metadata = {"url": "/constants/clientConstants/{path-constant}"}

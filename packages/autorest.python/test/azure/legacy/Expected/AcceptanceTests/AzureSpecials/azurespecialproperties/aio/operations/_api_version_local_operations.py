@@ -83,8 +83,8 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_local_valid_request(
             api_version=api_version,
@@ -93,9 +93,9 @@ class ApiVersionLocalOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -109,7 +109,7 @@ class ApiVersionLocalOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
+    get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}
 
     @distributed_trace_async
     async def get_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -136,7 +136,7 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_local_null_request(
             api_version=api_version,
@@ -145,9 +145,9 @@ class ApiVersionLocalOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -161,7 +161,7 @@ class ApiVersionLocalOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
+    get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}
 
     @distributed_trace_async
     async def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -186,8 +186,8 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_path_local_valid_request(
             api_version=api_version,
@@ -196,9 +196,9 @@ class ApiVersionLocalOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -212,7 +212,7 @@ class ApiVersionLocalOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
+    get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}
 
     @distributed_trace_async
     async def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -238,8 +238,8 @@ class ApiVersionLocalOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: Literal["2.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_swagger_local_valid_request(
             api_version=api_version,
@@ -248,9 +248,9 @@ class ApiVersionLocalOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -264,4 +264,4 @@ class ApiVersionLocalOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_swagger_local_valid.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"}  # type: ignore
+    get_swagger_local_valid.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"}

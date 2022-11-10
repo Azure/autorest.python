@@ -78,7 +78,7 @@ class PathsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
             key_name=key_name,
@@ -96,9 +96,9 @@ class PathsOperations:
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
+        request.url = self._client.format_url(request.url, **path_format_arguments)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -112,4 +112,4 @@ class PathsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_empty.metadata = {"url": "/customuri/{subscriptionId}/{keyName}"}  # type: ignore
+    get_empty.metadata = {"url": "/customuri/{subscriptionId}/{keyName}"}

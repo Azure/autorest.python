@@ -48,13 +48,13 @@
         "service_client_specific": {
             "sync": {
                 "api_version": {
-                    "signature": "api_version=None, # type: Optional[str]",
+                    "signature": "api_version: Optional[str]=None,",
                     "description": "API version to use if no profile is provided, or if missing in profile.",
                     "docstring_type": "str",
                     "required": false
                 },
                 "profile": {
-                    "signature": "profile=KnownProfiles.default, # type: KnownProfiles",
+                    "signature": "profile: KnownProfiles=KnownProfiles.default,",
                     "description": "A profile definition, from KnownProfiles to dict.",
                     "docstring_type": "azure.profiles.KnownProfiles",
                     "required": false

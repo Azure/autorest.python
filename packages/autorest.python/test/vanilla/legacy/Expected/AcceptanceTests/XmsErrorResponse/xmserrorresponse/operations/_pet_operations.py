@@ -44,7 +44,7 @@ def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
         "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -63,7 +63,7 @@ def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
         "whatAction": _SERIALIZER.url("what_action", what_action, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -135,7 +135,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Pet]]
+        cls: ClsType[Optional[_models.Pet]] = kwargs.pop("cls", None)
 
         request = build_get_pet_by_id_request(
             pet_id=pet_id,
@@ -144,9 +144,9 @@ class PetOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -165,7 +165,7 @@ class PetOperations:
 
         return deserialized
 
-    get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
+    get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}
 
     @distributed_trace
     def do_something(self, what_action: str, **kwargs: Any) -> _models.PetAction:
@@ -192,7 +192,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAction]
+        cls: ClsType[_models.PetAction] = kwargs.pop("cls", None)
 
         request = build_do_something_request(
             what_action=what_action,
@@ -201,9 +201,9 @@ class PetOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -221,7 +221,7 @@ class PetOperations:
 
         return deserialized
 
-    do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
+    do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}
 
     @distributed_trace
     def has_models_param(  # pylint: disable=inconsistent-return-statements
@@ -252,7 +252,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_has_models_param_request(
             models=models,
@@ -261,9 +261,9 @@ class PetOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -277,4 +277,4 @@ class PetOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    has_models_param.metadata = {"url": "/errorStatusCodes/Pets/hasModelsParam"}  # type: ignore
+    has_models_param.metadata = {"url": "/errorStatusCodes/Pets/hasModelsParam"}

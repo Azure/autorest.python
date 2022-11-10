@@ -59,7 +59,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls: ClsType[Any] = kwargs.pop("cls", None)
 
         request = build_get_object_request(
             template_url=self.get_object.metadata["url"],
@@ -67,9 +67,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -86,7 +86,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         return deserialized
 
-    get_object.metadata = {"url": "/anything/object"}  # type: ignore
+    get_object.metadata = {"url": "/anything/object"}
 
     @distributed_trace_async
     async def put_object(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -111,8 +111,8 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(input, "object")
 
@@ -124,9 +124,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -139,7 +139,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_object.metadata = {"url": "/anything/object"}  # type: ignore
+    put_object.metadata = {"url": "/anything/object"}
 
     @distributed_trace_async
     async def get_string(self, **kwargs: Any) -> Any:
@@ -161,7 +161,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls: ClsType[Any] = kwargs.pop("cls", None)
 
         request = build_get_string_request(
             template_url=self.get_string.metadata["url"],
@@ -169,9 +169,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -188,7 +188,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         return deserialized
 
-    get_string.metadata = {"url": "/anything/string"}  # type: ignore
+    get_string.metadata = {"url": "/anything/string"}
 
     @distributed_trace_async
     async def put_string(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -213,8 +213,8 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(input, "object")
 
@@ -226,9 +226,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -241,7 +241,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string.metadata = {"url": "/anything/string"}  # type: ignore
+    put_string.metadata = {"url": "/anything/string"}
 
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> Any:
@@ -263,7 +263,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls: ClsType[Any] = kwargs.pop("cls", None)
 
         request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
@@ -271,9 +271,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -290,7 +290,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         return deserialized
 
-    get_array.metadata = {"url": "/anything/array"}  # type: ignore
+    get_array.metadata = {"url": "/anything/array"}
 
     @distributed_trace_async
     async def put_array(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -315,8 +315,8 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(input, "object")
 
@@ -328,9 +328,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -343,4 +343,4 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_array.metadata = {"url": "/anything/array"}  # type: ignore
+    put_array.metadata = {"url": "/anything/array"}

@@ -145,13 +145,13 @@ class ParameterSerializer:
                         f"_{kwarg_dict}.pop('{kwarg.rest_api_name}', {default_value})"
                     )
                 retval.append(
-                    f"{kwarg.client_name} = kwargs.pop('{kwarg.client_name}', "
-                    + f"{default_value})  # type: {kwarg.type_annotation()}"
+                    f"{kwarg.client_name}: {kwarg.type_annotation()} = kwargs.pop('{kwarg.client_name}', "
+                    + f"{default_value})"
                 )
             else:
                 type_annot = kwarg.type_annotation()
                 retval.append(
-                    f"{kwarg.client_name} = kwargs.pop('{kwarg.client_name}')  # type: {type_annot}"
+                    f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}')"
                 )
         return retval
 

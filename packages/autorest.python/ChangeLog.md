@@ -14,6 +14,7 @@
 
 **Other Changes**
 
+- Clean pyright issues #1547
 - Optimize rule about name of generated sample files to avoid too long path  #1540
 
 ### 2022-11-07 - 6.2.6

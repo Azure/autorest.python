@@ -69,12 +69,6 @@ class OperationGroup(BaseModel):
         return retval
 
     @property
-    def mypy_ignore(self) -> str:
-        if self.has_abstract_operations:
-            return "  # type: ignore"
-        return ""
-
-    @property
     def need_validation(self) -> bool:
         """Whether any of its operations need validation"""
         return any(o for o in self.operations if o.need_validation)
