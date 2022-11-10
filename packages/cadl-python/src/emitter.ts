@@ -436,10 +436,14 @@ function emitResponseHeaders(program: Program, headers?: Record<string, ModelPro
 function isAzureCoreErrorType(t?: Type): boolean {
     if (t?.kind !== "Model" || !["Error", "ErrorResponse", "InnerError"].includes(t.name)) return false;
     const namespaces = ".Azure.Core.Foundations".split(".");
-    while (namespaces.length > 0 && (t?.kind === "Model" || t?.kind === "Namespace") && t.namespace?.name === namespaces.pop()) {
+    while (
+        namespaces.length > 0 &&
+        (t?.kind === "Model" || t?.kind === "Namespace") &&
+        t.namespace?.name === namespaces.pop()
+    ) {
         t = t.namespace;
     }
-    return namespaces.length == 0
+    return namespaces.length == 0;
 }
 
 function emitResponse(
