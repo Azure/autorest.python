@@ -915,8 +915,12 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
                 name: param.name,
                 param: param,
             };
-            endpointPathParameters.push(emitParameter(program, serverParameter, "Client"));
-            params.push(emitParameter(program, serverParameter, "Client"));
+            const clientParams = emitParameter(program, serverParameter, "Client");
+            if (clientParams.clientName === "endpoint") {
+                clientParams.skipUrlEncoding = true;
+            }
+            endpointPathParameters.push(clientParams);
+            params.push(clientParams);
         }
         return params;
     } else {
@@ -998,6 +1002,14 @@ function emitGlobalParameters(program: Program, namespace: Namespace): Record<st
         clientParameters.push(credentialParam);
     }
     if (apiVersionParam) {
+        for (const param of clientParameters) {
+            if (param.clientName === "api_version") {
+                param.type = apiVersionParam.type;
+                param.clientDefaultValue = apiVersionParam.clientDefaultValue;
+                param.isApiVersion = apiVersionParam.isApiVersion;
+                return clientParameters;
+            }
+        }
         clientParameters.push(apiVersionParam);
     }
     return clientParameters;
