@@ -66,7 +66,7 @@ class HttpSuccessOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head200_request(
             template_url=self.head200.metadata["url"],
@@ -74,9 +74,9 @@ class HttpSuccessOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -90,7 +90,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head200.metadata = {"url": "/http/success/200"}  # type: ignore
+    head200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def head204(self, **kwargs: Any) -> bool:
@@ -112,7 +112,7 @@ class HttpSuccessOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head204_request(
             template_url=self.head204.metadata["url"],
@@ -120,9 +120,9 @@ class HttpSuccessOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -136,7 +136,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head204.metadata = {"url": "/http/success/204"}  # type: ignore
+    head204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace_async
     async def head404(self, **kwargs: Any) -> bool:
@@ -158,7 +158,7 @@ class HttpSuccessOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head404_request(
             template_url=self.head404.metadata["url"],
@@ -166,9 +166,9 @@ class HttpSuccessOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -182,4 +182,4 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head404.metadata = {"url": "/http/success/404"}  # type: ignore
+    head404.metadata = {"url": "/http/success/404"}

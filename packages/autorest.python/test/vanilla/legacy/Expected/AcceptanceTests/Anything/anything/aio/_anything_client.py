@@ -35,7 +35,7 @@ class AnythingClient(AnythingClientOperationsMixin):  # pylint: disable=client-a
         self._config = AnythingClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
+        client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

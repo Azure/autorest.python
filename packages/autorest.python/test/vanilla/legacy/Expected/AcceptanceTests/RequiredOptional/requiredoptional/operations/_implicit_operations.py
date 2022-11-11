@@ -44,7 +44,7 @@ def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpR
         "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -90,7 +90,7 @@ def build_put_optional_header_request(*, query_parameter: Optional[str] = None, 
 def build_put_optional_body_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -107,7 +107,7 @@ def build_put_optional_body_request(*, content: Optional[str] = None, **kwargs: 
 def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -132,7 +132,7 @@ def build_get_required_global_path_request(required_global_path: str, **kwargs: 
         "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -222,7 +222,7 @@ class ImplicitOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_required_path_request(
             path_parameter=path_parameter,
@@ -231,9 +231,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -247,7 +247,7 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
+    get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}
 
     @distributed_trace
     def put_optional_query(  # pylint: disable=inconsistent-return-statements
@@ -273,7 +273,7 @@ class ImplicitOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_optional_query_request(
             query_parameter=query_parameter,
@@ -282,9 +282,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -298,7 +298,7 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
+    put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}
 
     @distributed_trace
     def put_optional_header(  # pylint: disable=inconsistent-return-statements
@@ -324,7 +324,7 @@ class ImplicitOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_put_optional_header_request(
             query_parameter=query_parameter,
@@ -333,9 +333,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -349,7 +349,7 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
+    put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}
 
     @distributed_trace
     def put_optional_body(  # pylint: disable=inconsistent-return-statements
@@ -375,8 +375,8 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
             _content = self._serialize.body(body_parameter, "str")
@@ -391,9 +391,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -407,7 +407,7 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
+    put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}
 
     @distributed_trace
     def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -433,8 +433,8 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = body_parameter
 
@@ -446,9 +446,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -462,7 +462,7 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}  # type: ignore
+    put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}
 
     @distributed_trace
     def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -484,7 +484,7 @@ class ImplicitOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
@@ -493,9 +493,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -509,7 +509,7 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
+    get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}
 
     @distributed_trace
     def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -531,7 +531,7 @@ class ImplicitOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
@@ -540,9 +540,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -556,7 +556,7 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
+    get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}
 
     @distributed_trace
     def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -578,7 +578,7 @@ class ImplicitOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
@@ -587,9 +587,9 @@ class ImplicitOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -603,4 +603,4 @@ class ImplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_optional_global_query.metadata = {"url": "/reqopt/global/optional/query"}  # type: ignore
+    get_optional_global_query.metadata = {"url": "/reqopt/global/optional/query"}

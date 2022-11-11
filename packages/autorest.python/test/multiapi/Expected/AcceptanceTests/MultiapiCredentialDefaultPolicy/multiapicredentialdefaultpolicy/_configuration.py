@@ -30,9 +30,8 @@ class MultiapiServiceClientConfiguration(Configuration):
     def __init__(
         self,
         credential: AzureKeyCredential,
-        **kwargs  # type: Any
+        **kwargs: Any
     ):
-        # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
@@ -43,9 +42,8 @@ class MultiapiServiceClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs  # type: Any
+        **kwargs: Any
     ):
-        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

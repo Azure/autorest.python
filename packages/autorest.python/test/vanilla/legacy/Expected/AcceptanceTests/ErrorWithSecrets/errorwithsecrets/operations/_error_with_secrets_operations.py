@@ -82,7 +82,7 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SecretResponse]
+        cls: ClsType[_models.SecretResponse] = kwargs.pop("cls", None)
 
         request = build_create_secret_request(
             template_url=self.create_secret.metadata["url"],
@@ -90,9 +90,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -110,7 +110,7 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         return deserialized
 
-    create_secret.metadata = {"url": "/secrets/:create"}  # type: ignore
+    create_secret.metadata = {"url": "/secrets/:create"}
 
     @distributed_trace
     def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -132,7 +132,7 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_error_with_secrets_request(
             template_url=self.get_error_with_secrets.metadata["url"],
@@ -140,9 +140,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -156,4 +156,4 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_error_with_secrets.metadata = {"url": "/secrets/error"}  # type: ignore
+    get_error_with_secrets.metadata = {"url": "/secrets/error"}

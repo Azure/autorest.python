@@ -240,7 +240,7 @@ class Fish(msrest.serialization.Model):
         :paramtype siblings: list[~bodycomplex.models.Fish]
         """
         super().__init__(**kwargs)
-        self.fishtype = None  # type: Optional[str]
+        self.fishtype: Optional[str] = None
         self.species = species
         self.length = length
         self.siblings = siblings
@@ -310,7 +310,7 @@ class Shark(Fish):
         :paramtype birthday: ~datetime.datetime
         """
         super().__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = "shark"  # type: str
+        self.fishtype: str = "shark"
         self.age = age
         self.birthday = birthday
 
@@ -372,7 +372,7 @@ class Cookiecuttershark(Shark):
         :paramtype birthday: ~datetime.datetime
         """
         super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = "cookiecuttershark"  # type: str
+        self.fishtype: str = "cookiecuttershark"
 
 
 class Datetimerfc1123Wrapper(msrest.serialization.Model):
@@ -541,7 +541,7 @@ class DotFish(msrest.serialization.Model):
         :paramtype species: str
         """
         super().__init__(**kwargs)
-        self.fish_type = None  # type: Optional[str]
+        self.fish_type: Optional[str] = None
         self.species = species
 
 
@@ -629,7 +629,7 @@ class DotSalmon(DotFish):
         :paramtype iswild: bool
         """
         super().__init__(species=species, **kwargs)
-        self.fish_type = "DotSalmon"  # type: str
+        self.fish_type: str = "DotSalmon"
         self.location = location
         self.iswild = iswild
 
@@ -820,7 +820,7 @@ class Goblinshark(Shark):
         :paramtype color: str or ~bodycomplex.models.GoblinSharkColor
         """
         super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = "goblin"  # type: str
+        self.fishtype: str = "goblin"
         self.jawsize = jawsize
         self.color = color
 
@@ -913,7 +913,7 @@ class MyBaseType(msrest.serialization.Model):
         :paramtype prop_bh1: str
         """
         super().__init__(**kwargs)
-        self.kind = None  # type: Optional[str]
+        self.kind: Optional[str] = None
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
 
@@ -956,7 +956,7 @@ class MyDerivedType(MyBaseType):
         :paramtype prop_d1: str
         """
         super().__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
-        self.kind = "Kind1"  # type: str
+        self.kind: str = "Kind1"
         self.prop_d1 = prop_d1
 
 
@@ -1051,7 +1051,7 @@ class Salmon(Fish):
         :paramtype iswild: bool
         """
         super().__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = "salmon"  # type: str
+        self.fishtype: str = "salmon"
         self.location = location
         self.iswild = iswild
 
@@ -1119,7 +1119,7 @@ class Sawshark(Shark):
         :paramtype picture: bytes
         """
         super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = "sawshark"  # type: str
+        self.fishtype: str = "sawshark"
         self.picture = picture
 
 
@@ -1242,7 +1242,7 @@ class SmartSalmon(Salmon):
         :paramtype college_degree: str
         """
         super().__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
-        self.fishtype = "smart_salmon"  # type: str
+        self.fishtype: str = "smart_salmon"
         self.additional_properties = additional_properties
         self.college_degree = college_degree
 

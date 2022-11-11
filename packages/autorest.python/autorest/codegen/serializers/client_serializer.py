@@ -120,7 +120,7 @@ class ClientSerializer:
         def _get_client_models_value(models_dict_name: str) -> str:
             if self.client.code_model.model_types:
                 return f"{{k: v for k, v in {models_dict_name}.__dict__.items() if isinstance(v, type)}}"
-            return "{}  # type: Dict[str, Any]"
+            return "{}"
 
         is_msrest_model = self.client.code_model.options["models_mode"] == "msrest"
         if is_msrest_model:
@@ -133,7 +133,8 @@ class ClientSerializer:
                 else "_models"
             )
             retval.append(
-                f"client_models = {_get_client_models_value(model_dict_name)}"
+                f"client_models{': Dict[str, Any]' if not self.client.code_model.model_types else ''}"
+                f" = {_get_client_models_value(model_dict_name)}"
             )
             if add_private_models and self.client.code_model.model_types:
                 update_dict = f"{{k: v for k, v in _models.__dict__.items() if isinstance(v, type)}}"
@@ -149,7 +150,7 @@ class ClientSerializer:
         for og in operation_groups:
             retval.extend(
                 [
-                    f"self.{og.property_name} = {og.class_name}({og.mypy_ignore}{og.pylint_disable}",
+                    f"self.{og.property_name} = {og.class_name}({og.pylint_disable}",
                     "    self._client, self._config, self._serialize, self._deserialize",
                     ")",
                 ]

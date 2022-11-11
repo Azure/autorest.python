@@ -32,7 +32,7 @@ class BaseModel:
         return f"<{self.__class__.__name__}>"
 
 
-class BaseType(BaseModel, ABC):
+class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     """This is the base class for all types.
 
     :param yaml_data: the yaml data for this schema
@@ -59,6 +59,14 @@ class BaseType(BaseModel, ABC):
 
     def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
         return self.imports(**kwargs)
+
+    @staticmethod
+    def imports_for_sample() -> FileImport:
+        return FileImport()
+
+    @staticmethod
+    def serialize_sample_value(value: Any) -> str:
+        return repr(value)
 
     @property
     def xml_metadata(self) -> Dict[str, Any]:

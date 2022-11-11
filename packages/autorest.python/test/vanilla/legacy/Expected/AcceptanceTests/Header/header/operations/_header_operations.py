@@ -66,7 +66,7 @@ def build_response_existing_key_request(**kwargs: Any) -> HttpRequest:
 def build_param_protected_key_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type")  # type: str
+    content_type: str = kwargs.pop("content_type")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -530,7 +530,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
@@ -539,9 +539,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -555,7 +555,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
+    param_existing_key.metadata = {"url": "/header/param/existingkey"}
 
     @distributed_trace
     def response_existing_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -577,7 +577,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_existing_key_request(
             template_url=self.response_existing_key.metadata["url"],
@@ -585,9 +585,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -604,7 +604,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
+    response_existing_key.metadata = {"url": "/header/response/existingkey"}
 
     @distributed_trace
     def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -629,8 +629,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_protected_key_request(
             content_type=content_type,
@@ -639,9 +639,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -655,7 +655,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
+    param_protected_key.metadata = {"url": "/header/param/protectedkey"}
 
     @distributed_trace
     def response_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -677,7 +677,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_protected_key_request(
             template_url=self.response_protected_key.metadata["url"],
@@ -685,9 +685,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -704,7 +704,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
+    response_protected_key.metadata = {"url": "/header/response/protectedkey"}
 
     @distributed_trace
     def param_integer(  # pylint: disable=inconsistent-return-statements
@@ -734,7 +734,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_integer_request(
             scenario=scenario,
@@ -744,9 +744,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -760,7 +760,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
+    param_integer.metadata = {"url": "/header/param/prim/integer"}
 
     @distributed_trace
     def response_integer(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -785,7 +785,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_integer_request(
             scenario=scenario,
@@ -794,9 +794,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -813,7 +813,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
+    response_integer.metadata = {"url": "/header/response/prim/integer"}
 
     @distributed_trace
     def param_long(  # pylint: disable=inconsistent-return-statements
@@ -843,7 +843,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_long_request(
             scenario=scenario,
@@ -853,9 +853,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -869,7 +869,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
+    param_long.metadata = {"url": "/header/param/prim/long"}
 
     @distributed_trace
     def response_long(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -894,7 +894,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_long_request(
             scenario=scenario,
@@ -903,9 +903,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -922,7 +922,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
+    response_long.metadata = {"url": "/header/response/prim/long"}
 
     @distributed_trace
     def param_float(  # pylint: disable=inconsistent-return-statements
@@ -952,7 +952,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_float_request(
             scenario=scenario,
@@ -962,9 +962,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -978,7 +978,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
+    param_float.metadata = {"url": "/header/param/prim/float"}
 
     @distributed_trace
     def response_float(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1003,7 +1003,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_float_request(
             scenario=scenario,
@@ -1012,9 +1012,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1031,7 +1031,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
+    response_float.metadata = {"url": "/header/response/prim/float"}
 
     @distributed_trace
     def param_double(  # pylint: disable=inconsistent-return-statements
@@ -1061,7 +1061,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_double_request(
             scenario=scenario,
@@ -1071,9 +1071,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1087,7 +1087,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
+    param_double.metadata = {"url": "/header/param/prim/double"}
 
     @distributed_trace
     def response_double(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1112,7 +1112,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_double_request(
             scenario=scenario,
@@ -1121,9 +1121,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1140,7 +1140,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
+    response_double.metadata = {"url": "/header/response/prim/double"}
 
     @distributed_trace
     def param_bool(  # pylint: disable=inconsistent-return-statements
@@ -1170,7 +1170,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_bool_request(
             scenario=scenario,
@@ -1180,9 +1180,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1196,7 +1196,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
+    param_bool.metadata = {"url": "/header/param/prim/bool"}
 
     @distributed_trace
     def response_bool(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1221,7 +1221,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_bool_request(
             scenario=scenario,
@@ -1230,9 +1230,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1249,7 +1249,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
+    response_bool.metadata = {"url": "/header/response/prim/bool"}
 
     @distributed_trace
     def param_string(  # pylint: disable=inconsistent-return-statements
@@ -1280,7 +1280,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_string_request(
             scenario=scenario,
@@ -1290,9 +1290,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1306,7 +1306,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
+    param_string.metadata = {"url": "/header/param/prim/string"}
 
     @distributed_trace
     def response_string(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1331,7 +1331,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_string_request(
             scenario=scenario,
@@ -1340,9 +1340,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1359,7 +1359,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
+    response_string.metadata = {"url": "/header/response/prim/string"}
 
     @distributed_trace
     def param_date(  # pylint: disable=inconsistent-return-statements
@@ -1388,7 +1388,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_date_request(
             scenario=scenario,
@@ -1398,9 +1398,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1414,7 +1414,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
+    param_date.metadata = {"url": "/header/param/prim/date"}
 
     @distributed_trace
     def response_date(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1438,7 +1438,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_date_request(
             scenario=scenario,
@@ -1447,9 +1447,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1466,7 +1466,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
+    response_date.metadata = {"url": "/header/response/prim/date"}
 
     @distributed_trace
     def param_datetime(  # pylint: disable=inconsistent-return-statements
@@ -1496,7 +1496,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_datetime_request(
             scenario=scenario,
@@ -1506,9 +1506,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1522,7 +1522,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
+    param_datetime.metadata = {"url": "/header/param/prim/datetime"}
 
     @distributed_trace
     def response_datetime(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1546,7 +1546,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_datetime_request(
             scenario=scenario,
@@ -1555,9 +1555,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1574,7 +1574,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
+    response_datetime.metadata = {"url": "/header/response/prim/datetime"}
 
     @distributed_trace
     def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1604,7 +1604,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_datetime_rfc1123_request(
             scenario=scenario,
@@ -1614,9 +1614,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1630,7 +1630,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
+    param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}
 
     @distributed_trace
     def response_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1657,7 +1657,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_datetime_rfc1123_request(
             scenario=scenario,
@@ -1666,9 +1666,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1685,7 +1685,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
+    response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}
 
     @distributed_trace
     def param_duration(  # pylint: disable=inconsistent-return-statements
@@ -1713,7 +1713,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_duration_request(
             scenario=scenario,
@@ -1723,9 +1723,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1739,7 +1739,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
+    param_duration.metadata = {"url": "/header/param/prim/duration"}
 
     @distributed_trace
     def response_duration(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1763,7 +1763,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_duration_request(
             scenario=scenario,
@@ -1772,9 +1772,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1791,7 +1791,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
+    response_duration.metadata = {"url": "/header/response/prim/duration"}
 
     @distributed_trace
     def param_byte(  # pylint: disable=inconsistent-return-statements
@@ -1819,7 +1819,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_byte_request(
             scenario=scenario,
@@ -1829,9 +1829,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1845,7 +1845,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
+    param_byte.metadata = {"url": "/header/param/prim/byte"}
 
     @distributed_trace
     def response_byte(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1869,7 +1869,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_byte_request(
             scenario=scenario,
@@ -1878,9 +1878,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1897,7 +1897,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
+    response_byte.metadata = {"url": "/header/response/prim/byte"}
 
     @distributed_trace
     def param_enum(  # pylint: disable=inconsistent-return-statements
@@ -1928,7 +1928,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_enum_request(
             scenario=scenario,
@@ -1938,9 +1938,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1954,7 +1954,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
+    param_enum.metadata = {"url": "/header/param/prim/enum"}
 
     @distributed_trace
     def response_enum(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1979,7 +1979,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_enum_request(
             scenario=scenario,
@@ -1988,9 +1988,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2007,7 +2007,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
+    response_enum.metadata = {"url": "/header/response/prim/enum"}
 
     @distributed_trace
     def custom_request_id(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2030,7 +2030,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_custom_request_id_request(
             template_url=self.custom_request_id.metadata["url"],
@@ -2038,9 +2038,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2054,4 +2054,4 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    custom_request_id.metadata = {"url": "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}  # type: ignore
+    custom_request_id.metadata = {"url": "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}

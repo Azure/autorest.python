@@ -41,7 +41,7 @@ _SERIALIZER.client_side_validation = False
 def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    bool_path = kwargs.pop("bool_path", True)  # type: Literal[True]
+    bool_path: Literal[True] = kwargs.pop("bool_path", True)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -50,7 +50,7 @@ def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -61,7 +61,7 @@ def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
 def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    bool_path = kwargs.pop("bool_path", False)  # type: Literal[False]
+    bool_path: Literal[False] = kwargs.pop("bool_path", False)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -70,7 +70,7 @@ def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -81,7 +81,7 @@ def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
 def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    int_path = kwargs.pop("int_path", 1000000)  # type: Literal[1000000]
+    int_path: Literal[1000000] = kwargs.pop("int_path", 1000000)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -90,7 +90,7 @@ def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -101,7 +101,7 @@ def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
 def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    int_path = kwargs.pop("int_path", -1000000)  # type: Literal[-1000000]
+    int_path: Literal[-1000000] = kwargs.pop("int_path", -1000000)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -110,7 +110,7 @@ def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpReque
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -121,7 +121,7 @@ def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpReque
 def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    long_path = kwargs.pop("long_path", 10000000000)  # type: Literal[10000000000]
+    long_path: Literal[10000000000] = kwargs.pop("long_path", 10000000000)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -130,7 +130,7 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
         "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -141,7 +141,7 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
 def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    long_path = kwargs.pop("long_path", -10000000000)  # type: Literal[-10000000000]
+    long_path: Literal[-10000000000] = kwargs.pop("long_path", -10000000000)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -150,7 +150,7 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
         "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -161,7 +161,7 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
 def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
+    float_path: float = kwargs.pop("float_path", 103400000000000000000)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -170,7 +170,7 @@ def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -181,7 +181,7 @@ def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
 def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
+    float_path: float = kwargs.pop("float_path", -1.034e-20)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -190,7 +190,7 @@ def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -201,7 +201,7 @@ def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
 def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    double_path = kwargs.pop("double_path", 9999999.999)  # type: float
+    double_path: float = kwargs.pop("double_path", 9999999.999)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -210,7 +210,7 @@ def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -221,7 +221,7 @@ def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
 def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    double_path = kwargs.pop("double_path", -9999999.999)  # type: float
+    double_path: float = kwargs.pop("double_path", -9999999.999)
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -230,7 +230,7 @@ def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -241,7 +241,7 @@ def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
 def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
+    string_path: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -250,7 +250,7 @@ def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -261,9 +261,7 @@ def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
 def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop(
-        "string_path", "begin!*'();:@ &=+$,/?#[]end"
-    )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
+    string_path: Literal["begin!*'();:@ &=+$,/?#[]end"] = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -272,7 +270,7 @@ def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -283,7 +281,7 @@ def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
 def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: Literal["begin!*'();:@&=+$,end"]
+    string_path: Literal["begin!*'();:@&=+$,end"] = kwargs.pop("string_path", "begin!*'();:@&=+$,end")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -292,7 +290,7 @@ def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str", skip_quote=True),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -303,7 +301,7 @@ def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
 def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    string_path = kwargs.pop("string_path", "")  # type: Literal[""]
+    string_path: Literal[""] = kwargs.pop("string_path", "")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -312,7 +310,7 @@ def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -331,7 +329,7 @@ def build_paths_string_null_request(string_path: str, **kwargs: Any) -> HttpRequ
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -350,7 +348,7 @@ def build_paths_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -369,7 +367,7 @@ def build_paths_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -388,7 +386,7 @@ def build_paths_byte_multi_byte_request(byte_path: bytes, **kwargs: Any) -> Http
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -399,7 +397,7 @@ def build_paths_byte_multi_byte_request(byte_path: bytes, **kwargs: Any) -> Http
 def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
+    byte_path: bytes = kwargs.pop("byte_path", bytes("", encoding="utf-8"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -408,7 +406,7 @@ def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -427,7 +425,7 @@ def build_paths_byte_null_request(byte_path: bytes, **kwargs: Any) -> HttpReques
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -438,7 +436,7 @@ def build_paths_byte_null_request(byte_path: bytes, **kwargs: Any) -> HttpReques
 def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
+    date_path: datetime.date = kwargs.pop("date_path", "2012-01-01")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -447,7 +445,7 @@ def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -466,7 +464,7 @@ def build_paths_date_null_request(date_path: datetime.date, **kwargs: Any) -> Ht
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -477,7 +475,7 @@ def build_paths_date_null_request(date_path: datetime.date, **kwargs: Any) -> Ht
 def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+    date_time_path: datetime.datetime = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -486,7 +484,7 @@ def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -505,7 +503,7 @@ def build_paths_date_time_null_request(date_time_path: datetime.datetime, **kwar
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -524,7 +522,7 @@ def build_paths_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> Htt
         "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, "base64"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -545,7 +543,7 @@ def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) 
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -564,7 +562,7 @@ def build_paths_unix_time_url_request(unix_time_url_path: datetime.datetime, **k
         "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, "unix-time"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -576,7 +574,7 @@ def build_queries_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", True))  # type: Literal[True]
+    bool_query: Literal[True] = kwargs.pop("bool_query", _params.pop("boolQuery", True))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -595,7 +593,7 @@ def build_queries_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: Literal[False]
+    bool_query: Literal[False] = kwargs.pop("bool_query", _params.pop("boolQuery", False))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -633,7 +631,7 @@ def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    int_query = kwargs.pop("int_query", _params.pop("intQuery", 1000000))  # type: Literal[1000000]
+    int_query: Literal[1000000] = kwargs.pop("int_query", _params.pop("intQuery", 1000000))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -652,7 +650,7 @@ def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpReq
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    int_query = kwargs.pop("int_query", _params.pop("intQuery", -1000000))  # type: Literal[-1000000]
+    int_query: Literal[-1000000] = kwargs.pop("int_query", _params.pop("intQuery", -1000000))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -690,7 +688,7 @@ def build_queries_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    long_query = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))  # type: Literal[10000000000]
+    long_query: Literal[10000000000] = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -709,7 +707,7 @@ def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    long_query = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))  # type: Literal[-10000000000]
+    long_query: Literal[-10000000000] = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -747,7 +745,7 @@ def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpReques
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    float_query = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))  # type: float
+    float_query: float = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -766,7 +764,7 @@ def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpReques
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    float_query = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))  # type: float
+    float_query: float = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -804,7 +802,7 @@ def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    double_query = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))  # type: float
+    double_query: float = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -823,7 +821,7 @@ def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    double_query = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))  # type: float
+    double_query: float = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -861,7 +859,7 @@ def build_queries_string_unicode_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    string_query = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
+    string_query: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -880,9 +878,9 @@ def build_queries_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    string_query = kwargs.pop(
+    string_query: Literal["begin!*'();:@ &=+$,/?#[]end"] = kwargs.pop(
         "string_query", _params.pop("stringQuery", "begin!*'();:@ &=+$,/?#[]end")
-    )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -901,7 +899,7 @@ def build_queries_string_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: Literal[""]
+    string_query: Literal[""] = kwargs.pop("string_query", _params.pop("stringQuery", ""))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -996,7 +994,7 @@ def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))  # type: bytes
+    byte_query: bytes = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1034,7 +1032,7 @@ def build_queries_date_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    date_query = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))  # type: datetime.date
+    date_query: datetime.date = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1072,9 +1070,9 @@ def build_queries_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    date_time_query = kwargs.pop(
+    date_time_query: datetime.datetime = kwargs.pop(
         "date_time_query", _params.pop("dateTimeQuery", "2012-01-01T01:01:01Z")
-    )  # type: datetime.datetime
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1280,7 +1278,7 @@ def build_path_items_get_all_with_values_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -1319,7 +1317,7 @@ def build_path_items_get_global_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -1358,7 +1356,7 @@ def build_path_items_get_global_and_local_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -1397,7 +1395,7 @@ def build_path_items_get_local_path_item_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -1452,17 +1450,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", True)  # type: Literal[True]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        bool_path: Literal[True] = kwargs.pop("bool_path", True)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_get_boolean_true_request(
             bool_path=bool_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1497,17 +1495,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_path = kwargs.pop("bool_path", False)  # type: Literal[False]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        bool_path: Literal[False] = kwargs.pop("bool_path", False)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_get_boolean_false_request(
             bool_path=bool_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1542,17 +1540,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", 1000000)  # type: Literal[1000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        int_path: Literal[1000000] = kwargs.pop("int_path", 1000000)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_get_int_one_million_request(
             int_path=int_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1587,17 +1585,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        int_path = kwargs.pop("int_path", -1000000)  # type: Literal[-1000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        int_path: Literal[-1000000] = kwargs.pop("int_path", -1000000)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_get_int_negative_one_million_request(
             int_path=int_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1632,17 +1630,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", 10000000000)  # type: Literal[10000000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        long_path: Literal[10000000000] = kwargs.pop("long_path", 10000000000)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_get_ten_billion_request(
             long_path=long_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1677,17 +1675,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        long_path = kwargs.pop("long_path", -10000000000)  # type: Literal[-10000000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        long_path: Literal[-10000000000] = kwargs.pop("long_path", -10000000000)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_get_negative_ten_billion_request(
             long_path=long_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1722,17 +1720,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        float_path: float = kwargs.pop("float_path", 103400000000000000000)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_float_scientific_positive_request(
             float_path=float_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1767,17 +1765,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        float_path: float = kwargs.pop("float_path", -1.034e-20)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_float_scientific_negative_request(
             float_path=float_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1812,17 +1810,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        double_path = kwargs.pop("double_path", 9999999.999)  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        double_path: float = kwargs.pop("double_path", 9999999.999)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_double_decimal_positive_request(
             double_path=double_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1857,17 +1855,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        double_path = kwargs.pop("double_path", -9999999.999)  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        double_path: float = kwargs.pop("double_path", -9999999.999)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_double_decimal_negative_request(
             double_path=double_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1902,17 +1900,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        string_path: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_string_unicode_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1948,19 +1946,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop(
-            "string_path", "begin!*'();:@ &=+$,/?#[]end"
-        )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        string_path: Literal["begin!*'();:@ &=+$,/?#[]end"] = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_string_url_encoded_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1998,17 +1994,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: Literal["begin!*'();:@&=+$,end"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        string_path: Literal["begin!*'();:@&=+$,end"] = kwargs.pop("string_path", "begin!*'();:@&=+$,end")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_string_url_non_encoded_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2043,17 +2039,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_path = kwargs.pop("string_path", "")  # type: Literal[""]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        string_path: Literal[""] = kwargs.pop("string_path", "")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_string_empty_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2087,16 +2083,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_string_null_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2131,16 +2127,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_enum_valid_request(
             enum_path=enum_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2175,16 +2171,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_enum_null_request(
             enum_path=enum_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2220,16 +2216,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_byte_multi_byte_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2264,17 +2260,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        byte_path: bytes = kwargs.pop("byte_path", bytes("", encoding="utf-8"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_byte_empty_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2308,16 +2304,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_byte_null_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2352,17 +2348,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        date_path: datetime.date = kwargs.pop("date_path", "2012-01-01")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_date_valid_request(
             date_path=date_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2399,16 +2395,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_date_null_request(
             date_path=date_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2444,17 +2440,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        date_time_path: datetime.datetime = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_date_time_valid_request(
             date_time_path=date_time_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2490,16 +2486,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_date_time_null_request(
             date_time_path=date_time_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2535,16 +2531,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_base64_url_request(
             base64_url_path=base64_url_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2582,16 +2578,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_array_csv_in_path_request(
             array_path=array_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2627,16 +2623,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_paths_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2689,17 +2685,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", True))  # type: Literal[True]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        bool_query: Literal[True] = kwargs.pop("bool_query", _params.pop("boolQuery", True))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_boolean_true_request(
             bool_query=bool_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2734,17 +2730,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: Literal[False]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        bool_query: Literal[False] = kwargs.pop("bool_query", _params.pop("boolQuery", False))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_boolean_false_request(
             bool_query=bool_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2780,16 +2776,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_boolean_null_request(
             bool_query=bool_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2824,17 +2820,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        int_query = kwargs.pop("int_query", _params.pop("intQuery", 1000000))  # type: Literal[1000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        int_query: Literal[1000000] = kwargs.pop("int_query", _params.pop("intQuery", 1000000))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_int_one_million_request(
             int_query=int_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2869,17 +2865,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        int_query = kwargs.pop("int_query", _params.pop("intQuery", -1000000))  # type: Literal[-1000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        int_query: Literal[-1000000] = kwargs.pop("int_query", _params.pop("intQuery", -1000000))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_int_negative_one_million_request(
             int_query=int_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2915,16 +2911,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_int_null_request(
             int_query=int_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2959,17 +2955,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        long_query = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))  # type: Literal[10000000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        long_query: Literal[10000000000] = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_ten_billion_request(
             long_query=long_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3004,17 +3000,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        long_query = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))  # type: Literal[-10000000000]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        long_query: Literal[-10000000000] = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_negative_ten_billion_request(
             long_query=long_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3050,16 +3046,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_get_long_null_request(
             long_query=long_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3094,17 +3090,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        float_query = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        float_query: float = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_float_scientific_positive_request(
             float_query=float_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3139,17 +3135,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        float_query = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        float_query: float = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_float_scientific_negative_request(
             float_query=float_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3185,16 +3181,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_float_null_request(
             float_query=float_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3229,17 +3225,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        double_query = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        double_query: float = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_double_decimal_positive_request(
             double_query=double_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3274,17 +3270,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        double_query = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))  # type: float
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        double_query: float = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_double_decimal_negative_request(
             double_query=double_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3320,16 +3316,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_double_null_request(
             double_query=double_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3364,19 +3360,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        string_query = kwargs.pop(
-            "string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩")
-        )  # type: Literal["啊齄丂狛狜隣郎隣兀﨩"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        string_query: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_string_unicode_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3412,19 +3406,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        string_query = kwargs.pop(
+        string_query: Literal["begin!*'();:@ &=+$,/?#[]end"] = kwargs.pop(
             "string_query", _params.pop("stringQuery", "begin!*'();:@ &=+$,/?#[]end")
-        )  # type: Literal["begin!*'();:@ &=+$,/?#[]end"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_string_url_encoded_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3459,17 +3453,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: Literal[""]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        string_query: Literal[""] = kwargs.pop("string_query", _params.pop("stringQuery", ""))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_string_empty_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3505,16 +3499,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_string_null_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3551,16 +3545,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_enum_valid_request(
             enum_query=enum_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3597,16 +3591,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_enum_null_request(
             enum_query=enum_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3643,16 +3637,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_byte_multi_byte_request(
             byte_query=byte_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3687,17 +3681,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))  # type: bytes
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        byte_query: bytes = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_byte_empty_request(
             byte_query=byte_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3733,16 +3727,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_byte_null_request(
             byte_query=byte_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3777,17 +3771,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        date_query = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))  # type: datetime.date
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        date_query: datetime.date = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_date_valid_request(
             date_query=date_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3823,16 +3817,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_date_null_request(
             date_query=date_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3868,19 +3862,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        date_time_query = kwargs.pop(
+        date_time_query: datetime.datetime = kwargs.pop(
             "date_time_query", _params.pop("dateTimeQuery", "2012-01-01T01:01:01Z")
-        )  # type: datetime.datetime
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_date_time_valid_request(
             date_time_query=date_time_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3916,16 +3910,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_date_time_null_request(
             date_time_query=date_time_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -3963,16 +3957,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_array_string_csv_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4008,16 +4002,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_array_string_csv_null_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4054,16 +4048,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_array_string_csv_empty_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4101,16 +4095,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_array_string_no_collection_format_empty_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4148,16 +4142,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_array_string_ssv_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4195,16 +4189,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_array_string_tsv_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4242,16 +4236,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_queries_array_string_pipes_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4321,7 +4315,7 @@ class PathItemsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_path_items_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
@@ -4333,9 +4327,9 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4387,7 +4381,7 @@ class PathItemsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_path_items_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
@@ -4399,9 +4393,9 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4453,7 +4447,7 @@ class PathItemsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_path_items_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
@@ -4465,9 +4459,9 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -4518,7 +4512,7 @@ class PathItemsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_path_items_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
@@ -4530,9 +4524,9 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 

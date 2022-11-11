@@ -86,7 +86,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                     client=self,
                 )
                 if request_builder.overloads:
-                    request_builders.extend(request_builder.overloads)  # type: ignore
+                    request_builders.extend(request_builder.overloads)
                 request_builders.append(request_builder)
                 if operation_yaml.get("nextOperation"):
                     # i am a paging operation and i have a next operation.

@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import isodate
+
 from bodyduration import AutoRestDurationTestService
 
 """
@@ -20,7 +22,7 @@ def main():
     client = AutoRestDurationTestService()
 
     response = client.duration.put_positive_duration(
-        duration_body="P123DT22H14M12.011S",
+        duration_body=isodate.parse_duration("P123DT22H14M12.011S"),
     )
     print(response)
 

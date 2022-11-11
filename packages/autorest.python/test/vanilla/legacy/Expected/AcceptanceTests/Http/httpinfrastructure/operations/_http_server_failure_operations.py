@@ -69,7 +69,7 @@ def build_get501_request(**kwargs: Any) -> HttpRequest:
 def build_post505_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -86,7 +86,7 @@ def build_post505_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpR
 def build_delete505_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -139,7 +139,7 @@ class HttpServerFailureOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head501_request(
             template_url=self.head501.metadata["url"],
@@ -147,9 +147,9 @@ class HttpServerFailureOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -163,7 +163,7 @@ class HttpServerFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
+    head501.metadata = {"url": "/http/failure/server/501"}
 
     @distributed_trace
     def get501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -185,7 +185,7 @@ class HttpServerFailureOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get501_request(
             template_url=self.get501.metadata["url"],
@@ -193,9 +193,9 @@ class HttpServerFailureOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -209,7 +209,7 @@ class HttpServerFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
+    get501.metadata = {"url": "/http/failure/server/501"}
 
     @distributed_trace
     def post505(  # pylint: disable=inconsistent-return-statements
@@ -236,8 +236,8 @@ class HttpServerFailureOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -252,9 +252,9 @@ class HttpServerFailureOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -268,7 +268,7 @@ class HttpServerFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
+    post505.metadata = {"url": "/http/failure/server/505"}
 
     @distributed_trace
     def delete505(  # pylint: disable=inconsistent-return-statements
@@ -295,8 +295,8 @@ class HttpServerFailureOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -311,9 +311,9 @@ class HttpServerFailureOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -327,4 +327,4 @@ class HttpServerFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
+    delete505.metadata = {"url": "/http/failure/server/505"}

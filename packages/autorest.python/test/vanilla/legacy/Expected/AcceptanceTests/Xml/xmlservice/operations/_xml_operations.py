@@ -55,7 +55,7 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
 def build_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
 
@@ -83,7 +83,7 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
 def build_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
 
@@ -111,7 +111,7 @@ def build_get_simple_request(**kwargs: Any) -> HttpRequest:
 def build_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -142,7 +142,7 @@ def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 def build_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -180,7 +180,7 @@ def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
 def build_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-list")
 
@@ -208,7 +208,7 @@ def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 def build_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
 
@@ -236,7 +236,7 @@ def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
 def build_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/root-list")
 
@@ -264,7 +264,7 @@ def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
 def build_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/root-list-single-item")
 
@@ -292,7 +292,7 @@ def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
 def build_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-root-list")
 
@@ -320,7 +320,7 @@ def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
 def build_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-child-element")
 
@@ -335,7 +335,7 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
+    comp: Literal["list"] = kwargs.pop("comp", _params.pop("comp", "list"))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -354,8 +354,8 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
-    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
+    comp: Literal["properties"] = kwargs.pop("comp", _params.pop("comp", "properties"))
+    restype: Literal["service"] = kwargs.pop("restype", _params.pop("restype", "service"))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -375,9 +375,9 @@ def build_put_service_properties_request(*, content: Any, **kwargs: Any) -> Http
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
-    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    comp: Literal["properties"] = kwargs.pop("comp", _params.pop("comp", "properties"))
+    restype: Literal["service"] = kwargs.pop("restype", _params.pop("restype", "service"))
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/")
 
@@ -396,8 +396,8 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
+    comp: Literal["acl"] = kwargs.pop("comp", _params.pop("comp", "acl"))
+    restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -417,9 +417,9 @@ def build_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    comp: Literal["acl"] = kwargs.pop("comp", _params.pop("comp", "acl"))
+    restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/mycontainer")
 
@@ -438,8 +438,8 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
-    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
+    comp: Literal["list"] = kwargs.pop("comp", _params.pop("comp", "list"))
+    restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -458,7 +458,7 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
 def build_json_input_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/jsoninput")
 
@@ -514,7 +514,7 @@ def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
 def build_put_binary_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -545,7 +545,7 @@ def build_get_uri_request(**kwargs: Any) -> HttpRequest:
 def build_put_uri_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/xml")
 
     # Construct URL
@@ -598,7 +598,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RootWithRefAndNoMeta]
+        cls: ClsType[_models.RootWithRefAndNoMeta] = kwargs.pop("cls", None)
 
         request = build_get_complex_type_ref_no_meta_request(
             template_url=self.get_complex_type_ref_no_meta.metadata["url"],
@@ -606,9 +606,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -625,7 +625,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
+    get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}
 
     @distributed_trace
     def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
@@ -651,8 +651,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
@@ -664,9 +664,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -679,7 +679,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
+    put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}
 
     @distributed_trace
     def get_complex_type_ref_with_meta(self, **kwargs: Any) -> _models.RootWithRefAndMeta:
@@ -701,7 +701,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RootWithRefAndMeta]
+        cls: ClsType[_models.RootWithRefAndMeta] = kwargs.pop("cls", None)
 
         request = build_get_complex_type_ref_with_meta_request(
             template_url=self.get_complex_type_ref_with_meta.metadata["url"],
@@ -709,9 +709,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -728,7 +728,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
+    get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}
 
     @distributed_trace
     def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
@@ -754,8 +754,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
@@ -767,9 +767,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -782,7 +782,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
+    put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}
 
     @distributed_trace
     def get_simple(self, **kwargs: Any) -> _models.Slideshow:
@@ -804,7 +804,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Slideshow]
+        cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
         request = build_get_simple_request(
             template_url=self.get_simple.metadata["url"],
@@ -812,9 +812,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -832,7 +832,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
+    get_simple.metadata = {"url": "/xml/simple"}
 
     @distributed_trace
     def put_simple(  # pylint: disable=inconsistent-return-statements
@@ -858,8 +858,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
@@ -871,9 +871,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -887,7 +887,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
+    put_simple.metadata = {"url": "/xml/simple"}
 
     @distributed_trace
     def get_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -909,7 +909,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.AppleBarrel]
+        cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
         request = build_get_wrapped_lists_request(
             template_url=self.get_wrapped_lists.metadata["url"],
@@ -917,9 +917,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -936,7 +936,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
+    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}
 
     @distributed_trace
     def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -962,8 +962,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
@@ -975,9 +975,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -991,7 +991,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
+    put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}
 
     @distributed_trace
     def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1013,7 +1013,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_headers_request(
             template_url=self.get_headers.metadata["url"],
@@ -1021,9 +1021,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1039,7 +1039,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
+    get_headers.metadata = {"url": "/xml/headers"}
 
     @distributed_trace
     def get_empty_list(self, **kwargs: Any) -> _models.Slideshow:
@@ -1061,7 +1061,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Slideshow]
+        cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
         request = build_get_empty_list_request(
             template_url=self.get_empty_list.metadata["url"],
@@ -1069,9 +1069,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1088,7 +1088,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
+    get_empty_list.metadata = {"url": "/xml/empty-list"}
 
     @distributed_trace
     def put_empty_list(  # pylint: disable=inconsistent-return-statements
@@ -1114,8 +1114,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
@@ -1127,9 +1127,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1142,7 +1142,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
+    put_empty_list.metadata = {"url": "/xml/empty-list"}
 
     @distributed_trace
     def get_empty_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -1164,7 +1164,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.AppleBarrel]
+        cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
         request = build_get_empty_wrapped_lists_request(
             template_url=self.get_empty_wrapped_lists.metadata["url"],
@@ -1172,9 +1172,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1191,7 +1191,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
+    get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}
 
     @distributed_trace
     def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -1217,8 +1217,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
@@ -1230,9 +1230,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1245,7 +1245,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
+    put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}
 
     @distributed_trace
     def get_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1267,7 +1267,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Banana]]
+        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_get_root_list_request(
             template_url=self.get_root_list.metadata["url"],
@@ -1275,9 +1275,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1294,7 +1294,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
+    get_root_list.metadata = {"url": "/xml/root-list"}
 
     @distributed_trace
     def put_root_list(  # pylint: disable=inconsistent-return-statements
@@ -1320,8 +1320,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
@@ -1334,9 +1334,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1349,7 +1349,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
+    put_root_list.metadata = {"url": "/xml/root-list"}
 
     @distributed_trace
     def get_root_list_single_item(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1371,7 +1371,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Banana]]
+        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_get_root_list_single_item_request(
             template_url=self.get_root_list_single_item.metadata["url"],
@@ -1379,9 +1379,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1398,7 +1398,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
+    get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}
 
     @distributed_trace
     def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
@@ -1424,8 +1424,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
@@ -1438,9 +1438,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1453,7 +1453,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
+    put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}
 
     @distributed_trace
     def get_empty_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1475,7 +1475,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Banana]]
+        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_get_empty_root_list_request(
             template_url=self.get_empty_root_list.metadata["url"],
@@ -1483,9 +1483,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1502,7 +1502,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
+    get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}
 
     @distributed_trace
     def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
@@ -1528,8 +1528,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
@@ -1542,9 +1542,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1557,7 +1557,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
+    put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}
 
     @distributed_trace
     def get_empty_child_element(self, **kwargs: Any) -> _models.Banana:
@@ -1579,7 +1579,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Banana]
+        cls: ClsType[_models.Banana] = kwargs.pop("cls", None)
 
         request = build_get_empty_child_element_request(
             template_url=self.get_empty_child_element.metadata["url"],
@@ -1587,9 +1587,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1606,7 +1606,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
+    get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}
 
     @distributed_trace
     def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
@@ -1632,8 +1632,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(banana, "Banana", is_xml=True)
 
@@ -1645,9 +1645,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1660,7 +1660,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
+    put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}
 
     @distributed_trace
     def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
@@ -1685,8 +1685,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ListContainersResponse]
+        comp: Literal["list"] = kwargs.pop("comp", _params.pop("comp", "list"))
+        cls: ClsType[_models.ListContainersResponse] = kwargs.pop("cls", None)
 
         request = build_list_containers_request(
             comp=comp,
@@ -1695,9 +1695,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1714,7 +1714,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    list_containers.metadata = {"url": "/xml/"}  # type: ignore
+    list_containers.metadata = {"url": "/xml/"}
 
     @distributed_trace
     def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
@@ -1742,9 +1742,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageServiceProperties]
+        comp: Literal["properties"] = kwargs.pop("comp", _params.pop("comp", "properties"))
+        restype: Literal["service"] = kwargs.pop("restype", _params.pop("restype", "service"))
+        cls: ClsType[_models.StorageServiceProperties] = kwargs.pop("cls", None)
 
         request = build_get_service_properties_request(
             comp=comp,
@@ -1754,9 +1754,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1773,7 +1773,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
+    get_service_properties.metadata = {"url": "/xml/"}
 
     @distributed_trace
     def put_service_properties(  # pylint: disable=inconsistent-return-statements
@@ -1805,10 +1805,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: Literal["properties"]
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: Literal["service"]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        comp: Literal["properties"] = kwargs.pop("comp", _params.pop("comp", "properties"))
+        restype: Literal["service"] = kwargs.pop("restype", _params.pop("restype", "service"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
@@ -1822,9 +1822,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1837,7 +1837,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
+    put_service_properties.metadata = {"url": "/xml/"}
 
     @distributed_trace
     def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
@@ -1865,9 +1865,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.SignedIdentifier]]
+        comp: Literal["acl"] = kwargs.pop("comp", _params.pop("comp", "acl"))
+        restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
+        cls: ClsType[List[_models.SignedIdentifier]] = kwargs.pop("cls", None)
 
         request = build_get_acls_request(
             comp=comp,
@@ -1877,9 +1877,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1896,7 +1896,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
+    get_acls.metadata = {"url": "/xml/mycontainer"}
 
     @distributed_trace
     def put_acls(  # pylint: disable=inconsistent-return-statements
@@ -1928,10 +1928,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: Literal["acl"]
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        comp: Literal["acl"] = kwargs.pop("comp", _params.pop("comp", "acl"))
+        restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
         _content = self._serialize.body(
@@ -1948,9 +1948,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1963,7 +1963,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
+    put_acls.metadata = {"url": "/xml/mycontainer"}
 
     @distributed_trace
     def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
@@ -1991,9 +1991,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: Literal["list"]
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: Literal["container"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ListBlobsResponse]
+        comp: Literal["list"] = kwargs.pop("comp", _params.pop("comp", "list"))
+        restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
+        cls: ClsType[_models.ListBlobsResponse] = kwargs.pop("cls", None)
 
         request = build_list_blobs_request(
             comp=comp,
@@ -2003,9 +2003,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2022,7 +2022,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
+    list_blobs.metadata = {"url": "/xml/mycontainer"}
 
     @distributed_trace
     def json_input(  # pylint: disable=inconsistent-return-statements
@@ -2049,8 +2049,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _properties = _models.JSONInput(id=id)
         _json = self._serialize.body(_properties, "JSONInput")
@@ -2063,9 +2063,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2078,7 +2078,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
+    json_input.metadata = {"url": "/xml/jsoninput"}
 
     @distributed_trace
     def json_output(self, **kwargs: Any) -> _models.JSONOutput:
@@ -2100,7 +2100,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.JSONOutput]
+        cls: ClsType[_models.JSONOutput] = kwargs.pop("cls", None)
 
         request = build_json_output_request(
             template_url=self.json_output.metadata["url"],
@@ -2108,9 +2108,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2127,7 +2127,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
+    json_output.metadata = {"url": "/xml/jsonoutput"}
 
     @distributed_trace
     def get_xms_text(self, **kwargs: Any) -> _models.ObjectWithXMsTextProperty:
@@ -2150,7 +2150,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ObjectWithXMsTextProperty]
+        cls: ClsType[_models.ObjectWithXMsTextProperty] = kwargs.pop("cls", None)
 
         request = build_get_xms_text_request(
             template_url=self.get_xms_text.metadata["url"],
@@ -2158,9 +2158,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2177,7 +2177,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
+    get_xms_text.metadata = {"url": "/xml/x-ms-text"}
 
     @distributed_trace
     def get_bytes(self, **kwargs: Any) -> _models.ModelWithByteProperty:
@@ -2199,7 +2199,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelWithByteProperty]
+        cls: ClsType[_models.ModelWithByteProperty] = kwargs.pop("cls", None)
 
         request = build_get_bytes_request(
             template_url=self.get_bytes.metadata["url"],
@@ -2207,9 +2207,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2227,7 +2227,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
+    get_bytes.metadata = {"url": "/xml/bytes"}
 
     @distributed_trace
     def put_binary(  # pylint: disable=inconsistent-return-statements
@@ -2253,8 +2253,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
         _content = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
@@ -2267,9 +2267,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2283,7 +2283,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
+    put_binary.metadata = {"url": "/xml/bytes"}
 
     @distributed_trace
     def get_uri(self, **kwargs: Any) -> _models.ModelWithUrlProperty:
@@ -2305,7 +2305,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelWithUrlProperty]
+        cls: ClsType[_models.ModelWithUrlProperty] = kwargs.pop("cls", None)
 
         request = build_get_uri_request(
             template_url=self.get_uri.metadata["url"],
@@ -2313,9 +2313,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2333,7 +2333,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_uri.metadata = {"url": "/xml/url"}  # type: ignore
+    get_uri.metadata = {"url": "/xml/url"}
 
     @distributed_trace
     def put_uri(  # pylint: disable=inconsistent-return-statements
@@ -2359,8 +2359,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _model = _models.ModelWithUrlProperty(url=url)
         _content = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
@@ -2373,9 +2373,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -2389,4 +2389,4 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_uri.metadata = {"url": "/xml/url"}  # type: ignore
+    put_uri.metadata = {"url": "/xml/url"}

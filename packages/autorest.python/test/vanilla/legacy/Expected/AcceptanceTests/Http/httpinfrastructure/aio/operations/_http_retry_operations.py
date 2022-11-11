@@ -84,7 +84,7 @@ class HttpRetryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head408_request(
             template_url=self.head408.metadata["url"],
@@ -92,9 +92,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -108,7 +108,7 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head408.metadata = {"url": "/http/retry/408"}  # type: ignore
+    head408.metadata = {"url": "/http/retry/408"}
 
     @distributed_trace_async
     async def put500(  # pylint: disable=inconsistent-return-statements
@@ -135,8 +135,8 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -151,9 +151,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -167,7 +167,7 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put500.metadata = {"url": "/http/retry/500"}  # type: ignore
+    put500.metadata = {"url": "/http/retry/500"}
 
     @distributed_trace_async
     async def patch500(  # pylint: disable=inconsistent-return-statements
@@ -194,8 +194,8 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -210,9 +210,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -226,7 +226,7 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
+    patch500.metadata = {"url": "/http/retry/500"}
 
     @distributed_trace_async
     async def get502(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -248,7 +248,7 @@ class HttpRetryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get502_request(
             template_url=self.get502.metadata["url"],
@@ -256,9 +256,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -272,7 +272,7 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get502.metadata = {"url": "/http/retry/502"}  # type: ignore
+    get502.metadata = {"url": "/http/retry/502"}
 
     @distributed_trace_async
     async def options502(self, **kwargs: Any) -> bool:
@@ -294,7 +294,7 @@ class HttpRetryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_options502_request(
             template_url=self.options502.metadata["url"],
@@ -302,9 +302,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -322,7 +322,7 @@ class HttpRetryOperations:
 
         return deserialized
 
-    options502.metadata = {"url": "/http/retry/502"}  # type: ignore
+    options502.metadata = {"url": "/http/retry/502"}
 
     @distributed_trace_async
     async def post503(  # pylint: disable=inconsistent-return-statements
@@ -349,8 +349,8 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -365,9 +365,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -381,7 +381,7 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post503.metadata = {"url": "/http/retry/503"}  # type: ignore
+    post503.metadata = {"url": "/http/retry/503"}
 
     @distributed_trace_async
     async def delete503(  # pylint: disable=inconsistent-return-statements
@@ -408,8 +408,8 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -424,9 +424,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -440,7 +440,7 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
+    delete503.metadata = {"url": "/http/retry/503"}
 
     @distributed_trace_async
     async def put504(  # pylint: disable=inconsistent-return-statements
@@ -467,8 +467,8 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -483,9 +483,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -499,7 +499,7 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put504.metadata = {"url": "/http/retry/504"}  # type: ignore
+    put504.metadata = {"url": "/http/retry/504"}
 
     @distributed_trace_async
     async def patch504(  # pylint: disable=inconsistent-return-statements
@@ -526,8 +526,8 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -542,9 +542,9 @@ class HttpRetryOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -558,4 +558,4 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch504.metadata = {"url": "/http/retry/504"}  # type: ignore
+    patch504.metadata = {"url": "/http/retry/504"}
