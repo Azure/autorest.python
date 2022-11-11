@@ -217,7 +217,6 @@ function getType(
     type: Type | CredentialType,
     modelTypeProperty: ModelProperty | undefined = undefined,
 ): any {
-    if (type.kind === "Model" && isAzureCoreErrorType(type)) return { type: "any" };
     // don't cache simple type(string, int, etc) since decorators may change the result
     const enableCache = !isSimpleType(program, modelTypeProperty);
     if (enableCache) {
