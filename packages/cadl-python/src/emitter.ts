@@ -355,7 +355,11 @@ function emitParameter(
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
     }
-    return { clientDefaultValue, ...base, ...paramMap };
+    if (parameter.type === "endpointPath") {
+        return { clientDefaultValue, ...base, ...paramMap, skipUrlEncoding: true };
+    } else {
+        return { clientDefaultValue, ...base, ...paramMap };
+    }
 }
 
 function emitContentTypeParameter(
@@ -915,12 +919,8 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
                 name: param.name,
                 param: param,
             };
-            const clientParams = emitParameter(program, serverParameter, "Client");
-            if (clientParams.clientName === "endpoint") {
-                clientParams.skipUrlEncoding = true;
-            }
-            endpointPathParameters.push(clientParams);
-            params.push(clientParams);
+            endpointPathParameters.push(emitParameter(program, serverParameter, "Client"));
+            params.push(emitParameter(program, serverParameter, "Client"));
         }
         return params;
     } else {
