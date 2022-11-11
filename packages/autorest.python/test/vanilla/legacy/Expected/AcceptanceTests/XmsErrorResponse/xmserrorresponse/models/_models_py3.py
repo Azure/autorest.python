@@ -89,7 +89,7 @@ class NotFoundErrorBase(BaseError):
         """
         super().__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
-        self.what_not_found = None  # type: Optional[str]
+        self.what_not_found: Optional[str] = None
 
 
 class AnimalNotFound(NotFoundErrorBase):
@@ -135,7 +135,7 @@ class AnimalNotFound(NotFoundErrorBase):
         :paramtype name: str
         """
         super().__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found = "AnimalNotFound"  # type: str
+        self.what_not_found: str = "AnimalNotFound"
         self.name = name
 
 
@@ -182,7 +182,7 @@ class LinkNotFound(NotFoundErrorBase):
         :paramtype what_sub_address: str
         """
         super().__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found = "InvalidResourceLink"  # type: str
+        self.what_not_found: str = "InvalidResourceLink"
         self.what_sub_address = what_sub_address
 
 
@@ -271,7 +271,7 @@ class PetActionError(PetAction):
         :paramtype error_message: str
         """
         super().__init__(action_response=action_response, **kwargs)
-        self.error_type = None  # type: Optional[str]
+        self.error_type: Optional[str] = None
         self.error_message = error_message
 
 
@@ -323,7 +323,7 @@ class PetSadError(PetActionError):
         :paramtype reason: str
         """
         super().__init__(action_response=action_response, error_message=error_message, **kwargs)
-        self.error_type = "PetSadError"  # type: str
+        self.error_type: str = "PetSadError"
         self.reason = reason
 
 
@@ -376,5 +376,5 @@ class PetHungryOrThirstyError(PetSadError):
         :paramtype hungry_or_thirsty: str
         """
         super().__init__(action_response=action_response, error_message=error_message, reason=reason, **kwargs)
-        self.error_type = "PetHungryOrThirstyError"  # type: str
+        self.error_type: str = "PetHungryOrThirstyError"
         self.hungry_or_thirsty = hungry_or_thirsty

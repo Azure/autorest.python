@@ -107,8 +107,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -123,9 +123,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -157,15 +157,15 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
+        cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
         request = build_inheritance_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -178,9 +178,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         deserialized = _deserialize(_models.Siamese, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_valid(
@@ -236,8 +236,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -252,9 +252,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -267,9 +267,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         deserialized = _deserialize(_models.Siamese, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_model(self, **kwargs: Any) -> _models.Fish:
@@ -290,15 +290,15 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
+        cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
         request = build_inheritance_get_model_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -311,9 +311,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_model(  # pylint: disable=inconsistent-return-statements
@@ -373,8 +373,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -389,9 +389,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -423,15 +423,15 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
+        cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
         request = build_inheritance_get_recursive_model_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -444,9 +444,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
@@ -506,8 +506,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -522,9 +522,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -556,15 +556,15 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
+        cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
         request = build_inheritance_get_missing_discriminator_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -577,9 +577,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_wrong_discriminator(self, **kwargs: Any) -> _models.Fish:
@@ -600,15 +600,15 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
+        cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
         request = build_inheritance_get_wrong_discriminator_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -621,6 +621,6 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

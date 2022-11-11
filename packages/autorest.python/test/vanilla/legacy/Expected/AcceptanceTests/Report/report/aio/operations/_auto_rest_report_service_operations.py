@@ -58,7 +58,7 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
         request = build_get_report_request(
             qualifier=qualifier,
@@ -67,9 +67,9 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -87,7 +87,7 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
         return deserialized
 
-    get_report.metadata = {"url": "/report"}  # type: ignore
+    get_report.metadata = {"url": "/report"}
 
     @distributed_trace_async
     async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
@@ -113,7 +113,7 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
@@ -122,9 +122,9 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -142,4 +142,4 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
         return deserialized
 
-    get_optional_report.metadata = {"url": "/report/optional"}  # type: ignore
+    get_optional_report.metadata = {"url": "/report/optional"}

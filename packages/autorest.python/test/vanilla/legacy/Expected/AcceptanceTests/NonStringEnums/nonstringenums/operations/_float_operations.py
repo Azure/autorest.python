@@ -36,7 +36,7 @@ _SERIALIZER.client_side_validation = False
 def build_put_request(*, json: Optional[Union[float, _models.FloatEnum]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -104,8 +104,8 @@ class FloatOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
             _json = self._serialize.body(input, "float")
@@ -120,9 +120,9 @@ class FloatOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -139,7 +139,7 @@ class FloatOperations:
 
         return deserialized
 
-    put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
+    put.metadata = {"url": "/nonStringEnums/float/put"}
 
     @distributed_trace
     def get(self, **kwargs: Any) -> Union[float, _models.FloatEnum]:
@@ -161,7 +161,7 @@ class FloatOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[float, _models.FloatEnum]]
+        cls: ClsType[Union[float, _models.FloatEnum]] = kwargs.pop("cls", None)
 
         request = build_get_request(
             template_url=self.get.metadata["url"],
@@ -169,9 +169,9 @@ class FloatOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -188,4 +188,4 @@ class FloatOperations:
 
         return deserialized
 
-    get.metadata = {"url": "/nonStringEnums/float/get"}  # type: ignore
+    get.metadata = {"url": "/nonStringEnums/float/get"}

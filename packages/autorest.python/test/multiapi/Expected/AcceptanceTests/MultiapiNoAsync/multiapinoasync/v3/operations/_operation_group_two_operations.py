@@ -43,8 +43,8 @@ def build_test_four_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -65,7 +65,7 @@ def build_test_five_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
+    api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -161,9 +161,9 @@ class OperationGroupTwoOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = None
         _content = None
@@ -186,9 +186,9 @@ class OperationGroupTwoOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -202,7 +202,7 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}  # type: ignore
+    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}
 
     @distributed_trace
     def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -224,8 +224,8 @@ class OperationGroupTwoOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_five_request(
             api_version=api_version,
@@ -234,9 +234,9 @@ class OperationGroupTwoOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -250,4 +250,4 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_five.metadata = {"url": "/multiapi/two/testFiveEndpoint"}  # type: ignore
+    test_five.metadata = {"url": "/multiapi/two/testFiveEndpoint"}

@@ -36,7 +36,7 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disabl
         self._config = AutorestSecurityAadConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
+        client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
@@ -63,15 +63,12 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disabl
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
-    def close(self):
-        # type: () -> None
+    def close(self) -> None:
         self._client.close()
 
-    def __enter__(self):
-        # type: () -> AutorestSecurityAad
+    def __enter__(self) -> "AutorestSecurityAad":
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details):
-        # type: (Any) -> None
+    def __exit__(self, *exc_details) -> None:
         self._client.__exit__(*exc_details)

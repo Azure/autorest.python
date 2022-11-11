@@ -55,7 +55,7 @@ def _serialize_package(
                 ),
             )
         )
-    for submodule_name, alias, version_modules in versioned_modules:  # type: ignore
+    for submodule_name, alias, version_modules in versioned_modules:
         for n, (version, module_name, comment) in enumerate(version_modules):
             buffer.append(
                 "{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version)

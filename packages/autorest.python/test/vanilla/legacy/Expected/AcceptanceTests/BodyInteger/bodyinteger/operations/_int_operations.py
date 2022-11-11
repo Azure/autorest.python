@@ -121,7 +121,7 @@ def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
 def build_put_max32_request(*, json: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -138,7 +138,7 @@ def build_put_max32_request(*, json: int, **kwargs: Any) -> HttpRequest:
 def build_put_max64_request(*, json: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -155,7 +155,7 @@ def build_put_max64_request(*, json: int, **kwargs: Any) -> HttpRequest:
 def build_put_min32_request(*, json: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -172,7 +172,7 @@ def build_put_min32_request(*, json: int, **kwargs: Any) -> HttpRequest:
 def build_put_min64_request(*, json: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -203,7 +203,7 @@ def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
 def build_put_unix_time_date_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -284,7 +284,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[int]]
+        cls: ClsType[Optional[int]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
@@ -292,9 +292,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -312,7 +312,7 @@ class IntOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/int/null"}  # type: ignore
+    get_null.metadata = {"url": "/int/null"}
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> int:
@@ -334,7 +334,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[int]
+        cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
@@ -342,9 +342,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -362,7 +362,7 @@ class IntOperations:
 
         return deserialized
 
-    get_invalid.metadata = {"url": "/int/invalid"}  # type: ignore
+    get_invalid.metadata = {"url": "/int/invalid"}
 
     @distributed_trace
     def get_overflow_int32(self, **kwargs: Any) -> int:
@@ -384,7 +384,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[int]
+        cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_overflow_int32_request(
             template_url=self.get_overflow_int32.metadata["url"],
@@ -392,9 +392,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -412,7 +412,7 @@ class IntOperations:
 
         return deserialized
 
-    get_overflow_int32.metadata = {"url": "/int/overflowint32"}  # type: ignore
+    get_overflow_int32.metadata = {"url": "/int/overflowint32"}
 
     @distributed_trace
     def get_underflow_int32(self, **kwargs: Any) -> int:
@@ -434,7 +434,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[int]
+        cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_underflow_int32_request(
             template_url=self.get_underflow_int32.metadata["url"],
@@ -442,9 +442,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -462,7 +462,7 @@ class IntOperations:
 
         return deserialized
 
-    get_underflow_int32.metadata = {"url": "/int/underflowint32"}  # type: ignore
+    get_underflow_int32.metadata = {"url": "/int/underflowint32"}
 
     @distributed_trace
     def get_overflow_int64(self, **kwargs: Any) -> int:
@@ -484,7 +484,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[int]
+        cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_overflow_int64_request(
             template_url=self.get_overflow_int64.metadata["url"],
@@ -492,9 +492,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -512,7 +512,7 @@ class IntOperations:
 
         return deserialized
 
-    get_overflow_int64.metadata = {"url": "/int/overflowint64"}  # type: ignore
+    get_overflow_int64.metadata = {"url": "/int/overflowint64"}
 
     @distributed_trace
     def get_underflow_int64(self, **kwargs: Any) -> int:
@@ -534,7 +534,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[int]
+        cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_underflow_int64_request(
             template_url=self.get_underflow_int64.metadata["url"],
@@ -542,9 +542,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -562,7 +562,7 @@ class IntOperations:
 
         return deserialized
 
-    get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
+    get_underflow_int64.metadata = {"url": "/int/underflowint64"}
 
     @distributed_trace
     def put_max32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -586,8 +586,8 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(int_body, "int")
 
@@ -599,9 +599,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -615,7 +615,7 @@ class IntOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
+    put_max32.metadata = {"url": "/int/max/32"}
 
     @distributed_trace
     def put_max64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -639,8 +639,8 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(int_body, "int")
 
@@ -652,9 +652,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -668,7 +668,7 @@ class IntOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
+    put_max64.metadata = {"url": "/int/max/64"}
 
     @distributed_trace
     def put_min32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -692,8 +692,8 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(int_body, "int")
 
@@ -705,9 +705,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -721,7 +721,7 @@ class IntOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
+    put_min32.metadata = {"url": "/int/min/32"}
 
     @distributed_trace
     def put_min64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -745,8 +745,8 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(int_body, "int")
 
@@ -758,9 +758,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -774,7 +774,7 @@ class IntOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_min64.metadata = {"url": "/int/min/64"}  # type: ignore
+    put_min64.metadata = {"url": "/int/min/64"}
 
     @distributed_trace
     def get_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -796,7 +796,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
+        cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_unix_time_request(
             template_url=self.get_unix_time.metadata["url"],
@@ -804,9 +804,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -824,7 +824,7 @@ class IntOperations:
 
         return deserialized
 
-    get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
+    get_unix_time.metadata = {"url": "/int/unixtime"}
 
     @distributed_trace
     def put_unix_time_date(  # pylint: disable=inconsistent-return-statements
@@ -850,8 +850,8 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(int_body, "unix-time")
 
@@ -863,9 +863,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -879,7 +879,7 @@ class IntOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_unix_time_date.metadata = {"url": "/int/unixtime"}  # type: ignore
+    put_unix_time_date.metadata = {"url": "/int/unixtime"}
 
     @distributed_trace
     def get_invalid_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -901,7 +901,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
+        cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_invalid_unix_time_request(
             template_url=self.get_invalid_unix_time.metadata["url"],
@@ -909,9 +909,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -929,7 +929,7 @@ class IntOperations:
 
         return deserialized
 
-    get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}  # type: ignore
+    get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}
 
     @distributed_trace
     def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
@@ -951,7 +951,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.datetime]]
+        cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
         request = build_get_null_unix_time_request(
             template_url=self.get_null_unix_time.metadata["url"],
@@ -959,9 +959,9 @@ class IntOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -979,4 +979,4 @@ class IntOperations:
 
         return deserialized
 
-    get_null_unix_time.metadata = {"url": "/int/nullunixtime"}  # type: ignore
+    get_null_unix_time.metadata = {"url": "/int/nullunixtime"}

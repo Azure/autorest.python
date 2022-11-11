@@ -384,6 +384,16 @@ class DatetimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.datetime)"
 
+    @staticmethod
+    def imports_for_sample() -> FileImport:
+        file_import = super(DatetimeType, DatetimeType).imports_for_sample()
+        file_import.add_import("isodate", ImportType.STDLIB)
+        return file_import
+
+    @staticmethod
+    def serialize_sample_value(value: Any) -> str:
+        return f"isodate.parse_datetime({repr(value)})"
+
 
 class TimeType(PrimitiveType):
     @property
@@ -417,6 +427,16 @@ class TimeType(PrimitiveType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.time)"
+
+    @staticmethod
+    def imports_for_sample() -> FileImport:
+        file_import = super(TimeType, TimeType).imports_for_sample()
+        file_import.add_import("isodate", ImportType.STDLIB)
+        return file_import
+
+    @staticmethod
+    def serialize_sample_value(value: Any) -> str:
+        return f"isodate.parse_time({repr(value)})"
 
 
 class UnixTimeType(PrimitiveType):
@@ -452,6 +472,16 @@ class UnixTimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.time)"
 
+    @staticmethod
+    def imports_for_sample() -> FileImport:
+        file_import = super(UnixTimeType, UnixTimeType).imports_for_sample()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
+    @staticmethod
+    def serialize_sample_value(value: Any) -> str:
+        return f"datetime.datetime.fromtimestamp({repr(value)}, datetime.timezone.utc)"
+
 
 class DateType(PrimitiveType):
     @property
@@ -486,6 +516,16 @@ class DateType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.date)"
 
+    @staticmethod
+    def imports_for_sample() -> FileImport:
+        file_import = super(DateType, DateType).imports_for_sample()
+        file_import.add_import("isodate", ImportType.STDLIB)
+        return file_import
+
+    @staticmethod
+    def serialize_sample_value(value: Any) -> str:
+        return f"isodate.parse_date({repr(value)})"
+
 
 class DurationType(PrimitiveType):
     @property
@@ -519,6 +559,16 @@ class DurationType(PrimitiveType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.timedelta)"
+
+    @staticmethod
+    def imports_for_sample() -> FileImport:
+        file_import = super(DurationType, DurationType).imports_for_sample()
+        file_import.add_import("isodate", ImportType.STDLIB)
+        return file_import
+
+    @staticmethod
+    def serialize_sample_value(value: Any) -> str:
+        return f"isodate.parse_duration({repr(value)})"
 
 
 class ByteArraySchema(PrimitiveType):

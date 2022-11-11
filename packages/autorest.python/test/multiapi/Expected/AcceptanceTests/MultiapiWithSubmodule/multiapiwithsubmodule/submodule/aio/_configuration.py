@@ -33,7 +33,7 @@ class MultiapiServiceClientConfiguration(Configuration):
     def __init__(
         self,
         credential: "AsyncTokenCredential",
-        **kwargs  # type: Any
+        **kwargs: Any
     ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

@@ -102,10 +102,10 @@ class FormdataurlencodedOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
+        content_type: str = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         # Construct form data
         _data = {
@@ -125,9 +125,9 @@ class FormdataurlencodedOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -140,7 +140,7 @@ class FormdataurlencodedOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
+    update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}
 
     @distributed_trace_async
     async def partial_constant_body(  # pylint: disable=inconsistent-return-statements
@@ -173,11 +173,11 @@ class FormdataurlencodedOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
+        content_type: str = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
-        )  # type: str
-        grant_type = kwargs.pop("grant_type", "access_token")  # type: Literal["access_token"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        grant_type: Literal["access_token"] = kwargs.pop("grant_type", "access_token")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         # Construct form data
         _data = {
@@ -194,9 +194,9 @@ class FormdataurlencodedOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -209,4 +209,4 @@ class FormdataurlencodedOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}  # type: ignore
+    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}

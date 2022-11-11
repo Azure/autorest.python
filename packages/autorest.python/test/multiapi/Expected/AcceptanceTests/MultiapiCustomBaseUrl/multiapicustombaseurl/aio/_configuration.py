@@ -35,7 +35,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
         self,
         credential: "AsyncTokenCredential",
         endpoint: str,
-        **kwargs  # type: Any
+        **kwargs: Any
     ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

@@ -43,9 +43,9 @@ def build_get_method_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop(
+    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )  # type: Literal["2015-07-01-preview"]
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -64,9 +64,9 @@ def build_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpReq
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop(
+    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )  # type: Literal["2015-07-01-preview"]
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -87,9 +87,9 @@ def build_get_path_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop(
+    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )  # type: Literal["2015-07-01-preview"]
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -108,9 +108,9 @@ def build_get_swagger_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop(
+    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )  # type: Literal["2015-07-01-preview"]
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -164,10 +164,10 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
+        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["2015-07-01-preview"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_global_valid_request(
             api_version=api_version,
@@ -176,9 +176,9 @@ class ApiVersionDefaultOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -192,7 +192,9 @@ class ApiVersionDefaultOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
+    get_method_global_valid.metadata = {
+        "url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
+    }
 
     @distributed_trace
     def get_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
@@ -216,10 +218,10 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
+        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["2015-07-01-preview"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_global_not_provided_valid_request(
             api_version=api_version,
@@ -228,9 +230,9 @@ class ApiVersionDefaultOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -244,7 +246,9 @@ class ApiVersionDefaultOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
+    get_method_global_not_provided_valid.metadata = {
+        "url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
+    }
 
     @distributed_trace
     def get_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -266,10 +270,10 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
+        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["2015-07-01-preview"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_path_global_valid_request(
             api_version=api_version,
@@ -278,9 +282,9 @@ class ApiVersionDefaultOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -294,7 +298,9 @@ class ApiVersionDefaultOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
+    get_path_global_valid.metadata = {
+        "url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
+    }
 
     @distributed_trace
     def get_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -316,10 +322,10 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
+        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
-        )  # type: Literal["2015-07-01-preview"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_swagger_global_valid_request(
             api_version=api_version,
@@ -328,9 +334,9 @@ class ApiVersionDefaultOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -344,4 +350,6 @@ class ApiVersionDefaultOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_swagger_global_valid.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"}  # type: ignore
+    get_swagger_global_valid.metadata = {
+        "url": "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
+    }

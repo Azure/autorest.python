@@ -77,8 +77,8 @@ class AvailabilitySetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         _json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
@@ -93,9 +93,9 @@ class AvailabilitySetsOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -108,4 +108,4 @@ class AvailabilitySetsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    update.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}  # type: ignore
+    update.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}

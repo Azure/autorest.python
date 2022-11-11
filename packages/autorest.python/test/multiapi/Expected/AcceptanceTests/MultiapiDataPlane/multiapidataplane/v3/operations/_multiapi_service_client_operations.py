@@ -64,7 +64,7 @@ def build_test_different_calls_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
+    api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -97,7 +97,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PagingResult]
+        cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -116,7 +116,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -132,7 +132,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -140,13 +140,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -159,7 +159,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return ItemPaged(get_next, extract_data)
 
-    test_paging.metadata = {"url": "/multiapi/paging/1"}  # type: ignore
+    test_paging.metadata = {"url": "/multiapi/paging/1"}
 
     @distributed_trace
     def test_different_calls(  # pylint: disable=inconsistent-return-statements
@@ -193,8 +193,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
@@ -206,9 +206,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -222,4 +222,4 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}  # type: ignore
+    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}

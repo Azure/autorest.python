@@ -98,7 +98,7 @@ class ImportOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_operation_one_request(
             parameter1=parameter1,
@@ -107,9 +107,9 @@ class ImportOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -126,4 +126,4 @@ class ImportOperations:
 
         return deserialized
 
-    operation_one.metadata = {"url": "/reservedWords/operationGroup/import"}  # type: ignore
+    operation_one.metadata = {"url": "/reservedWords/operationGroup/import"}

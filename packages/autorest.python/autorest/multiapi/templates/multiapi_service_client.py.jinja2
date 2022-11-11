@@ -14,7 +14,7 @@ def __init__(
     {% for parameter in code_model.global_parameters.service_client_specific_global_parameters %}
     {{ parameter.signature(async_mode) }}
     {% endfor %}
-    **kwargs  # type: Any
+    **kwargs: Any
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
 {% set pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient" %}

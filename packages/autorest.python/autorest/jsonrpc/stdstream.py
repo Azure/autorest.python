@@ -28,7 +28,7 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     try:
         bytes_size = int(order.split(b":")[1].strip())
     except Exception as err:
-        raise ValueError(f"Was unable to read length from {order}") from err  # type: ignore
+        raise ValueError(f"Was unable to read length from {order!r}") from err
     # Double new line, so read another emptyline and ignore it
     stream.readline()
 

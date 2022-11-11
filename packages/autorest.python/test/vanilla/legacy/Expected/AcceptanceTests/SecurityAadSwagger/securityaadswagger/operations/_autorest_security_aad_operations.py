@@ -59,7 +59,7 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head_request(
             template_url=self.head.metadata["url"],
@@ -67,9 +67,9 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -82,4 +82,4 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    head.metadata = {"url": "/securityaad"}  # type: ignore
+    head.metadata = {"url": "/securityaad"}
