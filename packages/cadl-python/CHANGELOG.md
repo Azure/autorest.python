@@ -1,16 +1,11 @@
 # Release History
 
-## 2022-11-XX - 0.4.9
-
-**Other Changes**
-
-- Hide `api_version` in client even if it is part of endpoint  #1568
-
 ## 2022-11-xx - 0.4.8
 
 **Other Changes**
 
 - Do not generate Azure.Core.Foundations Error models #1567
+- Hide `api_version` in client even if it is part of endpoint  #1568
 
 ## 2022-11-08 - 0.4.7
 
