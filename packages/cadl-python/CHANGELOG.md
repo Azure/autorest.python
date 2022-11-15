@@ -5,6 +5,7 @@
 **Bug Fixes**
 
 - Fix import of enums in client for CADL #1573
+- Fix api version property on client #1577
 
 **Other Changes**
 
