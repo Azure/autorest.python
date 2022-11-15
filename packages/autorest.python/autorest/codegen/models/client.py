@@ -282,10 +282,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 ImportType.LOCAL,
             )
 
-        if (
-            self.code_model.model_types
-            and self.code_model.options["models_mode"] == "msrest"
-        ):
+        if self.code_model.model_types:
             path_to_models = ".." if async_mode else "."
             file_import.add_submodule_import(
                 path_to_models, "models", ImportType.LOCAL, alias="_models"
