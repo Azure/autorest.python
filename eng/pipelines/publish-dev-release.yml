@@ -35,6 +35,10 @@ steps:
     displayName: "Mypy"
 
   - script: |
+      pyright autorest
+    displayName: "Pyright"
+
+  - script: |
       pytest test/unittests
     displayName: "Unit tests"
 

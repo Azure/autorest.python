@@ -49,7 +49,7 @@ def build_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -68,7 +68,7 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -79,7 +79,7 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
 def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: Literal["path1/path2/path3"]
+    unencoded_path_param: Literal["path1/path2/path3"] = kwargs.pop("unencoded_path_param", "path1/path2/path3")
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -88,7 +88,7 @@ def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -155,9 +155,7 @@ def build_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    q1 = kwargs.pop(
-        "q1", _params.pop("q1", "value1&q2=value2&q3=value3")
-    )  # type: Literal["value1&q2=value2&q3=value3"]
+    q1: Literal["value1&q2=value2&q3=value3"] = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -215,7 +213,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
@@ -224,9 +222,9 @@ class SkipUrlEncodingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -240,7 +238,7 @@ class SkipUrlEncodingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
+    get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}
 
     @distributed_trace
     def get_path_valid(  # pylint: disable=inconsistent-return-statements
@@ -266,7 +264,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
@@ -275,9 +273,9 @@ class SkipUrlEncodingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -291,7 +289,7 @@ class SkipUrlEncodingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
+    get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}
 
     @distributed_trace
     def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -317,10 +315,8 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        unencoded_path_param = kwargs.pop(
-            "unencoded_path_param", "path1/path2/path3"
-        )  # type: Literal["path1/path2/path3"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        unencoded_path_param: Literal["path1/path2/path3"] = kwargs.pop("unencoded_path_param", "path1/path2/path3")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
@@ -329,9 +325,9 @@ class SkipUrlEncodingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -345,7 +341,7 @@ class SkipUrlEncodingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
+    get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}
 
     @distributed_trace
     def get_method_query_valid(self, q1: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -369,7 +365,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_query_valid_request(
             q1=q1,
@@ -378,9 +374,9 @@ class SkipUrlEncodingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -394,7 +390,7 @@ class SkipUrlEncodingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
+    get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}
 
     @distributed_trace
     def get_method_query_null(  # pylint: disable=inconsistent-return-statements
@@ -420,7 +416,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_query_null_request(
             q1=q1,
@@ -429,9 +425,9 @@ class SkipUrlEncodingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -445,7 +441,7 @@ class SkipUrlEncodingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
+    get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}
 
     @distributed_trace
     def get_path_query_valid(self, q1: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -469,7 +465,7 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_path_query_valid_request(
             q1=q1,
@@ -478,9 +474,9 @@ class SkipUrlEncodingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -494,7 +490,7 @@ class SkipUrlEncodingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
+    get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}
 
     @distributed_trace
     def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -520,10 +516,8 @@ class SkipUrlEncodingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        q1 = kwargs.pop(
-            "q1", _params.pop("q1", "value1&q2=value2&q3=value3")
-        )  # type: Literal["value1&q2=value2&q3=value3"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        q1: Literal["value1&q2=value2&q3=value3"] = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_swagger_query_valid_request(
             q1=q1,
@@ -532,9 +526,9 @@ class SkipUrlEncodingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -548,4 +542,4 @@ class SkipUrlEncodingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_swagger_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/query/valid"}  # type: ignore
+    get_swagger_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/query/valid"}

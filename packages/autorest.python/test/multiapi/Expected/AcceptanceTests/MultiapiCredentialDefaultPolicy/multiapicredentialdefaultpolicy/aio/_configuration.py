@@ -30,7 +30,7 @@ class MultiapiServiceClientConfiguration(Configuration):
     def __init__(
         self,
         credential: AzureKeyCredential,
-        **kwargs  # type: Any
+        **kwargs: Any
     ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

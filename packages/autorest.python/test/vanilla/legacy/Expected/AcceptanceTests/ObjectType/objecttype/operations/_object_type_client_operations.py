@@ -55,7 +55,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
 def build_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -91,7 +91,7 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_get_request(
             template_url=self.get.metadata["url"],
@@ -99,9 +99,9 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -119,7 +119,7 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         return deserialized
 
-    get.metadata = {"url": "/objectType/get"}  # type: ignore
+    get.metadata = {"url": "/objectType/get"}
 
     @distributed_trace
     def put(self, put_object: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -145,8 +145,8 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(put_object, "object")
 
@@ -158,9 +158,9 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -174,4 +174,4 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put.metadata = {"url": "/objectType/put"}  # type: ignore
+    put.metadata = {"url": "/objectType/put"}

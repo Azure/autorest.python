@@ -79,7 +79,7 @@ class DateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.date]]
+        cls: ClsType[Optional[datetime.date]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
@@ -87,9 +87,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -107,7 +107,7 @@ class DateOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/date/null"}  # type: ignore
+    get_null.metadata = {"url": "/date/null"}
 
     @distributed_trace_async
     async def get_invalid_date(self, **kwargs: Any) -> datetime.date:
@@ -129,7 +129,7 @@ class DateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
+        cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_invalid_date_request(
             template_url=self.get_invalid_date.metadata["url"],
@@ -137,9 +137,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -157,7 +157,7 @@ class DateOperations:
 
         return deserialized
 
-    get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
+    get_invalid_date.metadata = {"url": "/date/invaliddate"}
 
     @distributed_trace_async
     async def get_overflow_date(self, **kwargs: Any) -> datetime.date:
@@ -179,7 +179,7 @@ class DateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
+        cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_overflow_date_request(
             template_url=self.get_overflow_date.metadata["url"],
@@ -187,9 +187,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -207,7 +207,7 @@ class DateOperations:
 
         return deserialized
 
-    get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
+    get_overflow_date.metadata = {"url": "/date/overflowdate"}
 
     @distributed_trace_async
     async def get_underflow_date(self, **kwargs: Any) -> datetime.date:
@@ -229,7 +229,7 @@ class DateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
+        cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_underflow_date_request(
             template_url=self.get_underflow_date.metadata["url"],
@@ -237,9 +237,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -257,7 +257,7 @@ class DateOperations:
 
         return deserialized
 
-    get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
+    get_underflow_date.metadata = {"url": "/date/underflowdate"}
 
     @distributed_trace_async
     async def put_max_date(  # pylint: disable=inconsistent-return-statements
@@ -283,8 +283,8 @@ class DateOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(date_body, "date")
 
@@ -296,9 +296,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -312,7 +312,7 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_max_date.metadata = {"url": "/date/max"}  # type: ignore
+    put_max_date.metadata = {"url": "/date/max"}
 
     @distributed_trace_async
     async def get_max_date(self, **kwargs: Any) -> datetime.date:
@@ -334,7 +334,7 @@ class DateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
+        cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_max_date_request(
             template_url=self.get_max_date.metadata["url"],
@@ -342,9 +342,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -362,7 +362,7 @@ class DateOperations:
 
         return deserialized
 
-    get_max_date.metadata = {"url": "/date/max"}  # type: ignore
+    get_max_date.metadata = {"url": "/date/max"}
 
     @distributed_trace_async
     async def put_min_date(  # pylint: disable=inconsistent-return-statements
@@ -388,8 +388,8 @@ class DateOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(date_body, "date")
 
@@ -401,9 +401,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -417,7 +417,7 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_min_date.metadata = {"url": "/date/min"}  # type: ignore
+    put_min_date.metadata = {"url": "/date/min"}
 
     @distributed_trace_async
     async def get_min_date(self, **kwargs: Any) -> datetime.date:
@@ -439,7 +439,7 @@ class DateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
+        cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_min_date_request(
             template_url=self.get_min_date.metadata["url"],
@@ -447,9 +447,9 @@ class DateOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -467,4 +467,4 @@ class DateOperations:
 
         return deserialized
 
-    get_min_date.metadata = {"url": "/date/min"}  # type: ignore
+    get_min_date.metadata = {"url": "/date/min"}

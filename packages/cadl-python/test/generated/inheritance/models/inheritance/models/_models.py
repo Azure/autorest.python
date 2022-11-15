@@ -133,7 +133,7 @@ class Fish(_model_base.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.kind = None  # type: Literal[None]
+        self.kind: Literal[None] = None
 
 
 class Shark(Fish, discriminator="shark"):
@@ -176,8 +176,8 @@ class Shark(Fish, discriminator="shark"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.kind = "shark"  # type: Literal["shark"]
-        self.sharktype = None  # type: Literal[None]
+        self.kind: Literal["shark"] = "shark"
+        self.sharktype: Literal[None] = None
 
 
 class GoblinShark(Shark, discriminator="goblin"):
@@ -214,7 +214,7 @@ class GoblinShark(Shark, discriminator="goblin"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.sharktype = "goblin"  # type: Literal["goblin"]
+        self.sharktype: Literal["goblin"] = "goblin"
 
 
 class Salmon(Fish, discriminator="salmon"):
@@ -261,7 +261,7 @@ class Salmon(Fish, discriminator="salmon"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.kind = "salmon"  # type: Literal["salmon"]
+        self.kind: Literal["salmon"] = "salmon"
 
 
 class SawShark(Shark, discriminator="saw"):
@@ -298,7 +298,7 @@ class SawShark(Shark, discriminator="saw"):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.sharktype = "saw"  # type: Literal["saw"]
+        self.sharktype: Literal["saw"] = "saw"
 
 
 class Siamese(Cat):

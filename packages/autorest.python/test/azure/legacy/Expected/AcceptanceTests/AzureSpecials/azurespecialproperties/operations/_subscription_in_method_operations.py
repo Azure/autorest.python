@@ -48,7 +48,7 @@ def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -69,7 +69,7 @@ def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) ->
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -90,7 +90,7 @@ def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> 
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -112,7 +112,7 @@ def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) 
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -165,7 +165,7 @@ class SubscriptionInMethodOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_post_method_local_valid_request(
             subscription_id=subscription_id,
@@ -174,9 +174,9 @@ class SubscriptionInMethodOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -190,7 +190,9 @@ class SubscriptionInMethodOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
+    post_method_local_valid.metadata = {
+        "url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
+    }
 
     @distributed_trace
     def post_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -218,7 +220,7 @@ class SubscriptionInMethodOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_post_method_local_null_request(
             subscription_id=subscription_id,
@@ -227,9 +229,9 @@ class SubscriptionInMethodOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -243,7 +245,9 @@ class SubscriptionInMethodOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
+    post_method_local_null.metadata = {
+        "url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
+    }
 
     @distributed_trace
     def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -271,7 +275,7 @@ class SubscriptionInMethodOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_post_path_local_valid_request(
             subscription_id=subscription_id,
@@ -280,9 +284,9 @@ class SubscriptionInMethodOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -296,7 +300,9 @@ class SubscriptionInMethodOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
+    post_path_local_valid.metadata = {
+        "url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
+    }
 
     @distributed_trace
     def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -324,7 +330,7 @@ class SubscriptionInMethodOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_post_swagger_local_valid_request(
             subscription_id=subscription_id,
@@ -333,9 +339,9 @@ class SubscriptionInMethodOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -349,4 +355,6 @@ class SubscriptionInMethodOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_swagger_local_valid.metadata = {"url": "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
+    post_swagger_local_valid.metadata = {
+        "url": "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
+    }

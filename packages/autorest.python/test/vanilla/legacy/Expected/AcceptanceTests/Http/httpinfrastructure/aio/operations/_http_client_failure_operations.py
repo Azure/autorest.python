@@ -101,7 +101,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head400_request(
             template_url=self.head400.metadata["url"],
@@ -109,9 +109,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -125,7 +125,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
+    head400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def get400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -147,7 +147,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get400_request(
             template_url=self.get400.metadata["url"],
@@ -155,9 +155,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -171,7 +171,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
+    get400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def options400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -193,7 +193,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options400_request(
             template_url=self.options400.metadata["url"],
@@ -201,9 +201,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -217,7 +217,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
+    options400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def put400(  # pylint: disable=inconsistent-return-statements
@@ -244,8 +244,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -260,9 +260,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -276,7 +276,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
+    put400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def patch400(  # pylint: disable=inconsistent-return-statements
@@ -303,8 +303,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -319,9 +319,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -335,7 +335,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
+    patch400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def post400(  # pylint: disable=inconsistent-return-statements
@@ -362,8 +362,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -378,9 +378,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -394,7 +394,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
+    post400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def delete400(  # pylint: disable=inconsistent-return-statements
@@ -421,8 +421,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -437,9 +437,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -453,7 +453,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
+    delete400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def head401(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -475,7 +475,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head401_request(
             template_url=self.head401.metadata["url"],
@@ -483,9 +483,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -499,7 +499,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
+    head401.metadata = {"url": "/http/failure/client/401"}
 
     @distributed_trace_async
     async def get402(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -521,7 +521,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get402_request(
             template_url=self.get402.metadata["url"],
@@ -529,9 +529,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -545,7 +545,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
+    get402.metadata = {"url": "/http/failure/client/402"}
 
     @distributed_trace_async
     async def options403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -567,7 +567,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options403_request(
             template_url=self.options403.metadata["url"],
@@ -575,9 +575,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -591,7 +591,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
+    options403.metadata = {"url": "/http/failure/client/403"}
 
     @distributed_trace_async
     async def get403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -613,7 +613,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get403_request(
             template_url=self.get403.metadata["url"],
@@ -621,9 +621,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -637,7 +637,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
+    get403.metadata = {"url": "/http/failure/client/403"}
 
     @distributed_trace_async
     async def put404(  # pylint: disable=inconsistent-return-statements
@@ -664,8 +664,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -680,9 +680,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -696,7 +696,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
+    put404.metadata = {"url": "/http/failure/client/404"}
 
     @distributed_trace_async
     async def patch405(  # pylint: disable=inconsistent-return-statements
@@ -723,8 +723,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -739,9 +739,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -755,7 +755,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
+    patch405.metadata = {"url": "/http/failure/client/405"}
 
     @distributed_trace_async
     async def post406(  # pylint: disable=inconsistent-return-statements
@@ -782,8 +782,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -798,9 +798,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -814,7 +814,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
+    post406.metadata = {"url": "/http/failure/client/406"}
 
     @distributed_trace_async
     async def delete407(  # pylint: disable=inconsistent-return-statements
@@ -841,8 +841,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -857,9 +857,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -873,7 +873,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
+    delete407.metadata = {"url": "/http/failure/client/407"}
 
     @distributed_trace_async
     async def put409(  # pylint: disable=inconsistent-return-statements
@@ -900,8 +900,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -916,9 +916,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -932,7 +932,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
+    put409.metadata = {"url": "/http/failure/client/409"}
 
     @distributed_trace_async
     async def head410(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -954,7 +954,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head410_request(
             template_url=self.head410.metadata["url"],
@@ -962,9 +962,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -978,7 +978,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
+    head410.metadata = {"url": "/http/failure/client/410"}
 
     @distributed_trace_async
     async def get411(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1000,7 +1000,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get411_request(
             template_url=self.get411.metadata["url"],
@@ -1008,9 +1008,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1024,7 +1024,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
+    get411.metadata = {"url": "/http/failure/client/411"}
 
     @distributed_trace_async
     async def options412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1046,7 +1046,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options412_request(
             template_url=self.options412.metadata["url"],
@@ -1054,9 +1054,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1070,7 +1070,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
+    options412.metadata = {"url": "/http/failure/client/412"}
 
     @distributed_trace_async
     async def get412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1092,7 +1092,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get412_request(
             template_url=self.get412.metadata["url"],
@@ -1100,9 +1100,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1116,7 +1116,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
+    get412.metadata = {"url": "/http/failure/client/412"}
 
     @distributed_trace_async
     async def put413(  # pylint: disable=inconsistent-return-statements
@@ -1143,8 +1143,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -1159,9 +1159,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1175,7 +1175,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
+    put413.metadata = {"url": "/http/failure/client/413"}
 
     @distributed_trace_async
     async def patch414(  # pylint: disable=inconsistent-return-statements
@@ -1202,8 +1202,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -1218,9 +1218,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1234,7 +1234,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
+    patch414.metadata = {"url": "/http/failure/client/414"}
 
     @distributed_trace_async
     async def post415(  # pylint: disable=inconsistent-return-statements
@@ -1261,8 +1261,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -1277,9 +1277,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1293,7 +1293,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
+    post415.metadata = {"url": "/http/failure/client/415"}
 
     @distributed_trace_async
     async def get416(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1315,7 +1315,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get416_request(
             template_url=self.get416.metadata["url"],
@@ -1323,9 +1323,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1339,7 +1339,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
+    get416.metadata = {"url": "/http/failure/client/416"}
 
     @distributed_trace_async
     async def delete417(  # pylint: disable=inconsistent-return-statements
@@ -1366,8 +1366,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -1382,9 +1382,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1398,7 +1398,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
+    delete417.metadata = {"url": "/http/failure/client/417"}
 
     @distributed_trace_async
     async def head429(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1420,7 +1420,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head429_request(
             template_url=self.head429.metadata["url"],
@@ -1428,9 +1428,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -1444,4 +1444,4 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    head429.metadata = {"url": "/http/failure/client/429"}  # type: ignore
+    head429.metadata = {"url": "/http/failure/client/429"}

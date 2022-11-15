@@ -77,7 +77,7 @@ class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzure
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
         request = build_get_report_request(
             qualifier=qualifier,
@@ -86,9 +86,9 @@ class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzure
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -106,4 +106,4 @@ class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzure
 
         return deserialized
 
-    get_report.metadata = {"url": "/report/azure"}  # type: ignore
+    get_report.metadata = {"url": "/report/azure"}

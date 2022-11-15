@@ -69,10 +69,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("apiVersion", self._config.api_version)
-        )  # type: Literal["1.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
+        api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
@@ -84,9 +82,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -104,7 +102,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         return deserialized
 
-    validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
+    validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}
 
     @overload
     async def validation_of_body(
@@ -194,11 +192,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", _params.pop("apiVersion", self._config.api_version)
-        )  # type: Literal["1.0.0"]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
+        api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -224,9 +220,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -244,7 +240,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         return deserialized
 
-    validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
+    validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}
 
     @distributed_trace_async
     async def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -269,8 +265,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
@@ -279,9 +275,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -294,7 +290,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
+    get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}
 
     @overload
     async def post_with_constant_in_body(
@@ -366,9 +362,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        constant_param = kwargs.pop("constant_param", "constant")  # type: Literal["constant"]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
+        constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -391,9 +387,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -410,4 +406,4 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         return deserialized
 
-    post_with_constant_in_body.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
+    post_with_constant_in_body.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}

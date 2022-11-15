@@ -68,7 +68,7 @@ class FlattencomplexOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyBaseType]
+        cls: ClsType[_models.MyBaseType] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -76,9 +76,9 @@ class FlattencomplexOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -95,4 +95,4 @@ class FlattencomplexOperations:
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/flatten/valid"}  # type: ignore
+    get_valid.metadata = {"url": "/complex/flatten/valid"}

@@ -1,5 +1,18 @@
 # Release History
 
+## 2022-11-xx - 0.4.8
+
+**Other Changes**
+
+- Do not generate Azure.Core.Foundations Error models #1567
+
+## 2022-11-08 - 0.4.7
+
+**Other Changes**
+
+- Make @key properties readonly  #1554
+- Do not generate operations with the `@convenienceAPI` decorator as hidden operations #1564
+
 ## 2022-11-04 - 0.4.6
 
 **Bug Fixes**

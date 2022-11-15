@@ -18,7 +18,9 @@ from ...operations._patch import Helpers
 
 class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, Helpers):
     async def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs) -> PipelineResponse:
-        return await self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
+        return await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=stream, **kwargs
+        )
 
     @distributed_trace_async
     async def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:

@@ -79,7 +79,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
+        cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -87,9 +87,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -107,7 +107,7 @@ class PolymorphismOperations:
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
+    get_valid.metadata = {"url": "/complex/polymorphism/valid"}
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -266,8 +266,8 @@ class PolymorphismOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -286,9 +286,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -302,7 +302,7 @@ class PolymorphismOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
+    put_valid.metadata = {"url": "/complex/polymorphism/valid"}
 
     @distributed_trace_async
     async def get_dot_syntax(self, **kwargs: Any) -> _models.DotFish:
@@ -324,7 +324,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFish]
+        cls: ClsType[_models.DotFish] = kwargs.pop("cls", None)
 
         request = build_get_dot_syntax_request(
             template_url=self.get_dot_syntax.metadata["url"],
@@ -332,9 +332,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -352,7 +352,7 @@ class PolymorphismOperations:
 
         return deserialized
 
-    get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}  # type: ignore
+    get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}
 
     @distributed_trace_async
     async def get_composed_with_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -376,7 +376,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFishMarket]
+        cls: ClsType[_models.DotFishMarket] = kwargs.pop("cls", None)
 
         request = build_get_composed_with_discriminator_request(
             template_url=self.get_composed_with_discriminator.metadata["url"],
@@ -384,9 +384,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -404,7 +404,7 @@ class PolymorphismOperations:
 
         return deserialized
 
-    get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
+    get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}
 
     @distributed_trace_async
     async def get_composed_without_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -428,7 +428,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFishMarket]
+        cls: ClsType[_models.DotFishMarket] = kwargs.pop("cls", None)
 
         request = build_get_composed_without_discriminator_request(
             template_url=self.get_composed_without_discriminator.metadata["url"],
@@ -436,9 +436,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -456,7 +456,7 @@ class PolymorphismOperations:
 
         return deserialized
 
-    get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
+    get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}
 
     @distributed_trace_async
     async def get_complicated(self, **kwargs: Any) -> _models.Salmon:
@@ -479,7 +479,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Salmon]
+        cls: ClsType[_models.Salmon] = kwargs.pop("cls", None)
 
         request = build_get_complicated_request(
             template_url=self.get_complicated.metadata["url"],
@@ -487,9 +487,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -507,7 +507,7 @@ class PolymorphismOperations:
 
         return deserialized
 
-    get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
+    get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}
 
     @overload
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -573,8 +573,8 @@ class PolymorphismOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -593,9 +593,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -609,7 +609,7 @@ class PolymorphismOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
+    put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}
 
     @overload
     async def put_missing_discriminator(
@@ -670,8 +670,8 @@ class PolymorphismOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Salmon]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Salmon] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -690,9 +690,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -710,7 +710,7 @@ class PolymorphismOperations:
 
         return deserialized
 
-    put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
+    put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}
 
     @overload
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
@@ -854,8 +854,8 @@ class PolymorphismOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -874,9 +874,9 @@ class PolymorphismOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -890,4 +890,4 @@ class PolymorphismOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid_missing_required.metadata = {"url": "/complex/polymorphism/missingrequired/invalid"}  # type: ignore
+    put_valid_missing_required.metadata = {"url": "/complex/polymorphism/missingrequired/invalid"}

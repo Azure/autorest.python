@@ -42,7 +42,7 @@ class FileImport:
                                     ],
                                     Tuple[
                                         str,
-                                        str,
+                                        Optional[str],
                                         Tuple[
                                             Tuple[Tuple[int, int], str, Optional[str]]
                                         ],
@@ -76,7 +76,7 @@ class FileImport:
                                 ],
                                 Tuple[
                                     str,
-                                    str,
+                                    Optional[str],
                                     Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
                                 ],
                             ]
@@ -99,7 +99,11 @@ class FileImport:
                     str,
                     str,
                 ],
-                Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
+                Tuple[
+                    str,
+                    Optional[str],
+                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                ],
             ]
         ] = None,
         typing_section: TypingSection = TypingSection.REGULAR,
@@ -111,7 +115,11 @@ class FileImport:
                     str,
                     str,
                 ],
-                Tuple[str, str, Tuple[Tuple[Tuple[int, int], str, Optional[str]]]],
+                Tuple[
+                    str,
+                    Optional[str],
+                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
+                ],
             ]
         ] = None
         name_input = convert_list_to_tuple(name_import)
@@ -148,7 +156,7 @@ class FileImport:
                             ],
                             Tuple[
                                 str,
-                                str,
+                                Optional[str],
                                 Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
                             ],
                         ]

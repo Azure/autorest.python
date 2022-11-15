@@ -1,3 +1,4 @@
+# pyright: reportUnnecessaryTypeIgnoreComment=false
 # ------------------------------------
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
@@ -30,7 +31,7 @@ _SERIALIZER.client_side_validation = False
 def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
@@ -51,7 +52,7 @@ class MediaTypesSharedMixin:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         _json = None
         _content: Optional[Union[IO, str, bytes]] = None
         if isinstance(message, (IO, bytes)):
@@ -165,7 +166,7 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
         error_map.update(kwargs.pop("error_map", {}) or {})
         request, kwargs = self._prepare_body_three_types(message, **kwargs)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         return self._handle_body_three_types_response(pipeline_response, cls=cls, error_map=error_map)

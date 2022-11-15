@@ -61,7 +61,7 @@ def test_model(client, og_name, model, val):
 
 def test_datetime_model(client):
     received_body = client.datetime.get()
-    assert received_body == {"property": '2022-08-26T18:38:00.000Z'}
+    assert received_body == {"property": '2022-08-26T18:38:00Z'}
     assert received_body.property.year == 2022
     assert received_body.property.month == 8
     assert received_body.property.day == 26

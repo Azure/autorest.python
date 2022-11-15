@@ -28,6 +28,7 @@ import {
     createCadlLibrary,
     getDiscriminator,
     Operation,
+    isKey,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -49,6 +50,7 @@ import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import { Client, listClients, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import { getResourceOperation } from "@cadl-lang/rest";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -303,21 +305,13 @@ function emitBodyParameter(
         throw Error("Currently only one kind of content-type!");
     }
     let type;
-    if (params.bodyParameter) {
+    const resourceOperation = getResourceOperation(program, operation);
+    if (resourceOperation) {
+        type = getType(program, resourceOperation.resourceType);
+    } else if (params.bodyParameter) {
         type = getType(program, params.bodyParameter.type, params.bodyParameter);
     } else {
         type = getType(program, bodyType);
-    }
-
-    const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
-    // avoid anonymous model type
-    if (type && type.type === "model" && !type.name) {
-        type.name =
-            httpOperation.container.name +
-            httpOperation.operation.name[0].toUpperCase() +
-            httpOperation.operation.name.slice(1) +
-            "Request";
-        type.snakeCaseName = camelToSnakeCase(type.name);
     }
 
     return {
@@ -438,13 +432,26 @@ function emitResponseHeaders(program: Program, headers?: Record<string, ModelPro
     return retval;
 }
 
+function isAzureCoreErrorType(t?: Type): boolean {
+    if (t?.kind !== "Model" || !["Error", "ErrorResponse", "InnerError"].includes(t.name)) return false;
+    const namespaces = ".Azure.Core.Foundations".split(".");
+    while (
+        namespaces.length > 0 &&
+        (t?.kind === "Model" || t?.kind === "Namespace") &&
+        t.namespace?.name === namespaces.pop()
+    ) {
+        t = t.namespace;
+    }
+    return namespaces.length == 0;
+}
+
 function emitResponse(
     program: Program,
     response: HttpOperationResponse,
     innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
     let type = undefined;
-    if (innerResponse.body?.type) {
+    if (innerResponse.body?.type && !isAzureCoreErrorType(innerResponse.body?.type)) {
         // temporary logic. It can be removed after compiler optimize the response
         const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
         const originType = innerResponse.body.type as Model;
@@ -468,15 +475,6 @@ function emitResponse(
         discriminator: "basic",
         type: type,
     };
-}
-
-function isConvenienceAPI(operation: Operation): boolean {
-    for (const decorator of operation.decorators) {
-        if (decorator.decorator.name === "$convenienceAPI") {
-            return true;
-        }
-    }
-    return false;
 }
 
 function emitOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
@@ -584,7 +582,7 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     }
     const name = camelToSnakeCase(operation.name);
     return {
-        name: isConvenienceAPI(operation) ? "_" + name : name,
+        name: name,
         description: getDocStr(program, operation),
         summary: getSummary(program, operation),
         url: httpOperation.path,
@@ -656,7 +654,7 @@ function emitProperty(program: Program, property: ModelProperty): Record<string,
         optional: property.optional,
         description: getDocStr(program, property),
         addedOn: getAddedOnVersion(program, property),
-        readonly: isReadOnly(program, property),
+        readonly: isReadOnly(program, property) || isKey(program, property),
         clientDefaultValue: clientDefaultValue,
     };
 }

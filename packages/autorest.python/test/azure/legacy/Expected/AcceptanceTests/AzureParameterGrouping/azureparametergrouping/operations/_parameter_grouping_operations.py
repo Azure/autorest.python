@@ -44,7 +44,7 @@ def build_post_required_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -53,7 +53,7 @@ def build_post_required_request(
         "path": _SERIALIZER.url("path", path, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct parameters
     if query is not None:
@@ -234,8 +234,8 @@ class ParameterGroupingOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _custom_header = None
         _query = None
@@ -259,9 +259,9 @@ class ParameterGroupingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -275,7 +275,7 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
+    post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}
 
     @distributed_trace
     def post_optional(  # pylint: disable=inconsistent-return-statements
@@ -304,7 +304,7 @@ class ParameterGroupingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _custom_header = None
         _query = None
@@ -314,15 +314,15 @@ class ParameterGroupingOperations:
 
         request = build_post_optional_request(
             custom_header=_custom_header,
-            query=_query,
+            query=_query,  # type: ignore
             template_url=self.post_optional.metadata["url"],
             headers=_headers,
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -336,7 +336,7 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
+    post_optional.metadata = {"url": "/parameterGrouping/postOptional"}
 
     @distributed_trace
     def post_reserved_words(  # pylint: disable=inconsistent-return-statements
@@ -368,7 +368,7 @@ class ParameterGroupingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _from_parameter = None
         _accept_parameter = None
@@ -384,9 +384,9 @@ class ParameterGroupingOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -400,7 +400,7 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_reserved_words.metadata = {"url": "/parameterGrouping/postReservedWords"}  # type: ignore
+    post_reserved_words.metadata = {"url": "/parameterGrouping/postReservedWords"}
 
     @distributed_trace
     def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
@@ -435,7 +435,7 @@ class ParameterGroupingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _header_one = None
         _query_one = None
@@ -450,17 +450,17 @@ class ParameterGroupingOperations:
 
         request = build_post_multi_param_groups_request(
             header_one=_header_one,
-            query_one=_query_one,
+            query_one=_query_one,  # type: ignore
             header_two=_header_two,
-            query_two=_query_two,
+            query_two=_query_two,  # type: ignore
             template_url=self.post_multi_param_groups.metadata["url"],
             headers=_headers,
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -474,7 +474,7 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
+    post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}
 
     @distributed_trace
     def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
@@ -500,7 +500,7 @@ class ParameterGroupingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _header_one = None
         _query_one = None
@@ -510,15 +510,15 @@ class ParameterGroupingOperations:
 
         request = build_post_shared_parameter_group_object_request(
             header_one=_header_one,
-            query_one=_query_one,
+            query_one=_query_one,  # type: ignore
             template_url=self.post_shared_parameter_group_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -532,7 +532,7 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_shared_parameter_group_object.metadata = {"url": "/parameterGrouping/sharedParameterGroupObject"}  # type: ignore
+    post_shared_parameter_group_object.metadata = {"url": "/parameterGrouping/sharedParameterGroupObject"}
 
     @distributed_trace
     def group_with_constant(  # pylint: disable=inconsistent-return-statements
@@ -559,7 +559,7 @@ class ParameterGroupingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _grouped_constant = None
         _grouped_parameter = None
@@ -568,16 +568,16 @@ class ParameterGroupingOperations:
             _grouped_parameter = grouper.grouped_parameter
 
         request = build_group_with_constant_request(
-            grouped_constant=_grouped_constant,
+            grouped_constant=_grouped_constant,  # type: ignore
             grouped_parameter=_grouped_parameter,
             template_url=self.group_with_constant.metadata["url"],
             headers=_headers,
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -591,4 +591,4 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    group_with_constant.metadata = {"url": "/parameterGrouping/groupWithConstant"}  # type: ignore
+    group_with_constant.metadata = {"url": "/parameterGrouping/groupWithConstant"}

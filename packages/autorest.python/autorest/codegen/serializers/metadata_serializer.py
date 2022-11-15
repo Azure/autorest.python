@@ -58,7 +58,13 @@ def _json_serialize_imports(
                 name_import_ordered_list = []
                 if name_imports:
                     name_import_ordered_list = list(name_imports)
-                    name_import_ordered_list.sort()
+                    name_import_ordered_list.sort(
+                        key=lambda e: "".join(e)  # type: ignore
+                        if isinstance(e, (list, tuple))
+                        else e
+                        if isinstance(e, str)
+                        else ""
+                    )
                 json_package_name_dictionary[package_name] = name_import_ordered_list
             json_import_type_dictionary[import_type_key] = json_package_name_dictionary
         json_serialize_imports[typing_section_key] = json_import_type_dictionary
