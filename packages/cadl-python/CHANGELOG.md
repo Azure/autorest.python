@@ -2,6 +2,10 @@
 
 ## 2022-11-xx - 0.4.8
 
+**Bug Fixes**
+
+- Fix import of enums in client for CADL #1573
+
 **Other Changes**
 
 - Do not generate Azure.Core.Foundations Error models #1567
