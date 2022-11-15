@@ -28,6 +28,7 @@ from .operations import (
     FloatOperations,
     IntOperations,
     ModelOperations,
+    NeverOperations,
     StringOperations,
 )
 
@@ -63,6 +64,8 @@ class TypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
     :vartype collections_model: models.property.types.aio.operations.CollectionsModelOperations
     :ivar dictionary_string: DictionaryStringOperations operations
     :vartype dictionary_string: models.property.types.aio.operations.DictionaryStringOperations
+    :ivar never: NeverOperations operations
+    :vartype never: models.property.types.aio.operations.NeverOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -93,6 +96,7 @@ class TypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
         self.dictionary_string = DictionaryStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.never = NeverOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
