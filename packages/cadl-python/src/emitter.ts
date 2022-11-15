@@ -350,6 +350,7 @@ function emitParameter(
         location: parameter.type,
         type: type,
         implementation: implementation,
+        skipUrlEncoding: parameter.type === "endpointPath",
     };
 
     if (paramMap.type.type === "constant") {
