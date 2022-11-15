@@ -176,7 +176,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         for gp in self.parameters:
             if gp.method_location == ParameterMethodLocation.KWARG:
                 continue
-            file_import.merge(gp.imports(async_mode))
+            file_import.merge(
+                gp.imports(async_mode, relative_path=".." if async_mode else ".")
+            )
         file_import.add_submodule_import(
             "._configuration",
             f"{self.name}Configuration",
@@ -282,7 +284,10 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 ImportType.LOCAL,
             )
 
-        if self.code_model.model_types and self.code_model.options["models_mode"]:
+        if (
+            self.code_model.model_types
+            and self.code_model.options["models_mode"] == "msrest"
+        ):
             path_to_models = ".." if async_mode else "."
             file_import.add_submodule_import(
                 path_to_models, "models", ImportType.LOCAL, alias="_models"
