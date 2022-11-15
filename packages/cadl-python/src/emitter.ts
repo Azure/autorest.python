@@ -68,6 +68,7 @@ export interface EmitterOptions {
     "package-version": string;
     "package-name": string;
     "output-path": string;
+    "package-mode": string;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -78,6 +79,7 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
         "package-version": { type: "string", nullable: true },
         "package-name": { type: "string", nullable: true },
         "output-path": { type: "string", nullable: true },
+        "package-mode": { type: "string", nullable: true },
     },
     required: [],
 };

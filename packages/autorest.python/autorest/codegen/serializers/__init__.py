@@ -142,7 +142,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         namespace_path = (
             Path(".")
             if self.code_model.options["no_namespace_folders"]
-            else Path(*(self.code_model.namespace.split(".")))
+            else Path(*self._name_space().split("."))
         )
 
         p = namespace_path.parent
@@ -532,9 +532,17 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
         )
 
+    def _name_space(self) -> str:
+        if self.code_model.namespace.count(".") >= (
+            self.code_model.options["package_name"] or ""
+        ).count("-"):
+            return self.code_model.namespace
+        else:
+            return self.code_model.options["package_name"].replace("-", ".")
+
     # find root folder where "setup.py" is
     def _package_root_folder(self, namespace_path: Path) -> Path:
-        return namespace_path / Path("../" * (self.code_model.namespace.count(".") + 1))
+        return namespace_path / Path("../" * (self._name_space().count(".") + 1))
 
     def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
         out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
