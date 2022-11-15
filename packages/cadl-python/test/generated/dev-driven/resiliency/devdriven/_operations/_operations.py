@@ -93,7 +93,7 @@ def build_dev_driven_get_pages_request(*, api_version: str, **kwargs: Any) -> Ht
     _url = "/resiliency/devdriven/products"
 
     # Construct parameters
-    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str", min_length=1)
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -286,12 +286,10 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get_pages(self, *, api_version: str, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following group.
 
-        :keyword api_version: The API version to use for this operation. Required.
-        :paramtype api_version: str
         :return: An iterator like instance of Product. The Product is compatible with MutableMapping
         :rtype: ~azure.core.paging.ItemPaged[~resiliency.devdriven.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -313,7 +311,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             if not next_link:
 
                 request = build_dev_driven_get_pages_request(
-                    api_version=api_version,
+                    api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )

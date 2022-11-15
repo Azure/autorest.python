@@ -19,11 +19,17 @@ class DevDrivenClientConfiguration(Configuration):  # pylint: disable=too-many-i
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :param api_version: The API version to use for this operation. Required.
+    :type api_version: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, api_version: str, **kwargs: Any) -> None:
         super(DevDrivenClientConfiguration, self).__init__(**kwargs)
+        if api_version is None:
+            raise ValueError("Parameter 'api_version' must not be None.")
 
+        self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "devdrivenclient/{}".format(VERSION))
         self._configure(**kwargs)
 
