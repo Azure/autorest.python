@@ -6,6 +6,7 @@
 
 - Fix import of enums in client for CADL #1573
 - Fix api version property on client #1577
+- Skip URL encoding for client path parameters #1578
 
 **Other Changes**
 
