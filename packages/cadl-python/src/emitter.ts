@@ -67,7 +67,7 @@ export interface EmitterOptions {
     "basic-setup-py": boolean;
     "package-version": string;
     "package-name": string;
-    "output-path": string;
+    "output-dir": string;
     "package-mode": string;
 }
 
@@ -78,7 +78,7 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
         "basic-setup-py": { type: "boolean", nullable: true },
         "package-version": { type: "string", nullable: true },
         "package-name": { type: "string", nullable: true },
-        "output-path": { type: "string", nullable: true },
+        "output-dir": { type: "string", nullable: true },
         "package-mode": { type: "string", nullable: true },
     },
     required: [],
@@ -101,7 +101,7 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     const resolvedOptions = { ...defaultOptions, ...options };
     const yamlMap = createYamlEmitter(program);
     const root = process.cwd();
-    const outputFolder = resolvedOptions["output-path"] ?? program.compilerOptions.outputPath!;
+    const outputFolder = resolvedOptions["output-dir"] ?? program.compilerOptions.outputDir!;
     const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,

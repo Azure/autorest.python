@@ -129,7 +129,7 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
         "namespace": "vanilla.body.array"
     },
     "BodyByteWithPackageName": {
-        "package-name": "package-name",
+        "package-name": "packagename",
         "override-client-name": "class_name"
     },
     "HeadWithAzureKeyCredentialPolicy": {
