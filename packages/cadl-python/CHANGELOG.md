@@ -5,7 +5,7 @@
 **Other Changes**
 
 - Do not generate Azure.Core.Foundations Error models #1567
-- Support `package-mode` to add package files
+- Support `package-mode` to add package files  #1574
 
 ## 2022-11-08 - 0.4.7
 
