@@ -942,7 +942,7 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
                 name: param.name,
                 param: param,
             };
-            const emittedParameter = emitParameter(program, serverParameter, "Client")
+            const emittedParameter = emitParameter(program, serverParameter, "Client");
             endpointPathParameters.push(emittedParameter);
             if (isApiVersion(program, serverParameter as any) && apiVersionParam == undefined) {
                 apiVersionParam = emittedParameter;
@@ -1006,7 +1006,7 @@ function emitGlobalParameters(program: Program, namespace: Namespace): Record<st
     const version = getDefaultApiVersion(program, getServiceNamespace(program));
     if (apiVersionParam) {
         clientParameters.push(apiVersionParam);
-    } else if (version !== undefined){
+    } else if (version !== undefined) {
         clientParameters.push({
             clientName: "api_version",
             clientDefaultValue: version.value,
