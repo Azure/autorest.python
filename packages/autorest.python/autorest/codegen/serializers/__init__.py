@@ -537,8 +537,8 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             self.code_model.options["package_name"] or ""
         ).count("-"):
             return self.code_model.namespace
-        else:
-            return self.code_model.options["package_name"].replace("-", ".")
+
+        return self.code_model.options["package_name"].replace("-", ".")
 
     # find root folder where "setup.py" is
     def _package_root_folder(self, namespace_path: Path) -> Path:
