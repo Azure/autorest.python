@@ -20,12 +20,13 @@ from ._models import FloatProperty
 from ._models import InnerModel
 from ._models import IntProperty
 from ._models import ModelProperty
+from ._models import NeverProperty
 from ._models import StringProperty
 
 from ._enums import InnerEnum
 from ._enums import InnerExtensibleEnum
 from ._patch import __all__ as _patch_all
-from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
+from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
@@ -43,6 +44,7 @@ __all__ = [
     "InnerModel",
     "IntProperty",
     "ModelProperty",
+    "NeverProperty",
     "StringProperty",
     "InnerEnum",
     "InnerExtensibleEnum",

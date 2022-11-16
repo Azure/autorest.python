@@ -20,9 +20,10 @@ from ._operations import CollectionsStringOperations
 from ._operations import CollectionsIntOperations
 from ._operations import CollectionsModelOperations
 from ._operations import DictionaryStringOperations
+from ._operations import NeverOperations
 
 from ._patch import __all__ as _patch_all
-from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
+from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
@@ -40,6 +41,7 @@ __all__ = [
     "CollectionsIntOperations",
     "CollectionsModelOperations",
     "DictionaryStringOperations",
+    "NeverOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

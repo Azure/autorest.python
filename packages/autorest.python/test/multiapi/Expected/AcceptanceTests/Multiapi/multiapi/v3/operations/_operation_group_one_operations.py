@@ -59,8 +59,8 @@ def build_test_two_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -108,7 +108,7 @@ class OperationGroupOneOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PagingResult]
+        cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -127,7 +127,7 @@ class OperationGroupOneOperations:
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -143,7 +143,7 @@ class OperationGroupOneOperations:
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -151,13 +151,13 @@ class OperationGroupOneOperations:
             deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -170,7 +170,7 @@ class OperationGroupOneOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    test_operation_group_paging.metadata = {"url": "/multiapi/one/paging/1"}  # type: ignore
+    test_operation_group_paging.metadata = {"url": "/multiapi/one/paging/1"}
 
     @overload
     def test_two(
@@ -238,9 +238,9 @@ class OperationGroupOneOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))  # type: Literal["3.0.0"]
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelThree]
+        api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.ModelThree] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -263,9 +263,9 @@ class OperationGroupOneOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -283,4 +283,4 @@ class OperationGroupOneOperations:
 
         return deserialized
 
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}  # type: ignore
+    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}

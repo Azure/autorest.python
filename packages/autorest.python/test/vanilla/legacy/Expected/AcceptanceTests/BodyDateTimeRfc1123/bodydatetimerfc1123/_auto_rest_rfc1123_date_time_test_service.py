@@ -61,15 +61,12 @@ class AutoRestRFC1123DateTimeTestService:  # pylint: disable=client-accepts-api-
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
-    def close(self):
-        # type: () -> None
+    def close(self) -> None:
         self._client.close()
 
-    def __enter__(self):
-        # type: () -> AutoRestRFC1123DateTimeTestService
+    def __enter__(self) -> "AutoRestRFC1123DateTimeTestService":
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details):
-        # type: (Any) -> None
+    def __exit__(self, *exc_details) -> None:
         self._client.__exit__(*exc_details)

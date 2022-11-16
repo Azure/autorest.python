@@ -59,7 +59,7 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_request(
             template_url=self.get.metadata["url"],
@@ -70,9 +70,9 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
+        request.url = self._client.format_url(request.url, **path_format_arguments)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -85,4 +85,4 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
         if cls:
             return cls(pipeline_response, None, {})
 
-    get.metadata = {"url": "/parameterizedEndpoint/get"}  # type: ignore
+    get.metadata = {"url": "/parameterizedEndpoint/get"}

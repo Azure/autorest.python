@@ -115,8 +115,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -138,9 +138,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -154,7 +154,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
+    put_array.metadata = {"url": "/model-flatten/array"}
 
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
@@ -176,7 +176,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.FlattenedProduct]]
+        cls: ClsType[List[_models.FlattenedProduct]] = kwargs.pop("cls", None)
 
         request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
@@ -184,9 +184,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -204,7 +204,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         return deserialized
 
-    get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
+    get_array.metadata = {"url": "/model-flatten/array"}
 
     @overload
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -275,8 +275,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -298,9 +298,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -314,7 +314,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
+    put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}
 
     @distributed_trace_async
     async def get_wrapped_array(self, **kwargs: Any) -> List[_models.ProductWrapper]:
@@ -337,7 +337,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.ProductWrapper]]
+        cls: ClsType[List[_models.ProductWrapper]] = kwargs.pop("cls", None)
 
         request = build_get_wrapped_array_request(
             template_url=self.get_wrapped_array.metadata["url"],
@@ -345,9 +345,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -365,7 +365,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         return deserialized
 
-    get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
+    get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}
 
     @overload
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -433,8 +433,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -456,9 +456,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -472,7 +472,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
+    put_dictionary.metadata = {"url": "/model-flatten/dictionary"}
 
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
@@ -494,7 +494,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.FlattenedProduct]]
+        cls: ClsType[Dict[str, _models.FlattenedProduct]] = kwargs.pop("cls", None)
 
         request = build_get_dictionary_request(
             template_url=self.get_dictionary.metadata["url"],
@@ -502,9 +502,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -522,7 +522,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         return deserialized
 
-    get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
+    get_dictionary.metadata = {"url": "/model-flatten/dictionary"}
 
     @overload
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -592,8 +592,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -615,9 +615,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -631,7 +631,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
+    put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}
 
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs: Any) -> _models.ResourceCollection:
@@ -653,7 +653,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ResourceCollection]
+        cls: ClsType[_models.ResourceCollection] = kwargs.pop("cls", None)
 
         request = build_get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"],
@@ -661,9 +661,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -681,7 +681,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         return deserialized
 
-    get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
+    get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}
 
     @overload
     async def put_simple_product(
@@ -749,8 +749,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -772,9 +772,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -792,7 +792,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         return deserialized
 
-    put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
+    put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}
 
     @distributed_trace_async
     async def post_flattened_simple_product(
@@ -838,8 +838,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         _simple_body_product = _models.SimpleProduct(
             capacity=capacity,
@@ -862,9 +862,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -882,7 +882,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         return deserialized
 
-    post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
+    post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
@@ -908,8 +908,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         _name = None
         _product_id = None
@@ -950,9 +950,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -970,4 +970,4 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         return deserialized
 
-    put_simple_product_with_grouping.metadata = {"url": "/model-flatten/customFlattening/parametergrouping/{name}/"}  # type: ignore
+    put_simple_product_with_grouping.metadata = {"url": "/model-flatten/customFlattening/parametergrouping/{name}/"}

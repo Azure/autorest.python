@@ -46,7 +46,7 @@ def build_test_one_request(*, id: int, message: Optional[str] = None, **kwargs: 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
+    api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -67,7 +67,7 @@ def build_test_one_request(*, id: int, message: Optional[str] = None, **kwargs: 
 def build_test_lro_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -107,7 +107,7 @@ def build_test_different_calls_request(*, greeting_in_english: str, **kwargs: An
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
+    api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -150,8 +150,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_one_request(
             id=id,
@@ -162,9 +162,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -178,7 +178,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_one.metadata = {"url": "/multiapi/testOneEndpoint"}  # type: ignore
+    test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
     def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -194,8 +194,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Product]]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -217,9 +217,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -239,7 +239,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized
 
-    _test_lro_initial.metadata = {"url": "/multiapi/lro"}  # type: ignore
+    _test_lro_initial.metadata = {"url": "/multiapi/lro"}
 
     @overload
     def begin_test_lro(
@@ -315,13 +315,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._test_lro_initial(  # type: ignore
+            raw_result = self._test_lro_initial(
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
@@ -338,7 +338,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return deserialized
 
         if polling is True:
-            polling_method = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))  # type: PollingMethod
+            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -350,9 +350,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_test_lro.metadata = {"url": "/multiapi/lro"}  # type: ignore
+    begin_test_lro.metadata = {"url": "/multiapi/lro"}
 
     def _test_lro_and_paging_initial(
         self,
@@ -371,7 +371,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PagingResult]
+        cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
         _maxresults = None
         _timeout = None
@@ -382,15 +382,15 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         request = build_test_lro_and_paging_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
-            timeout=_timeout,
+            timeout=_timeout,  # type: ignore
             template_url=self._test_lro_and_paging_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -407,7 +407,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized
 
-    _test_lro_and_paging_initial.metadata = {"url": "/multiapi/lroAndPaging"}  # type: ignore
+    _test_lro_and_paging_initial.metadata = {"url": "/multiapi/lroAndPaging"}
 
     @distributed_trace
     def begin_test_lro_and_paging(
@@ -440,7 +440,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PagingResult]
+        cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -461,13 +461,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 request = build_test_lro_and_paging_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
-                    timeout=_timeout,
+                    timeout=_timeout,  # type: ignore
                     template_url=self.begin_test_lro_and_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -483,7 +483,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -491,13 +491,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
@@ -508,11 +508,11 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
             return pipeline_response
 
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._test_lro_and_paging_initial(  # type: ignore
+            raw_result = self._test_lro_and_paging_initial(
                 client_request_id=client_request_id,
                 test_lro_and_paging_options=test_lro_and_paging_options,
                 cls=lambda x, y, z: x,
@@ -531,7 +531,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return ItemPaged(internal_get_next, extract_data)
 
         if polling is True:
-            polling_method = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))  # type: PollingMethod
+            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -543,9 +543,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_test_lro_and_paging.metadata = {"url": "/multiapi/lroAndPaging"}  # type: ignore
+    begin_test_lro_and_paging.metadata = {"url": "/multiapi/lroAndPaging"}
 
     @distributed_trace
     def test_different_calls(  # pylint: disable=inconsistent-return-statements
@@ -571,8 +571,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))  # type: Literal["1.0.0"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
@@ -582,9 +582,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -598,4 +598,4 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}  # type: ignore
+    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}

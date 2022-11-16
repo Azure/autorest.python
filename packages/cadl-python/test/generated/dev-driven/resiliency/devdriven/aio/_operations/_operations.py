@@ -70,16 +70,16 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_dev_driven_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -92,9 +92,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         deserialized = _deserialize(_models.Product, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def post_model(
@@ -174,8 +174,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -191,9 +191,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -206,17 +206,15 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         deserialized = _deserialize(_models.Product, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
-    def get_pages(self, *, api_version: str, **kwargs: Any) -> AsyncIterable["_models.Product"]:
+    def get_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following group.
 
-        :keyword api_version: The API version to use for this operation. Required.
-        :paramtype api_version: str
         :return: An iterator like instance of Product. The Product is compatible with MutableMapping
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~resiliency.devdriven.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -224,7 +222,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models._models.CustomPageProduct]
+        cls: ClsType[_models._models.CustomPageProduct] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
         error_map = {
             401: ClientAuthenticationError,
@@ -238,15 +236,15 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             if not next_link:
 
                 request = build_dev_driven_get_pages_request(
-                    api_version=api_version,
+                    api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             else:
                 request = HttpRequest("GET", next_link)
-                request.url = self._client.format_url(request.url)  # type: ignore
+                request.url = self._client.format_url(request.url)
 
             return request
 
@@ -254,21 +252,20 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             deserialized = _deserialize(_models._models.CustomPageProduct, pipeline_response)
             list_of_elem = deserialized.value
             if cls:
-                list_of_elem = cls(list_of_elem)
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request, stream=False, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -298,16 +295,16 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
+        cls: ClsType[_models.LROProduct] = kwargs.pop("cls", None)
 
         request = build_dev_driven_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -320,6 +317,6 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         deserialized = _deserialize(_models.LROProduct, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

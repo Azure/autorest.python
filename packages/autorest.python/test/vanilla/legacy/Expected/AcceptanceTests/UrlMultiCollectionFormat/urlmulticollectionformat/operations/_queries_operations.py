@@ -139,7 +139,7 @@ class QueriesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_array_string_multi_null_request(
             array_query=array_query,
@@ -148,9 +148,9 @@ class QueriesOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -164,7 +164,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
+    array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}
 
     @distributed_trace
     def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
@@ -191,7 +191,7 @@ class QueriesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_array_string_multi_empty_request(
             array_query=array_query,
@@ -200,9 +200,9 @@ class QueriesOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -216,7 +216,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
+    array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}
 
     @distributed_trace
     def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
@@ -244,7 +244,7 @@ class QueriesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_array_string_multi_valid_request(
             array_query=array_query,
@@ -253,9 +253,9 @@ class QueriesOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -269,4 +269,4 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_multi_valid.metadata = {"url": "/queries/array/multi/string/valid"}  # type: ignore
+    array_string_multi_valid.metadata = {"url": "/queries/array/multi/string/valid"}

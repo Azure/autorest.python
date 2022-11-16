@@ -81,7 +81,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.Colors]]
+        cls: ClsType[Union[str, _models.Colors]] = kwargs.pop("cls", None)
 
         request = build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"],
@@ -89,9 +89,9 @@ class EnumOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -109,7 +109,7 @@ class EnumOperations:
 
         return deserialized
 
-    get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
+    get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}
 
     @distributed_trace_async
     async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
@@ -136,8 +136,8 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(string_body, "str")
 
@@ -149,9 +149,9 @@ class EnumOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -165,7 +165,7 @@ class EnumOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
+    put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}
 
     @distributed_trace_async
     async def get_referenced(self, **kwargs: Any) -> Union[str, _models.Colors]:
@@ -187,7 +187,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, _models.Colors]]
+        cls: ClsType[Union[str, _models.Colors]] = kwargs.pop("cls", None)
 
         request = build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"],
@@ -195,9 +195,9 @@ class EnumOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -215,7 +215,7 @@ class EnumOperations:
 
         return deserialized
 
-    get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
+    get_referenced.metadata = {"url": "/string/enum/Referenced"}
 
     @distributed_trace_async
     async def put_referenced(  # pylint: disable=inconsistent-return-statements
@@ -242,8 +242,8 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(enum_string_body, "str")
 
@@ -255,9 +255,9 @@ class EnumOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -271,7 +271,7 @@ class EnumOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
+    put_referenced.metadata = {"url": "/string/enum/Referenced"}
 
     @distributed_trace_async
     async def get_referenced_constant(self, **kwargs: Any) -> _models.RefColorConstant:
@@ -293,7 +293,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RefColorConstant]
+        cls: ClsType[_models.RefColorConstant] = kwargs.pop("cls", None)
 
         request = build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"],
@@ -301,9 +301,9 @@ class EnumOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -321,7 +321,7 @@ class EnumOperations:
 
         return deserialized
 
-    get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
+    get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}
 
     @distributed_trace_async
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
@@ -350,9 +350,9 @@ class EnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
-        color_constant = kwargs.pop("color_constant", "green-color")  # type: Literal["green-color"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        color_constant: Literal["green-color"] = kwargs.pop("color_constant", "green-color")
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
         _json = self._serialize.body(_enum_string_body, "RefColorConstant")
@@ -365,9 +365,9 @@ class EnumOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -381,4 +381,4 @@ class EnumOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
+    put_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}

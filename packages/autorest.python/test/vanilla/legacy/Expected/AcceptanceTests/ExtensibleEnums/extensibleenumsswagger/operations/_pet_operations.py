@@ -44,7 +44,7 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
         "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
 
-    _url = _format_url_section(_url, **path_format_arguments)
+    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -55,7 +55,7 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 def build_add_pet_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -110,7 +110,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
+        cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
         request = build_get_by_pet_id_request(
             pet_id=pet_id,
@@ -119,9 +119,9 @@ class PetOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -138,7 +138,7 @@ class PetOperations:
 
         return deserialized
 
-    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
+    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}
 
     @overload
     def add_pet(
@@ -199,8 +199,8 @@ class PetOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -222,9 +222,9 @@ class PetOperations:
             params=_params,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)  # type: ignore
+        request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
 
@@ -241,4 +241,4 @@ class PetOperations:
 
         return deserialized
 
-    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore
+    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}

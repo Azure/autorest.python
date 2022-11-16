@@ -18,11 +18,17 @@ from ._serialization import Deserializer, Serializer
 
 
 class DevDrivenClient(DevDrivenClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """DPG Swagger that tests our ability to grow up."""
+    """DPG Swagger that tests our ability to grow up.
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
+    :param api_version: The API version to use for this operation. Required.
+    :type api_version: str
+    """
+
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, api_version: str, **kwargs: Any
+    ) -> None:
         _endpoint = "http://localhost:3000"
-        self._config = DevDrivenClientConfiguration(**kwargs)
+        self._config = DevDrivenClientConfiguration(api_version=api_version, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -51,15 +57,12 @@ class DevDrivenClient(DevDrivenClientOperationsMixin):  # pylint: disable=client
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
-    def close(self):
-        # type: () -> None
+    def close(self) -> None:
         self._client.close()
 
-    def __enter__(self):
-        # type: () -> DevDrivenClient
+    def __enter__(self) -> "DevDrivenClient":
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details):
-        # type: (Any) -> None
+    def __exit__(self, *exc_details) -> None:
         self._client.__exit__(*exc_details)

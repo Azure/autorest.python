@@ -28,6 +28,7 @@ from .operations import (
     FloatOperations,
     IntOperations,
     ModelOperations,
+    NeverOperations,
     StringOperations,
 )
 
@@ -63,6 +64,8 @@ class TypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
     :vartype collections_model: models.property.types.operations.CollectionsModelOperations
     :ivar dictionary_string: DictionaryStringOperations operations
     :vartype dictionary_string: models.property.types.operations.DictionaryStringOperations
+    :ivar never: NeverOperations operations
+    :vartype never: models.property.types.operations.NeverOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -93,6 +96,7 @@ class TypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
         self.dictionary_string = DictionaryStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.never = NeverOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -116,15 +120,12 @@ class TypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
-    def close(self):
-        # type: () -> None
+    def close(self) -> None:
         self._client.close()
 
-    def __enter__(self):
-        # type: () -> TypesClient
+    def __enter__(self) -> "TypesClient":
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details):
-        # type: (Any) -> None
+    def __exit__(self, *exc_details) -> None:
         self._client.__exit__(*exc_details)

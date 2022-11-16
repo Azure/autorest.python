@@ -18,11 +18,17 @@ from ._operations import DevDrivenClientOperationsMixin
 
 
 class DevDrivenClient(DevDrivenClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """DPG Swagger that tests our ability to grow up."""
+    """DPG Swagger that tests our ability to grow up.
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
+    :param api_version: The API version to use for this operation. Required.
+    :type api_version: str
+    """
+
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, api_version: str, **kwargs: Any
+    ) -> None:
         _endpoint = "http://localhost:3000"
-        self._config = DevDrivenClientConfiguration(**kwargs)
+        self._config = DevDrivenClientConfiguration(api_version=api_version, **kwargs)
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

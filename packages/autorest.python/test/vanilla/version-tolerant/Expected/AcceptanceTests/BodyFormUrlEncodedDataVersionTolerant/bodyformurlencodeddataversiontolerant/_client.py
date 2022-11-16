@@ -36,7 +36,7 @@ class BodyFormsDataURLEncoded:  # pylint: disable=client-accepts-api-version-key
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.formdataurlencoded = FormdataurlencodedOperations(  # type: ignore  # pylint: disable=abstract-class-instantiated
+        self.formdataurlencoded = FormdataurlencodedOperations(  # pylint: disable=abstract-class-instantiated
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -62,15 +62,12 @@ class BodyFormsDataURLEncoded:  # pylint: disable=client-accepts-api-version-key
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
-    def close(self):
-        # type: () -> None
+    def close(self) -> None:
         self._client.close()
 
-    def __enter__(self):
-        # type: () -> BodyFormsDataURLEncoded
+    def __enter__(self) -> "BodyFormsDataURLEncoded":
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details):
-        # type: (Any) -> None
+    def __exit__(self, *exc_details) -> None:
         self._client.__exit__(*exc_details)
