@@ -131,6 +131,9 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
         await program.host.writeFile(yamlPath, dump(yamlMap));
         execFileSync(process.execPath, commandArgs);
     }
+    if (program.compilerOptions.trace === undefined) {
+        await program.host.rm(yamlPath);
+    }
 }
 
 function camelToSnakeCase(name: string): string {
