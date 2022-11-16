@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-11-15 - 0.4.9
+
+**Other Changes**
+
+- Support `package-mode` to add package files  #1574
+
 ## 2022-11-15 - 0.4.8
 
 **Bug Fixes**
@@ -11,7 +17,6 @@
 **Other Changes**
 
 - Do not generate Azure.Core.Foundations Error models #1567
-- Support `package-mode` to add package files  #1574
 
 ## 2022-11-08 - 0.4.7
 
