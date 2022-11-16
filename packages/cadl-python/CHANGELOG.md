@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-11-15 - 0.4.9
+
+**Other Changes**
+
+- Support `package-mode` to add package files  #1574
+
 ## 2022-11-15 - 0.4.8
 
 **Bug Fixes**
