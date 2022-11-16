@@ -49,7 +49,14 @@ import {
 import { getAddedOn, getVersions } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
-import { Client, listClients, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import {
+    Client,
+    listClients,
+    listOperationGroups,
+    listOperationsInOperationGroup,
+    isApiVersion,
+    getDefaultApiVersion,
+} from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
 
 interface HttpServerParameter {
@@ -67,7 +74,8 @@ export interface EmitterOptions {
     "basic-setup-py": boolean;
     "package-version": string;
     "package-name": string;
-    "output-path": string;
+    "output-dir": string;
+    "package-mode": string;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -77,7 +85,8 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
         "basic-setup-py": { type: "boolean", nullable: true },
         "package-version": { type: "string", nullable: true },
         "package-name": { type: "string", nullable: true },
-        "output-path": { type: "string", nullable: true },
+        "output-dir": { type: "string", nullable: true },
+        "package-mode": { type: "string", nullable: true },
     },
     required: [],
 };
@@ -99,7 +108,7 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     const resolvedOptions = { ...defaultOptions, ...options };
     const yamlMap = createYamlEmitter(program);
     const root = process.cwd();
-    const outputFolder = resolvedOptions["output-path"] ?? program.compilerOptions.outputPath!;
+    const outputFolder = resolvedOptions["output-dir"] ?? program.compilerOptions.outputDir!;
     const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
@@ -122,6 +131,9 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
         await program.host.writeFile(yamlPath, dump(yamlMap));
         execFileSync(process.execPath, commandArgs);
     }
+    if (program.compilerOptions.trace === undefined) {
+        await program.host.rm(yamlPath);
+    }
 }
 
 function camelToSnakeCase(name: string): string {
@@ -138,7 +150,7 @@ function camelToSnakeCase(name: string): string {
 const typesMap = new Map<Type | CredentialType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
-const apiVersions: string[] = [];
+let apiVersionParam: Record<string, any> | undefined = undefined;
 
 function isSimpleType(program: Program, modelTypeProperty: ModelProperty | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
@@ -343,17 +355,21 @@ function emitParameter(
         location: parameter.type,
         type: type,
         implementation: implementation,
+        skipUrlEncoding: parameter.type === "endpointPath",
     };
 
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
-    if (parameter.name === "api-version" && apiVersions.length) {
-        // Hack: just choose latest api version until we can correctly mark a client's api version
-        clientDefaultValue = apiVersions[apiVersions.length - 1];
-        paramMap.type = getConstantType(clientDefaultValue);
+
+    if (isApiVersion(program, parameter as HttpOperationParameter)) {
+        const defaultApiVersion = getDefaultApiVersion(program, getServiceNamespace(program));
+        paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion.value) : KnownTypes.string;
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
+        if (defaultApiVersion) {
+            clientDefaultValue = defaultApiVersion.value;
+        }
     }
     return { clientDefaultValue, ...base, ...paramMap };
 }
@@ -538,7 +554,11 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     }
     const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
     for (const param of httpOperation.parameters.parameters) {
-        parameters.push(emitParameter(program, param, "Method"));
+        const emittedParam = emitParameter(program, param, "Method");
+        if (isApiVersion(program, param) && apiVersionParam === undefined) {
+            apiVersionParam = emittedParam;
+        }
+        parameters.push(emittedParam);
     }
 
     // Set up responses for operation
@@ -928,8 +948,13 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
                 name: param.name,
                 param: param,
             };
-            endpointPathParameters.push(emitParameter(program, serverParameter, "Client"));
-            params.push(emitParameter(program, serverParameter, "Client"));
+            const emittedParameter = emitParameter(program, serverParameter, "Client");
+            endpointPathParameters.push(emittedParameter);
+            if (isApiVersion(program, serverParameter as any) && apiVersionParam == undefined) {
+                apiVersionParam = emittedParameter;
+                continue;
+            }
+            params.push(emittedParameter);
         }
         return params;
     } else {
@@ -978,15 +1003,19 @@ function emitCredentialParam(program: Program, namespace: Namespace): Record<str
     return undefined;
 }
 
-function emitApiVersionParam(program: Program): Record<string, any> | undefined {
-    if (!apiVersions.length) {
-        return undefined;
+function emitGlobalParameters(program: Program, namespace: Namespace): Record<string, any>[] {
+    const clientParameters = emitServerParams(program, namespace);
+    const credentialParam = emitCredentialParam(program, namespace);
+    if (credentialParam) {
+        clientParameters.push(credentialParam);
     }
-    const version = apiVersions[apiVersions.length - 1];
-    if (version) {
-        return {
+    const version = getDefaultApiVersion(program, getServiceNamespace(program));
+    if (apiVersionParam) {
+        clientParameters.push(apiVersionParam);
+    } else if (version !== undefined) {
+        clientParameters.push({
             clientName: "api_version",
-            clientDefaultValue: version,
+            clientDefaultValue: version.value,
             description: "Api Version",
             implementation: "Client",
             location: "query",
@@ -996,34 +1025,11 @@ function emitApiVersionParam(program: Program): Record<string, any> | undefined 
             inDocString: true,
             inOverload: false,
             inOverridden: false,
-            type: getConstantType(version),
+            type: getConstantType(version.value),
             isApiVersion: true,
-        };
-    }
-    return undefined;
-}
-
-function emitGlobalParameters(program: Program, namespace: Namespace): Record<string, any>[] {
-    const clientParameters = emitServerParams(program, namespace);
-    const credentialParam = emitCredentialParam(program, namespace);
-    const apiVersionParam = emitApiVersionParam(program);
-    if (credentialParam) {
-        clientParameters.push(credentialParam);
-    }
-    if (apiVersionParam) {
-        clientParameters.push(apiVersionParam);
+        });
     }
     return clientParameters;
-}
-
-function getApiVersions(program: Program, namespace: Namespace) {
-    const versions = getVersions(program, namespace)[1];
-    if (versions === undefined) {
-        return;
-    }
-    for (const version of versions.getVersions()) {
-        apiVersions.push(version.value);
-    }
 }
 
 function emitClients(program: Program, namespace: string): Record<string, any>[] {
@@ -1037,10 +1043,10 @@ function emitClients(program: Program, namespace: string): Record<string, any>[]
         retval.push({
             name: client.name.split(".").at(-1),
             description: getDocStr(program, client.type),
+            operationGroups: emitOperationGroups(program, client),
             parameters: emitGlobalParameters(program, client.service),
             url: server ? server.url : "",
             apiVersions: [],
-            operationGroups: emitOperationGroups(program, client),
         });
     }
     return retval;
@@ -1069,7 +1075,6 @@ function createYamlEmitter(program: Program) {
         throw Error("Can not emit yaml for a namespace that doesn't exist.");
     }
 
-    getApiVersions(program, serviceNamespace);
     const serviceNamespaceString = getServiceNamespaceString(program)!.toLowerCase();
     // Get types
     const codeModel: Record<string, any> = {
