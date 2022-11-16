@@ -249,7 +249,6 @@ function getType(
                 if (isStatusCode(program, property)) {
                     continue;
                 }
-                if (property.type.kind == "Intrinsic" && property.type.name == "never") continue;
                 newValue.properties.push(emitProperty(program, property));
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
