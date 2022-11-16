@@ -46,7 +46,7 @@ import {
     HttpServer,
     isStatusCode,
 } from "@cadl-lang/rest/http";
-import { getAddedOn, getVersions } from "@cadl-lang/versioning";
+import { getAddedOn } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import {
@@ -249,6 +249,7 @@ function getType(
                 if (isStatusCode(program, property)) {
                     continue;
                 }
+                if (property.type.kind == "Intrinsic" && property.type.name == "never") continue;
                 newValue.properties.push(emitProperty(program, property));
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
