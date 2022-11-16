@@ -20,6 +20,7 @@ from ._models import FloatProperty
 from ._models import InnerModel
 from ._models import IntProperty
 from ._models import ModelProperty
+from ._models import NeverProperty
 from ._models import StringProperty
 
 from ._enums import InnerEnum
@@ -43,6 +44,7 @@ __all__ = [
     "InnerModel",
     "IntProperty",
     "ModelProperty",
+    "NeverProperty",
     "StringProperty",
     "InnerEnum",
     "InnerExtensibleEnum",

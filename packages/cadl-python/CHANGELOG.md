@@ -1,6 +1,12 @@
 # Release History
 
-## 2022-11-xx - 0.4.8
+## 2022-11-15 - 0.4.8
+
+**Bug Fixes**
+
+- Fix import of enums in client for CADL #1573
+- Fix api version property on client #1577
+- Skip URL encoding for client path parameters #1578
 
 **Other Changes**
 
