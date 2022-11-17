@@ -246,7 +246,7 @@ function getType(
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
-                if (isStatusCode(program, property)) {
+                if (isStatusCode(program, property) || isNeverType(property.type)) {
                     continue;
                 }
                 newValue.properties.push(emitProperty(program, property));
