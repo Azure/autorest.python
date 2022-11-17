@@ -1009,11 +1009,15 @@ function emitGlobalParameters(program: Program, namespace: Namespace): Record<st
     if (credentialParam) {
         clientParameters.push(credentialParam);
     }
+    return clientParameters;
+}
+
+function getApiVersionParameter(program: Program): Record<string, any> | void {
     const version = getDefaultApiVersion(program, getServiceNamespace(program));
     if (apiVersionParam) {
-        clientParameters.push(apiVersionParam);
+        return apiVersionParam;
     } else if (version !== undefined) {
-        clientParameters.push({
+        return {
             clientName: "api_version",
             clientDefaultValue: version.value,
             description: "Api Version",
@@ -1027,9 +1031,8 @@ function emitGlobalParameters(program: Program, namespace: Namespace): Record<st
             inOverridden: false,
             type: getConstantType(version.value),
             isApiVersion: true,
-        });
+        };
     }
-    return clientParameters;
 }
 
 function emitClients(program: Program, namespace: string): Record<string, any>[] {
@@ -1040,14 +1043,19 @@ function emitClients(program: Program, namespace: string): Record<string, any>[]
             continue;
         }
         const server = getServerHelper(program, client.service);
-        retval.push({
+        const emittedClient = {
             name: client.name.split(".").at(-1),
             description: getDocStr(program, client.type),
-            operationGroups: emitOperationGroups(program, client),
             parameters: emitGlobalParameters(program, client.service),
+            operationGroups: emitOperationGroups(program, client),
             url: server ? server.url : "",
             apiVersions: [],
-        });
+        };
+        const emittedApiVersionParam = getApiVersionParameter(program);
+        if (emittedApiVersionParam) {
+            emittedClient.parameters.push(emittedApiVersionParam);
+        }
+        retval.push(emittedClient);
     }
     return retval;
 }
