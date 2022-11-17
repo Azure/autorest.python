@@ -2,7 +2,7 @@
 
 
 {{ serializer.declare_model(model) }}
-    """{{ model.description(is_operation_file=False) }}
+    """{{ model.description(is_operation_file=False) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ')  }}
     {% if model.discriminated_subtypes %}
 
     {{ serializer.discriminator_docstring(model) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}
