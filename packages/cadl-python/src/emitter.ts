@@ -46,7 +46,7 @@ import {
     HttpServer,
     isStatusCode,
 } from "@cadl-lang/rest/http";
-import { getAddedOn, getVersions } from "@cadl-lang/versioning";
+import { getAddedOn } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import {
@@ -251,7 +251,7 @@ function getType(
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
-                if (isStatusCode(program, property)) {
+                if (isStatusCode(program, property) || isNeverType(property.type)) {
                     continue;
                 }
                 newValue.properties.push(emitProperty(program, property));

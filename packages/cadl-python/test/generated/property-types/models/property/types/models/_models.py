@@ -474,32 +474,7 @@ class ModelProperty(_model_base.Model):
 
 
 class NeverProperty(_model_base.Model):
-    """Model with a property never. (This property should not be included).
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar property: Property. Required.
-    :vartype property: any
-    """
-
-    property: Any = rest_field()
-    """Property. Required. """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        property: Any,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
+    """Model with a property never. (This property should not be included)."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

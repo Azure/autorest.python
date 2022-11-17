@@ -12,6 +12,7 @@ from typing import Any, Awaitable
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
+from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
 from .operations import XmlOperations
@@ -32,8 +33,9 @@ class AutoRestSwaggerBATXMLService:  # pylint: disable=client-accepts-api-versio
         self._config = AutoRestSwaggerBATXMLServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
-        self._serialize = Serializer()
-        self._deserialize = Deserializer()
+        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
+        self._serialize = Serializer(client_models)
+        self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.xml = XmlOperations(self._client, self._config, self._serialize, self._deserialize)
 
