@@ -61,9 +61,9 @@ class AppleBarrel(_serialization.Model):
     """A barrel of apples.
 
     :ivar good_apples:
-    :vartype good_apples: list[str]
+    :vartype good_apples: str
     :ivar bad_apples:
-    :vartype bad_apples: list[str]
+    :vartype bad_apples: str
     """
 
     _attribute_map = {
@@ -74,9 +74,9 @@ class AppleBarrel(_serialization.Model):
     def __init__(self, *, good_apples: Optional[List[str]] = None, bad_apples: Optional[List[str]] = None, **kwargs):
         """
         :keyword good_apples:
-        :paramtype good_apples: list[str]
+        :paramtype good_apples: str
         :keyword bad_apples:
-        :paramtype bad_apples: list[str]
+        :paramtype bad_apples: str
         """
         super().__init__(**kwargs)
         self.good_apples = good_apples
@@ -135,7 +135,7 @@ class Blob(_serialization.Model):
     :ivar snapshot: Required.
     :vartype snapshot: str
     :ivar properties: Properties of a blob. Required.
-    :vartype properties: ~xmlservice.models.BlobProperties
+    :vartype properties: ~xmlserviceversiontolerant.models.BlobProperties
     :ivar metadata: Dictionary of :code:`<string>`.
     :vartype metadata: dict[str, str]
     """
@@ -174,7 +174,7 @@ class Blob(_serialization.Model):
         :keyword snapshot: Required.
         :paramtype snapshot: str
         :keyword properties: Properties of a blob. Required.
-        :paramtype properties: ~xmlservice.models.BlobProperties
+        :paramtype properties: ~xmlserviceversiontolerant.models.BlobProperties
         :keyword metadata: Dictionary of :code:`<string>`.
         :paramtype metadata: dict[str, str]
         """
@@ -238,18 +238,18 @@ class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance
     :ivar blob_sequence_number:
     :vartype blob_sequence_number: int
     :ivar blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
-    :vartype blob_type: str or ~xmlservice.models.BlobType
+    :vartype blob_type: str or ~xmlserviceversiontolerant.models.BlobType
     :ivar lease_status: Known values are: "locked" and "unlocked".
-    :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
+    :vartype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
     :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
      "broken".
-    :vartype lease_state: str or ~xmlservice.models.LeaseStateType
+    :vartype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
     :ivar lease_duration: Known values are: "infinite" and "fixed".
-    :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :vartype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
     :ivar copy_id:
     :vartype copy_id: str
     :ivar copy_status: Known values are: "pending", "success", "aborted", and "failed".
-    :vartype copy_status: str or ~xmlservice.models.CopyStatusType
+    :vartype copy_status: str or ~xmlserviceversiontolerant.models.CopyStatusType
     :ivar copy_source:
     :vartype copy_source: str
     :ivar copy_progress:
@@ -270,12 +270,12 @@ class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance
     :vartype remaining_retention_days: int
     :ivar access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
      "Cool", and "Archive".
-    :vartype access_tier: str or ~xmlservice.models.AccessTier
+    :vartype access_tier: str or ~xmlserviceversiontolerant.models.AccessTier
     :ivar access_tier_inferred:
     :vartype access_tier_inferred: bool
     :ivar archive_status: Known values are: "rehydrate-pending-to-hot" and
      "rehydrate-pending-to-cool".
-    :vartype archive_status: str or ~xmlservice.models.ArchiveStatus
+    :vartype archive_status: str or ~xmlserviceversiontolerant.models.ArchiveStatus
     """
 
     _validation = {
@@ -369,18 +369,18 @@ class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance
         :keyword blob_sequence_number:
         :paramtype blob_sequence_number: int
         :keyword blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
-        :paramtype blob_type: str or ~xmlservice.models.BlobType
+        :paramtype blob_type: str or ~xmlserviceversiontolerant.models.BlobType
         :keyword lease_status: Known values are: "locked" and "unlocked".
-        :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
+        :paramtype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
         :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", and
          "broken".
-        :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
+        :paramtype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
         :keyword lease_duration: Known values are: "infinite" and "fixed".
-        :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
+        :paramtype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
         :keyword copy_id:
         :paramtype copy_id: str
         :keyword copy_status: Known values are: "pending", "success", "aborted", and "failed".
-        :paramtype copy_status: str or ~xmlservice.models.CopyStatusType
+        :paramtype copy_status: str or ~xmlserviceversiontolerant.models.CopyStatusType
         :keyword copy_source:
         :paramtype copy_source: str
         :keyword copy_progress:
@@ -401,12 +401,12 @@ class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance
         :paramtype remaining_retention_days: int
         :keyword access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
          "Cool", and "Archive".
-        :paramtype access_tier: str or ~xmlservice.models.AccessTier
+        :paramtype access_tier: str or ~xmlserviceversiontolerant.models.AccessTier
         :keyword access_tier_inferred:
         :paramtype access_tier_inferred: bool
         :keyword archive_status: Known values are: "rehydrate-pending-to-hot" and
          "rehydrate-pending-to-cool".
-        :paramtype archive_status: str or ~xmlservice.models.ArchiveStatus
+        :paramtype archive_status: str or ~xmlserviceversiontolerant.models.ArchiveStatus
         """
         super().__init__(**kwargs)
         self.last_modified = last_modified
@@ -443,9 +443,9 @@ class Blobs(_serialization.Model):
     """Blobs.
 
     :ivar blob_prefix:
-    :vartype blob_prefix: list[~xmlservice.models.BlobPrefix]
+    :vartype blob_prefix: list[~xmlserviceversiontolerant.models.BlobPrefix]
     :ivar blob:
-    :vartype blob: list[~xmlservice.models.Blob]
+    :vartype blob: ~xmlserviceversiontolerant.models.Blob
     """
 
     _attribute_map = {
@@ -462,9 +462,9 @@ class Blobs(_serialization.Model):
     ):
         """
         :keyword blob_prefix:
-        :paramtype blob_prefix: list[~xmlservice.models.BlobPrefix]
+        :paramtype blob_prefix: list[~xmlserviceversiontolerant.models.BlobPrefix]
         :keyword blob:
-        :paramtype blob: list[~xmlservice.models.Blob]
+        :paramtype blob: ~xmlserviceversiontolerant.models.Blob
         """
         super().__init__(**kwargs)
         self.blob_prefix = blob_prefix
@@ -520,7 +520,7 @@ class Container(_serialization.Model):
     :ivar name: Required.
     :vartype name: str
     :ivar properties: Properties of a container. Required.
-    :vartype properties: ~xmlservice.models.ContainerProperties
+    :vartype properties: ~xmlserviceversiontolerant.models.ContainerProperties
     :ivar metadata: Dictionary of :code:`<string>`.
     :vartype metadata: dict[str, str]
     """
@@ -548,7 +548,7 @@ class Container(_serialization.Model):
         :keyword name: Required.
         :paramtype name: str
         :keyword properties: Properties of a container. Required.
-        :paramtype properties: ~xmlservice.models.ContainerProperties
+        :paramtype properties: ~xmlserviceversiontolerant.models.ContainerProperties
         :keyword metadata: Dictionary of :code:`<string>`.
         :paramtype metadata: dict[str, str]
         """
@@ -568,14 +568,14 @@ class ContainerProperties(_serialization.Model):
     :ivar etag: Required.
     :vartype etag: str
     :ivar lease_status: Known values are: "locked" and "unlocked".
-    :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
+    :vartype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
     :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
      "broken".
-    :vartype lease_state: str or ~xmlservice.models.LeaseStateType
+    :vartype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
     :ivar lease_duration: Known values are: "infinite" and "fixed".
-    :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :vartype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
     :ivar public_access: Known values are: "container" and "blob".
-    :vartype public_access: str or ~xmlservice.models.PublicAccessType
+    :vartype public_access: str or ~xmlserviceversiontolerant.models.PublicAccessType
     """
 
     _validation = {
@@ -609,14 +609,14 @@ class ContainerProperties(_serialization.Model):
         :keyword etag: Required.
         :paramtype etag: str
         :keyword lease_status: Known values are: "locked" and "unlocked".
-        :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
+        :paramtype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
         :keyword lease_state: Known values are: "available", "leased", "expired", "breaking", and
          "broken".
-        :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
+        :paramtype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
         :keyword lease_duration: Known values are: "infinite" and "fixed".
-        :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
+        :paramtype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
         :keyword public_access: Known values are: "container" and "blob".
-        :paramtype public_access: str or ~xmlservice.models.PublicAccessType
+        :paramtype public_access: str or ~xmlserviceversiontolerant.models.PublicAccessType
         """
         super().__init__(**kwargs)
         self.last_modified = last_modified
@@ -794,7 +794,7 @@ class ListBlobsResponse(_serialization.Model):
     :ivar delimiter: Required.
     :vartype delimiter: str
     :ivar blobs: Required.
-    :vartype blobs: ~xmlservice.models.Blobs
+    :vartype blobs: ~xmlserviceversiontolerant.models.Blobs
     :ivar next_marker: Required.
     :vartype next_marker: str
     """
@@ -848,7 +848,7 @@ class ListBlobsResponse(_serialization.Model):
         :keyword delimiter: Required.
         :paramtype delimiter: str
         :keyword blobs: Required.
-        :paramtype blobs: ~xmlservice.models.Blobs
+        :paramtype blobs: ~xmlserviceversiontolerant.models.Blobs
         :keyword next_marker: Required.
         :paramtype next_marker: str
         """
@@ -877,7 +877,7 @@ class ListContainersResponse(_serialization.Model):
     :ivar max_results: Required.
     :vartype max_results: int
     :ivar containers:
-    :vartype containers: list[~xmlservice.models.Container]
+    :vartype containers: list[~xmlserviceversiontolerant.models.Container]
     :ivar next_marker: Required.
     :vartype next_marker: str
     """
@@ -920,7 +920,7 @@ class ListContainersResponse(_serialization.Model):
         :keyword max_results: Required.
         :paramtype max_results: int
         :keyword containers:
-        :paramtype containers: list[~xmlservice.models.Container]
+        :paramtype containers: list[~xmlserviceversiontolerant.models.Container]
         :keyword next_marker: Required.
         :paramtype next_marker: str
         """
@@ -947,7 +947,7 @@ class Logging(_serialization.Model):
     :ivar write: Indicates whether all write requests should be logged. Required.
     :vartype write: bool
     :ivar retention_policy: the retention policy. Required.
-    :vartype retention_policy: ~xmlservice.models.RetentionPolicy
+    :vartype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
     """
 
     _validation = {
@@ -986,7 +986,7 @@ class Logging(_serialization.Model):
         :keyword write: Indicates whether all write requests should be logged. Required.
         :paramtype write: bool
         :keyword retention_policy: the retention policy. Required.
-        :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
+        :paramtype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
         """
         super().__init__(**kwargs)
         self.version = version
@@ -1009,7 +1009,7 @@ class Metrics(_serialization.Model):
      operations.
     :vartype include_apis: bool
     :ivar retention_policy: the retention policy.
-    :vartype retention_policy: ~xmlservice.models.RetentionPolicy
+    :vartype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
     """
 
     _validation = {
@@ -1041,7 +1041,7 @@ class Metrics(_serialization.Model):
          API operations.
         :paramtype include_apis: bool
         :keyword retention_policy: the retention policy.
-        :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
+        :paramtype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
         """
         super().__init__(**kwargs)
         self.version = version
@@ -1158,7 +1158,7 @@ class RootWithRefAndMeta(_serialization.Model):
     """I am root, and I ref a model WITH meta.
 
     :ivar ref_to_model: XML will use XMLComplexTypeWithMeta.
-    :vartype ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
+    :vartype ref_to_model: ~xmlserviceversiontolerant.models.ComplexTypeWithMeta
     :ivar something: Something else (just to avoid flattening).
     :vartype something: str
     """
@@ -1173,7 +1173,7 @@ class RootWithRefAndMeta(_serialization.Model):
     ):
         """
         :keyword ref_to_model: XML will use XMLComplexTypeWithMeta.
-        :paramtype ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
+        :paramtype ref_to_model: ~xmlserviceversiontolerant.models.ComplexTypeWithMeta
         :keyword something: Something else (just to avoid flattening).
         :paramtype something: str
         """
@@ -1186,7 +1186,7 @@ class RootWithRefAndNoMeta(_serialization.Model):
     """I am root, and I ref a model with no meta.
 
     :ivar ref_to_model: XML will use RefToModel.
-    :vartype ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
+    :vartype ref_to_model: ~xmlserviceversiontolerant.models.ComplexTypeNoMeta
     :ivar something: Something else (just to avoid flattening).
     :vartype something: str
     """
@@ -1201,7 +1201,7 @@ class RootWithRefAndNoMeta(_serialization.Model):
     ):
         """
         :keyword ref_to_model: XML will use RefToModel.
-        :paramtype ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
+        :paramtype ref_to_model: ~xmlserviceversiontolerant.models.ComplexTypeNoMeta
         :keyword something: Something else (just to avoid flattening).
         :paramtype something: str
         """
@@ -1218,7 +1218,7 @@ class SignedIdentifier(_serialization.Model):
     :ivar id: a unique id. Required.
     :vartype id: str
     :ivar access_policy: The access policy. Required.
-    :vartype access_policy: ~xmlservice.models.AccessPolicy
+    :vartype access_policy: ~xmlserviceversiontolerant.models.AccessPolicy
     """
 
     _validation = {
@@ -1239,7 +1239,7 @@ class SignedIdentifier(_serialization.Model):
         :keyword id: a unique id. Required.
         :paramtype id: str
         :keyword access_policy: The access policy. Required.
-        :paramtype access_policy: ~xmlservice.models.AccessPolicy
+        :paramtype access_policy: ~xmlserviceversiontolerant.models.AccessPolicy
         """
         super().__init__(**kwargs)
         self.id = id
@@ -1254,7 +1254,7 @@ class Slide(_serialization.Model):
     :ivar title:
     :vartype title: str
     :ivar items:
-    :vartype items: list[str]
+    :vartype items: str
     """
 
     _attribute_map = {
@@ -1273,7 +1273,7 @@ class Slide(_serialization.Model):
         :keyword title:
         :paramtype title: str
         :keyword items:
-        :paramtype items: list[str]
+        :paramtype items: str
         """
         super().__init__(**kwargs)
         self.type = type
@@ -1291,7 +1291,7 @@ class Slideshow(_serialization.Model):
     :ivar author:
     :vartype author: str
     :ivar slides:
-    :vartype slides: list[~xmlservice.models.Slide]
+    :vartype slides: ~xmlserviceversiontolerant.models.Slide
     """
 
     _attribute_map = {
@@ -1319,7 +1319,7 @@ class Slideshow(_serialization.Model):
         :keyword author:
         :paramtype author: str
         :keyword slides:
-        :paramtype slides: list[~xmlservice.models.Slide]
+        :paramtype slides: ~xmlserviceversiontolerant.models.Slide
         """
         super().__init__(**kwargs)
         self.title = title
@@ -1332,21 +1332,21 @@ class StorageServiceProperties(_serialization.Model):
     """Storage Service Properties.
 
     :ivar logging: Azure Analytics Logging settings.
-    :vartype logging: ~xmlservice.models.Logging
+    :vartype logging: ~xmlserviceversiontolerant.models.Logging
     :ivar hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
      blobs.
-    :vartype hour_metrics: ~xmlservice.models.Metrics
+    :vartype hour_metrics: ~xmlserviceversiontolerant.models.Metrics
     :ivar minute_metrics: a summary of request statistics grouped by API in minute aggregates for
      blobs.
-    :vartype minute_metrics: ~xmlservice.models.Metrics
+    :vartype minute_metrics: ~xmlserviceversiontolerant.models.Metrics
     :ivar cors: The set of CORS rules.
-    :vartype cors: list[~xmlservice.models.CorsRule]
+    :vartype cors: ~xmlserviceversiontolerant.models.CorsRule
     :ivar default_service_version: The default version to use for requests to the Blob service if
      an incoming request's version is not specified. Possible values include version 2008-10-27 and
      all more recent versions.
     :vartype default_service_version: str
     :ivar delete_retention_policy: The Delete Retention Policy for the service.
-    :vartype delete_retention_policy: ~xmlservice.models.RetentionPolicy
+    :vartype delete_retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
     """
 
     _attribute_map = {
@@ -1371,21 +1371,21 @@ class StorageServiceProperties(_serialization.Model):
     ):
         """
         :keyword logging: Azure Analytics Logging settings.
-        :paramtype logging: ~xmlservice.models.Logging
+        :paramtype logging: ~xmlserviceversiontolerant.models.Logging
         :keyword hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
          blobs.
-        :paramtype hour_metrics: ~xmlservice.models.Metrics
+        :paramtype hour_metrics: ~xmlserviceversiontolerant.models.Metrics
         :keyword minute_metrics: a summary of request statistics grouped by API in minute aggregates
          for blobs.
-        :paramtype minute_metrics: ~xmlservice.models.Metrics
+        :paramtype minute_metrics: ~xmlserviceversiontolerant.models.Metrics
         :keyword cors: The set of CORS rules.
-        :paramtype cors: list[~xmlservice.models.CorsRule]
+        :paramtype cors: ~xmlserviceversiontolerant.models.CorsRule
         :keyword default_service_version: The default version to use for requests to the Blob service
          if an incoming request's version is not specified. Possible values include version 2008-10-27
          and all more recent versions.
         :paramtype default_service_version: str
         :keyword delete_retention_policy: The Delete Retention Policy for the service.
-        :paramtype delete_retention_policy: ~xmlservice.models.RetentionPolicy
+        :paramtype delete_retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
         """
         super().__init__(**kwargs)
         self.logging = logging

@@ -22,19 +22,24 @@ if not hasattr(inspect, 'getargspec'):
 #######################################################
 
 init()
+
+
 class _SwaggerGroup(str, Enum):
     VANILLA = "vanilla"
     AZURE = "azure"
     AZURE_ARM = "azure-arm"
     DPG = "dpg"
 
+
 class _Generator(Enum):
     LEGACY = "legacy"
     VERSION_TOLERANT = "version_tolerant"
 
+
 class Config(NamedTuple):
     generator: _Generator
     output_folder: str
+
 
 AUTOREST_DIR = os.path.dirname(__file__)
 _VANILLA_SWAGGER_MAPPINGS = {
@@ -74,7 +79,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'MergePatchJson': 'merge-patch.json',
     'ModelFlattening': 'model-flattening.json',
     'Xml': 'xml-service.json',
-    'UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',
+    'UrlMultiCollectionFormat': 'url-multi-collectionFormat.json',
     'XmsErrorResponse': 'xms-error-responses.json',
     'MediaTypes': 'media_types.json',
     'ObjectType': 'object-type.json',
@@ -125,6 +130,9 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
     'ClientEnum': {
         "models-mode": "msrest",
     },
+    'Xml': {
+        "models-mode": "msrest",
+    },
     'BodyArrayWithNamespaceFolders': {
         "namespace": "vanilla.body.array"
     },
@@ -148,7 +156,7 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
     "NoNamespaceFlag": {
         "namespace": None,  # clear our namespace flag
         "package-name": "nonamespaceflag"
-     }
+    }
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -203,6 +211,7 @@ _POSTPROCESS_PACKAGES = [
     "DPGCustomizationCustomized",
 ]
 
+
 def _get_config(
     swagger_group: _SwaggerGroup, package_name: str, **kwargs
 ) -> Config:
@@ -224,6 +233,7 @@ def _get_config(
         generator = _Generator.LEGACY
     return Config(generator, f"test/{generation_section}/Expected/AcceptanceTests/{package_name}")
 
+
 def _build_flags(
     package_name: str,
     swagger_name: str,
@@ -234,12 +244,15 @@ def _build_flags(
 ) -> Dict[str, Any]:
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
     override_flags = override_flags or {}
-    override_flags.update(_PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
+    override_flags.update(
+        _PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
     version_tolerant = kwargs.get("version_tolerant", False)
     client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not version_tolerant
-    namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
+    namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(
+        package_name, package_name.lower()))
 
-    generator, output_folder = _get_config(swagger_group, package_name, **kwargs)
+    generator, output_folder = _get_config(
+        swagger_group, package_name, **kwargs)
 
     if generator == _Generator.LEGACY:
         override_flags["payload-flattening-threshold"] = 1
@@ -273,6 +286,7 @@ def _build_flags(
         flags = {k: v for k, v in flags.items() if v is not None}
     return flags
 
+
 def _build_command_line(
     package_name: str,
     swagger_name: str,
@@ -286,12 +300,14 @@ def _build_command_line(
         # package name, so we override package names
         override_flags = override_flags or {}
         override_flags.update({"package-name": package_name.lower()})
-    flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
+    flags = _build_flags(package_name, swagger_name, debug,
+                         swagger_group, override_flags, **kwargs)
     flag_strings = [
         f"--{flag}={value}" for flag, value in flags.items()
     ]
     debug_str = " --python.debugger" if debug else ""
     return "autorest " + " ".join(flag_strings) + debug_str
+
 
 def _run_autorest(cmds, debug):
     if len(cmds) == 1:
@@ -304,16 +320,19 @@ def _run_autorest(cmds, debug):
     if not success:
         raise SystemExit("Autorest generation fails")
 
+
 def _run_single_autorest(cmd_line, debug=False):
     result = run(cmd_line, warn=True, hide=not debug)
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
         return True
-    print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
+    print(Fore.RED +
+          f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
 
     output_folder = re.findall(r"--output-folder=([^\s]+)", cmd_line)[0]
     shutil.rmtree(output_folder, ignore_errors=True)
     return False
+
 
 def _regenerate(
     mapping: Dict[str, str],
@@ -325,7 +344,8 @@ def _regenerate(
     cmds = []
     post_process_cmds = []
     for package_name, swagger_name in mapping.items():
-        command_line = _build_command_line(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
+        command_line = _build_command_line(
+            package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
 
         print(Fore.YELLOW + f'Queuing up: {command_line}')
         cmds.append(command_line)
@@ -334,10 +354,12 @@ def _regenerate(
             post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder}"
             if debug:
                 post_process_cmd += " --python.debugger"
-            print(Fore.YELLOW + f'Queuing up post process command: {post_process_cmd}')
+            print(Fore.YELLOW +
+                  f'Queuing up post process command: {post_process_cmd}')
             post_process_cmds.append(post_process_cmd)
     _run_autorest(cmds, debug=debug)
     _run_autorest(post_process_cmds, debug=debug)
+
 
 def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None, debug=False, **kwargs):
     if kwargs.get("version_tolerant", False):
@@ -345,18 +367,23 @@ def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None
     else:
         generator = _Generator.LEGACY
     mapping_copy = copy.copy(mapping)
-    mapping_copy.update(_GENERATOR_SPECIFIC_TESTS.get(generator, {}).get(swagger_group, {}))
+    mapping_copy.update(_GENERATOR_SPECIFIC_TESTS.get(
+        generator, {}).get(swagger_group, {}))
     if swagger_name:
-        prepared_mapping = {k: v for k, v in mapping_copy.items() if swagger_name.lower() in k.lower()}
+        prepared_mapping = {k: v for k, v in mapping_copy.items(
+        ) if swagger_name.lower() in k.lower()}
     else:
         prepared_mapping = mapping_copy
     _regenerate(prepared_mapping, debug, swagger_group=swagger_group, **kwargs)
 
+
 @task
 def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
-    _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(
+        c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
+
 
 @task
 def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
@@ -370,6 +397,7 @@ def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs)
         **kwargs
     )
 
+
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(
@@ -382,27 +410,35 @@ def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwa
         **kwargs
     )
 
+
 @task
 def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
-    _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(
+        c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.AZURE)
         regenerate_mixed_api_version_legacy(c, debug)
 
+
 @task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
+    _prepare_mapping_and_regenerate(
+        c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
     if not swagger_name:
         regenerate_custom_poller_pager_version_tolerant(c, debug)
 
+
 @task
 def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
-    _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(
+        c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
+
 
 @task
 def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, version_tolerant=True, **kwargs)
+
 
 @task
 def regenerate_legacy(c, swagger_name=None, debug=False):
@@ -413,6 +449,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
     if not swagger_name:
         regenerate_multiapi(c, debug)
         regenerate_samples(c, debug)
+
 
 @task
 def regenerate(
@@ -427,7 +464,8 @@ def regenerate(
     dpg=False
 ):
     if legacy and dpg:
-        raise ValueError("Can not specify legacy flag and dpg flag at the same time.")
+        raise ValueError(
+            "Can not specify legacy flag and dpg flag at the same time.")
     generators = [
         "version_tolerant" if version_tolerant else "",
         "legacy" if legacy else "",
@@ -462,12 +500,14 @@ def regenerate(
     for func in funcs:
         func(c, swagger_name, debug)
 
+
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):
     regenerate_dpg_version_tolerant(c, swagger_name, debug)
     regenerate_vanilla_version_tolerant(c, swagger_name, debug)
     regenerate_azure_version_tolerant(c, swagger_name, debug)
     regenerate_azure_arm_version_tolerant(c, swagger_name, debug)
+
 
 @task
 def test(c):
@@ -485,6 +525,7 @@ def test(c):
     os.chdir(f"{base_dir}/test/multiapi/")
     c.run(cmd)
 
+
 def _multiapi_command_line(location, debug):
     cwd = os.getcwd()
     cmd = (
@@ -494,6 +535,7 @@ def _multiapi_command_line(location, debug):
     if debug:
         cmd += " --python.debugger"
     return cmd
+
 
 @task
 def regenerate_multiapi(c, debug=False, swagger_name="test"):
@@ -515,9 +557,11 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapisecurity/README.md",
     ]
 
-    cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
+    cmds = [_multiapi_command_line(
+        spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
 
     _run_autorest(cmds, debug)
+
 
 @task
 def regenerate_package_mode(c, debug=False, swagger_group=None):
@@ -543,6 +587,7 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
 
     _run_autorest(cmds, debug=debug)
 
+
 @task
 def regenerate_custom_poller_pager_legacy(c, debug=False):
     cwd = os.getcwd()
@@ -550,6 +595,7 @@ def regenerate_custom_poller_pager_legacy(c, debug=False):
         f'autorest test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
+
 
 @task
 def regenerate_mixed_api_version_legacy(c, debug=False):
@@ -559,6 +605,7 @@ def regenerate_mixed_api_version_legacy(c, debug=False):
     )
     _run_autorest([cmd], debug=debug)
 
+
 @task
 def regenerate_custom_poller_pager_version_tolerant(c, debug=False):
     cwd = os.getcwd()
@@ -566,6 +613,7 @@ def regenerate_custom_poller_pager_version_tolerant(c, debug=False):
         f'autorest test/azure/version-tolerant/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
+
 
 @task
 def regenerate_samples(c, debug=False):
@@ -583,7 +631,7 @@ def regenerate_samples(c, debug=False):
 
     cmds = []
     for sample, special_flags in sample_to_special_flags.items():
-        cmd =  f'autorest samples/specification/{sample}/readme.md --use=.  '
+        cmd = f'autorest samples/specification/{sample}/readme.md --use=.  '
         if special_flags:
             flag_strings = [
                 f"--{flag}={value}" for flag, value in special_flags.items()

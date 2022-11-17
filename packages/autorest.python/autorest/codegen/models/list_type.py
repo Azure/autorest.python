@@ -30,7 +30,11 @@ class ListType(BaseType):
         return f"[{self.element_type.serialization_type}]"
 
     def type_annotation(self, **kwargs: Any) -> str:
-        if self.code_model.options["version_tolerant"] and self.element_type.is_xml:
+        if (
+            self.code_model.options["version_tolerant"]
+            and self.element_type.is_xml
+            and not self.code_model.options["models_mode"]
+        ):
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.type_annotation(**kwargs)
         return f"List[{self.element_type.type_annotation(**kwargs)}]"
@@ -140,7 +144,9 @@ class ListType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if not (
-            self.code_model.options["version_tolerant"] and self.element_type.is_xml
+            self.code_model.options["version_tolerant"]
+            and self.element_type.is_xml
+            and not self.code_model.options["models_mode"]
         ):
             file_import.add_submodule_import(
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL

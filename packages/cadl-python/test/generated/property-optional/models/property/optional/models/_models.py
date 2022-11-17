@@ -22,7 +22,8 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class BytesProperty(_model_base.Model):
-    """Template type for testing models with optional property. Pass in the type of the property you are looking for.
+    """Template type for testing models with optional property. Pass in the type of the property you
+    are looking for.
 
     :ivar property: Property.
     :vartype property: bytes
@@ -209,7 +210,8 @@ class RequiredAndOptionalProperty(_model_base.Model):
 
 
 class StringProperty(_model_base.Model):
-    """Template type for testing models with optional property. Pass in the type of the property you are looking for.
+    """Template type for testing models with optional property. Pass in the type of the property you
+    are looking for.
 
     :ivar property: Property.
     :vartype property: str

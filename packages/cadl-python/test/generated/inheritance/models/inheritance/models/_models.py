@@ -137,7 +137,8 @@ class Fish(_model_base.Model):
 
 
 class Shark(Fish, discriminator="shark"):
-    """The second level model in polymorphic multiple levels inheritance and it defines a new discriminator.
+    """The second level model in polymorphic multiple levels inheritance and it defines a new
+    discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     GoblinShark, SawShark
@@ -218,7 +219,8 @@ class GoblinShark(Shark, discriminator="goblin"):
 
 
 class Salmon(Fish, discriminator="salmon"):
-    """The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances.
+    """The second level model in polymorphic multiple levels inheritance which contains references to
+    other polymorphic instances.
 
     All required parameters must be populated in order to send to Azure.
 

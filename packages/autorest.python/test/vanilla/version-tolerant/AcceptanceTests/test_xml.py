@@ -24,18 +24,19 @@
 #
 # --------------------------------------------------------------------------
 import logging
-from .serializer import deserialize_base64
-
+from datetime import date
 from xmlserviceversiontolerant import AutoRestSwaggerBATXMLService
-
+from xmlserviceversiontolerant.models import BlobType, ModelWithByteProperty, ModelWithUrlProperty
 import pytest
 
 _LOGGER = logging.getLogger(__name__)
+
 
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATXMLService() as client:
         yield client
+
 
 def _assert_with_log(func, *args, **kwargs):
     def raise_for_status(response, deserialized, headers):
@@ -46,149 +47,154 @@ def _assert_with_log(func, *args, **kwargs):
         print(err.response.text)
         pytest.fail()
 
+
 def test_json_xml(client):
     client.xml.json_input({"id": 42})
 
     result = client.xml.json_output()
-    assert result['id'] == 42
+    assert result.id == 42
+
 
 def test_simple(client):
     # Slideshow
 
     slideshow = client.xml.get_simple()
-    assert slideshow.attrib['title'] == "Sample Slide Show"
-    assert slideshow.attrib['date'] == "Date of publication"
-    assert slideshow.attrib['author'] == "Yours Truly"
-    slides = list(slideshow.iterfind('slide'))
-    assert len(slides) == 2
+    assert slideshow.title == "Sample Slide Show"
+    assert slideshow.date == "Date of publication"
+    assert slideshow.author == "Yours Truly"
+    assert len(slideshow.slides) == 2
+    slides = slideshow.slides
 
     slide1 = slides[0]
-    assert slide1.attrib['type'] == "all"
-    assert next(slide1.iterfind('title')).text == "Wake up to WonderWidgets!"
-    assert len(list(slide1.iterfind('item'))) == 0
+    assert slide1.type == "all"
+    assert slide1.title == "Wake up to WonderWidgets!"
+    assert len(slide1.items) == 0
 
     slide2 = slides[1]
-    assert slide2.attrib['type'] == "all"
-    assert next(slide2.iterfind('title')).text == "Overview"
-    items = list(slide2.iterfind('item'))
-    assert len(items) == 3
-    assert items[0].text == "Why WonderWidgets are great"
-    assert items[1].text == None
-    assert items[2].text == "Who buys WonderWidgets"
+    assert slide2.type == "all"
+    assert slide2.title == "Overview"
+    assert len(slide2.items) == 3
+    assert slide2.items[0] == "Why WonderWidgets are great"
+    assert slide2.items[1] == ''
+    assert slide2.items[2] == "Who buys WonderWidgets"
 
     _assert_with_log(client.xml.put_simple, slideshow)
 
+
 def test_empty_child_element(client):
     banana = client.xml.get_empty_child_element()
-    assert banana.attrib == {} # That's the point of this test, it was an empty node.
+    # That's the point of this test, it was an empty node.
+    assert banana.flavor == ''
     _assert_with_log(client.xml.put_empty_child_element, banana)
+
 
 def test_empty_root_list(client):
     bananas = client.xml.get_empty_root_list()
-    assert bananas.tag == 'bananas'
-    assert bananas.attrib == {}
+    assert bananas == []
     _assert_with_log(client.xml.put_empty_root_list, bananas)
 
+
 def test_root_list_single_item(client):
-    xml_body = client.xml.get_root_list_single_item()
-    bananas = list(xml_body.iterfind('banana'))
+    bananas = client.xml.get_root_list_single_item()
     assert len(bananas) == 1
-    assert next(bananas[0].iterfind('name')).text == "Cavendish"
-    _assert_with_log(client.xml.put_root_list_single_item, xml_body)
+    assert bananas[0].name == "Cavendish"
+    _assert_with_log(client.xml.put_root_list_single_item, bananas)
+
 
 def test_root_list(client):
-    xml_body = client.xml.get_root_list()
-    bananas = list(xml_body.iterfind('banana'))
+    bananas = client.xml.get_root_list()
     assert len(bananas) == 2
-    _assert_with_log(client.xml.put_root_list, xml_body)
+    _assert_with_log(client.xml.put_root_list, bananas)
+
 
 def test_empty_wrapped_lists(client):
     bananas = client.xml.get_empty_wrapped_lists()
-    assert [a for a in bananas.iterfind('GoodApples') if a.text] == []
-    assert [a for a in bananas.iterfind('BadApples') if a.text] == []
+    assert bananas.good_apples == []
+    assert bananas.bad_apples == []
     _assert_with_log(client.xml.put_empty_wrapped_lists, bananas)
+
 
 def test_get_empty(client):
     slideshow = client.xml.get_empty_list()
     _assert_with_log(client.xml.put_empty_list, slideshow)
 
+
 def test_wrapped_lists(client):
     bananas = client.xml.get_wrapped_lists()
-    good_apples = bananas.find('GoodApples')
-    assert [a.text for a in good_apples.iterfind('Apple')] == ['Fuji', 'Gala']
-    bad_apples = bananas.find('BadApples')
-    assert [a.text for a in bad_apples.iterfind('Apple')] == ['Red Delicious']
+    assert bananas.good_apples == ['Fuji', 'Gala']
+    assert bananas.bad_apples == ['Red Delicious']
     _assert_with_log(client.xml.put_wrapped_lists, bananas)
+
 
 def test_complex_types(client):
     root = client.xml.get_complex_type_ref_no_meta()
-    ref_to_model = root.find('RefToModel')
-    assert ref_to_model.find('ID').text == "myid"
+    assert root.ref_to_model.id == "myid"
     client.xml.put_complex_type_ref_no_meta(root)
 
     root = client.xml.get_complex_type_ref_with_meta()
-    ref_to_model = root.find('XMLComplexTypeWithMeta')
-    assert ref_to_model.find('ID').text == "myid"
+    assert root.ref_to_model.id == "myid"
     client.xml.put_complex_type_ref_with_meta(root)
 
+
 def test_list_containers(client):
-    xml_body = client.xml.list_containers()
-    containers = xml_body.find('Containers')
-    container_list = list(containers.iterfind('Container'))
-    assert len(container_list) == 3
+    containers = client.xml.list_containers()
+    assert len(containers.containers) == 3
+
 
 def test_list_blobs(client):
-    xml_body = client.xml.list_blobs()
-    blobs_xml_body = xml_body.find('Blobs')
-    blobs = list(blobs_xml_body.iterfind('Blob'))
-    assert len(blobs) == 5
-    assert blobs_xml_body.find('BlobPrefix') is None
-    blob = blobs[0]
-    assert blob.find('Name').text == "blob1.txt"
-    properties = blob.find('Properties')
-    assert properties.find('Last-Modified').text == 'Wed, 09 Sep 2009 09:20:02 GMT'
-    assert properties.find('Etag').text == "0x8CBFF45D8A29A19"
-    assert properties.find('Content-Length').text == "100"
-    assert properties.find('Content-Type').text == "text/html"
+    blobs = client.xml.list_blobs()
+    assert len(blobs.blobs.blob) == 5
+    assert not blobs.blobs.blob_prefix
+    assert len(blobs.blobs.blob) == 5
+    blob = blobs.blobs.blob[0]
+    assert blob.name == "blob1.txt"
+    assert blob.properties.last_modified.date() == date(2009, 9, 9)
+    assert blob.properties.etag == "0x8CBFF45D8A29A19"
+    assert blob.properties.content_length == 100
+    assert blob.properties.content_type == "text/html"
     # Check that an empty field in the XML is empty string
-    assert properties.find('Content-Encoding').text is None
-    assert properties.find('Content-Language').text == "en-US"
-    assert properties.find('Content-MD5').text is None
-    assert properties.find('Cache-Control').text == "no-cache"
-    assert properties.find('BlobType').text == "BlockBlob"
+    assert blob.properties.content_encoding == ''
+    assert blob.properties.content_language == "en-US"
+    assert blob.properties.content_md5 == ''
+    assert blob.properties.cache_control == "no-cache"
+    assert blob.properties.blob_type == BlobType.block_blob
     # Check that a field NOT in the XML is None
-    assert properties.find('Destination-Snapshot') is None
-    metadata_body = blob.find('Metadata')
-    assert metadata_body.find("Color").text == "blue"
-    assert metadata_body.find("BlobNumber").text == "01"
-    assert metadata_body.find("SomeMetadataName").text == "SomeMetadataValue"
+    assert blob.properties.destination_snapshot is None
+    assert len(blob.metadata) == 3
+    assert blob.metadata["Color"] == "blue"
+    assert blob.metadata["BlobNumber"] == "01"
+    assert blob.metadata["SomeMetadataName"] == "SomeMetadataValue"
+
 
 def test_service_properties(client):
     properties = client.xml.get_service_properties()
-    assert properties.find('HourMetrics') is not None
-    assert properties.find('MinuteMetrics') is not None
+    assert properties.hour_metrics is not None
+    assert properties.minute_metrics is not None
     _assert_with_log(client.xml.put_service_properties, properties)
+
 
 def test_acls(client):
     acls = client.xml.get_acls()
-    signed_identifiers = list(acls.iterfind('SignedIdentifier'))
-    assert len(signed_identifiers) == 1
-    assert signed_identifiers[0].find('Id').text == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
+    assert len(acls) == 1
+    assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
     _assert_with_log(client.xml.put_acls, acls)
+
 
 def test_xms_text(client):
     xml_object = client.xml.get_xms_text()
-    assert xml_object.attrib['language'] == "english"
-    assert xml_object.text == "I am text"
+    assert xml_object.language == "english"
+    assert xml_object.content == "I am text"
+
 
 def test_bytes(client):
     bytes_object = client.xml.get_bytes()
-    assert bytes_object.tag == 'ModelWithByteProperty'
-    assert deserialize_base64(bytes_object.find('Bytes').text) == b"Hello world"
+    assert isinstance(bytes_object, ModelWithByteProperty)
+    assert bytes_object.bytes == b"Hello world"
     client.xml.put_binary(bytes_object)
+
 
 def test_url(client):
     url_object = client.xml.get_uri()
-    assert url_object.tag == 'ModelWithUrlProperty'
-    assert url_object.find('Url').text == 'https://myaccount.blob.core.windows.net/'
+    assert isinstance(url_object, ModelWithUrlProperty)
+    assert url_object.url == 'https://myaccount.blob.core.windows.net/'
     client.xml.put_uri(url_object)
