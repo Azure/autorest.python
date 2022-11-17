@@ -257,7 +257,6 @@ def _get_model(module_name: str, model_name: str):
     module = sys.modules[module_end]
     models = {k: v for k, v in module.__dict__.items() if isinstance(v, type)}
     if model_name not in models:
-        _LOGGER.warning("Can not find model name in models, will not deserialize")
         return model_name
     return models[model_name]
 
