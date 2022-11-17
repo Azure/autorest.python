@@ -24,7 +24,7 @@ class ClassNameConfiguration(Configuration):  # pylint: disable=too-many-instanc
     def __init__(self, **kwargs: Any) -> None:
         super(ClassNameConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "package-name/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "packagename/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

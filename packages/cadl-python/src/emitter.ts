@@ -46,7 +46,7 @@ import {
     HttpServer,
     isStatusCode,
 } from "@cadl-lang/rest/http";
-import { getAddedOn, getVersions } from "@cadl-lang/versioning";
+import { getAddedOn } from "@cadl-lang/versioning";
 import { execFileSync } from "child_process";
 import { dump } from "js-yaml";
 import {
@@ -74,7 +74,8 @@ export interface EmitterOptions {
     "basic-setup-py": boolean;
     "package-version": string;
     "package-name": string;
-    "output-path": string;
+    "output-dir": string;
+    "package-mode": string;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -84,7 +85,8 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
         "basic-setup-py": { type: "boolean", nullable: true },
         "package-version": { type: "string", nullable: true },
         "package-name": { type: "string", nullable: true },
-        "output-path": { type: "string", nullable: true },
+        "output-dir": { type: "string", nullable: true },
+        "package-mode": { type: "string", nullable: true },
     },
     required: [],
 };
@@ -106,7 +108,7 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
     const resolvedOptions = { ...defaultOptions, ...options };
     const yamlMap = createYamlEmitter(program);
     const root = process.cwd();
-    const outputFolder = resolvedOptions["output-path"] ?? program.compilerOptions.outputPath!;
+    const outputFolder = resolvedOptions["output-dir"] ?? program.compilerOptions.outputDir!;
     const yamlPath = resolvePath(outputFolder, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
@@ -128,6 +130,9 @@ export async function $onEmit(program: Program, options: EmitterOptions) {
         // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
         await program.host.writeFile(yamlPath, dump(yamlMap));
         execFileSync(process.execPath, commandArgs);
+    }
+    if (program.compilerOptions.trace === undefined) {
+        await program.host.rm(yamlPath);
     }
 }
 
@@ -246,7 +251,7 @@ function getType(
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
-                if (isStatusCode(program, property)) {
+                if (isStatusCode(program, property) || isNeverType(property.type)) {
                     continue;
                 }
                 newValue.properties.push(emitProperty(program, property));
