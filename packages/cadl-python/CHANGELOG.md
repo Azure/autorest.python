@@ -5,6 +5,7 @@
 **Bug Fixes**
 
 - Fix support for client path parameters #1584
+- Remove unnecessary warning logging when deserializing models #1585
 
 ## 2022-11-16 - 0.4.9
 
