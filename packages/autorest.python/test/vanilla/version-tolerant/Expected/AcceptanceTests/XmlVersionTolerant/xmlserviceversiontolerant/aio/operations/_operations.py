@@ -7,8 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
-from xml.etree import ElementTree as ET
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -24,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ... import models as _models
 from ...operations._operations import (
     build_xml_get_acls_request,
     build_xml_get_bytes_request,
@@ -61,15 +61,10 @@ from ...operations._operations import (
     build_xml_put_wrapped_lists_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -84,6 +79,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :attr:`xml` attribute.
     """
 
+    models = _models
+
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
@@ -92,23 +89,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> ET.Element:
+    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> _models.RootWithRefAndNoMeta:
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: RootWithRefAndNoMeta
+        :rtype: ~xmlserviceversiontolerant.models.RootWithRefAndNoMeta
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "RefToModel": {
-                        "ID": "str"  # Optional. The id of the res.
-                    },
-                    "Something": "str"  # Optional. Something else (just to avoid flattening).
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -121,7 +107,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.RootWithRefAndNoMeta] = kwargs.pop("cls", None)
 
         request = build_xml_get_complex_type_ref_no_meta_request(
             headers=_headers,
@@ -139,38 +125,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("RootWithRefAndNoMeta", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: ET.Element, **kwargs: Any
+        self, model: _models.RootWithRefAndNoMeta, **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model: Required.
-        :type model: ET.Element
+        :type model: ~xmlserviceversiontolerant.models.RootWithRefAndNoMeta
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                model = {
-                    "RefToModel": {
-                        "ID": "str"  # Optional. The id of the res.
-                    },
-                    "Something": "str"  # Optional. Something else (just to avoid flattening).
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -186,7 +158,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = model
+        _content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
         request = build_xml_put_complex_type_ref_no_meta_request(
             content_type=content_type,
@@ -210,23 +182,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> ET.Element:
+    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> _models.RootWithRefAndMeta:
         """Get a complex type that has a ref to a complex type with XML node.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: RootWithRefAndMeta
+        :rtype: ~xmlserviceversiontolerant.models.RootWithRefAndMeta
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "RefToModel": {
-                        "ID": "str"  # Optional. The id of the res.
-                    },
-                    "Something": "str"  # Optional. Something else (just to avoid flattening).
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -239,7 +200,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.RootWithRefAndMeta] = kwargs.pop("cls", None)
 
         request = build_xml_get_complex_type_ref_with_meta_request(
             headers=_headers,
@@ -257,38 +218,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("RootWithRefAndMeta", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: ET.Element, **kwargs: Any
+        self, model: _models.RootWithRefAndMeta, **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model: Required.
-        :type model: ET.Element
+        :type model: ~xmlserviceversiontolerant.models.RootWithRefAndMeta
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                model = {
-                    "RefToModel": {
-                        "ID": "str"  # Optional. The id of the res.
-                    },
-                    "Something": "str"  # Optional. Something else (just to avoid flattening).
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -304,7 +251,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = model
+        _content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
         request = build_xml_put_complex_type_ref_with_meta_request(
             content_type=content_type,
@@ -328,31 +275,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_simple(self, **kwargs: Any) -> ET.Element:
+    async def get_simple(self, **kwargs: Any) -> _models.Slideshow:
         """Get a simple XML document.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: Slideshow
+        :rtype: ~xmlserviceversiontolerant.models.Slideshow
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "author": "str",  # Optional.
-                    "date": "str",  # Optional.
-                    "slides": [
-                        {
-                            "items": [
-                                "str"  # Optional.
-                            ],
-                            "title": "str",  # Optional.
-                            "type": "str"  # Optional.
-                        }
-                    ],
-                    "title": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -365,7 +293,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
         request = build_xml_get_simple_request(
             headers=_headers,
@@ -381,48 +309,27 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("Slideshow", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_simple(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: ET.Element, **kwargs: Any
+        self, slideshow: _models.Slideshow, **kwargs: Any
     ) -> None:
         """Put a simple XML document.
 
         :param slideshow: Required.
-        :type slideshow: ET.Element
+        :type slideshow: ~xmlserviceversiontolerant.models.Slideshow
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                slideshow = {
-                    "author": "str",  # Optional.
-                    "date": "str",  # Optional.
-                    "slides": [
-                        {
-                            "items": [
-                                "str"  # Optional.
-                            ],
-                            "title": "str",  # Optional.
-                            "type": "str"  # Optional.
-                        }
-                    ],
-                    "title": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -438,7 +345,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = slideshow
+        _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = build_xml_put_simple_request(
             content_type=content_type,
@@ -456,31 +363,19 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_wrapped_lists(self, **kwargs: Any) -> ET.Element:
+    async def get_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
         """Get an XML document with multiple wrapped lists.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: AppleBarrel
+        :rtype: ~xmlserviceversiontolerant.models.AppleBarrel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "BadApples": [
-                        "str"  # Optional.
-                    ],
-                    "GoodApples": [
-                        "str"  # Optional.
-                    ]
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -493,7 +388,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
         request = build_xml_get_wrapped_lists_request(
             headers=_headers,
@@ -511,40 +406,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("AppleBarrel", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, wrapped_lists: ET.Element, **kwargs: Any
+        self, wrapped_lists: _models.AppleBarrel, **kwargs: Any
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists: Required.
-        :type wrapped_lists: ET.Element
+        :type wrapped_lists: ~xmlserviceversiontolerant.models.AppleBarrel
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                wrapped_lists = {
-                    "BadApples": [
-                        "str"  # Optional.
-                    ],
-                    "GoodApples": [
-                        "str"  # Optional.
-                    ]
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -560,7 +439,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = wrapped_lists
+        _content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = build_xml_put_wrapped_lists_request(
             content_type=content_type,
@@ -578,7 +457,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -627,31 +507,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def get_empty_list(self, **kwargs: Any) -> ET.Element:
+    async def get_empty_list(self, **kwargs: Any) -> _models.Slideshow:
         """Get an empty list.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: Slideshow
+        :rtype: ~xmlserviceversiontolerant.models.Slideshow
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "author": "str",  # Optional.
-                    "date": "str",  # Optional.
-                    "slides": [
-                        {
-                            "items": [
-                                "str"  # Optional.
-                            ],
-                            "title": "str",  # Optional.
-                            "type": "str"  # Optional.
-                        }
-                    ],
-                    "title": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -664,7 +525,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
         request = build_xml_get_empty_list_request(
             headers=_headers,
@@ -682,46 +543,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("Slideshow", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_empty_list(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: ET.Element, **kwargs: Any
+        self, slideshow: _models.Slideshow, **kwargs: Any
     ) -> None:
         """Puts an empty list.
 
         :param slideshow: Required.
-        :type slideshow: ET.Element
+        :type slideshow: ~xmlserviceversiontolerant.models.Slideshow
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                slideshow = {
-                    "author": "str",  # Optional.
-                    "date": "str",  # Optional.
-                    "slides": [
-                        {
-                            "items": [
-                                "str"  # Optional.
-                            ],
-                            "title": "str",  # Optional.
-                            "type": "str"  # Optional.
-                        }
-                    ],
-                    "title": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -737,7 +576,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = slideshow
+        _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = build_xml_put_empty_list_request(
             content_type=content_type,
@@ -761,25 +600,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty_wrapped_lists(self, **kwargs: Any) -> ET.Element:
+    async def get_empty_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
         """Gets some empty wrapped lists.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: AppleBarrel
+        :rtype: ~xmlserviceversiontolerant.models.AppleBarrel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "BadApples": [
-                        "str"  # Optional.
-                    ],
-                    "GoodApples": [
-                        "str"  # Optional.
-                    ]
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -792,7 +618,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
         request = build_xml_get_empty_wrapped_lists_request(
             headers=_headers,
@@ -810,40 +636,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("AppleBarrel", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, apple_barrel: ET.Element, **kwargs: Any
+        self, apple_barrel: _models.AppleBarrel, **kwargs: Any
     ) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel: Required.
-        :type apple_barrel: ET.Element
+        :type apple_barrel: ~xmlserviceversiontolerant.models.AppleBarrel
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                apple_barrel = {
-                    "BadApples": [
-                        "str"  # Optional.
-                    ],
-                    "GoodApples": [
-                        "str"  # Optional.
-                    ]
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -859,7 +669,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = apple_barrel
+        _content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
         request = build_xml_put_empty_wrapped_lists_request(
             content_type=content_type,
@@ -883,25 +693,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_root_list(self, **kwargs: Any) -> ET.Element:
+    async def get_root_list(self, **kwargs: Any) -> List[_models.Banana]:
         """Gets a list as the root element.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: Banana
+        :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -914,7 +711,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_xml_get_root_list_request(
             headers=_headers,
@@ -932,40 +729,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: ET.Element, **kwargs: Any
+        self, bananas: List[_models.Banana], **kwargs: Any
     ) -> None:
         """Puts a list as the root element.
 
         :param bananas: Required.
-        :type bananas: ET.Element
+        :type bananas: ~xmlserviceversiontolerant.models.Banana
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                bananas = [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -981,7 +762,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = bananas
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_xml_put_root_list_request(
             content_type=content_type,
@@ -1005,25 +787,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_root_list_single_item(self, **kwargs: Any) -> ET.Element:
+    async def get_root_list_single_item(self, **kwargs: Any) -> List[_models.Banana]:
         """Gets a list with a single item.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: Banana
+        :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1036,7 +805,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_xml_get_root_list_single_item_request(
             headers=_headers,
@@ -1054,40 +823,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
-        self, bananas: ET.Element, **kwargs: Any
+        self, bananas: List[_models.Banana], **kwargs: Any
     ) -> None:
         """Puts a list with a single item.
 
         :param bananas: Required.
-        :type bananas: ET.Element
+        :type bananas: ~xmlserviceversiontolerant.models.Banana
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                bananas = [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1103,7 +856,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = bananas
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
@@ -1127,25 +881,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty_root_list(self, **kwargs: Any) -> ET.Element:
+    async def get_empty_root_list(self, **kwargs: Any) -> List[_models.Banana]:
         """Gets an empty list as the root element.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: Banana
+        :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1158,7 +899,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_xml_get_empty_root_list_request(
             headers=_headers,
@@ -1176,40 +917,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: ET.Element, **kwargs: Any
+        self, bananas: List[_models.Banana], **kwargs: Any
     ) -> None:
         """Puts an empty list as the root element.
 
         :param bananas: Required.
-        :type bananas: ET.Element
+        :type bananas: ~xmlserviceversiontolerant.models.Banana
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                bananas = [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1225,7 +950,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = bananas
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_xml_put_empty_root_list_request(
             content_type=content_type,
@@ -1249,23 +975,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty_child_element(self, **kwargs: Any) -> ET.Element:
+    async def get_empty_child_element(self, **kwargs: Any) -> _models.Banana:
         """Gets an XML document with an empty child element.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: Banana
+        :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you
-                      should reconsider eating this banana.
-                    "flavor": "str",  # Optional.
-                    "name": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1278,7 +993,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Banana] = kwargs.pop("cls", None)
 
         request = build_xml_get_empty_child_element_request(
             headers=_headers,
@@ -1296,38 +1011,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("Banana", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
-        self, banana: ET.Element, **kwargs: Any
+        self, banana: _models.Banana, **kwargs: Any
     ) -> None:
         """Puts a value with an empty child element.
 
         :param banana: Required.
-        :type banana: ET.Element
+        :type banana: ~xmlserviceversiontolerant.models.Banana
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                banana = {
-                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you
-                      should reconsider eating this banana.
-                    "flavor": "str",  # Optional.
-                    "name": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1343,7 +1044,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = banana
+        _content = self._serialize.body(banana, "Banana", is_xml=True)
 
         request = build_xml_put_empty_child_element_request(
             content_type=content_type,
@@ -1367,48 +1068,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def list_containers(self, **kwargs: Any) -> ET.Element:
+    async def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
         """Lists containers in a storage account.
 
         :keyword comp: Default value is "list". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
-        :return: XML Element
-        :rtype: ET.Element
+        :return: ListContainersResponse
+        :rtype: ~xmlserviceversiontolerant.models.ListContainersResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "MaxResults": 0,  # Required.
-                    "NextMarker": "str",  # Required.
-                    "Prefix": "str",  # Required.
-                    "ServiceEndpoint": "str",  # Required.
-                    "Containers": [
-                        {
-                            "Name": "str",  # Required.
-                            "Properties": {
-                                "Etag": "str",  # Required.
-                                "Last-Modified": "2020-02-20 00:00:00",  # Required.
-                                "LeaseDuration": "str",  # Optional. Known values
-                                  are: "infinite" and "fixed".
-                                "LeaseState": "str",  # Optional. Known values are:
-                                  "available", "leased", "expired", "breaking", and "broken".
-                                "LeaseStatus": "str",  # Optional. Known values are:
-                                  "locked" and "unlocked".
-                                "PublicAccess": "str"  # Optional. Known values are:
-                                  "container" and "blob".
-                            },
-                            "Metadata": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
-                            }
-                        }
-                    ],
-                    "Marker": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1422,7 +1090,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         comp: Literal["list"] = kwargs.pop("comp", _params.pop("comp", "list"))
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ListContainersResponse] = kwargs.pop("cls", None)
 
         request = build_xml_list_containers_request(
             comp=comp,
@@ -1441,18 +1109,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("ListContainersResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
-    async def get_service_properties(self, **kwargs: Any) -> ET.Element:
+    async def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
         """Gets storage service properties.
 
         :keyword comp: Default value is "properties". Note that overriding this default value may
@@ -1461,93 +1126,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :keyword restype: Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
-        :return: XML Element
-        :rtype: ET.Element
+        :return: StorageServiceProperties
+        :rtype: ~xmlserviceversiontolerant.models.StorageServiceProperties
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "Cors": [
-                        {
-                            "AllowedHeaders": "str",  # the request headers that the
-                              origin domain may specify on the CORS request. Required.
-                            "AllowedMethods": "str",  # The methods (HTTP request verbs)
-                              that the origin domain may use for a CORS request. (comma separated).
-                              Required.
-                            "AllowedOrigins": "str",  # The origin domains that are
-                              permitted to make a request against the storage service via CORS. The
-                              origin domain is the domain from which the request originates. Note that
-                              the origin must be an exact case-sensitive match with the origin that the
-                              user age sends to the service. You can also use the wildcard character
-                              '*' to allow all origin domains to make requests via CORS. Required.
-                            "ExposedHeaders": "str",  # The response headers that may be
-                              sent in the response to the CORS request and exposed by the browser to
-                              the request issuer. Required.
-                            "MaxAgeInSeconds": 0  # The maximum amount time that a
-                              browser should cache the preflight OPTIONS request. Required.
-                        }
-                    ],
-                    "DefaultServiceVersion": "str",  # Optional. The default version to use for
-                      requests to the Blob service if an incoming request's version is not specified.
-                      Possible values include version 2008-10-27 and all more recent versions.
-                    "DeleteRetentionPolicy": {
-                        "Enabled": bool,  # Indicates whether a retention policy is enabled
-                          for the storage service. Required.
-                        "Days": 0  # Optional. Indicates the number of days that metrics or
-                          logging or soft-deleted data should be retained. All data older than this
-                          value will be deleted.
-                    },
-                    "HourMetrics": {
-                        "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service. Required.
-                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
-                          generate summary statistics for called API operations.
-                        "RetentionPolicy": {
-                            "Enabled": bool,  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
-                            "Days": 0  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                        },
-                        "Version": "str"  # Optional. The version of Storage Analytics to
-                          configure.
-                    },
-                    "Logging": {
-                        "Delete": bool,  # Indicates whether all delete requests should be
-                          logged. Required.
-                        "Read": bool,  # Indicates whether all read requests should be
-                          logged. Required.
-                        "RetentionPolicy": {
-                            "Enabled": bool,  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
-                            "Days": 0  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                        },
-                        "Version": "str",  # The version of Storage Analytics to configure.
-                          Required.
-                        "Write": bool  # Indicates whether all write requests should be
-                          logged. Required.
-                    },
-                    "MinuteMetrics": {
-                        "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service. Required.
-                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
-                          generate summary statistics for called API operations.
-                        "RetentionPolicy": {
-                            "Enabled": bool,  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
-                            "Days": 0  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                        },
-                        "Version": "str"  # Optional. The version of Storage Analytics to
-                          configure.
-                    }
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1562,7 +1143,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp: Literal["properties"] = kwargs.pop("comp", _params.pop("comp", "properties"))
         restype: Literal["service"] = kwargs.pop("restype", _params.pop("restype", "service"))
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.StorageServiceProperties] = kwargs.pop("cls", None)
 
         request = build_xml_get_service_properties_request(
             comp=comp,
@@ -1582,24 +1163,21 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("StorageServiceProperties", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_service_properties(  # pylint: disable=inconsistent-return-statements
-        self, properties: ET.Element, **kwargs: Any
+        self, properties: _models.StorageServiceProperties, **kwargs: Any
     ) -> None:
         """Puts storage service properties.
 
         :param properties: Required.
-        :type properties: ET.Element
+        :type properties: ~xmlserviceversiontolerant.models.StorageServiceProperties
         :keyword comp: Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
@@ -1609,90 +1187,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "Cors": [
-                        {
-                            "AllowedHeaders": "str",  # the request headers that the
-                              origin domain may specify on the CORS request. Required.
-                            "AllowedMethods": "str",  # The methods (HTTP request verbs)
-                              that the origin domain may use for a CORS request. (comma separated).
-                              Required.
-                            "AllowedOrigins": "str",  # The origin domains that are
-                              permitted to make a request against the storage service via CORS. The
-                              origin domain is the domain from which the request originates. Note that
-                              the origin must be an exact case-sensitive match with the origin that the
-                              user age sends to the service. You can also use the wildcard character
-                              '*' to allow all origin domains to make requests via CORS. Required.
-                            "ExposedHeaders": "str",  # The response headers that may be
-                              sent in the response to the CORS request and exposed by the browser to
-                              the request issuer. Required.
-                            "MaxAgeInSeconds": 0  # The maximum amount time that a
-                              browser should cache the preflight OPTIONS request. Required.
-                        }
-                    ],
-                    "DefaultServiceVersion": "str",  # Optional. The default version to use for
-                      requests to the Blob service if an incoming request's version is not specified.
-                      Possible values include version 2008-10-27 and all more recent versions.
-                    "DeleteRetentionPolicy": {
-                        "Enabled": bool,  # Indicates whether a retention policy is enabled
-                          for the storage service. Required.
-                        "Days": 0  # Optional. Indicates the number of days that metrics or
-                          logging or soft-deleted data should be retained. All data older than this
-                          value will be deleted.
-                    },
-                    "HourMetrics": {
-                        "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service. Required.
-                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
-                          generate summary statistics for called API operations.
-                        "RetentionPolicy": {
-                            "Enabled": bool,  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
-                            "Days": 0  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                        },
-                        "Version": "str"  # Optional. The version of Storage Analytics to
-                          configure.
-                    },
-                    "Logging": {
-                        "Delete": bool,  # Indicates whether all delete requests should be
-                          logged. Required.
-                        "Read": bool,  # Indicates whether all read requests should be
-                          logged. Required.
-                        "RetentionPolicy": {
-                            "Enabled": bool,  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
-                            "Days": 0  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                        },
-                        "Version": "str",  # The version of Storage Analytics to configure.
-                          Required.
-                        "Write": bool  # Indicates whether all write requests should be
-                          logged. Required.
-                    },
-                    "MinuteMetrics": {
-                        "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service. Required.
-                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
-                          generate summary statistics for called API operations.
-                        "RetentionPolicy": {
-                            "Enabled": bool,  # Indicates whether a retention policy is
-                              enabled for the storage service. Required.
-                            "Days": 0  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                        },
-                        "Version": "str"  # Optional. The version of Storage Analytics to
-                          configure.
-                    }
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1710,7 +1204,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = properties
+        _content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = build_xml_put_service_properties_request(
             comp=comp,
@@ -1736,7 +1230,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_acls(self, **kwargs: Any) -> ET.Element:
+    async def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
         """Gets storage ACLs for a container.
 
         :keyword comp: Default value is "acl". Note that overriding this default value may result in
@@ -1745,27 +1239,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
-        :return: XML Element
-        :rtype: ET.Element
+        :return: SignedIdentifier
+        :rtype: ~xmlserviceversiontolerant.models.SignedIdentifier
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    {
-                        "AccessPolicy": {
-                            "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
-                              expires. Required.
-                            "Permission": "str",  # the permissions for the acl policy.
-                              Required.
-                            "Start": "2020-02-20 00:00:00"  # the date-time the policy is
-                              active. Required.
-                        },
-                        "Id": "str"  # a unique id. Required.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1780,7 +1256,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp: Literal["acl"] = kwargs.pop("comp", _params.pop("comp", "acl"))
         restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.SignedIdentifier]] = kwargs.pop("cls", None)
 
         request = build_xml_get_acls_request(
             comp=comp,
@@ -1800,24 +1276,21 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("[SignedIdentifier]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_acls(  # pylint: disable=inconsistent-return-statements
-        self, properties: ET.Element, **kwargs: Any
+        self, properties: List[_models.SignedIdentifier], **kwargs: Any
     ) -> None:
         """Puts storage ACLs for a container.
 
         :param properties: Required.
-        :type properties: ET.Element
+        :type properties: ~xmlserviceversiontolerant.models.SignedIdentifier
         :keyword comp: Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
@@ -1827,24 +1300,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = [
-                    {
-                        "AccessPolicy": {
-                            "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
-                              expires. Required.
-                            "Permission": "str",  # the permissions for the acl policy.
-                              Required.
-                            "Start": "2020-02-20 00:00:00"  # the date-time the policy is
-                              active. Required.
-                        },
-                        "Id": "str"  # a unique id. Required.
-                    }
-                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1862,7 +1317,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = properties
+        serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
+        _content = self._serialize.body(
+            properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
+        )
 
         request = build_xml_put_acls_request(
             comp=comp,
@@ -1888,7 +1346,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def list_blobs(self, **kwargs: Any) -> ET.Element:
+    async def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
         """Lists blobs in a storage container.
 
         :keyword comp: Default value is "list". Note that overriding this default value may result in
@@ -1897,101 +1355,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :keyword restype: Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
-        :return: XML Element
-        :rtype: ET.Element
+        :return: ListBlobsResponse
+        :rtype: ~xmlserviceversiontolerant.models.ListBlobsResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "Blobs": {
-                        "Blob": [
-                            {
-                                "Deleted": bool,  # Required.
-                                "Name": "str",  # Required.
-                                "Properties": {
-                                    "Etag": "str",  # Required.
-                                    "Last-Modified": "2020-02-20 00:00:00",  #
-                                      Required.
-                                    "AccessTier": "str",  # Optional. Known
-                                      values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
-                                      "Cool", and "Archive".
-                                    "AccessTierInferred": bool,  # Optional.
-                                      Properties of a blob. Required.
-                                    "ArchiveStatus": "str",  # Optional. Known
-                                      values are: "rehydrate-pending-to-hot" and
-                                      "rehydrate-pending-to-cool".
-                                    "BlobType": "str",  # Optional. Known values
-                                      are: "BlockBlob", "PageBlob", and "AppendBlob".
-                                    "Cache-Control": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "Content-Disposition": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "Content-Encoding": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "Content-Language": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "Content-Length": 0,  # Optional. Size in
-                                      bytes.
-                                    "Content-MD5": "str",  # Optional. Properties
-                                      of a blob. Required.
-                                    "Content-Type": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "CopyCompletionTime": "2020-02-20 00:00:00",
-                                      # Optional. Properties of a blob. Required.
-                                    "CopyId": "str",  # Optional. Properties of a
-                                      blob. Required.
-                                    "CopyProgress": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "CopySource": "str",  # Optional. Properties
-                                      of a blob. Required.
-                                    "CopyStatus": "str",  # Optional. Known
-                                      values are: "pending", "success", "aborted", and "failed".
-                                    "CopyStatusDescription": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "DeletedTime": "2020-02-20 00:00:00",  #
-                                      Optional. Properties of a blob. Required.
-                                    "DestinationSnapshot": "str",  # Optional.
-                                      Properties of a blob. Required.
-                                    "IncrementalCopy": bool,  # Optional.
-                                      Properties of a blob. Required.
-                                    "LeaseDuration": "str",  # Optional. Known
-                                      values are: "infinite" and "fixed".
-                                    "LeaseState": "str",  # Optional. Known
-                                      values are: "available", "leased", "expired", "breaking", and
-                                      "broken".
-                                    "LeaseStatus": "str",  # Optional. Known
-                                      values are: "locked" and "unlocked".
-                                    "RemainingRetentionDays": 0,  # Optional.
-                                      Properties of a blob. Required.
-                                    "ServerEncrypted": bool,  # Optional.
-                                      Properties of a blob. Required.
-                                    "x-ms-blob-sequence-number": 0  # Optional.
-                                      Properties of a blob. Required.
-                                },
-                                "Snapshot": "str",  # Required.
-                                "Metadata": {
-                                    "str": "str"  # Optional. Dictionary of
-                                      :code:`<string>`.
-                                }
-                            }
-                        ],
-                        "BlobPrefix": [
-                            {
-                                "Name": "str"  # Required.
-                            }
-                        ]
-                    },
-                    "ContainerName": "str",  # Required.
-                    "Delimiter": "str",  # Required.
-                    "Marker": "str",  # Required.
-                    "MaxResults": 0,  # Required.
-                    "NextMarker": "str",  # Required.
-                    "Prefix": "str",  # Required.
-                    "ServiceEndpoint": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2006,7 +1372,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp: Literal["list"] = kwargs.pop("comp", _params.pop("comp", "list"))
         restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ListBlobsResponse] = kwargs.pop("cls", None)
 
         request = build_xml_list_blobs_request(
             comp=comp,
@@ -2026,39 +1392,28 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("ListBlobsResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, properties: _models.JSONInput, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties: Required.
-        :type properties: JSON
+        :type properties: ~xmlserviceversiontolerant.models.JSONInput
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "id": 0  # Optional.
-                }
         """
 
     @overload
@@ -2080,13 +1435,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: Union[JSON, IO], **kwargs: Any
+        self, properties: Union[_models.JSONInput, IO], **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties: Is either a model type or a IO type. Required.
-        :type properties: JSON or IO
+        :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2114,7 +1469,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         if isinstance(properties, (IO, bytes)):
             _content = properties
         else:
-            _json = properties
+            _json = self._serialize.body(properties, "JSONInput")
 
         request = build_xml_json_input_request(
             content_type=content_type,
@@ -2139,20 +1494,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def json_output(self, **kwargs: Any) -> JSON:
+    async def json_output(self, **kwargs: Any) -> _models.JSONOutput:
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
-        :return: JSON object
-        :rtype: JSON
+        :return: JSONOutput
+        :rtype: ~xmlserviceversiontolerant.models.JSONOutput
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2165,7 +1512,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[_models.JSONOutput] = kwargs.pop("cls", None)
 
         request = build_xml_json_output_request(
             headers=_headers,
@@ -2183,33 +1530,21 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = self._deserialize("JSONOutput", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(JSON, deserialized)
+        return deserialized
 
     @distributed_trace_async
-    async def get_xms_text(self, **kwargs: Any) -> ET.Element:
+    async def get_xms_text(self, **kwargs: Any) -> _models.ObjectWithXMsTextProperty:
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: ObjectWithXMsTextProperty
+        :rtype: ~xmlserviceversiontolerant.models.ObjectWithXMsTextProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "content": "str",  # Optional. Returned value should be 'I am text'.
-                    "language": "str"  # Optional. Returned value should be 'english'.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2222,7 +1557,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ObjectWithXMsTextProperty] = kwargs.pop("cls", None)
 
         request = build_xml_get_xms_text_request(
             headers=_headers,
@@ -2240,31 +1575,20 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("ObjectWithXMsTextProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
-    async def get_bytes(self, **kwargs: Any) -> ET.Element:
+    async def get_bytes(self, **kwargs: Any) -> _models.ModelWithByteProperty:
         """Get an XML document with binary property.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: ModelWithByteProperty
+        :rtype: ~xmlserviceversiontolerant.models.ModelWithByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "Bytes": bytes("bytes", encoding="utf-8")  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2277,7 +1601,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ModelWithByteProperty] = kwargs.pop("cls", None)
 
         request = build_xml_get_bytes_request(
             headers=_headers,
@@ -2293,37 +1617,27 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("ModelWithByteProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
     async def put_binary(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: ET.Element, **kwargs: Any
+        self, slideshow: _models.ModelWithByteProperty, **kwargs: Any
     ) -> None:
         """Put an XML document with binary property.
 
         :param slideshow: Required.
-        :type slideshow: ET.Element
+        :type slideshow: ~xmlserviceversiontolerant.models.ModelWithByteProperty
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                slideshow = {
-                    "Bytes": bytes("bytes", encoding="utf-8")  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2339,7 +1653,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = slideshow
+        _content = self._serialize.body(slideshow, "ModelWithByteProperty", is_xml=True)
 
         request = build_xml_put_binary_request(
             content_type=content_type,
@@ -2357,26 +1671,19 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_uri(self, **kwargs: Any) -> ET.Element:
+    async def get_uri(self, **kwargs: Any) -> _models.ModelWithUrlProperty:
         """Get an XML document with uri property.
 
-        :return: XML Element
-        :rtype: ET.Element
+        :return: ModelWithUrlProperty
+        :rtype: ~xmlserviceversiontolerant.models.ModelWithUrlProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "Url": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2389,7 +1696,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[ET.Element] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ModelWithUrlProperty] = kwargs.pop("cls", None)
 
         request = build_xml_get_uri_request(
             headers=_headers,
@@ -2405,35 +1712,27 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
-        if response.content:
-            deserialized = ET.fromstring(response.text())
-        else:
-            deserialized = None
+        deserialized = self._deserialize("ModelWithUrlProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, cast(ET.Element, deserialized), {})
+            return cls(pipeline_response, deserialized, {})
 
-        return cast(ET.Element, deserialized)
+        return deserialized
 
     @distributed_trace_async
-    async def put_uri(self, model: ET.Element, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_uri(  # pylint: disable=inconsistent-return-statements
+        self, model: _models.ModelWithUrlProperty, **kwargs: Any
+    ) -> None:
         """Put an XML document with uri property.
 
         :param model: Required.
-        :type model: ET.Element
+        :type model: ~xmlserviceversiontolerant.models.ModelWithUrlProperty
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                model = {
-                    "Url": "str"  # Optional.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2449,7 +1748,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/xml"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = model
+        _content = self._serialize.body(model, "ModelWithUrlProperty", is_xml=True)
 
         request = build_xml_put_uri_request(
             content_type=content_type,
@@ -2467,7 +1766,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
