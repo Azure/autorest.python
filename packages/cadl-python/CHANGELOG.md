@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-11-17 - 0.4.10
+
+**Bug Fixes**
+
+- Fix support for client path parameters #1584
+
 ## 2022-11-16 - 0.4.9
 
 **Other Changes**
